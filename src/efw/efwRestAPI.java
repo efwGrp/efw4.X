@@ -1,0 +1,107 @@
+package efw;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import efw.script.ScriptManager;
+
+@SuppressWarnings("serial")
+@WebServlet(name="efwRestAPI",loadOnStartup=1,urlPatterns={"/efwRestAPI/*"})
+public final class efwRestAPI extends HttpServlet{
+
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doRestAPI(req,resp,"PUT");
+	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doRestAPI(req,resp,"GET");
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doRestAPI(req,resp,"POST");
+	}
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doRestAPI(req,resp,"DELETE");
+	}
+	
+	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
+        response.setCharacterEncoding(framework.getResponseCharSet());
+        response.setContentType("application/json");
+		//--------------------------------------------------------------------
+        //if init is failed, return the info instead of throw exception
+		if (!framework.getInitSuccessFlag()){
+			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
+			framework.runtimeSLog("initSuccessFlag = false");
+			return;
+		}
+		//cors support
+		if("*".equals(framework.getCors())){
+			response.setHeader("Access-Control-Allow-Origin", "*");
+		}else if("null".equals(framework.getCors())||"".equals(framework.getCors())||null==framework.getCors()){
+			//do nothing
+		}else{
+			String[] corsAry=framework.getCors().split(",");
+			for(int i=0;i<corsAry.length;i++){
+				response.setHeader("Access-Control-Allow-Origin", corsAry[i]);
+			}
+		}
+		//call script 
+		framework.setRequest(request);
+		framework.setResponse(response);
+		framework.setThreadLogs(new ArrayList<String>());
+		try {
+			String[] keys=request.getPathInfo().split("/");
+			String eventId=keys[1];////　一つ目は/です。
+			StringBuilder sb=new StringBuilder();
+			sb.append("[");
+			for(int i=2;i<keys.length;i++) {
+				if (i>2) {//　一つ目は/です。
+					sb.append(",");
+				}
+				sb.append("\"");
+				sb.append(keys[i]);
+				sb.append("\"");
+			}
+			sb.append("]");
+			String reqKeys=sb.toString();
+			BufferedReader br = new BufferedReader(request.getReader());
+			String reqParams = br.readLine();
+			br.close();
+			String ret=ScriptManager.doRestAPI(eventId,reqKeys,httpMethod,reqParams);
+			// 正常戻りの場合
+			if (ret!=null) {
+				response.setStatus(HttpURLConnection.HTTP_OK);//200
+				response.getWriter().print(ret);
+			}else if ("PUT".equals(httpMethod)) {
+				response.setStatus(HttpURLConnection.HTTP_CREATED);//201
+			}else if ("GET".equals(httpMethod)) {
+				response.setStatus(HttpURLConnection.HTTP_NOT_FOUND);//404
+			}else if ("POST".equals(httpMethod)) {
+				response.setStatus(HttpURLConnection.HTTP_NO_CONTENT);//201
+			}else if ("DELETE".equals(httpMethod)) {
+				response.setStatus(HttpURLConnection.HTTP_NO_CONTENT);//204
+			}
+		} catch (Exception ex) {
+			framework.runtimeSLog(ex);
+			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
+			//response.getWriter().print(otherError);//efw内部エラー。
+		}finally{
+			framework.removeRequest();
+			framework.removeResponse();
+			framework.removeI18nProp();
+			framework.removeThreadLogs();
+		}
+		
+	}
+}
