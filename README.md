@@ -1,9 +1,20 @@
 <H1>efw4.X</H1>
+<h3>What's new?</h3>
+<h4>Added</h4>
+i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_event.md">Event JS</a>.<br>
+ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>.
+<h4>removed</h4>
+Additional Tags:	Signature,	CKEditor
+<h4>updated</h4>
+jdk:	java jdk1.8 or later or graalvm.<br>
+poi:	poi 4.1.1.<br>
+zxing:	zxing 3.4.<br>
+<h4>changed</h4>
+
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">
 <h3>Learn</h3>
 <a href="help/step_by_step_web.md">Step by Step(Web)</a>, <a href="help/hello_world_web.md">Quick Start(Web)</a>, <a href="help/files_list_web.md">Files List(Web)</a>, <a href="https://efwgrp.github.io/efw3.X/EFW%E7%B4%B9%E4%BB%8Bv1.3%20(Web)/">EFW紹介v1.3</a>, <a href="https://efwgrp.github.io/efw3.X/EFW%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0v1.3%20(Web)/">EFWプログラミングv1.3</a>, <a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a>
-
 <H1>API</H1>
 <h2>Properties</h2>
 <a href="help/properties.web.md">efw.properties</a>, <a href="help/properties.batch.md">batch.properties</a>
@@ -12,7 +23,7 @@
 <h2>JSP</h2>
 <table>
 <tr><th>Categories</th><th>Items</th></tr>
-<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td></tr>
+<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td></tr>
 <tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td></tr>
 <tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td></tr>
 <tr><td>Attributes</td><td><a href="help/api_data_format.md">data-format</a></td><td><a href="help/api_data_shortcut.md">data-shortcut</a></td></tr>
@@ -22,6 +33,8 @@
 <a href="help/api_sql.md">SQL XML</a>
 <h2>Outside Mail</h2>
 <a href="help/api_mail.md">Mail XML</a>
+<h2>Multi Language</h2>
+<a href="help/api_language.md">Language XML</a>
 <h2>Event JS</h2>
 <a href="help/api_event.md">Event Programming</a>, <a href="help/api_global.md">About Global Event</a>
 <h3>Global</h3>
