@@ -161,8 +161,9 @@ public final class efwServlet extends HttpServlet {
 	 * @throws IOException 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        response.setCharacterEncoding(framework.getResponseCharSet());
+        response.setCharacterEncoding(framework.getSystemCharSet());
         response.setContentType("application/json");
+        request.setCharacterEncoding(framework.getSystemCharSet());
         String otherError="{\"values\":[],\"actions\":{\"error\":{\"clientMessageId\":\"OtherErrorException\"}"+
         		(framework.getSystemErrorUrl().equals("")?"":",\"navigate\":{\"url\":\""+framework.getSystemErrorUrl()+"\"}")
         		+"}";
@@ -190,9 +191,14 @@ public final class efwServlet extends HttpServlet {
 		framework.setThreadLogs(new ArrayList<String>());
 		try {
 			BufferedReader br = new BufferedReader(request.getReader());
-			String reqJson = br.readLine();
+			StringBuilder reqJson=new StringBuilder();
+			String str = br.readLine();
+			while(str != null){
+				reqJson.append(str);
+				str = br.readLine();
+			}
 			br.close();
-	        response.getWriter().print(ScriptManager.doPost(reqJson));
+	        response.getWriter().print(ScriptManager.doPost(reqJson.toString()));
 		} catch (Exception ex) {
 			framework.runtimeSLog(ex);
 			response.getWriter().print(otherError);//efw内部エラー。

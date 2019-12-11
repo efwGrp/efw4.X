@@ -47,7 +47,7 @@ EfwClient.prototype.fire = function(eventParams) {
 		cache : false,// don't use cache
 		async : true,// don't use async
 		dataType : "json",// send or get data by json type
-		contentType: "application/json",
+		contentType: "application/json;charset=UTF-8",
 		// first calling only send groupid and eventid
 		data : JSON.stringify({"eventId" : eventId,
 				"lang" : efw.lang}),
@@ -271,9 +271,10 @@ EfwClient.prototype._pickupParams = function(paramsFormat, context,
 		} else if ($.type(format) == "array") {
 			if ($.type(format[0]) == "object") {
 				var ary = [];
+				var self=this;
 				$(element).each(
 						function(idx, dom) {
-							ary.push(this._pickupParams(
+							ary.push(self._pickupParams(
 									format[0], dom, manualParams));
 						});
 				vl = ary;

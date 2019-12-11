@@ -112,9 +112,9 @@ public class framework {
     /**
      * レスポンスの文字セット定数、XMLHttpRequestのデフォルトに合わせ、「UTF-8」に固定。
      */
-    private static final String RESPONSE_CHAR_SET="UTF-8";
-	public static String getResponseCharSet() {
-		return RESPONSE_CHAR_SET;
+    private static final String SYSTEM_CHAR_SET="UTF-8";
+	public static String getSystemCharSet() {
+		return SYSTEM_CHAR_SET;
 	}
     /**
      * システムエラー画面遷移のURL、空白は初期値。

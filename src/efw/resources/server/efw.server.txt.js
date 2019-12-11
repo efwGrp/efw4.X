@@ -19,6 +19,10 @@ function TXTReader(path, regFieldsDef, encoding, rowSize) {
 	if (rowSize != null){this._rowSize = rowSize;}
 };
 /**
+ * TXT locker for openning reader
+ */
+var TXTReader_lock = new java.util.concurrent.locks.ReentrantLock();
+/**
  * The attr to keep the path.
  */
 TXTReader.prototype._path = null;
@@ -61,18 +65,28 @@ TXTReader.prototype.loopAllLines = function(callback){
 		var strLine;
 		var intNum = 0;
 		if (this._rowSize==-1){
-			br = new java.io.BufferedReader(
-						new java.io.InputStreamReader(
-							new java.io.FileInputStream(
-								Packages.efw.file.FileManager.get(this._path)),
-								this._encoding));
+			try{
+				TXTReader_lock.lock();
+				br = new java.io.BufferedReader(
+							new java.io.InputStreamReader(
+								new java.io.FileInputStream(
+									Packages.efw.file.FileManager.get(this._path)),
+									this._encoding));
+			}finally{
+				TXTReader_lock.unlock();
+			}
 			while ((strLine = br.readLine()) != null) {
 				var aryField = this._split(strLine,intNum);
 				callback(aryField, intNum);
 				intNum++;
 			}
 		}else{
-			br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
+			try{
+				TXTReader_lock.lock();
+				br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
+			}finally{
+				TXTReader_lock.unlock();
+			}
 			var buf=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._rowSize);//ファイルから読み込むバファー
 			var bufs=[];//IBMCp930Cp939用サブバファー
 			var c;

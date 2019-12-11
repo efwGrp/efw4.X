@@ -47,7 +47,9 @@ Threads.prototype.run = function(){
 				semaphore.acquire();
 				this._run();
 			}catch(e){
-				java.lang.System.out.println(e);
+				java.lang.System.out.println(e);//TODO
+				//Packages.efw.framework.runtimeWLog(e);
+				//var logs=Packages.efw.framework.getThreadLogs();
 			}finally{
 				semaphore.release();
 			}

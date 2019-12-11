@@ -25,6 +25,10 @@ function CSVReader(path, separator, delimiter, encoding) {
 							 , "gm");
 };
 /**
+ * CSV locker for openning reader
+ */
+var CSVReader_lock = new java.util.concurrent.locks.ReentrantLock();
+/**
  * The attr to keep the path.
  */
 CSVReader.prototype._path = null;
@@ -72,11 +76,16 @@ CSVReader.prototype.loopAllLines = function(callback){
 	var br=null;
 	if (callback == null) {return;}
 	try{
-		br = new java.io.BufferedReader(
+		try{
+			CSVReader_lock.lock();
+			br = new java.io.BufferedReader(
 					new java.io.InputStreamReader(
 						new java.io.FileInputStream(
 							Packages.efw.file.FileManager.get(this._path)),
 							this._encoding));
+		}finally{
+			CSVReader_lock.unlock();
+		}
 		var strLine;
 		var intNum = 0;
 

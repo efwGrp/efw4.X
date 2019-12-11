@@ -27,6 +27,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	private String data="";
 	private String version="current";
 	private String setOptions="null";
+	private String mode="googlechart";
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 
 	/**
@@ -44,11 +45,21 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 			for(Map.Entry<String, String> e : attrs.entrySet()) {
 				temp+=e.getKey()+"=\""+e.getValue()+"\" ";
 			}
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"chart/googlechart4efw.js\"></script>");
-			out.print("<iframe id=\"iframe_"+id+"\" name=\"iframe_"+id+"\" frameborder=\"0\" style=\"width:"+width+";height:"+height+";\" "+temp+"></iframe>");
-			out.print("<script>"
-					+ "var "+id+";"
-					+ "$(function(){"+id+"=new EfwClientChart(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
+			if ("googlechart".equals(mode)) {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://www.gstatic.com/charts/loader.js\"></script>");
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.googlechart.js\"></script>");
+				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"></div>");
+				out.print("<script>"
+						+ "var "+id+";"
+						+ "$(function(){"+id+"=new EfwClientChartGL(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
+			}else if ("chartjs".equals(mode)) {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"chart/Chart.min.js\"></script>");
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.chartjs.js\"></script>");
+				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"><canvas></canvas></div>");
+				out.print("<script>"
+						+ "var "+id+";"
+						+ "$(function(){"+id+"=new EfwClientChartJS(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +71,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 		data="";
 		version="current";
 		setOptions="null";
+		mode="googlechart";
 		attrs=new HashMap<String, String>();
 		return SKIP_BODY;
 	}
@@ -85,6 +97,8 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 			version=(String) value;
 		}else if(name.equalsIgnoreCase("setOptions")){
 			setOptions=(String) value;
+		}else if(name.equalsIgnoreCase("mode")){
+			mode=(String) value;
 		}else{
 			attrs.put(name, (String)value);
 		}

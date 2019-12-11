@@ -254,6 +254,8 @@ function doPost(req) {
 					||i=="barcode"
 					||i=="Master_lock"
 					||i=="Event_lock"
+					||i=="TXTReader_lock"
+					||i=="CSVReader_lock"
 					||i=="Base64"
 					||i=="messages"
 					||i=="langs"
@@ -351,6 +353,7 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 	(""+reqkeys).debug("reqkeys");
 	(""+httpMethod).debug("httpMethod");
 	(""+reqParams).debug("reqParams");
+	reqParams=reqParams.replace(/\r?\n/g, "");//to delete \r\n
 	var params = JSON.parse(reqParams); // parse request string to json object
 	var keys = JSON.parse(reqkeys);// parse keys string to json array
 	var lang = params==null?"en":params.lang; // get lang from json object
@@ -370,9 +373,9 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 		Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),eventId);//操作履歴のため。
 		var ret;
 		if (httpMethod=="PUT"){
-			ret=ev.PUT(params);
+			ret=ev.PUT(keys,params);
 		}else if (httpMethod=="POST"){
-			ret=ev.POST(params);
+			ret=ev.POST(keys,params);
 		}else if (httpMethod=="GET"){
 			ret=ev.GET(keys);
 		}else if (httpMethod=="DELETE"){

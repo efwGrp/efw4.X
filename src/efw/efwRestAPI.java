@@ -36,8 +36,9 @@ public final class efwRestAPI extends HttpServlet{
 	}
 	
 	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
-        response.setCharacterEncoding(framework.getResponseCharSet());
+        response.setCharacterEncoding(framework.getSystemCharSet());
         response.setContentType("application/json");
+        request.setCharacterEncoding(framework.getSystemCharSet());
 		//--------------------------------------------------------------------
         //if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
@@ -76,9 +77,14 @@ public final class efwRestAPI extends HttpServlet{
 			sb.append("]");
 			String reqKeys=sb.toString();
 			BufferedReader br = new BufferedReader(request.getReader());
-			String reqParams = br.readLine();
+			StringBuilder reqParams=new StringBuilder();
+			String str = br.readLine();
+			while(str != null){
+				reqParams.append(str);
+				str = br.readLine();
+			}
 			br.close();
-			String ret=ScriptManager.doRestAPI(eventId,reqKeys,httpMethod,reqParams);
+			String ret=ScriptManager.doRestAPI(eventId,reqKeys,httpMethod,reqParams.toString());
 			// 正常戻りの場合
 			if (ret!=null) {
 				response.setStatus(HttpURLConnection.HTTP_OK);//200

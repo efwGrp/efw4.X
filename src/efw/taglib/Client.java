@@ -49,7 +49,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.inputbehavior.js\"></script>\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.js\"></script>\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.js\"></script>\n");
-			out.print("<script type=\"text/javascript\" \">\n");
+			out.print("<script type=\"text/javascript\">\n");
 			out.print("	efw.baseurl = \""+baseurl+"\";\n");
 			out.print("	efw.lang = \""+lang+"\";\n");
 			out.print("	efw.mode = \""+mode+"\";\n");

@@ -23,7 +23,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String id="elFinder";
 	private String home="";
 	private boolean readonly=false;
-	private String lang="";
+	private String lang="en";
 	private String height="400";
 	private String width="auto";
 	private boolean _protected=false;
@@ -53,9 +53,10 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 					+ "\"url\":\"efwServlet\","
 					+ "\"urlUpload\":\"uploadServlet\","
 					+ "\"soundPath\":\"elfinder/sounds\","
-					+("".equals(lang)||"en".equals(lang)?"":"lang:"+"\""+lang+"\",")
-					+"height:\""+height+"\","
-					+"width:\""+width+"\","
+					+"\"requestType\":\"POST\","
+					+"\"lang\":\""+lang+"\","
+					+"\"height\":\""+height+"\","
+					+"\"width\":\""+width+"\","
 					+ "\"customData\":{"
 					+ "\"home\":\""+home+"\","
 					+ "\"readonly\":"+readonly+","
@@ -81,7 +82,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		id="elFinder";
 		home="";
 		readonly=false;
-		lang="";
+		lang="en";
 		height="400";
 		width="auto";
 		_protected=false;
@@ -101,7 +102,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		}else if(name.equalsIgnoreCase("home")){
 			home=(String) value;
 		}else if(name.equalsIgnoreCase("lang")){
-			lang=(String) value;
+			if(!"".equals(value)&&null!=value)lang=(String) value;
 		}else if(name.equalsIgnoreCase("height")){
 			height=(String) value;
 		}else if(name.equalsIgnoreCase("width")){
