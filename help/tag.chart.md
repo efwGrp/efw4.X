@@ -54,32 +54,19 @@ googlechart:
 chartjs:
 	<table>
 		<tr>
-			<th>column</th>
-			<td><img src="chart/js_column.png"></td>
-			<th>stackedcolumn</th>
-			<td><img src="chart/js_stackedcolumn.png"></td>
-			<th>line</th>
-			<td><img src="chart/js_line.png"></td>
-			<th>pie</th>
-			<td><img src="chart/js_pie.png"></td>
-			<th>donut</th>
-			<td><img src="chart/js_donut.png"></td>
+			<th>column<br><img src="chart/js_column.png"></th>
+			<th>stackedcolumn<br><img src="chart/js_stackedcolumn.png"></th>
+			<th>line<br><img src="chart/js_line.png"></th>
+			<th>pie<br><img src="chart/js_pie.png"></th>
+			<th>donut<br><img src="chart/js_donut.png"></th>
 		</tr>
 		<tr>
-			<th>bar</th>
-			<td><img src="chart/js_bar.png"></td>
-			<th>stackedarea</th>
-			<td><img src="chart/js_stackedarea.png"></td>
-			<th>area</th>
-			<td><img src="chart/js_area.png"></td>
-			<th>stackedarea</th>
-			<td><img src="chart/js_stackedarea.png"></td>
-			<th>scatter</th>
-			<td><img src="chart/js_scatter.png"></td>
-		</tr>
-		<tr>
-			<th>radar</th>
-			<td><img src="chart/js_radar.png"></td>
+			<th>bar<br><img src="chart/js_bar.png"></th>
+			<th>stackedarea<br><img src="chart/js_stackedarea.png"></th>
+			<th>area<br><img src="chart/js_area.png"></th>
+			<th>stackedarea<br><img src="chart/js_stackedarea.png"></th>
+			<th>scatter<br><img src="chart/js_scatter.png"></th>
+			<th>radar<br><img src="chart/js_radar.png"></th>
 		</tr>
 	</table>
 
