@@ -3,13 +3,13 @@
 <h4>Added</h4>
 i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_event.md">Event JS</a>.<br>
 ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>.
-<h4>removed</h4>
+<h4>Removed</h4>
 Additional Tags:	Signature,	CKEditor
-<h4>updated</h4>
+<h4>Updated</h4>
 jdk:	java jdk1.8 or later or graalvm.<br>
 poi:	poi 4.1.1.<br>
 zxing:	zxing 3.4.<br>
-<h4>changed</h4>
+<h4>Changed</h4>
 
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">
