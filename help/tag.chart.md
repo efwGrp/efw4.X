@@ -37,28 +37,18 @@ and included them into Efw as a tag. It must be used after the Client tag for jQ
 googlechart:
 	<table>
 		<tr>
-			<th>column</th>
-			<td><img src="chart/gl_column.png"></td>
-			<th>stackedcolumn</th>
-			<td><img src="chart/gl_stackedcolumn.png"></td>
-			<th>line</th>
-			<td><img src="chart/gl_line.png"></td>
-			<th>pie</th>
-			<td><img src="chart/gl_pie.png"></td>
-			<th>donut</th>
-			<td><img src="chart/gl_donut.png"></td>
+			<th>column<br><img src="chart/gl_column.png"></th>
+			<th>stackedcolumn<br><img src="chart/gl_stackedcolumn.png"></th>
+			<th>line<br><img src="chart/gl_line.png"></th>
+			<th>pie<br><img src="chart/gl_pie.png"></th>
+			<th>donut<br><img src="chart/gl_donut.png"></th>
 		</tr>
 		<tr>
-			<th>bar</th>
-			<td><img src="chart/gl_bar.png"></td>
-			<th>stackedarea</th>
-			<td><img src="chart/gl_stackedarea.png"></td>
-			<th>area</th>
-			<td><img src="chart/gl_area.png"></td>
-			<th>stackedarea</th>
-			<td><img src="chart/gl_stackedarea.png"></td>
-			<th>scatter</th>
-			<td><img src="chart/gl_scatter.png"></td>
+			<th>bar<br><img src="chart/gl_bar.png"></th>
+			<th>stackedarea<br><img src="chart/gl_stackedarea.png"></th>
+			<th>area<br><img src="chart/gl_area.png"></th>
+			<th>stackedarea<br><img src="chart/gl_stackedarea.png"></th>
+			<th>scatter<br><img src="chart/gl_scatter.png"></th>
 		</tr>
 	</table>
 chartjs:
