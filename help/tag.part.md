@@ -1,5 +1,5 @@
 <H1>Part Tag</H1>
-It will be more easy using Part tag to include a common page part made by JSP in your own JSP.
+It will be more easy to include a common page part made by JSP with Part tag.
 <pre>
 &lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
 &lt;body&gt;

@@ -2,7 +2,7 @@
 <h3>What's new?</h3>
 <h4>Added</h4>
 i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_event.md">Event JS</a>.<br>
-ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>.
+ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>. Attribute "mode" in <a href="help/tag.chart.md">Chart tag</a>.
 <h4>Removed</h4>
 Additional Tags:	Signature,	CKEditor
 <h4>Updated</h4>
