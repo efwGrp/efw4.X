@@ -141,4 +141,7 @@ To reference JQuery about the rules of selectors.
 If the event is called by web, the event return must be void or an instance of Result. <br>
 If the event is called by batch, the event return should be an instance of Batch. 
 
-
+<H3>i18n Message Key</H3>
+For muti-language, you can set mesage keys in next items. To see details in <a href="../samples/i18nSample/WEB-INF/efw/event/i18nSampleTest.js">the Sample</a>.
+<li>display-name in check style.
+<li>any string value in Result object.

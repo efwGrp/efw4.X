@@ -14,7 +14,18 @@ zxing:	zxing 3.4.<br>
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">
 <h3>Learn</h3>
-<a href="help/step_by_step_web.md">Step by Step(Web)</a>, <a href="help/hello_world_web.md">Quick Start(Web)</a>, <a href="help/files_list_web.md">Files List(Web)</a>, <a href="https://efwgrp.github.io/efw3.X/EFW%E7%B4%B9%E4%BB%8Bv1.3%20(Web)/">EFW紹介v1.3</a>, <a href="https://efwgrp.github.io/efw3.X/EFW%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0v1.3%20(Web)/">EFWプログラミングv1.3</a>, <a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a>
+<a href="help/step_by_step_web.md">Step by Step(Web)</a>, 
+<a href="help/hello_world_web.md">Quick Start(Web)</a>, 
+<a href="help/files_list_web.md">Files List(Web)</a>, 
+<a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
+<a href="help/ppt/EFW紹介v1.3.pptx">EFW紹介v1.3</a>, 
+<a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a>, 
+<a href="help/ppt/EFWセキュリティ関連v.0.1.pptx">EFWセキュリティ関連v.0.1</a>, 
+<a href="help/ppt/EFWデモのデザイン説明v0.1.pptx">EFWデモのデザイン説明v0.1</a>, 
+<a href="help/ppt/EFW Nashorn非推薦の影響v0.1.pptx">EFW Nashorn非推薦の影響v0.1</a>, <br>
+<a href="help/ppt/EFW高負荷対応のTomcat Efw環境構築v0.2.pptx">EFW高負荷対応のTomcat Efw環境構築v0.2</a>, 
+
+
 <H1>API</H1>
 <h2>Properties</h2>
 <a href="help/properties.web.md">efw.properties</a>, <a href="help/properties.batch.md">batch.properties</a>
