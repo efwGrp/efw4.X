@@ -3,7 +3,6 @@ package efw.file;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,8 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import org.mozilla.universalchardet.UniversalDetector;
 
 import efw.framework;
 
@@ -319,22 +316,6 @@ public final class FileManager {
 	 * @throws IOException
 	 */
 	public static String readAllLines(File f,String encoding) throws IOException{
-		if (encoding==null){
-			UniversalDetector detector = new UniversalDetector(null);
-			FileInputStream in=new FileInputStream(f);
-			ByteArrayOutputStream bao = new ByteArrayOutputStream();
-			byte[] buff = new byte[8000];
-			int bytesRead;
-	        while ((bytesRead = in.read(buff)) != -1) {
-	            bao.write(buff, 0, bytesRead);
-	        }
-	        in.close();
-	        byte[] data = bao.toByteArray();
-	        detector.handleData(data, 0, data.length);
-	        detector.dataEnd();
-	        encoding = detector.getDetectedCharset();
-	        detector.reset();
-		}
         if(encoding!=null){
             return new String(Files.readAllBytes(Paths.get(f.getAbsolutePath())), Charset.forName(encoding));
         }else{

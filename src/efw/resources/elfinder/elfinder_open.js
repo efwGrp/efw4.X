@@ -6,15 +6,17 @@ elfinder_open.fire = function(params) {
 	var volumeId="EFW_";
 	var home=params["home"];//ホームフォルダ、ストレージフォルダからの相対位置
 	var readonly=params["readonly"];//参照のみかどうか,true,false
+	var id=params["id"];//elfinderのid
 	var init=params["init"];//初回表示かどうか、1,0
 	var target=params["target"];//初回以降はcwdのhashになる。
 	var saveupload=params["saveupload"];//アップロード後の再表示のため。1,0
-	
-	if (session.get("EFW_ELFINDER_HOME")!=null && session.get("EFW_ELFINDER_HOME")!=home){
-		home=session.get("EFW_ELFINDER_HOME");
-	}
-	if (session.get("EFW_ELFINDER_READONLY")!=null && session.get("EFW_ELFINDER_READONLY")!=""+readonly){
-		if (session.get("EFW_ELFINDER_READONLY")=="true"){
+
+	if (Packages.efw.taglib.ElFinder.isProtected(id)){
+		if (session.get("EFW_ELFINDER_HOME_"+id)==null||session.get("EFW_ELFINDER_READONLY_"+id)==null){
+			throw new Packages.efw.ElFinderIdIsNotExistException(id);//セッションタイムアウトのため、エラーさせる。
+		}
+		home=session.get("EFW_ELFINDER_HOME_"+id);
+		if (session.get("EFW_ELFINDER_READONLY_"+id)=="true"){
 			readonly=true;
 		}else{
 			readonly=false;

@@ -3,7 +3,6 @@ load("classpath:efw/resources/elfinder/elfinder_cmds.js");
 load("classpath:efw/resources/elfinder/elfinder_download.js");
 load("classpath:efw/resources/elfinder/elfinder_duplicate.js");
 load("classpath:efw/resources/elfinder/elfinder_file.js");
-load("classpath:efw/resources/elfinder/elfinder_get.js");
 load("classpath:efw/resources/elfinder/elfinder_ls.js");
 load("classpath:efw/resources/elfinder/elfinder_mkdir.js");
 load("classpath:efw/resources/elfinder/elfinder_mkfile.js");

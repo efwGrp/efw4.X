@@ -10,6 +10,8 @@ jdk:	java jdk1.8 or later or graalvm.<br>
 poi:	poi 4.1.1.<br>
 zxing:	zxing 3.4.<br>
 <h4>Changed</h4>
+file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
+elFinder:	Remove get command and the plain text editor.<br>
 
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">
@@ -21,9 +23,17 @@ zxing:	zxing 3.4.<br>
 <a href="help/ppt/EFW紹介v1.3.pptx">EFW紹介v1.3</a>, 
 <a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a>, 
 <a href="help/ppt/EFWセキュリティ関連v.0.1.pptx">EFWセキュリティ関連v.0.1</a>, 
-<a href="help/ppt/EFWデモのデザイン説明v0.1.pptx">EFWデモのデザイン説明v0.1</a>, 
-<a href="help/ppt/EFW Nashorn非推薦の影響v0.1.pptx">EFW Nashorn非推薦の影響v0.1</a>, <br>
+<a href="help/ppt/EFWデモのデザイン説明v0.1.pptx">EFWデモのデザイン説明v0.1</a>, <br>
+<a href="help/ppt/EFW Nashorn非推薦の影響v0.1.pptx">EFW Nashorn非推薦の影響v0.1</a>, 
 <a href="help/ppt/EFW高負荷対応のTomcat Efw環境構築v0.2.pptx">EFW高負荷対応のTomcat Efw環境構築v0.2</a>, 
+<h3>Samples</h3>
+<a href="samples/i18nSample">i18nSample</a>
+<a href="samples/dialogSample">dialogSample</a>
+<a href="samples/chartSample">chartSample</a>
+<a href="samples/elfinderSample">elfinderSample</a>
+<a href="samples/shortcutSample">shortcutSample</a>
+<a href="samples/barcodeSample">barcodeSample</a>
+
 
 
 <H1>API</H1>

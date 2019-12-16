@@ -9,6 +9,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import efw.ElFinderIdIsNotExistException;
 /**
  * ElFinderタグを処理するクラス。
  * <efw:ElFinder home="" readonly="" lang="" height="" width=""/>
@@ -28,6 +30,18 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String width="auto";
 	private boolean _protected=false;
 	private HashMap<String, String> attrs=new HashMap<String, String>();
+	
+	private static HashMap<String, Boolean> elfinderIds=new HashMap<String, Boolean>();
+	public static boolean isProtected(String id) throws ElFinderIdIsNotExistException {
+		synchronized(elfinderIds) {
+			if (elfinderIds.containsKey(id)) {
+				System.out.println("get id="+id+" value="+elfinderIds.get(id));
+				return elfinderIds.get(id);
+			}else {
+				throw new ElFinderIdIsNotExistException(id);
+			}
+		}
+	}
 
 	/**
 	 * タグを実行する。
@@ -42,8 +56,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css\">");
-			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js\"></script>");
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
+			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js\"></script>");
 			if(!"".equals(lang)&&!"en".equals(lang)){
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/i18n/elfinder."+lang+".js\"></script>");
 			}
@@ -60,6 +74,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 					+ "\"customData\":{"
 					+ "\"home\":\""+home+"\","
 					+ "\"readonly\":"+readonly+","
+					+ "\"id\":\""+id+"\","
 					+ "}"
 					+ "}).elfinder(\"instance\");});");
 			out.print("</script>");
@@ -68,12 +83,16 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 				temp+=e.getKey()+"=\""+e.getValue()+"\" ";
 			}
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
+			synchronized(elfinderIds) {
+				elfinderIds.put(id, _protected);
+				System.out.println("put id="+id+" value="+_protected);
+			}
 			if(_protected){
-				pageContext.getSession().setAttribute("EFW_ELFINDER_HOME", home);
-				pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY", (readonly?"true":"false"));
+				pageContext.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
+				pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id, (readonly?"true":"false"));
 			}else{
-				pageContext.getSession().removeAttribute("EFW_ELFINDER_HOME");
-				pageContext.getSession().removeAttribute("EFW_ELFINDER_READONLY");
+				pageContext.getSession().removeAttribute("EFW_ELFINDER_HOME_"+id);
+				pageContext.getSession().removeAttribute("EFW_ELFINDER_READONLY_"+id);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

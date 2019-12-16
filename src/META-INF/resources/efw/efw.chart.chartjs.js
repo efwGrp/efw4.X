@@ -103,6 +103,7 @@ EfwClientChartJS.prototype.draw=function(){
 	//set the default options
 	this.options={
 		responsive:true,
+		maintainAspectRatio:false,
 		tooltips:{//カーソル当たる時のツールチップに表示する内容のフォーマット
 			callbacks:{}
 		},
@@ -179,6 +180,10 @@ EfwClientChartJS.prototype.draw=function(){
 				+ EfwClientFormat.prototype.formatNumber(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index],formatter);
 			}
 		};
+	}
+	
+	if(types[this.type].chart=="doughnut"){
+		this.options.cutoutPercentage=40;
 	}
 	//do setOptions event
 	if(this.setOptions!=null){

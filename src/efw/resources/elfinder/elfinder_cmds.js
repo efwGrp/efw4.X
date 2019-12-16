@@ -11,7 +11,6 @@ elfinder_cmds.fire = function(params) {
 		else if(cmd=="mkdir"){return event.fire("elfinder_mkdir", params);}//create directory
 		else if(cmd=="rm"){return event.fire("elfinder_rm", params);}//delete files/directories
 		else if(cmd=="size"){return event.fire("elfinder_size", params);}//return size for selected files or total folder(s) size
-		else if(cmd=="get"){return event.fire("elfinder_get", params);}//output plain/text file contents (preview)
 		else if(cmd=="rename"){return event.fire("elfinder_rename", params);}//rename file
 		else if(cmd=="mkfile"){return event.fire("elfinder_mkfile", params);}//create text file
 		else if(cmd=="put"){return event.fire("elfinder_put", params);}//save text file content
