@@ -27,13 +27,13 @@ elFinder:	Remove get command and the plain text editor.<br>
 <a href="help/ppt/EFW Nashorn非推薦の影響v0.1.pptx">EFW Nashorn非推薦の影響v0.1</a>, 
 <a href="help/ppt/EFW高負荷対応のTomcat Efw環境構築v0.2.pptx">EFW高負荷対応のTomcat Efw環境構築v0.2</a>, 
 <h3>Samples</h3>
-<a href="samples/i18nSample">i18nSample</a>
-<a href="samples/dialogSample">dialogSample</a>
-<a href="samples/chartSample">chartSample</a>
-<a href="samples/elfinderSample">elfinderSample</a>
-<a href="samples/shortcutSample">shortcutSample</a>
-<a href="samples/barcodeSample">barcodeSample</a>
-<a href="samples/designSample">designSample</a>
+<a href="samples/i18nSample">i18n</a>
+<a href="samples/dialogSample">dialog</a>
+<a href="samples/chartSample">chart</a>
+<a href="samples/elfinderSample">elfinder</a>
+<a href="samples/shortcutSample">shortcut</a>
+<a href="samples/barcodeSample">barcode</a>
+<a href="samples/designSample">design</a>
 
 
 
