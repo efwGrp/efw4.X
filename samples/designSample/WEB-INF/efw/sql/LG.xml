@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqls>
+<sqls>
+	<sql id="selユーザ">
+		SELECT 
+			 "ユーザID", 
+			 "パスワード",
+			 "ユーザ名", 
+			 "メール",
+			 "コメント", 
+			 "初期化フラグ",
+			 "ロックフラグ",
+			 "パスワード更新日"
+		FROM 
+			 "ユーザマスタ"
+		WHERE 
+			"ユーザID" = :ユーザID
+	</sql>
+	<sql id="updパスワード">
+		UPDATE
+			"ユーザマスタ"
+		SET 
+			"パスワード"=:パスワード,
+			"初期化フラグ"='0',
+			"ロックフラグ" = '0',
+			"パスワード更新日"=now()
+		WHERE 
+			"ユーザID" =:ユーザID
+	</sql>
+	<sql id="lckユーザ">
+		UPDATE
+			"ユーザマスタ"
+		SET
+			"ロックフラグ" = '1'
+		WHERE
+			"ユーザID" =:ユーザID
+	</sql>
+</sqls>

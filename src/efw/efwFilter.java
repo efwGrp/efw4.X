@@ -41,6 +41,10 @@ public final class efwFilter implements Filter {
 	 */
 	private static String systemErrorUrl ="error.jsp";
 	/**
+	 * クライアントメッセージのURL。
+	 */
+	private static String clientMessagesUrl="efw.client.messages.jsp";
+	/**
 	 * ログインチェック対象外画面のURLパターンの文字列。
 	 */
 	private static String outOfloginUrlPatternString="";
@@ -52,6 +56,10 @@ public final class efwFilter implements Filter {
 	 * ログイン画面のURLパターン。
 	 */
 	private static Pattern outOfloginUrlPattern =null;
+	/**
+	 *  クライアントメッセージのURLパターン。
+	 */
+	private static Pattern clientMessagesUrlPattern =null;
 	/**
 	 * 権限チェック要否のフラグ。
 	 */
@@ -74,7 +82,7 @@ public final class efwFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		String strRequestURI = ((HttpServletRequest) request).getRequestURI();
-		if(loginUrlPattern.matcher(strRequestURI).find()||systemErrorUrlPattern.matcher(strRequestURI).find()){
+		if(loginUrlPattern.matcher(strRequestURI).find()||systemErrorUrlPattern.matcher(strRequestURI).find()||clientMessagesUrlPattern.matcher(strRequestURI).find()){
 			chain.doFilter(request, response);
 		}else{
 			if(loginCheck){
@@ -127,6 +135,7 @@ public final class efwFilter implements Filter {
 		framework.initCLog("outOfloginUrlPattern = "+outOfloginUrlPatternString);
 		outOfloginUrlPattern=Pattern.compile(outOfloginUrlPatternString);
 		loginUrlPattern=Pattern.compile(loginUrl);
+		clientMessagesUrlPattern=Pattern.compile(clientMessagesUrl);
 		
 		authCheck=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AUTH_CHECK,authCheck);
 		framework.initCLog("authCheck = "+authCheck);

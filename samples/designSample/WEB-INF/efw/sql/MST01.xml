@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqls>
+<sqls>
+	<sql id="selユーザ">
+		SELECT 
+			"ユーザID", 
+			"ユーザ名", 
+			"メール",
+			"コメント", 
+			"パスワード更新日"
+		FROM 
+			 "ユーザマスタ"
+		WHERE 
+			"ユーザID" = :ユーザID 
+	</sql>
+	<sql id="selユーザ一覧">
+		SELECT 
+			u."ユーザID",
+			u."パスワード", 
+			u."ユーザ名", 
+			u."メール",
+			u."コメント",
+			u."初期化フラグ", 
+			u."パスワード更新日",
+			u."作成日時",
+			u."作成者",
+			u."更新日時",
+			u."更新者"
+		FROM 
+			"ユーザマスタ" u 
+		WHERE
+			1 = 1
+		<if exists="フリーワード">
+		AND (u."ユーザID" LIKE '%'|| :フリーワード ||'%' 
+		OR u."ユーザ名" LIKE '%'|| :フリーワード ||'%'
+		OR u."メール" LIKE '%'|| :フリーワード ||'%'
+		OR u."コメント" LIKE '%'|| :フリーワード ||'%')
+		</if>
+		ORDER BY 
+		<if exists="user_id asc"> u."ユーザID" asc </if>
+		<if exists="user_id desc"> u."ユーザID" desc </if>
+		<if exists="user_name asc"> u."ユーザ名" asc </if>
+		<if exists="user_name desc"> u."ユーザ名" desc </if>
+		<if exists="eMail asc"> u."メール" asc </if>
+		<if exists="eMail desc"> u."メール" desc </if>
+		<if exists="bikou asc"> u."コメント" asc </if>
+		<if exists="bikou desc"> u."コメント" desc </if>		
+		LIMIT :limit OFFSET :offset
+	</sql>
+	<sql id="selユーザ一覧cnt">
+		SELECT 
+			count(u."ユーザID") as cnt
+		FROM 
+			"ユーザマスタ" u
+		WHERE
+			1 = 1
+		<if exists="フリーワード">
+		AND (u."ユーザID" LIKE '%'|| :フリーワード ||'%' 
+		OR u."ユーザ名" LIKE '%'|| :フリーワード ||'%'
+		OR u."メール" LIKE '%'|| :フリーワード ||'%'
+		OR u."コメント" LIKE '%'|| :フリーワード ||'%')
+		</if>
+	</sql>
+	<sql id="delユーザ">
+		DELETE FROM 
+			"ユーザマスタ" 
+		WHERE 
+			"ユーザID"= :ユーザID 
+	</sql>
+	<sql id="insユーザ作成">
+		INSERT INTO "ユーザマスタ" (
+			"ユーザID",
+			"パスワード",
+			"ユーザ名",
+			"メール",
+			"コメント",
+			"初期化フラグ",
+			"ロックフラグ",
+			"パスワード更新日",
+			"作成日時",
+			"作成者",
+			"更新日時",
+			"更新者"
+		)VALUES(
+			:ユーザID,
+			:ユーザID,
+			:ユーザ名,
+			:メール,
+			:コメント,
+			'1',
+			'0',
+			null,
+			now(),
+			:ログインユーザ,
+			now(),
+			:ログインユーザ
+		)
+	</sql>
+	<sql id="updユーザ更新">
+		UPDATE 
+			"ユーザマスタ" 
+		SET 
+			"ユーザ名" = :ユーザ名,
+			"メール" = :メール,
+			"コメント" = :コメント,
+			"更新日時" = now(),
+			"更新者" = :ログインユーザ
+		WHERE 
+			"ユーザID"=:ユーザID
+	</sql>
+</sqls>

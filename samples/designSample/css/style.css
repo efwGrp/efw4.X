@@ -1,0 +1,298 @@
+﻿*{
+	font-size:13px;
+	font-family:'メイリオ';
+	line-height:13px;
+}
+*:focus{
+	outline:none;
+}
+/*****************************************************************************/
+BODY {
+	margin:0px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+:-MS-INPUT-PLACEHOLDER {
+   color: silver;
+}
+::-WEBKIT-INPUT-PLACEHOLDER {
+   color: silver;
+}
+:-MOZ-PLACEHOLDER {
+   color: silver;
+}
+::-MOZ-PLACEHOLDER {
+   color: silver; opacity: 1;
+}
+:PLACEHOLDER-SHOWN {
+   color: silver;
+}
+/*****************************************************************************/
+.HEADER {
+	height:40px;
+}
+.HEADER TABLE {
+	height:100%;
+	width:100%;
+	border:none;
+	background-color:navy;
+	border-collapse: collapse;
+}
+.HEADER TABLE TD{
+	border:none;
+}
+
+.HEADER TABLE TD:FIRST-CHILD {
+	width:150px;
+	background-image:url(../img/logo.jpg);
+	background-position-y:center;
+	background-position-x:5px;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+.HEADER TABLE TD:NTH-CHILD(2) {
+	font-size:20px;
+	font-weight:bold;
+	color:white;
+	letter-spacing:2px;
+	padding-top:5px;
+}
+.HEADER TABLE TD:NTH-CHILD(3) {
+	font-size:15px;
+	color:white;
+	text-align:right;
+	padding-right:5px;
+}
+.HEADER TABLE TD:LAST-CHILD {
+	width:100px;
+	border-left:1px solid black;
+	text-align:center;
+	color:white;
+}
+.HEADER TABLE TD:LAST-CHILD A {
+	font-size:15px;
+	COLOR:white;
+	text-decoration:none;
+}
+/*****************************************************************************/
+.HEADER-MENU {
+	height:25px;
+#	BORDER-BOTTOM:#ccc 1px solid; 
+}
+.HEADER-MENU TABLE {
+	height:100%;
+	width:100%;
+	text-align:right;
+}
+.HEADER-MENU A {
+	color:blue
+}
+
+/*****************************************************************************/
+.MSG-BLUE {
+	font-size:15px;
+	color:blue;
+}
+.MSG-RED {
+	font-size:15px;
+	color:red;
+}
+.BORDER-GRAY {
+	border:1px solid silver;
+	border-radius: 10px;
+}
+/*****************************************************************************/
+.MENU-GROUP {
+	font-size:18px;
+	font-weight:bold;
+	color:gray;
+}
+.MENU-BUTTON {
+	color:white;
+	font-size:20px;
+	cursor:pointer;
+	height:45px;
+	width:300px;
+	background-image:url(../img/menu.png);
+	background-repeat:no-repeat;
+	font-weight:bold;
+	text-align:center;
+}
+/*****************************************************************************/
+.MAIN {
+	width:1330px;
+	margin:auto;/**枠を中央にさせる**/
+	height:550px;/**これがあればダイアログが中央にできる**/
+}
+.MAIN TABLE {
+	width:1330px;
+}
+.TOP {
+ 	position:fixed;
+ 	top:0px;
+ 	background-color:white;
+ 	width:1330px;
+ 	height:130px;
+}
+.FOOTER {
+	text-align:left;
+	position:fixed;
+	background:white;
+	height:40px;
+	width:1330px;
+	bottom:0px;
+	padding-top:10px;
+}
+.DIALOG {}
+/*****************************************************************************/
+.MAIN BUTTON{
+	height:24px;
+	width:100px;
+	border:none;
+	background-color:navy;
+	color:white;
+	cursor:pointer;
+	border-radius:10px;
+}
+.DIALOG BUTTON{
+	height:24px;
+	width:100px;
+	border:none;
+	background-color:navy;
+	color:white;
+	cursor:pointer;
+	border-radius:10px;
+}
+.MAIN BUTTON:disabled{
+	color:color;
+	background-color:silver;
+}
+.DIALOG BUTTON:disabled{
+	color:color;
+	background-color:silver;
+}
+.elfinder-dialog BUTTON{
+	width:auto;
+}
+
+INPUT[TYPE='TEXT']{
+	height:19px;
+	border:1px solid silver;
+	padding:0 5px 0 5px;
+	vertical-align:middle;
+}
+INPUT[TYPE='PASSWORD']{
+	height:19px;
+	border:1px solid silver;
+	padding:0 5px 0 5px;
+	vertical-align:middle;
+}
+INPUT[TYPE='FILE']{
+	height:19px;
+	border:1px solid silver;
+	padding:0 5px 0 5px;
+	vertical-align:middle;
+}
+INPUT[TYPE='RADIO']{
+	height:19px;
+	vertical-align:middle;
+}
+INPUT[TYPE='CHECKBOX']{
+	height:19px;
+	vertical-align:middle;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:3px;
+	margin-right:3px;
+}
+INPUT[READONLY]{
+ color:black;
+ background-color:ivory;
+}
+INPUT:DISABLED{
+ color:black;
+ background-color:ivory;
+}
+SELECT{
+	height:21px;
+	border:1px solid silver;
+	vertical-align:middle; 
+}
+TEXTAREA{
+	padding:5px;
+	border:1px solid silver;
+}
+/*****************************************************************************/
+TABLE.TABLE-HEAD {
+	border:none;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+TABLE.TABLE-HEAD TR {
+	height:20px;
+}
+TABLE.TABLE-HEAD TH {
+	color:white;
+	border:1px solid white;
+	font-weight:normal;
+	background-color:navy;
+	background-repeat:no-repeat;
+	background-position-x:right;
+	background-position-y:2px;
+}
+TABLE.TABLE-HEAD TH.SORT {
+	background-image:url("../img/sort_none.png");
+	cursor:pointer;
+}
+TABLE.TABLE-HEAD TH.ASC {
+	background-image:url("../img/sort_asc.png");
+	background-size:14px 14px;
+}
+TABLE.TABLE-HEAD TH.DESC {
+	background-image:url("../img/sort_desc.png");
+	background-size:14px 14px;
+}
+/*****************************************************************************/
+TABLE.TABLE-BODY {
+	border:none;
+	border-collapse:collapse;
+	table-layout:fixed;
+	margin:130px 0 50px 0;
+}
+TABLE.TABLE-BODY TR {
+	height:20px;
+}
+TABLE.TABLE-BODY TH {
+	border:1px solid silver;
+	font-weight:bold;
+	background-color:lightskyblue;
+}
+TABLE.TABLE-BODY TD {
+	BORDER:1px solid silver;
+	BORDER-TOP:none;
+	padding:0 5px 0 5px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+}
+TABLE.table-BODY P {
+	overflow:hidden;
+	width:100%; 
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+.ROW0 {
+	background: #eeffff
+}
+.ROW1 {
+	background: #ffffff
+}
+.SELECTED {
+	background: #ffeeff
+}
+
+/*****************************************************************************/
+#copyright{
+	text-align:center;
+}
