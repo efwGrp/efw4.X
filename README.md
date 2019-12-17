@@ -33,6 +33,7 @@ elFinder:	Remove get command and the plain text editor.<br>
 <a href="samples/elfinderSample">elfinderSample</a>
 <a href="samples/shortcutSample">shortcutSample</a>
 <a href="samples/barcodeSample">barcodeSample</a>
+<a href="samples/designSample">designSample</a>
 
 
 
