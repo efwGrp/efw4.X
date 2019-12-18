@@ -26,6 +26,8 @@
 <entry key="MaxOverMessage">{display-name} is {data-type} no larger than {max}.</entry>
 <entry key="NotAcceptMessage">Please select the correct file for {display-name}.</entry>
 <entry key="EventIsNotExistsMessage">The event cannot be loaded because there is no file or JavaScript language violation.</entry>
+<entry key="ReloadPageMessage">Session timeout. Please reload the page.</entry>
+<entry key="SystemRestartedMessage">System Restarted. Please reload the page.</entry>
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New keyword was forgotten.</entry>
 <!-- test -->

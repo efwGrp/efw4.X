@@ -26,6 +26,8 @@
 <entry key="MaxOverMessage">{display-name}是不大于{max}的{data-type}。</entry>
 <entry key="NotAcceptMessage">请给{display-name}选择正确的文件。</entry>
 <entry key="EventIsNotExistsMessage">因为没有文件或不合JavaScript语法，无法加载该事件。</entry>
+<entry key="ReloadPageMessage">会话超时。请再次加载画面。</entry>
+<entry key="SystemRestartedMessage">系统已重启。请再次加载画面。</entry>
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New关键字被遗忘了。</entry>
 

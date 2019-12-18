@@ -55,21 +55,13 @@ $(function() {
 	$(document).on("focus","[data-format]",efwClientInputBehavior.prototype.DoFormatFocus);
 	$(document).on("blur","[data-format]",efwClientInputBehavior.prototype.DoFormatBlur);
 	//--loading----------------------------------------------------------------
-	$("body").append("<div id='efw_loading' data-ajaxcnt='0'></div>");
+	$("body").append("<div id='efw_loading'></div>");
 	$("#efw_loading").hide();
-	$(document).bind("ajaxSend",function(){
-		var cnt=new Number($("#efw_loading").attr("data-ajaxcnt"));
-		$("#efw_loading").attr("data-ajaxcnt",++cnt);
-		if (cnt>0){
-			$("#efw_loading").show();
-		}
+	$(document).bind("ajaxStart",function(){
+		$("#efw_loading").show();
 	});
-	$(document).bind("ajaxComplete",function(){
-		var cnt=new Number($("#efw_loading").attr("data-ajaxcnt"));
-		$("#efw_loading").attr("data-ajaxcnt",--cnt);
-		if (cnt<=0){
-			$("#efw_loading").hide();
-		}
+	$(document).bind("ajaxStop",function(){
+		$("#efw_loading").hide();
 	});
 	//--dialog-----------------------------------------------------------------
 	efw.dialog=new EfwDialog();

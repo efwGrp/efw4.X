@@ -56,8 +56,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css\">");
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
-			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js\"></script>");
+			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js\"></script>");
 			if(!"".equals(lang)&&!"en".equals(lang)){
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/i18n/elfinder."+lang+".js\"></script>");
 			}

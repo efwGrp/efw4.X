@@ -1568,7 +1568,7 @@ var elFinder = function(node, opts) {
 				// timeout  : 100,
 				//------Customize for Efw-----
 				type     : "POST",
-				data     : JSON.stringify({"eventId":"elfinder_cmds","params":data}), 
+				data     : JSON.stringify({"eventId":"elfinder_cmds","lang":efw.lang,"params":data}), 
 				//----------------------------
 				headers  : this.customHeaders,
 				xhrFields: this.xhrFields
@@ -2035,7 +2035,9 @@ var elFinder = function(node, opts) {
 		})
 		.done(function(odata) {
 			var pdata, argLen, i;
-			
+			//------The response is from EFW .-------
+			if(odata.actions) return;//efw return alert
+			//---------------------------------------
 			if (odata.cwd.compare) {
 				if (comp === odata.cwd.compare) {
 					return dfrd.reject();

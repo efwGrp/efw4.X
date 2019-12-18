@@ -26,6 +26,8 @@
 <entry key="MaxOverMessage">{display-name}を{max}以内の{data-type}で入力してください。</entry>
 <entry key="NotAcceptMessage">{display-name}に正しいファイルを選択してください。</entry>
 <entry key="EventIsNotExistsMessage">ファイル無しまたはJavaScript語法違反のため、該当イベントをロードできません。</entry>
+<entry key="ReloadPageMessage">セッションタイムアウトになりました。画面を再ロードしてください。</entry>
+<entry key="SystemRestartedMessage">システムは再起動しました。画面を再ロードしてください。</entry>
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">Newキーワードは忘れられました。</entry>
 <!-- test -->

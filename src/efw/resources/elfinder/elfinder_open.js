@@ -10,17 +10,23 @@ elfinder_open.fire = function(params) {
 	var init=params["init"];//初回表示かどうか、1,0
 	var target=params["target"];//初回以降はcwdのhashになる。
 	var saveupload=params["saveupload"];//アップロード後の再表示のため。1,0
-
-	if (Packages.efw.taglib.ElFinder.isProtected(id)){
-		if (session.get("EFW_ELFINDER_HOME_"+id)==null||session.get("EFW_ELFINDER_READONLY_"+id)==null){
-			throw new Packages.efw.ElFinderIdIsNotExistException(id);//セッションタイムアウトのため、エラーさせる。
+	try{
+		if (Packages.efw.taglib.ElFinder.isProtected(id)){//指定idは、初期化されたかどうか
+			if (session.get("EFW_ELFINDER_HOME_"+id)==null||session.get("EFW_ELFINDER_READONLY_"+id)==null){
+				return (new Result())
+				.alert("{ReloadPageMessage}");
+			}
+			home=session.get("EFW_ELFINDER_HOME_"+id);
+			if (session.get("EFW_ELFINDER_READONLY_"+id)=="true"){
+				readonly=true;
+			}else{
+				readonly=false;
+			}
 		}
-		home=session.get("EFW_ELFINDER_HOME_"+id);
-		if (session.get("EFW_ELFINDER_READONLY_"+id)=="true"){
-			readonly=true;
-		}else{
-			readonly=false;
-		}
+		
+	}catch(e){//指定idは、初期化されたかどうか
+		return (new Result())
+		.alert("{SystemRestartedMessage}");
 	}
 	//---------------------------------------------------------------------
 	var options={
