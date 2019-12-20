@@ -3,6 +3,7 @@ var elfinder_size = {};
 elfinder_size.name = "elfinder_size";
 elfinder_size.paramsFormat = {};//
 elfinder_size.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var targets=params["targets"];
 	var size=0;

@@ -3,6 +3,7 @@ var elfinder_put = {};
 elfinder_put.name = "elfinder_put";
 elfinder_put.paramsFormat = {};//
 elfinder_put.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var target=params["target"];

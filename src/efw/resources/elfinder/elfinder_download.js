@@ -1,8 +1,15 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 var elfinder_download = {};
 elfinder_download.name = "elfinder_download";
-elfinder_download.paramsFormat = {"cmd":null,"targets":null};//
+elfinder_download.paramsFormat = {
+	"cmd":null,
+	"home":null,
+	"readonly":null,
+	"id":null,
+	"targets":null
+};//
 elfinder_download.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var targets=params["targets"];
 	var ret=new Result();

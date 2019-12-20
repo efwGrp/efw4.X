@@ -25,6 +25,7 @@ elfinder_cmds.fire = function(params) {
 		return {};
 		
 	}catch(e){
+		//event id を明確に表すため、エラーをcatchしている。
 		return (new Result()).error("RuntimeErrorException", {"eventId":"elfinder_"+params["cmd"],"message":e.message+""});
 	}
 };

@@ -3,6 +3,7 @@ var elfinder_duplicate = {};
 elfinder_duplicate.name = "elfinder_duplicate";
 elfinder_duplicate.paramsFormat = {};//
 elfinder_duplicate.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var targets=params["targets"];

@@ -3,6 +3,7 @@ var elfinder_mkfile = {};
 elfinder_mkfile.name = "elfinder_mkfile";
 elfinder_mkfile.paramsFormat = {};//
 elfinder_mkfile.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var target=params["target"];//初回以降はcwdのhashになる。

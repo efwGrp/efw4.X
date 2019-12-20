@@ -3,6 +3,7 @@ var elfinder_ls = {};
 elfinder_ls.name = "elfinder_ls";
 elfinder_ls.paramsFormat = {};//
 elfinder_ls.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var target=params["target"];
 	var intersect=params["intersect"];

@@ -3,6 +3,7 @@ var elfinder_tree = {};
 elfinder_tree.name = "elfinder_tree";
 elfinder_tree.paramsFormat = {};//
 elfinder_tree.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var volumeId="EFW_";
 	var target=params["target"];

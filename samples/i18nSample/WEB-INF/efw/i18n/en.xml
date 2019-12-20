@@ -26,8 +26,12 @@
 <entry key="MaxOverMessage">{display-name} is {data-type} no larger than {max}.</entry>
 <entry key="NotAcceptMessage">Please select the correct file for {display-name}.</entry>
 <entry key="EventIsNotExistsMessage">The event cannot be loaded because there is no file or JavaScript language violation.</entry>
-<entry key="ReloadPageMessage">Session timeout. Please reload the page.</entry>
-<entry key="SystemRestartedMessage">System Restarted. Please reload the page.</entry>
+
+<entry key="ElFinderIdNotRegisteredMessage">The elFinder is inoperable without id registration.</entry>
+<entry key="ElFinderSessionTimeoutMessage">The elFinder is inoperable because of session timeout.</entry>
+<entry key="ElFinderIsProtectedMessage">The action is rejected because of elFinder protection mode.</entry>
+<entry key="ElFinderHackingRiskMessage">The action is rejected because of hacking risk detection.</entry>
+
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New keyword was forgotten.</entry>
 <!-- test -->

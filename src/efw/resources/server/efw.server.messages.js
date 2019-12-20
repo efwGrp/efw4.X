@@ -20,8 +20,10 @@ EfwServerMessages.prototype.get=function(messageId,lang){
 	if (messageId=="MaxOverMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"{display-name} is {data-type} no larger than {max}.");
 	if (messageId=="NotAcceptMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"Please select the correct file for {display-name}.");
 	if (messageId=="EventIsNotExistsMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"The event cannot be loaded because there is no file or JavaScript language violation.");
-	if (messageId=="ReloadPageMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"Session timeout. Please reload the page.");
-	if (messageId=="SystemRestartedMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"System Restarted. Please reload the page.");
+	if (messageId=="ElFinderIdNotRegisteredMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"The elFinder is inoperable without id registration.");
+	if (messageId=="ElFinderSessionTimeoutMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"The elFinder is inoperable because of session timeout.");
+	if (messageId=="ElFinderIsProtectedMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"The action is rejected because of elFinder protection mode.");
+	if (messageId=="ElFinderHackingRiskMessage") return Packages.efw.i18n.I18nManager.get(lang,messageId,"The action is rejected because of hacking risk detection.");
 	
 	return Packages.efw.i18n.I18nManager.get(lang,messageId,messageId);
 };

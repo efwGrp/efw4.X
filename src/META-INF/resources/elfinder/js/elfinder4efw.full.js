@@ -1679,14 +1679,15 @@ var elFinder = function(node, opts) {
 				
 				if (!response) {
 					return dfrd.reject(['errResponse', 'errDataEmpty'], xhr, response);
+				//------The response is from EFW .-------
+				} else if (response.actions){
+					EfwClient.prototype._showActions(response.actions);
+					return;
+				//----------------------------------------
 				} else if (!$.isPlainObject(response)) {
 					return dfrd.reject(['errResponse', 'errDataNotJSON'], xhr, response);
 				} else if (response.error) {
 					return dfrd.reject(response.error, xhr, response);
-				//------The response is from EFW .-------
-				} else if (response.actions){
-					EfwClient.prototype._showActions(response.actions);
-				//----------------------------------------
 				} else if (!self.validResponse(cmd, response)) {
 					return dfrd.reject('errResponse', xhr, response);
 				}
@@ -16129,7 +16130,13 @@ elFinder.prototype.commands.download = function() {
 	});
 	
 	this.exec = function(hashes) {
-		Efw("elfinder_download",{"cmd":"download","targets":hashes});
+		Efw("elfinder_download",{
+			"cmd":"download",
+			"home":fm.options.customData.home,
+			"readonly":fm.options.customData.readonly,
+			"id":fm.options.customData.id,
+			"targets":hashes
+		});
 	};
 
 };
@@ -16980,7 +16987,13 @@ elFinder.prototype.commands.mkfile = function() {
 			while (cnt--) {
 				file = files[cnt];
 				//-------------Use Efw to download one file
-				Efw("elfinder_file",{"cmd":"file","target":file.hash});
+				Efw("elfinder_file",{
+					"cmd":"file",
+					"home":fm.options.customData.home,
+					"readonly":fm.options.customData.readonly,
+					"id":fm.options.customData.id,
+					"target":file.hash
+				});
 			}
 			return dfrd.resolve(hashes);
 		}

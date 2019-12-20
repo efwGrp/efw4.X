@@ -3,6 +3,7 @@ var elfinder_rename = {};
 elfinder_rename.name = "elfinder_rename";
 elfinder_rename.paramsFormat = {};//
 elfinder_rename.fire = function(params) {
+	var risk=elfinder_checkRisk(params);if(risk)return risk;
 	var volumeId="EFW_";
 	var target=params["target"];
 	var name=params["name"];

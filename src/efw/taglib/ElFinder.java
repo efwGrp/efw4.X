@@ -10,7 +10,6 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import efw.ElFinderIdIsNotExistException;
 /**
  * ElFinderタグを処理するクラス。
  * <efw:ElFinder home="" readonly="" lang="" height="" width=""/>
@@ -32,13 +31,12 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
 	private static HashMap<String, Boolean> elfinderIds=new HashMap<String, Boolean>();
-	public static boolean isProtected(String id) throws ElFinderIdIsNotExistException {
+	public static Boolean isProtected(String id){
 		synchronized(elfinderIds) {
 			if (elfinderIds.containsKey(id)) {
-				System.out.println("get id="+id+" value="+elfinderIds.get(id));
 				return elfinderIds.get(id);
 			}else {
-				throw new ElFinderIdIsNotExistException(id);
+				return null;
 			}
 		}
 	}
@@ -85,15 +83,9 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
 			synchronized(elfinderIds) {
 				elfinderIds.put(id, _protected);
-				System.out.println("put id="+id+" value="+_protected);
 			}
-			if(_protected){
-				pageContext.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
-				pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id, (readonly?"true":"false"));
-			}else{
-				pageContext.getSession().removeAttribute("EFW_ELFINDER_HOME_"+id);
-				pageContext.getSession().removeAttribute("EFW_ELFINDER_READONLY_"+id);
-			}
+			pageContext.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
+			pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id, (readonly?"true":"false"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
