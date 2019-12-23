@@ -11,7 +11,7 @@ poi:	poi 4.1.1.<br>
 zxing:	zxing 3.4.<br>
 <h4>Changed</h4>
 file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
-elFinder:	Remove get command and the plain text editor.<br>
+elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
 
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">

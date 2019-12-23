@@ -30,7 +30,6 @@ tomcat
             │      └─...
             └─lib											//Lib folder
                 ├─efw-4.#.###.jar
-                ├─juniversalchardet-1.0.3.jar
                 ├─jdbc.XXXXXX.jar
                 └─poi_4.1.1_allinone.jar
 </pre>
