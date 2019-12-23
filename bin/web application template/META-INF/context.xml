@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Context>
 <Context>
-
+<!--
 	<Resource
 		name			=	"jdbc/efw"
 		auth			=	"Container"
@@ -30,5 +30,5 @@
 		mail.smtp.starttls.enable="true"
 		description		=	"E-Mail Resource"
 	/>
-
+-->
 </Context>

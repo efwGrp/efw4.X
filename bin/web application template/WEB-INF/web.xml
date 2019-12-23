@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+
+<!-- innorules info ----
+	<context-param>
+		<param-name>innorules.home</param-name>
+		<param-value>/usr/innorules-home</param-value>
+	</context-param>
+	<context-param>
+		<param-name>innorules.system</param-name>
+		<param-value>aibot</param-value>
+	</context-param>
+	<context-param>
+		<param-name>innorules.rule-application-config</param-name>
+		<param-value>aibotweb</param-value>
+	</context-param>
+	<context-param>
+		<param-name>innorules.library-template</param-name>
+		<param-value>rule-service</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>com.innorules.rrt.RuleAppInitializerListener</listener-class>
+	</listener>
+
+	<resource-ref>
+		<description>Developement Rule DB</description>
+		<res-ref-name>jdbc/brms</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+-->
+
+	<!--web application info-->
+	<display-name>application template</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+</web-app>

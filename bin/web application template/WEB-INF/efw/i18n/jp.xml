@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!--EfwClientMessages-->
+<entry key="OtherErrorException">予想外エラーが発生しました。</entry>
+<entry key="CommunicationErrorException">通信エラーが発生しました。リトライしますか。</entry>
+<entry key="EventIsBusyException">該当機能は混雑しています。しばらくお待ちください。</entry>
+<entry key="RuntimeErrorException">実行時エラーが発生しました。\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="ParamsFormatErrorException">イベントのパラメータ定義は正しくありません。\n\neventId={eventId}</entry>
+<entry key="ResultValuesErrorException">表示用のデータは正しくありません。\n\neventId={eventId}</entry>
+<entry key="ResultActionsErrorException">動作用のデータは正しくありません。\n\neventId={eventId}</entry>
+<entry key="AlertDialogTitle">情報</entry>
+<entry key="AlertDialogOK">OK</entry>
+<entry key="WaitDialogTitle">取り込み中</entry>
+<!--EfwServerMessages-->
+<entry key="NumberType">数字</entry>
+<entry key="DateType">日付</entry>
+<entry key="StringType">文字</entry>
+<entry key="SessionTimeoutException">セッションタイムアウトになりました。再ログインしてください。</entry>
+<entry key="NumberIsReuqiredMessage">{display-name}を数字で正しく入力してください。</entry>
+<entry key="DateIsReuqiredMessage">{display-name}を日付で正しく入力してください。</entry>
+<entry key="IsRequiredMessage">{display-name}を入力してください。</entry>
+<entry key="MaxLengthOverMessage">{display-name}を{max-length}文字以内で入力してください。</entry>
+<entry key="MinOrMaxOverMessage">{display-name}を{min}以上{max}以内の{data-type}で入力してください。</entry>
+<entry key="MinOverMessage">{display-name}を{min}以上の{data-type}で入力してください。</entry>
+<entry key="MaxOverMessage">{display-name}を{max}以内の{data-type}で入力してください。</entry>
+<entry key="NotAcceptMessage">{display-name}に正しいファイルを選択してください。</entry>
+<entry key="EventIsNotExistsMessage">ファイル無しまたはJavaScript語法違反のため、該当イベントをロードできません。</entry>
+
+<entry key="ElFinderIdNotRegisteredMessage">初期化されていないため、該当elFinderは操作できません。</entry>
+<entry key="ElFinderSessionTimeoutMessage">セッションタイムアウトのため、該当elFinderは操作できません。</entry>
+<entry key="ElFinderIsProtectedMessage">保護モードに設定されたため、該当elFinder操作は実行できません。</entry>
+<entry key="ElFinderHackingRiskMessage">リスクを検知されたため、該当elFinder操作は実行できません。</entry>
+
+<!--RuntimeExceptions-->
+<entry key="NewKeywordWasForgottenException">Newキーワードは忘れられました。</entry>
+<!-- test -->
+<entry key="here">ここ</entry>
+</properties>

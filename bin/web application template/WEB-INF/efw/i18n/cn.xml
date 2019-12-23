@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!--EfwClientMessages-->
+<entry key="OtherErrorException">发生意外错误。</entry>
+<entry key="CommunicationErrorException">发生了通信错误。 重试吗？</entry>
+<entry key="EventIsBusyException">系统繁忙。请稍后再试。</entry>
+<entry key="RuntimeErrorException">发生运行时错误。\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="ParamsFormatErrorException">事件参数定义不正确。\n\neventId={eventId}</entry>
+<entry key="ResultValuesErrorException">显示用数据不正确。\n\neventId={eventId}</entry>
+<entry key="ResultActionsErrorException">动作用数据不正确。\n\neventId={eventId}</entry>
+<entry key="AlertDialogTitle">信息</entry>
+<entry key="AlertDialogOK">确定</entry>
+<entry key="WaitDialogTitle">繁忙</entry>
+<!--EfwServerMessages-->
+<entry key="NumberType">数字</entry>
+<entry key="DateType">日期</entry>
+<entry key="StringType">文字</entry>
+<entry key="SessionTimeoutException">会话超时。请再次登录。</entry>
+<entry key="NumberIsReuqiredMessage">请在{display-name}输入正确的数字。</entry>
+<entry key="DateIsReuqiredMessage">请在{display-name}输入正确的日期。</entry>
+<entry key="IsRequiredMessage">请输入{display-name}。</entry>
+<entry key="MaxLengthOverMessage">{display-name}不能大于{max-length}个文字。</entry>
+<entry key="MinOrMaxOverMessage">{display-name}是{min}到{max}之间的{data-type}。</entry>
+<entry key="MinOverMessage">{display-name}是不小于{min}的{data-type}。</entry>
+<entry key="MaxOverMessage">{display-name}是不大于{max}的{data-type}。</entry>
+<entry key="NotAcceptMessage">请给{display-name}选择正确的文件。</entry>
+<entry key="EventIsNotExistsMessage">因为没有文件或不合JavaScript语法，无法加载该事件。</entry>
+
+<entry key="ElFinderIdNotRegisteredMessage">因未初始化，当前elFinder不可操作。</entry>
+<entry key="ElFinderSessionTimeoutMessage">因会话超时，当前elFinder不可操作。</entry>
+<entry key="ElFinderIsProtectedMessage">因处于保护模式，当前elFinder操作不能执行。</entry>
+<entry key="ElFinderHackingRiskMessage">检测到侵入风险，当前elFinder操作不能执行。</entry>
+
+<!--RuntimeExceptions-->
+<entry key="NewKeywordWasForgottenException">New关键字被遗忘了。</entry>
+
+<!-- test -->
+<entry key="here">这里</entry>
+</properties>
