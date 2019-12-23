@@ -20,7 +20,7 @@ elFinder:	Remove get command and the plain text editor.<br>
 <a href="help/hello_world_web.md">Quick Start(Web)</a>, 
 <a href="help/files_list_web.md">Files List(Web)</a>, 
 <a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
-<a href="https://github.com/efwGrp/efw4_online_ppt/blob/master/EFW%E7%B4%B9%E4%BB%8Bv1.4/index.html">EFW紹介v1.4</a>, 
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW%E7%B4%B9%E4%BB%8Bv1.4/index.html">EFW紹介v1.4</a>, 
 <a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a>, 
 <a href="help/ppt/EFWセキュリティ関連v.0.1.pptx">EFWセキュリティ関連v.0.1</a>, 
 <a href="help/ppt/EFWデモのデザイン説明v0.1.pptx">EFWデモのデザイン説明v0.1</a>, <br>
