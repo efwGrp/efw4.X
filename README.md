@@ -20,12 +20,12 @@ elFinder:	Remove get command and the plain text editor.<br>
 <a href="help/hello_world_web.md">Quick Start(Web)</a>, 
 <a href="help/files_list_web.md">Files List(Web)</a>, 
 <a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.4/index.html">EFW紹介v1.4</a>, 
-<a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a>, 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">EFWセキュリティ関連v0.2</a>, 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.2/index.html">EFWサンプルSkeletonのデザイン説明v0.2</a>, <br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW Nashorn非推薦の影響v0.1/index.html">EFW Nashorn非推薦の影響v0.1</a>, 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat Efw環境構築v0.3/index.html">EFW高負荷対応のTomcat Efw環境構築v0.3</a>, 
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.4/index.html">EFW紹介v1.4</a><br>
+<a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a><br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">EFWセキュリティ関連v0.2</a><br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.2/index.html">EFWサンプルSkeletonのデザイン説明v0.2</a><br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW Nashorn非推薦の影響v0.1/index.html">EFW Nashorn非推薦の影響v0.1</a><br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat Efw環境構築v0.3/index.html">EFW高負荷対応のTomcat Efw環境構築v0.3</a><br>
 <h3>Samples</h3>
 <a href="samples/i18nSample">i18n</a>
 <a href="samples/dialogSample">dialog</a>
