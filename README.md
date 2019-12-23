@@ -23,7 +23,7 @@ elFinder:	Remove get command and the plain text editor.<br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW%E7%B4%B9%E4%BB%8Bv1.4/index.html">EFW紹介v1.4</a>, 
 <a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a>, 
 <a href="help/ppt/EFWセキュリティ関連v.0.1.pptx">EFWセキュリティ関連v.0.1</a>, 
-<a href="help/ppt/EFWデモのデザイン説明v0.1.pptx">EFWデモのデザイン説明v0.1</a>, <br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.2/index.html">EFWサンプルSkeletonのデザイン説明v0.2</a>, <br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW%20Nashorn%E9%9D%9E%E6%8E%A8%E8%96%A6%E3%81%AE%E5%BD%B1%E9%9F%BFv0.1/index.html">EFW Nashorn非推薦の影響v0.1</a>, 
 <a href="help/ppt/EFW高負荷対応のTomcat Efw環境構築v0.2.pptx">EFW高負荷対応のTomcat Efw環境構築v0.2</a>, 
 <h3>Samples</h3>
