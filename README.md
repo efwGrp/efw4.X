@@ -16,10 +16,9 @@ elFinder:	Remove get command and the plain text editor.Add session-check for sec
 <h3>Correlation & Function Diagram</h3>
 <img src="./help/framework.png">
 <h3>Learn</h3>
-<a href="help/step_by_step_web.md">Step by Step(Web)</a>, 
-<a href="help/hello_world_web.md">Quick Start(Web)</a>, 
-<a href="help/files_list_web.md">Files List(Web)</a>, 
-<a href="help/hello_world_batch.md">Quick Start(Batch TODO)</a>, <a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
+<a href="help/environment.md">Environment</a><br>
+<a href="help/files_list_web.md">Files List(Web)</a><br>
+<a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.4/index.html">EFW紹介v1.4</a><br>
 <a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">EFWセキュリティ関連v0.2</a><br>

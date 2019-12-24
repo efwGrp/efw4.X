@@ -9,10 +9,10 @@ tomcat
         ├─myPage.jsp
         ├─...
         ├─META-INF
-        │  └─<a href="../release%20with%20sample/web%20application/META-INF/context.xml">context.xml</a>
+        │  └─<a href="resources.context.md">context.xml</a>
         └─WEB-INF
             ├─classes
-            │  └─<a href="properties_web.md">efw.properties</a>
+            │  └─<a href="properties.web.md">efw.properties</a>
             ├─efw
             │  ├─event										//Efw event folder
             │  │  ├─<a href="api_event.md">myEvent.js</a>
@@ -24,14 +24,13 @@ tomcat
             │  │  ├─<a href="api_sql.md">mySqlGroup.xml</a>
             │  │  └─...
             │  ├─i18n										//Multi language folder
-            │  │  ├─<a href="api_i18n.md">myLanguage.xml</a>
+            │  │  ├─<a href="api_language.md">en.xml</a>
             │  │  └─...
             │  └─storage									//Storage folder
             │      └─...
             └─lib											//Lib folder
                 ├─efw-4.#.###.jar
-                ├─jdbc.XXXXXX.jar
-                └─poi_4.1.1_allinone.jar
+                └─...
 </pre>
 <h3>Java Mail JAR</h3>
 You must put javax.mail.###.jar in the tomcat lib folder. Or the web app initialization will be wrong.
