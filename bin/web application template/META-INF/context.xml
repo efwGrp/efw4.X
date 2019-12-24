@@ -10,9 +10,9 @@
 		url				=	"jdbc:postgresql://localhost:5432/skeletonSample"
 		username		=	"postgres"
 		password		=	"postgres"
-		maxActive		=	"10"
+		maxTotal		=	"10"
 		maxIdle			=	"10"
-		maxWait			=	"10"
+		maxWaitMillis	=	"10"
 	/>
 	<Resource
 		name			=	"mail/efw"
