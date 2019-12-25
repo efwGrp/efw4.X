@@ -14,8 +14,7 @@ file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniv
 elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
 
 <h3>Correlation & Function Diagram</h3>
-<img src="./help/framework_correlation.png">
-<img src="./help/framework_function.png">
+<table><tr><td><img src="./help/framework_correlation.png"></td><td><img src="./help/framework_function.png"></td></tr></table>
 <h3>Learn</h3>
 <a href="help/environment.md">Environment</a><br>
 <a href="help/files_list_web.md">Files List(Web)</a><br>
