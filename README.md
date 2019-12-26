@@ -18,8 +18,7 @@ Barcode:	Treat barcode like Additional Tags.
 <table><tr><td><img src="./help/framework_correlation.png"></td><td><img src="./help/framework_function.png"></td></tr></table>
 <h3>Learn</h3>
 <a href="help/environment.md">Environment</a><br>
-<a href="help/files_list_web.md">Files List(Web)</a><br>
-<a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
+<a href="help/files_list.md">Files List</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.4/index.html">EFW紹介v1.4</a><br>
 EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4_1/index.html">1/3</a>、
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4_2/index.html">2/3</a>、
@@ -36,12 +35,14 @@ EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt
 <a href="samples/shortcutSample">shortcut</a>
 <a href="samples/barcodeSample">barcode</a>
 <a href="samples/skeletonSample">skeleton</a>
-
+<a href="samples/batchSample">batch</a>
+<a href="samples/restSample">restapi</a>
 
 
 <H1>API</H1>
 <h2>Properties</h2>
-<a href="help/properties.web.md">efw.properties</a>, <a href="help/properties.batch.md">batch.properties</a>
+<a href="help/properties.web.md">efw.properties</a><br>
+<a href="help/properties.batch.md">batch.properties</a>
 <h2>Resources</h2>
 <a href="help/resources.context.md">Context XML</a>
 <h2>JSP</h2>
@@ -59,9 +60,10 @@ EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt
 <h2>Multi Language</h2>
 <a href="help/api_language.md">Language XML</a>
 <h2>Event JS</h2>
-<a href="help/api_webevent.md">Web Event</a>, <a href="help/api_global.md">About Global Event</a><br>
+<a href="help/api_webevent.md">Web Event</a><br>
 <a href="help/api_batchevent.md">Batch Event</a><br>
 <a href="help/api_restevent.md">Rest Event</a><br>
+<a href="help/api_global.md">Global Event</a> fires on system loading.<br>
 <h3>Global</h3>
 <table>
 <tr><th>Varieties</th><th>Functions</th></tr>

@@ -12,10 +12,16 @@ tomcat
         │  └─<a href="resources.context.md">context.xml</a>
         └─WEB-INF
             ├─classes
-            │  └─<a href="properties.web.md">efw.properties</a>
+            │  ├─<a href="properties.web.md">efw.properties</a>
+            │  └─<a href="properties.batch.md">batch.properties</a>
             ├─efw
+            │  ├─batch										//Efw batch folder
+            │  │  ├─<a href="../samples/batchSample/WEB-INF/efw/batch/myBatch.sh">myBatch.sh</a>
+            │  │  └─...
             │  ├─event										//Efw event folder
-            │  │  ├─<a href="api_event.md">myEvent.js</a>
+            │  │  ├─<a href="api_webevent.md">myWebEvent.js</a>
+            │  │  ├─<a href="api_batchevent.md">myBatchEvent.js</a>
+            │  │  ├─<a href="api_restevent.md">myRestEvent.js</a>
             │  │  └─...
             │  ├─mail										//Outside mail folder
             │  │  ├─<a href="api_mail.md">mails.xml</a>
@@ -40,6 +46,9 @@ You can put jsp files here. It is not recommended to create sub jsp folder. If y
 <pre>
 &lt;base href="/myWebApp/">
 </pre>
+
+<h3>Efw Batch Folder</h3>
+You should add your batch files here.
 
 <h3>Efw Event Folder</h3>
 You should add your event files here.

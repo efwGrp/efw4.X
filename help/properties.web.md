@@ -52,7 +52,7 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>The folder for Web application IO. It can be set in a relative or absolute path of the web application.</td>
 </tr>
 <tr>
-	<th rowspan=6>Login Check</th>
+	<th rowspan=6>Login Check<br>(for web event)</th>
 	<td>efw.login.check</td>
 	<td>false</td>
 	<td>The flag indicating whether the web application does the login check.</td>
@@ -84,7 +84,7 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 </tr>
 
 <tr>
-	<th rowspan=6>Auth Check</th>
+	<th rowspan=6>Auth Check<br>(for web event)</th>
 	<td>efw.auth.check</td>
 	<td>false</td>
 	<td>The flag indicating whether the web application does the authority check.</td>
