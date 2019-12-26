@@ -1,9 +1,9 @@
 <H1>efw4.X</H1>
 <h3>What's new?</h3>
 <h4>Added</h4>
-i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Event JS</a>.<br>
+i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Web Event</a>.<br>
 ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>. Attribute "mode" in <a href="help/tag.chart.md">Chart tag</a>.<br>
-RestAPI:	<a href="help/api_restevent.md">Rest Event Programming</a>.
+RestAPI:	<a href="help/api_restevent.md">Rest Event</a>.
 <h4>Removed</h4>
 Additional Tags:	Signature,	CKEditor
 <h4>Updated</h4>
@@ -59,9 +59,9 @@ EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt
 <h2>Multi Language</h2>
 <a href="help/api_language.md">Language XML</a>
 <h2>Event JS</h2>
-<a href="help/api_webevent.md">Web Event Programming</a>, <a href="help/api_global.md">About Global Event</a><br>
-<a href="help/api_batchevent.md">Batch Event Programming</a><br>
-<a href="help/api_restevent.md">Rest Event Programming</a><br>
+<a href="help/api_webevent.md">Web Event</a>, <a href="help/api_global.md">About Global Event</a><br>
+<a href="help/api_batchevent.md">Batch Event</a><br>
+<a href="help/api_restevent.md">Rest Event</a><br>
 <h3>Global</h3>
 <table>
 <tr><th>Varieties</th><th>Functions</th></tr>

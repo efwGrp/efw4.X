@@ -1,4 +1,4 @@
-<H1>Web Event Program</H1>
+<H1>Web Event</H1>
 <pre>
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/myEvent.js
