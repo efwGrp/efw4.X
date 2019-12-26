@@ -1,4 +1,4 @@
-<H1>Event Program</H1>
+<H1>Web Event Program</H1>
 <pre>
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/myEvent.js
@@ -138,8 +138,7 @@ To reference JQuery about the rules of selectors.
 <H3>Fire Method</H3>
 
 <H3>Event Return</H3>
-If the event is called by web, the event return must be void or an instance of Result. <br>
-If the event is called by batch, the event return should be an instance of Batch. 
+The event return must be void or an instance of Result.
 
 <H3>i18n Message Key</H3>
 For muti-language, you can set mesage keys in next items. To see details in <a href="../samples/i18nSample/WEB-INF/efw/event/i18nSampleTest.js">the Sample</a>.
