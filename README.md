@@ -64,7 +64,7 @@ EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt
 <a href="help/api_batchevent.md">Batch Event</a><br>
 <a href="help/api_restevent.md">Rest Event</a><br>
 <a href="help/api_global.md">Global Event</a> fires on system loading.<br>
-<h3>Global</h3>
+<h3>Modules</h3>
 <table>
 <tr><th>Varieties</th><th>Functions</th></tr>
 <tr><td>file</td><td><a href="help/file.get.md">get</a></td><td><a href="help/file.list.md">list</a></td><td><a href="help/file.isFile.md">isFile</a></td><td><a href="help/file.isFolder.md">isFolder</a></td></td><td><a href="help/file.makeFile.md">makeFile</a></td></tr>
