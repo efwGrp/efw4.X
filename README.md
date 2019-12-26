@@ -46,8 +46,8 @@ EFWプログラミングv1.4 ( <a href="https://efwgrp.github.io/efw4_online_ppt
 <h2>JSP</h2>
 <table>
 <tr><th>Categories</th><th>Items</th></tr>
-<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
-<tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td></tr>
+<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td></tr>
+<tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
 <tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td></tr>
 <tr><td>Attributes</td><td><a href="help/api_data_format.md">data-format</a></td><td><a href="help/api_data_shortcut.md">data-shortcut</a></td></tr>
 </table>
