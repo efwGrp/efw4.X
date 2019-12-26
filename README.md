@@ -20,7 +20,9 @@ elFinder:	Remove get command and the plain text editor.Add session-check for sec
 <a href="help/files_list_web.md">Files List(Web)</a><br>
 <a href="help/files_list_batch.md">Files List(Batch TODO)</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.4/index.html">EFW紹介v1.4</a><br>
-<a href="help/ppt/EFWプログラミングv1.3.pptx">EFWプログラミングv1.3</a><br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4_1/index.html">EFWプログラミングv1.4 1/3</a>、
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4_2/index.html">2/3</a>、
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4_3/index.html">3/3</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">EFWセキュリティ関連v0.2</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.2/index.html">EFWサンプルSkeletonのデザイン説明v0.2</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW Nashorn非推薦の影響v0.1/index.html">EFW Nashorn非推薦の影響v0.1</a><br>
@@ -44,11 +46,10 @@ elFinder:	Remove get command and the plain text editor.Add session-check for sec
 <h2>JSP</h2>
 <table>
 <tr><th>Categories</th><th>Items</th></tr>
-<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td></tr>
+<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
 <tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td></tr>
 <tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td></tr>
 <tr><td>Attributes</td><td><a href="help/api_data_format.md">data-format</a></td><td><a href="help/api_data_shortcut.md">data-shortcut</a></td></tr>
-<tr><td>Barcodes</td><td><a href="help/api_draw_barcode.md">drawServlet</a></td></tr>
 </table>
 <h2>Outside SQL</h2>
 <a href="help/api_sql.md">SQL XML</a>
