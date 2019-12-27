@@ -1,16 +1,16 @@
 <H1>Web Event</H1>
 <pre>
 ////////////////////////////////////////
-//web/WEB-INF/efw/event/myEvent.js
+//web/WEB-INF/efw/event/myWebEvent.js
 ////////////////////////////////////////
-var <b>myEvent</b>={};
-myEvent.<b>service</b>={
+var <b>myWebEvent</b>={};
+myWebEvent.<b>service</b>={
 	max:10,
 	message:'system is busy,please wait a while',
 	retriable:true,
 	interval:20,
 };
-myEvent.<b>paramsFormat</b> = { 
+myWebEvent.<b>paramsFormat</b> = { 
                                 "#txt_teststring" : "<b>display-name</b>:Test String;<b>max-length</b>:10;",
                                 "#txt_testnumber" : "<b>format</b>:#,##0.00;<b>required</b>:true;<b>display-name</b>:Test Number;<b>min</b>:-10.00;<b>max</b>:1,000.00",
                                 "#txt_testdate"   : function(){
@@ -23,18 +23,18 @@ myEvent.<b>paramsFormat</b> = {
                                                     },
                                 ... 
                             };
-myEvent.<b>fire</b>         = function ( requestParams ) {
+myWebEvent.<b>fire</b>         = function ( requestParams ) {
                                 return (new Result()).alert("hello world! Your entries are correct.");
                             };
 </pre>
 <HR>
 
 <H3>Event Variable</H3>
-The event variable must be same to the event file name. In the sample, it is "myEvent".
+The event variable must be same to the event file name. In the sample, it is "myWebEvent".
 
 <H3>Service Definition</H3>
 <pre>
-myEvent.service = {
+myWebEvent.service = {
     max: 10,
     message:'System busy please wait.',
     retriable:true,
@@ -71,7 +71,7 @@ myEvent.service = {
 </tbody></table>
 
 <H3>Params Format</H3>
-<pre>myEvent.paramsFormat = {
+<pre>myWebEvent.paramsFormat = {
                      selector1 : null,
                      selector2 : "checkStyle",
                      selector3 : function(){ return "checkStyle"; },
