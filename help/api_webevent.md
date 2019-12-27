@@ -138,7 +138,7 @@ To reference JQuery about the rules of selectors.
 <H3>Fire Method</H3>
 
 <H3>Event Return</H3>
-The event return must be void or an instance of Result.
+The event return must be void or an instance of <a href="result.new.md">Result</a>.
 
 <H3>i18n Message Key</H3>
 For muti-language, you can set mesage keys in next items. To see details in <a href="../samples/i18nSample/WEB-INF/efw/event/i18nSampleTest.js">the Sample</a>.
