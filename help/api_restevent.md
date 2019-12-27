@@ -28,7 +28,7 @@ The event variable must be same to the event file name. In the sample, it is "cu
 <H3>PUT POST GET DELETE Method</H3>
 
 <H3>Event Return</H3>
-The event return must be void or an instance of object or an instance of array for JSON.stringify.
+The event return must be void or or anything can be changed to JSON.
 
 <H3>HTTP Status</H3>
 <table>
