@@ -5,7 +5,7 @@ tomcat
 ├─lib
 │  └─javax.mail-1.6.2.jar									//Java Mail jar.
 └─webapps
-        myWebApp											//The application folder. 
+        myApp											//The application folder. 
         ├─myPage.jsp
         ├─...
         ├─META-INF
