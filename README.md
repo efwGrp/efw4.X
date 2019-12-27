@@ -15,7 +15,7 @@ file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniv
 elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
 Barcode:	Move barcode in Additional Tags.
 <h3>Correlation & Function Diagram</h3>
-<table><tr><td><img src="./help/framework_correlation.png"></td><td><img src="./help/framework_function.png"></td></tr></table>
+<table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td><td><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
 <h3>Learn</h3>
 <a href="help/environment.md">Environment</a><br>
 <a href="help/files_list.md">Files List</a><br>
