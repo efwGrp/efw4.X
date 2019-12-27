@@ -13,7 +13,7 @@ zxing:	zxing 3.4.<br>
 <h4>Changed</h4>
 file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
 elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
-Barcode:	Treat barcode like Additional Tags.
+Barcode:	Move barcode in Additional Tags.
 <h3>Correlation & Function Diagram</h3>
 <table><tr><td><img src="./help/framework_correlation.png"></td><td><img src="./help/framework_function.png"></td></tr></table>
 <h3>Learn</h3>
