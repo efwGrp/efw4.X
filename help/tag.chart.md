@@ -32,7 +32,7 @@ and included them into Efw as a tag. It must be used after the Client tag for jQ
 <tr><td>id</td><td>Yes</td><td></td><td>The identity of the Chart tag. </td></tr>
 <tr><td>mode</td><td>No</td><td>"googlechart"</td><td>To set the designing mode to "googlechart" or "chartjs". </td></tr>
 <tr><td>data</td><td>Yes</td><td></td><td>The id of a data table to the Chart tag. </td></tr>
-<tr><td>type</td><td>Yes</td><td></td><td>The type of the Chart tag. </td></tr>
+<tr><td>type</td><td>Yes</td><td></td><td>The type of the Chart tag. <a href="https://efwgrp.github.io/efw4_chart/chartSampleTypes.html">Demo</a>.</td></tr>
 <tr><td colspan="4">
 googlechart:
 	<table>
@@ -78,7 +78,7 @@ chartjs:
 
 <tr><td>data-format</td><td>No</td><td></td><td>The format of the data.If it is defined, the tooltip of the data will be formated. </td></tr>
 <tr><td>data-legend</td><td>No</td><td></td><td>The position of the legend.[ none | left | right | top | bottom ] </td></tr>
-<tr><td>data-color</td><td>No</td><td></td><td>The color of items. To set it with RGB or color name in row titles or col titles. </td></tr>
+<tr><td>data-color</td><td>No</td><td></td><td>The color of items. To set it with RGB or color name in row titles or col titles. <a href="https://efwgrp.github.io/efw4_chart/chartSampleColors.html">Demo</a>.</td></tr>
 <tr><td colspan=4>
 	<table>
 		<tr>
