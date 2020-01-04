@@ -14,9 +14,12 @@ zxing:	zxing 3.4.<br>
 file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
 elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
 Barcode:	Move barcode in Additional Tags.
-<h3>Correlation & Function Diagram</h3>
-<table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td><td><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
-<h3>Learn</h3>
+
+<h3>Introduction</h3>
+<table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
+<td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
+<table>
+<tr><td>
 <a href="help/environment.md">Environment</a><br>
 <a href="help/files_list.md">Files List</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v1.5/index.html">EFW紹介</a><br>
@@ -31,6 +34,11 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
  <a href="https://efwgrp.github.io/efw4_online_ppt/ACアクセスログを覗くv0.1/index.html">アクセスログを覗く</a> )<br>
 
 
+</td><td>
+<a href="https://efwgrp.github.io/efw4_codeflower/efw4.X.html"><img src="help/efw4.X_codeflower.png"></a>
+</td></tr>
+</table>
+
 <h3>Samples</h3>
 <a href="samples/i18nSample">i18n</a>
 <a href="samples/dialogSample">dialog</a>
@@ -41,6 +49,7 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <a href="samples/skeletonSample">skeleton</a>
 <a href="samples/batchSample">batch</a>
 <a href="samples/restSample">restapi</a>
+
 
 
 <H1>API</H1>
