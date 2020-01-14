@@ -133,7 +133,7 @@ if (event._load("global",true)){
 	try{
 		efw.server.fire(event._get("global"));
 	}catch(e){
-		Packages.efw.framework.initSLog(e);
+		Packages.efw.framework.initSLog("Global event failed.",e);
 		throw e;//globalエラーの場合、初期化失敗
 	}
 }
