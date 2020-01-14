@@ -9,11 +9,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.innoexpert.rulesclient.Constants;
-
 import efw.db.Database;
 import efw.excel.Excel;
 import efw.format.FormatManager;
@@ -21,6 +16,9 @@ import efw.i18n.I18nProperties;
 import efw.log.LogManager;
 
 public class framework {
+	private static final int CODETYPE_ID = 0;
+	private static final int CODETYPE_NAME = 1;
+	private static final int CODETYPE_ALIAS = 2;
 	/**
 	 * 初期化成功か否かを表すフラグ。
 	 */
@@ -144,12 +142,13 @@ public class framework {
     /**
      * requestオブジェクト。
      * スレッドローカルにrequestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
+     * HttpServletRequest
      */
-    private static ThreadLocal<HttpServletRequest> request=new ThreadLocal<HttpServletRequest>();
-    public static HttpServletRequest getRequest() {
+    private static ThreadLocal<Object> request=new ThreadLocal<Object>();
+    public static Object getRequest() {
     	return framework.request.get();
     }
-    public static void setRequest(HttpServletRequest request) {
+    public static void setRequest(Object request) {
     	framework.request.set(request);
     }
     public static void removeRequest() {
@@ -159,12 +158,13 @@ public class framework {
     /**
      * responseオブジェクト。
      * スレッドローカルにresponseオブジェクトを格納する。サーバーサイトJavascriptに利用される。
+     * HttpServletResponse
      */
-    private static ThreadLocal<HttpServletResponse> response=new ThreadLocal<HttpServletResponse>();
-    public static HttpServletResponse getResponse() {
+    private static ThreadLocal<Object> response=new ThreadLocal<Object>();
+    public static Object getResponse() {
     	return framework.response.get();
     }
-    public static void setResponse(HttpServletResponse response) {
+    public static void setResponse(Object response) {
     	framework.response.set(response);
     }
     public static void removeResponse() {
@@ -348,7 +348,7 @@ public class framework {
 	//=========================================================================
 	public static void brmsLog(int codeType, String ruleIndentifier, String ruleDate, Map<String, Object> params) {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.FINE.intValue()) {
-			brms(Level.FINE,"input xml = "+createRuleParamXml(Constants.CODETYPE_ALIAS,ruleIndentifier,ruleDate,params));
+			brms(Level.FINE,"input xml = "+createRuleParamXml(codeType,ruleIndentifier,ruleDate,params));
 		}
 	}
 	//=========================================================================
@@ -380,11 +380,11 @@ public class framework {
 		ret.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		//-----------------------
 		ret.append("<ruleparameter codetype=\"");
-		if (codeType==Constants.CODETYPE_ID){
+		if (codeType==CODETYPE_ID){
 			ret.append("id");
-		}else if (codeType==Constants.CODETYPE_NAME){
+		}else if (codeType==CODETYPE_NAME){
 			ret.append("name");
-		}else if (codeType==Constants.CODETYPE_ALIAS){
+		}else if (codeType==CODETYPE_ALIAS){
 			ret.append("alias");
 		}
 		ret.append("\" date=\"");

@@ -85,19 +85,7 @@ public final class efwRestAPI extends HttpServlet{
 			}
 			br.close();
 			String ret=ScriptManager.doRestAPI(eventId,reqKeys,httpMethod,reqParams.toString());
-			// 正常戻りの場合
-			if (ret!=null) {
-				response.setStatus(HttpURLConnection.HTTP_OK);//200
-				response.getWriter().print(ret);
-			}else if ("PUT".equals(httpMethod)) {
-				response.setStatus(HttpURLConnection.HTTP_CREATED);//201
-			}else if ("GET".equals(httpMethod)) {
-				response.setStatus(HttpURLConnection.HTTP_NOT_FOUND);//404
-			}else if ("POST".equals(httpMethod)) {
-				response.setStatus(HttpURLConnection.HTTP_NO_CONTENT);//201
-			}else if ("DELETE".equals(httpMethod)) {
-				response.setStatus(HttpURLConnection.HTTP_NO_CONTENT);//204
-			}
+			if (ret!=null) {response.getWriter().print(ret);}
 		} catch (Exception ex) {
 			framework.runtimeSLog(ex);
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);

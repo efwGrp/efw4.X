@@ -19,6 +19,9 @@ import java.util.HashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import efw.framework;
 
 /**
@@ -195,8 +198,10 @@ public final class FileManager {
 	 * @throws IOException
 	 */
 	public synchronized static void saveSingleUploadFile(File f) throws IOException{
+		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
+		HttpSession session=request.getSession();
 		@SuppressWarnings("unchecked")
-		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)framework.getRequest().getSession().getAttribute(EFW_UPLOAD);
+		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)session.getAttribute(EFW_UPLOAD);
 		if (array==null){
 			return;
 		}else{
@@ -207,7 +212,7 @@ public final class FileManager {
 		        new File(srcPath).delete();
 			}
 		}
-		framework.getRequest().getSession().removeAttribute(EFW_UPLOAD);
+		session.removeAttribute(EFW_UPLOAD);
 	}
 	/***
 	 *　アップロードされたファイルを全部相対パスで保存する。
@@ -215,8 +220,10 @@ public final class FileManager {
 	 * @throws IOException 
 	 */
 	public synchronized static void saveUploadFiles(File f) throws IOException{
+		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
+		HttpSession session=request.getSession();
 		@SuppressWarnings("unchecked")
-		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)framework.getRequest().getSession().getAttribute(EFW_UPLOAD);
+		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)session.getAttribute(EFW_UPLOAD);
 		if (array==null){
 			return;
 		}else{
@@ -237,14 +244,16 @@ public final class FileManager {
 				new File(tempFileAbsolutePath).delete();
 			}
 		}
-		framework.getRequest().getSession().removeAttribute(EFW_UPLOAD);
+		session.removeAttribute(EFW_UPLOAD);
 	}
 	/***
 	 * アップロードされて一時保存中のファイルを削除する。
 	 */
 	public synchronized static void removeUploadFiles(){
+		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
+		HttpSession session=request.getSession();
 		@SuppressWarnings("unchecked")
-		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)framework.getRequest().getSession().getAttribute(EFW_UPLOAD);
+		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)session.getAttribute(EFW_UPLOAD);
 		if (array==null){
 			return;
 		}else{
@@ -254,7 +263,7 @@ public final class FileManager {
 		        new File(srcPath).delete();
 			}
 		}
-		framework.getRequest().getSession().removeAttribute(EFW_UPLOAD);
+		session.removeAttribute(EFW_UPLOAD);
 	}
 	
 	/***
@@ -263,11 +272,13 @@ public final class FileManager {
 	 * @param tempFileAbsolutePath　一時ファイルパス（サーバ絶対パスと名称）
 	 */
 	public synchronized static void keepUploadFile(String uploadPath,String uploadFileName,String tempFileAbsolutePath){
+		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
+		HttpSession session=request.getSession();
 		@SuppressWarnings("unchecked")
-		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)framework.getRequest().getSession().getAttribute(EFW_UPLOAD);
+		ArrayList<HashMap<String,String>> array= (ArrayList<HashMap<String,String>>)session.getAttribute(EFW_UPLOAD);
 		if (array==null){
 			array=new ArrayList<HashMap<String,String>>();
-			framework.getRequest().getSession().setAttribute(EFW_UPLOAD,array);
+			session.setAttribute(EFW_UPLOAD,array);
 		}
 		HashMap<String,String> map=new HashMap<String,String>();
 		map.put("uploadPath", uploadPath);

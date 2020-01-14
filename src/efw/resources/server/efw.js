@@ -287,21 +287,25 @@ function doBatch(req) {
 	var reqJson = JSON.parse(req); // parse request string to json object
 	var eventId = reqJson.eventId; // get eventId from json object
 	var params = reqJson.params; // get params from json object
+	var lang = reqJson.lang; // get lang from json object
 	try{
 		var ev=event._get(eventId);
 		//if event is not loaded or it is in debug mode
 		if (ev==null||(ev.from=="file" && _isdebug)){
 			ev=event._load(eventId);
 		}
-		
-		var ret = efw.server.checkStyle(ev, params);
-		if (ret == null){
-			ret = efw.server.fire(ev, params);
+		if (ev==null){
+			return;//Event Is Not Exists this error will show trace info by load function.
 		}
+		var ret = efw.server.checkStyle(ev, params);
+		if (ret!=null){
+			java.lang.System.out.println(ret.actions.alert.join("\n"));// params error, return;
+			return;
+		}
+		ret = efw.server.fire(ev, params);
 		if(ret==null){
 			return;
 		}else if(ret.errorlevel!=null){//batch objectの戻り値の場合
-			//TODO not tested
 	    	for(var i=0;i<ret.logs.length;i++){
 	    		Packages.efw.framework.runtimeWLog(ret.logs[i]);
 	    	}
@@ -311,14 +315,14 @@ function doBatch(req) {
 	    	if(ret.errorlevel>0){
 	    		java.lang.System.exit(ret.errorlevel);
 	    	}
+	    	return;//event return is normal
 		}else{
 			java.lang.System.out.println(JSON.stringify(ret));
+			return;//event return has errorlevel
 		}
 	}catch(e){
-		//TODO not tested 
-		var result=(new Result())
-		.error("RuntimeErrorException", {"eventId":eventId,"message":""+e});
-		return JSON.stringify(result);
+		Packages.efw.framework.runtimeSLog(e);
+		return;//exception return;
 	}
 };
 ///////////////////////////////////////////////////////////////////////////////
@@ -332,29 +336,14 @@ function doBatch(req) {
  *            PUT GET POST DELETE
  * @returns: 　https://qiita.com/uenosy/items/ba9dbc70781bddc4a491
  * 			500 Internal Server Error	その他のサーバに起因するエラーにより処理続行できない場合
- * 			503 Service Unavailable		一時的にサービス提供ができない場合、取り込み中
- * 
- * 			400 Bad Request				データ形式が間違っている場合
- * 			401 Unauthorized			何らかの認証が必要な場合、セッションタイムアウトの場合
- * 			402 Payment Required
- * 			403 Forbidden				認証エラー、ログイン失敗の場合
  * 			404 Not Found				イベントが見つからない
- * 			405 Method Not Allowed		そのリソースに指定されたメソッドが用意されていない場合
- * 			406 Not Acceptable			Acceptヘッダとマッチしない場合
- * 			409 Conflict				作成しようとしたリソースが既にある、または、更新しようとしたリソースがロック中（楽観・悲観どちらでも）の場合
- * 
  * 			200 OK						GET PUT POST方法成功の戻り値、結果リソースと一緒に送信
- * 			201 Created					PUT　POST方法成功の戻り値、作成したリソースのURIを示すLocationヘッダを付けておく
  * 			204 No Content				PUT POST DELETE方法成功の戻り値、結果リソースと一緒に送信しない
  * 
  */
 function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
-	(""+eventId).debug("eventId");
-	(""+reqkeys).debug("reqkeys");
-	(""+httpMethod).debug("httpMethod");
-	(""+reqParams).debug("reqParams");
 	reqParams=reqParams.replace(/\r?\n/g, "");//to delete \r\n
-	var params = JSON.parse(reqParams); // parse request string to json object
+	var params = reqParams==""?{}:JSON.parse(reqParams); // parse request string to json object. if blank then {}
 	var keys = JSON.parse(reqkeys);// parse keys string to json array
 	var lang = params==null?"en":params.lang; // get lang from json object
 
@@ -365,12 +354,12 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 		ev=event._load(eventId);
 	}
 	if (ev==null){
-		Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_NOT_FOUND);
+		Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_NOT_FOUND);//404 Not Found 見つからない
 		return;
 	}
 
 	try{
-		Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),eventId);//操作履歴のため。
+		Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),eventId+"/"+keys.join("/"));//操作履歴のため。
 		var ret;
 		if (httpMethod=="PUT"){
 			ret=ev.PUT(keys,params);
@@ -385,9 +374,9 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 		db._commitAll();
 		// if it is null, return blank array to client as a success
 		if (ret != null){//200 201
-			Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_OK);
+			Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_OK);//200 OK
 		}else{//204
-			Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_NO_CONTENT);
+			Packages.efw.framework.getResponse().setStatus(java.net.HttpURLConnection.HTTP_NO_CONTENT);//204 No Content
 		}
 		
 		db._commitAll();
@@ -397,12 +386,10 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 		}else{
 			return;
 		}
-		//return messages.translate(JSON.stringify(ret),lang);
 	}catch(e){
 		Packages.efw.framework.runtimeSLog(e);
 		db._rollbackAll();
-		throw e;
-		//return messages.translate(JSON.stringify(result),lang);
+		throw e;//500 Internal Server Error
 	}finally{
 		db._closeAll();
 	}

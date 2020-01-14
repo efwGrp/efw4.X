@@ -17,7 +17,7 @@ public final class CookieManager {
 	 * @return 文字列
 	 */
     public static String get(String key) {
-    	HttpServletRequest request=framework.getRequest();
+    	HttpServletRequest request=(HttpServletRequest)framework.getRequest();
         String result = null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -38,7 +38,7 @@ public final class CookieManager {
     public static void set(String key, String value) {
     	String path="/";
     	int maxAge=31536000;//One Year
-    	HttpServletResponse response=framework.getResponse();
+    	HttpServletResponse response=(HttpServletResponse)framework.getResponse();
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(maxAge);
         cookie.setPath(path);

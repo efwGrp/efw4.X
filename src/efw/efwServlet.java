@@ -126,7 +126,7 @@ public final class efwServlet extends HttpServlet {
 			//Besure jar is existed before calling MailManager, or it is error without exception in jar
 			Class.forName("javax.mail.Session");
     		Class mailManager = Class.forName("efw.mail.MailManager");
-			Method method = mailManager.getDeclaredMethod("init",String.class,boolean.class);
+			Method method = mailManager.getDeclaredMethod("init",String.class);
 			method.invoke(null,framework.getMailFolder());
     		framework.initCLog("MailManager inited.");
 		}catch(Exception ex){

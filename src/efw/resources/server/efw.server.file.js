@@ -227,7 +227,7 @@ EfwServerFile.prototype.readAllLines = function(path, encoding){
 	var fl = this.isAbsolutePath
 			?Packages.efw.file.FileManager.getByAbsolutePath(path)
 			:Packages.efw.file.FileManager.get(path);
-	if (encoding==null||encoding=="")encoding=null;
+	if (encoding==null||encoding=="")encoding="UTF-8";
 	return ""+Packages.efw.file.FileManager.readAllLines(fl,encoding);
 };
 /**
