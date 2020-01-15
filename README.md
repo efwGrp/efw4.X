@@ -1,7 +1,7 @@
 <H1>efw4.X</H1>
 <h3>What's new?</h3>
 <h4>Added</h4>
-i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list_web.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Web Event</a>.<br>
+i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Web Event</a>.<br>
 ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>. Attribute "mode" in <a href="help/tag.chart.md">Chart tag</a>.<br>
 RestAPI:	<a href="help/api_restevent.md">Rest Event</a>.
 <h4>Removed</h4>

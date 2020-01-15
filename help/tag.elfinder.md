@@ -15,7 +15,7 @@ and included it into Efw as a tag. It must be used after the Client tag for jQue
 <table>
 <tr><th>Name</th><th>Required</th><th>Default</th><th>Description</th></tr>
 <tr><td>id</td><td>Yes</td><td></td><td>The identity of the elFinder tag. You can use it as the instance of the elFinder.</td></tr>
-<tr><td>home</td><td>No</td><td>""</td><td>A relative path to the storage folder(/WEB-INF/storage). You can set <a href="properties_web.md">the properties file</a> to change the storage folder to your own folder.</td></tr>
+<tr><td>home</td><td>No</td><td>""</td><td>A relative path to the storage folder(/WEB-INF/storage). You can set <a href="properties.web.md">the properties file</a> to change the storage folder to your own folder.</td></tr>
 <tr><td>height</td><td>No</td><td>"400"</td><td>The height of elFinder tag. The unit is "px".</td></tr>
 <tr><td>width</td><td>No</td><td>"auto"</td><td>The width of elFinder tag. The unit is "px". </td></tr>
 <tr><td>lang</td><td>No</td><td>"en"</td><td>The language of elFinder tag.</td></tr>
