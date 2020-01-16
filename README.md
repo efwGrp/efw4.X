@@ -270,5 +270,10 @@ Hierarchy<br>
 Visibility Filter<br>
 <a href="https://api.jquery.com/hidden-selector/">:hidden</a>, <a href="https://api.jquery.com/visible-selector/">:visible</a>, <br>
 
-
-
+<H1>They use our products</H1>
+<table><tr>
+<td><a href="https://www.escco.co.jp"><img src="help/logos/escco.png"></a></td>
+<td><a href="https://www.escco.com.cn"><img src="help/logos/yike.jpg"></a></td>
+<td><a href="https://www.jwts.co.jp"><img src="help/logos/jwts.png"></a></td>
+<td><a href="http://www.layer10.jp/"><img src="help/logos/layer10.png"></a></td>
+</tr></table>
