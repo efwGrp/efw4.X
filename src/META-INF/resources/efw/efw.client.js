@@ -98,7 +98,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 	var self=this;
 	var callSecondAjax = function() {
 		$.ajax(self._options={
-			url : servletUrl+"?eventId="+eventId +"&lang="+efw.lang+"&params="+encodeURI(JSON.stringify(params)),//to save info for access log  
+			url : (servletUrl+"?eventId="+eventId +"&lang="+efw.lang+"&params="+encodeURIComponent(JSON.stringify(params))).substring(0,1024),//to save info for access log  
 			type : "POST",// post method
 			cache : false,// don't use cache
 			async : true,// don't use async
