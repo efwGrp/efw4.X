@@ -104,4 +104,30 @@
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
   </tag>
+  
+  <tag>
+    <name>jExcel</name>
+    <tag-class>efw.taglib.JExcel</tag-class>
+    <body-content>empty</body-content>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+  <tag>
+    <name>JExcel</name>
+    <tag-class>efw.taglib.JExcel</tag-class>
+    <body-content>empty</body-content>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+  <tag>
+    <name>jexcel</name>
+    <tag-class>efw.taglib.JExcel</tag-class>
+    <body-content>empty</body-content>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+  <tag>
+    <name>JEXCEL</name>
+    <tag-class>efw.taglib.JExcel</tag-class>
+    <body-content>empty</body-content>
+    <dynamic-attributes>true</dynamic-attributes>
+  </tag>
+  
 </taglib>

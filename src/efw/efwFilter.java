@@ -45,6 +45,14 @@ public final class efwFilter implements Filter {
 	 */
 	private static String clientMessagesUrl="efw.client.messages.jsp";
 	/**
+	 * elFinderクライアントメッセージのURL。
+	 */
+	private static String elFinderMessagesUrl="elfinder.messages.jsp";
+	/**
+	 * jExcelクライアントメッセージのURL。
+	 */
+	private static String jExcelMessagesUrl="jexcel.messages.jsp";
+	/**
 	 * ログインチェック対象外画面のURLパターンの文字列。
 	 */
 	private static String outOfloginUrlPatternString="";
@@ -60,6 +68,14 @@ public final class efwFilter implements Filter {
 	 *  クライアントメッセージのURLパターン。
 	 */
 	private static Pattern clientMessagesUrlPattern =null;
+	/**
+	 *  elFinderクライアントメッセージのURLパターン。
+	 */
+	private static Pattern elFinderMessagesUrlPattern =null;
+	/**
+	 *  jExcelクライアントメッセージのURLパターン。
+	 */
+	private static Pattern jExcelMessagesUrlPattern =null;
 	/**
 	 * 権限チェック要否のフラグ。
 	 */
@@ -82,7 +98,11 @@ public final class efwFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		String strRequestURI = ((HttpServletRequest) request).getRequestURI();
-		if(loginUrlPattern.matcher(strRequestURI).find()||systemErrorUrlPattern.matcher(strRequestURI).find()||clientMessagesUrlPattern.matcher(strRequestURI).find()){
+		if(loginUrlPattern.matcher(strRequestURI).find()
+				||systemErrorUrlPattern.matcher(strRequestURI).find()
+				||clientMessagesUrlPattern.matcher(strRequestURI).find()
+				||elFinderMessagesUrlPattern.matcher(strRequestURI).find()
+				||jExcelMessagesUrlPattern.matcher(strRequestURI).find()){
 			chain.doFilter(request, response);
 		}else{
 			if(loginCheck){
@@ -136,6 +156,8 @@ public final class efwFilter implements Filter {
 		outOfloginUrlPattern=Pattern.compile(outOfloginUrlPatternString);
 		loginUrlPattern=Pattern.compile(loginUrl);
 		clientMessagesUrlPattern=Pattern.compile(clientMessagesUrl);
+		elFinderMessagesUrlPattern=Pattern.compile(elFinderMessagesUrl);
+		jExcelMessagesUrlPattern=Pattern.compile(jExcelMessagesUrl);
 		
 		authCheck=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AUTH_CHECK,authCheck);
 		framework.initCLog("authCheck = "+authCheck);

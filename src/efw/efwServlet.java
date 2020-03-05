@@ -151,6 +151,8 @@ public final class efwServlet extends HttpServlet {
     	//-----------------------------------------------------------------
         //efwFilter init to check login or not
         efwFilter.init();//プロパティの後で必要。エラーなし。
+    	//-----------------------------------------------------------------
+        framework.initCLog("Efw Version = "+framework.getVersion());
     }
 
 	/**

@@ -10,6 +10,8 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import efw.framework;
+
 /**
  * ElFinderタグを処理するクラス。
  * <efw:ElFinder home="" readonly="" lang="" height="" width=""/>
@@ -24,7 +26,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String id="elFinder";
 	private String home="";
 	private boolean readonly=false;
-	private String lang="en";
 	private String height="400";
 	private String width="auto";
 	private boolean _protected=false;
@@ -50,15 +51,16 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			id=this.getId();
 		}
 		JspWriter out;
+		String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG);
+		if ("".equals(lang)||lang==null)lang="en";
 		try {
+			String v=framework.getVersion();
 			out = pageContext.getOut();
-			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css\">");
-			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css\">");
+			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
+			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
 			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js\"></script>");
-			if(!"".equals(lang)&&!"en".equals(lang)){
-				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/i18n/elfinder."+lang+".js\"></script>");
-			}
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js?v="+v+"\"></script>");
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder.messages.jsp?lang="+lang+"&v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
 			out.print("var "+id+";$(function(){"+id+"=$(\"#"+id+"\")"
 					+ ".elfinder({"
@@ -93,7 +95,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		id="elFinder";
 		home="";
 		readonly=false;
-		lang="en";
 		height="400";
 		width="auto";
 		_protected=false;
@@ -112,8 +113,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			id=(String) value;
 		}else if(name.equalsIgnoreCase("home")){
 			home=(String) value;
-		}else if(name.equalsIgnoreCase("lang")){
-			if(!"".equals(value)&&null!=value)lang=(String) value;
 		}else if(name.equalsIgnoreCase("height")){
 			height=(String) value;
 		}else if(name.equalsIgnoreCase("width")){

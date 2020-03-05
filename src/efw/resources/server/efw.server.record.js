@@ -214,3 +214,31 @@ Record.prototype.getValue = function(field) {
 	if (this.values.length == 0)return null;
 	return this.values[0][field];
 };
+/**
+ * The function to group the record by param fields.
+ * @param {String}
+ * 			fields: required<br>
+ */
+Record.prototype.group = function(/*field1,field2,field3...*/) {
+	if(arguments.length==0) return null;
+	var root={};
+	//to create the tree
+	for (var i=0; i<this.values.length; i++){
+		var item=JSON.clone(this.values[i]);
+		var current=root;
+		for (var j=0; j<arguments.length; j++){
+			var key=arguments[j];
+			if(current[item[key]]==null){
+				if(j==arguments.length-1){
+					current[item[key]]=[];
+				}else{
+					current[item[key]]={};
+				}
+			}
+			current=current[item[key]];
+			delete item[key];
+		}
+		current.push(item);
+	}
+	return root;
+};

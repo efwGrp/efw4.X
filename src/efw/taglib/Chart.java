@@ -9,6 +9,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import efw.framework;
 /**
  * Chartタグを処理するクラス。
  * <efw:Chart id="" type="" height="" width="" data="" version="" setoptions=""/>
@@ -40,6 +42,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 		}
 		JspWriter out;
 		try {
+			String v=framework.getVersion();
 			out = pageContext.getOut();
 			String temp="";
 			for(Map.Entry<String, String> e : attrs.entrySet()) {
@@ -47,14 +50,14 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 			}
 			if ("googlechart".equals(mode)) {
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://www.gstatic.com/charts/loader.js\"></script>");
-				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.googlechart.js\"></script>");
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.googlechart.js?v="+v+"\"></script>");
 				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"></div>");
 				out.print("<script>"
 						+ "var "+id+";"
 						+ "$(function(){"+id+"=new EfwClientChartGL(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
 			}else if ("chartjs".equals(mode)) {
-				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"chart/Chart.min.js\"></script>");
-				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.chartjs.js\"></script>");
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"chart/Chart.min.js?v="+v+"\"></script>");
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.chartjs.js?v="+v+"\"></script>");
 				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"><canvas></canvas></div>");
 				out.print("<script>"
 						+ "var "+id+";"

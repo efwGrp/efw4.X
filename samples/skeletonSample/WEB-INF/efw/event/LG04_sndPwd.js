@@ -10,7 +10,6 @@ LG04_sndPwd.paramsFormat={
  * パスワード送信関数
  */
 LG04_sndPwd.fire=function(params){
-	loadFile(_eventfolder + "/message.js");
 	var data=db.select(
 		"LG",																						// 外だしSQLファイル名 
 		"selユーザ"																					// 担当者情報取得しようのデータを検索するSQL名
@@ -19,7 +18,7 @@ LG04_sndPwd.fire=function(params){
     // 担当者の存在チェック
 	if (data.length==0){
 		return (new Result())
-		.alert(LG01Message.LG01011)
+		.alert("ユーザーＩＤが正しくありません。")
 		.highlight("#txt_uid")
 		.focus("#txt_uid");																			// カーソルをパスワード送信画面のアカウントにフォーカスする
 	}else{
@@ -37,21 +36,17 @@ LG04_sndPwd.fire=function(params){
 			);
 			
 			session.set("USER_ID", params["#txt_uid"]);													// セッションにアカウントを設定する
-			// ログ出力
-			saveLog("認証", "LG04", "パスワード送信成功");
 			session.set("USER_ID", null);																// セッションにアカウントを設定する
 			
 			return (new Result())
-			.alert(LG01Message.LG01012);
+			.alert("パスワード通知メールが送信されました。");
 		}catch(e){
 			
 			session.set("USER_ID", params["#txt_uid"]);													// セッションにアカウントを設定する
-			// ログ出力
-			saveLog("認証", "LG04", "パスワード送信失敗");
 			session.set("USER_ID", null);																// セッションにアカウントを設定する
 			
 			return (new Result())
-			.alert(LG01Message.LG01013);
+			.alert("パスワード通知メールが送信できませんでした。システム管理者に問い合わせてください。");
 		}
 	}
 };

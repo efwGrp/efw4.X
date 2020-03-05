@@ -4,6 +4,7 @@ package efw.excel;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -401,18 +402,28 @@ public final class Excel {
     	//2007の場合
         if (password!=null && !"".equals(password) && this.workbook instanceof XSSFWorkbook){
         	POIFSFileSystem pOIFSFileSystem=null;
-        	
     		FileOutputStream fileOutputStream = null;
+    		OutputStream outputStream = null;
+        	OPCPackage oPCPackage=null;
         	try {
         		pOIFSFileSystem = new POIFSFileSystem();
             	Encryptor encryptor = (new EncryptionInfo(EncryptionMode.agile)).getEncryptor();
             	encryptor.confirmPassword(password);
-            	OPCPackage oPCPackage=null;
             	try{
                 	oPCPackage = OPCPackage.open(fileNewExcel, PackageAccess.READ_WRITE);
-                	oPCPackage.save(encryptor.getDataStream(pOIFSFileSystem));
+                	outputStream = encryptor.getDataStream(pOIFSFileSystem);
+                	oPCPackage.save(outputStream);
             	}finally{
-                	oPCPackage.close();
+            		try {
+            			outputStream.close();
+            		}catch(IOException e) {
+            			e.printStackTrace();
+            		}
+            		try {
+            			oPCPackage.close();
+            		}catch(IOException e) {
+            			e.printStackTrace();
+            		}
             	}
             	fileOutputStream = new FileOutputStream(fileNewExcel);
     		    pOIFSFileSystem.writeFilesystem(fileOutputStream);

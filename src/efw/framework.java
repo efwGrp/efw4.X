@@ -19,6 +19,15 @@ public class framework {
 	private static final int CODETYPE_ID = 0;
 	private static final int CODETYPE_NAME = 1;
 	private static final int CODETYPE_ALIAS = 2;
+	
+	/**
+	 * バージョンを表す。
+	 */
+	private static String version="4.00.007";// change it when releasing jar.
+	public static String getVersion() {
+		return version;
+	}
+	
 	/**
 	 * 初期化成功か否かを表すフラグ。
 	 */
@@ -219,11 +228,11 @@ public class framework {
      * Writterオブジェクト。
      * スレッドローカルにWriterオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static ThreadLocal<ArrayList<PrintWriter>> writters=new ThreadLocal<ArrayList<PrintWriter>>();
-	public static ArrayList<PrintWriter> getWritters() {
+	private static ThreadLocal<HashMap<String,PrintWriter>> writters=new ThreadLocal<HashMap<String,PrintWriter>>();
+	public static HashMap<String,PrintWriter> getWritters() {
 		return framework.writters.get();
 	}
-	public static void setWritters(ArrayList<PrintWriter> writters) {
+	public static void setWritters(HashMap<String,PrintWriter> writters) {
 		framework.writters.set(writters);
 	}
 	public static void removeWritters() {

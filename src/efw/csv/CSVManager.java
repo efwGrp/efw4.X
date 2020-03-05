@@ -1,7 +1,8 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.csv;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -16,14 +17,14 @@ public final class CSVManager {
 	 */
 	public static PrintWriter open(String path,String encoding) throws Exception{
 		if(framework.getWritters()==null)
-			framework.setWritters(new ArrayList<PrintWriter>());
+			framework.setWritters(new HashMap<String,PrintWriter>());
 		try{
 			PrintWriter writter = new java.io.PrintWriter(
 					new java.io.BufferedWriter(
 						new java.io.OutputStreamWriter(
 							new java.io.FileOutputStream(FileManager.get(path),true),
 							encoding)));
-			framework.getWritters().add(writter);
+			framework.getWritters().put(path,writter);
 			return writter;
 		}catch(Exception ex){
 			throw ex;
@@ -36,9 +37,9 @@ public final class CSVManager {
 	public static void closeAll(){
 		if(framework.getWritters()==null) return;
 
-		ArrayList<PrintWriter> ary=framework.getWritters();
-		for(int i=0;i<ary.size();i++) {
-			PrintWriter writter=ary.get(i);
+		HashMap<String,PrintWriter> map=framework.getWritters();
+		for(Entry<String, PrintWriter> e : map.entrySet()) { 
+			PrintWriter writter=e.getValue();  
 			try{
 				writter.close();//2回閉じても大丈夫。
 			}catch(Exception ex){}

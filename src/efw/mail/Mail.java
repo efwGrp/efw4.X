@@ -93,7 +93,9 @@ public final class Mail {
 		if (data==null)return null;
 		String temp=data;
 		for(Entry<String, String> e : params.entrySet()) {
-			temp=temp.replaceAll(paramPrefix+e.getKey(), e.getValue());
+			String value=e.getValue();
+			value=value.replaceAll("[\\\\]","\\\\\\\\").replaceAll("[$]","\\\\\\$");
+			temp=temp.replaceAll(paramPrefix+e.getKey(), value);
 		}
 		return temp;
 	}

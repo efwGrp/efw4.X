@@ -185,10 +185,6 @@ EfwClientChartJS.prototype.draw=function(){
 	if(types[this.type].chart=="doughnut"){
 		this.options.cutoutPercentage=40;
 	}
-	//do setOptions event
-	if(this.setOptions!=null){
-		try{this.setOptions(this.options);}catch(e){};
-	}
 	///////////////////////////////////////////////////////////////////////////
 	this.data={labels:[],datasets:[]};
 	//set labels to data
@@ -236,6 +232,11 @@ EfwClientChartJS.prototype.draw=function(){
 		}
 		coldata.fill=types[this.type].fill;
 		this.data.datasets.push(coldata);
+	}
+	///////////////////////////////////////////////////////////////////////////
+	//do setOptions event
+	if(this.setOptions!=null){
+		try{this.setOptions(this.options);}catch(e){};
 	}
 	//draw it//////////////////////////////////////////////////////////////////
 	$("#"+this.chartId).html("<canvas></canvas>");

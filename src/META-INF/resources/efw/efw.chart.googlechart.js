@@ -121,12 +121,13 @@ EfwClientChartGL.prototype.draw=function(){
 	}
 	if(types[this.type].multiData==true && colColors.length>0)this.options.colors=colColors;
 	if(types[this.type].multiData==false && rowColors.length>0)this.options.colors=rowColors;
+	///////////////////////////////////////////////////////////////////////////
+	this.data=d;
+	///////////////////////////////////////////////////////////////////////////
 	//do setOptions event
 	if (this.setOptions!=null){
 		try{this.setOptions(this.options);}catch(e){};
 	}
-	///////////////////////////////////////////////////////////////////////////
-	this.data=d;
 	//draw it//////////////////////////////////////////////////////////////////
 	var self=this;
 	google.charts.load(this.version, {packages: ["corechart"]});

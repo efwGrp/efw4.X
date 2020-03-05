@@ -20,7 +20,7 @@ MST01_search.fire=function(params){
 			"orderBy":params["#paging"][".orderBy"],												// ソート
 			
 	};
-	var arySerifs=getPageData(
+	var aryData=getPageData(
 		"MST01",
 		"selユーザ一覧cnt",
 		"selユーザ一覧",
@@ -50,7 +50,7 @@ MST01_search.fire=function(params){
 			"<td title='{eMail}'>{eMail}</td>" +													// メール
 			"<td title='{bikou}'>{bikou}</td>" +													// コメント
 			"</tr>")
-	.withdata(arySerifs)
+	.withdata(aryData)
 	.eval("$('#tbl_data TR:ODD').addClass('ROW1');")												// 一覧奇数行で背景色を付ける
 	.eval("$('#tbl_data TR:EVEN').addClass('ROW0');")												// 一覧偶数行で背景色を付ける
 	.eval("keepRowSelected()");

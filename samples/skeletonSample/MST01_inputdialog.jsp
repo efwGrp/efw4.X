@@ -12,10 +12,10 @@
 				width : 550,
 				modal : true,
 				open : function(){
-					setTimeout(function(){Efw("MST01_inputdialog_init",{"selectId":MST01_inputdialog.selectId})});
+					Efw("MST01_inputdialog_init",{"selectId":MST01_inputdialog.selectId});
 				},
 				close : function(){
-					setTimeout(function(){Efw("MST01_search")},100);
+					Efw("MST01_search");
 				},
 			});
 		});

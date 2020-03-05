@@ -34,7 +34,7 @@ LG01_submit.fire=function(params){
 	// ユーザーはロックされているかどうか
 	if(lockFlag == "1"){
 		return (new Result())
-		.eval("showMessageWithExpression('"+LG01Message.LG01014+"',false,'rejected')");
+		.alert("ユーザーＩＤとパスワードが正しく入力されていないため、アカウントがロックされました。<br>「パスワードを忘れた場合」で正しいパスワードを取得して、「パスワードを変更する場合」 でパスワードを再設定してください。");
 	}else if (params["#txt_pwd"] == pwd && initFlag == '1'){
 	// 初期パスワードは変更してないか
 		session.create();

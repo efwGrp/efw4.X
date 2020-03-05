@@ -12,8 +12,8 @@
 			width : 500,
 			modal : true,
 			close : function(){
-					setTimeout(function(){Efw("MST01_search")},100);
-				},
+					Efw("MST01_search");
+			},
 		});
 	});
 	</SCRIPT>
