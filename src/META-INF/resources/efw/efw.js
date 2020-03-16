@@ -67,5 +67,7 @@ $(function() {
 	efw.dialog=new EfwDialog();
 	//--messages---------------------------------------------------------------
 	efw.messages=new EfwClientMessages();
+	//--isDownloading----------------------------------------------------------
+	efw.isDownloading=false;
 });
 

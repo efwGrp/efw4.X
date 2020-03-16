@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -62,7 +63,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 			e.printStackTrace();
 		}
 		//多国語対応のため、指定言語をattrに設定する。
-		pageContext.setAttribute(Client.EFW_I18N_LANG, lang);
+		pageContext.setAttribute(Client.EFW_I18N_LANG, lang,PageContext.REQUEST_SCOPE);
 		
 		baseurl=".";
 		mode="jquery-ui";

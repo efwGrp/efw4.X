@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -51,7 +52,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			id=this.getId();
 		}
 		JspWriter out;
-		String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG);
+		String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG,PageContext.REQUEST_SCOPE);
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
 			String v=framework.getVersion();

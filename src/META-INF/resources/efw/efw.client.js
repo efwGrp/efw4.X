@@ -487,10 +487,12 @@ EfwClient.prototype._showActions = function(actions) {
 	}
 	//-------------------------------------------------------------------------
 	if (actions.download){
+		efw.isDownloading=true;
 		window.location = efw.baseurl+"/downloadServlet";
 		function waitUntilDownloaded(){
 			window.setTimeout(function(){
 				if (Cookies.get("efw_Downloaded")) {
+					efw.isDownloading=false;
 					Cookies.remove("efw_Downloaded",{path : "/"});
 					continueAfterDownloaded();
 				}else{

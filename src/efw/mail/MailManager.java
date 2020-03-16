@@ -99,7 +99,7 @@ public final class MailManager {
 		}
 		String cc=mail.getCc(params);
 		if (cc!=null&&!"".equals(cc)){
-			String[] ary=to.split(";");
+			String[] ary=cc.split(";");
 			for(int i=0;i<ary.length;i++){
 				if(!"".equals(ary[i]))message.addRecipient(MimeMessage.RecipientType.CC, new InternetAddress(ary[i]));
 			}
