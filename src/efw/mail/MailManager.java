@@ -106,7 +106,7 @@ public final class MailManager {
 		}
 		String bcc=mail.getBcc(params);
 		if (bcc!=null&&!"".equals(bcc)){
-			String[] ary=to.split(";");
+			String[] ary=bcc.split(";");
 			for(int i=0;i<ary.length;i++){
 				if(!"".equals(ary[i]))message.addRecipient(MimeMessage.RecipientType.BCC, new InternetAddress(ary[i]));
 			}
