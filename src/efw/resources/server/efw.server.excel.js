@@ -412,6 +412,11 @@ Excel.prototype.encircle= function(sheetName,position,templateSheetName,template
  * @returns {Excel}
  */
 Excel.prototype.addShape= function(sheetName,position,templateSheetName,templateShapeName,text,x,y,width,height){
+	if (text==null)text="";
+	if (x==null)x=0;
+	if (y==null)y=0;
+	if (width==null)width=0;
+	if (height==null)height=0;
 	this._workbook.addShapeInCell(sheetName,position,templateSheetName,templateShapeName,text,x,y,width,height);
 	return this;
 };
@@ -437,7 +442,25 @@ Excel.prototype.addShape= function(sheetName,position,templateSheetName,template
  * @returns {Excel}
  */
 Excel.prototype.addShapeInRange= function(sheetName,firstCellPosition,lastCellPosition,templateSheetName,templateShapeName,text,x1,y1,x2,y2){
+	if (text==null)text="";
+	if (x1==null)x1=0;
+	if (y1==null)y1=0;
+	if (x2==null)x2=0;
+	if (y2==null)y2=0;
 	this._workbook.addShapeInRange(sheetName,firstCellPosition,lastCellPosition,templateSheetName,templateShapeName,text,x1,y1,x2,y2);
+	return this;
+};
+
+/**
+ * @param {String} templateSheetName: required<br>
+ * The sheet where the copied shape is.<br> 
+ * @param {String} templateShapeName: required<br>
+ * The name of the copied shape.
+ * @param {String} newPicturePath: required<br>
+ * The path of a new picture to be replaced in the templateShape.
+ */
+Excel.prototype.replacePicture= function(templateSheetName,templateShapeName,newPicturePath){
+	this._workbook.replacePicture(templateSheetName,templateShapeName,newPicturePath);
 	return this;
 };
 

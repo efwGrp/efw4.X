@@ -2,9 +2,13 @@
 package efw.excel;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +26,8 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.openxml4j.opc.PackageAccess;
+import org.apache.poi.openxml4j.opc.PackagePart;
+import org.apache.poi.openxml4j.opc.PackageRelationship;
 import org.apache.poi.poifs.crypt.EncryptionInfo;
 import org.apache.poi.poifs.crypt.EncryptionMode;
 import org.apache.poi.poifs.crypt.Encryptor;
@@ -54,10 +60,13 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import org.apache.poi.xssf.usermodel.XSSFDrawing;
 import org.apache.poi.xssf.usermodel.XSSFEvaluationWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFPicture;
+import org.apache.poi.xssf.usermodel.XSSFPictureData;
 import org.apache.poi.xssf.usermodel.XSSFShape;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFSimpleShape;
@@ -686,10 +695,10 @@ public final class Excel {
     	List<XSSFShape> templateShapes=((XSSFDrawing) templateSheet.getDrawingPatriarch()).getShapes();
         for (XSSFShape templateShape : templateShapes) {
     		if (templateShape instanceof XSSFSimpleShape && 
-    				templateShapeName.equals(Excel.getShapeName((XSSFSimpleShape) templateShape))) {
+    				templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
-    			XSSFClientAnchor anchor=(XSSFClientAnchor)(Excel.cloneShape(patriarch,(XSSFSimpleShape) templateShape).getAnchor());
+    			XSSFClientAnchor anchor=(XSSFClientAnchor)(cloneShape(patriarch,(XSSFSimpleShape) templateShape).getAnchor());
 
     			int cellWidth=(int)(cell.getSheet().getColumnWidth(cell.getColumnIndex()) / 256 * 8 * EMU_PER_PIXEL);
     		    int cellHeight=(int)(cell.getRow().getHeight() / 20.0D * EMU_PER_POINT);
@@ -737,15 +746,14 @@ public final class Excel {
     	XSSFSheet templateSheet=(XSSFSheet) this.workbook.getSheet(templateSheetName);
     	List<XSSFShape> templateShapes=((XSSFDrawing) templateSheet.getDrawingPatriarch()).getShapes();
         for (XSSFShape templateShape : templateShapes) {
-    		if (templateShape instanceof XSSFSimpleShape && 
-    				templateShapeName.equals(Excel.getShapeName((XSSFSimpleShape) templateShape))) {
+        	if (templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
-    			XSSFSimpleShape shape=Excel.cloneShape(patriarch,(XSSFSimpleShape) templateShape);
+    			XSSFShape shape=cloneShape(patriarch,templateShape);
     			// 図形の中に文字内容を設定する
-    			if(value!=null){
-					if(shape.getTextParagraphs().size()>0){
-						XSSFTextParagraph paragraph=shape.getTextParagraphs().get(0);
+    			if(value!=null&&"XSSFSimpleShape".equals(templateShape.getClass().getSimpleName())){
+					if(((XSSFSimpleShape)shape).getTextParagraphs().size()>0){
+						XSSFTextParagraph paragraph=((XSSFSimpleShape)shape).getTextParagraphs().get(0);
 						if(paragraph.getTextRuns().size()>0){
 							paragraph.getTextRuns().get(0).setText(value);
 						}
@@ -811,16 +819,15 @@ public final class Excel {
     	XSSFSheet templateSheet=(XSSFSheet) this.workbook.getSheet(templateSheetName);
     	List<XSSFShape> templateShapes=((XSSFDrawing) templateSheet.getDrawingPatriarch()).getShapes();
         for (XSSFShape templateShape : templateShapes) {
-    		if (templateShape instanceof XSSFSimpleShape && 
-    				templateShapeName.equals(Excel.getShapeName((XSSFSimpleShape) templateShape))) {
+        	if (templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
     			
-    			XSSFSimpleShape shape=Excel.cloneShape(patriarch,(XSSFSimpleShape) templateShape);
+    			XSSFShape shape=cloneShape(patriarch,templateShape);
     			// 図形の中に文字内容を設定する
-    			if(value!=null){
-					if(shape.getTextParagraphs().size()>0){
-						XSSFTextParagraph paragraph=shape.getTextParagraphs().get(0);
+    			if(value!=null&&"XSSFSimpleShape".equals(templateShape.getClass().getSimpleName())){
+					if(((XSSFSimpleShape)shape).getTextParagraphs().size()>0){
+						XSSFTextParagraph paragraph=((XSSFSimpleShape)shape).getTextParagraphs().get(0);
 						if(paragraph.getTextRuns().size()>0){
 							paragraph.getTextRuns().get(0).setText(value);
 						}
@@ -1037,45 +1044,104 @@ public final class Excel {
 	public void showSheet(String sheetName){
 		this.workbook.setSheetHidden(this.workbook.getSheetIndex(sheetName), false);
 	}
+	/**
+	 * 画像置換
+	 * @param sheetName
+	 * @param pictureName
+	 * @param newPicturePath
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
+	 * @throws ClassNotFoundException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws IOException 
+	 */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void replacePicture(String templateSheetName,String templateShapeName,String newPicturePath) throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+    	XSSFSheet sheet = (XSSFSheet) this.workbook.getSheet(templateSheetName);
+    	List<XSSFShape> shapes=((XSSFDrawing) sheet.getDrawingPatriarch()).getShapes();
+    	for (XSSFShape shape : shapes) {
+    		if (templateShapeName.equals(shape.getShapeName())) {
+    			File newPictureFile = FileManager.get(newPicturePath);
+    			InputStream in = new FileInputStream(newPictureFile);
+    			byte[] bytes = IOUtils.toByteArray(in);
+    			in.close();
+    			String extension = newPicturePath.substring(newPicturePath.lastIndexOf(".")+1).toUpperCase();
+    			int pictureType=0;
+    			if ("BMP".equals(extension)||"DIB".equals(extension))pictureType=Workbook.PICTURE_TYPE_DIB;
+    			if ("EMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_EMF;
+    			if ("JPEG".equals(extension)||"JPG".equals(extension))pictureType=Workbook.PICTURE_TYPE_JPEG;
+    			if ("PICT".equals(extension))pictureType=Workbook.PICTURE_TYPE_PICT;
+    			if ("PNG".equals(extension))pictureType=Workbook.PICTURE_TYPE_PNG;
+    			if ("WMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_WMF;
 
-	
+    			int pictureIndex = this.workbook.addPicture(bytes, pictureType);
+    			
+    			XSSFPicture orgPicture=(XSSFPicture)shape;
+				Class XSSFDrawingClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFDrawing");
+				Method addMethod = XSSFDrawingClass.getDeclaredMethod("addPictureReference",int.class);
+				addMethod.setAccessible(true);
+				PackageRelationship rel=(PackageRelationship)addMethod.invoke(sheet.getDrawingPatriarch(),pictureIndex);
+				Class XSSFPictureClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFPicture");
+				Method setMethod = XSSFPictureClass.getDeclaredMethod("setPictureReference",PackageRelationship.class);
+				setMethod.setAccessible(true);
+				setMethod.invoke(orgPicture,rel);
+				break;
+    		}
+    	}
+	}
+
 	/**
 	 * XSSFのShapeをコピーする
 	 * @param patriarch
 	 * @param templateShape
 	 * @return　作成されたshape
 	 */
-	private static XSSFSimpleShape cloneShape(XSSFDrawing patriarch,XSSFSimpleShape templateShape){
-		XSSFSimpleShape shape = patriarch.createSimpleShape((XSSFClientAnchor)templateShape.getAnchor());
-		shape.getCTShape().set(templateShape.getCTShape().copy());
-		if(templateShape.getTextParagraphs().size()>0){
-			XSSFTextParagraph tempParagraph=templateShape.getTextParagraphs().get(0);
-			if(tempParagraph.getTextRuns().size()>0){
-				XSSFTextRun tempRun=tempParagraph.getTextRuns().get(0);
-				shape.setText(tempRun.getText());
-				if(shape.getTextParagraphs().size()>0){
-					XSSFTextParagraph paragraph=shape.getTextParagraphs().get(0);
-					if(paragraph.getTextRuns().size()>0){
-						XSSFTextRun textRun= paragraph.getTextRuns().get(0);
-						textRun.setText(tempRun.getText());
-						textRun.setFontSize(tempRun.getFontSize());
-						textRun.setCharacterSpacing(tempRun.getCharacterSpacing());
-						textRun.setFontColor(tempRun.getFontColor());
-						textRun.setFontFamily(tempRun.getFontFamily(), Font.DEFAULT_CHARSET, tempRun.getPitchAndFamily(), false);
-						paragraph.setTextAlign(tempParagraph.getTextAlign());
-						paragraph.setTextFontAlign(tempParagraph.getTextFontAlign());
+	private XSSFShape cloneShape(XSSFDrawing patriarch,XSSFShape templateShape){
+		String clsNm=templateShape.getClass().getSimpleName();
+		if ("XSSFSimpleShape".equals(clsNm)) {
+			XSSFSimpleShape orgSimpleShape=(XSSFSimpleShape)templateShape;
+			XSSFSimpleShape simpleShape = patriarch.createSimpleShape((XSSFClientAnchor)orgSimpleShape.getAnchor());
+			simpleShape.getCTShape().set(orgSimpleShape.getCTShape().copy());
+			if(orgSimpleShape.getTextParagraphs().size()>0){
+				XSSFTextParagraph tempParagraph=orgSimpleShape.getTextParagraphs().get(0);
+				if(tempParagraph.getTextRuns().size()>0){
+					XSSFTextRun tempRun=tempParagraph.getTextRuns().get(0);
+					simpleShape.setText(tempRun.getText());
+					if(simpleShape.getTextParagraphs().size()>0){
+						XSSFTextParagraph paragraph=simpleShape.getTextParagraphs().get(0);
+						if(paragraph.getTextRuns().size()>0){
+							XSSFTextRun textRun= paragraph.getTextRuns().get(0);
+							textRun.setText(tempRun.getText());
+							textRun.setFontSize(tempRun.getFontSize());
+							textRun.setCharacterSpacing(tempRun.getCharacterSpacing());
+							textRun.setFontColor(tempRun.getFontColor());
+							textRun.setFontFamily(tempRun.getFontFamily(), Font.DEFAULT_CHARSET, tempRun.getPitchAndFamily(), false);
+							paragraph.setTextAlign(tempParagraph.getTextAlign());
+							paragraph.setTextFontAlign(tempParagraph.getTextFontAlign());
+						}
 					}
 				}
 			}
+			return (XSSFShape)simpleShape;
+		}else if ("XSSFPicture".equals(clsNm)) {
+			XSSFPicture orgPicture=(XSSFPicture)templateShape;
+			PackagePart orgPackagePart= orgPicture.getPictureData().getPackagePart();
+			@SuppressWarnings("unchecked")
+			List<XSSFPictureData> allpictures=(List<XSSFPictureData>) this.workbook.getAllPictures();
+			int pictureIndex=-1;
+			for(int index=0;index<allpictures.size();index++) {
+				PackagePart packagePart=allpictures.get(index).getPackagePart();
+				if (packagePart.equals(orgPackagePart)) {
+					pictureIndex=index;
+					break;
+				}
+			}
+			XSSFPicture picture = patriarch.createPicture((XSSFClientAnchor)orgPicture.getAnchor(),pictureIndex);
+			return (XSSFShape)picture;
 		}
-		return shape;
+		return null;
 	}
-	/**
-	 * XSSFのShape名を取得する。
-	 * @param shape 
-	 * @return shape名
-	 */
-	private static String getShapeName(XSSFSimpleShape shape){
-		return shape.getCTShape().getNvSpPr().getCNvPr().getName();
-	}
+
 }
