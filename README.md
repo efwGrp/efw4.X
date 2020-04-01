@@ -275,4 +275,4 @@ Visibility Filter<br>
 <a href="https://www.escco.com.cn"><img src="help/logos/yike.jpg"></a>
 <a href="https://www.jwts.co.jp"><img src="help/logos/jwts.png"></a>
 <a href="http://www.layer10.jp/"><img src="help/logos/layer10.png"></a>
-<a href="https://www.sjnk.co.jp/"><img src="help/logos/sjnk.png"></a>
+<a href="https://www.sompo-japan.co.jp/"><img src="help/logos/jpn_sompo.jpg"></a>
