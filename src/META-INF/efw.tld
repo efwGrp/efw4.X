@@ -9,18 +9,30 @@
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>CLIENT</name>
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>client</name>
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>
@@ -47,24 +59,48 @@
     <tag-class>efw.taglib.ElFinder</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>ELFINDER</name>
     <tag-class>efw.taglib.ElFinder</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elfinder</name>
     <tag-class>efw.taglib.ElFinder</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elFinder</name>
     <tag-class>efw.taglib.ElFinder</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>
@@ -72,18 +108,42 @@
     <tag-class>efw.taglib.Chart</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>type</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>data</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>version</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>setoptions</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>chart</name>
     <tag-class>efw.taglib.Chart</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>type</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>data</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>version</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>setoptions</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>CHART</name>
     <tag-class>efw.taglib.Chart</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>type</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>data</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>version</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>setoptions</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>

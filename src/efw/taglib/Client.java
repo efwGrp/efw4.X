@@ -19,11 +19,44 @@ import efw.framework;
  */
 @SuppressWarnings("serial")
 public final class Client extends TagSupport implements DynamicAttributes {
-	
+
 	private String baseurl=".";
 	private String mode="jquery-ui";
 	private String theme="base";
 	private String lang="en";//en cn jp
+	
+	public String getBaseurl() {
+		return baseurl;
+	}
+
+	public void setBaseurl(String baseurl) {
+		this.baseurl = baseurl;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+
+	public String getLang() {
+		return lang;
+	}
+
+	public void setLang(String lang) {
+		this.lang = lang;
+	}
+
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
 	/**
 	 * タグ処理。

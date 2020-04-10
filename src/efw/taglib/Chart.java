@@ -28,8 +28,72 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	private String width="auto";
 	private String data="";
 	private String version="current";
-	private String setOptions="null";
+	private String setoptions="null";
 	private String mode="googlechart";
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public String getWidth() {
+		return width;
+	}
+
+	public void setWidth(String width) {
+		this.width = width;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getSetoptions() {
+		return setoptions;
+	}
+
+	public void setSetoptions(String setoptions) {
+		this.setoptions = setoptions;
+	}
+
+	public String getMode() {
+		return mode;
+	}
+
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 
 	/**
@@ -54,14 +118,14 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"></div>");
 				out.print("<script>"
 						+ "var "+id+";"
-						+ "$(function(){"+id+"=new EfwClientChartGL(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
+						+ "$(function(){"+id+"=new EfwClientChartGL(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setoptions+");"+id+".draw();});</script>");
 			}else if ("chartjs".equals(mode)) {
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"chart/Chart.min.js?v="+v+"\"></script>");
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"efw/efw.chart.chartjs.js?v="+v+"\"></script>");
 				out.print("<div id=\""+id+"\" style=\"width:"+width+";height:"+height+";\" "+temp+"><canvas></canvas></div>");
 				out.print("<script>"
 						+ "var "+id+";"
-						+ "$(function(){"+id+"=new EfwClientChartJS(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setOptions+");"+id+".draw();});</script>");
+						+ "$(function(){"+id+"=new EfwClientChartJS(\""+id+"\",\""+data+"\",\""+type+"\",\""+version+"\","+setoptions+");"+id+".draw();});</script>");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -73,7 +137,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 		width="auto";
 		data="";
 		version="current";
-		setOptions="null";
+		setoptions="null";
 		mode="googlechart";
 		attrs=new HashMap<String, String>();
 		return SKIP_BODY;
@@ -98,8 +162,8 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 			data=(String) value;
 		}else if(name.equalsIgnoreCase("version")){
 			version=(String) value;
-		}else if(name.equalsIgnoreCase("setOptions")){
-			setOptions=(String) value;
+		}else if(name.equalsIgnoreCase("setoptions")){
+			setoptions=(String) value;
 		}else if(name.equalsIgnoreCase("mode")){
 			mode=(String) value;
 		}else{

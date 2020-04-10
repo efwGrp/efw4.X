@@ -30,6 +30,55 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String height="400";
 	private String width="auto";
 	private boolean _protected=false;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getHome() {
+		return home;
+	}
+
+	public void setHome(String home) {
+		this.home = home;
+	}
+
+	public boolean isReadonly() {
+		return readonly;
+	}
+
+	public void setReadonly(boolean readonly) {
+		this.readonly = readonly;
+	}
+
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public String getWidth() {
+		return width;
+	}
+
+	public void setWidth(String width) {
+		this.width = width;
+	}
+
+	public boolean isProtected() {
+		return _protected;
+	}
+
+	public void setProtected(boolean _protected) {
+		this._protected = _protected;
+	}
+
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
 	private static HashMap<String, Boolean> elfinderIds=new HashMap<String, Boolean>();
