@@ -92,7 +92,6 @@ EfwClientChartGL.prototype.draw=function(){
 	///////////////////////////////////////////////////////////////////////////
 	//set the default options
 	this.options={
-		tooltip:{isHtml: true},//to fixed the bug about tooltip overlapping 
 		legend:{position:legender},
 		title:$("#"+this.dataId+" caption").html(),
 		hAxis:{},
