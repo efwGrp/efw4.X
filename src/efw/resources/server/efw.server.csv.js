@@ -297,12 +297,14 @@ CSVWriter.prototype._join = function(aryLine){
 
 	for (var i = 0; i < aryLine.length; i++) {
 		var strValue = (aryLine[i] === undefined || aryLine[i] === null) ? '' : aryLine[i].toString();
+		
+		strValue=strValue.replace(/\r/g,"");
 
 		if (strValue.indexOf(this._delimiter) > -1) {
 			strValue = strValue.replace(new RegExp(this._delimiter, 'g'), this._delimiter + this._delimiter);
 		}
 
-		if (strValue.indexOf(this._delimiter) > -1||strValue.indexOf(this._separator) > -1) {
+		if (strValue.indexOf(this._delimiter) > -1||strValue.indexOf(this._separator) > -1||strValue.indexOf("\n") > -1) {
 			strValue = this._delimiter + strValue + this._delimiter;
 		}
 

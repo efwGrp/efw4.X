@@ -45,8 +45,6 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.DataValidation;
-import org.apache.poi.ss.usermodel.DataValidationHelper;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
@@ -57,7 +55,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.util.IOUtils;
@@ -82,10 +79,6 @@ import efw.file.FileManager;
  */
 public final class Excel {
 	/**
-	 * Excelのパス。
-	 */
-	private File file;
-	/**
 	 * 大きいExcelかどうかのフラグ。
 	 */
 	private boolean isLarge;
@@ -102,30 +95,21 @@ public final class Excel {
 	 * @throws EncryptedDocumentException 
 	 */
 	protected Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
-		//一時ファイルを作成する。
-		//引数のfileを一時ファイルにコピーする。
-		//一時ファイルでexcelを開く。
-		//閉じる際、一時ファイルを削除する。
-		File tempFile=File.createTempFile("efw", "");
-		FileManager.duplicate(file, tempFile);
-		this.file=tempFile;
 		this.isLarge=isLarge;
 		if (this.isLarge){
-			this.workbook = new SXSSFWorkbook(new XSSFWorkbook(tempFile));
+			this.workbook = new SXSSFWorkbook(new XSSFWorkbook(file));
 		}else{
-			this.workbook = WorkbookFactory.create(tempFile);
+			this.workbook = WorkbookFactory.create(file);
 		}
 	}
 	/**
 	 * ExcelのPOIオブジェクトを削除する。
 	 * @throws IOException
 	 */
-	public void close() throws IOException {
-		try {
-			workbook.close();
-			this.file.delete();
-		} catch (IOException e) {
-			throw e;
+	public void close(){
+		if (this.workbook!=null) {
+			//this.workbook.close();//closeをしない。こうすればテンプレートは更新されない。
+			this.workbook=null;//メモリ解放のため、POI対象をnullにする。
 		}
 	}
 	/**
@@ -510,36 +494,6 @@ public final class Excel {
 		cell.setCellStyle(templateCell.getCellStyle());
 	}
 	
-	/**
-	 * セルに入力規則を設定する。
-	 * @param sheetName シート名。
-	 * @param position セルの場所、"A1"のように。
-	 * @param templateSheetName　参考するシート名。
-	 * @param templatePosition　参考するセルの場所。
-	 */
-	public void setCellValidations(String sheetName, String position, String templateSheetName, String templatePosition){
-		//Validation
-        Sheet fromSheet = this.workbook.getSheet(templateSheetName);
-        CellReference fromPositionReference = new CellReference(templatePosition);
-        List<? extends DataValidation> dataValidations = fromSheet.getDataValidations();
-        List<DataValidation> addDataValidations = new ArrayList<DataValidation>();
-        for (DataValidation dataValidation: dataValidations) {
-            CellRangeAddressList region = dataValidation.getRegions();
-            for (CellRangeAddress address : region.getCellRangeAddresses()) {
-                if (address.containsRow(fromPositionReference.getRow()) && address.containsColumn(fromPositionReference.getCol())) {
-                    addDataValidations.add(dataValidation);
-                }
-            }
-        }
-        Sheet sheet = this.workbook.getSheet(sheetName);
-        CellReference positionReference = new CellReference(position);
-        DataValidationHelper helper = sheet.getDataValidationHelper();
-        CellRangeAddressList list = new CellRangeAddressList();
-        list.addCellRangeAddress(positionReference.getRow(), positionReference.getCol(), positionReference.getRow(), positionReference.getCol());
-        for (DataValidation dataValidation: addDataValidations) {
-            sheet.addValidationData(helper.createValidation(dataValidation.getValidationConstraint(), list));
-        }
-	}
 	/**
 	 * セルに計算式を設定する。
 	 * @param sheetName シート名。

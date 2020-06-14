@@ -57,6 +57,10 @@ public final class efwFilter implements Filter {
 	 */
 	private static String outOfloginUrlPatternString="";
 	/**
+	 * WelcomeのURLパターン
+	 */
+	private static Pattern welcomePattern =null;
+	/**
 	 * ログインチェック対象外画面のURLパターン。
 	 */
 	private static Pattern loginUrlPattern =null;
@@ -98,23 +102,20 @@ public final class efwFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		String strRequestURI = ((HttpServletRequest) request).getRequestURI();
-		if(loginUrlPattern.matcher(strRequestURI).find()
-				||systemErrorUrlPattern.matcher(strRequestURI).find()
-				||clientMessagesUrlPattern.matcher(strRequestURI).find()
+		if(		welcomePattern.matcher(strRequestURI).find()					//welcomeページ
+				||loginUrlPattern.matcher(strRequestURI).find()					//ログインページ
+				||systemErrorUrlPattern.matcher(strRequestURI).find()			//エラーページ
+				||clientMessagesUrlPattern.matcher(strRequestURI).find()		
 				||elFinderMessagesUrlPattern.matcher(strRequestURI).find()
 				||jExcelMessagesUrlPattern.matcher(strRequestURI).find()){
 			chain.doFilter(request, response);
 		}else{
-			if(loginCheck){
-				Object loginCheckValue=((HttpServletRequest) request).getSession().getAttribute(loginKey);
-				if(loginCheckValue==null || loginCheckValue.equals("")){//ログインしていない場合
-					if(!outOfloginUrlPattern.matcher(strRequestURI).find()){//接続画面がログイン必要な場合
+			if(loginCheck){//ログインチェック設定の場合
+				if(!outOfloginUrlPattern.matcher(strRequestURI).find()){//接続画面がログイン必要の場合
+					Object loginCheckValue=((HttpServletRequest) request).getSession().getAttribute(loginKey);
+					if(loginCheckValue==null || loginCheckValue.equals("")){//ログインしていない場合
 				        ((HttpServletResponse)response).sendRedirect(loginUrl);
-					}else{
-						chain.doFilter(request, response);
-					}
-				}else{//ログインした場合
-					if(authCheck){
+					}else if(authCheck){//ログインした、権限チェック必要の場合
 						boolean hasAuth=false;
 						for (String key : authCasePatternsMap.keySet()) {
 							String authCheckValue=(String)((HttpServletRequest) request).getSession().getAttribute(authKey);
@@ -125,16 +126,18 @@ public final class efwFilter implements Filter {
 								break;
 							}
 						}
-						if(hasAuth){
-							chain.doFilter(request, response);
-						}else{
+						if(!hasAuth){//権限を持っていない場合
 							((HttpServletResponse)response).sendRedirect(systemErrorUrl);
+						}else{//権限をもっている場合
+							chain.doFilter(request, response);
 						}
-					}else{
+					}else{//ログインした、権限チェック未設定の場合
 						chain.doFilter(request, response);
 					}
+				}else{//接続画面がログイン必要ない場合
+					chain.doFilter(request, response);
 				}
-			}else{
+			}else{//路銀チェック未設定の場合
 				chain.doFilter(request, response);
 			}
 		}
@@ -153,6 +156,7 @@ public final class efwFilter implements Filter {
 		framework.initCLog("loginUrl = "+loginUrl);
 		outOfloginUrlPatternString=PropertiesManager.getProperty(PropertiesManager.EFW_OUTOFLOGIN_URL_PATTERN, "");
 		framework.initCLog("outOfloginUrlPattern = "+outOfloginUrlPatternString);
+		welcomePattern=Pattern.compile("[/]$");
 		outOfloginUrlPattern=Pattern.compile(outOfloginUrlPatternString);
 		loginUrlPattern=Pattern.compile(loginUrl);
 		clientMessagesUrlPattern=Pattern.compile(clientMessagesUrl);

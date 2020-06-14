@@ -340,7 +340,7 @@ Excel.prototype.setCell = function(sheetName, position, value, templateSheetName
 		if(templateSheetName!=null && templatePosition!=null){
 			this._workbook.setMergedRegion(sheetName, position, templateSheetName, templatePosition);
 			this._workbook.setCellStyle(sheetName, position, templateSheetName, templatePosition);
-			this._workbook.setCellValidations(sheetName, position, templateSheetName, templatePosition);
+			//this._workbook.setCellValidations(sheetName, position, templateSheetName, templatePosition);
 		}
 	}
 	return this;
