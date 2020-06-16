@@ -23,7 +23,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.01.001";// change it when releasing jar.
+	private static String version="4.02.000";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
@@ -454,5 +454,20 @@ public class framework {
 		}		
 		ret.append("</items></ruleparameter>");
 		return ret.toString();
+	}
+
+	/**
+	 * restオブジェクト。
+	 * スレッドローカルにrestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
+	 */
+	private static ThreadLocal<Integer> restStatus=new ThreadLocal<Integer>();
+	public static Integer getRestStatus() {
+		return restStatus.get();
+	}
+	public static void setRestStatus(Integer responseCode) {
+		restStatus.set(responseCode);
+	}
+	public static void removeRestStatus() {
+		restStatus.remove();
 	}
 }

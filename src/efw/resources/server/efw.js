@@ -102,6 +102,7 @@ load("classpath:efw/resources/server/efw.server.csv.js");
 load("classpath:efw/resources/server/efw.server.txt.js");
 load("classpath:efw/resources/server/efw.server.threads.js");
 load("classpath:efw/resources/server/efw.server.debug.js");
+load("classpath:efw/resources/server/efw.server.rest.js");
 
 /**
  * create instances.
@@ -118,6 +119,7 @@ var mail = new EfwServerMail();
 var cookie = new EfwServerCookie();
 var barcode = new EfwServerBarcode();
 var messages = new EfwServerMessages();
+var rest = new EfwServerRest();
 
 efw.server = new EfwServer();
 // /////////////////////////////////////////////////////////////////////////////

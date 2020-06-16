@@ -4,6 +4,7 @@
 i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Web Event</a>.<br>
 ui:	Attribute "mode" and "theme" in <a href="help/tag.client.md">Client tag</a>. Attribute "mode" in <a href="help/tag.chart.md">Chart tag</a>.<br>
 RestAPI:	<a href="help/api_restevent.md">Rest Event</a>.
+
 <h4>Removed</h4>
 Additional Tags:	Signature,	CKEditor
 <h4>Updated</h4>
@@ -88,6 +89,8 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <tr><td>absfile</td><td colspan=5>All APIs are the same as the file object, except that the path param is an absolute one.</td></tr>
 <tr><td>barcode</td><td><a href="help/barcode.decode.md">decode</a></td></tr>
 <tr><td>brms</td><td><a href="help/brms.getRuleById.md">getRuleById</a></td><td><a href="help/brms.getRuleByName.md">getRuleByName</a></td><td><a href="help/brms.getRuleByAlias.md">getRuleByAlias</a></td></tr>
+<tr><td>rest</td><td><a href="help/rest.get.md">get</a></td><td><a href="help/rest.post.md">post</a></td><td><a href="help/rest.put.md">put</a></td><td><a href="help/rest.delete.md">delete</a></td><td><a href="help/rest.getStatus.md">getStatus</a></td></tr>
+
 <tr><td>event</td><td><a href="help/event.fire.md">fire</a></td></tr>
 <tr><td>db</td><td><a href="help/db.select.md">select</a></td><td><a href="help/db.change.md">change</a></td><td><a href="help/db.master.md">master</a></td></tr>
 <tr><td>mail</td><td><a href="help/mail.send.md">send</a></td></tr>
