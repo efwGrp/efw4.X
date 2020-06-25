@@ -61,6 +61,7 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>selection</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
@@ -73,6 +74,7 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>selection</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
@@ -85,6 +87,7 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>selection</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
@@ -97,6 +100,7 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>id</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>home</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>selection</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>height</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>

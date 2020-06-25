@@ -75,6 +75,19 @@ elfinder_open.fire = function(params) {
 		ret.options=options;
 		ret.api=2.1;//If it is init ,api must be returned or you can not return it.
 		ret.files=files;
+		if (params.selection){
+			if (params.selection.substring(0,1)=="/")params.selection=params.selection.substring(1);
+			if (home.substring(home.length-1,1)=="/")home=home.substring(0,home.length-1);
+			var selection=home+"/"+params.selection;
+			ret.selectedFileHash=volumeId+selection.base64EncodeURI();
+			ret.selectedFolderHash=
+				volumeId+selection.substring(0,selection.lastIndexOf("/")).base64EncodeURI();
+			
+			selection.debug("selection");
+			selection.substring(0,selection.lastIndexOf("/")).debug("selection folder");
+			ret.selectedFileHash.debug("ret.selectedFileHash");
+			ret.selectedFolderHash.debug("ret.selectedFolderHash");
+		}
 	}else{
 		ret.cwd=cwd;
 		ret.options=options;

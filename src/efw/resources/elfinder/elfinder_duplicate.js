@@ -20,7 +20,7 @@ elfinder_duplicate.fire = function(params) {
 			pre=cwdFile;
 		}else{
 			pre=cwdFile.substring(0,lastIndex);
-			ext="."+cwdFile.substring(lastIndex);
+			ext=cwdFile.substring(lastIndex);
 		}
 		
 		var newFile="";

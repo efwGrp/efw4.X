@@ -3794,6 +3794,19 @@ var elFinder = function(node, opts) {
 			if (inFrame && self.options.enableAlways) {
 				$(window).focus();
 			}
+			//=========================================================================
+			//Efw adds selection function to elfinder.
+			if (data.selectedFolderHash){
+				self.request({"data":{cmd:"open","target":data.selectedFolderHash}})
+				.done(function(d){
+					if (data.selectedFileHash){
+						window.setTimeout(function(){
+							$("#"+data.selectedFileHash,"#"+self.id).click();
+						},500);
+					}
+				});
+			}
+			//=========================================================================
 		});
 	
 	// self.timeEnd('load'); 
@@ -6697,9 +6710,10 @@ elFinder.prototype = {
 		this.options.customData.id=this.id;
 		this.exec("reload");
 	},
-	setHome : function(home){
+	setHome : function(home,selection){
 		this.options.customData.home=home;
 		this.options.customData.id=this.id;
+		this.options.customData.selection=selection;
 		var id=this.id;
 		$("#"+id).after("<div id=\"_after_"+id+"\"></div>");
 		$("#"+id).remove();

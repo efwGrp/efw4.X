@@ -26,6 +26,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 */
 	private String id="elFinder";
 	private String home="";
+	private String selection="";
 	private boolean readonly=false;
 	private String height="400";
 	private String width="auto";
@@ -47,12 +48,24 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		this.home = home;
 	}
 
-	public boolean isReadonly() {
-		return readonly;
+	public String getSelection() {
+		return selection;
 	}
 
-	public void setReadonly(boolean readonly) {
-		this.readonly = readonly;
+	public void setSelection(String selection) {
+		this.selection = selection;
+	}
+
+	public String getReadonly() {
+		return ""+readonly;
+	}
+
+	public void setReadonly(String readonly) {
+		if ("true".equalsIgnoreCase(readonly)) {
+			this.readonly=true;
+		}else {
+			this.readonly=false;
+		}
 	}
 
 	public String getHeight() {
@@ -71,12 +84,16 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		this.width = width;
 	}
 
-	public boolean isProtected() {
-		return _protected;
+	public String isProtected() {
+		return ""+_protected;
 	}
 
-	public void setProtected(boolean _protected) {
-		this._protected = _protected;
+	public void setProtected(String _protected) {
+		if ("true".equalsIgnoreCase(_protected)) {
+			this._protected=true;
+		}else {
+			this._protected=false;
+		}
 	}
 
 	private HashMap<String, String> attrs=new HashMap<String, String>();
@@ -108,7 +125,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
-			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js\"></script>");
+			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js?v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js?v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder.messages.jsp?lang="+lang+"&v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
@@ -122,7 +139,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 					+"\"height\":\""+height+"\","
 					+"\"width\":\""+width+"\","
 					+ "\"customData\":{"
-					+ "\"home\":\""+home+"\","
+					+ "\"home\":\""+jsEncode(home)+"\","
+					+ "\"selection\":\""+jsEncode(selection)+"\","
 					+ "\"readonly\":"+readonly+","
 					+ "\"id\":\""+id+"\","
 					+ "}"
@@ -137,13 +155,14 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 				elfinderIds.put(id, _protected);
 			}
 			pageContext.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
-			pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id, (readonly?"true":"false"));
+			pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		//初期値を再設定する。
 		id="elFinder";
 		home="";
+		selection="";
 		readonly=false;
 		height="400";
 		width="auto";
@@ -163,6 +182,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			id=(String) value;
 		}else if(name.equalsIgnoreCase("home")){
 			home=(String) value;
+		}else if(name.equalsIgnoreCase("selection")){
+			selection=(String) value;
 		}else if(name.equalsIgnoreCase("height")){
 			height=(String) value;
 		}else if(name.equalsIgnoreCase("width")){
@@ -177,6 +198,19 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			}
 		}else{
 			attrs.put(name, (String)value);
+		}
+	}
+	
+	/**
+	 * javascript escape機能を実装する
+	 * @param v
+	 * @return
+	 */
+	private String jsEncode(String v) {
+		if (v==null) {
+			return v;
+		}else {
+			return v.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("[']","\\\\'").replaceAll("[\"]","\\\\\"");
 		}
 	}
 

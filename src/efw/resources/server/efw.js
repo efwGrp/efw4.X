@@ -251,6 +251,7 @@ function doPost(req) {
 					||i=="file"
 					||i=="absfile"
 					||i=="brms"
+					||i=="rest"
 					||i=="mail"
 					||i=="cookie"
 					||i=="barcode"
