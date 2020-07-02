@@ -15,7 +15,11 @@ function EfwServerRest() {
  */
 EfwServerRest.prototype.get=function(apiUrl){
     var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"GET","");
-    return JSON.parse(strRtnVal);
+    if (strRtnVal==""){
+    	return null;
+    }else{
+        return JSON.parse(strRtnVal);
+    }
 };
 
 /**
@@ -27,7 +31,11 @@ EfwServerRest.prototype.get=function(apiUrl){
 EfwServerRest.prototype.post=function(apiUrl, params){
     var strJson = JSON.stringify(params);
     var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"POST",strJson);
-    return JSON.parse(strRtnVal);
+    if (strRtnVal==""){
+    	return null;
+    }else{
+        return JSON.parse(strRtnVal);
+    }
 };
 
 /**
@@ -39,7 +47,11 @@ EfwServerRest.prototype.post=function(apiUrl, params){
 EfwServerRest.prototype.put=function(apiUrl, params){
     var strJson = JSON.stringify(params);
     var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"PUT",strJson);
-    return JSON.parse(strRtnVal);
+    if (strRtnVal==""){
+    	return null;
+    }else{
+        return JSON.parse(strRtnVal);
+    }
 };
 
 /**
@@ -49,7 +61,11 @@ EfwServerRest.prototype.put=function(apiUrl, params){
  */
 EfwServerRest.prototype.delete=function(apiUrl){
 	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"DELETE","");
-    return JSON.parse(strRtnVal);
+    if (strRtnVal==""){
+    	return null;
+    }else{
+        return JSON.parse(strRtnVal);
+    }
 };
 /**
  * The function to get response code after rest calling.

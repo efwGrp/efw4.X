@@ -266,7 +266,8 @@ function doPost(req) {
 					||i=="JavaAdapter"//only rhino
 					||i=="global"//global event
 					||typeof g[i]=="function"//common function
-					||(g[i]!=null&&g[i].fire!=null&&g[i].paramsFormat!=null)
+					||(g[i]!=null&&g[i].fire!=null)//event js
+					||(g[i]!=null&&(g[i].PUT!=null||g[i].GET!=null||g[i].POST!=null||g[i].DELETE!=null))//restAPI js
 				){
 					//default global object is ok
 				}else{
@@ -313,7 +314,7 @@ function doBatch(req) {
 	    		Packages.efw.framework.runtimeWLog(ret.logs[i]);
 	    	}
 	    	for(var i=0;i<ret.echos.length;i++){
-	    		java.lang.System.System.out.println(ret.echos[i]);
+	    		java.lang.System.out.println(ret.echos[i]);
 	    	}
 	    	if(ret.errorlevel>0){
 	    		java.lang.System.exit(ret.errorlevel);
