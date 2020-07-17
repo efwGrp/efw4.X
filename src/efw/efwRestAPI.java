@@ -95,6 +95,9 @@ public final class efwRestAPI extends HttpServlet{
 			framework.removeResponse();
 			framework.removeI18nProp();
 			framework.removeThreadLogs();
+			framework.removeRestStatus();
+			framework.removeNumberFormats();
+			framework.removeDateFormats();
 		}
 		
 	}

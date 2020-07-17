@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import efw.framework;
 import efw.properties.PropertiesManager;
 
 /**
@@ -35,17 +36,6 @@ public final class FormatManager {
 	private static String formatRounderPro="HALF_EVEN";
 	private static RoundingMode formatRounder=RoundingMode.HALF_EVEN;
 
-    /**
-     * 数字フォーマット配列。
-     * 作成済みフォーマットを格納する。
-     */
-    private static HashMap<String,DecimalFormat> numberFormats=new HashMap<String,DecimalFormat>();
-    /**
-     * 日付フォーマット配列。
-     * 作成済みフォーマットを格納する。
-     */
-    private static HashMap<String,DateFormat> dateFormats=new HashMap<String,DateFormat>();
-    
     /**
      * フォーマット管理を初期化する。
      */
@@ -81,30 +71,31 @@ public final class FormatManager {
      */
     public static String formatNumber(Object value,String format,String round){
     	DecimalFormat df;
-    	if((df=numberFormats.get(format+"|"+round)) == null){
-	    	synchronized(numberFormats){//定義されたFormatterを重複利用可能にする。
-		    	if((df=numberFormats.get(format+"|"+round)) == null){
-		        	df=new DecimalFormat(format);
-			    	if("UP".equals(round)){
-			    		df.setRoundingMode(RoundingMode.UP);
-			    	}else if("DOWN".equals(round)){
-				    	df.setRoundingMode(RoundingMode.DOWN);
-			    	}else if("CEILING".equals(round)){
-				    	df.setRoundingMode(RoundingMode.CEILING);
-			    	}else if("FLOOR".equals(round)){
-				    	df.setRoundingMode(RoundingMode.FLOOR);
-			    	}else if("HALF_UP".equals(round)){
-				    	df.setRoundingMode(RoundingMode.HALF_UP);
-			    	}else if("HALF_DOWN".equals(round)){
-				    	df.setRoundingMode(RoundingMode.HALF_DOWN);
-			    	}else if("HALF_EVEN".equals(round)){
-				    	df.setRoundingMode(RoundingMode.HALF_EVEN);
-			    	}else{
-			    		df.setRoundingMode(FormatManager.formatRounder);
-			    	}
-		        	numberFormats.put(format+"|"+round, df);
-		    	}
+    	HashMap<String,DecimalFormat> map;
+    	if ((map=framework.getNumberFormats())==null) {
+    		map=new HashMap<String,DecimalFormat>();
+    		framework.setNumberFormats(map);
+    	}
+    	if((df=map.get(format+"|"+round)) == null){
+        	df=new DecimalFormat(format);
+	    	if("UP".equals(round)){
+	    		df.setRoundingMode(RoundingMode.UP);
+	    	}else if("DOWN".equals(round)){
+		    	df.setRoundingMode(RoundingMode.DOWN);
+	    	}else if("CEILING".equals(round)){
+		    	df.setRoundingMode(RoundingMode.CEILING);
+	    	}else if("FLOOR".equals(round)){
+		    	df.setRoundingMode(RoundingMode.FLOOR);
+	    	}else if("HALF_UP".equals(round)){
+		    	df.setRoundingMode(RoundingMode.HALF_UP);
+	    	}else if("HALF_DOWN".equals(round)){
+		    	df.setRoundingMode(RoundingMode.HALF_DOWN);
+	    	}else if("HALF_EVEN".equals(round)){
+		    	df.setRoundingMode(RoundingMode.HALF_EVEN);
+	    	}else{
+	    		df.setRoundingMode(FormatManager.formatRounder);
 	    	}
+        	map.put(format+"|"+round, df);
     	}
 		return df.format(value);
     }
@@ -117,13 +108,14 @@ public final class FormatManager {
      */
     public static Number parseNumber(String value,String format) throws ParseException{
     	DecimalFormat df;
-    	if((df=numberFormats.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
-	    	synchronized(numberFormats){
-	        	if((df=numberFormats.get(format)) == null){//formatterを作成する前に、もう一回確認する。
-		        	df=new DecimalFormat(format);
-		        	numberFormats.put(format, df);
-		    	}
-	    	}
+    	HashMap<String,DecimalFormat> map;
+    	if ((map=framework.getNumberFormats())==null) {
+    		map=new HashMap<String,DecimalFormat>();
+    		framework.setNumberFormats(map);
+    	}
+    	if((df=map.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
+        	df=new DecimalFormat(format);
+        	map.put(format, df);
     	}
     	Number num= df.parse(value);
     	if(format.indexOf("%")>-1){
@@ -144,17 +136,18 @@ public final class FormatManager {
      */
     public static String formatDate(Object value,String format){
     	DateFormat df;
-    	if((df=dateFormats.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
-        	synchronized(dateFormats){
-        		if((df=dateFormats.get(format)) == null){//formatterを作成する前に、もう一回確認する。
-		    		if(format.indexOf("G")>-1){
-			        	df=new SimpleDateFormat(format,FormatManager.localeJ);
-		    		}else{
-			        	df=new SimpleDateFormat(format,FormatManager.locale);
-		    		}
-		        	dateFormats.put(format, df);
-        		}
-        	}
+    	HashMap<String,DateFormat> map;
+    	if ((map=framework.getDateFormats())==null) {
+    		map=new HashMap<String,DateFormat>();
+    		framework.setDateFormats(map);
+    	}
+    	if((df=map.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
+    		if(format.indexOf("G")>-1){
+	        	df=new SimpleDateFormat(format,FormatManager.localeJ);
+    		}else{
+	        	df=new SimpleDateFormat(format,FormatManager.locale);
+    		}
+        	map.put(format, df);
     	}
 		return df.format(value);    	
     }
@@ -167,17 +160,18 @@ public final class FormatManager {
      */
     public static Date parseDate(String value,String format) throws ParseException{
     	DateFormat df;
-    	if((df=dateFormats.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
-	    	synchronized(dateFormats){
-	    		if((df=dateFormats.get(format)) == null){//formatterを作成する前に、もう一回確認する。
-		    		if(format.indexOf("G")>-1){
-			        	df=new SimpleDateFormat(format,FormatManager.localeJ);
-		    		}else{
-			        	df=new SimpleDateFormat(format,FormatManager.locale);
-		    		}
-		        	dateFormats.put(format, df);
-	    		}
-	    	}
+    	HashMap<String,DateFormat> map;
+    	if ((map=framework.getDateFormats())==null) {
+    		map=new HashMap<String,DateFormat>();
+    		framework.setDateFormats(map);
+    	}
+    	if((df=map.get(format)) == null){//formatterの有り無しを判断。普通な場合、lockerにかからないように。
+			if(format.indexOf("G")>-1){
+	        	df=new SimpleDateFormat(format,FormatManager.localeJ);
+			}else{
+	        	df=new SimpleDateFormat(format,FormatManager.locale);
+			}
+			map.put(format, df);
     	}
 		return df.parse(value);    	
     }

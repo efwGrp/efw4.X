@@ -1,6 +1,8 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -239,7 +241,7 @@ public class framework {
 		framework.writters.remove();
 	}
 	/**
-	 * 
+	 * thread毎のログを記録する
 	 */
 	private static ThreadLocal<ArrayList<String>> threadLogs=new ThreadLocal<ArrayList<String>>();
 	public static ArrayList<String> getThreadLogs() {
@@ -274,6 +276,47 @@ public class framework {
 		}
 		return log;
 	}
+	/**
+	 * restオブジェクト。
+	 * スレッドローカルにrestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
+	 */
+	private static ThreadLocal<Integer> restStatus=new ThreadLocal<Integer>();
+	public static Integer getRestStatus() {
+		return restStatus.get();
+	}
+	public static void setRestStatus(Integer responseCode) {
+		restStatus.set(responseCode);
+	}
+	public static void removeRestStatus() {
+		restStatus.remove();
+	}
+	/**
+	 * 数字フォーマット用
+	 */
+	private static ThreadLocal<HashMap<String,DecimalFormat>> numberFormats=new ThreadLocal<HashMap<String,DecimalFormat>>();
+	public static HashMap<String,DecimalFormat> getNumberFormats() {
+		return numberFormats.get();
+	}
+	public static void setNumberFormats(HashMap<String,DecimalFormat> map) {
+		numberFormats.set(map);
+	}
+	public static void removeNumberFormats() {
+		numberFormats.remove();
+	}
+	/**
+	 * 日付フォーマット用
+	 */
+	private static ThreadLocal<HashMap<String,DateFormat>> dateFormats=new ThreadLocal<HashMap<String,DateFormat>>();
+	public static HashMap<String,DateFormat> getDateFormats() {
+		return dateFormats.get();
+	}
+	public static void setDateFormats(HashMap<String,DateFormat> map) {
+		dateFormats.set(map);
+	}
+	public static void removeDateFormats() {
+		dateFormats.remove();
+	}	
+	
 	//=========================================================================
 	private static void init(Level lv,String info) {// 表示内容を分かりやすいための関数
 		LogManager.getLogger().log(lv,keepInThreadLogs("[init    ]",lv,info));
@@ -456,18 +499,4 @@ public class framework {
 		return ret.toString();
 	}
 
-	/**
-	 * restオブジェクト。
-	 * スレッドローカルにrestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
-	 */
-	private static ThreadLocal<Integer> restStatus=new ThreadLocal<Integer>();
-	public static Integer getRestStatus() {
-		return restStatus.get();
-	}
-	public static void setRestStatus(Integer responseCode) {
-		restStatus.set(responseCode);
-	}
-	public static void removeRestStatus() {
-		restStatus.remove();
-	}
 }
