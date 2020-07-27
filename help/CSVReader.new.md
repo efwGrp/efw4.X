@@ -1,6 +1,6 @@
 <H1>new CSVReader</H1>
 
-The constructor function is established to create a CSVReader object for event returning.
+The constructor function is established to create a CSVReader object.
 
 <h2>Sample</h2>
 <pre>

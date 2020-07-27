@@ -100,6 +100,7 @@ load("classpath:efw/resources/server/efw.server.barcode.js");
 load("classpath:efw/resources/server/base64.min.js");
 load("classpath:efw/resources/server/efw.server.csv.js");
 load("classpath:efw/resources/server/efw.server.txt.js");
+load("classpath:efw/resources/server/efw.server.binary.js");
 load("classpath:efw/resources/server/efw.server.threads.js");
 load("classpath:efw/resources/server/efw.server.debug.js");
 load("classpath:efw/resources/server/efw.server.rest.js");
@@ -259,6 +260,7 @@ function doPost(req) {
 					||i=="Event_lock"
 					||i=="TXTReader_lock"
 					||i=="CSVReader_lock"
+					||i=="BinaryReader_lock"
 					||i=="Base64"
 					||i=="messages"
 					||i=="langs"

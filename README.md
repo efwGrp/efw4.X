@@ -105,6 +105,11 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <h3>Classes</h3>
 <table>
 <tr><th>Classes</th><th>Functions</th></tr>
+<tr><td>BinaryReader</td>
+<td><a href="help/BinaryReader.new.md">new</a></td>
+<td><a href="help/BinaryReader.readAllLines.md">readAllLines</a></td>
+<td><a href="help/BinaryReader.loopAllLines.md">loopAllLines</a></td>
+</tr>
 <tr><td>TXTReader</td>
 <td><a href="help/TXTReader.new.md">new</a></td>
 <td><a href="help/TXTReader.readAllLines.md">readAllLines</a></td>

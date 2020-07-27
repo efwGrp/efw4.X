@@ -239,7 +239,7 @@ EfwClientFormat.prototype._roundNumber = function(num, precision, mode) {
 			}
 
 			if (!shouldRoundUp && mode === "HALF_EVEN") {
-				var lastIntPartDigit = parseInt(intPart[intPart.length - 1], 10);
+				var lastIntPartDigit = parseInt(intStr[intStr.length - 1], 10);
 				shouldRoundUp = lastIntPartDigit % 2 !== 0;
 			}
 		}
