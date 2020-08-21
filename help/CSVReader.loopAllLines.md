@@ -21,6 +21,7 @@ The function to loop all lines for the callback function calling.
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>CSVReader . loopAllLines(callback)</td><td>Array</td></tr>
+<tr><td>CSVReader . loopAllLines(callback , errCallback)</td><td>Array</td></tr>
 </table>
 
 <table>
@@ -28,5 +29,10 @@ The function to loop all lines for the callback function calling.
 <tr><td>callback(aryField, index)</td><td>Function</td>
 	<td>The function that is expected to execute line-by-line.
 	<pre>aryField : The array data.<br>index : The line number which counts from 0.</pre>
+	</td></tr>
+<tr><td>errCallback(strRow, index)</td><td>Function</td>
+	<td>The function that is expected to execute when the row data can not be splitted to an array.
+	Without errCallback, exception will be thrown when splitting error.
+	<pre>strRow : The row data.<br>index : The line number which counts from 0.</pre>
 	</td></tr>
 </table>

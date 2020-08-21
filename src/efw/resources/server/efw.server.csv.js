@@ -70,9 +70,11 @@ CSVReader.prototype.readAllLines = function(){
  * 
  * @param {Function}
  *            callback: required<br>
+ * @param {Function}
+ *            errCallback: optional<br>
  * @returns {Array}
  */
-CSVReader.prototype.loopAllLines = function(callback){
+CSVReader.prototype.loopAllLines = function(callback,errCallback){
 	var br=null;
 	if (callback == null) {return;}
 	try{
@@ -90,8 +92,16 @@ CSVReader.prototype.loopAllLines = function(callback){
 		var intNum = 0;
 
 		while ((strLine = br.readLine()) != null) {
-			var aryLine = this._split(""+strLine,intNum);
-			callback(aryLine, intNum);
+			try{
+				var aryLine = this._split(""+strLine,intNum);
+				callback(aryLine, intNum);
+			}catch(e){
+				if (errCallback){
+					errCallback(strLine,intNum);
+				}else{
+					throw e;
+				}
+			}
 			intNum++;
 		}
 	}finally{
