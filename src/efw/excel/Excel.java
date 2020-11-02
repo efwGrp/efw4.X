@@ -79,6 +79,10 @@ import efw.file.FileManager;
  */
 public final class Excel {
 	/**
+	 * Excelのパス。
+	 */
+	private File file;
+	/**
 	 * 大きいExcelかどうかのフラグ。
 	 */
 	private boolean isLarge;
@@ -95,11 +99,18 @@ public final class Excel {
 	 * @throws EncryptedDocumentException 
 	 */
 	protected Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		//一時ファイルを作成する。
+		//引数のfileを一時ファイルにコピーする。
+		//一時ファイルでexcelを開く。
+		//閉じる際、一時ファイルを削除する。
+		File tempFile=File.createTempFile("efw", "");
+		FileManager.duplicate(file, tempFile);
+		this.file=tempFile;
 		this.isLarge=isLarge;
 		if (this.isLarge){
-			this.workbook = new SXSSFWorkbook(new XSSFWorkbook(file));
+			this.workbook = new SXSSFWorkbook(new XSSFWorkbook(tempFile));
 		}else{
-			this.workbook = WorkbookFactory.create(file);
+			this.workbook = WorkbookFactory.create(tempFile);
 		}
 	}
 	/**
@@ -107,9 +118,11 @@ public final class Excel {
 	 * @throws IOException
 	 */
 	public void close(){
-		if (this.workbook!=null) {
-			//this.workbook.close();//closeをしない。こうすればテンプレートは更新されない。
-			this.workbook=null;//メモリ解放のため、POI対象をnullにする。
+		try {
+			workbook.close();
+			this.file.delete();
+		} catch (IOException e) {
+			//throw e;エラーが発生してもなにもしない
 		}
 	}
 	/**
