@@ -18,6 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import efw.efwException;
+
 /**
  * Sqlを外部化するXMLのsqlタグとマッピングし、1つのSqlを表すクラス。
  * @author Chang Kejun
@@ -45,6 +47,8 @@ public final class Sql {
 				Element step= (Element)node;
 				if (step.getTagName().equals("if")){
 					steps.add(new SqlIf(step));
+				}else if (step.getTagName().equals("include")){
+					steps.add(new SqlInclude(step));
 				}else{
 					String information;
 					try{
@@ -84,28 +88,12 @@ public final class Sql {
 	 * @param params Sqlパラメータのマップ。
 	 * @return　文字列のSql文を返す。
 	 * @throws ScriptException 
+	 * @throws efwException 
 	 */
-	public SqlAnalysisResult analyze(Map<String,Object> params) throws ScriptException{
-		StringBuffer bf=new StringBuffer();
+	public SqlAnalysisResult analyze(Map<String,Object> params) throws ScriptException, efwException{
 		ArrayList<String> paramKeys=new ArrayList<String>();
-		for(int i=0;i<steps.size();i++){
-			Object obj=steps.get(i);
-			if (obj.getClass().getName().equals("efw.sql.SqlText")){
-				SqlText sqltext=(SqlText)obj;
-				bf.append(sqltext.getSQL(paramPrefix,dynamicPrefix,params));
-				paramKeys.addAll(sqltext.getParamKeys(paramPrefix));
-			}else if(obj.getClass().getName().equals("efw.sql.SqlIf")){
-				SqlIf sqlif=(SqlIf)obj;
-				if ((!Sql.isBlank(sqlif.getExists())&&!Sql.isBlank(params,sqlif.getExists()))
-				||(!Sql.isBlank(sqlif.getNotExists())&&Sql.isBlank(params,sqlif.getNotExists()))
-				||(!Sql.isBlank(sqlif.getIsTrue())&&Sql.isTrue(params,sqlif.getIsTrue()))
-				||(!Sql.isBlank(sqlif.getIsFalse())&&!Sql.isTrue(params,sqlif.getIsFalse()))){
-					bf.append(sqlif.getSqlString(paramPrefix,dynamicPrefix,params));
-					paramKeys.addAll(sqlif.getParamKeys());
-				}
-			}
-		}
 		ArrayList<Object> sqlParams=new ArrayList<Object>();
+		String bf=this.getSqlString(params,paramKeys);
         for(int i=0;i<paramKeys.size();i++){
         	String key=paramKeys.get(i);
         	if (params.containsKey(key)){
@@ -115,10 +103,42 @@ public final class Sql {
         	}
         }
         SqlAnalysisResult ret=new SqlAnalysisResult();
-        ret.setSqlString(bf.toString());
+        ret.setSqlString(bf);
         ret.setSqlParams(sqlParams);
         return ret;
 	}
+
+	/**
+	 * 文字列Sql文を作成する。
+	 * @param params Sqlパラメータのマップ。
+	 * @return　文字列のSql文を返す。
+	 * @throws ScriptException 
+	 * @throws efwException 
+	 */
+	protected String getSqlString(Map<String,Object> params,ArrayList<String> paramKeys) throws ScriptException, efwException{
+		StringBuffer bf=new StringBuffer();
+		for(int i=0;i<steps.size();i++){
+			Object obj=steps.get(i);
+			if (obj.getClass().getName().equals("efw.sql.SqlText")){
+				SqlText sqltext=(SqlText)obj;
+				bf.append(sqltext.getSQL(paramPrefix,dynamicPrefix,params,paramKeys));
+			}else if(obj.getClass().getName().equals("efw.sql.SqlIf")){
+				SqlIf sqlif=(SqlIf)obj;
+				if ((!Sql.isBlank(sqlif.getExists())&&!Sql.isBlank(params,sqlif.getExists()))
+				||(!Sql.isBlank(sqlif.getNotExists())&&Sql.isBlank(params,sqlif.getNotExists()))
+				||(!Sql.isBlank(sqlif.getIsTrue())&&Sql.isTrue(params,sqlif.getIsTrue()))
+				||(!Sql.isBlank(sqlif.getIsFalse())&&!Sql.isTrue(params,sqlif.getIsFalse()))){
+					bf.append(sqlif.getSqlString(paramPrefix,dynamicPrefix,params,paramKeys));
+				}
+			}else if(obj.getClass().getName().equals("efw.sql.SqlInclude")){
+				SqlInclude sqlinclude=(SqlInclude)obj;
+				Sql subsql=SqlManager.get(sqlinclude.getGroupId(), sqlinclude.getSqlId());
+				bf.append(subsql.getSqlString(params,paramKeys));
+			}
+		}
+		return bf.toString();
+	}
+	
 	/**
 	 * sqlタグの中に、ifタグにより、分割される部品を格納する。
 	 */

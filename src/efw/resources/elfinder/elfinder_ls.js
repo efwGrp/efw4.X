@@ -8,10 +8,10 @@ elfinder_ls.fire = function(params) {
 	var target=params["target"];
 	var intersect=params["intersect"];
 	var cwdFolder=target.substring(volumeId.length).base64Decode();
-	var files=file.list(cwdFolder,true);
+	var files=new Record(file.list(cwdFolder,true)).seek("isHidden","eq",false);
 	var list=[];
 	for(var i=0;i<intersect.length;i++){
-		if ((new Record(files)).seek("name", "eq", intersect[i]).length>0){
+		if (files.seek("name", "eq", intersect[i]).length>0){
 			list.push(intersect[i]);
 		}
 	}

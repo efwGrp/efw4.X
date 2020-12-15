@@ -49,6 +49,8 @@ public final class Mail {
 					body= step.getTextContent();
 				}else if (step.getTagName().equals("from")){
 					from= step.getTextContent();
+				}else if (step.getTagName().equals("mdn")){//開封確認送信先
+					mdn= step.getTextContent();
 				}else{
 					String information;
 					try{
@@ -89,6 +91,11 @@ public final class Mail {
 	protected String getFrom(Map<String,String> params){
 		return replaceParams(from,params);
 	}
+	private String mdn;//開封確認送信先
+	protected String getMdn(Map<String,String> params){
+		return replaceParams(mdn,params);
+	}
+	
 	private String replaceParams(String data,Map<String,String> params){
 		if (data==null)return null;
 		String temp=data;

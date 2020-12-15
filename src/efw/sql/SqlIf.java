@@ -16,6 +16,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import efw.efwException;
+
 /**
  * Sqlを外部化するXMLのifタグとマッピングし、1つの条件式を表すクラス。
  * @author Chang Kejun
@@ -49,6 +51,8 @@ final class SqlIf {
 				Element step= (Element)node;
 				if (step.getTagName().equals("if")){
 					steps.add(new SqlIf(step));
+				}else if (step.getTagName().equals("include")){
+					steps.add(new SqlInclude(step));
 				}
 			}
 		}
@@ -73,37 +77,30 @@ final class SqlIf {
 	 * @param dynamicPrefix Sqlに動的キーワードを識別するための頭文字
 	 * @return　文字列のSql文を返す。
 	 * @throws ScriptException 
+	 * @throws efwException 
 	 */
-	protected String getSqlString(String paramPrefix,String dynamicPrefix,Map<String,Object> params) throws ScriptException{
+	protected String getSqlString(String paramPrefix,String dynamicPrefix,Map<String,Object> params,ArrayList<String> paramKeys) throws ScriptException, efwException{
 		StringBuffer bf=new StringBuffer();
-		paramKeys=new ArrayList<String>();
 		for(int i=0;i<steps.size();i++){
 			Object obj=steps.get(i);
 			if (obj.getClass().getName().equals("efw.sql.SqlText")){
 				SqlText sqltext=(SqlText)obj;
-				bf.append(sqltext.getSQL(paramPrefix,dynamicPrefix,params));
-				paramKeys.addAll(sqltext.getParamKeys(paramPrefix));
+				bf.append(sqltext.getSQL(paramPrefix,dynamicPrefix,params,paramKeys));
 			}else if(obj.getClass().getName().equals("efw.sql.SqlIf")){
 				SqlIf sqlif=(SqlIf)obj;
 				if ((!Sql.isBlank(sqlif.getExists())&&!Sql.isBlank(params,sqlif.getExists()))
 				||(!Sql.isBlank(sqlif.getNotExists())&&Sql.isBlank(params,sqlif.getNotExists()))
 				||(!Sql.isBlank(sqlif.getIsTrue())&&Sql.isTrue(params,sqlif.getIsTrue()))
 				||(!Sql.isBlank(sqlif.getIsFalse())&&!Sql.isTrue(params,sqlif.getIsFalse()))){
-					bf.append(sqlif.getSqlString(paramPrefix,dynamicPrefix,params));
-					paramKeys.addAll(sqlif.getParamKeys());
+					bf.append(sqlif.getSqlString(paramPrefix,dynamicPrefix,params,paramKeys));
 				}
+			}else if(obj.getClass().getName().equals("efw.sql.SqlInclude")){
+				SqlInclude sqlinclude=(SqlInclude)obj;
+				Sql subsql=SqlManager.get(sqlinclude.getGroupId(), sqlinclude.getSqlId());
+				bf.append(subsql.getSqlString(params,paramKeys));
 			}
 		}
 		return bf.toString();		
-	}
-	
-	private ArrayList<String> paramKeys;
-	/**
-	 * Sqlパラメータのマップから、Sql文にパラメータの順番によりキーの配列を作る。
-	 * @return Sqlパラメータキーの配列。
-	 */
-	protected ArrayList<String> getParamKeys(){
-		return paramKeys;
 	}
 	
 	/**

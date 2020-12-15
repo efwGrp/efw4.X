@@ -465,39 +465,6 @@
 <entry key="ElFinder_kindVideoMKV">Matroska ムービー</entry>
 <entry key="ElFinder_kindVideoOGG">Ogg ムービー</entry>
 
-<!--JExcelClientMessages-->
-<entry key="JExcel_noRecordsFound">レコードが見つかりません</entry>
-<entry key="JExcel_showingPage">{0} / {1}</entry>
-<entry key="JExcel_show">表示</entry>
-<entry key="JExcel_search">探す</entry>
-<entry key="JExcel_entries">件</entry>
-<entry key="JExcel_columnName">列名</entry>
-<entry key="JExcel_insertANewColumnBefore">前に新しい列を挿入</entry>
-<entry key="JExcel_insertANewColumnAfter">後に新しい列を挿入</entry>
-<entry key="JExcel_deleteSelectedColumns">選択した列を削除</entry>
-<entry key="JExcel_renameThisColumn">この列の名前を変更</entry>
-<entry key="JExcel_orderAscending">昇順</entry>
-<entry key="JExcel_orderDescending">降順</entry>
-<entry key="JExcel_insertANewRowBefore">前に新しい行を挿入します</entry>
-<entry key="JExcel_insertANewRowAfter">後に新しい行を挿入します</entry>
-<entry key="JExcel_deleteSelectedRows">選択した行を削除</entry>
-<entry key="JExcel_editComments">コメントを編集</entry>
-<entry key="JExcel_addComments">コメントを追加</entry>
-<entry key="JExcel_comments">コメント</entry>
-<entry key="JExcel_clearComments">コメントをクリア</entry>
-<entry key="JExcel_copy">コピー...</entry>
-<entry key="JExcel_paste">ペースト...</entry>
-<entry key="JExcel_saveAs">名前を付けて保存...</entry>
-<entry key="JExcel_about">jExcelについて</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedRows">選択した行を削除してもよろしいですか？</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedColumns">選択した列を削除してもよろしいですか？</entry>
-<entry key="JExcel_thisActionWillDestroyAnyExistingMergedCellsAreYouSure">このアクションは、既存の結合されたセルを破壊します。よろしいですか？</entry>
-<entry key="JExcel_thisActionWillClearYourSearchResultsAreYouSure">このアクションにより、検索結果がクリアされます。よろしいですか？</entry>
-<entry key="JExcel_thereIsAConflictWithAnotherMergedCell">別の結合されたセルとの競合があります</entry>
-<entry key="JExcel_invalidMergeProperties">無効な結合プロパティ</entry>
-<entry key="JExcel_cellAlreadyMerged">セルは既に結合されています</entry>
-<entry key="JExcel_noCellsSelected">セルが選択されていません</entry>
-
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">Newキーワードは忘れられました。</entry>
 <!-- test -->

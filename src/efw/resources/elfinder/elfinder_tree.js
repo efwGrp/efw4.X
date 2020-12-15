@@ -10,6 +10,7 @@ elfinder_tree.fire = function(params) {
 	var targetFolder=""+target.substring(volumeId.length).base64Decode();
 
 	var folders=new Record(file.list(targetFolder,true))
+	.seek("isHidden","eq",false)
 	.seek("mineType","eq","directory")
 	.map({
          "mime":"mineType",//function(){return "directory";},

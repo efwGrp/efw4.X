@@ -55,6 +55,7 @@ elfinder_open.fire = function(params) {
 	}
 	//---------------------------------------------------------------------
 	var files=new Record(file.list(cwdFolder,true))
+	.seek("isHidden","eq",false)
 	.map({
          "mime":"mineType",//function(){return "directory";},
          "ts":function(data){return data.lastModified.getTime();},

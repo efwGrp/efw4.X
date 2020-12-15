@@ -36,7 +36,7 @@ final class SqlText {
 	 * キーは、　「:　＋　キーの単語」で構成する。
 	 * @return　出現順番どおりにキーの単語を格納する配列を戻す。
 	 */
-	protected ArrayList<String> getParamKeys(String paramPrefix){
+	private ArrayList<String> getParamKeys(String paramPrefix){
 		ArrayList<String> ret=new ArrayList<String>();
 		//Pattern p = Pattern.compile("(\\"+paramPrefix+"[a-zA-Z_][\\w]*)");//old
 		Pattern p = Pattern.compile("(\\"+paramPrefix+"([a-zA-Z_]|[^\\x00-\\x7F])([^\\x00-\\x7F]|[\\w])*)");//２バイト文字を認識する
@@ -58,7 +58,7 @@ final class SqlText {
 	 * 「:　＋　キーの単語」を「 ? 」に変換する。
 	 * @return　変換後の文字列を戻す。
 	 */
-	protected String getSQL(String paramPrefix,String dynamicPrefix,Map<String,Object> params){
+	protected String getSQL(String paramPrefix,String dynamicPrefix,Map<String,Object> params,ArrayList<String> paramKeys){
 		String subsql=text.replaceAll("//.*\\n", "\n");//コメント行を認識するため
 		subsql=subsql.replaceAll("\\-\\-.*\\n", "\n");//コメント行を認識するため
 		subsql=subsql.replaceAll("/\\*/?([^/]|[^*]/)*\\*/", "");//コメント行を認識するため
@@ -75,7 +75,7 @@ final class SqlText {
 			String fdKey=fds.get(i);
 			subsql=subsql.replace(dynamicPrefix+fdKey, (String)params.get(fdKey));//1つずつ置換する。
 		}
-		
+		paramKeys.addAll(this.getParamKeys(paramPrefix));
 		return subsql;
 	}
 	/**

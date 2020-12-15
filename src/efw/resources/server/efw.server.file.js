@@ -84,6 +84,7 @@ EfwServerFile.prototype.list = function(path,withoutFolderLength) {
 			"name" : "" + fl.getName(),
 			"lastModified" : lastModified,
 			"absolutePath" : "" + fl.getAbsolutePath(),
+			"isHidden" : true && fl.isHidden(),
 			"mineType" : "" + Packages.efw.file.FileManager.getMimeType(fl.getAbsolutePath()),
 		};
 		if (data.mineType=="directory"){

@@ -465,39 +465,6 @@
 <entry key="ElFinder_kindVideoMKV">Matroska 视频</entry>
 <entry key="ElFinder_kindVideoOGG">Ogg 视频</entry>
 
-<!--JExcelClientMessages-->
-<entry key="JExcel_noRecordsFound">没有找到记录</entry>
-<entry key="JExcel_showingPage">{0} / {1}</entry>
-<entry key="JExcel_show">显示</entry>
-<entry key="JExcel_search">检索</entry>
-<entry key="JExcel_entries">件</entry>
-<entry key="JExcel_columnName">列名</entry>
-<entry key="JExcel_insertANewColumnBefore">在之前插入新列</entry>
-<entry key="JExcel_insertANewColumnAfter">在之后插入新列</entry>
-<entry key="JExcel_deleteSelectedColumns">删除选定的列</entry>
-<entry key="JExcel_renameThisColumn">重命名此列</entry>
-<entry key="JExcel_orderAscending">升序</entry>
-<entry key="JExcel_orderDescending">降序</entry>
-<entry key="JExcel_insertANewRowBefore">在前面插入新行</entry>
-<entry key="JExcel_insertANewRowAfter">在之后插入新行</entry>
-<entry key="JExcel_deleteSelectedRows">删除选定的行</entry>
-<entry key="JExcel_editComments">编辑注释</entry>
-<entry key="JExcel_addComments">添加注释</entry>
-<entry key="JExcel_comments">注释</entry>
-<entry key="JExcel_clearComments">清除注释</entry>
-<entry key="JExcel_copy">复制...</entry>
-<entry key="JExcel_paste">粘贴...</entry>
-<entry key="JExcel_saveAs">另存为...</entry>
-<entry key="JExcel_about">关于</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedRows">确定要删除所选的行吗？</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedColumns">确定要删除所选的列吗？</entry>
-<entry key="JExcel_thisActionWillDestroyAnyExistingMergedCellsAreYouSure">此操作将销毁任何现有的合并单元。 你确定吗？</entry>
-<entry key="JExcel_thisActionWillClearYourSearchResultsAreYouSure">此操作将清除您的搜索结果。 你确定吗？</entry>
-<entry key="JExcel_thereIsAConflictWithAnotherMergedCell">与另一个合并的单元格有冲突</entry>
-<entry key="JExcel_invalidMergeProperties">无效的合并属性</entry>
-<entry key="JExcel_cellAlreadyMerged">单元格已合并</entry>
-<entry key="JExcel_noCellsSelected">未选择单元格</entry>
-
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New关键字被遗忘了。</entry>
 <!-- test -->

@@ -1,7 +1,8 @@
 <h1>elFinder Tag</h1>
 ElFinder is a famous file manager for web. We made a customized version from <a href="https://studio-42.github.io/elFinder/">elFinder 2.1</a>,
-and included it into Efw as a tag. It must be used after the Client tag for jQuery and jQuery UI including.<br>
+and included it into Efw as a tag. It must be used after the Client tag for jQuery and jQuery UI including. For protecting system files just like Thumb.db, all hidden files will not been shown.<br>
 <img src="addition_tag_elfinder.png">
+
 <pre>
 &lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
 &lt;head&gt;

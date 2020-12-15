@@ -125,6 +125,10 @@ public final class MailManager {
 		}else{
 			message.setFrom();
 		}
+		String mdn=mail.getMdn(params);
+		if (mdn!=null&&!"".equals(mdn)){
+			message.addHeader("Disposition-Notification-To",mdn);
+		}
 		
 		Transport.send(message);
 	}

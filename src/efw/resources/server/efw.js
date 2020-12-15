@@ -217,8 +217,10 @@ function doPost(req) {
 		}
 	}catch(e){
 		Packages.efw.framework.runtimeSLog(e);
+		var errorMsg=""+Packages.efw.framework.getUsefulInfoFromException(e);
+		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
 		var result=(new Result())
-		.error("RuntimeErrorException", {"eventId":eventId,"message":""+Packages.efw.framework.getUsefulInfoFromException(e)});
+		.error("RuntimeErrorException", {"eventId":eventId,"message":errorMsg});
 		var systemErrorUrl=properties.get("efw.system.error.url","error.jsp");
 		if (systemErrorUrl!=""){
 			result.navigate(systemErrorUrl);

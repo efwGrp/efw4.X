@@ -465,39 +465,6 @@
 <entry key="ElFinder_kindVideoMKV">Matroska movie</entry>
 <entry key="ElFinder_kindVideoOGG">Ogg movie</entry>
 
-<!--JExcelClientMessages-->
-<entry key="JExcel_noRecordsFound">No records found</entry>
-<entry key="JExcel_showingPage">{0} / {1}</entry>
-<entry key="JExcel_show">Show</entry>
-<entry key="JExcel_search">Search</entry>
-<entry key="JExcel_entries">entries</entry>
-<entry key="JExcel_columnName">Column name</entry>
-<entry key="JExcel_insertANewColumnBefore">Insert a new column before</entry>
-<entry key="JExcel_insertANewColumnAfter">Insert a new column after</entry>
-<entry key="JExcel_deleteSelectedColumns">Delete selected columns</entry>
-<entry key="JExcel_renameThisColumn">Rename this column</entry>
-<entry key="JExcel_orderAscending">Order ascending</entry>
-<entry key="JExcel_orderDescending">Order descending</entry>
-<entry key="JExcel_insertANewRowBefore">Insert a new row before</entry>
-<entry key="JExcel_insertANewRowAfter">Insert a new row after</entry>
-<entry key="JExcel_deleteSelectedRows">Delete selected rows</entry>
-<entry key="JExcel_editComments">Edit comments</entry>
-<entry key="JExcel_addComments">Add comments</entry>
-<entry key="JExcel_comments">Comments</entry>
-<entry key="JExcel_clearComments">Clear comments</entry>
-<entry key="JExcel_copy">Copy...</entry>
-<entry key="JExcel_paste">Paste...</entry>
-<entry key="JExcel_saveAs">Save as...</entry>
-<entry key="JExcel_about">About</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedRows">Are you sure to delete the selected rows?</entry>
-<entry key="JExcel_areYouSureToDeleteTheSelectedColumns">Are you sure to delete the selected columns?</entry>
-<entry key="JExcel_thisActionWillDestroyAnyExistingMergedCellsAreYouSure">This action will destroy any existing merged cells. Are you sure?</entry>
-<entry key="JExcel_thisActionWillClearYourSearchResultsAreYouSure">This action will clear your search results. Are you sure?</entry>
-<entry key="JExcel_thereIsAConflictWithAnotherMergedCell">There is a conflict with another merged cell</entry>
-<entry key="JExcel_invalidMergeProperties">Invalid merged properties</entry>
-<entry key="JExcel_cellAlreadyMerged">Cell already merged</entry>
-<entry key="JExcel_noCellsSelected">No cells selected</entry>
-
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New keyword was forgotten.</entry>
 <!-- test -->

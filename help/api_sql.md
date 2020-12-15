@@ -20,10 +20,11 @@ field1= :param1
 &lt;if notexists="param2"> and field2 &amp;lt; 500&lt;/if>
 &lt;if istrue="param3.substr(0,1)=='x'"> and field3 = :param3 &lt;/if>
 &lt;if isfalse="param3.substr(0,1)=='x'"> and field3 = 'y' &lt;/if>
-order by field3, @param4
+
 	&lt;/sql>
 	&lt;sql id="sql2">
-	...
+		&lt;include groupId="test" sqlId="sql1">
+		order by field3, @param4
 	&lt;/sql>
 &lt;/sqls>
 
@@ -43,9 +44,12 @@ You can add dynamic sql parts SQL just write @dynamic .<br>
 The <b>dynamicPrefix</b> attribute of sql tag is an option. You can redefine it if "@" is a must char in your sql.
 
 <h3>If</h3>
-You can do deffient operation by judging whether a param is existed or not, or a javascript formula is true or not.<BR>
+You can do deffient operation by judging whether a param is existed or not, or a javascript formula is true or not,
+by setting the <b>exists notexists istrue isfalse </b>attributes.
 The if tag can be nested.
 
+<h3>Include</h3>
+You can include an existed sql into your sql by setting the <b>groupId sqlId</b> attributes.<BR>
 <h3>Commet</h3>
 You can write comment in several ways.
 
