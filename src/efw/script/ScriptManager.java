@@ -48,7 +48,6 @@ public final class ScriptManager {
 	public static synchronized void init(String eventFolder) throws ScriptException{
 		ScriptManager.eventFolder=eventFolder;
 		System.setProperty("polyglot.js.nashorn-compat","true");//graalvmのため、nashornの場合無効だが影響なし
-		System.setProperty("nashorn.args", "--language=es6");//jdk1.9 ECMAScript 6 ほしい
 		ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
 		se().put(KEY_EVENTFOLDER, ScriptManager.eventFolder);
 		se().put(KEY_ISDEBUG, framework.getIsDebug());
