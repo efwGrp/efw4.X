@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mails>
+<mails>
+<!-- パスワード送信メール -->
+	<mail id="sendPassword">
+		<to>:eMail</to>
+		<cc></cc>
+		<bcc></bcc>
+		<mdn></mdn>
+		<from></from>
+		<subject>eプロセスシステム：パスワード通知</subject>
+		<body>
+:userName 様：
+eプロセスシステムのパスワードをお知らせします。
+ユーザーＩＤ：:userId
+パスワード：:password
+※本メールは配信専用のため、返信しないでください。
+_______________________________________________________
+
+		</body>
+	</mail>
+</mails>
