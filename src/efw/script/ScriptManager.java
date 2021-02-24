@@ -48,11 +48,16 @@ public final class ScriptManager {
 	public static synchronized void init(String eventFolder) throws ScriptException{
 		ScriptManager.eventFolder=eventFolder;
 		System.setProperty("polyglot.js.nashorn-compat","true");//graalvmのため、nashornの場合無効だが影響なし
-		ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
-		se().put(KEY_EVENTFOLDER, ScriptManager.eventFolder);
-		se().put(KEY_ISDEBUG, framework.getIsDebug());
-		se().put(KEY_ENGINE, ScriptManager.se());
-		se().eval("load('classpath:efw/resources/server/efw.js')");
+        System.setProperty("nashorn.args", "--language=es6");
+        ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+        if (ScriptManager._se==null) {
+            System.clearProperty("nashorn.args");
+            ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+        }
+        se().put(KEY_EVENTFOLDER, ScriptManager.eventFolder);
+        se().put(KEY_ISDEBUG, framework.getIsDebug());
+        se().put(KEY_ENGINE, ScriptManager.se());
+        se().eval("load('classpath:efw/resources/server/efw.js')");
 	}
 	/**
 	 * リクエストをサーバーサイトJavaScriptに転送する。
