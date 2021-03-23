@@ -76,6 +76,14 @@ EfwServerEvent.prototype._locker = new java.util.concurrent.locks.ReentrantLock(
  * @returns {EventInfo}
  */
 EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
+	//if the global.js is not exists,warning log.
+	if (loadingGlobal){
+		if (!file.exists(_eventfolder + "/" + eventId + ".js")){
+			Packages.efw.framework.initWLog("global.js is not found.");
+		}
+		return this._get(eventId);
+	}
+	//--------------------
 	/**
 	 * This function to set eventinfo about service
 	 */
@@ -114,11 +122,7 @@ EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
 		}
 	}catch(e){
 		if (loadingGlobal){
-			if (e.getClass().getName()=="java.io.FileNotFoundException"){
-				Packages.efw.framework.initWLog("global.js is not found.");
-			}else{
-				Packages.efw.framework.initSLog("global.js cannot be loaded.",e);
-			}
+			Packages.efw.framework.initSLog("global.js cannot be loaded.",e);
 		}else{
 			Packages.efw.framework.runtimeSLog(e);
 		}
