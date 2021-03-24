@@ -64,7 +64,7 @@ public class RestManager {
             framework.setRestStatus(status);
 
             // レスポンス内容
-            responseBuffer = new BufferedReader(new InputStreamReader((httpConnection.getInputStream())));
+            responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),CHAR_SET));
             String strLine;
             StringBuffer reserveVal = new StringBuffer();
             while ((strLine = responseBuffer.readLine()) != null) {
