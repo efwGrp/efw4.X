@@ -54,7 +54,7 @@ public class RestManager {
                 httpConnection.setDoOutput(true);
                 // パラメータを設定する
                 outputStream = httpConnection.getOutputStream();
-                outputStream.write(param.getBytes());
+                outputStream.write(param.getBytes(CHAR_SET));
                 outputStream.flush();
             }
 
