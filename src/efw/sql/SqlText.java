@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import efw.DynamicParamIsNotExistsException;
+
 import java.util.regex.Matcher;
 /**
  * sqlタグにifタグに分割されるSql文の部品を表すクラス。
@@ -57,8 +60,9 @@ final class SqlText {
 	 * 代入されるSql文部品を通常書き方に変換する。
 	 * 「:　＋　キーの単語」を「 ? 」に変換する。
 	 * @return　変換後の文字列を戻す。
+	 * @throws DynamicParamIsNotExistsException 
 	 */
-	protected String getSQL(String paramPrefix,String dynamicPrefix,Map<String,Object> params,ArrayList<String> paramKeys){
+	protected String getSQL(String paramPrefix,String dynamicPrefix,Map<String,Object> params,ArrayList<String> paramKeys) throws DynamicParamIsNotExistsException{
 		String subsql=text.replaceAll("//.*\\n", "\n");//コメント行を認識するため
 		subsql=subsql.replaceAll("\\-\\-.*\\n", "\n");//コメント行を認識するため
 		subsql=subsql.replaceAll("/\\*/?([^/]|[^*]/)*\\*/", "");//コメント行を認識するため
@@ -66,14 +70,18 @@ final class SqlText {
 		
 		ArrayList<String> fds=getDynamicKeys(dynamicPrefix);
 		Collections.sort(fds,new Comparator<String>() {
-		    public int compare(String lhs, String rhs) {
-		        // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-		        return lhs.length() > rhs.length() ? -1 : (lhs.length() < rhs.length()) ? 1 : 0;
-		    }});
+			public int compare(String lhs, String rhs) {
+				// -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+				return lhs.length() > rhs.length() ? -1 : (lhs.length() < rhs.length()) ? 1 : 0;
+			}});
 
 		for(int i=0;i<fds.size();i++){
 			String fdKey=fds.get(i);
-			subsql=subsql.replace(dynamicPrefix+fdKey, (String)params.get(fdKey));//1つずつ置換する。
+			if (params.containsKey(fdKey)) {
+				subsql=subsql.replace(dynamicPrefix+fdKey, (String)params.get(fdKey));//1つずつ置換する。
+			}else {
+				throw new DynamicParamIsNotExistsException(fdKey);
+			}
 		}
 		paramKeys.addAll(this.getParamKeys(paramPrefix));
 		return subsql;

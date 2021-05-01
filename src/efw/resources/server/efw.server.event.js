@@ -78,10 +78,10 @@ EfwServerEvent.prototype._locker = new java.util.concurrent.locks.ReentrantLock(
 EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
 	//if the global.js is not exists,warning log.
 	if (loadingGlobal){
-		if (!file.exists(_eventfolder + "/" + eventId + ".js")){
+		if (!absfile.exists(_eventfolder + "/" + eventId + ".js")){
 			Packages.efw.framework.initWLog("global.js is not found.");
+			return null;
 		}
-		return this._get(eventId);
 	}
 	//--------------------
 	/**
