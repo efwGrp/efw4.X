@@ -1,7 +1,7 @@
 <H1>session.create</H1>
 
-The create function is established to reset the session id for the current request.
-
+The create function is established to make sure the session id for the current request is exists.<br>
+[maybe the function is nonsense.]
 <h2>Sample</h2>
 <pre>
 	session.create();
