@@ -57,7 +57,7 @@ public final class DatabaseManager {
 	 * フレームワークに利用するデータソースを初期化する。
 	 * @throws NamingException データソース初期化失敗のエラー。
 	 */
-	public static synchronized void init() throws NamingException{
+	public static void init() throws NamingException{
         jdbcResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_JDBC_RESOURCE,jdbcResourceName);
         if(jdbcResourceName.indexOf("java:")>-1){//if the jdbc resouce begins from [java:], it is full jndi name.
         	dataSource = (DataSource) new InitialContext().lookup(jdbcResourceName);

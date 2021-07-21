@@ -37,7 +37,7 @@ public final class SqlManager {
      * @param sqlFolder　Sql外部化XMLファイルの格納パス。
      * @throws efwException　Sql外部化XMLファイルの読み取りエラー。
      */
-	public synchronized static void init(String sqlFolder){
+	public static void init(String sqlFolder){
 		SqlManager.sqlFolder=sqlFolder;
 	}
 	/**

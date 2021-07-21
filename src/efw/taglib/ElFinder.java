@@ -19,7 +19,6 @@ import efw.framework;
  * @author Chang Kejun
  *
  */
-@SuppressWarnings("serial")
 public final class ElFinder extends TagSupport implements DynamicAttributes {
 	
 	/**

@@ -29,7 +29,7 @@ public final class BrmsManager {
 	 * バッチからルールを実行する前
 	 * @throws Exception
 	 */
-	public static synchronized void initFromBatch() throws Exception{
+	public static void initFromBatch() throws Exception{
 		try{
 			// プロパティ ファイルから、codeTypeを取得する。
 			InitializerHelper.initialize(PropertiesManager.prop);
@@ -40,7 +40,7 @@ public final class BrmsManager {
 	/***
 	 * バッチからルールを実行完了後
 	 */
-	public static synchronized void destroyFromBatch(){
+	public static void destroyFromBatch(){
 		InitializerHelper.cleanup();
 	}
 	/**

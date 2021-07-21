@@ -143,12 +143,12 @@ public final class PropertiesManager {
      * フレームワークに利用するプロパティファイルから、プロパティ値をプロパティオブジェクトにロードする。
      * @throws IOException　プロパティファイルの読み取りエラー。
      */
-    public static synchronized void init()throws IOException{
+    public static void init()throws IOException{
     	InputStream inptstrm;
 		prop.load(inptstrm=Thread.currentThread().getContextClassLoader().getResourceAsStream(PropertiesManager.EFW_PROPERTIES_FILE_NAME));
 		inptstrm.close();
     }
-    public static synchronized void initBatch(String propertiesFileName)throws IOException{
+    public static void initBatch(String propertiesFileName)throws IOException{
     	InputStream inptstrm;
 		prop.load(inptstrm=new FileInputStream(propertiesFileName));
 		inptstrm.close();

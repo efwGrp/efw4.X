@@ -4,7 +4,6 @@ package efw.i18n;
 import java.util.Date;
 import java.util.Properties;
 
-@SuppressWarnings("serial")
 public final class I18nProperties extends Properties {
 	private Date lastModifytime=null;
 

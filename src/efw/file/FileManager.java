@@ -41,7 +41,7 @@ public final class FileManager {
     /**
      * サーブレットから設定情報を受け取る。
      */
-	public static synchronized void init(String storageFolder){
+	public static void init(String storageFolder){
 		FileManager.storageFolder=storageFolder;
 	}
 	/**

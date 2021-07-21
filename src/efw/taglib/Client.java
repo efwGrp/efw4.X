@@ -17,7 +17,6 @@ import efw.framework;
  * @author Chang Kejun
  *
  */
-@SuppressWarnings("serial")
 public final class Client extends TagSupport implements DynamicAttributes {
 
 	private String baseurl=".";

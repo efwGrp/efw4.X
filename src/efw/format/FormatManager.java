@@ -39,7 +39,7 @@ public final class FormatManager {
     /**
      * フォーマット管理を初期化する。
      */
-    public static synchronized void init(){
+    public static void init(){
     	FormatManager.locale = Locale.getDefault();
     	FormatManager.localeJ = new Locale("ja","JP","JP");
     	FormatManager.formatRounderPro = PropertiesManager.getProperty(PropertiesManager.EFW_FORMAT_ROUNDER, FormatManager.formatRounderPro);

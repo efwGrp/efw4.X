@@ -103,7 +103,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 			cache : false,// don't use cache
 			async : true,// don't use async
 			dataType : "json",// send or get data by json type
-			contentType: "application/json",
+			contentType: "application/json;charset=UTF-8",
 			// first calling only send groupid and eventid
 			data : JSON.stringify({"eventId" : eventId,
 					"lang" : efw.lang,

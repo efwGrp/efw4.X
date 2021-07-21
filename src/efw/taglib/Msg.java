@@ -10,7 +10,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import efw.i18n.I18nManager;
 
-@SuppressWarnings("serial")
 public final class Msg extends TagSupport implements DynamicAttributes {
 
 	private String key = "";

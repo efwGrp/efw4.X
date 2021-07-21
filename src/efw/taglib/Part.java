@@ -16,7 +16,6 @@ import javax.servlet.jsp.tagext.TagSupport;
  * @author Chang Kejun
  *
  */
-@SuppressWarnings("serial")
 public final class Part extends TagSupport implements DynamicAttributes {
 	
 	/**

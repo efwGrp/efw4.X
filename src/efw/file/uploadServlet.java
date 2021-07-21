@@ -22,7 +22,6 @@ import efw.framework;
  * ファイルをクライアントからWEBサーバへアップロードする
  * @author Chang Kejun
  */
-@SuppressWarnings("serial")
 @WebServlet(name = "uploadServlet", urlPatterns = { "/uploadServlet" })
 @MultipartConfig()
 public final class uploadServlet extends HttpServlet {

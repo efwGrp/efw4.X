@@ -3,7 +3,6 @@ package efw;
 /**
  * newキーワードを忘れたエラー。
  */
-@SuppressWarnings("serial")
 public class NewKeywordWasForgottenException extends efwException {
 
 	public NewKeywordWasForgottenException(String className) {

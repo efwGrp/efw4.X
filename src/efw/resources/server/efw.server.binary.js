@@ -87,6 +87,45 @@ BinaryReader.prototype.loopAllLines = function(callback){
 				if (this._aryEncoding[i]=="Cp939WithoutShiftInOut"){
 					java.lang.System.arraycopy(buf, fromP, bufs[i], 1, this._aryFieldsDef[i]);
 					aryField.push(new java.lang.String(bufs[i],"Cp939"));
+				}else if (this._aryEncoding[i]=="S9"){
+					java.lang.System.arraycopy(buf, fromP, bufs[i], 0, this._aryFieldsDef[i]);
+					var tmpS9=""+new java.lang.String(bufs[i],"Cp930");
+					var retS9="";
+					for(var indexS9=0;indexS9<tmpS9.length;indexS9++){
+						var c=tmpS9[indexS9];
+						if (c=="{"){retS9+="0";}
+						else if (c=="0"){retS9+="0";}
+						else if (c=="A"){retS9+="1";}
+						else if (c=="1"){retS9+="1";}
+						else if (c=="B"){retS9+="2";}
+						else if (c=="2"){retS9+="2";}
+						else if (c=="C"){retS9+="3";}
+						else if (c=="3"){retS9+="3";}
+						else if (c=="D"){retS9+="4";}
+						else if (c=="4"){retS9+="4";}
+						else if (c=="E"){retS9+="5";}
+						else if (c=="5"){retS9+="5";}
+						else if (c=="F"){retS9+="6";}
+						else if (c=="6"){retS9+="6";}
+						else if (c=="G"){retS9+="7";}
+						else if (c=="7"){retS9+="7";}
+						else if (c=="H"){retS9+="8";}
+						else if (c=="8"){retS9+="8";}
+						else if (c=="I"){retS9+="9";}
+						else if (c=="9"){retS9+="9";}
+						else if (c=="}"){retS9="-"+retS9+"0";}
+						else if (c=="J"){retS9="-"+retS9+"1";}
+						else if (c=="K"){retS9="-"+retS9+"2";}
+						else if (c=="L"){retS9="-"+retS9+"3";}
+						else if (c=="M"){retS9="-"+retS9+"4";}
+						else if (c=="N"){retS9="-"+retS9+"5";}
+						else if (c=="O"){retS9="-"+retS9+"6";}
+						else if (c=="P"){retS9="-"+retS9+"7";}
+						else if (c=="Q"){retS9="-"+retS9+"8";}
+						else if (c=="R"){retS9="-"+retS9+"9";}
+						else{retS9+=c;}
+					}
+					aryField.push(retS9.trim());
 				}else{
 					java.lang.System.arraycopy(buf, fromP, bufs[i], 0, this._aryFieldsDef[i]);
 					aryField.push(new java.lang.String(bufs[i],this._aryEncoding[i]));

@@ -4,7 +4,6 @@ package efw.sql;
 import java.util.Date;
 import java.util.HashMap;
 
-@SuppressWarnings("serial")
 final class SqlHashMap extends HashMap<String, Sql> {
 	private Date lastModifytime=null;
 

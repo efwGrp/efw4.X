@@ -21,7 +21,7 @@ public final class I18nManager {
      * @param msgFolder　Msg外部化XMLファイルの格納パス。
      * @throws efwException　Msg外部化XMLファイルの読み取りエラー。
      */
-	public synchronized static void init(String i18nFolder){
+	public static void init(String i18nFolder){
 		I18nManager.i18nFolder=i18nFolder;
 	}
 	/**

@@ -3,7 +3,6 @@ package efw;
 /**
  * XMLファイルが正しくないエラー。
  */
-@SuppressWarnings("serial")
 public class XMLFileIsNotLegalException extends efwException {
 	public XMLFileIsNotLegalException(String type,String groupId,String message) {
 		super(" "+type+" xml file = "+groupId+".xml; error = "+message);

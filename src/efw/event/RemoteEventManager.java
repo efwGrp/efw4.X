@@ -32,7 +32,7 @@ public final class RemoteEventManager {
 	 * @throws NoSuchAlgorithmException 
 	 * @throws KeyManagementException 
 	 */
-	public static synchronized void init() throws NoSuchAlgorithmException, KeyManagementException{
+	public static void init() throws NoSuchAlgorithmException, KeyManagementException{
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[] {
         	new X509TrustManager() {

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import efw.script.ScriptManager;
 
-@SuppressWarnings("serial")
 @WebServlet(name="efwRestAPI",loadOnStartup=1,urlPatterns={"/efwRestAPI/*"})
 public final class efwRestAPI extends HttpServlet{
 
@@ -34,6 +33,15 @@ public final class efwRestAPI extends HttpServlet{
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doRestAPI(req,resp,"DELETE");
 	}
+
+	/**
+	 * OPTIONメソッド
+	 */
+	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//CORS関連設定を行う
+		efwServlet.doCORS(request,response);
+		super.doOptions(request, response);
+	}
 	
 	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
         response.setCharacterEncoding(framework.getSystemCharSet());
@@ -45,17 +53,6 @@ public final class efwRestAPI extends HttpServlet{
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 			framework.runtimeSLog("initSuccessFlag = false");
 			return;
-		}
-		//cors support
-		if("*".equals(framework.getCors())){
-			response.setHeader("Access-Control-Allow-Origin", "*");
-		}else if("null".equals(framework.getCors())||"".equals(framework.getCors())||null==framework.getCors()){
-			//do nothing
-		}else{
-			String[] corsAry=framework.getCors().split(",");
-			for(int i=0;i<corsAry.length;i++){
-				response.setHeader("Access-Control-Allow-Origin", corsAry[i]);
-			}
 		}
 		//call script 
 		framework.setRequest(request);
@@ -91,6 +88,9 @@ public final class efwRestAPI extends HttpServlet{
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 			//response.getWriter().print(otherError);//efw内部エラー。
 		}finally{
+			//CORS関連設定を行う
+			efwServlet.doCORS(request,response);
+
 			framework.removeRequest();
 			framework.removeResponse();
 			framework.removeI18nProp();

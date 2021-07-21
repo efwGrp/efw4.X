@@ -17,7 +17,6 @@ import efw.framework;
  * @author Chang Kejun
  *
  */
-@SuppressWarnings("serial")
 public final class Chart extends TagSupport implements DynamicAttributes {
 	
 	/**

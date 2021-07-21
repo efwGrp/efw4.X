@@ -21,7 +21,6 @@ import efw.framework;
  * ファイルをWEBサーバからクライアントへダウンロードする
  * @author Chang Kejun
  */
-@SuppressWarnings("serial")
 @WebServlet(name="downloadServlet",urlPatterns={"/downloadServlet"})
 public final class downloadServlet extends HttpServlet {
     /**

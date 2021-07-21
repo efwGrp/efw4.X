@@ -2,6 +2,7 @@
 package efw.barcode;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Chang Kejun
  *
  */
-@SuppressWarnings("serial")
 @WebServlet(name="drawServlet",urlPatterns={"/drawServlet"})
 public final class drawServlet extends HttpServlet {
 

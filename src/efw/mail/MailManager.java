@@ -63,7 +63,7 @@ public final class MailManager {
      * @param mailFolder　MailテンプレートXMLファイルの格納パス。
      * @throws efwException　MailテンプレートXMLファイルの読み取りエラー。
      */
-	public synchronized static void init(String mailFolder) throws NamingException{
+	public static void init(String mailFolder) throws NamingException{
 		MailManager.mailFolder=mailFolder;
 		mailResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_MAIL_RESOURCE,mailResourceName);
         if(mailResourceName.indexOf("java:")>-1){//if the mail resouce begins from [java:], it is full jndi name.
@@ -72,7 +72,7 @@ public final class MailManager {
         	mailSession = (Session) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+mailResourceName);
         }
 	}
-	public static synchronized void initFromBatch(String mailFolder) throws efwException{
+	public static void initFromBatch(String mailFolder) throws efwException{
 		MailManager.mailFolder=mailFolder;
     	String username=PropertiesManager.EFW_MAIL_USERNAME;
     	String password=PropertiesManager.EFW_MAIL_PASSWORD;
