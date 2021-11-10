@@ -4,10 +4,11 @@
 <!DOCTYPE HTML>
 <HTML>
 <HEAD>
-<TITLE>ユーザ管理</TITLE>
-<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
-<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style.css">
-<efw:Client theme="mytheme" lang="jp"/>
+	<TITLE>ユーザ管理</TITLE>
+	<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
+	<LINK REL="SHORTCUT ICON" HREF="img/favicon.png" />
+	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style_efw.css">
+	<efw:Client lang="jp" mode="jquery-ui" theme="mytheme" />
 <SCRIPT>
 function selectRow(row) {
 	$("#tbl_data tr").removeClass("SELECTED");
@@ -80,7 +81,7 @@ function getSelectId(){
 				</TR>
 			</TABLE>
 		</DIV>
-		<TABLE ID="tbl_data" CLASS="TABLE-BODY">
+		<TABLE ID="tbl_data" CLASS="TABLE-BODY" style="margin-top:130px">
 			<COLGROUP>
 				<COL WIDTH=100PX>
 				<COL WIDTH=220PX>
@@ -98,8 +99,9 @@ function getSelectId(){
 				data-shortcut="F2">F2 修正</BUTTON>
 			<BUTTON ONCLICK="Efw('MST01_delete', {'selectId' : getSelectId(),'doConfirm' : true})" 
 				data-shortcut="F3">F3 削除</BUTTON>
-			<BUTTON ONCLICK="Efw('MST01_download')" data-shortcut="F6" style="width:120px">F6 ダウンロード</BUTTON>
-			<BUTTON ONCLICK=" Efw('MST01_upload')" data-shortcut="F7" style="width:120px">F7 アップロード</BUTTON>
+			<span style="width:50px;display:inline-block"></span>
+			<IMG src="img/btn_download.png" class="BTN_ICON" ONCLICK="Efw('MST01_download')" data-shortcut="F6" title="F6 ダウンロード">
+			<IMG src="img/btn_upload.png" class="BTN_ICON" ONCLICK="Efw('MST01_upload')" data-shortcut="F7" title="F7 アップロード">
 			<efw:Part path="paging.jsp" id="paging" eventId="MST01_search"
 				head=".MAIN .TABLE-HEAD" />
 		</DIV>

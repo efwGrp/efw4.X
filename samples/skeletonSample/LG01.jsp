@@ -6,14 +6,15 @@
 <HEAD>
 	<TITLE>EFWデザインデモ</TITLE>
 	<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
-	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style.css" />
-	<efw:Client theme="mytheme" lang="jp"/>
+	<LINK REL="SHORTCUT ICON" HREF="img/favicon.png" />
+	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style_efw.css">
+	<efw:Client lang="jp" mode="jquery-ui" theme="mytheme" />
 </HEAD>
 <BODY ONLOAD="Efw('LG01_cookie');$('#txt_uid').focus();">
 	<DIV ID="LG01" CLASS=MAIN ALIGN="CENTER">
 		<efw:Part path="headbeforelogining.jsp" title="EFW DEMO" />
 		<BR><BR><BR><BR><BR><BR><BR>
-		<DIV STYLE="WIDTH:700PX;LINE-HEIGHT:18PX;TEXT-ALIGN:CENTER;"><LABEL ID=LBL_MSG CLASS="MSG-BLUE">ユーザーＩＤ、パスワードを入力してください。</LABEL></DIV>
+		<DIV STYLE="WIDTH:700PX;LINE-HEIGHT:18PX;TEXT-ALIGN:CENTER;"><LABEL ID=LBL_MSG CLASS="MSG-BLUE">ユーザーID 、パスワードを入力してください。</LABEL></DIV>
 		<BR><BR>
 		<TABLE CLASS=BORDER-GRAY
 			STYLE="BACKGROUND-COLOR: WHITE; WIDTH: 300PX;">

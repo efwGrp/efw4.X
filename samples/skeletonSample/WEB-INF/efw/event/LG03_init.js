@@ -25,7 +25,7 @@ LG03_init.fire=function(params){
         .runat("#LG03")
         .withdata({
             "#LG03top" : "パスワードを変更してください。",
-            "#LG03down" : "ユーザＩＤ、旧パスワード、新パスワードを入力してください。",
+            "#LG03down" : "ユーザID、旧パスワード、新パスワードを入力してください。",
             "#txt_uid":cookie.get("txt_uid")                                                           // cookieからアカウントを取得
         });
     }

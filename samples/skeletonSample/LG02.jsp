@@ -1,100 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="efw" uri="efw"%>
+<!DOCTYPE HTML>
 <HTML>
 <HEAD>
 	<TITLE>メインメニュー</TITLE>
 	<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
-	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style.css">
-	<efw:Client theme="mytheme" lang="jp"/>
+	<LINK REL="SHORTCUT ICON" HREF="img/favicon.png" />
+	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style_efw.css">
+	<efw:Client lang="jp" mode="jquery-ui" theme="mytheme" />
 </HEAD>
-<SCRIPT>
-</SCRIPT>
 <BODY>
 	<DIV ID="LG02" CLASS=MAIN>
-		<efw:Part path="headwithoutmenu.jsp" title="EFW DEMO　メインメニュー" />
-		
-		<DIV STYLE="PADDING-LEFT:120PX;">
-			<BR>
-			<BR>
-			<DIV STYLE="FLOAT:LEFT;MARGIN-RIGHT:20PX">
-				<FIELDSET STYLE="TEXT-ALIGN: LEFT;" CLASS="BORDER-GRAY">
-					<LEGEND CLASS=MENU-GROUP>保険業務</LEGEND>
-					<TABLE STYLE="WIDTH: 305PX;MARGIN:10PX;">
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">契約管理</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">収納管理</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">事故管理</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">支払管理</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">再保険管理</TD>
-						</TR>
-					</TABLE>
-				</FIELDSET><br>
-			</DIV>
-
-			
-			<DIV STYLE="FLOAT:LEFT;MARGIN-RIGHT:20PX">
-				<FIELDSET STYLE="TEXT-ALIGN: LEFT;" CLASS="BORDER-GRAY">
-					<LEGEND CLASS=MENU-GROUP>帳票出力</LEGEND>
-					<TABLE STYLE="WIDTH: 305PX;MARGIN:10PX;">
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">＃＃＃＃＃</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">＃＃＃＃＃</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">＃＃＃＃＃</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">＃＃＃＃＃</TD>
-						</TR>
-					</TABLE>
-				</FIELDSET><BR>
-			</DIV>
-
-			<DIV STYLE="FLOAT:LEFT;MARGIN-RIGHT:20PX">
-				<FIELDSET STYLE="TEXT-ALIGN: LEFT;" CLASS="BORDER-GRAY">
-					<LEGEND CLASS=MENU-GROUP>管理者機能</LEGEND>
-					<TABLE STYLE="WIDTH: 305PX;MARGIN:10PX;">
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="Efw('LG02_goto',{'page':'MST01.jsp'})" style="color:yellow">ユーザ管理</TD>
-						</TR>
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">会社情報登録</TD>
-						</TR>
-					</TABLE>
-				</FIELDSET><BR>
-				<FIELDSET STYLE="TEXT-ALIGN: LEFT;" CLASS="BORDER-GRAY">
-					<LEGEND CLASS=MENU-GROUP>システム設定</LEGEND>
-					<TABLE STYLE="WIDTH: 305PX;MARGIN:10PX;">
-						<TR>
-							<TD CLASS=MENU-BUTTON
-								ONCLICK="">商品管理</TD>
-						</TR>
-					</TABLE>
-				</FIELDSET>
-			</DIV>
-		</DIV>
+			<efw:Part path="headwithoutmenu.jsp" title="EFW DEMO　メインメニュー" />
+			<!-- コンテンツ -->
+			<div id="container" class="container"  style = "margin-top:30px" >
+				<br />
+				<fieldset id="div1" class="BORDER-GRAY"
+					style="width: 500px; margin:auto; text-align:center;">
+					<legend class="MENU-GROUP" id="lbl_master" style="text-align:left;">〇〇業務</legend>
+					<table style="WIDTH: 500px">
+						<tr><td>
+							<BUTTON class="MENU-BUTTON1">〇〇管理</BUTTON>
+						</td></tr>
+					</table>
+				</fieldset>
+				<br/>
+				<fieldset id="div3" class="BORDER-GRAY"
+					style="width: 500px; margin:auto; text-align:center;">
+					<legend class="MENU-GROUP" id="lbl_system" style="text-align:left;">システム管理</legend>
+					<table style="WIDTH: 500px">
+						<tr><td>
+							<BUTTON class="MENU-BUTTON3" ONCLICK="Efw('LG02_goto', {'page' : 'MST01.jsp'})" style="color:yellow!important">ユーザ管理</BUTTON>
+						</td></tr>
+					</table>
+				</fieldset>
+			</div>
+		<!-- コンテンツ終わり -->
 
 		<DIV CLASS="FOOTER" STYLE="text-align:center">
 		<P ID="copyright">&copy;エスコ・ジャパン株式会社</P>

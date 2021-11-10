@@ -1,4 +1,8 @@
-﻿*{
+HTML,BODY{
+	height:100%;
+}
+
+*{
 	font-size:13px;
 	font-family:'メイリオ';
 	line-height:13px;
@@ -41,10 +45,10 @@ BODY {
 .HEADER TABLE TD{
 	border:none;
 }
-
 .HEADER TABLE TD:FIRST-CHILD {
 	width:150px;
-	background-image:url(../img/logo.jpg);
+	background-image:url(../img/logo.png);
+	background-size: 125px 34px;
 	background-position-y:center;
 	background-position-x:5px;
 	background-repeat:no-repeat;
@@ -52,10 +56,9 @@ BODY {
 }
 .HEADER TABLE TD:NTH-CHILD(2) {
 	font-size:20px;
-	font-weight:bold;
 	color:white;
-	letter-spacing:2px;
-	padding-top:5px;
+	text-align:left;
+	padding-right:5px;
 }
 .HEADER TABLE TD:NTH-CHILD(3) {
 	font-size:15px;
@@ -77,7 +80,7 @@ BODY {
 /*****************************************************************************/
 .HEADER-MENU {
 	height:25px;
-#	BORDER-BOTTOM:#ccc 1px solid; 
+	BORDER-BOTTOM:#ccc 1px solid; 
 }
 .HEADER-MENU TABLE {
 	height:100%;
@@ -102,36 +105,19 @@ BODY {
 	border-radius: 10px;
 }
 /*****************************************************************************/
-.MENU-GROUP {
-	font-size:18px;
-	font-weight:bold;
-	color:gray;
-}
-.MENU-BUTTON {
-	color:white;
-	font-size:20px;
-	cursor:pointer;
-	height:45px;
-	width:300px;
-	background-image:url(../img/menu.png);
-	background-repeat:no-repeat;
-	font-weight:bold;
-	text-align:center;
-}
-/*****************************************************************************/
 .MAIN {
-	width:1330px;
+	width:1250px;
 	margin:auto;/**枠を中央にさせる**/
 	height:550px;/**これがあればダイアログが中央にできる**/
 }
 .MAIN TABLE {
-	width:1330px;
+	width:1250px;
 }
 .TOP {
  	position:fixed;
  	top:0px;
  	background-color:white;
- 	width:1330px;
+ 	width:1250px;
  	height:130px;
 }
 .FOOTER {
@@ -139,11 +125,35 @@ BODY {
 	position:fixed;
 	background:white;
 	height:40px;
-	width:1330px;
+	width:1250px;
 	bottom:0px;
 	padding-top:10px;
 }
 .DIALOG {}
+.DIALOG .FOOTER {
+	text-align:center;
+	position:absolute;
+	background:white;
+	height:40px;
+	width:100%;
+	left:0px;
+	bottom:0px;
+	padding-top:10px;
+}
+.DIALOG .FOOTER *:first-child {
+	margin-left:15px;
+}
+.DIALOG .FOOTER *:last-child {
+	margin-right:15px;
+}
+.ui-dialog-title {
+	font-size:13px;
+	line-height:16px;
+}
+.ui-dialog-titlebar {
+	padding-top:3px!important;
+	padding-bottom:3px!important;
+}
 /*****************************************************************************/
 .MAIN BUTTON{
 	height:24px;
@@ -163,47 +173,49 @@ BODY {
 	cursor:pointer;
 	border-radius:10px;
 }
-.MAIN BUTTON:disabled{
-	color:color;
-	background-color:silver;
-}
-.DIALOG BUTTON:disabled{
-	color:color;
-	background-color:silver;
-}
-.elfinder-dialog BUTTON{
-	width:auto;
-}
 
 INPUT[TYPE='TEXT']{
-	height:19px;
+	height:21px;
 	border:1px solid silver;
 	padding:0 5px 0 5px;
 	vertical-align:middle;
 }
 INPUT[TYPE='PASSWORD']{
-	height:19px;
+	height:21px;
 	border:1px solid silver;
 	padding:0 5px 0 5px;
 	vertical-align:middle;
 }
 INPUT[TYPE='FILE']{
-	height:19px;
+	height:21px;
 	border:1px solid silver;
 	padding:0 5px 0 5px;
 	vertical-align:middle;
 }
-INPUT[TYPE='RADIO']{
-	height:19px;
-	vertical-align:middle;
+INPUT[TYPE='CHECKBOX'],INPUT[TYPE='RADIO']{
+	VERTICAL-ALIGN:-2px;
+	CURSOR:pointer;
 }
-INPUT[TYPE='CHECKBOX']{
-	height:19px;
-	vertical-align:middle;
-	margin-top:0px;
-	margin-bottom:0px;
-	margin-left:3px;
-	margin-right:3px;
+LABEL{
+	CURSOR:pointer;
+}
+
+INPUT[type='BUTTON']{
+	HEIGHT:21px;
+	WIDTH:40px;
+	BORDER:1px solid silver;
+	BACKGROUND-COLOR:#F0F0F0;
+	CURSOR:pointer;
+}
+
+SELECT{
+	HEIGHT:21px;
+	BORDER:1px solid silver;
+	CURSOR:pointer;
+}
+TEXTAREA{
+	PADDING:5px;
+	BORDER:1px solid silver;
 }
 INPUT[READONLY]{
  color:black;
@@ -212,6 +224,26 @@ INPUT[READONLY]{
 INPUT:DISABLED{
  color:black;
  background-color:ivory;
+}
+TEXTAREA[readonly]{
+	COLOR:black;
+	BACKGROUND-COLOR:ivory;
+}
+TEXTAREA:disabled{
+	COLOR:black;
+	BACKGROUND-COLOR:ivory;
+}
+SELECT:disabled{
+	COLOR:black;
+	BACKGROUND-COLOR:ivory;
+}
+BUTTON:disabled{
+	color:white;
+	background-color:silver;
+}
+INPUT[type='BUTTON']:disabled{
+	BACKGROUND-COLOR:#F0F0F0;
+	COLOR:silver;
 }
 SELECT{
 	height:21px;
@@ -232,16 +264,25 @@ TABLE.TABLE-HEAD TR {
 	height:20px;
 }
 TABLE.TABLE-HEAD TH {
-	color:white;
-	border:1px solid white;
-	font-weight:normal;
-	background-color:navy;
-	background-repeat:no-repeat;
-	background-position-x:right;
-	background-position-y:2px;
+	BORDER:1px solid navy;
+	BORDER-LEFT:1px solid white;
+	BORDER-RIGHT:1px solid white;
+	FONT-WEIGHT:normal;
+	BACKGROUND-COLOR:navy;
+	BACKGROUND-REPEAT:no-repeat;
+	BACKGROUND-POSITION-X:right;
+	BACKGROUND-POSITION-Y:2px;
+	COLOR:white;
+}
+TABLE.TABLE-HEAD TH:first-child {
+	BORDER-LEFT:1px solid navy;
+}
+TABLE.TABLE-HEAD TH:last-child {
+	BORDER-RIGHT:1px solid navy;
 }
 TABLE.TABLE-HEAD TH.SORT {
 	background-image:url("../img/sort_none.png");
+	background-size:14px 14px;
 	cursor:pointer;
 }
 TABLE.TABLE-HEAD TH.ASC {
@@ -254,10 +295,10 @@ TABLE.TABLE-HEAD TH.DESC {
 }
 /*****************************************************************************/
 TABLE.TABLE-BODY {
-	border:none;
-	border-collapse:collapse;
-	table-layout:fixed;
-	margin:130px 0 50px 0;
+	BORDER: none;
+	BORDER-COLLAPSE: collapse;
+	TABLE-LAYOUT: fixed;
+	MARGIN:146px 0 50px 0;
 }
 TABLE.TABLE-BODY TR {
 	height:20px;
@@ -295,4 +336,88 @@ TABLE.table-BODY P {
 /*****************************************************************************/
 #copyright{
 	text-align:center;
+}
+
+
+/*****************************************************************************/
+.MENU-GROUP {
+	FONT-SIZE:18px;
+	FONT-WEIGHT:bold;
+	COLOR:gray;
+}
+.MENU-BUTTON1 {
+	COLOR:WHITE!important;
+	FONT-SIZE:20px;
+	BORDER:none!important;
+	CURSOR:pointer!important;
+	HEIGHT:43px!important;
+	WIDTH:400px!important;
+	BACKGROUND-COLOR:navy!important;
+	FONT-WEIGHT:bold;
+	TEXT-ALIGN:center;
+	BORDER-RADIUS:10px;
+	MARGIN:1px;
+}
+.MENU-BUTTON2 {
+	COLOR:WHITE!important;
+	FONT-SIZE:20px;
+	BORDER:none!important;
+	CURSOR:pointer!important;
+	HEIGHT:43px!important;
+	WIDTH:400px!important;
+	BACKGROUND-COLOR:navy!important;
+	FONT-WEIGHT:bold;
+	TEXT-ALIGN:center;
+	BORDER-RADIUS:10px;
+	MARGIN:1px;
+}
+.MENU-BUTTON3 {
+	COLOR:WHITE!important;
+	FONT-SIZE:20px;
+	BORDER:none!important;
+	CURSOR:pointer!important;
+	HEIGHT:43px!important;
+	WIDTH:400px!important;
+	BACKGROUND-COLOR:navy!important;
+	FONT-WEIGHT:bold;
+	TEXT-ALIGN:center;
+	BORDER-RADIUS:10px;
+	MARGIN:1px;
+}
+/*****************************************************************************/
+.elfinder-toolbar{
+	border: 1px solid #dddddd!important;
+	background:none!important;
+	background-color:#e9e9e9!important;
+}
+
+.elfinder-statusbar{
+	border: 1px solid #dddddd!important;
+	background:none!important;
+	background-color:#e9e9e9!important;
+}
+.elfinder-dialog BUTTON{
+	width:auto;
+}
+/*****************************************************************************/
+.BTN_ICON{
+	vertical-align:middle;
+	height:20px;
+	cursor:pointer;
+	margin-left:2px;
+	margin-right:2px;
+}
+.BTN_ICON:hover{
+	background-color:lightcyan;
+}
+/*****************************************************************************/
+.BTN_ICON_S{
+	vertical-align:middle;
+	height:16px;
+	cursor:pointer;
+	margin-left:2px;
+	margin-right:2px;
+}
+.BTN_ICON_S:hover{
+	background-color:lightcyan;
 }

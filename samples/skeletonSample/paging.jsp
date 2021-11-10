@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <DIV ID="<%= request.getAttribute("id") %>" STYLE="MARGIN-TOP:-24PX;TEXT-ALIGN:RIGHT">
-    <BUTTON ONCLICK="<%= request.getAttribute("id") %>.gotoFirstPage()" STYLE="WIDTH:31PX">|&lt;</BUTTON>
-    <BUTTON ONCLICK="<%= request.getAttribute("id") %>.gotoPrePage()" STYLE="WIDTH:31PX">&lt;</BUTTON>
-    <SPAN CLASS="currentPage">0</SPAN>/<SPAN CLASS="allPages">0</SPAN> ( <SPAN CLASS="totalNumber"></SPAN> ) 
-    <BUTTON ONCLICK="<%= request.getAttribute("id") %>.gotoNextPage()" STYLE="WIDTH:31PX">&gt;</BUTTON>
-    <BUTTON ONCLICK="<%= request.getAttribute("id") %>.gotoLastPage()" STYLE="WIDTH:31PX">&gt;|</BUTTON>
+	<img src="img/btn_first_page.png" ONCLICK="<%= request.getAttribute("id") %>.gotoFirstPage()" class="BTN_ICON_S" title="最初へ">
+	<img src="img/btn_previous_page.png" ONCLICK="<%= request.getAttribute("id") %>.gotoPrePage()" class="BTN_ICON_S" title="新規">
+	<SPAN CLASS="currentPage">0</SPAN>/<SPAN CLASS="allPages">0</SPAN> ( <SPAN CLASS="totalNumber"></SPAN> )
+	<img src="img/btn_next_page.png" ONCLICK="<%= request.getAttribute("id") %>.gotoNextPage()" class="BTN_ICON_S" title="新規">
+	<img src="img/btn_last_page.png" ONCLICK="<%= request.getAttribute("id") %>.gotoLastPage()" class="BTN_ICON_S" title="新規">
+	
 
     <INPUT type="hidden" class="orderBy" value="<%= request.getAttribute("orderby") %>">
     <SCRIPT>

@@ -6,14 +6,15 @@
 <HEAD>
 	<TITLE>パスワード送信依頼</TITLE>
 	<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
-	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style.css">
-	<efw:Client theme="mytheme" lang="jp"/>
+	<LINK REL="SHORTCUT ICON" HREF="img/favicon.png" />
+	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style_efw.css">
+	<efw:Client lang="jp" mode="jquery-ui" theme="mytheme" />
 </HEAD>
 <BODY onload="$('#txt_uid').focus();">
 	<DIV ID="LG04" CLASS=MAIN ALIGN="CENTER">
 		<efw:Part path="headbeforelogining.jsp" title="EFW DEMO　パスワード送信依頼" />
 		<BR><BR><BR><BR>
-		<TABLE STYLE="WIDTH: 60%;">
+		<TABLE STYLE="WIDTH: 70%;">
 			<TR>
 				<TD CLASS="MSG-BLUE" style="padding-left:150px"><BR>以下の手順で登録されているパスワードをメールでお知らせします。<BR>
 				<BR></TD>

@@ -8,23 +8,25 @@
 			title : "ユーザアップロード",
 			autoOpen: false,
 			resizable : false,
-			height : 300,
-			width : 500,
+			height : 200,
+			width : 550,
 			modal : true,
+			show: "fade",
+			open : function(){},
 			close : function(){
 					Efw("MST01_search");
 			},
 		});
 	});
 	</SCRIPT>
-	<LABEL CLASS="MSG-BLUE">ファイルを選択してください。</LABEL>
-	<BR>
-	<BR>
-	<INPUT CLASS="file" TYPE="FILE" STYLE="WIDTH:100%;HEIGHT:30PX;PADDING:0">
-	<BR>
-	<BR>
-	<BR>
-	<DIV STYLE="TEXT-ALIGN:CENTER">
+	<TABLE STYLE="WIDTH: 100%;height: 40%">
+		<TR>
+			<TD align="center">
+				<input TYPE="file" class="file" STYLE="WIDTH:80%;">
+         	</TD>
+         </TR>
+	</TABLE>
+	<DIV CLASS="FOOTER">
 		<BUTTON ONCLICK="Efw('MST01_uploaddialog_save')" data-shortcut="F7" STYLE="WIDTH:150PX">F7 アップロード</BUTTON>
 		<BUTTON ONCLICK="MST01_uploaddialog.dialog('close');" data-shortcut="ESC">ESC 閉じる</BUTTON>
 	</DIV>

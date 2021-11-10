@@ -6,15 +6,15 @@
 <HEAD>
 	<TITLE>パスワード変更</TITLE>
 	<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
-	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style.css">
-	<efw:Client theme="mytheme" lang="jp"/>
-<SCRIPT type="text/javascript">
-	function init (){
-		$('#txt_uid').focus();
-		Efw("LG03_init");
-		}
-
-</SCRIPT>
+	<LINK REL="SHORTCUT ICON" HREF="img/favicon.png" />
+	<LINK REL=STYLESHEET TYPE=TEXT/CSS HREF="css/style_efw.css">
+	<efw:Client lang="jp" mode="jquery-ui" theme="mytheme" />
+	<SCRIPT type="text/javascript">
+		function init (){
+			$('#txt_uid').focus();
+			Efw("LG03_init");
+			}
+	</SCRIPT>
 
 </HEAD>
 <BODY onload="init()">
