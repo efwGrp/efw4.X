@@ -23,6 +23,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	private String mode="jquery-ui";
 	private String theme="base";
 	private String lang="en";//en cn jp
+	private String major="4";
 	
 	public String getBaseurl() {
 		return baseurl;
@@ -56,6 +57,14 @@ public final class Client extends TagSupport implements DynamicAttributes {
 		this.lang = lang;
 	}
 
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
 	/**
 	 * タグ処理。
@@ -73,9 +82,14 @@ public final class Client extends TagSupport implements DynamicAttributes {
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/jquery-ui/jquery-ui.min.js?v="+v+"\"></script>\n");
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.dialog.jquery-ui.js?v="+v+"\"></script>\n");
 			}else if("bootstrap".equals(mode)){
-				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/bootstrap.min.css?v="+v+"\">\n");
-				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/bootstrap.bundle.min.js?v="+v+"\"></script>\n");
+				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/"+major+"/css/bootstrap.min.css?v="+v+"\">\n");
+				if ("4".equals(major)||"5".equals(major)){//4 5
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/"+major+"/js/bootstrap.bundle.min.js?v="+v+"\"></script>\n");
+				}else {//3 2
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/"+major+"/js/bootstrap.min.js?v="+v+"\"></script>\n");
+				}
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.dialog.bootstrap.js?v="+v+"\"></script>\n");
+				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/icons/bootstrap-icons.css?v="+v+"\">\n");
 			}
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/efw/efw.css?v="+v+"\">\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/easytimer.min.js?v="+v+"\"></script>\n");
@@ -89,7 +103,11 @@ public final class Client extends TagSupport implements DynamicAttributes {
 			out.print("	efw.baseurl = \""+baseurl+"\";\n");
 			out.print("	efw.lang = \""+lang+"\";\n");
 			out.print("	efw.mode = \""+mode+"\";\n");
-			if("jquery-ui".equals(mode))out.print("	efw.theme = \""+theme+"\";\n");
+			if("jquery-ui".equals(mode)){
+				out.print("	efw.theme = \""+theme+"\";\n");
+			}else if("bootstrap".equals(mode)){
+				out.print("	efw.major = \""+major+"\";\n");
+			}
 			out.print("</script>\n");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -101,6 +119,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 		mode="jquery-ui";
 		theme="base";
 		lang="en";
+		major="4";
 		return SKIP_BODY;
 	}
 
@@ -122,6 +141,9 @@ public final class Client extends TagSupport implements DynamicAttributes {
 		}
 		if(name.equalsIgnoreCase("lang")){
 			lang=(String) value;
+		}
+		if(name.equalsIgnoreCase("major")){
+			major=(String) value;
 		}
 		
 	}

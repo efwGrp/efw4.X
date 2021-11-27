@@ -24,7 +24,7 @@ Boolean.prototype.debug = function(label) {
 		label = "";
 	java.lang.System.out.println("-----" + label + "-----");
 	java.lang.System.out.println(JSON.stringify(this));
-	return true && this;
+	return this && true;
 };
 Date.prototype.debug = function(label) {
 	if (!label)
