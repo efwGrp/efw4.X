@@ -1,6 +1,8 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.excel;
 
+import static org.apache.poi.util.Units.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,9 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import static org.apache.poi.util.Units.EMU_PER_PIXEL;
-import static org.apache.poi.util.Units.EMU_PER_POINT;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.common.usermodel.HyperlinkType;
@@ -248,17 +247,17 @@ public final class Excel {
 				CellValue cellValue = evaluator.evaluate(cell);
 				switch (cellValue.getCellType()) {
 				case BOOLEAN:
-					return cell.getBooleanCellValue();
+					return cellValue.getBooleanValue();
 				case ERROR:
-					return cell.getErrorCellValue();
+					return cellValue.getErrorValue();
 				case NUMERIC:
 					if (DateUtil.isCellDateFormatted(cell)) {
-						return cell.getDateCellValue();
+						return DateUtil.getJavaDate(cellValue.getNumberValue());
 					} else {
-						return cell.getNumericCellValue();
+						return cellValue.getNumberValue();
 					}
 				case STRING:
-					return cell.getStringCellValue();
+					return cellValue.getStringValue();
 				case _NONE:
 				case BLANK:
 				default:

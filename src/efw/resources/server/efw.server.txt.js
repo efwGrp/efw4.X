@@ -15,6 +15,7 @@ function TXTReader(path, regFieldsDef, encoding, rowSize) {
 	if (this.constructor.name!="TXTReader"){throw new Packages.efw.NewKeywordWasForgottenException("TXTReader");}
 	this._path = path;
 	this._regFieldsDef = regFieldsDef;
+	this._regFieldsDefRegExp = new RegExp(this._regFieldsDef);
 	if (encoding != null){this._encoding = encoding;}
 	if (rowSize != null){this._rowSize = rowSize;}
 };
@@ -30,6 +31,10 @@ TXTReader.prototype._path = null;
  * The attr to keep the regFieldsDef.
  */
 TXTReader.prototype._regFieldsDef = null;
+/**
+ * The attr to keep the regFieldsDefRegExp.
+ */
+TXTReader.prototype._regFieldsDefRegExp = null;
 /**
  * The attr to keep the encoding.
  */
@@ -159,8 +164,7 @@ TXTReader.prototype.loopAllLines = function(callback){
  * @returns {Array}
  */
 TXTReader.prototype._split = function (rowdata,index) {
-	var regexp = new RegExp(this._regFieldsDef);
-	var aryField = rowdata.match(regexp);
+	var aryField = rowdata.match(this._regFieldsDefRegExp);
 
 	if (aryField == null) {
 		throw new Packages.efw.CsvTxtDataException("Illegal data",index,rowdata);
