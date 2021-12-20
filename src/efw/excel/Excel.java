@@ -664,7 +664,7 @@ public final class Excel {
     				templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
-    			XSSFClientAnchor anchor=(XSSFClientAnchor)(cloneShape(patriarch,(XSSFSimpleShape) templateShape).getAnchor());
+    			XSSFClientAnchor anchor=(XSSFClientAnchor)(cloneShape(patriarch,(XSSFSimpleShape) templateShape,null).getAnchor());
 
     			int cellWidth=(int)(cell.getSheet().getColumnWidth(cell.getColumnIndex()) / 256 * 8 * EMU_PER_PIXEL);
     		    int cellHeight=(int)(cell.getRow().getHeight() / 20.0D * EMU_PER_POINT);
@@ -715,16 +715,7 @@ public final class Excel {
         	if (templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
-    			XSSFShape shape=cloneShape(patriarch,templateShape);
-    			// 図形の中に文字内容を設定する
-    			if(value!=null&&"XSSFSimpleShape".equals(templateShape.getClass().getSimpleName())){
-					if(((XSSFSimpleShape)shape).getTextParagraphs().size()>0){
-						XSSFTextParagraph paragraph=((XSSFSimpleShape)shape).getTextParagraphs().get(0);
-						if(paragraph.getTextRuns().size()>0){
-							paragraph.getTextRuns().get(0).setText(value);
-						}
-					}
-				}
+    			XSSFShape shape=cloneShape(patriarch,templateShape,value);
     			XSSFClientAnchor anchor=(XSSFClientAnchor)(shape.getAnchor());
     			int dx1=EMU_PER_PIXEL*x;
     			int dy1=EMU_PER_PIXEL*y;
@@ -788,17 +779,7 @@ public final class Excel {
         	if (templateShapeName.equals(templateShape.getShapeName())) {
                 XSSFDrawing patriarch=sheet.getDrawingPatriarch();
     			if(patriarch==null) patriarch = sheet.createDrawingPatriarch();
-    			
-    			XSSFShape shape=cloneShape(patriarch,templateShape);
-    			// 図形の中に文字内容を設定する
-    			if(value!=null&&"XSSFSimpleShape".equals(templateShape.getClass().getSimpleName())){
-					if(((XSSFSimpleShape)shape).getTextParagraphs().size()>0){
-						XSSFTextParagraph paragraph=((XSSFSimpleShape)shape).getTextParagraphs().get(0);
-						if(paragraph.getTextRuns().size()>0){
-							paragraph.getTextRuns().get(0).setText(value);
-						}
-					}
-				}
+    			XSSFShape shape=cloneShape(patriarch,templateShape,value);
     			XSSFClientAnchor anchor=(XSSFClientAnchor)(shape.getAnchor());
     			anchor.setRow1(firstCellrow);
     			anchor.setRow2(lastCellrow);
@@ -1062,9 +1043,10 @@ public final class Excel {
 	 * XSSFのShapeをコピーする
 	 * @param patriarch
 	 * @param templateShape
+	 * @param value
 	 * @return　作成されたshape
 	 */
-	private XSSFShape cloneShape(XSSFDrawing patriarch,XSSFShape templateShape){
+	private XSSFShape cloneShape(XSSFDrawing patriarch,XSSFShape templateShape,String value){
 		String clsNm=templateShape.getClass().getSimpleName();
 		if ("XSSFSimpleShape".equals(clsNm)) {
 			XSSFSimpleShape orgSimpleShape=(XSSFSimpleShape)templateShape;
@@ -1079,7 +1061,11 @@ public final class Excel {
 						XSSFTextParagraph paragraph=simpleShape.getTextParagraphs().get(0);
 						if(paragraph.getTextRuns().size()>0){
 							XSSFTextRun textRun= paragraph.getTextRuns().get(0);
-							textRun.setText(tempRun.getText());
+							if (value!=null) {
+								textRun.setText(value);
+							}else {
+								textRun.setText(tempRun.getText());
+							}
 							textRun.setFontSize(tempRun.getFontSize());
 							textRun.setCharacterSpacing(tempRun.getCharacterSpacing());
 							textRun.setFontColor(tempRun.getFontColor());
