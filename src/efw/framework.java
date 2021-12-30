@@ -29,7 +29,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.05.007";// change it when releasing jar.
+	private static String version="4.05.009";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
@@ -177,8 +177,8 @@ public class framework {
 		framework.initCLog("properties = "+properties);
 		framework.initCLog("PropertiesManager.inited.");
 		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
 		initCommonBL();
+		initCommonWBL(webHome);//script should after db
 		//-----------------------------------------------------------------
 		framework.setCors(PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors()));
 		framework.initCLog("cors = " + framework.getCors());
@@ -195,8 +195,8 @@ public class framework {
 		framework.initCLog("properties = "+properties);
 		framework.initCLog("PropertiesManager.inited.");
 		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
 		initCommonBL();
+		initCommonWBL(webHome);//script should after db
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -209,8 +209,6 @@ public class framework {
 		PropertiesManager.init();
 		LogManager.init();//エラーなし。
 		framework.initCLog("PropertiesManager inited.");//ログ出力はLogManagerの初期化後で必要。
-		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
 		//-----------------------------------------------------------------
 		framework.setCors(PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors()));
 		framework.initCLog("cors = " + framework.getCors());
@@ -234,6 +232,8 @@ public class framework {
 		}catch(Exception ex){
 			framework.initWLog("MailManager failed.",ex);
 		}
+		//-----------------------------------------------------------------
+		initCommonWBL(webHome);//script should after db
 		//-----------------------------------------------------------------
 		//efwFilter init to check login or not
 		efwFilter.init();//プロパティの後で必要。エラーなし。

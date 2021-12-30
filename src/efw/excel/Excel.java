@@ -97,7 +97,7 @@ public final class Excel {
 	 * @throws InvalidFormatException 
 	 * @throws EncryptedDocumentException 
 	 */
-	protected Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
+	public Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		//一時ファイルを作成する。
 		//引数のfileを一時ファイルにコピーする。
 		//一時ファイルでexcelを開く。

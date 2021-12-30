@@ -2,7 +2,7 @@
 <%@ taglib prefix="efw" uri="efw" %>
 <%
 String lang=request.getParameter("lang");
-pageContext.setAttribute(efw.taglib.Client.EFW_I18N_LANG, lang);
+pageContext.setAttribute(efw.taglib.Client.EFW_I18N_LANG, lang, PageContext.REQUEST_SCOPE);
 %>
 /**** efw4.X Copyright 2020 efwGrp ****/
 /**
