@@ -168,6 +168,7 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <td><a href="help/excel.encircle.md">encircle</a></td>
 <td><a href="help/excel.addShape.md">addShape</a></td>
 <td><a href="help/excel.addShapeInRange.md">addShapeInRange</a></td>
+<td><a href="help/excel.replacePicture.md">replacePicture</a></td>
 </tr>
 <tr><td>Record</td>
 <td><a href="help/record.new.md">new</a></td>
