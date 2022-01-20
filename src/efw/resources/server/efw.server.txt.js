@@ -9,15 +9,21 @@
  *			encoding: optional<br>
  * @param {Number}
  *			rowSize: optional<br>
+ * @param {Number}
+ *			skipRows: optional<br>
+ * @param {Number}
+ *			rowsToRead: optional<br>
  * @author Liu Xinyu
  */
-function TXTReader(path, regFieldsDef, encoding, rowSize) {
+function TXTReader(path, regFieldsDef, encoding, rowSize, skipRows, rowsToRead ) {
 	if (this.constructor.name!="TXTReader"){throw new Packages.efw.NewKeywordWasForgottenException("TXTReader");}
 	this._path = path;
 	this._regFieldsDef = regFieldsDef;
 	this._regFieldsDefRegExp = new RegExp(this._regFieldsDef);
 	if (encoding != null){this._encoding = encoding;}
 	if (rowSize != null){this._rowSize = rowSize;}
+	if (skipRows != null){this._skipRows = skipRows;}
+	if (rowsToRead != null){this._rowsToRead = rowsToRead;}
 };
 /**
  * TXT locker for openning reader
@@ -43,6 +49,15 @@ TXTReader.prototype._encoding = "UTF-8";
  * The attr to keep the rowSize.
  */
 TXTReader.prototype._rowSize = -1;
+/**
+* The attr to keep the skipRows.
+ */
+TXTReader.prototype._skipRows = -1;
+/**
+* The attr to keep the rowsToRead.
+ */
+TXTReader.prototype._rowsToRead = -1;
+
 /**
  * The function to read all lines into a matrix of arrays.
  * 
@@ -89,6 +104,9 @@ TXTReader.prototype.loopAllLines = function(callback){
 			try{
 				TXTReader_lock.lock();
 				br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
+				if (this._skipRows!=-1){
+					br.skip(new java.lang.Long(""+(this._skipRows*this._rowSize)).longValue());
+				}
 			}finally{
 				TXTReader_lock.unlock();
 			}
@@ -143,8 +161,17 @@ TXTReader.prototype.loopAllLines = function(callback){
 					strLine=""+new java.lang.String(buf,this._encoding);
 				}
 				var aryField = this._split(strLine,intNum);
-				callback(aryField, intNum);
-				intNum++;
+				if (this._rowsToRead!=-1){
+					if (intNum<this._rowsToRead){
+						callback(aryField, intNum);
+						intNum++;
+					}else{
+						break;
+					}
+				}else{
+					callback(aryField, intNum);
+					intNum++;
+				}
 			}
 			
 		}

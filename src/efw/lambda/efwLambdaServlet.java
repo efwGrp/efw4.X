@@ -37,27 +37,17 @@ public class efwLambdaServlet implements RequestStreamHandler{
 	}
 	
 	//CORS対応
-	public static String doCORS(String origin, String result){
-		String ret="{\"statusCode\":201,";
+	public static String createAwsResult(String result){
+		String ret="{\"statusCode\":201";//この属性により、awsはefw処理にシステムなしと判断する。
 		if (framework.getInitSuccessFlag()){
-			ret+= "\"headers\":{"
-			+ "\"Access-Control-Allow-Headers\":\"Accept,Accept-Encoding,Accept-Language,Connection,Content-Length,Content-Type,Host,Origin,Referer,User-Agent\",";
-			if("*".equals(framework.getCors())){
-				ret+="\"Access-Control-Allow-Origin\":\""+origin+"\",";
-			}else if("null".equals(framework.getCors())||"".equals(framework.getCors())||null==framework.getCors()){
-				
-			}else {
-				String[] corsAry=framework.getCors().split(",");
-				for(int i=0;i<corsAry.length;i++){
-					if (corsAry[i].equals(origin)){
-						ret+="\"Access-Control-Allow-Origin\":\""+origin+"\",";
-						break;
-					}
-				}
+			ret+=",\"headers\":{";
+			ret+="\"set-cookie\":\"abc=aaaavalue; SameSite=None; Secure; Path=/; HttpOnly\"";
+			ret+="}";
+			if (result!=null) {
+				ret+= ",\"body\":\""+result.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("[']","\\\\'").replaceAll("[\"]","\\\\\"")+"\"";
 			}
-			ret+="\"Access-Control-Allow-Methods\":\"POST,OPTIONS\"},";
 		}
-		ret+= "\"body\":\""+result.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("[']","\\\\'").replaceAll("[\"]","\\\\\"")+"\"}";
+		ret+="}";
 		return ret;
 	}
 	
@@ -75,7 +65,6 @@ public class efwLambdaServlet implements RequestStreamHandler{
 		}
 		LinkedTreeMap input=new GsonBuilder().setPrettyPrinting().create().fromJson(reqJson.toString(),LinkedTreeMap.class);
 		String reqBody =(String)input.get("body");
-		String origin=(String)((LinkedTreeMap)input.get("headers")).get("origin");
 		String method=(String)((LinkedTreeMap)((LinkedTreeMap)input.get("requestContext")).get("http")).get("method");
 		//the other error string
 		String otherError="{\"values\":[],\"actions\":{\"error\":{\"clientMessageId\":\"OtherErrorException\"}"+
@@ -86,24 +75,24 @@ public class efwLambdaServlet implements RequestStreamHandler{
 		//if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
 			framework.runtimeSLog("initSuccessFlag = false");
-			wr.print(efwLambdaServlet.doCORS(origin,otherError));
+			wr.print(efwLambdaServlet.createAwsResult(otherError));
 			wr.close();
 			return;
 		}
 		//when option method,return cors info
 		if (!"POST".equals(method)) {
-			wr.print(efwLambdaServlet.doCORS(origin,""));
+			wr.print(efwLambdaServlet.createAwsResult(null));
 			wr.close();
 			return;
 		}
 		//call script 
 		framework.setThreadLogs(new ArrayList<String>());
 		try {
-			wr.print(efwLambdaServlet.doCORS(origin,ScriptManager.doLambdaPost(reqBody)));
+			wr.print(efwLambdaServlet.createAwsResult(ScriptManager.doLambdaPost(reqBody)));
 			wr.close();
 		} catch (Exception ex) {
 			framework.runtimeSLog(ex);
-			wr.print(efwLambdaServlet.doCORS(origin,otherError));//efw内部エラー。
+			wr.print(efwLambdaServlet.createAwsResult(otherError));//efw内部エラー。
 			wr.close();
 		}finally{
 			framework.removeRequest();
@@ -114,7 +103,6 @@ public class efwLambdaServlet implements RequestStreamHandler{
 			framework.removeNumberFormats();
 			framework.removeDateFormats();
 		}
-		
 	}
 }
 

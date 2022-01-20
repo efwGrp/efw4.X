@@ -33,15 +33,6 @@ public final class efwRestAPI extends HttpServlet{
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doRestAPI(req,resp,"DELETE");
 	}
-
-	/**
-	 * OPTIONメソッド
-	 */
-	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//CORS関連設定を行う
-		efwServlet.doCORS(request,response);
-		super.doOptions(request, response);
-	}
 	
 	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
         response.setCharacterEncoding(framework.getSystemCharSet());
@@ -88,9 +79,6 @@ public final class efwRestAPI extends HttpServlet{
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 			//response.getWriter().print(otherError);//efw内部エラー。
 		}finally{
-			//CORS関連設定を行う
-			efwServlet.doCORS(request,response);
-
 			framework.removeRequest();
 			framework.removeResponse();
 			framework.removeI18nProp();
@@ -99,6 +87,5 @@ public final class efwRestAPI extends HttpServlet{
 			framework.removeNumberFormats();
 			framework.removeDateFormats();
 		}
-		
 	}
 }

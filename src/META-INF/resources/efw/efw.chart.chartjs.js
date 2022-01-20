@@ -1,4 +1,4 @@
-/**** efw3.X Copyright 2019 efwGrp ****/
+/**** efw3.X Copyright 2022 efwGrp ****/
 /**
  * The class is for include google charts.
  */
@@ -48,14 +48,14 @@ EfwClientChartJS.prototype.draw=function(){
 	];
 	var types={
 		"area"			:{"chart":"line",			"fill":"start",	"stacked":false,"multiData":true,"axis":"v"},
-		"bar"			:{"chart":"horizontalBar",	"fill":false,	"stacked":false,"multiData":true,"axis":"h"},
+		"bar"			:{"chart":"bar",			"fill":false,	"stacked":false,"multiData":true,"axis":"h"},
 		"column"		:{"chart":"bar",			"fill":false,	"stacked":false,"multiData":true,"axis":"v"},
-		"donut"			:{"chart":"doughnut",		"fill":false,	"stacked":false,"multiData":false,"axis":""},
+		"donut"			:{"chart":"doughnut",		"fill":false,	"stacked":false,"multiData":false,"axis":"r"},
 		"line"			:{"chart":"line",			"fill":false,	"stacked":false,"multiData":true,"axis":"v"},
-		"pie"			:{"chart":"pie",			"fill":false,	"stacked":false,"multiData":false,"axis":""},
+		"pie"			:{"chart":"pie",			"fill":false,	"stacked":false,"multiData":false,"axis":"r"},
 		"scatter"		:{"chart":"line",			"fill":false,	"stacked":false,"multiData":true,"axis":"v"},
 		"stackedarea"	:{"chart":"line",			"fill":"-1",	"stacked":true,"multiData":true,"axis":"v"},
-		"stackedbar"	:{"chart":"horizontalBar",	"fill":false,	"stacked":true,"multiData":true,"axis":"h"},
+		"stackedbar"	:{"chart":"bar",			"fill":false,	"stacked":true,"multiData":true,"axis":"h"},
 		"stackedcolumn"	:{"chart":"bar",			"fill":false,	"stacked":true,"multiData":true,"axis":"v"},
 		"radar"			:{"chart":"radar",			"fill":false,	"stacked":false,"multiData":true,"axis":"r"},
 	};
@@ -108,49 +108,62 @@ EfwClientChartJS.prototype.draw=function(){
 			callbacks:{}
 		},
 		elements:{line:{tension:0.000001}},//折れ線
-		legend:{
-			display:function(){
-				if(legender=="none")return false;
-				if(legender=="left"||legender=="top"||legender=="bottom"||legender=="right")return true;
-				return false;
-			}(),
-			position:legender
-		},
-		title:{
-			display:$("#"+this.dataId+" caption").html()?true:false,
-			text:$("#"+this.dataId+" caption").html()
+		plugins:{
+			legend:{
+				display:function(){
+					if(legender=="none")return false;
+					if(legender=="left"||legender=="top"||legender=="bottom"||legender=="right")return true;
+					return false;
+				}(),
+				position:legender
+			},
+			title:{
+				display:$("#"+this.dataId+" caption").html()?true:false,
+				text:$("#"+this.dataId+" caption").html()
+			},
+			tooltip:{callbacks:{}},
 		},
 		scales:{},
+		scale:{},
 	};
-	
-	if(types[this.type].axis=="v"||types[this.type].axis=="h"){
-		this.options.scales.yAxes=[{stacked:false,ticks:{}}];
-		this.options.scales.xAxes=[{stacked:false,ticks:{}}];
-		//change options by type
-		if(types[this.type].stacked){
-			this.options.scales.yAxes[0].stacked=true;
-			this.options.scales.xAxes[0].stacked=true;
-		}
+	if (types[this.type].axis=="h"){
+		this.options.indexAxis='y';
+		this.options.scales.x={ticks:{}};
+		this.options.scales.y={ticks:{}};
+	}else if (types[this.type].axis=="v"){
+		this.options.indexAxis='x';
+		this.options.scales.x={ticks:{}};
+		this.options.scales.y={ticks:{}};
 	}else if(types[this.type].axis=="r"){
 		this.options.scale={ticks:{}};
 	}
+	
+	if(types[this.type].stacked){
+		if(types[this.type].axis=="v"){
+			this.options.scales.x.stacked=true;
+			this.options.scales.y.stacked=true;
+		}else if(types[this.type].axis=="h"){
+			this.options.scales.y.stacked=true;
+			this.options.scales.x.stacked=true;
+		}
+	}
 	if(d[0][0]){
 		if(types[this.type].axis=="v"){
-			this.options.scales.xAxes[0].scaleLabel={display:true,labelString:d[0][0]};
+			this.options.scales.x.title={display:true,text:d[0][0]};
 		}else if(types[this.type].axis=="h"){
-			this.options.scales.yAxes[0].scaleLabel={display:true,labelString:d[0][0]};
+			this.options.scales.y.title={display:true,text:d[0][0]};
 		}
 	}
 	if(ticks!=""&&ticks!=null){
 		var aryTicks=JSON.parse("["+ticks+"]");
 		if(types[this.type].axis=="v"){
-			this.options.scales.yAxes[0].ticks.min=aryTicks[0];
-			this.options.scales.yAxes[0].ticks.max=aryTicks[aryTicks.length-1];
-			this.options.scales.yAxes[0].ticks.stepSize=aryTicks[1]-aryTicks[0];
+			this.options.scales.y.ticks.min=aryTicks[0];
+			this.options.scales.y.ticks.max=aryTicks[aryTicks.length-1];
+			this.options.scales.y.ticks.stepSize=aryTicks[1]-aryTicks[0];
 		}else if(types[this.type].axis=="h"){
-			this.options.scales.xAxes[0].ticks.min=aryTicks[0];
-			this.options.scales.xAxes[0].ticks.max=aryTicks[aryTicks.length-1];
-			this.options.scales.xAxes[0].ticks.stepSize=aryTicks[1]-aryTicks[0];
+			this.options.scales.x.ticks.min=aryTicks[0];
+			this.options.scales.x.ticks.max=aryTicks[aryTicks.length-1];
+			this.options.scales.x.ticks.stepSize=aryTicks[1]-aryTicks[0];
 		}else if(types[this.type].axis=="r"){
 			this.options.scale.ticks.min=aryTicks[0];
 			this.options.scale.ticks.max=aryTicks[aryTicks.length-1];
@@ -159,31 +172,34 @@ EfwClientChartJS.prototype.draw=function(){
 	}
 	if(formatter){
 		if(types[this.type].axis=="v"){
-			this.options.scales.yAxes[0].ticks.callback=function(value, index, values) {
+			this.options.scales.y.ticks.callback=function(value, index, values) {
 				return EfwClientFormat.prototype.formatNumber(value,formatter);
 			}
+			this.options.plugins.tooltip.callbacks.label=function(context){
+				return context.dataset.label+": "+EfwClientFormat.prototype.formatNumber(context.parsed.y,formatter);
+			}
 		}else if(types[this.type].axis=="h"){
-			this.options.scales.xAxes[0].ticks.callback=function(value, index, values) {
+			this.options.scales.x.ticks.callback=function(value, index, values) {
 				return EfwClientFormat.prototype.formatNumber(value,formatter);
+			}
+			this.options.plugins.tooltip.callbacks.label=function(context){
+				return context.dataset.label+": "+EfwClientFormat.prototype.formatNumber(context.parsed.x,formatter);
 			}
 		}else if(types[this.type].axis=="r"){
 			this.options.scale.ticks.callback=function(value, index, values) {
 				return EfwClientFormat.prototype.formatNumber(value,formatter);
 			}
-		}
-		this.options.tooltips.callbacks.label=function(tooltipItems,data){
-			if(data.datasets[tooltipItems.datasetIndex].label!=null){
-				return data.datasets[tooltipItems.datasetIndex].label +": " 
-				+ EfwClientFormat.prototype.formatNumber(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index],formatter);
-			}else{
-				return data.labels[tooltipItems.index] +": "
-				+ EfwClientFormat.prototype.formatNumber(data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index],formatter);
+			this.options.plugins.tooltip.callbacks.label=function(context){
+				return context.label+": "+EfwClientFormat.prototype.formatNumber(context.parsed,formatter);
 			}
-		};
+		}
 	}
-	
 	if(types[this.type].chart=="doughnut"){
-		this.options.cutoutPercentage=40;
+		this.options.cutout=40;
+	}
+	//do setOptions event
+	if(this.setOptions!=null){
+		try{this.setOptions(this.options);}catch(e){};
 	}
 	///////////////////////////////////////////////////////////////////////////
 	this.data={labels:[],datasets:[]};
@@ -232,11 +248,6 @@ EfwClientChartJS.prototype.draw=function(){
 		}
 		coldata.fill=types[this.type].fill;
 		this.data.datasets.push(coldata);
-	}
-	///////////////////////////////////////////////////////////////////////////
-	//do setOptions event
-	if(this.setOptions!=null){
-		try{this.setOptions(this.options);}catch(e){};
 	}
 	//draw it//////////////////////////////////////////////////////////////////
 	$("#"+this.chartId).html("<canvas></canvas>");

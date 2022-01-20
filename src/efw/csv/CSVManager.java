@@ -1,10 +1,13 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.csv;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import efw.framework;
 import efw.file.FileManager;
@@ -16,18 +19,32 @@ public final class CSVManager {
 	 * @return Writterのオブジェクト。
 	 */
 	public static PrintWriter open(String path,String encoding) throws Exception{
-		if(framework.getWritters()==null)
-			framework.setWritters(new HashMap<String,PrintWriter>());
+		if(framework.getWriters()==null) framework.setWriters(new HashMap<String,PrintWriter>());
+		
 		try{
-			PrintWriter writter = new java.io.PrintWriter(
-					new java.io.BufferedWriter(
-						new java.io.OutputStreamWriter(
-							new java.io.FileOutputStream(FileManager.get(path),true),
-							encoding)));
-			framework.getWritters().put(path,writter);
-			return writter;
+			PrintWriter writer = new PrintWriter(
+									new BufferedWriter(
+										new OutputStreamWriter(
+											new FileOutputStream(
+												FileManager.get(path),true),encoding)));
+
+			framework.getWriters().put(path,writer);
+			return writer;
 		}catch(Exception ex){
 			throw ex;
+		}
+	}
+	/**
+	 * 開いた一つのファイルを閉じる
+	 * @param path
+	 */
+	public static void close(String path) {
+		try {
+			PrintWriter writer=framework.getWriters().get(path);
+			framework.getWriters().remove(path);
+			writer.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 	/**
@@ -35,16 +52,18 @@ public final class CSVManager {
 	 * @throws IOException
 	 */
 	public static void closeAll(){
-		if(framework.getWritters()==null) return;
+		if(framework.getWriters()==null) return;
 
-		HashMap<String,PrintWriter> map=framework.getWritters();
+		HashMap<String,PrintWriter> map=framework.getWriters();
 		for(Entry<String, PrintWriter> e : map.entrySet()) { 
-			PrintWriter writter=e.getValue();  
+			PrintWriter writer=e.getValue();
 			try{
-				writter.close();//2回閉じても大丈夫。
-			}catch(Exception ex){}
+				writer.close();//2回閉じても大丈夫。
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
 		}
-		framework.removeWritters();
+		framework.removeWriters();
 	}
 
 }

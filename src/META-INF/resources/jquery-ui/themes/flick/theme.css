@@ -1,5 +1,5 @@
 /*!
- * jQuery UI CSS Framework 1.12.1
+ * jQuery UI CSS Framework 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -8,7 +8,7 @@
  *
  * http://api.jqueryui.com/category/theming/
  *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Helvetica%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=2px&bgColorHeader=dddddd&bgTextureHeader=highlight_soft&bgImgOpacityHeader=50&borderColorHeader=dddddd&fcHeader=444444&iconColorHeader=0073ea&bgColorContent=ffffff&bgTextureContent=flat&bgImgOpacityContent=75&borderColorContent=dddddd&fcContent=444444&iconColorContent=ff0084&bgColorDefault=f6f6f6&bgTextureDefault=highlight_soft&bgImgOpacityDefault=100&borderColorDefault=dddddd&fcDefault=0073ea&iconColorDefault=666666&bgColorHover=0073ea&bgTextureHover=highlight_soft&bgImgOpacityHover=25&borderColorHover=0073ea&fcHover=ffffff&iconColorHover=ffffff&bgColorActive=ffffff&bgTextureActive=glass&bgImgOpacityActive=65&borderColorActive=dddddd&fcActive=ff0084&iconColorActive=454545&bgColorHighlight=ffffff&bgTextureHighlight=flat&bgImgOpacityHighlight=55&borderColorHighlight=cccccc&fcHighlight=444444&iconColorHighlight=0073ea&bgColorError=ffffff&bgTextureError=flat&bgImgOpacityError=55&borderColorError=ff0084&fcError=222222&iconColorError=ff0084&bgColorOverlay=eeeeee&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=0px
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=&folderName=flick&cornerRadiusShadow=0px&offsetLeftShadow=-4px&offsetTopShadow=-4px&thicknessShadow=4px&opacityShadow=60&bgImgOpacityShadow=0&bgTextureShadow=flat&bgColorShadow=aaaaaa&opacityOverlay=80&bgImgOpacityOverlay=0&bgTextureOverlay=flat&bgColorOverlay=eeeeee&iconColorError=ff0084&fcError=222222&borderColorError=ff0084&bgImgOpacityError=55&bgTextureError=flat&bgColorError=ffffff&iconColorHighlight=0073ea&fcHighlight=444444&borderColorHighlight=cccccc&bgImgOpacityHighlight=55&bgTextureHighlight=flat&bgColorHighlight=ffffff&iconColorActive=454545&fcActive=ff0084&borderColorActive=dddddd&bgImgOpacityActive=65&bgTextureActive=glass&bgColorActive=ffffff&iconColorHover=ffffff&fcHover=ffffff&borderColorHover=0073ea&bgImgOpacityHover=25&bgTextureHover=highlight_soft&bgColorHover=0073ea&iconColorDefault=666666&fcDefault=0073ea&borderColorDefault=dddddd&bgImgOpacityDefault=100&bgTextureDefault=highlight_soft&bgColorDefault=f6f6f6&iconColorContent=ff0084&fcContent=444444&borderColorContent=dddddd&bgImgOpacityContent=75&bgTextureContent=flat&bgColorContent=ffffff&iconColorHeader=0073ea&fcHeader=444444&borderColorHeader=dddddd&bgImgOpacityHeader=50&bgTextureHeader=highlight_soft&bgColorHeader=dddddd&cornerRadius=2px&fsDefault=1.1em&fwDefault=bold&ffDefault=Helvetica%2CArial%2Csans-serif
  */
 
 
@@ -172,18 +172,18 @@ a.ui-button:active,
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
 	opacity: .7;
-	filter:Alpha(Opacity=70); /* support: IE8 */
+	-ms-filter: "alpha(opacity=70)"; /* support: IE8 */
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
 	opacity: .35;
-	filter:Alpha(Opacity=35); /* support: IE8 */
+	-ms-filter: "alpha(opacity=35)"; /* support: IE8 */
 	background-image: none;
 }
 .ui-state-disabled .ui-icon {
-	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+	-ms-filter: "alpha(opacity=35)"; /* support: IE8 - See #6059 */
 }
 
 /* Icons
@@ -224,7 +224,10 @@ a.ui-button:active,
 }
 
 /* positioning */
-.ui-icon-blank { background-position: 16px 16px; }
+/* Three classes needed to override `.ui-button:hover .ui-icon` */
+.ui-icon-blank.ui-icon-blank.ui-icon-blank {
+	background-image: none;
+}
 .ui-icon-caret-1-n { background-position: 0 0; }
 .ui-icon-caret-1-ne { background-position: -16px 0; }
 .ui-icon-caret-1-e { background-position: -32px 0; }
@@ -435,7 +438,7 @@ a.ui-button:active,
 .ui-widget-overlay {
 	background: #eeeeee;
 	opacity: .8;
-	filter: Alpha(Opacity=80); /* support: IE8 */
+	-ms-filter: Alpha(Opacity=80); /* support: IE8 */
 }
 .ui-widget-shadow {
 	-webkit-box-shadow: -4px -4px 4px #aaaaaa;

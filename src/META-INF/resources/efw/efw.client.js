@@ -43,6 +43,7 @@ EfwClient.prototype.fire = function(eventParams) {
 	var self=this;
 	$.ajax(this._options={
 		url : servletUrl,
+		xhrFields : {withCredentials:true},
 		type : "POST",// post method
 		cache : false,// don't use cache
 		async : true,// don't use async
@@ -99,6 +100,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 	var callSecondAjax = function() {
 		$.ajax(self._options={
 			url : (servletUrl+"?eventId="+eventId +"&lang="+efw.lang+"&params="+encodeURIComponent(JSON.stringify(params))).substring(0,1024),//to save info for access log  
+			xhrFields : {withCredentials:true},
 			type : "POST",// post method
 			cache : false,// don't use cache
 			async : true,// don't use async
@@ -160,6 +162,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 	if (this._pickupParams_uploadformdata != null) {
 		$.ajax(this._options={
 			url : uploadUrl,
+			xhrFields : {withCredentials:true},
 			type : "POST",// post method
 			dataType : "json",// send or get data by json type
 			cache : false,// don't use cache

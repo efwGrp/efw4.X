@@ -20,7 +20,20 @@ import efw.script.ScriptManager;
  */
 @WebServlet(name="efwServlet",loadOnStartup=1,urlPatterns={"/efwServlet"})
 public final class efwServlet extends HttpServlet {
-
+	/**
+	 * サーバが閉じる時、
+	 * globalのdestory関数を呼び出す。必要に応じてリソース開放処理に備える。
+	 * 
+	 */
+	public void destroy() {
+		// call the orgin destroy function
+		super.destroy();
+		try {
+			framework.destroyServlet(this.getServletContext().getRealPath("/"));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * サーブレットの起動と同時に、
 	 * LogManager、SqlManager、ScriptManagerの初期化を行う。
@@ -35,37 +48,6 @@ public final class efwServlet extends HttpServlet {
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
-	}
-	//CORS対応
-	public static void doCORS(HttpServletRequest request, HttpServletResponse response){
-		//if init is failed, return the info instead of throw exception
-		if (framework.getInitSuccessFlag()){
-			response.setHeader("Access-Control-Allow-Headers", "Accept,Accept-Encoding,Accept-Language,Connection,Content-Length,Content-Type,Host,Origin,Referer,User-Agent");
-			response.setHeader("Access-Control-Allow-Methods", "POST,OPTIONS");
-			//cors support
-			if("*".equals(framework.getCors())){
-				response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-			}else if("null".equals(framework.getCors())||"".equals(framework.getCors())||null==framework.getCors()){
-				//do nothing
-			}else{
-				String[] corsAry=framework.getCors().split(",");
-				for(int i=0;i<corsAry.length;i++){
-					if (corsAry[i].equals(request.getHeader("Origin"))){
-						response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
-						break;
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * OPTIONメソッド
-	 */
-	protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//CORS関連設定を行う
-		efwServlet.doCORS(request,response);
-		super.doOptions(request, response);
 	}
 
 	/**
@@ -107,9 +89,6 @@ public final class efwServlet extends HttpServlet {
 			framework.runtimeSLog(ex);
 			response.getWriter().print(otherError);//efw内部エラー。
 		}finally{
-			//CORS関連設定を行う
-			efwServlet.doCORS(request,response);
-			
 			framework.removeRequest();
 			framework.removeResponse();
 			framework.removeI18nProp();

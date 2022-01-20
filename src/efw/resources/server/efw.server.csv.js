@@ -262,9 +262,7 @@ CSVWriter.prototype._printWriter = null;
  * The function to close the java writter.
  */
 CSVWriter.prototype.close = function(){
-	try{
-		this._printWriter.close();
-	}catch(e){}
+	Packages.efw.csv.CSVManager.close(this._path);
 };
 /**
  * The inner function to close the java writter.

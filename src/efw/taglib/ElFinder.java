@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -107,6 +108,24 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			}
 		}
 	}
+	/**
+	 * Cors機能に、jspの呼び出しがない状態で、リモートサーバのElfinderを初期化するため
+	 * @param id
+	 * @param home
+	 * @param readonly
+	 * @param _protected
+	 */
+	public static void _init(String id,String home,boolean readonly,boolean _protected) {
+		ElFinder._init(id,home,readonly,_protected,(HttpServletRequest)framework.getRequest());
+	}
+	private static void _init(String id,String home,boolean readonly,boolean _protected,HttpServletRequest req) {
+		synchronized(elfinderIds) {
+			elfinderIds.put(id, _protected);
+		}
+		req.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
+		req.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
+	}
+
 
 	/**
 	 * タグを実行する。
@@ -130,9 +149,9 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
 			out.print("var "+id+";$(function(){"+id+"=$(\"#"+id+"\")"
 					+ ".elfinder({"
-					+ "\"url\":\"efwServlet\","
-					+ "\"urlUpload\":\"uploadServlet\","
-					+ "\"soundPath\":\"elfinder/sounds\","
+					+ "\"url\":efw.baseurl+\"/efwServlet\","
+					+ "\"urlUpload\":efw.baseurl+\"/uploadServlet\","
+					+ "\"soundPath\":efw.baseurl+\"/elfinder/sounds\","
 					+"\"requestType\":\"POST\","
 					+"\"lang\":\""+lang+"\","
 					+"\"height\":\""+height+"\","
@@ -150,11 +169,9 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 				temp+=e.getKey()+"=\""+e.getValue()+"\" ";
 			}
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
-			synchronized(elfinderIds) {
-				elfinderIds.put(id, _protected);
-			}
-			pageContext.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
-			pageContext.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
+			
+			ElFinder._init(id,home,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

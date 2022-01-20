@@ -1005,11 +1005,11 @@ public final class Excel {
 	 * @throws IOException 
 	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public void replacePicture(String templateSheetName,String templateShapeName,String newPicturePath) throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
-    	XSSFSheet sheet = (XSSFSheet) this.workbook.getSheet(templateSheetName);
+	public void replacePicture(String sheetName,String shapeName,String newPicturePath) throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
+    	XSSFSheet sheet = (XSSFSheet) this.workbook.getSheet(sheetName);
     	List<XSSFShape> shapes=((XSSFDrawing) sheet.getDrawingPatriarch()).getShapes();
     	for (XSSFShape shape : shapes) {
-    		if (templateShapeName.equals(shape.getShapeName())) {
+    		if (shapeName.equals(shape.getShapeName())) {
     			File newPictureFile = FileManager.get(newPicturePath);
     			InputStream in = new FileInputStream(newPictureFile);
     			byte[] bytes = IOUtils.toByteArray(in);

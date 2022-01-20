@@ -5,6 +5,19 @@
  */
 
 // /////////////////////////////////////////////////////////////////////////////
+function doDestroy(){
+	/**
+	 * Run by servlet destory.
+	 */
+	if (event._load("destroy",true)){
+		try{
+			efw.server.fire(event._get("destroy"));
+		}catch(e){
+			Packages.efw.framework.runtimeSLog("destory event failed.",e);
+			throw e;//destoryエラーの場合
+		}
+	}
+}
 /**
  * The ajax service function<br>
  * It will be called by efwServlet

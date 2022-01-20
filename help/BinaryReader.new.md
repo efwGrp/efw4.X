@@ -14,6 +14,8 @@ The constructor function is established to create a BinaryReader object.
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>new binaryReader (path, aryFieldsDef, aryEncoding, rowSize)</td><td>binaryReader</td></tr>
+<tr><td>new binaryReader (path, regFieldsDef, aryEncoding, rowSize, skipRows)</td><td>binaryReader</td></tr>
+<tr><td>new binaryReader (path, regFieldsDef, aryEncoding, rowSize, skipRows, rowsToRead)</td><td>binaryReader</td></tr>
 </table>
 
 <table>
@@ -22,4 +24,6 @@ The constructor function is established to create a BinaryReader object.
 <tr><td>aryFieldsDef</td><td>Array</td><td>An array that defines all field length.</td></tr>
 <tr><td>aryEncoding</td><td>Array</td><td>An array that defines all field charset names.</td></tr>
 <tr><td>rowSize</td><td>Number</td><td>The binary size of a record.</td></tr>
+<tr><td>skipRows</td><td>Number</td><td>The count of rows to be skipped without reading. The default value is -1 means undefined.</td></tr>
+<tr><td>rowsToRead</td><td>Number</td><td>The count of rows to be read. The default value is -1 means undefined.</td></tr>
 </table>

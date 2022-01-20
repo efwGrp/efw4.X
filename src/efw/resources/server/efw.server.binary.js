@@ -9,14 +9,20 @@
  *			aryEncoding: required<br>
  * @param {Number}
  *			rowSize: required<br>
+ * @param {Number}
+ *			skipRows: optional<br>
+ * @param {Number}
+ *			rowsToRead: optional<br>
  * @author Chang kejun
  */
-function BinaryReader(path, aryFieldsDef, aryEncoding, rowSize) {
+function BinaryReader(path, aryFieldsDef, aryEncoding, rowSize, skipRows, rowsToRead ) {
 	if (this.constructor.name!="BinaryReader"){throw new Packages.efw.NewKeywordWasForgottenException("BinaryReader");}
 	this._path = path;
 	this._aryFieldsDef = aryFieldsDef;
 	this._aryEncoding = aryEncoding;
 	this._rowSize = rowSize;
+	if (skipRows != null){this._skipRows = skipRows;}
+	if (rowsToRead != null){this._rowsToRead = rowsToRead;}
 };
 /**
  * Binary locker for openning reader
@@ -38,6 +44,14 @@ BinaryReader.prototype._aryEncoding = null;
  * The attr to keep the rowSize.
  */
 BinaryReader.prototype._rowSize = null;
+/**
+* The attr to keep the skipRows.
+ */
+TXTReader.prototype._skipRows = -1;
+/**
+* The attr to keep the rowsToRead.
+ */
+TXTReader.prototype._rowsToRead = -1;
 /**
  * The function to read all lines into a matrix of arrays.
  * 
@@ -66,6 +80,9 @@ BinaryReader.prototype.loopAllLines = function(callback){
 		try{
 			BinaryReader_lock.lock();
 			br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
+			if (this._skipRows!=-1){
+				br.skip(new java.lang.Long(""+(this._skipRows*this._rowSize)).longValue());
+			}
 		}finally{
 			BinaryReader_lock.unlock();
 		}
@@ -132,8 +149,17 @@ BinaryReader.prototype.loopAllLines = function(callback){
 				}
 				fromP+=this._aryFieldsDef[i];
 			}
-			callback(aryField, intNum);
-			intNum++;
+			if (this._rowsToRead!=-1){
+				if (intNum<this._rowsToRead){
+					callback(aryField, intNum);
+					intNum++;
+				}else{
+					break;
+				}
+			}else{
+				callback(aryField, intNum);
+				intNum++;
+			}
 		}
 	}finally{
 		try{

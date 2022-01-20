@@ -79,7 +79,7 @@ EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
 	//if the global.js is not exists,warning log.
 	if (loadingGlobal){
 		if (!absfile.exists(_eventfolder + "/" + eventId + ".js")){
-			Packages.efw.framework.initWLog("global.js is not found.");
+			Packages.efw.framework.initWLog( eventId + ".js is not found.");
 			return null;
 		}
 	}

@@ -29,7 +29,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.05.009";// change it when releasing jar.
+	private static String version="4.05.012";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
@@ -116,6 +116,9 @@ public class framework {
 		}catch(Exception ex) {
 			framework.initWLog("RemoteEventManager failed.",ex);
 		}
+	}
+	
+	private static void initScript() throws Exception {
 		//-----------------------------------------------------------------
 		try{
 			ScriptManager.init(framework.getEventFolder());//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
@@ -177,12 +180,10 @@ public class framework {
 		framework.initCLog("properties = "+properties);
 		framework.initCLog("PropertiesManager.inited.");
 		//-----------------------------------------------------------------
+		initCommonWBL(webHome);
 		initCommonBL();
-		initCommonWBL(webHome);//script should after db
 		//-----------------------------------------------------------------
-		framework.setCors(PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors()));
-		framework.initCLog("cors = " + framework.getCors());
-		//-----------------------------------------------------------------
+		initScript();
 	}
 	
 	public static synchronized void initBatch(String webHome,String properties) throws Exception {
@@ -195,8 +196,10 @@ public class framework {
 		framework.initCLog("properties = "+properties);
 		framework.initCLog("PropertiesManager.inited.");
 		//-----------------------------------------------------------------
+		initCommonWBL(webHome);
 		initCommonBL();
-		initCommonWBL(webHome);//script should after db
+		//-----------------------------------------------------------------
+		initScript();
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -209,6 +212,8 @@ public class framework {
 		PropertiesManager.init();
 		LogManager.init();//エラーなし。
 		framework.initCLog("PropertiesManager inited.");//ログ出力はLogManagerの初期化後で必要。
+		//-----------------------------------------------------------------
+		initCommonWBL(webHome);
 		//-----------------------------------------------------------------
 		framework.setCors(PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors()));
 		framework.initCLog("cors = " + framework.getCors());
@@ -233,10 +238,14 @@ public class framework {
 			framework.initWLog("MailManager failed.",ex);
 		}
 		//-----------------------------------------------------------------
-		initCommonWBL(webHome);//script should after db
-		//-----------------------------------------------------------------
 		//efwFilter init to check login or not
 		efwFilter.init();//プロパティの後で必要。エラーなし。
+		//-----------------------------------------------------------------
+		initScript();
+	}
+	public static void destroyServlet(String webHome) throws Exception {
+		if (!framework.getInitSuccessFlag()) return;
+		ScriptManager.doDestroy(framework.getEventFolder());
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	/**
@@ -450,16 +459,17 @@ public class framework {
 	 * Writterオブジェクト。
 	 * スレッドローカルにWriterオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static ThreadLocal<HashMap<String,PrintWriter>> writters=new ThreadLocal<HashMap<String,PrintWriter>>();
-	public static HashMap<String,PrintWriter> getWritters() {
-		return framework.writters.get();
+	private static ThreadLocal<HashMap<String,PrintWriter>> writers=new ThreadLocal<HashMap<String,PrintWriter>>();
+	public static HashMap<String,PrintWriter> getWriters() {
+		return framework.writers.get();
 	}
-	public static void setWritters(HashMap<String,PrintWriter> writters) {
-		framework.writters.set(writters);
+	public static void setWriters(HashMap<String,PrintWriter> writers) {
+		framework.writers.set(writers);
 	}
-	public static void removeWritters() {
-		framework.writters.remove();
+	public static void removeWriters() {
+		framework.writers.remove();
 	}
+	
 	/**
 	 * thread毎のログを記録する
 	 */
@@ -584,6 +594,11 @@ public class framework {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
 			runtime(Level.SEVERE,getUsefulInfoFromException(ex));
 			ex.printStackTrace();
+		}
+	}
+	public static void runtimeSLog(String info,Exception ex) {
+		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
+			runtime(Level.SEVERE,info+" "+getUsefulInfoFromException(ex));
 		}
 	}
 	public static void runtimeWLog(String info) {

@@ -452,15 +452,15 @@ Excel.prototype.addShapeInRange= function(sheetName,firstCellPosition,lastCellPo
 };
 
 /**
- * @param {String} templateSheetName: required<br>
+ * @param {String} sheetName: required<br>
  * The sheet where the copied shape is.<br> 
- * @param {String} templateShapeName: required<br>
+ * @param {String} shapeName: required<br>
  * The name of the copied shape.
  * @param {String} newPicturePath: required<br>
  * The path of a new picture to be replaced in the templateShape.
  */
-Excel.prototype.replacePicture= function(templateSheetName,templateShapeName,newPicturePath){
-	this._workbook.replacePicture(templateSheetName,templateShapeName,newPicturePath);
+Excel.prototype.replacePicture= function(sheetName,shapeName,newPicturePath){
+	this._workbook.replacePicture(sheetName,shapeName,newPicturePath);
 	return this;
 };
 

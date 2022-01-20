@@ -71,6 +71,11 @@ public final class ScriptManager {
 		Invocable invocable = (Invocable) se();
 		return (String)invocable.invokeFunction("doPost", req);
 	}
+	
+	public static String doDestroy(String req) throws Exception{
+		Invocable invocable = (Invocable) se();
+		return (String)invocable.invokeFunction("doDestroy", req);
+	}
 	/**
 	 * バッチを実行する。
 	 * doPostと比較する場合、HttpServletRequestがないようにすること。

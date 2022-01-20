@@ -26,18 +26,16 @@ function elfinder_checkRisk(params){
 	var reg=Packages.efw.taglib.ElFinder.isProtected(id);
 	if (reg==null){//指定idは、初期化されたかどうか
 		return (new Result()).alert("{ElFinderIdNotRegisteredMessage}");
-	}else{
+	}else if (reg==true){
 		if (session.get("EFW_ELFINDER_HOME_"+id)==null||session.get("EFW_ELFINDER_READONLY_"+id)==null){
 			return (new Result()).alert("{ElFinderSessionTimeoutMessage}");
 		}
-		if (reg==true){
-			var sessionHome=session.get("EFW_ELFINDER_HOME_"+id)+"";
-			var sessionReadonly=session.get("EFW_ELFINDER_READONLY_"+id)+"";
-			if (sessionReadonly=="true")sessionReadonly=true;
-			if (sessionReadonly=="false")sessionReadonly=false;
-			if(home!=sessionHome||readonly!=sessionReadonly){
-				return (new Result()).alert("{ElFinderIsProtectedMessage}");
-			}
+		var sessionHome=session.get("EFW_ELFINDER_HOME_"+id)+"";
+		var sessionReadonly=session.get("EFW_ELFINDER_READONLY_"+id)+"";
+		if (sessionReadonly=="true")sessionReadonly=true;
+		if (sessionReadonly=="false")sessionReadonly=false;
+		if(home!=sessionHome||readonly!=sessionReadonly){
+			return (new Result()).alert("{ElFinderIsProtectedMessage}");
 		}
 	}
 	if (home!=null){
