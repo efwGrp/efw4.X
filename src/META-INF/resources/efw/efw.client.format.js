@@ -22,7 +22,16 @@ function EfwClientFormat() {
 EfwClientFormat.prototype.formatNumber = function(value, formatter, rounder) {
 	var ft = this._initNumberFormat(formatter);// get formatter object
 	var isPercentage = ft.suffix && ft.suffix.charAt(0) === "%";
-	var num = Number(value);
+	value=value+"";
+	//When copying from excel, special characters such as \,$ will be an obstacle, so process them.
+	var pureNumberValue="";
+	for(var i=0;i<value.length;i++){
+		var c=value.charAt(i);
+		if ((c>="0"&&c<="9")||c=="-"||c=="+"||c=="."){
+			pureNumberValue+=c;
+		}
+	}
+	var num = Number(pureNumberValue);
 	if (isPercentage)
 		num *= 100;// if percentage, number will be multiplied by 100.
 	if (isNaN(num))
