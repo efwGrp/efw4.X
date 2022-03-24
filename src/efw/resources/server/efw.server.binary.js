@@ -47,11 +47,11 @@ BinaryReader.prototype._rowSize = null;
 /**
 * The attr to keep the skipRows.
  */
-TXTReader.prototype._skipRows = -1;
+BinaryReader.prototype._skipRows = -1;
 /**
 * The attr to keep the rowsToRead.
  */
-TXTReader.prototype._rowsToRead = -1;
+BinaryReader.prototype._rowsToRead = -1;
 /**
  * The function to read all lines into a matrix of arrays.
  * 
