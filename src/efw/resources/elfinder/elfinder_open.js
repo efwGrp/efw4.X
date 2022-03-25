@@ -35,7 +35,7 @@ elfinder_open.fire = function(params) {
 		"volumeid":volumeId,
 		"dirs":1,
 		"read":1,
-		"ts":folderinfo.lastModified.getTime(),
+		"ts":parseInt(folderinfo.lastModified.getTime()/1000),
 		"size":folderinfo.length,
 		"hash":volumeId+cwdFolder.base64EncodeURI(),
 	};
@@ -58,7 +58,7 @@ elfinder_open.fire = function(params) {
 	.seek("isHidden","eq",false)
 	.map({
          "mime":"mineType",//function(){return "directory";},
-         "ts":function(data){return data.lastModified.getTime();},
+         "ts":function(data){return parseInt(data.lastModified.getTime()/1000);},
          "size":"length",
          "hash":function(data){return volumeId+(cwdFolder+"/"+data.name).base64EncodeURI();},
          "name":"name",

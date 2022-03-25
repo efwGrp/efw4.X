@@ -37,7 +37,7 @@ elfinder_duplicate.fire = function(params) {
 		files.push((new Record([file.get(newFile,true)]))
 		.map({
 	         "mime":"mineType",//function(){return "directory";},
-	         "ts":function(data){return data.lastModified.getTime();},
+	         "ts":function(data){return parseInt(data.lastModified.getTime()/1000);},
 	         "size":"length",
 	         "hash":function(data){return volumeId+(newFile).base64EncodeURI();},
 	         "name":"name",

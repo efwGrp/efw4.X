@@ -16,7 +16,7 @@ elfinder_put.fire = function(params) {
 	var files=new Record([file.get(cwdFile,true)])
 	.map({
          "mime":"mineType",//function(){return "directory";},
-         "ts":function(data){return data.lastModified.getTime();},
+         "ts":function(data){return parseInt(data.lastModified.getTime()/1000);},
          "size":"length",
          "hash":function(data){return volumeId+(cwdFile).base64EncodeURI();},
          "name":"name",

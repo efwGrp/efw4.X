@@ -13,7 +13,7 @@ elfinder_mkfile.fire = function(params) {
 	var files=new Record([file.get(cwdFolder+"/"+name,true)])
 	.map({
          "mime":"mineType",//function(){return "directory";},
-         "ts":function(data){return data.lastModified.getTime();},
+         "ts":function(data){return parseInt(data.lastModified.getTime()/1000);},
          "size":"length",
          "hash":function(data){return volumeId+(cwdFolder+"/"+data.name).base64EncodeURI();},
          "name":"name",
