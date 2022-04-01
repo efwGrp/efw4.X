@@ -9,14 +9,20 @@
  *			delimiter: optional<br>
  * @param {String}
  *			encoding: optional<br>
+ * @param {Number}
+ *			skipRows: optional<br>
+ * @param {Number}
+ *			rowsToRead: optional<br>
  * @author Chang Kejun
  */
-function CSVReader(path, separator, delimiter, encoding) {
+function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead) {
 	if (this.constructor.name!="CSVReader"){throw new Packages.efw.NewKeywordWasForgottenException("CSVReader");}
 	this._path = path;
 	if (separator != null){this._separator = separator;}
 	if (delimiter != null){this._delimiter = delimiter;}
 	if (encoding != null){this._encoding = encoding;}
+	if (skipRows != null){this._skipRows = skipRows;}
+	if (rowsToRead != null){this._rowsToRead = rowsToRead;}
 	// compile the regEx str using the custom delimiter/separator
 	// dealed with escape regex-specific control chars
 	this._match = new RegExp("(D|S|\n|\r|[^DS\r\n]+)"
@@ -48,6 +54,14 @@ CSVReader.prototype._encoding = "UTF-8";
  * The attr to keep the match.
  */
 CSVReader.prototype._match = null;
+/**
+* The attr to keep the skipRows.
+ */
+CSVReader.prototype._skipRows = -1;
+/**
+* The attr to keep the rowsToRead.
+ */
+CSVReader.prototype._rowsToRead = -1;
 /**
  * The function to read all lines into a matrix of arrays.
  * 
@@ -90,19 +104,29 @@ CSVReader.prototype.loopAllLines = function(callback,errCallback){
 		}
 		var strLine;
 		var intNum = 0;
-
+		
+		if (this._skipRows!=-1){
+			for(var i=0;i<this._skipRows;i++){
+				br.readLine();
+			}
+		}
+		
 		while ((strLine = br.readLine()) != null) {
 			try{
-				var aryLine = this._split(""+strLine,intNum);
-				callback(aryLine, intNum);
+				if (this._rowsToRead!=-1 && intNum>=this._rowsToRead){
+					break;
+				}else{
+					var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
+					callback(aryField, intNum+(this._skipRows!=-1?this._skipRow:0));
+					intNum++;
+				}
 			}catch(e){
 				if (errCallback){
-					errCallback(strLine,intNum);
+					errCallback(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
 				}else{
 					throw e;
 				}
 			}
-			intNum++;
 		}
 	}finally{
 		try{

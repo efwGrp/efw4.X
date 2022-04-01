@@ -160,16 +160,12 @@ TXTReader.prototype.loopAllLines = function(callback){
 				}else{
 					strLine=""+new java.lang.String(buf,this._encoding);
 				}
-				var aryField = this._split(strLine,intNum);
-				if (this._rowsToRead!=-1){
-					if (intNum<this._rowsToRead){
-						callback(aryField, intNum);
-						intNum++;
-					}else{
-						break;
-					}
+				
+				if (this._rowsToRead!=-1 && intNum>=this._rowsToRead){
+					break;
 				}else{
-					callback(aryField, intNum);
+					var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
+					callback(aryField, intNum+(this._skipRows!=-1?this._skipRow:0));
 					intNum++;
 				}
 			}
