@@ -10,12 +10,16 @@
  * @param {String}
  *			encoding: optional<br>
  * @param {Number}
+ *			offsetBytes: optional<br>
+ * @param {Number}
+ *			offsetRows: optional<br>
+ * @param {Number}
  *			skipRows: optional<br>
  * @param {Number}
  *			rowsToRead: optional<br>
  * @author Chang Kejun
  */
-function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead) {
+function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead, offsetBytes, offsetRows) {
 	if (this.constructor.name!="CSVReader"){throw new Packages.efw.NewKeywordWasForgottenException("CSVReader");}
 	this._path = path;
 	if (separator != null){this._separator = separator;}
@@ -23,6 +27,8 @@ function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead) {
 	if (encoding != null){this._encoding = encoding;}
 	if (skipRows != null){this._skipRows = skipRows;}
 	if (rowsToRead != null){this._rowsToRead = rowsToRead;}
+	if (offsetBytes != null){this._offsetBytes = offsetBytes;}
+	if (offsetRows != null){this._offsetRows = offsetRows;}
 	// compile the regEx str using the custom delimiter/separator
 	// dealed with escape regex-specific control chars
 	this._match = new RegExp("(D|S|\n|\r|[^DS\r\n]+)"
@@ -54,6 +60,14 @@ CSVReader.prototype._encoding = "UTF-8";
  * The attr to keep the match.
  */
 CSVReader.prototype._match = null;
+/**
+* The attr to keep the offsetBytes.
+ */
+CSVReader.prototype._offsetBytes = -1;
+/**
+* The attr to keep the offsetRows.
+ */
+CSVReader.prototype._offsetRows = -1;
 /**
 * The attr to keep the skipRows.
  */
@@ -94,40 +108,40 @@ CSVReader.prototype.loopAllLines = function(callback,errCallback){
 	try{
 		try{
 			CSVReader_lock.lock();
-			br = new java.io.BufferedReader(
-					new java.io.InputStreamReader(
-						new java.io.FileInputStream(
-							Packages.efw.file.FileManager.get(this._path)),
-							this._encoding));
+			br = new Packages.efw.csv.CSVReader(
+					new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path)),
+					this._encoding);
 		}finally{
 			CSVReader_lock.unlock();
 		}
 		var strLine;
 		var intNum = 0;
 		
+		if (this._offsetBytes!=-1){
+			br.skip(this._offsetBytes,this._offsetRows);
+		}
 		if (this._skipRows!=-1){
 			for(var i=0;i<this._skipRows;i++){
 				br.readLine();
 			}
 		}
-		
-		while ((strLine = br.readLine()) != null) {
+		while (true) {
+			if (this._rowsToRead!=-1 && intNum>=this._rowsToRead) break;
+			var strLine = br.readLine();if (strLine==null) break;
 			try{
-				if (this._rowsToRead!=-1 && intNum>=this._rowsToRead){
-					break;
-				}else{
-					var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
-					callback(aryField, intNum+(this._skipRows!=-1?this._skipRow:0));
-					intNum++;
-				}
+				var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
+				callback(aryField, intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
 			}catch(e){
 				if (errCallback){
-					errCallback(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
+					errCallback(strLine,intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
 				}else{
 					throw e;
 				}
 			}
+			intNum++;
 		}
+		this._offsetBytes=0+br.getCurrentOffsetBytes();
+		this._offsetRows=0+br.getCurrentOffsetRows();
 	}finally{
 		try{
 			br.close();

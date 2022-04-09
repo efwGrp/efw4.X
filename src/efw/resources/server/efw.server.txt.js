@@ -164,8 +164,8 @@ TXTReader.prototype.loopAllLines = function(callback){
 				if (this._rowsToRead!=-1 && intNum>=this._rowsToRead){
 					break;
 				}else{
-					var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRow:0));
-					callback(aryField, intNum+(this._skipRows!=-1?this._skipRow:0));
+					var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRows:0));
+					callback(aryField, intNum+(this._skipRows!=-1?this._skipRows:0));
 					intNum++;
 				}
 			}

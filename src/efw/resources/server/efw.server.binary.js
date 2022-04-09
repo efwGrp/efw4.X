@@ -152,7 +152,7 @@ BinaryReader.prototype.loopAllLines = function(callback){
 			if (this._rowsToRead!=-1 && intNum>=this._rowsToRead){
 				break;
 			}else{
-				callback(aryField, intNum+(this._skipRows!=-1?this._skipRow:0));
+				callback(aryField, intNum+(this._skipRows!=-1?this._skipRows:0));
 				intNum++;
 			}
 		}
