@@ -21,6 +21,7 @@ The constructor function is established to create a CSVReader object.
 <tr><td>new CSVReader (path, separator, delimiter, encoding)</td><td>CSVReader</td></tr>
 <tr><td>new CSVReader (path, separator, delimiter, encoding, skipRows)</td><td>CSVReader</td></tr>
 <tr><td>new CSVReader (path, separator, delimiter, encoding, skipRows, rowsToRead)</td><td>CSVReader</td></tr>
+<tr><td>new CSVReader (path, separator, delimiter, encoding, skipRows, rowsToRead, offsetBytes, offsetRows)</td><td>CSVReader</td></tr>
 </table>
 
 <table>
@@ -31,4 +32,6 @@ The constructor function is established to create a CSVReader object.
 <tr><td>encoding</td><td>String</td><td>The charset name of the CSV file. The default value is UTF-8.</td></tr>
 <tr><td>skipRows</td><td>Number</td><td>The count of rows to be skipped without reading. The default value is -1 means undefined.</td></tr>
 <tr><td>rowsToRead</td><td>Number</td><td>The count of rows to be read. The default value is -1 means undefined.</td></tr>
+<tr><td>offsetBytes</td><td>Number</td><td>The count of bytes to be offset before skip rows. The default value is -1 means undefined. And you can get the current position by csvReader._offsetBytes.</td></tr>
+<tr><td>offsetRows</td><td>Number</td><td>The count of rows to be offset before skip rows. The default value is -1 means undefined. And you can get the current position by csvReader._offsetRows.</td></tr>
 </table>
