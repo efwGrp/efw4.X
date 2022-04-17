@@ -27,7 +27,6 @@ public final class CSVManager {
 										new OutputStreamWriter(
 											new FileOutputStream(
 												FileManager.get(path),true),encoding)));
-
 			framework.getWriters().put(path,writer);
 			return writer;
 		}catch(Exception ex){

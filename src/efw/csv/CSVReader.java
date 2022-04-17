@@ -3,6 +3,7 @@ package efw.csv;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class CSVReader{
 
@@ -14,14 +15,9 @@ public class CSVReader{
     private byte cb[];
     private int nChars, nextChar;
 
-    private static final int INVALIDATED = -2;
-    private static final int UNMARKED = -1;
-    private int markedChar = UNMARKED;
-    private int readAheadLimit = 0; /* Valid only when markedChar > 0 */
-
     private static int defaultCharBufferSize = 8192;
-    private static int defaultExpectedLineLength = 80;
 
+    private boolean needSkipNextLf=true;//offsetの呼び出しの場合、最初の記録場所はcrの場所でしょう。
     /**
      * Create a CSV reader
      * @param in
@@ -43,7 +39,7 @@ public class CSVReader{
         synchronized (in) {
             this.offsetBytes=offsetBytes;
             this.offsetRows=offsetRows;
-            return in.skip(offsetBytes);            
+            return in.skip(offsetBytes);
         }
     }
     /**
@@ -69,115 +65,61 @@ public class CSVReader{
      * @throws IOException
      */
     public String readLine() throws IOException {
-        StringBuffer s = null;
-        int startChar;
-        
+        byte dst[]=new byte[0];
+
         synchronized (in) {
             for (;;) {
 
-                if (nextChar >= nChars)
-                    fill();
-                if (nextChar >= nChars) { /* EOF */
-                    if (s != null && s.length() > 0) {
-                        return new String(s.toString().getBytes(),this.encoding);
-                    }else
-                        return null;
+                if (nextChar >= nChars) {
+                    offsetBytes+=nChars;//まえのbufferが処理済み、offsetに入れる。
+                	int n = in.read(cb, 0, cb.length);
+                    if (n > 0) {
+                        nextChar = 0;//次は0番の位置から
+                        nChars = n;
+                    }else {//EOF
+                        if (dst != null && dst.length > 0) {
+                        	offsetRows++;
+                            return new String(dst,this.encoding);
+                        }else {
+                            return null;
+                        }
+                    }
                 }
-                // Skip a leftover '\r', if necessary 
-                if (cb[nextChar] == '\r') {
-                    nextChar++;offsetBytes++;
+                if (cb[nextChar] == '\n' && needSkipNextLf) {
+                	nextChar++;
                 }
-                if (nextChar >= nChars) { /* EOF */
-                	return null;
-                }
-                //Skip a leftover '\n', if necessary
-                if (cb[nextChar] == '\n') {
-                    nextChar++;offsetBytes++;
-                }
-
-                boolean eol = false;
-                byte c = 0;
-                int i;
-
-                for (i = nextChar; i < nChars; i++,offsetBytes++) {
-                    c = cb[i];
-                    if ((c == '\n') || (c == '\r')) {
-                        eol = true;
+                needSkipNextLf=false;
+                
+                int startChar = nextChar;
+                for (; nextChar < nChars; nextChar++) {
+                	byte c = cb[nextChar];
+                    if (c=='\r'){
+                    	needSkipNextLf=true;
+                        break;
+                    }else if(c=='\n') {
                         break;
                     }
                 }
 
-                startChar = nextChar;
-                nextChar = i;
-
-                if (eol) {
-                    String str;
-                    if (s == null) {
-                        str = new String(cb, startChar, i - startChar);
-                    } else {
-                        s.append(new String(cb, startChar, i - startChar));
-                        str = s.toString();
-                    }
-                    nextChar++;offsetBytes++;
-                	offsetRows++;
-                    return new String(str.getBytes(),this.encoding);
+            	byte part[]=Arrays.copyOfRange(cb, startChar, nextChar);
+            	byte newDst[]=new byte[part.length+dst.length];
+            	System.arraycopy(dst,0,newDst,0,dst.length);
+            	System.arraycopy(part,0,newDst,dst.length,part.length);
+            	dst=newDst;
+            	if (nextChar < nChars) {
+                    offsetRows++;nextChar++;
+                    return new String(dst,this.encoding);
                 }
-
-                if (s == null)
-                    s = new StringBuffer(defaultExpectedLineLength);
-                s.append(new String(cb, startChar, i - startChar));
             }
         }
     }
     
-    
     public double getCurrentOffsetBytes() {
-    	return this.offsetBytes;
+    	return this.offsetBytes+nextChar;
     }
     public double getCurrentOffsetRows() {
     	return this.offsetRows;
     }
-    /**
-     * Fills the input buffer, taking the mark into account if it is valid.
-     */
-    private void fill() throws IOException {
-        int dst;
-        if (markedChar <= UNMARKED) {
-            /* No mark */
-            dst = 0;
-        } else {
-            /* Marked */
-            int delta = nextChar - markedChar;
-            if (delta >= readAheadLimit) {
-                /* Gone past read-ahead limit: Invalidate mark */
-                markedChar = INVALIDATED;
-                readAheadLimit = 0;
-                dst = 0;
-            } else {
-                if (readAheadLimit <= cb.length) {
-                    /* Shuffle in the current buffer */
-                    System.arraycopy(cb, markedChar, cb, 0, delta);
-                    markedChar = 0;
-                    dst = delta;
-                } else {
-                    /* Reallocate buffer to accommodate read-ahead limit */
-                	byte ncb[] = new byte[readAheadLimit];
-                    System.arraycopy(cb, markedChar, ncb, 0, delta);
-                    cb = ncb;
-                    markedChar = 0;
-                    dst = delta;
-                }
-                nextChar = nChars = delta;
-            }
-        }
-        int n;
-        do {
-            n = in.read(cb, dst, cb.length - dst);
-        } while (n == 0);
-        if (n > 0) {
-            nChars = dst + n;
-            nextChar = dst;
-        }
-    }
+
 
 }
