@@ -1,8 +1,8 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.excel;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import efw.framework;
 import efw.file.FileManager;
@@ -14,16 +14,14 @@ public final class ExcelManager {
 	 * 1つExcelを開く。
 	 * @param path Excelのパス。
 	 * @return Excelのオブジェクト。
-	 * @throws EncryptedDocumentException
-	 * @throws InvalidFormatException
-	 * @throws IOException
+	 * @throws Exception
 	 */
 	public static Excel open(String path,boolean isLarge) throws Exception{
 		if(framework.getExcels()==null)
-		framework.setExcels(new ArrayList<Excel>());
+		framework.setExcels(new HashMap<String,Excel>());
 		try{
 			Excel excel=new Excel(FileManager.get(path),isLarge);
-			framework.getExcels().add(excel);
+			framework.getExcels().put(excel.getKey(),excel);
 			return excel;
 		}catch(Exception e){
 	        e.printStackTrace();
@@ -31,19 +29,31 @@ public final class ExcelManager {
 		}
 	}
 	/**
+	 * 開いた一つのファイルを閉じる
+	 * @param path
+	 */
+	public static void close(String flnm) {
+		try {
+			Excel excel=framework.getExcels().get(flnm);
+			framework.getExcels().remove(flnm);
+			excel.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	/**
 	 * 該当スレッドに、開いたExcelをすべて閉じる。
-	 * @throws IOException
 	 */
 	public static void closeAll(){
 		if(framework.getExcels()==null) return;
 
-		ArrayList<Excel> ary=framework.getExcels();
-		for(int i=0;i<ary.size();i++) {
-			Excel excel=ary.get(i);
+		HashMap<String,Excel> map=framework.getExcels();
+		for(Entry<String, Excel> e : map.entrySet()) { 
+			Excel excel=e.getValue();
 			try{
-				excel.close();
-			}catch(Exception e){
-				e.printStackTrace();
+				excel.close();//2回閉じても大丈夫。
+			}catch(Exception ex){
+				ex.printStackTrace();
 			}
 		}
 		framework.removeExcels();

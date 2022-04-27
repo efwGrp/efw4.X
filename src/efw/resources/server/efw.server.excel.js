@@ -30,7 +30,7 @@ Excel.prototype.save = function(path,password) {
  * The function to close the handle to free the excel file.
  */
 Excel.prototype.close = function() {
-	this._workbook.close();
+	Packages.efw.excel.ExcelManager.close(this._workbook.getKey());
 };
 /**
  * The inner function to close all handles to free excel files.

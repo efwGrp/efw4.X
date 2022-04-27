@@ -125,6 +125,13 @@ public final class Excel {
 		}
 	}
 	/**
+	 * 一時ファイルの名称をキーとして利用する。
+	 * @return
+	 */
+	public String getKey() {
+		return this.file.getName();
+	}
+	/**
 	 * 指定シートの利用されている最大行番号を戻る。0から開始。
 	 * @param sheetName　シート名
 	 * @return　最大行番号　0から開始

@@ -29,7 +29,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.05.019";// change it when releasing jar.
+	private static String version="4.05.020";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
@@ -430,11 +430,11 @@ public class framework {
 	 * Excelオブジェクト。
 	 * スレッドローカルにExcelオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static ThreadLocal<ArrayList<Excel>> excels=new ThreadLocal<ArrayList<Excel>>();
-	public static ArrayList<Excel> getExcels() {
+	private static ThreadLocal<HashMap<String,Excel>> excels=new ThreadLocal<HashMap<String,Excel>>();
+	public static HashMap<String,Excel> getExcels() {
 		return framework.excels.get();
 	}
-	public static void setExcels(ArrayList<Excel> excels) {
+	public static void setExcels(HashMap<String,Excel> excels) {
 		framework.excels.set(excels);
 	}
 	public static void removeExcels() {
