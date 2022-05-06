@@ -5,11 +5,11 @@ The function to loop all lines for the callback function calling.
 <h2>Sample</h2>
 <pre>
 	//The content of the test.csv file is 
-	//"A,B,C,D
-	// 1,2,3,4
-	// a,b,c,d"
+	//"A,B,C,D\r\n
+	// 1,2,3,4\r\n
+	// a,b,c,d\r\n"
 	var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
-	csvReader.loopAllLines(callback);	// The function "callback" will be executed three times
+	csvReader.loopAllLines(callback,"\r\n");	// The function "callback" will be executed three times
 	
 	function callback(aryField, index) {
 		...
@@ -21,7 +21,7 @@ The function to loop all lines for the callback function calling.
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>CSVReader . loopAllLines(callback)</td><td>Array</td></tr>
-<tr><td>CSVReader . loopAllLines(callback , errCallback)</td><td>Array</td></tr>
+<tr><td>CSVReader . loopAllLines(callback , CRLFCode)</td><td>Array</td></tr>
 </table>
 
 <table>
@@ -30,9 +30,6 @@ The function to loop all lines for the callback function calling.
 	<td>The function that is expected to execute line-by-line.
 	<pre>aryField : The array data.<br>index : The line number which counts from 0.</pre>
 	</td></tr>
-<tr><td>errCallback(strRow, index)</td><td>Function</td>
-	<td>The function that is expected to execute when the row data can not be splitted to an array.
-	Without errCallback, exception will be thrown when splitting error.
-	<pre>strRow : The row data.<br>index : The line number which counts from 0.</pre>
-	</td></tr>
+<tr><td>CRLFCode</td><td>String</td>
+	<td>To define the code for line-feed. exp. \r\n, \n</td></tr>
 </table>

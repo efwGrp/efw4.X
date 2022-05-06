@@ -77,14 +77,21 @@ CSVReader.prototype._skipRows = -1;
  */
 CSVReader.prototype._rowsToRead = -1;
 /**
+* The attr to keep the CRLFCode.
+ */
+CSVReader.prototype._CRLFCode = "\r\n";
+/**
  * The function to read all lines into a matrix of arrays.
  * 
  * @param {String}
- *            rowdata: required<br>
+ *            CRLFCode: optional<br>
  * @returns {Array}
  */
-CSVReader.prototype.readAllLines = function(){
-	var aryLinesTemp = file.readAllLines(this._path,this._encoding).split("\n");
+CSVReader.prototype.readAllLines = function(CRLFCode){
+	if (CRLFCode!=null&&CRLFCode!=""){
+		this._CRLFCode=CRLFCode;
+	}
+	var aryLinesTemp = file.readAllLines(this._path,this._encoding).split(this._CRLFCode);
 	var aryLines = [];
 
 	for (var i = 0; i < aryLinesTemp.length; i++) {
@@ -98,19 +105,22 @@ CSVReader.prototype.readAllLines = function(){
  * 
  * @param {Function}
  *            callback: required<br>
- * @param {Function}
- *            errCallback: optional<br>
+ * @param {String}
+ *            CRLFCode: optional<br>
  * @returns {Array}
  */
-CSVReader.prototype.loopAllLines = function(callback,errCallback){
+CSVReader.prototype.loopAllLines = function(callback,CRLFCode){
 	var br=null;
 	if (callback == null) {return;}
+	if (CRLFCode!=null&&CRLFCode!=""){
+		this._CRLFCode=CRLFCode;
+	}
 	try{
 		try{
 			CSVReader_lock.lock();
 			br = new Packages.efw.csv.CSVReader(
 					new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path)),
-					this._encoding);
+					this._encoding,this._CRLFCode);
 		}finally{
 			CSVReader_lock.unlock();
 		}
@@ -128,16 +138,8 @@ CSVReader.prototype.loopAllLines = function(callback,errCallback){
 		while (true) {
 			if (this._rowsToRead!=-1 && intNum>=this._rowsToRead) break;
 			var strLine = br.readLine();if (strLine==null) break;
-			try{
-				var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
-				callback(aryField, intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
-			}catch(e){
-				if (errCallback){
-					errCallback(strLine,intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
-				}else{
-					throw e;
-				}
-			}
+			var aryField = this._split(strLine,intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
+			callback(aryField, intNum+(this._skipRows!=-1?this._skipRows:0)+(this._offsetRows!=-1?this._offsetRows:0));
 			intNum++;
 		}
 		this._offsetBytes=0+br.getCurrentOffsetBytes();

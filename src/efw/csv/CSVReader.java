@@ -16,18 +16,23 @@ public class CSVReader{
     private int nChars, nextChar;
 
     private static int defaultCharBufferSize = 8192;
-
-    private boolean needSkipNextLf=true;//offsetの呼び出しの場合、最初の記録場所はcrの場所でしょう。
+    private byte CRLFCodeAry[]=null;
+    
     /**
      * Create a CSV reader
      * @param in
      * @param encoding
      */
-    public CSVReader(FileInputStream in,String encoding) {
+    public CSVReader(FileInputStream in,String encoding,String CRLFCode) {
         this.in = in;
         this.encoding=encoding;
         cb = new byte[defaultCharBufferSize];
         nextChar = nChars = 0;
+        if (CRLFCode!=null&&!"".equals(CRLFCode)) {
+        	CRLFCodeAry=CRLFCode.getBytes();
+        }else {
+        	CRLFCodeAry="\r\n".getBytes();
+        }
     }
     /**
      * skip some bytes
@@ -85,30 +90,36 @@ public class CSVReader{
                         }
                     }
                 }
-                if (cb[nextChar] == '\n' && needSkipNextLf) {
-                	nextChar++;
-                }
-                needSkipNextLf=false;
-                
+                ////////////////////////////////////////////
                 int startChar = nextChar;
+                
+                byte lastCRLFChar=CRLFCodeAry[CRLFCodeAry.length-1];
                 for (; nextChar < nChars; nextChar++) {
                 	byte c = cb[nextChar];
-                    if (c=='\r'){
-                    	needSkipNextLf=true;
-                        break;
-                    }else if(c=='\n') {
-                        break;
-                    }
+                	//改行マークの最後のバイトと一致する場合
+                	if (c==lastCRLFChar) {
+                		boolean isCRLF=true;
+                		int compareChar=nextChar;
+                		for (int i=CRLFCodeAry.length-1;i>-1 && compareChar>-1;i--,compareChar--) {
+                			if (cb[compareChar]!=CRLFCodeAry[i]) {
+                				isCRLF=false;
+                				break;
+                			}
+                		}
+                		if (isCRLF) {
+                			break;
+                		}
+                	}
                 }
 
-            	byte part[]=Arrays.copyOfRange(cb, startChar, nextChar);
+            	byte part[]=Arrays.copyOfRange(cb, startChar,nextChar);
             	byte newDst[]=new byte[part.length+dst.length];
             	System.arraycopy(dst,0,newDst,0,dst.length);
             	System.arraycopy(part,0,newDst,dst.length,part.length);
             	dst=newDst;
             	if (nextChar < nChars) {
                     offsetRows++;nextChar++;
-                    return new String(dst,this.encoding);
+                    return new String(dst,0,dst.length-(CRLFCodeAry.length-1),this.encoding);
                 }
             }
         }
