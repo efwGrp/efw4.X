@@ -9,7 +9,7 @@ RestAPI:	<a href="help/api_restevent.md">Rest Event</a>.
 Additional Tags:	Signature,	CKEditor
 <h4>Updated</h4>
 jdk:	java jdk1.8 or later or graalvm.<br>
-poi:	poi 4.1.1.<br>
+poi:	poi 4.1.1  4.1.2  5.1.0<br>
 zxing:	zxing 3.4.<br>
 <h4>Changed</h4>
 file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
