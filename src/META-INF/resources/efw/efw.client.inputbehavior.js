@@ -95,6 +95,9 @@ efwClientInputBehavior.prototype.DoFocus = function() {
  */
 efwClientInputBehavior.prototype.DoBlur = function() {
 	$(this).removeClass("efw_input_focus");
+	var vl=$(this).val();
+	vl=vl.replace(/[\b\f\v]/g,"");//to clear the special code copied from other office docs
+	$(this).val(vl);
 };
 /**
  * The event of format focus.
