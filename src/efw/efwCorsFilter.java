@@ -28,8 +28,11 @@ public final class efwCorsFilter implements Filter {
 			efwCorsFilter.doCORSPreflight(req, res);
 			return;
 		}else {
-			chain.doFilter(request, response);
+			//set headers for cors.
 			efwCorsFilter.doCORS(req, res);
+			//do the program
+			chain.doFilter(request, response);
+			//about cookie, it must be after chain.dofilter.because the program maybe set cookie.
 			Collection<String> headers = res.getHeaders("Set-Cookie");
 			boolean firstHeader = true;
 			for (String header : headers) {  

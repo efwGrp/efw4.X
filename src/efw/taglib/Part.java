@@ -37,7 +37,7 @@ public final class Part extends TagSupport implements DynamicAttributes {
 				pageContext.setAttribute("id", this.getId(),PageContext.REQUEST_SCOPE);
 				attrs.add("id");
 			}
-			pageContext.include(path);
+			pageContext.include(path,false);
 			for(int i=0;i<attrs.size();i++){
 				pageContext.removeAttribute(attrs.get(i));
 			}
