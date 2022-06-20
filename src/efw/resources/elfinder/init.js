@@ -19,6 +19,7 @@ function elfinder_checkRisk(params){
 	var volumeId="EFW_";
 	var id=params["id"];//elfinderのid
 	var home=params["home"];//ホームフォルダ、ストレージフォルダからの相対位置
+	var abshome=params["abshome"];//ホームフォルダ、ストレージフォルダからの相対位置
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var target=params["target"];
 	var targets=params["targets"];
@@ -27,25 +28,34 @@ function elfinder_checkRisk(params){
 	if (reg==null){//指定idは、初期化されたかどうか
 		return (new Result()).alert("{ElFinderIdNotRegisteredMessage}");
 	}else if (reg==true){
-		if (session.get("EFW_ELFINDER_HOME_"+id)==null||session.get("EFW_ELFINDER_READONLY_"+id)==null){
+		if (session.get("EFW_ELFINDER_HOME_"+id)==null
+		||session.get("EFW_ELFINDER_ABS_HOME_"+id)==null
+		||session.get("EFW_ELFINDER_READONLY_"+id)==null){
 			return (new Result()).alert("{ElFinderSessionTimeoutMessage}");
 		}
 		var sessionHome=session.get("EFW_ELFINDER_HOME_"+id)+"";
+		var sessionAbshome=session.get("EFW_ELFINDER_ABS_HOME_"+id)+"";
 		var sessionReadonly=session.get("EFW_ELFINDER_READONLY_"+id)+"";
 		if (sessionReadonly=="true")sessionReadonly=true;
 		if (sessionReadonly=="false")sessionReadonly=false;
-		if(home!=sessionHome||readonly!=sessionReadonly){
+		if(home!=sessionHome||abshome!=sessionAbshome||readonly!=sessionReadonly){
 			return (new Result()).alert("{ElFinderIsProtectedMessage}");
 		}
 	}
-	if (home!=null){
-		if (home.indexOf("..")>-1){
-			return (new Result()).alert("{ElFinderHackingRiskMessage}");
-		}
+	//相対パスが設定される場合、あるいは相対パス空白で絶対パス未設定の場合（storage直下）
+	if (home!=""||abshome==""){
+		params["file"]=file;
+	}else{//home==""&&abshome!=""
+		home=abshome;
+		params["file"]=absfile;
+	}
+	params["home"]=home;
+	if (home.indexOf("..")>-1){
+		return (new Result()).alert("{ElFinderHackingRiskMessage}");
 	}
 	if (target!=null){
 		var cwdFile=target.substring(volumeId.length).base64Decode();
-		if (home!=""&&cwdFile!=""){
+		if (cwdFile!=""){
 			if (cwdFile.indexOf(home)!=0||cwdFile.indexOf("..")>-1){
 				return (new Result()).alert("{ElFinderHackingRiskMessage}");
 			}
@@ -55,7 +65,7 @@ function elfinder_checkRisk(params){
 		for(var i=0;i<targets.length;i++){
 			var target=targets[i];
 			var cwdFile=target.substring(volumeId.length).base64Decode();
-			if (home!=""&&cwdFile!=""){
+			if (cwdFile!=""){
 				if (cwdFile.indexOf(home)!=0||cwdFile.indexOf("..")>-1){
 					return (new Result()).alert("{ElFinderHackingRiskMessage}");
 				}

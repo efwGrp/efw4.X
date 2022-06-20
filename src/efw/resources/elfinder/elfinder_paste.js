@@ -4,6 +4,7 @@ elfinder_paste.name = "elfinder_paste";
 elfinder_paste.paramsFormat = {};//
 elfinder_paste.fire = function(params) {
 	var risk=elfinder_checkRisk(params);if(risk)return risk;
+	var file=params.file;
 	var volumeId="EFW_";
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	//var src=params["src"];//コピーファイルの場所

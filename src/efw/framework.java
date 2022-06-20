@@ -29,12 +29,20 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.05.023";// change it when releasing jar.
+	private static String version="4.05.024";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
-	
-	
+	/**
+	 * webHome
+	 */
+	private static String webHome="";
+	public static String getWebHome() {
+		return webHome;
+	}
+	public static void setWebHome(String webHome) {
+		framework.webHome=webHome;
+	}
 	
 	/**
 	 * 初期化のモード
@@ -49,6 +57,7 @@ public class framework {
 	
 	private static void initCommonWBL(String webHome) throws Exception {
 		//-----------------------------------------------------------------
+		framework.setWebHome(webHome);
 		framework.initCLog("webHome = "+webHome);
 		//-----------------------------------------------------------------
 		//systemErrorUrl　ここはログを出力しない。filter初期化時出力したから。
@@ -243,7 +252,7 @@ public class framework {
 		//-----------------------------------------------------------------
 		initScript();
 	}
-	public static void destroyServlet(String webHome) throws Exception {
+	public static void destroyServlet() throws Exception {
 		if (!framework.getInitSuccessFlag()) return;
 		ScriptManager.doDestroy(framework.getEventFolder());
 	}

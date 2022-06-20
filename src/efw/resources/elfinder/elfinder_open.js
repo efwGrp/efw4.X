@@ -4,6 +4,7 @@ elfinder_open.name = "elfinder_open";
 elfinder_open.paramsFormat = {};//
 elfinder_open.fire = function(params) {
 	var risk=elfinder_checkRisk(params);if(risk)return risk;
+	var file=params.file;
 	var volumeId="EFW_";
 	var home=params["home"];//ホームフォルダ、ストレージフォルダからの相対位置
 	var readonly=params["readonly"];//参照のみかどうか,true,false

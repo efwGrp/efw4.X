@@ -4,6 +4,7 @@ elfinder_mkdir.name = "elfinder_mkdir";
 elfinder_mkdir.paramsFormat = {};//
 elfinder_mkdir.fire = function(params) {
 	var risk=elfinder_checkRisk(params);if(risk)return risk;
+	var file=params.file;
 	var volumeId="EFW_";
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var target=params["target"];//初回以降はcwdのhashになる。

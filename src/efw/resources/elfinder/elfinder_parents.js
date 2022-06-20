@@ -4,6 +4,7 @@ elfinder_parents.name = "elfinder_parents";
 elfinder_parents.paramsFormat = {};//
 elfinder_parents.fire = function(params) {
 	var risk=elfinder_checkRisk(params);if(risk)return risk;
+	var file=params.file;
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var volumeId="EFW_";
 	var target=params["target"];

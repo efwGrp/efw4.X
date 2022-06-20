@@ -26,6 +26,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 */
 	private String id="elFinder";
 	private String home="";
+	private String abshome="";
 	private String selection="";
 	private boolean readonly=false;
 	private String height="400";
@@ -48,6 +49,14 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		this.home = home;
 	}
 
+	public String getAbshome() {
+		return abshome;
+	}
+
+	public void setAbsome(String abshome) {
+		this.abshome = abshome;
+	}
+	
 	public String getSelection() {
 		return selection;
 	}
@@ -115,14 +124,15 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 * @param readonly
 	 * @param _protected
 	 */
-	public static void _init(String id,String home,boolean readonly,boolean _protected) {
-		ElFinder._init(id,home,readonly,_protected,(HttpServletRequest)framework.getRequest());
+	public static void _init(String id,String home,String abshome,boolean readonly,boolean _protected) {
+		ElFinder._init(id,home,abshome,readonly,_protected,(HttpServletRequest)framework.getRequest());
 	}
-	private static void _init(String id,String home,boolean readonly,boolean _protected,HttpServletRequest req) {
+	private static void _init(String id,String home,String abshome,boolean readonly,boolean _protected,HttpServletRequest req) {
 		synchronized(elfinderIds) {
 			elfinderIds.put(id, _protected);
 		}
 		req.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
+		req.getSession().setAttribute("EFW_ELFINDER_ABS_HOME_"+id, abshome);
 		req.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
 	}
 
@@ -158,6 +168,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 					+"\"width\":\""+width+"\","
 					+ "\"customData\":{"
 					+ "\"home\":\""+jsEncode(home)+"\","
+					+ "\"abshome\":\""+jsEncode(abshome)+"\","
 					+ "\"selection\":\""+jsEncode(selection)+"\","
 					+ "\"readonly\":"+readonly+","
 					+ "\"id\":\""+id+"\","
@@ -170,7 +181,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			}
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
 			
-			ElFinder._init(id,home,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
+			ElFinder._init(id,home,abshome,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -178,6 +189,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		//初期値を再設定する。
 		id="elFinder";
 		home="";
+		abshome="";
 		selection="";
 		readonly=false;
 		height="400";
@@ -198,6 +210,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			id=(String) value;
 		}else if(name.equalsIgnoreCase("home")){
 			home=(String) value;
+		}else if(name.equalsIgnoreCase("abshome")){
+			abshome=(String) value;
 		}else if(name.equalsIgnoreCase("selection")){
 			selection=(String) value;
 		}else if(name.equalsIgnoreCase("height")){

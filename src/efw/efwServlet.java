@@ -29,7 +29,7 @@ public final class efwServlet extends HttpServlet {
 		// call the orgin destroy function
 		super.destroy();
 		try {
-			framework.destroyServlet(this.getServletContext().getRealPath("/"));
+			framework.destroyServlet();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

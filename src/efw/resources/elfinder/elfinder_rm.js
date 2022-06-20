@@ -4,6 +4,7 @@ elfinder_rm.name = "elfinder_rm";
 elfinder_rm.paramsFormat = {};//
 elfinder_rm.fire = function(params) {
 	var risk=elfinder_checkRisk(params);if(risk)return risk;
+	var file=params.file;
 	var volumeId="EFW_";
 	var targets=params["targets"];
 	for(var i=0;i<targets.length;i++){
