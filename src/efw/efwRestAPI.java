@@ -46,8 +46,6 @@ public final class efwRestAPI extends HttpServlet{
 			return;
 		}
 		//call script 
-		framework.setRequest(request);
-		framework.setResponse(response);
 		framework.setThreadLogs(new ArrayList<String>());
 		try {
 			String[] keys=request.getPathInfo().split("/");
@@ -79,8 +77,6 @@ public final class efwRestAPI extends HttpServlet{
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 			//response.getWriter().print(otherError);//efw内部エラー。
 		}finally{
-			framework.removeRequest();
-			framework.removeResponse();
 			framework.removeI18nProp();
 			framework.removeThreadLogs();
 			framework.removeRestStatus();

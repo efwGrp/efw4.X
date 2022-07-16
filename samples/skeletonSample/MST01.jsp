@@ -81,7 +81,7 @@ function getSelectId(){
 				</TR>
 			</TABLE>
 		</DIV>
-		<TABLE ID="tbl_data" CLASS="TABLE-BODY" style="margin-top:130px">
+		<TABLE ID="tbl_data" CLASS="TABLE-BODY" style="margin-top:135px">
 			<COLGROUP>
 				<COL WIDTH=100PX>
 				<COL WIDTH=220PX>

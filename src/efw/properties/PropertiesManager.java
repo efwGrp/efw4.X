@@ -118,6 +118,11 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_AUTH_URLPATTERN ="url.pattern";
 	/**
+	 * 権限チェック個別ケースのイベントIDパターン。
+	 * 「####.eventid.pattern」の定数。
+	 */
+	public static final String EFW_AUTH_EVENTIDPATTERN ="eventid.pattern";
+	/**
 	 * システムエラー遷移画面のURL。
 	 *  「efw.system.error.url」の定数。
 	 */
@@ -134,6 +139,23 @@ public final class PropertiesManager {
 	 * フォーマット関数のROUNDER
 	 */
 	public static final String EFW_FORMAT_ROUNDER="efw.format.rounder";
+	/**
+	 * アプリはメインとして動く
+	 */
+	public static final String EFW_AS_MAIN="efw.as.main";
+	/**
+	 * メインアプリに利用されるサブアプリ
+	 */
+	public static final String EFW_CALL_TO_SUBS="efw.call.to.subs";
+	/**
+	 * アプリはサブとして動く
+	 */
+	public static final String EFW_AS_SUB="efw.as.sub";
+	/**
+	 * サブアプリを利用するメインアプリ
+	 */
+	public static final String EFW_CALLED_FROM_MAINS="efw.called.from.mains";
+	
 	
 	/**
 	 * プロパティ値を格納するプロパティオブジェクト。

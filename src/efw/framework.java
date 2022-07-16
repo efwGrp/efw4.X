@@ -29,7 +29,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static String version="4.05.024";// change it when releasing jar.
+	private static final String version="4.05.028";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}
@@ -42,17 +42,6 @@ public class framework {
 	}
 	public static void setWebHome(String webHome) {
 		framework.webHome=webHome;
-	}
-	
-	/**
-	 * 初期化のモード
-	 */
-	private static String initMode="";//WEB,BATCH,LAMBDA
-	public static String getInitMode() {
-		return initMode;
-	}
-	public static void setInitMode(String initMode) {
-		framework.initMode=initMode;
 	}
 	
 	private static void initCommonWBL(String webHome) throws Exception {
@@ -179,25 +168,8 @@ public class framework {
 		}
 	}
 	
-	public static synchronized void initLambda(String webHome,String properties) throws Exception {
-		if (framework.getInitSuccessFlag()) return;
-		framework.setInitMode("LAMBDA");
-		// begin to init efwServletのinitと同等
-		//-----------------------------------------------------------------
-		PropertiesManager.initBatch(properties);//ここからエラーになると、処理を中断する。
-		LogManager.init();
-		framework.initCLog("properties = "+properties);
-		framework.initCLog("PropertiesManager.inited.");
-		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
-		initCommonBL();
-		//-----------------------------------------------------------------
-		initScript();
-	}
-	
 	public static synchronized void initBatch(String webHome,String properties) throws Exception {
 		if (framework.getInitSuccessFlag()) return;
-		framework.setInitMode("BATCH");
 		// begin to init efwServletのinitと同等
 		//-----------------------------------------------------------------
 		PropertiesManager.initBatch(properties);//ここからエラーになると、処理を中断する。
@@ -214,7 +186,6 @@ public class framework {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static synchronized void initServlet(String webHome) throws Exception {
 		if (framework.getInitSuccessFlag()) return;
-		framework.setInitMode("WEB");
 		//-----------------------------------------------------------------
 		// begin to init efw　まずefw.propertiesを読んで、次は簡単な情報をスタート
 		//-----------------------------------------------------------------
@@ -247,8 +218,14 @@ public class framework {
 			framework.initWLog("MailManager failed.",ex);
 		}
 		//-----------------------------------------------------------------
-		//efwFilter init to check login or not
-		efwFilter.init();//プロパティの後で必要。エラーなし。
+		//efwCorsFilter init to check calling to sub
+		try {
+			efwCorsFilter.init();//プロパティの後で必要。
+			framework.initCLog("efwCorsFilter inited.");
+		}catch(Exception ex) {
+			framework.initSLog("efwCorsFilter failed.",ex);
+			throw ex;
+		}
 		//-----------------------------------------------------------------
 		initScript();
 	}

@@ -4,6 +4,7 @@ elfinder_download.name = "elfinder_download";
 elfinder_download.paramsFormat = {
 	"cmd":null,
 	"home":null,
+	"isAbs":null,
 	"readonly":null,
 	"id":null,
 	"targets":null
@@ -20,7 +21,12 @@ elfinder_download.fire = function(params) {
 		if (cwdFile.indexOf("/")>-1){
 			zipBasePath=cwdFile.substring(0,cwdFile.lastIndexOf("/"));
 		}
-		ret.attach(cwdFile,zipBasePath);
+		if (params["isAbs"]){
+			//絶対パス設定された場合
+			ret.attach(cwdFile,zipBasePath,true);
+		}else{
+			ret.attach(cwdFile,zipBasePath);
+		}
 	}
 	return ret;
 };

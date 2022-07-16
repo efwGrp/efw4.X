@@ -3,10 +3,8 @@ package efw.taglib;
 
 import java.io.IOException;
 
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
-import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import efw.framework;
@@ -17,7 +15,7 @@ import efw.framework;
  * @author Chang Kejun
  *
  */
-public final class Client extends TagSupport implements DynamicAttributes {
+public final class Client extends TagSupport{
 
 	private String baseurl=".";
 	private String mode="jquery-ui";
@@ -30,7 +28,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setBaseurl(String baseurl) {
-		this.baseurl = baseurl;
+		this.baseurl = Util.translateAttr(pageContext,baseurl);
 	}
 
 	public String getMode() {
@@ -38,7 +36,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setMode(String mode) {
-		this.mode = mode;
+		this.mode = Util.translateAttr(pageContext,mode);
 	}
 
 	public String getTheme() {
@@ -46,7 +44,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setTheme(String theme) {
-		this.theme = theme;
+		this.theme = Util.translateAttr(pageContext,theme);
 	}
 
 	public String getLang() {
@@ -54,7 +52,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setLang(String lang) {
-		this.lang = lang;
+		this.lang = Util.translateAttr(pageContext,lang);
 	}
 
 	public String getMajor() {
@@ -62,7 +60,7 @@ public final class Client extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setMajor(String major) {
-		this.major = major;
+		this.major = Util.translateAttr(pageContext,major);
 	}
 	
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
@@ -121,30 +119,5 @@ public final class Client extends TagSupport implements DynamicAttributes {
 		lang="en";
 		major="4";
 		return SKIP_BODY;
-	}
-
-	/**
-	 * 動的パラメータを取得する。
-	 * 取得するパラメータをREQUEST_SCOPEに設定する。
-	 */
-	@Override
-	public void setDynamicAttribute(String uri, String name, Object value)
-			throws JspException {
-		if(name.equalsIgnoreCase("baseurl")){
-			baseurl=(String) value;
-		}
-		if(name.equalsIgnoreCase("mode")){
-			mode=(String) value;
-		}
-		if(name.equalsIgnoreCase("theme")){
-			theme=(String) value;
-		}
-		if(name.equalsIgnoreCase("lang")){
-			lang=(String) value;
-		}
-		if(name.equalsIgnoreCase("major")){
-			major=(String) value;
-		}
-		
 	}
 }

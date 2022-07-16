@@ -5,6 +5,7 @@ elfinder_file.name = "elfinder_file";
 elfinder_file.paramsFormat = {
 	"cmd":null,
 	"home":null,
+	"isAbs":null,
 	"readonly":null,
 	"id":null,
 	"target":null
@@ -14,6 +15,10 @@ elfinder_file.fire = function(params) {
 	var volumeId="EFW_";
 	var target=params["target"];
 	var cwdFile=target.substring(volumeId.length).base64Decode();
-	return (new Result())
-	.attach(cwdFile);
+	if (params["isAbs"]){
+		//絶対パス設定された場合
+		return (new Result()).attach(cwdFile,null,true);
+	}else{
+		return (new Result()).attach(cwdFile);
+	}
 };

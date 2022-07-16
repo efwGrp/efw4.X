@@ -97,7 +97,6 @@ load("classpath:efw/resources/server/efw.server.excel.js");
 load("classpath:efw/resources/server/efw.server.batch.js");
 load("classpath:efw/resources/server/efw.server.cookie.js");
 load("classpath:efw/resources/server/efw.server.barcode.js");
-load("classpath:efw/resources/server/base64.min.js");
 load("classpath:efw/resources/server/efw.server.csv.js");
 load("classpath:efw/resources/server/efw.server.txt.js");
 load("classpath:efw/resources/server/efw.server.binary.js");
@@ -105,7 +104,6 @@ load("classpath:efw/resources/server/efw.server.threads.js");
 load("classpath:efw/resources/server/efw.server.debug.js");
 load("classpath:efw/resources/server/efw.server.rest.js");
 load("classpath:efw/resources/server/efw.doHandles.js");
-load("classpath:efw/resources/server/efw.doHandles4Lambda.js");
 
 /**
  * create instances.

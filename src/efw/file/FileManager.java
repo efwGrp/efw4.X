@@ -150,25 +150,26 @@ public final class FileManager {
 	 * @param paths 圧縮対象のファイル配列。
 	 * @throws IOException ファイルアクセスエラー。
 	 */
-	public static void zip(String filename, String[] paths, String basePath) throws IOException{
+	public static void zip(String filename, String[] paths, String basePath, boolean isAbs) throws IOException{
+		//filename is the zip file name, so it is in storage.
 		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(get(filename))));
 		try{
-			_zip(zos,paths,basePath);
+			_zip(zos,paths,basePath,isAbs);
 		}finally{
 			zos.close();
 		}
 	}
 	
-	private static void _zip(ZipOutputStream zos,String[] paths, String basePath) throws IOException {
+	private static void _zip(ZipOutputStream zos,String[] paths, String basePath, boolean isAbs) throws IOException {
 		for (String path : paths) {
-			File fl=get(path);
+			File fl=isAbs?getByAbsolutePath(path):get(path);
 			if(fl.isDirectory()){
-				File[] f = getList(path);
+				File[] f = isAbs?getListByAbsolutePath(path):getList(path);
 				String[] paths2=new String[f.length];
 			    for(int i=0;i<f.length;i++){
 			    	paths2[i] = path +"/" + f[i].getName();
 			    }
-			    _zip(zos,paths2,basePath);
+			    _zip(zos,paths2,basePath,isAbs);
 			}else{
 				byte[] buf = new byte[1024];
 	            InputStream is = new BufferedInputStream(new FileInputStream(fl));
@@ -233,7 +234,6 @@ public final class FileManager {
 				String uploadPath=(String)item.get("uploadPath");
 				String uploadFileName=(String)item.get("uploadFileName");
 				String tempFileAbsolutePath=(String)item.get("tempFileAbsolutePath");
-				System.out.println("uploadPath="+uploadPath+" uploadFileName="+uploadFileName+" tempFileAbsolutePath="+tempFileAbsolutePath);
 				if (uploadPath==null){//単独アップロードファイル、フォルダなし
 					if (uploadFileName.indexOf(":")>-1){//もしc:\のIE書き方なら、最後のファイル名のみを取る。
 						uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);

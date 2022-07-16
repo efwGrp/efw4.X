@@ -1,12 +1,12 @@
 package efw.rest;
 
-import efw.framework;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import efw.framework;
 
 /**
  * Rest Serviceにアクセスクラス。
@@ -17,12 +17,12 @@ public class RestManager {
     /**
      * エンコード形式
      */
-    private static String CHAR_SET = "UTF-8";
+    private static final String CHAR_SET = "UTF-8";
 
     /**
      * データタイプ
      */
-    private static String DATA_TYPE = "application/json;charset=UTF-8";
+    private static final String DATA_TYPE = "application/json;charset=UTF-8";
 
     /**
      * Restサービスにアクセス。

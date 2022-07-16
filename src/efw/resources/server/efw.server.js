@@ -12,15 +12,16 @@ function EfwServer() {
  * @returns {null | Result}<br>
  */
 EfwServer.prototype.checkLogin = function(eventId, lang){
-	var needLoginCheck = properties.get("efw.login.check",false);
-	var outOfLoginEventIdPattern =properties.get("efw.outoflogin.eventid.pattern","");
-	var loginkey = properties.get("efw.login.key","USER_ID");
+	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
+	var needLoginCheck = currentAuthBean.loginCheck;
+	var outOfLoginEventIdPattern = ""+currentAuthBean.outOfloginEventIdPatternString;
+	var loginkey = ""+currentAuthBean.loginKey;
 	if (needLoginCheck && outOfLoginEventIdPattern!="" && eventId.search(new RegExp(outOfLoginEventIdPattern))==-1) { // the login check
 		var vl = session.get(loginkey);
 		if (vl == null ||(typeof(vl) == "string" && vl == "")) {
 			var result=(new Result())
 			.alert(messages.get("SessionTimeoutException",lang));
-			var loginUrl = properties.get("efw.login.url","login.jsp");
+			var loginUrl = ""+currentAuthBean.systemErrorUrl;
 			result.navigate(loginUrl);
 			return result;
 		}
@@ -33,18 +34,20 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
  * @returns {null | Result}<br>
  */
 EfwServer.prototype.checkAuth = function(eventId){
-	var outOfLoginEventIdPattern =properties.get("efw.outoflogin.eventid.pattern","");
+	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
+	var outOfLoginEventIdPattern =""+currentAuthBean.outOfloginEventIdPatternString;
 	if (eventId.search(new RegExp(outOfLoginEventIdPattern)) == -1) {
-		var needAuthCheck = properties.get("efw.auth.check",false);
-		var authKey = properties.get("efw.auth.key","USER_AUTH");
-		var authCases = properties.get("efw.auth.cases","");
+		var needAuthCheck = currentAuthBean.authCheck;
+		var authKey = ""+currentAuthBean.authKey;
+		var authCases = ""+currentAuthBean.authCases;
 		var authValue = session.get(authKey);
 		if (needAuthCheck && authValue != null && authValue != ""  && authCases != "") {
 			var hasAuth=false;
 			var authCaseAry  = authCases.split(",");
 			for (var i = 0; i < authCaseAry.length; i++) {
-				var authPattern = properties.get(authCaseAry[i]+".auth.pattern","");
-				var eventidPattern = properties.get(authCaseAry[i]+".eventid.pattern","");
+				var itm=currentAuthBean.authCasesMap.get(authCaseAry[i]);
+				var authPattern = ""+itm.get(Packages.efw.properties.PropertiesManager.EFW_AUTH_AUTHPATTERN);
+				var eventidPattern = ""+itm.get(Packages.efw.properties.PropertiesManager.EFW_AUTH_EVENTIDPATTERN);
 				if (authPattern != "" && eventidPattern != "" && authValue.search(new RegExp(authPattern)) > -1  && eventId.search(new RegExp(eventidPattern)) > -1){
 						hasAuth=true;
 						break;
@@ -52,7 +55,7 @@ EfwServer.prototype.checkAuth = function(eventId){
 			}
 			if (hasAuth == false) {
 				var result=new Result();
-				var systemErrorUrl=properties.get("efw.system.error.url","error.jsp");
+				var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
 				result.navigate(systemErrorUrl);
 				return result;
 			}
@@ -282,13 +285,19 @@ EfwServer.prototype.fire = function(event, requestParams) {
 			var tmpzipBasePath =download.zipBasePath;
 			if (tmpzipBasePath == null)
 				tmpzipBasePath = "";
-			
+			var tmpisAbs = download.isAbs;
+			if (tmpisAbs == null)
+				tmpisAbs ="";
+			else
+				tmpisAbs =""+tmpisAbs;
+				
 			session.set("efw.download.file", tmpfile);
 			session.set("efw.download.zip", tmpzip);
 			session.set("efw.download.deleteafterdownload",
 					tmpdeleteafterdownload);
 			session.set("efw.download.saveas", tmpsaveas);
 			session.set("efw.download.zipBasePath", tmpzipBasePath);
+			session.set("efw.download.isAbs", tmpisAbs);
 		}
 		db._commitAll();
 		return result;

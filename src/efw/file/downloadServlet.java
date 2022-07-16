@@ -32,6 +32,7 @@ public final class downloadServlet extends HttpServlet {
     private static final String EFW_DOWNLOAD_SAVEAS="efw.download.saveas";
     private static final String EFW_DOWNLOAD_DELETEAFTERDOWNLOAD="efw.download.deleteafterdownload";
     private static final String EFW_DOWNLOAD_ZIPBASEPATH="efw.download.zipBasePath";
+    private static final String EFW_DOWNLOAD_ISABS="efw.download.isAbs";
     /**
      * get方法でファイルをダウンロードする
      * ダウンロード方法などの情報は、セッションから渡す。
@@ -46,11 +47,13 @@ public final class downloadServlet extends HttpServlet {
 		String attr_saveas=(String)sn.getAttribute(EFW_DOWNLOAD_SAVEAS);
 		String attr_deleteafterdownload=(String)sn.getAttribute(EFW_DOWNLOAD_DELETEAFTERDOWNLOAD);
 		String attr_zipBasePath=(String)sn.getAttribute(EFW_DOWNLOAD_ZIPBASEPATH);
+		String attr_isAbs=(String)sn.getAttribute(EFW_DOWNLOAD_ISABS);
 		sn.removeAttribute(EFW_DOWNLOAD_FILE);
 		sn.removeAttribute(EFW_DOWNLOAD_ZIP);
 		sn.removeAttribute(EFW_DOWNLOAD_SAVEAS);
 		sn.removeAttribute(EFW_DOWNLOAD_DELETEAFTERDOWNLOAD);
 		sn.removeAttribute(EFW_DOWNLOAD_ZIPBASEPATH);
+		sn.removeAttribute(EFW_DOWNLOAD_ISABS);
 
 		String tmp_zip=null;
 		String[] tmp_files=null;
@@ -62,14 +65,18 @@ public final class downloadServlet extends HttpServlet {
 				File zipFile=File.createTempFile("efw", "zip",new File(FileManager.getStorageFolder()));
 				tmp_zip=zipFile.getName();
 				attr_file=zipFile.getName();
-				FileManager.zip(tmp_zip, tmp_files, attr_zipBasePath);
-				
+				FileManager.zip(tmp_zip, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs));
+
 				if(attr_saveas==null||"".equals(attr_saveas)){
 					attr_saveas="attachment.zip";
 				}
 			}else if(attr_file!=null&&!"".equals(attr_file)){
 				if(attr_saveas==null||"".equals(attr_saveas)){
-					attr_saveas=FileManager.get(attr_file).getName();//Download file name is the last name in the folder name string.
+					//Download file name is the last name in the folder name string.
+					attr_saveas=("true".equals(attr_isAbs)?
+									FileManager.getByAbsolutePath(attr_file)
+									:FileManager.get(attr_file)
+								).getName();
 				}
 			}else{
 				//do nothing in this case because it is an error in client js.
@@ -81,8 +88,14 @@ public final class downloadServlet extends HttpServlet {
 			Cookie ck=new Cookie("efw_Downloaded","OK");
 			ck.setPath("/");
 			response.addCookie(ck);
-
-			FileInputStream hFile = new FileInputStream(FileManager.getStorageFolder()+"/"+attr_file);
+			FileInputStream hFile;
+			if (tmp_zip!=null) {
+				hFile=new FileInputStream(FileManager.getStorageFolder()+"/"+attr_file);
+			}else {
+				hFile="true".equals(attr_isAbs)?
+						new FileInputStream(attr_file)
+						:new FileInputStream(FileManager.getStorageFolder()+"/"+attr_file);
+			}
 			BufferedInputStream bis = new BufferedInputStream(hFile);
 			int len = 0;
 			byte[] buffer = new byte[1024];

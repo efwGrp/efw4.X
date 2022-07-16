@@ -13,9 +13,9 @@
 <BODY ONLOAD="Efw('LG01_cookie');$('#txt_uid').focus();">
 	<DIV ID="LG01" CLASS=MAIN ALIGN="CENTER">
 		<efw:Part path="headbeforelogining.jsp" title="EFW DEMO" />
-		<BR><BR><BR><BR><BR><BR><BR>
+		<BR><BR><BR><BR><BR>
 		<DIV STYLE="WIDTH:700PX;LINE-HEIGHT:18PX;TEXT-ALIGN:CENTER;"><LABEL ID=LBL_MSG CLASS="MSG-BLUE">ユーザーID 、パスワードを入力してください。</LABEL></DIV>
-		<BR><BR>
+		<BR>
 		<TABLE CLASS=BORDER-GRAY
 			STYLE="BACKGROUND-COLOR: WHITE; WIDTH: 300PX;">
 			<TR>

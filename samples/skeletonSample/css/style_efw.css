@@ -3,10 +3,9 @@ HTML,BODY{
 }
 
 *{
-	font-size:13px;
-	font-family:'メイリオ';
-	line-height:13px;
+	font-size:14px;
 }
+
 *:focus{
 	outline:none;
 }
@@ -298,18 +297,18 @@ TABLE.TABLE-BODY {
 	BORDER: none;
 	BORDER-COLLAPSE: collapse;
 	TABLE-LAYOUT: fixed;
-	MARGIN:146px 0 50px 0;
+	MARGIN:135px 0 50px 0;
 }
 TABLE.TABLE-BODY TR {
 	height:20px;
 }
 TABLE.TABLE-BODY TH {
-	border:1px solid silver;
+	border:0.5px solid silver;
 	font-weight:bold;
 	background-color:lightskyblue;
 }
 TABLE.TABLE-BODY TD {
-	BORDER:1px solid silver;
+	BORDER:0.5px solid silver;
 	BORDER-TOP:none;
 	padding:0 5px 0 5px;
 	text-overflow:ellipsis;
@@ -330,7 +329,7 @@ TABLE.table-BODY P {
 	background: #ffffff
 }
 .SELECTED {
-	background: #ffeeff
+	background: #ffddff
 }
 
 /*****************************************************************************/

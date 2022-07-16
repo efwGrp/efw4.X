@@ -18,11 +18,13 @@ The attach function is established to download a file or a folder.
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>Result . attach ( path )</td><td>Result</td></tr>
 <tr><td>Result . attach ( path, zipBasePath )</td><td>Result</td></tr>
+<tr><td>Result . attach ( path, zipBasePath, isAbs )</td><td>Result</td></tr>
 </table>
 
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
 <tr><td>path</td><td>String</td><td>File or folder path.</td></tr>
 <tr><td>zipBasePath</td><td>String</td><td>The root path of the zip for downloading.</td></tr>
+<tr><td>isAbs</td><td>boolean</td><td>The path is absolute path or a relative path to the storage.</td></tr>
 </table>
 

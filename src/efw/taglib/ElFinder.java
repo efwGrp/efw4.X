@@ -26,7 +26,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 */
 	private String id="elFinder";
 	private String home="";
-	private String abshome="";
+	private boolean isAbs=false;
 	private String selection="";
 	private boolean readonly=false;
 	private String height="400";
@@ -38,7 +38,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.id = Util.translateAttr(pageContext,id);
 	}
 
 	public String getHome() {
@@ -46,15 +46,15 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setHome(String home) {
-		this.home = home;
+		this.home = Util.translateAttr(pageContext,home);
 	}
 
-	public String getAbshome() {
-		return abshome;
+	public String getIsAbs() {
+		return ""+isAbs;
 	}
 
-	public void setAbsome(String abshome) {
-		this.abshome = abshome;
+	public void setIsAbs(String isAbs) {
+		this.isAbs = "true".equals(Util.translateAttr(pageContext,isAbs));
 	}
 	
 	public String getSelection() {
@@ -62,7 +62,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setSelection(String selection) {
-		this.selection = selection;
+		this.selection = Util.translateAttr(pageContext,selection);
 	}
 
 	public String getReadonly() {
@@ -70,7 +70,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setReadonly(String readonly) {
-		if ("true".equalsIgnoreCase(readonly)) {
+		if ("true".equalsIgnoreCase(Util.translateAttr(pageContext,readonly))) {
 			this.readonly=true;
 		}else {
 			this.readonly=false;
@@ -82,7 +82,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setHeight(String height) {
-		this.height = height;
+		this.height = Util.translateAttr(pageContext,height);
 	}
 
 	public String getWidth() {
@@ -90,7 +90,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setWidth(String width) {
-		this.width = width;
+		this.width = Util.translateAttr(pageContext,width);
 	}
 
 	public String isProtected() {
@@ -98,7 +98,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setProtected(String _protected) {
-		if ("true".equalsIgnoreCase(_protected)) {
+		if ("true".equalsIgnoreCase(Util.translateAttr(pageContext,_protected))) {
 			this._protected=true;
 		}else {
 			this._protected=false;
@@ -107,49 +107,24 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
-	private static HashMap<String, Boolean> elfinderIds=new HashMap<String, Boolean>();
-	public static Boolean isProtected(String id){
-		synchronized(elfinderIds) {
-			if (elfinderIds.containsKey(id)) {
-				return elfinderIds.get(id);
-			}else {
-				return null;
-			}
-		}
-	}
-	/**
-	 * Cors機能に、jspの呼び出しがない状態で、リモートサーバのElfinderを初期化するため
-	 * @param id
-	 * @param home
-	 * @param readonly
-	 * @param _protected
-	 */
-	public static void _init(String id,String home,String abshome,boolean readonly,boolean _protected) {
-		ElFinder._init(id,home,abshome,readonly,_protected,(HttpServletRequest)framework.getRequest());
-	}
-	private static void _init(String id,String home,String abshome,boolean readonly,boolean _protected,HttpServletRequest req) {
-		synchronized(elfinderIds) {
-			elfinderIds.put(id, _protected);
-		}
+	private static void _init(String id,String home,boolean isAbs,boolean readonly,boolean _protected,HttpServletRequest req) {
+		req.getSession().setAttribute("EFW_ELFINDER_PROTECTED_"+id, _protected?"true":"false");
 		req.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
-		req.getSession().setAttribute("EFW_ELFINDER_ABS_HOME_"+id, abshome);
+		req.getSession().setAttribute("EFW_ELFINDER_ISABS_"+id, (isAbs?"true":"false"));
 		req.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
 	}
-
 
 	/**
 	 * タグを実行する。
 	 */
 	@Override
 	public int doStartTag(){
-		if (this.getId()!=null){
-			id=this.getId();
-		}
 		JspWriter out;
 		String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG,PageContext.REQUEST_SCOPE);
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
 			String v=framework.getVersion();
+			String appurl=Util.getAppUrl();
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
@@ -159,16 +134,17 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
 			out.print("var "+id+";$(function(){"+id+"=$(\"#"+id+"\")"
 					+ ".elfinder({"
-					+ "\"url\":efw.baseurl+\"/efwServlet\","
-					+ "\"urlUpload\":efw.baseurl+\"/uploadServlet\","
-					+ "\"soundPath\":efw.baseurl+\"/elfinder/sounds\","
+					+"\"url\":\""+appurl+"/efwServlet\","
+					+"\"urlUpload\":\""+appurl+"/uploadServlet\","
+					+"\"soundPath\":\""+appurl+"/elfinder/sounds\","
 					+"\"requestType\":\"POST\","
 					+"\"lang\":\""+lang+"\","
 					+"\"height\":\""+height+"\","
 					+"\"width\":\""+width+"\","
 					+ "\"customData\":{"
 					+ "\"home\":\""+jsEncode(home)+"\","
-					+ "\"abshome\":\""+jsEncode(abshome)+"\","
+					+ "\"appurl\":\""+appurl+"\","
+					+ "\"isAbs\":"+isAbs+","
 					+ "\"selection\":\""+jsEncode(selection)+"\","
 					+ "\"readonly\":"+readonly+","
 					+ "\"id\":\""+id+"\","
@@ -181,7 +157,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			}
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
 			
-			ElFinder._init(id,home,abshome,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
+			ElFinder._init(id,home,isAbs,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -189,7 +165,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		//初期値を再設定する。
 		id="elFinder";
 		home="";
-		abshome="";
+		isAbs=false;
 		selection="";
 		readonly=false;
 		height="400";
@@ -206,29 +182,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	@Override
 	public void setDynamicAttribute(String uri, String name, Object value)
 			throws JspException {
-		if(name.equalsIgnoreCase("id")){
-			id=(String) value;
-		}else if(name.equalsIgnoreCase("home")){
-			home=(String) value;
-		}else if(name.equalsIgnoreCase("abshome")){
-			abshome=(String) value;
-		}else if(name.equalsIgnoreCase("selection")){
-			selection=(String) value;
-		}else if(name.equalsIgnoreCase("height")){
-			height=(String) value;
-		}else if(name.equalsIgnoreCase("width")){
-			width=(String) value;
-		}else if(name.equalsIgnoreCase("readonly")){
-			if(((String) value).equalsIgnoreCase("true")){
-				readonly=true;
-			}
-		}else if(name.equalsIgnoreCase("protected")){
-			if(((String) value).equalsIgnoreCase("true")){
-				_protected=true;
-			}
-		}else{
-			attrs.put(name, (String)value);
-		}
+		attrs.put(name, Util.translateAttr(pageContext,(String)value));
 	}
 	
 	/**
@@ -243,5 +197,4 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			return v.replaceAll("[\\\\]", "\\\\\\\\").replaceAll("[']","\\\\'").replaceAll("[\"]","\\\\\"");
 		}
 	}
-
 }

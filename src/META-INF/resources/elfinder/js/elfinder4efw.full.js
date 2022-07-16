@@ -1567,6 +1567,7 @@ var elFinder = function(node, opts) {
 				cache    : false,
 				// timeout  : 100,
 				type     : this.requestType,
+				contentType: "application/json;charset=UTF-8",
 				data     : JSON.stringify({"eventId":"elfinder_cmds","lang":efw.lang,"params":data}),//EFW
 				headers  : this.customHeaders,
 				xhrFields: this.xhrFields
@@ -15382,10 +15383,13 @@ elFinder.prototype.commands.download = function() {
 		Efw("elfinder_download",{
 			"cmd":"download",
 			"home":fm.options.customData.home,
+			"isAbs":fm.options.customData.isAbs,
 			"readonly":fm.options.customData.readonly,
 			"id":fm.options.customData.id,
 			"targets":hashes
-		});
+			},
+			fm.options.customData.appurl
+		);
 	};
 
 };
@@ -16239,10 +16243,13 @@ elFinder.prototype.commands.mkfile = function() {
 				Efw("elfinder_file",{
 					"cmd":"file",
 					"home":fm.options.customData.home,
+					"isAbs":fm.options.customData.isAbs,
 					"readonly":fm.options.customData.readonly,
 					"id":fm.options.customData.id,
 					"target":file.hash
-				});
+					},
+					fm.options.customData.appurl
+				);
 			}
 			return dfrd.resolve(hashes);
 		}

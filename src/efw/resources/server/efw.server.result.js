@@ -196,12 +196,16 @@ Result.prototype.navigate = function(url,params) {
  * @param {String |
  *            Array} path: required<br>
  * @param {String} zipBasePath: optional<br>
+ * @param {boolean} isAbs: optional<br>
  * @returns {Result}
  */
-Result.prototype.attach = function(path,zipBasePath) {
+Result.prototype.attach = function(path,zipBasePath,isAbs) {
 	if (!this.actions.download)this.actions.download={};
 	if (zipBasePath!=null){
 		this.actions.download.zipBasePath=zipBasePath;
+	}
+	if (isAbs){
+		this.actions.download.isAbs=isAbs;
 	}
 	if (this.actions.download.zip != null) {
 		if (path instanceof Array) {
@@ -222,7 +226,7 @@ Result.prototype.attach = function(path,zipBasePath) {
 		if (path instanceof Array) {
 			this.actions.download.zip = [];
 			this.actions.download.zip = this.actions.download.zip.concat(path);
-		} else if (file.isFolder(path)) {
+		} else if (isAbs?absfile.isFolder(path):file.isFolder(path)) {
 			this.actions.download.zip = [];
 			this.actions.download.zip = this.actions.download.zip.concat(path);
 		} else {

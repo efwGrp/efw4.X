@@ -34,6 +34,7 @@ function doPost(req) {
 	var service = null;
 	var semaphore = null;// the semmaphore to control event maxrequests
 	var semaphoreNeedRelease=false;// the flag about semmaphore release
+	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
 
 	//イベント取得できない場合、エラーを画面に出す。該当エラーはよく発生する。
 	var ev=event._get(eventId);
@@ -44,7 +45,7 @@ function doPost(req) {
 	if (ev==null){
 		var result=(new Result())
 		.error("RuntimeErrorException", {"eventId":eventId,"message":""+messages.get("EventIsNotExistsMessage",lang)});
-		var systemErrorUrl=properties.get("efw.system.error.url","error.jsp");
+		var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
 		if (systemErrorUrl!=""){
 			result.navigate(systemErrorUrl);
 		}
@@ -67,11 +68,11 @@ function doPost(req) {
 					ret = efw.server.checkStyle(ev, params, lang);
 					if (ret == null){
 						if (semaphore==null){
-							Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),req);//操作履歴のため。
+							Packages.efw.framework.accessLog(session.get(currentAuthBean.loginKey),req);//操作履歴のため。
 							ret = efw.server.fire(ev, params);
 						}else if(semaphore.tryAcquire()){
 							semaphoreNeedRelease=true;
-							Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),req);//操作履歴のため。
+							Packages.efw.framework.accessLog(session.get(currentAuthBean.loginKey),req);//操作履歴のため。
 							ret = efw.server.fire(ev, params);
 						}else{
 							ret=(new Result()).error("EventIsBusyException",service);
@@ -98,7 +99,7 @@ function doPost(req) {
 		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
 		var result=(new Result())
 		.error("RuntimeErrorException", {"eventId":eventId,"message":errorMsg});
-		var systemErrorUrl=properties.get("efw.system.error.url","error.jsp");
+		var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
 		if (systemErrorUrl!=""){
 			result.navigate(systemErrorUrl);
 		}
@@ -244,7 +245,8 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 	}
 
 	try{
-		Packages.efw.framework.accessLog(session.get(properties.get("efw.login.key")),eventId+"/"+keys.join("/"));//操作履歴のため。
+		var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
+		Packages.efw.framework.accessLog(session.get(currentAuthBean.loginKey),eventId+"/"+keys.join("/"));//操作履歴のため。
 		var ret;
 		if (httpMethod=="PUT"){
 			ret=ev.PUT(keys,params);

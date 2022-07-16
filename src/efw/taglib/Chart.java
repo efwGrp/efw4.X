@@ -34,7 +34,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.id = Util.translateAttr(pageContext,id);
 	}
 
 	public String getType() {
@@ -42,7 +42,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.type = Util.translateAttr(pageContext,type);
 	}
 
 	public String getHeight() {
@@ -50,7 +50,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setHeight(String height) {
-		this.height = height;
+		this.height = Util.translateAttr(pageContext,height);
 	}
 
 	public String getWidth() {
@@ -58,7 +58,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setWidth(String width) {
-		this.width = width;
+		this.width = Util.translateAttr(pageContext,width);
 	}
 
 	public String getData() {
@@ -66,7 +66,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setData(String data) {
-		this.data = data;
+		this.data = Util.translateAttr(pageContext,data);
 	}
 
 	public String getVersion() {
@@ -74,7 +74,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setVersion(String version) {
-		this.version = version;
+		this.version = Util.translateAttr(pageContext,version);
 	}
 
 	public String getSetoptions() {
@@ -82,7 +82,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setSetoptions(String setoptions) {
-		this.setoptions = setoptions;
+		this.setoptions = Util.translateAttr(pageContext,setoptions);
 	}
 
 	public String getMode() {
@@ -90,7 +90,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	}
 
 	public void setMode(String mode) {
-		this.mode = mode;
+		this.mode = Util.translateAttr(pageContext,mode);
 	}
 
 	private HashMap<String, String> attrs=new HashMap<String, String>();
@@ -100,9 +100,6 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	 */
 	@Override
 	public int doStartTag(){
-		if (this.getId()!=null){
-			id=this.getId();
-		}
 		JspWriter out;
 		try {
 			String v=framework.getVersion();
@@ -149,25 +146,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	@Override
 	public void setDynamicAttribute(String uri, String name, Object value)
 			throws JspException {
-		if(name.equalsIgnoreCase("id")){
-			id=(String) value;
-		}else if(name.equalsIgnoreCase("type")){
-			type=(String) value;
-		}else if(name.equalsIgnoreCase("height")){
-			height=(String) value;
-		}else if(name.equalsIgnoreCase("width")){
-			width=(String) value;
-		}else if(name.equalsIgnoreCase("data")){
-			data=(String) value;
-		}else if(name.equalsIgnoreCase("version")){
-			version=(String) value;
-		}else if(name.equalsIgnoreCase("setoptions")){
-			setoptions=(String) value;
-		}else if(name.equalsIgnoreCase("mode")){
-			mode=(String) value;
-		}else{
-			attrs.put(name, (String)value);
-		}
+		attrs.put(name, Util.translateAttr(pageContext,(String)value));
 	}
 
 }

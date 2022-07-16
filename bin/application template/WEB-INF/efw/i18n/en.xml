@@ -27,10 +27,10 @@
 <entry key="MaxOverMessage">{display-name} is {data-type} no larger than {max}.</entry>
 <entry key="NotAcceptMessage">Please select the correct file for {display-name}.</entry>
 <entry key="EventIsNotExistsMessage">The event cannot be loaded because there is no file or JavaScript language violation.</entry>
-<entry key="ElFinderIdNotRegisteredMessage">The elFinder is inoperable without id registration.</entry>
 <entry key="ElFinderSessionTimeoutMessage">The elFinder is inoperable because of session timeout.</entry>
 <entry key="ElFinderIsProtectedMessage">The action is rejected because of elFinder protection mode.</entry>
 <entry key="ElFinderHackingRiskMessage">The action is rejected because of hacking risk detection.</entry>
+<entry key="ElFinderHomeNotExistsMessage">The value of the home attribute is not an existing folder.</entry>
 
 <!--ElFinderClientMessages-->
 <entry key="ElFinder_translator">ElFinder</entry>

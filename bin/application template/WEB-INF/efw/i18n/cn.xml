@@ -27,10 +27,10 @@
 <entry key="MaxOverMessage">{display-name}是不大于{max}的{data-type}。</entry>
 <entry key="NotAcceptMessage">请给{display-name}选择正确的文件。</entry>
 <entry key="EventIsNotExistsMessage">因为没有文件或不合JavaScript语法，无法加载该事件。</entry>
-<entry key="ElFinderIdNotRegisteredMessage">因未初始化，当前elFinder不可操作。</entry>
 <entry key="ElFinderSessionTimeoutMessage">因会话超时，当前elFinder不可操作。</entry>
 <entry key="ElFinderIsProtectedMessage">因处于保护模式，当前elFinder操作不能执行。</entry>
 <entry key="ElFinderHackingRiskMessage">检测到侵入风险，当前elFinder操作不能执行。</entry>
+<entry key="ElFinderHomeNotExistsMessage">home属性的值不是一个存在的路径。</entry>
 
 <!--ElFinderClientMessages-->
 <entry key="ElFinder_translator">ElFinder</entry>

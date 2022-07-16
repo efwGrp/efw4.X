@@ -94,16 +94,4 @@ public final class ScriptManager {
 		return (String)invocable.invokeFunction("doRestAPI", eventId, reqKeys, httpMethod, reqParams);
 		
 	}
-	/**
-	 * リクエストをサーバーサイトJavaScriptに転送する。
-	 * もしスレッドにスクリプトエンジンが付けられていないなら、スクリプトエンジンを作成し、共通とするefw.server.jsを実行する。
-	 * @param req JQueryがefwサーブレット へ要求したJSON内容を含む HttpServletRequest オブジェクト。
-	 * @return 実行結果のJSON文字列を返す。
-	 * @throws NoSuchMethodException 
-	 * @throws ScriptException スクリプトエラー。
-	 */
-	public static String doLambdaPost(String req) throws Exception{
-		Invocable invocable = (Invocable) se();
-		return (String)invocable.invokeFunction("doLambdaPost", req);
-	}
 }

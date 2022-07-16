@@ -27,10 +27,10 @@
 <entry key="MaxOverMessage">{display-name}を{max}以内の{data-type}で入力してください。</entry>
 <entry key="NotAcceptMessage">{display-name}に正しいファイルを選択してください。</entry>
 <entry key="EventIsNotExistsMessage">ファイル無しまたはJavaScript語法違反のため、該当イベントをロードできません。</entry>
-<entry key="ElFinderIdNotRegisteredMessage">初期化されていないため、該当elFinderは操作できません。</entry>
 <entry key="ElFinderSessionTimeoutMessage">セッションタイムアウトのため、該当elFinderは操作できません。</entry>
 <entry key="ElFinderIsProtectedMessage">保護モードに設定されたため、該当elFinder操作は実行できません。</entry>
 <entry key="ElFinderHackingRiskMessage">リスクを検知されたため、該当elFinder操作は実行できません。</entry>
+<entry key="ElFinderHomeNotExistsMessage">home属性の設定値は存在しているフォルダではありません。</entry>
 
 <!--ElFinderClientMessages-->
 <entry key="ElFinder_translator">ElFinder</entry>

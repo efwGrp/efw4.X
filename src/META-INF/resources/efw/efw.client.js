@@ -40,6 +40,12 @@ EfwClient.prototype.fire = function(eventParams) {
 	}else{
 		uploadUrl = efw.baseurl + "/" + uploadUrl;
 	}
+	var downloadUrl = "downloadServlet";
+	if (eventParams.server){
+		downloadUrl = eventParams.server + "/" + downloadUrl;
+	}else{
+		downloadUrl = efw.baseurl + "/" + downloadUrl;
+	}
 	var self=this;
 	$.ajax(this._options={
 		url : servletUrl,
@@ -58,7 +64,7 @@ EfwClient.prototype.fire = function(eventParams) {
 			if (result.actions){
 				self._showActions(result.actions);
 			} else {// if no error, run the second fire, in this case , result is paramsFormat
-				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl);
+				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl);
 			}
 		},
 		error : function(errorResponse, errorType, errorMessage) {
@@ -79,8 +85,9 @@ EfwClient.prototype.fire = function(eventParams) {
  * @param manualParams
  * @param servletUrl
  * @param uploadUrl
+ * @param downloadUrl
  */
-EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl) {
+EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl, downloadUrl) {
 	// auto collect params
 	// ---------------------------------------------------------------------
 	try {
@@ -139,7 +146,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 				}
 				//show actions
 				try {
-					self._showActions(result.actions);
+					self._showActions(result.actions,downloadUrl);
 				} catch (e) {
 					self._consoleLog(
 							"Result actions error", e);
@@ -433,8 +440,9 @@ EfwClient.prototype._showValues = function(values) {
 /**
  * The internal function to show actions to web.
  * @param actions
+ * @param downloadUrl
  */
-EfwClient.prototype._showActions = function(actions) {
+EfwClient.prototype._showActions = function(actions,downloadUrl) {
 	if ((actions instanceof Array)) throw "The return actions must be an object.";
 	//-------------------------------------------------------------------------
 	if (actions.error){
@@ -491,7 +499,7 @@ EfwClient.prototype._showActions = function(actions) {
 	//-------------------------------------------------------------------------
 	if (actions.download){
 		efw.isDownloading=true;
-		window.location = efw.baseurl+"/downloadServlet";
+		window.location=downloadUrl;
 		function waitUntilDownloaded(){
 			window.setTimeout(function(){
 				if (Cookies.get("efw_Downloaded")) {

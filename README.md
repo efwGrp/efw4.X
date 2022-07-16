@@ -1,4 +1,5 @@
 <H1>efw4.X</H1>
+<!--
 <h3>What's new?</h3>
 <h4>Added</h4>
 i18n:	Multi Language <a href="help/api_language.md">Resource</a>.	Multi Language Folder in <a href="help/files_list.md">Files List</a>.	Attribute "lang" in <a href="help/tag.client.md">Client tag</a>.	<a href="help/tag.msg.md">Message Tag</a> in JSP.	{Message Key} in <a href="help/api_webevent.md">Web Event</a>.<br>
@@ -15,7 +16,7 @@ zxing:	zxing 3.4.<br>
 file.readAllLines:	Add "encoding" param. Remove charset auto detecting. So juniversalchardet-1.0.3.jar is not necessary.<br>
 elFinder:	Remove get command and the plain text editor.Add session-check for security safe.<br>
 Barcode:	Move barcode in Additional Tags.
-
+-->
 <h3>Introduction</h3>
 <table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
 <td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
@@ -63,8 +64,9 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <h2>JSP</h2>
 <table>
 <tr><th>Categories</th><th>Items</th></tr>
-<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.msg.md">Msg</a></td></tr>
+<tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.attr.md">Attr</a></td><td><a href="help/tag.msg.md">Msg</a></td><td><a href="help/tag.prop.md">Prop</a></td></tr>
 <tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
+<tr><td>{Tag Params}</td><td><a href="help/tag.attr.msg.md">msg:</a></td><td><a href="help/tag.attr.prop.md">prop:</a></td></tr>
 <tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td></tr>
 <tr><td>Attributes</td><td><a href="help/api_data_format.md">data-format</a></td><td><a href="help/api_data_shortcut.md">data-shortcut</a></td></tr>
 </table>

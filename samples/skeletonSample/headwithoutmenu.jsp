@@ -13,5 +13,3 @@
 		</TR>
 	</TABLE>
 </DIV>
-<DIV CLASS=HEADER-MENU>
-</DIV>

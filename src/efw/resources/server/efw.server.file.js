@@ -321,19 +321,31 @@ EfwServerFile.prototype.getTempFileName=function() {
  * @returns {String}
  */
 String.prototype.base64Encode=function(){
-	return Base64.encode(this);
+	return ""+new java.lang.String(
+		java.util.Base64.getUrlEncoder().encode(
+			new java.lang.String(this).getBytes()
+		)
+	);
 };
 /**
  * The function to encode the string by base64 for URI.
  * @returns {String}
  */
 String.prototype.base64EncodeURI=function(){
-	return Base64.encodeURI(this);
+	return ""+new java.lang.String(
+		java.util.Base64.getUrlEncoder().withoutPadding().encode(
+			new java.lang.String(this).getBytes()
+		)
+	);
 };
 /**
  * The function to decode a encoded String by base64.
  * @returns {String}
  */
 String.prototype.base64Decode=function(){
-	return Base64.decode(this);
+	return ""+new java.lang.String(
+		java.util.Base64.getUrlDecoder().decode(
+			new java.lang.String(this).getBytes()
+		)
+	);
 };

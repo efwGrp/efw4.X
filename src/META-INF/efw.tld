@@ -8,30 +8,30 @@
     <name>Client</name>
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>CLIENT</name>
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>client</name>
     <tag-class>efw.taglib.Client</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>baseurl</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>mode</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
@@ -40,18 +40,27 @@
     <tag-class>efw.taglib.Part</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   <tag>
     <name>PART</name>
     <tag-class>efw.taglib.Part</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   <tag>
     <name>part</name>
     <tag-class>efw.taglib.Part</tag-class>
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   
   <tag>
@@ -66,6 +75,8 @@
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>ELFINDER</name>
@@ -79,6 +90,8 @@
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elfinder</name>
@@ -92,6 +105,8 @@
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elFinder</name>
@@ -105,6 +120,8 @@
     <attribute><name>width</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>
@@ -154,19 +171,62 @@
     <name>Msg</name>
     <tag-class>efw.taglib.Msg</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>MSG</name>
     <tag-class>efw.taglib.Msg</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>msg</name>
     <tag-class>efw.taglib.Msg</tag-class>
     <body-content>empty</body-content>
-    <dynamic-attributes>true</dynamic-attributes>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+
+  <tag>
+    <name>Prop</name>
+    <tag-class>efw.taglib.Prop</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+  <tag>
+    <name>PROP</name>
+    <tag-class>efw.taglib.Prop</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+  <tag>
+    <name>prop</name>
+    <tag-class>efw.taglib.Prop</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>default</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   
+  <tag>
+    <name>Attr</name>
+    <tag-class>efw.taglib.Attr</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+  <tag>
+    <name>ATTR</name>
+    <tag-class>efw.taglib.Attr</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
+  <tag>
+    <name>attr</name>
+    <tag-class>efw.taglib.Attr</tag-class>
+    <body-content>empty</body-content>
+    <attribute><name>key</name><rtexprvalue>true</rtexprvalue></attribute>
+  </tag>
 </taglib>

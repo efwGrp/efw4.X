@@ -72,8 +72,6 @@ public final class efwServlet extends HttpServlet {
 			return;
 		}
 		//call script 
-		framework.setRequest(request);
-		framework.setResponse(response);
 		framework.setThreadLogs(new ArrayList<String>());
 		try {
 			BufferedReader br = new BufferedReader(request.getReader());
@@ -89,8 +87,6 @@ public final class efwServlet extends HttpServlet {
 			framework.runtimeSLog(ex);
 			response.getWriter().print(otherError);//efw内部エラー。
 		}finally{
-			framework.removeRequest();
-			framework.removeResponse();
 			framework.removeI18nProp();
 			framework.removeThreadLogs();
 			framework.removeRestStatus();
