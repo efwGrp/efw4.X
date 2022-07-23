@@ -66,3 +66,9 @@
 	background-image: none;
 	background-color: inherit;
 }
+
+/* font size */
+.elfinder * {
+	font-weight : normal!important;
+}
+

@@ -33,6 +33,8 @@ You can get the params in the part jsp by request.getAttribute like the next.
 
 If you want send dynamic value to a part attr, you can do it like this.
 <pre>
-<% String param1="hello"; %>
-&lt;efw:part path="part.jsp?param1=<%=param1%>"/>
+&lt;% 
+String param1="hello";
+%>
+&lt;efw:part path="part.jsp" param1="<%=param1%>"/>
 </pre>

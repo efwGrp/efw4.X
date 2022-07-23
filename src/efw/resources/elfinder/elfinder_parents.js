@@ -7,6 +7,7 @@ elfinder_parents.fire = function(params) {
 	var file=params.file;
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var volumeId="EFW_";
+	var home=params["home"];//ホームフォルダ、ストレージフォルダからの相対位置
 	var target=params["target"];
 	var targetFolder=""+target.substring(volumeId.length).base64Decode();
 
@@ -27,7 +28,7 @@ elfinder_parents.fire = function(params) {
 	         "locked":function(){if (readonly){return 1;}else{return 0;}},
 		}).getArray());
 		
-		if (targetFolder.lastIndexOf("/")==-1){
+		if (targetFolder.lastIndexOf("/")==-1||targetFolder==home){
 			folders.push(new Record([file.get(targetFolder,true)])
 			.map({
 		         "mime":"mineType",//function(){return "directory";},

@@ -42,7 +42,6 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   <tag>
     <name>PART</name>
@@ -51,7 +50,6 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   <tag>
     <name>part</name>
@@ -60,7 +58,6 @@
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>requireevents</name><rtexprvalue>true</rtexprvalue></attribute>    
   </tag>
   
   <tag>
