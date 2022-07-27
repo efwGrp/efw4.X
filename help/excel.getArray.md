@@ -14,9 +14,9 @@ The getArray function is established to get several fields as an array from one 
 	var ary2 = excel.getArray("Sheet1", 1, 
 		function(row){
 			if (excel.getValue("Sheet1","A"+row)!=""){
-				return true;
-			}else{
 				return false;
+			}else{
+				return true;
 			}
 		}
 	, {

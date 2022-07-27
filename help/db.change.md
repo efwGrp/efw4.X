@@ -1,6 +1,6 @@
 <H1>db.change</H1>
 
-The change function is established to execute UPDATE or DELETE SQL.
+The change function is established to execute INSERT UPDATE or DELETE SQL.
 The return is the count of modefied records.
 <h2>Sample</h2>
 <pre>
