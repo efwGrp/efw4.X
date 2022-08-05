@@ -124,7 +124,15 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
 			String v=framework.getVersion();
-			String appurl=Util.getAppUrl();
+			String appurl;
+			boolean asMain=false;
+			if (pageContext.getRequest().getParameter(Part.EFW_MAIN_REFERER)!=null) {
+				appurl=Util.getAppUrl();
+				asMain=false;
+			}else {
+				appurl=".";
+				asMain=true;
+			}
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
@@ -134,16 +142,16 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
 			out.print("var "+id+";$(function(){"+id+"=$(\"#"+id+"\")"
 					+ ".elfinder({"
-					+"\"url\":\""+appurl+"/efwServlet\","
-					+"\"urlUpload\":\""+appurl+"/uploadServlet\","
-					+"\"soundPath\":\""+appurl+"/elfinder/sounds\","
+					+"\"url\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/efwServlet\","
+					+"\"urlUpload\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/uploadServlet\","
+					+"\"soundPath\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/elfinder/sounds\","
+					+ "\"appurl\":"+(asMain?"efw.baseurl":"\""+appurl+"\"")+","
 					+"\"requestType\":\"POST\","
 					+"\"lang\":\""+lang+"\","
 					+"\"height\":\""+height+"\","
 					+"\"width\":\""+width+"\","
 					+ "\"customData\":{"
 					+ "\"home\":\""+jsEncode(home)+"\","
-					+ "\"appurl\":\""+appurl+"\","
 					+ "\"isAbs\":"+isAbs+","
 					+ "\"selection\":\""+jsEncode(selection)+"\","
 					+ "\"readonly\":"+readonly+","
