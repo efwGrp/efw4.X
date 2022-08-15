@@ -5,7 +5,7 @@ dialog_init.paramsFormat={
 dialog_init.fire=function(params){
 	params.debug();
 	return (new Result())
-	.runat("#dialogJQueryUI,#dialogBootstrap")
+	.runat("#dialogJQueryUI,#dialogBootstrap,#dialogBootstrap5")
 	.withdata({
 		".msg":params["msg"]
 	});

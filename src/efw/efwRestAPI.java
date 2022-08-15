@@ -35,10 +35,6 @@ public final class efwRestAPI extends HttpServlet{
 	}
 	
 	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
-        response.setCharacterEncoding(framework.getSystemCharSet());
-        response.setContentType("application/json");
-        request.setCharacterEncoding(framework.getSystemCharSet());
-		//--------------------------------------------------------------------
         //if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);

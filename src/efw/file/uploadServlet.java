@@ -36,8 +36,6 @@ public final class uploadServlet extends HttpServlet {
 	 * @throws efwException IOException 
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.setCharacterEncoding(RESPONSE_CHAR_SET);
-		framework.setRequest(request);
 		InputStream inputStream =null;
 		FileOutputStream outputStream = null;
 		try{
@@ -85,7 +83,6 @@ public final class uploadServlet extends HttpServlet {
 	                }
 	            }
 	        }
-	        response.setCharacterEncoding(RESPONSE_CHAR_SET);
 	        response.getWriter().print("[]");
 		}finally{
 			framework.removeRequest();

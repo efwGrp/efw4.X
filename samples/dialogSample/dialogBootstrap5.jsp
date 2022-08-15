@@ -6,7 +6,7 @@
 	$(function(){
 		dialogBootstrap5=$("#dialogBootstrap5");
 		dialogBootstrap5.on("show.bs.modal", function(){
-			//Efw("dialog_init",{ msg : dialogBootstrap5.p1 });
+			Efw("dialog_init",{ msg : dialogBootstrap5.p1 });
 		});
 		dialogBootstrap5.on("hide.bs.modal", function(){
 		});

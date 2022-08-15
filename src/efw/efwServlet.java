@@ -58,13 +58,9 @@ public final class efwServlet extends HttpServlet {
 	 * @throws IOException 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		response.setCharacterEncoding(framework.getSystemCharSet());
-		response.setContentType("application/json");
-		request.setCharacterEncoding(framework.getSystemCharSet());
 		String otherError="{\"values\":[],\"actions\":{\"error\":{\"clientMessageId\":\"OtherErrorException\"}"+
 				(framework.getSystemErrorUrl().equals("")?"":",\"navigate\":{\"url\":\""+framework.getSystemErrorUrl()+"\"}")
 				+"}";
-		//--------------------------------------------------------------------
 		//if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
 			framework.runtimeSLog("initSuccessFlag = false");

@@ -15388,7 +15388,7 @@ elFinder.prototype.commands.download = function() {
 			"id":fm.options.customData.id,
 			"targets":hashes
 			},
-			fm.options.customData.appurl
+			fm.options.appurl
 		);
 	};
 
@@ -16248,7 +16248,7 @@ elFinder.prototype.commands.mkfile = function() {
 					"id":fm.options.customData.id,
 					"target":file.hash
 					},
-					fm.options.customData.appurl
+					fm.options.appurl
 				);
 			}
 			return dfrd.resolve(hashes);

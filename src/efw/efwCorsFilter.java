@@ -28,7 +28,13 @@ import efw.taglib.Util;
  * Cors機能のため
  * @author Chang Kejun
  */
-@WebFilter(filterName="efwCorsFilter", urlPatterns={"*.jsp","/efwServlet","/efwRestAPI","/uploadServlet","/downloadServlet","/drawServlet"})
+@WebFilter(filterName="efwCorsFilter", urlPatterns={
+		"*.jsp",
+		"/efwServlet",
+		"/efwRestAPI/*",
+		"/uploadServlet",	//セッション利用があるから
+		"/downloadServlet"	//セッション利用があるから
+})
 public final class efwCorsFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -43,6 +49,9 @@ public final class efwCorsFilter implements Filter {
 			//keep req and resp to thread local for javascript program.
 			framework.setRequest(request);
 			framework.setResponse(response);
+			request.setCharacterEncoding(framework.getSystemCharSet());//すべての外部むけURLは全部ここでエンコードを設定する
+			response.setCharacterEncoding(framework.getSystemCharSet());
+			response.setContentType("application/json");
 			//もしAuthBeanを取れない場合つまり定義間違い。
 			if (getCurrentAuthBean()!=null) {
 				//if as sub app, to identify the main app.
@@ -85,7 +94,7 @@ public final class efwCorsFilter implements Filter {
 					}
 				}
 			}
-			response.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+			response.setHeader("Access-Control-Allow-Methods", "PUT,GET,POST,DELETE,OPTIONS");
 			response.setHeader("Access-Control-Allow-Credentials", "true");
 		}
 	}
