@@ -63,15 +63,20 @@ public final class efwCorsFilter implements Filter {
 			framework.removeRequest();
 			framework.removeResponse();
 			//about cookie, it must be after chain.dofilter.because the program maybe set cookie.
-			Collection<String> headers = res.getHeaders("Set-Cookie");
-			boolean firstHeader = true;
-			for (String header : headers) {  
-				if (firstHeader) {
-					res.setHeader("Set-Cookie", String.format("%s; %s", header, "SameSite=None; Secure"));
-					firstHeader = false;
-					continue;
+			//httpの場合、Secureを設定できない。
+			//Subとする場合、httpsにしないといけない。※localhostのテストは大丈夫。
+			//そして、Subの場合だけ、SameSite=None; Secureを設定する。
+			if (asSub) {
+				Collection<String> headers = res.getHeaders("Set-Cookie");
+				boolean firstHeader = true;
+				for (String header : headers) {  
+					if (firstHeader) {
+						res.setHeader("Set-Cookie", String.format("%s; %s", header, "SameSite=None; Secure"));
+						firstHeader = false;
+						continue;
+					}
+					res.addHeader("Set-Cookie", String.format("%s; %s", header, "SameSite=None; Secure"));
 				}
-				res.addHeader("Set-Cookie", String.format("%s; %s", header, "SameSite=None; Secure"));
 			}
 		}
 	}
@@ -140,7 +145,7 @@ public final class efwCorsFilter implements Filter {
 		}
 		return null;
 	}
-	private static boolean asSub =true;
+	private static boolean asSub =false;
 	private static HashMap<String,Map<String,Object>> calledFromMains=new HashMap<>();
 	public static Cipher getDecoder(String mainAppUrl) {
 		for(String key : calledFromMains.keySet()) {
