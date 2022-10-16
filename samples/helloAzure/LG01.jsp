@@ -13,11 +13,12 @@
 	<script type="text/javascript" src="./js/authConfig.js"></script>
 	<script type="text/javascript" src="./js/auth.js"></script>
 	<script>
-		//この関数はauth.jsの前で定義する必要
+		//auth.jsに呼び出されるコールバック関数
 		function loginApplication(account) {
 			Efw("LG01_submit",account);
 		}
-		//bodyロード時もしlogoutパラメータが設定される場合、ログアウトする
+		//bodyロード時呼び出す関数、
+		//もしlogoutパラメータが設定される場合、ログアウトする
 		function bodyOnload(){
 			<%
 				if ("true".equals(request.getParameter("logout"))){
