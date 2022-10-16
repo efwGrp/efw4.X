@@ -52,6 +52,7 @@ EFWプログラミング ( <a href="https://efwgrp.github.io/efw4_online_ppt/EFW
 <a href="samples/skeletonSample">skeleton</a>
 <a href="samples/batchSample">batch</a>
 <a href="samples/restSample">restapi</a>
+<a href="samples/helloAzure">helloAzure</a>
 
 
 
