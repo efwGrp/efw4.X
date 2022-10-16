@@ -12,24 +12,26 @@
 	<script type="text/javascript" src="https://alcdn.msauth.net/browser/2.8.0/js/msal-browser.min.js"></script>
 	<script type="text/javascript" src="./js/authConfig.js"></script>
 	<script type="text/javascript" src="./js/auth.js"></script>
-</HEAD>
-<BODY>
-	<DIV ID="LG01" CLASS=MAIN ALIGN="CENTER">
-		<efw:Part path="headbeforelogining.jsp" title="azureテスト"/>
-	</DIV>
 	<script>
 		//この関数はauth.jsの前で定義する必要
 		function loginApplication(account) {
 			Efw("LG01_submit",account);
 		}
 		//bodyロード時もしlogoutパラメータが設定される場合、ログアウトする
-		<%
-			if ("true".equals(request.getParameter("logout"))){
-				out.println("signOut();");
-			}else{
-				out.println("signIn('loginPopup');");
-			}
-		%>
+		function bodyOnload(){
+			<%
+				if ("true".equals(request.getParameter("logout"))){
+					out.println("signOut();");
+				}else{
+					out.println("signIn('loginPopup');");
+				}
+			%>
+		}
 	</script>
+</HEAD>
+<BODY onload="bodyOnload()">
+	<DIV ID="LG01" CLASS=MAIN ALIGN="CENTER">
+		<efw:Part path="headbeforelogining.jsp" title="azureテスト"/>
+	</DIV>
 </BODY>
 </HTML>
