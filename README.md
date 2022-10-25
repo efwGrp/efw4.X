@@ -289,4 +289,5 @@ Visibility Filter<br>
 <a href="http://www.layer10.jp/"><img src="help/logos/layer10.png"></a>
 <a href="https://www.sompo-japan.co.jp/"><img src="help/logos/jpn_sompo.jpg"></a>
 <a href="https://www.qualica.co.jp/"><img src="help/logos/qualica.png"></a>
+<a href="https://www.jotnw.or.jp/"><img src="help/logos/jot.png"></a>
 
