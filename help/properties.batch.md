@@ -8,6 +8,12 @@ the file /WEB-INF/classes/batch.properties is established to set the framework.
 	<th>Description</th>
 </tr>
 <tr>
+	<th>Logging</th>
+	<td>efw.logging.level</td>
+	<td>WARNING</td>
+	<td>The output level of efw log. ALL,FINEST,FINER,FINE,CONFIG,INFO,WARNING,SEVERE,OFF</td>
+</tr>
+<tr>
 	<th rowspan=3>Folder</th>
 	<td>efw.event.folder</td>
 	<td>/WEB-INF/efw/event</td>
@@ -22,6 +28,13 @@ the file /WEB-INF/classes/batch.properties is established to set the framework.
 	<td>efw.storage.folder</td>
 	<td>/WEB-INF/efw/<br>storage</td>
 	<td>The folder for Web application IO. It can be set in a relative or absolute path of the web application.</td>
+</tr>
+
+<tr>
+	<th>Rounder</th>
+	<td>efw.format.rounder</td>
+	<td>HALF_EVEN</td>
+	<td>The default rounder for format method. UP,DOWN,CEILING,FLOOR,HALF_UP,HALF_DOWN,HALF_EVEN</td>
 </tr>
 
 <tr>
@@ -88,18 +101,26 @@ the file /WEB-INF/classes/batch.properties is established to set the framework.
 </tr>
 
 <tr>
-	<th>Logging</th>
-	<td>efw.logging.level</td>
-	<td>WARNING</td>
-	<td>The output level of efw log. ALL,FINEST,FINER,FINE,CONFIG,INFO,WARNING,SEVERE,OFF</td>
+	<th rowspan=4>brms</th>
+	<td>efw.brms.import</td>
+	<td>false</td>
+	<td>To import innorules or not.</td>
 </tr>
 <tr>
-	<th>Rounder</th>
-	<td>efw.format.rounder</td>
-	<td>HALF_EVEN</td>
-	<td>The default rounder for format method. UP,DOWN,CEILING,FLOOR,HALF_UP,HALF_DOWN,HALF_EVEN</td>
+	<td>innorules.home</td>
+	<td>""</td>
+	<td>The home folder for innorules.</td>
 </tr>
-
+<tr>
+	<td>innorules.system</td>
+	<td>""</td>
+	<td>The system id for innorules.</td>
+</tr>
+<tr>
+	<td>innorules.rule-application-config</td>
+	<td>""</td>
+	<td>The application id for innorules.</td>
+</tr>
 
 </table>
 </DL></DD>

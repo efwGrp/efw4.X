@@ -1,24 +1,22 @@
-package efw;
+package efw.properties;
 
 import java.util.HashMap;
-import java.util.Properties;
 import java.util.regex.Pattern;
 
-import efw.properties.PropertiesManager;
+import efw.framework;
 
 public class EfwAuthBean{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public EfwAuthBean(Properties prop) {
-		this.prop=prop;
-		this.loginCheck=this.getBooleanProperty(PropertiesManager.EFW_LOGIN_CHECK, this.loginCheck);
+	public EfwAuthBean() {
+		this.loginCheck=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_LOGIN_CHECK, this.loginCheck);
 		framework.initCLog("loginCheck = "+this.loginCheck);
-		this.loginKey=this.getProperty(PropertiesManager.EFW_LOGIN_KEY, this.loginKey);
+		this.loginKey=PropertiesManager.getProperty(PropertiesManager.EFW_LOGIN_KEY, this.loginKey);
 		framework.initCLog("loginKey = "+this.loginKey);
-		this.loginUrl=this.getProperty(PropertiesManager.EFW_LOGIN_URL, this.loginUrl);
+		this.loginUrl=PropertiesManager.getProperty(PropertiesManager.EFW_LOGIN_URL, this.loginUrl);
 		framework.initCLog("loginUrl = "+this.loginUrl);
-		this.outOfloginUrlPatternString=this.getProperty(PropertiesManager.EFW_OUTOFLOGIN_URL_PATTERN, "");
+		this.outOfloginUrlPatternString=PropertiesManager.getProperty(PropertiesManager.EFW_OUTOFLOGIN_URL_PATTERN, "");
 		framework.initCLog("outOfloginUrlPattern = "+this.outOfloginUrlPatternString);
-		this.outOfloginEventIdPatternString=this.getProperty(PropertiesManager.EFW_OUTOFLOGIN_EVENTID_PATTERN, "");
+		this.outOfloginEventIdPatternString=PropertiesManager.getProperty(PropertiesManager.EFW_OUTOFLOGIN_EVENTID_PATTERN, "");
 		framework.initCLog("outOfloginEventIdPattern = "+this.outOfloginEventIdPatternString);
 		this.welcomePattern=Pattern.compile("[/]$");
 		this.outOfloginUrlPattern=Pattern.compile(this.outOfloginUrlPatternString);
@@ -27,15 +25,15 @@ public class EfwAuthBean{
 		this.clientMessagesUrlPattern=Pattern.compile(this.clientMessagesUrl);
 		this.elFinderMessagesUrlPattern=Pattern.compile(this.elFinderMessagesUrl);
 		
-		this.authCheck=this.getBooleanProperty(PropertiesManager.EFW_AUTH_CHECK,this.authCheck);
+		this.authCheck=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AUTH_CHECK,this.authCheck);
 		framework.initCLog("authCheck = "+this.authCheck);
-		this.authKey=this.getProperty(PropertiesManager.EFW_AUTH_KEY, this.authKey);
+		this.authKey=PropertiesManager.getProperty(PropertiesManager.EFW_AUTH_KEY, this.authKey);
 		framework.initCLog("authKey = "+this.authKey);
-		this.systemErrorUrl=this.getProperty(PropertiesManager.EFW_SYSTEM_ERROR_URL, this.systemErrorUrl);
+		this.systemErrorUrl=PropertiesManager.getProperty(PropertiesManager.EFW_SYSTEM_ERROR_URL, this.systemErrorUrl);
 		framework.initCLog("systemErrorUrl = "+this.systemErrorUrl);
 		this.systemErrorUrlPattern=Pattern.compile(this.systemErrorUrl);
 		
-		this.authCases=this.getProperty(PropertiesManager.EFW_AUTH_CASES,this.authCases);
+		this.authCases=PropertiesManager.getProperty(PropertiesManager.EFW_AUTH_CASES,this.authCases);
 		framework.initCLog("authCases = "+this.authCases);
 		
 		if(this.authCases!=null&&!this.authCases.equals("")){
@@ -43,11 +41,11 @@ public class EfwAuthBean{
 			for(int i=0;i<ary.length;i++){
 				String authCaseKey=ary[i];
 				if(!ary[i].equals("")){
-					String authPattern=this.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_AUTHPATTERN,"");
+					String authPattern=PropertiesManager.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_AUTHPATTERN,"");
 					framework.initCLog(authCaseKey+" authPattern = "+authPattern);
-					String urlPattern=this.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_URLPATTERN,"");
+					String urlPattern=PropertiesManager.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_URLPATTERN,"");
 					framework.initCLog(authCaseKey+" urlPattern = "+urlPattern);
-					String eventidPattern=this.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_EVENTIDPATTERN,"");
+					String eventidPattern=PropertiesManager.getProperty(authCaseKey+"."+PropertiesManager.EFW_AUTH_EVENTIDPATTERN,"");
 					framework.initCLog(authCaseKey+" eventidPattern = "+eventidPattern);
 					if(!authPattern.equals("")&&!urlPattern.equals("")){
 						HashMap data=new HashMap();
@@ -139,33 +137,4 @@ public class EfwAuthBean{
 	 */
 	public Pattern systemErrorUrlPattern =null;
 
-	/**
-	 * プロパティ値を格納するプロパティオブジェクト。
-	 */
-	private Properties prop = null;
-    /**
-     * 文字列のプロパティを取得する。
-     * @param key プロパティキー。
-     * @param defaultValue デフォルト値。
-     * @return　プロパティ値を返す。
-     */
-    private String getProperty(String key,String defaultValue) {
-    	String vl=prop.getProperty(key);
-    	if (vl==null) vl=defaultValue;
-        return vl;
-    }
-    /**
-     * ブールのプロパティを取得する。
-     * @param key プロパティキー。
-     * @param defaultValue デフォルト値。
-     * @return　プロパティ値を返す。
-     */
-    private boolean getBooleanProperty(String key,boolean defaultValue) {
-    	String vl=prop.getProperty(key);
-    	if (vl==null){
-    		return defaultValue;
-    	}else{
-            return Boolean.parseBoolean(vl);
-    	}
-    }
 };

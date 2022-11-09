@@ -21,8 +21,6 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
 		if (vl == null ||(typeof(vl) == "string" && vl == "")) {
 			var result=(new Result())
 			.alert(messages.get("SessionTimeoutException",lang));
-			var loginUrl = ""+currentAuthBean.systemErrorUrl;
-			result.navigate(loginUrl);
 			return result;
 		}
 	}

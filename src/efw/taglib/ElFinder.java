@@ -32,6 +32,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String height="400";
 	private String width="auto";
 	private boolean _protected=false;
+	private String appurl="";
 
 	public String getId() {
 		return id;
@@ -104,6 +105,14 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			this._protected=false;
 		}
 	}
+	
+	public String getAppurl() {
+		return appurl;
+	}
+
+	public void setAppurl(String appurl) {
+		this.appurl = Util.translateAttr(pageContext,appurl);
+	}
 
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
@@ -124,14 +133,13 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
 			String v=framework.getVersion();
-			String appurl;
 			boolean asMain=false;
-			if (pageContext.getRequest().getParameter(Part.EFW_MAIN_REFERER)!=null) {
-				appurl=Util.getAppUrl();
-				asMain=false;
-			}else {
-				appurl=".";
+			//メイン部品と実行する場合
+			if ("".equals(appurl)) {
 				asMain=true;
+			}else {
+				//サブ部品実行、サブpartにelfinderのappurl属性を設定する想定。
+				asMain=false;
 			}
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
@@ -179,6 +187,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		height="400";
 		width="auto";
 		_protected=false;
+		appurl="";
 		attrs=new HashMap<String, String>();
 		return SKIP_BODY;
 	}

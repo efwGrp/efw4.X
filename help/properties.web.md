@@ -14,6 +14,12 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>If the value is true, any changing to the program will be loaded into memory in real time. </td>
 </tr>
 <tr>
+	<th>Logging</th>
+	<td>efw.logging.level</td>
+	<td>WARNING</td>
+	<td>The output level of efw log. ALL,FINEST,FINER,FINE,CONFIG,INFO,WARNING,SEVERE,OFF</td>
+</tr>
+<tr>
 	<th>Database Resource</th>
 	<td>efw.jdbc.resource</td>
 	<td>jdbc/efw</td>
@@ -51,6 +57,20 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>/WEB-INF/efw/<br>storage</td>
 	<td>The folder for Web application IO. It can be set in a relative or absolute path of the web application.</td>
 </tr>
+<tr>
+	<th>Rounder</th>
+	<td>efw.format.rounder</td>
+	<td>HALF_EVEN</td>
+	<td>The default rounder for format method. UP,DOWN,CEILING,FLOOR,HALF_UP,HALF_DOWN,HALF_EVEN</td>
+</tr>
+<tr>
+	<th>Cors</th>
+	<td>efw.cors</td>
+	<td>*</td>
+	<td>Cross-domain communication settings. It controls whether the events of this site can be used from the Web page of the other sites.<br>
+	* : Allow all, null : Reject all, http://0.0.0.0:8080,http://9.9.9.9 : Specified permission. </td>
+</tr>
+
 <tr>
 	<th rowspan=6>Login Check<br>(for web event)</th>
 	<td>efw.login.check</td>
@@ -116,24 +136,39 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 </tr>
 
 <tr>
-	<th>Logging</th>
-	<td>efw.logging.level</td>
-	<td>WARNING</td>
-	<td>The output level of efw log. ALL,FINEST,FINER,FINE,CONFIG,INFO,WARNING,SEVERE,OFF</td>
-</tr>
-<tr>
-	<th>Cors</th>
-	<td>efw.cors</td>
-	<td>*</td>
-	<td>Cross-domain communication settings. It controls whether the events of this site can be used from the Web page of the other sites.<br>
-	* : Allow all, null : Reject all, http://0.0.0.0:8080,http://9.9.9.9 : Specified permission. </td>
+	<th>Application</th>
+	<td>efw.as.main</td>
+	<td>true</td>
+	<td>The application will be running as a main application or a sub one.</td>
 </tr>
 
 <tr>
-	<th>Rounder</th>
-	<td>efw.format.rounder</td>
-	<td>HALF_EVEN</td>
-	<td>The default rounder for format method. UP,DOWN,CEILING,FLOOR,HALF_UP,HALF_DOWN,HALF_EVEN</td>
+	<th rowspan=3>Properties For Main App</th>
+	<td>efw.call.to.subs</td>
+	<td></td>
+	<td>The sub applications splitted by [,].</td>
+</tr>
+<tr>
+	<td>####.appurl</td>
+	<td></td>
+	<td>The sub application url.</td>
+</tr>
+<tr>
+	<td>####.encodekey</td>
+	<td></td>
+	<td>The encode key for sharing session to the sub application.</td>
+</tr>
+
+<tr>
+	<th rowspan=3>Properties For Sub App</th>
+	<td>efw.appurl</td>
+	<td></td>
+	<td>The appurl for the sub application.</td>
+</tr>
+<tr>
+	<td>efw.decodekey</td>
+	<td></td>
+	<td>The decode key for the sub application to get sharing session from the main application.</td>
 </tr>
 
 

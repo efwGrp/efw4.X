@@ -3,11 +3,12 @@ package efw.taglib;
 import java.util.Base64;
 import java.util.Map;
 
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.servlet.http.HttpServletRequest;
+import javax.crypto.IllegalBlockSizeException;
 import javax.servlet.jsp.PageContext;
 
-import efw.framework;
+import efw.efwCorsFilter;
 import efw.i18n.I18nManager;
 import efw.properties.PropertiesManager;
 
@@ -31,23 +32,6 @@ public class Util {
 		}
 	}
 	/**
-	 * アプリのURLを取得する。
-	 * Elfinderタグが、メインアプリとサブアプリの相違を吸収するため。
-	 * @return
-	 */
-	public static String getAppUrl() {
-		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
-		String uri = request.getScheme() + "://" +request.getServerName();
-		if (80!=request.getServerPort()) {
-			uri+=":" + request.getServerPort();
-		}
-		String[] ary=request.getRequestURI().split("/");
-		if (ary.length>1) {
-			uri+="/"+ary[1];//  /app/test.jsp のappの部分
-		}
-         return uri;
-	}
-	/**
 	 * MapをJSON文字列に変換する
 	 * @param map
 	 * @return
@@ -67,27 +51,22 @@ public class Util {
 			}
 		}
 		b.append("}");
-		return b.toString();
+		return b.toString().replace(",}", "}");
 	}
 	
-	public static String encode(String v,Cipher encoder){
-		try {
-			byte[] encrypted = Base64.getUrlEncoder().encode(encoder.doFinal(v.getBytes()));
-			return new String(encrypted);
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			return v;
-		}
+	protected static String encode(String v,String appurl) throws IllegalBlockSizeException, BadPaddingException{
+		if (v==null||"".equals(v)) return v;
+		Cipher encoder=efwCorsFilter.getEncoder(appurl);
+		if (encoder==null) return v;
+		byte[] encrypted = Base64.getUrlEncoder().encode(encoder.doFinal(v.getBytes()));
+		return new String(encrypted);
 	}
-	public static String decode(String v,Cipher decoder){
-		try {
-			byte[] encrypted =Base64.getUrlDecoder().decode(v.getBytes());
-			byte[] decrypted = decoder.doFinal(encrypted);
-			return new String(decrypted);
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			return v;
-		}
+	protected static String decode(String v) throws IllegalBlockSizeException, BadPaddingException{
+		if (v==null||"".equals(v)) return v;
+		Cipher decoder = efwCorsFilter.getDecoder();
+		if (decoder==null) return v;
+		byte[] decrypted = decoder.doFinal(Base64.getUrlDecoder().decode(v.getBytes()));
+		return new String(decrypted);
 	}
 	//ここでやるのはjavascriptエンコードです。エンコード後のものはhtml上問題が起こす可能性がある。たとえば</br>とか
 	private static String escapeScript(String s) {

@@ -1,13 +1,13 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.taglib;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
-import javax.crypto.Cipher;
-import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
@@ -15,6 +15,8 @@ import javax.servlet.jsp.tagext.DynamicAttributes;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import efw.efwCorsFilter;
+import efw.efwDoNotAsMainException;
+import efw.framework;
 /**
  * Partタグを処理するクラス。
  * <efw:Part path="myPage.jsp" param1="" param2=""/>
@@ -32,6 +34,14 @@ public final class Part extends TagSupport implements DynamicAttributes {
 	 * appURL。ローカルの場合設定不要。
 	 */
 	private String appurl="";
+	/**
+	 * shareSessions。共有するセッション情報。
+	 */
+	private String shareSessions="";
+	
+	public static final String EFW_PART_CALLING_TIME="EFW_PART_CALLING_TIME";
+	public static final long EFW_PART_CALLING_TIMEOUT=30000;
+	
 	
 	public String getPath() {
 		return path;
@@ -48,17 +58,19 @@ public final class Part extends TagSupport implements DynamicAttributes {
 	public void setAppurl(String appurl) {
 		this.appurl = Util.translateAttr(pageContext,appurl);
 	}
+
+	public String getShareSessions() {
+		return shareSessions;
+	}
+
+	public void setShareSessions(String shareSessions) {
+		this.shareSessions = Util.translateAttr(pageContext,shareSessions);
+	}
 	/**
 	 * 設定された属性の配列。
 	 */
 	private ArrayList<String> attrs=new ArrayList<String>(); 
 	
-//	private static final String EFW_MAIN_SESSIONID="EFW_MAIN_SESSIONID";
-	public static final String EFW_MAIN_LOGIN_KEY="EFW_MAIN_LOGIN_KEY";
-	public static final String EFW_MAIN_AUTH_KEY="EFW_MAIN_AUTH_KEY";
-	public static final String EFW_MAIN_LOGIN_VALUE="EFW_MAIN_LOGIN_VALUE";
-	public static final String EFW_MAIN_AUTH_VALUE="EFW_MAIN_AUTH_VALUE";
-	public static final String EFW_MAIN_REFERER="EFW_MAIN_REFERER";
 	
 	/**
 	 * タグを実行する。
@@ -66,56 +78,81 @@ public final class Part extends TagSupport implements DynamicAttributes {
 	@Override
 	public int doStartTag() {
 		try {
-			if (!"".equals(appurl)) {
-				Cipher encoder=efwCorsFilter.getEncoder(appurl);
+			//メインアプリ内の部品
+			if ("".equals(appurl)) {
+				pageContext.include(path,false);
+			}else {
+				//メインアプリからほかのサブアプリを呼び出す
+				//メインアプリではないとサブアプリとの接続情報がないからエラーにする
+				if (!efwCorsFilter.getAsMain()) {
+					throw new efwDoNotAsMainException();
+				}
+			//サブ部品として実行する場合
 				JspWriter out = pageContext.getOut();
 				String partid=("part"+((new Random()).nextInt())).replace('-', '_');
-				HashMap<String, String> map=new HashMap<>();
+				HashMap<String, String> mapAttrs=new HashMap<>();
 				for(int i=0;i<attrs.size();i++) {
 					String key=attrs.get(i);
 					String value=(String)pageContext.getAttribute(key,PageContext.REQUEST_SCOPE);
-					map.put(key, value);
+					mapAttrs.put(key, value);
 				}
-//				map.put(EFW_MAIN_SESSIONID, pageContext.getSession().getId());
-				//権限に関わるセッション値を渡す
-				String loginKey=efwCorsFilter.getCurrentAuthBean().loginKey;
-				String authKey=efwCorsFilter.getCurrentAuthBean().authKey;
-				String loginValue=(String)pageContext.getSession().getAttribute(loginKey);
-				String authValue=(String)pageContext.getSession().getAttribute(authKey);
-				if (encoder!=null) {
-					if (loginKey!=null)loginKey=Util.encode(loginKey,encoder);
-					if (authKey!=null)authKey=Util.encode(authKey,encoder);
-					if (loginValue!=null)loginValue=Util.encode(loginValue,encoder);
-					if (authValue!=null)authValue=Util.encode(authValue,encoder);
+				String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG,PageContext.REQUEST_SCOPE);
+				mapAttrs.put(Client.EFW_I18N_LANG,lang);
+				
+				//セッション情報の処理
+				String aryShareSessions[]=shareSessions.split(",");
+				HttpSession session=((HttpServletRequest)pageContext.getRequest()).getSession();
+				HashMap<String,String> mapSession=new HashMap<>();
+				for(int i=0;i<aryShareSessions.length;i++) {
+					String key=aryShareSessions[i];
+					String value=(String)session.getAttribute(key);
+					key=Util.encode(key, appurl);
+					value=Util.encode(value, appurl);
+					mapSession.put(key, value);
 				}
-				map.put(EFW_MAIN_LOGIN_KEY, loginKey);
-				map.put(EFW_MAIN_AUTH_KEY, authKey);
-				map.put(EFW_MAIN_LOGIN_VALUE, loginValue);
-				map.put(EFW_MAIN_AUTH_VALUE, authValue);
-				map.put(EFW_MAIN_REFERER, Util.getAppUrl());
+				String key=Util.encode(EFW_PART_CALLING_TIME, appurl);
+				String value=Util.encode((new Date()).getTime()+"", appurl);
+				mapSession.put(key, value);
+
 				//外側のdivを付けて、そのdivにリモートのhtmlを設定する仕組み
+				//部品内のefw呼び出しは、個別に定義しているappurlを利用するプログラムが必要。
+				//部品内さらに別部品を呼び出す可能性がある。全部自動判断は難しいから。
+				//部品呼びだしのパラメータは明文です。暗号化しない。
+				//セッション伝達は暗号化する。
 				out.print("<div id=\""+partid+"\"><script>"
-						+ "$(function(){$.ajax({"
-						+ "url:'"+appurl+"/"+path+"?t='+new Date().getTime(),"
-						+ "xhrFields:{withCredentials:true},"
-						+ "type:'POST',"
-						+ "cache:false,"
-						+ "async:true,"
-						+ "dataType:'html',"
-						+ "data:"+Util.mapToJSON(map)+","
-						+ "success:function(h){$('#"+partid+"').replaceWith($(h));}"
-						+ "})});"
+						+ "$(function(){"
+							+ "$.ajax({"
+								+ "url:'"+appurl+"/partServlet',"
+								+ "xhrFields:{withCredentials:true},"
+								+ "type:'POST',"
+								+ "cache:false,"
+								+ "async:true,"
+								+ "dataType:'html',"
+								+ "data:"+Util.mapToJSON(mapSession)+","
+								+ "success:function(h){"
+									+ "$.ajax({"
+										+ "url:'"+appurl+"/"+path+"?t='+new Date().getTime(),"
+										+ "xhrFields:{withCredentials:true},"
+										+ "type:'POST',"
+										+ "cache:false,"
+										+ "async:true,"
+										+ "dataType:'html',"
+										+ "data:"+Util.mapToJSON(mapAttrs)+","
+										+ "success:function(h){"
+											+ "$('#"+partid+"').replaceWith($(h));"
+										+ "}"
+									+ "})"
+								+ "}"
+							+ "})"
+						+ "});"
 						+ "</script></div>");
-			}else {
-				pageContext.include(path,false);
 			}
 			for(int i=0;i<attrs.size();i++){
 				pageContext.removeAttribute(attrs.get(i));
 			}
-		} catch (ServletException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (Exception ex) {
+			framework.runtimeSLog(ex);
+			ex.printStackTrace();
 		}
 		path="";
 		appurl="";
@@ -132,4 +169,5 @@ public final class Part extends TagSupport implements DynamicAttributes {
 		pageContext.setAttribute(name, Util.translateAttr(pageContext,(String)value),PageContext.REQUEST_SCOPE);
 		attrs.add(name);
 	}
+
 }

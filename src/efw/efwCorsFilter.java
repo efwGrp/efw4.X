@@ -2,11 +2,9 @@
 package efw;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -20,9 +18,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import efw.properties.EfwAuthBean;
 import efw.properties.PropertiesManager;
-import efw.taglib.Part;
-import efw.taglib.Util;
+import efw.taglib.Client;
 /**
  * SameSiteFilterはcookieにSameSiteとSecureを追加
  * Cors機能のため
@@ -32,8 +30,9 @@ import efw.taglib.Util;
 		"*.jsp",
 		"/efwServlet",
 		"/efwRestAPI/*",
-		"/uploadServlet",	//セッション利用があるから
-		"/downloadServlet"	//セッション利用があるから
+		"/uploadServlet",
+		"/downloadServlet",
+		"/partServlet"
 })
 public final class efwCorsFilter implements Filter {
 	@Override
@@ -50,12 +49,15 @@ public final class efwCorsFilter implements Filter {
 			framework.setRequest(request);
 			framework.setResponse(response);
 			request.setCharacterEncoding(framework.getSystemCharSet());//すべての外部むけURLは全部ここでエンコードを設定する
+			
+			//elfinder部品の言語のため
+			String lang=request.getParameter(Client.EFW_I18N_LANG);
+			if (lang!=null)request.setAttribute(Client.EFW_I18N_LANG, lang);
+			
 			response.setCharacterEncoding(framework.getSystemCharSet());
-			response.setContentType("application/json");
+			response.setContentType("application/json");//efwServlet efwRestAPIのためです。jspなどの場合変更される
 			//もしAuthBeanを取れない場合つまり定義間違い。
 			if (getCurrentAuthBean()!=null) {
-				//if as sub app, to identify the main app.
-				setCalledFromMainAppSessionKey(req);
 				//do the program
 				chain.doFilter(request, response);
 			}
@@ -66,7 +68,7 @@ public final class efwCorsFilter implements Filter {
 			//httpの場合、Secureを設定できない。
 			//Subとする場合、httpsにしないといけない。※localhostのテストは大丈夫。
 			//そして、Subの場合だけ、SameSite=None; Secureを設定する。
-			if (asSub) {
+			if (!asMain) {
 				Collection<String> headers = res.getHeaders("Set-Cookie");
 				boolean firstHeader = true;
 				for (String header : headers) {  
@@ -124,15 +126,15 @@ public final class efwCorsFilter implements Filter {
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////
-	private static final String EFW_PROP ="efw";
 	private static final String APPURL ="appurl";
 	private static final String ENCODE_KEY="encodekey";
-	private static final String DECODE_KEY="decodekey";
 	private static final String ENCODER="encoder";
-	private static final String DECODER="decoder";
 	private static final String BLOWFISH="BLOWFISH";
 	
 	private static boolean asMain =true;
+	public static boolean getAsMain() {
+		return asMain;
+	}
 	private static HashMap<String,Map<String,Object>> callToSubs=new HashMap<>();
 	public static Cipher getEncoder(String subAppUrl) {
 		for(String key : callToSubs.keySet()) {
@@ -145,94 +147,15 @@ public final class efwCorsFilter implements Filter {
 		}
 		return null;
 	}
-	private static boolean asSub =false;
-	private static HashMap<String,Map<String,Object>> calledFromMains=new HashMap<>();
-	public static Cipher getDecoder(String mainAppUrl) {
-		for(String key : calledFromMains.keySet()) {
-			HashMap<String,Object> map=(HashMap<String,Object>)calledFromMains.get(key);
-			String appurl=(String)map.get(APPURL);
-			Cipher encoder=(Cipher)map.get(DECODER);
-			if (mainAppUrl.equals(appurl)) {
-				return encoder;
-			}
-		}
-		return null;
+	private static String efwDecodeKey=null;
+	private static Cipher decoder=null;
+	public static Cipher getDecoder() {
+		return decoder;
 	}
-	private static HashMap<String,EfwAuthBean> authBeans=new HashMap<>();
+	
+	private static EfwAuthBean currentAuthBean=null;
 	public static EfwAuthBean getCurrentAuthBean() {
-		try {
-			HttpServletRequest request=(HttpServletRequest)framework.getRequest();
-			if (request.getHeader("Origin")!=null) {//ajaxから呼び出す場合、
-				String selfappurl=Util.getAppUrl();
-				String referer=(String)request.getSession().getAttribute(Part.EFW_MAIN_REFERER);//   request.getHeader("Referer");
-				//mainappから呼び出す場合
-				if (referer==null) {
-					if (asMain) {
-						return authBeans.get(EFW_PROP);
-					}else {
-						throw new efwDoNotAsMainException();
-					}
-				}else if (referer.indexOf(selfappurl)==0) {
-					if (asMain) {
-						return authBeans.get(EFW_PROP);
-					}else {
-						throw new efwDoNotAsMainException();
-					}
-				}else {
-					for(String key : calledFromMains.keySet()) {
-						HashMap<String,Object> map=(HashMap<String,Object>)calledFromMains.get(key);
-						String appurl=(String)map.get(APPURL);
-						if (referer.indexOf(appurl, 0)==0) {
-							if (asSub) {
-								return authBeans.get(key);
-							}else {
-								throw new efwDoNotAsSubException();
-							}
-						}
-					}
-					throw new MainIsNotAuthorizedException();
-				}
-			}else {
-				if (asMain) {
-					return authBeans.get(EFW_PROP);
-				}else {
-					throw new efwDoNotAsMainException();
-				}
-			}
-			
-		}catch(efwException ex) {
-			framework.runtimeSLog(ex);
-			return null;
-		}
-	}
-	/**
-	 * セッションにEFW_CALLED_FROM_MAIN_APP_KEYを設定する。
-	 * @param request
-	 */
-	private static void setCalledFromMainAppSessionKey(HttpServletRequest request) {
-		String referer=(String)request.getParameter(Part.EFW_MAIN_REFERER);
-		String loginkey=(String)request.getParameter(Part.EFW_MAIN_LOGIN_KEY);
-		String authkey=(String)request.getParameter(Part.EFW_MAIN_AUTH_KEY);
-		String loginValue=(String)request.getParameter(Part.EFW_MAIN_LOGIN_VALUE);
-		String authValue=(String)request.getParameter(Part.EFW_MAIN_AUTH_VALUE);
-		
-		Cipher decoder=null;
-		if (referer!=null) {
-			request.getSession().setAttribute(Part.EFW_MAIN_REFERER,referer);
-			decoder=getDecoder(referer);
-		}
-		//暗号化と復号化
-		if (decoder!=null) {
-			if (loginkey!=null) loginkey=Util.decode(loginkey,decoder);
-			if (loginValue!=null) loginValue=Util.decode(loginValue,decoder);
-			if (authkey!=null) authkey=Util.decode(authkey,decoder);
-			if (authValue!=null) authValue=Util.decode(authValue,decoder);
-			if (loginkey!=null) request.getSession().setAttribute(loginkey,loginValue);
-			if (authkey!=null) request.getSession().setAttribute(authkey,authValue);
-		}else {
-			if (loginkey!=null) request.getSession().setAttribute(loginkey,loginValue);
-			if (authkey!=null) request.getSession().setAttribute(authkey,authValue);
-		}
+		return currentAuthBean;
 	}
 	
 	/**
@@ -240,12 +163,9 @@ public final class efwCorsFilter implements Filter {
 	 * @throws IOException 
 	 */
 	public static synchronized void init() throws IOException{
-		//メインアプリの場合
 		asMain = PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AS_MAIN, asMain);
-		if (asMain) {
-			//メインアプリとするバイア、メインプロパティファイルからのセキュリティ情報を読み込む
-			EfwAuthBean bean=new EfwAuthBean(PropertiesManager.prop);
-			authBeans.put(EFW_PROP, bean);
+		
+		if (asMain) {//メインアプリの場合
 			String[] ary=PropertiesManager.getProperty(PropertiesManager.EFW_CALL_TO_SUBS, "").split(",");
 			for(int i=0;i<ary.length;i++) {
 				String key=ary[i];
@@ -256,8 +176,8 @@ public final class efwCorsFilter implements Filter {
 					map.put(ENCODE_KEY, encodeKey);
 					callToSubs.put(key,map);
 					// 使用する暗号化アルゴリズム
-					if (encodeKey!=null) {
-						try {
+					if (encodeKey!=null && !"".equals(encodeKey)){
+						try {						
 							Cipher cipher = Cipher.getInstance(BLOWFISH);
 							cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(encodeKey.getBytes(), BLOWFISH));
 							map.put(ENCODER, cipher);
@@ -267,41 +187,23 @@ public final class efwCorsFilter implements Filter {
 					}
 				}
 			}
-		}
-		
-		//サブアプリの場合
-		asSub = PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AS_SUB, asSub);
-		if (asSub) {
-			//サブアプリの場合、呼び出される複数メインアプリのセキュリティ設定を読み込む
-			String[] ary=PropertiesManager.getProperty(PropertiesManager.EFW_CALLED_FROM_MAINS, "").split(",");
-			for(int i=0;i<ary.length;i++) {
-				String key=ary[i];
-				if (!"".equals(key)) {
-					HashMap<String,Object> map=new HashMap<>();
-					map.put(APPURL, PropertiesManager.getProperty(key+"."+APPURL,""));
-					String decodeKey= PropertiesManager.getProperty(key+"."+DECODE_KEY,null);
-					map.put(DECODE_KEY,decodeKey);
-					calledFromMains.put(key,map);
-					if (decodeKey!=null) {
-						try {
-							Cipher cipher = Cipher.getInstance(BLOWFISH);
-							cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(decodeKey.getBytes(), BLOWFISH));
-							map.put(DECODER, cipher);
-						}catch(Exception ex) {
-							ex.printStackTrace();
-						}
-					}
-					
-					InputStream inptstrm=Thread.currentThread().getContextClassLoader().getResourceAsStream(key+".properties");
-			    	Properties prop = new Properties();
-					if (inptstrm!=null) {
-						prop.load(inptstrm);
-						inptstrm.close();
-					}
-					authBeans.put(key, new EfwAuthBean(prop));
+		}else {//サブアプリの場合
+			//暗号化キー
+			efwDecodeKey=PropertiesManager.getProperty(PropertiesManager.EFW_DECODEKEY,efwDecodeKey);
+			// 使用する暗号化アルゴリズム
+			if (efwDecodeKey!=null && !"".equals(efwDecodeKey)) {
+				try {
+					Cipher cipher = Cipher.getInstance(BLOWFISH);
+					cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(efwDecodeKey.getBytes(), BLOWFISH));
+					decoder = cipher;
+				}catch(Exception ex) {
+					ex.printStackTrace();
 				}
 			}
 		}
+		
+		//メインアプリとするバイア、メインプロパティファイルからのセキュリティ情報を読み込む
+		currentAuthBean=new EfwAuthBean();
 	}
 	
 	@Override

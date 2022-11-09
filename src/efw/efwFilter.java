@@ -14,6 +14,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import efw.i18n.I18nManager;
+import efw.properties.EfwAuthBean;
 import efw.properties.PropertiesManager;
 /**
  * efwFilterから初期化される。
@@ -42,7 +44,14 @@ public final class efwFilter implements Filter {
 				if(!currentAuthBean.outOfloginUrlPattern.matcher(strRequestURI).find()){//接続画面がログイン必要の場合
 					Object loginCheckValue=((HttpServletRequest) request).getSession().getAttribute(currentAuthBean.loginKey);
 					if(loginCheckValue==null || loginCheckValue.equals("")){//ログインしていない場合
-				        ((HttpServletResponse)response).sendRedirect(currentAuthBean.loginUrl);
+						//もしサブパーツ呼び出し場合、loginURLではなくerrorURLへ遷移する。
+						if (efwCorsFilter.getAsMain()) {
+							((HttpServletResponse)response).sendRedirect(currentAuthBean.loginUrl);
+						}else {
+							//ここでは言語情報を取得できない。言語情報はイベントjsのなかです。
+							response.getWriter().write("<span>"+I18nManager.get("en", "SessionTimeoutException", "Session timeout. Please log in again.")+"</span>");
+						}
+				        
 					}else if(currentAuthBean.authCheck){//ログインした、権限チェック必要の場合
 						boolean hasAuth=false;
 						for (String key : currentAuthBean.authCasePatternsMap.keySet()) {

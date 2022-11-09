@@ -5,6 +5,6 @@ package efw;
  */
 public class efwDoNotAsSubException extends efwException {
 	public efwDoNotAsSubException() {
-		super("The calling is rejected because [efw.as.sub] is false.");
+		super("The calling is rejected because [efw.as.main] is not false.");
 	}
 }

@@ -148,13 +148,13 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_CALL_TO_SUBS="efw.call.to.subs";
 	/**
-	 * アプリはサブとして動く
+	 * サブ部品のアプリURL
 	 */
-	public static final String EFW_AS_SUB="efw.as.sub";
+	public static final String EFW_APPURL="efw.appurl";
 	/**
-	 * サブアプリを利用するメインアプリ
+	 * サブの暗号化キー
 	 */
-	public static final String EFW_CALLED_FROM_MAINS="efw.called.from.mains";
+	public static final String EFW_DECODEKEY ="efw.decodekey";
 	
 	
 	/**
