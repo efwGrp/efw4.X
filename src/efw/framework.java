@@ -29,7 +29,7 @@ public class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static final String version="4.06.000";// change it when releasing jar.
+	private static final String version="4.06.001";// change it when releasing jar.
 	public static String getVersion() {
 		return version;
 	}

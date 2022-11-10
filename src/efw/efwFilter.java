@@ -64,7 +64,12 @@ public final class efwFilter implements Filter {
 							}
 						}
 						if(!hasAuth){//権限を持っていない場合
-							((HttpServletResponse)response).sendRedirect(currentAuthBean.systemErrorUrl);
+							if (efwCorsFilter.getAsMain()) {
+								((HttpServletResponse)response).sendRedirect(currentAuthBean.systemErrorUrl);
+							}else {
+								//ここでは言語情報を取得できない。言語情報はイベントjsのなかです。
+								response.getWriter().write("<span>"+I18nManager.get("en", "OtherErrorException", "An unexpected error has occurred.")+"</span>");
+							}
 						}else{//権限をもっている場合
 							chain.doFilter(request, response);
 						}

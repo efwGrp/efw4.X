@@ -54,14 +54,14 @@ public class Util {
 		return b.toString().replace(",}", "}");
 	}
 	
-	protected static String encode(String v,String appurl) throws IllegalBlockSizeException, BadPaddingException{
+	protected static synchronized String encode(String v,String appurl) throws IllegalBlockSizeException, BadPaddingException{
 		if (v==null||"".equals(v)) return v;
 		Cipher encoder=efwCorsFilter.getEncoder(appurl);
 		if (encoder==null) return v;
 		byte[] encrypted = Base64.getUrlEncoder().encode(encoder.doFinal(v.getBytes()));
 		return new String(encrypted);
 	}
-	protected static String decode(String v) throws IllegalBlockSizeException, BadPaddingException{
+	protected static synchronized String decode(String v) throws IllegalBlockSizeException, BadPaddingException{
 		if (v==null||"".equals(v)) return v;
 		Cipher decoder = efwCorsFilter.getDecoder();
 		if (decoder==null) return v;

@@ -31,7 +31,7 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
  * @param eventId: Event Id.
  * @returns {null | Result}<br>
  */
-EfwServer.prototype.checkAuth = function(eventId){
+EfwServer.prototype.checkAuth = function(eventId, lang){
 	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
 	var outOfLoginEventIdPattern =""+currentAuthBean.outOfloginEventIdPatternString;
 	if (eventId.search(new RegExp(outOfLoginEventIdPattern)) == -1) {
@@ -52,9 +52,8 @@ EfwServer.prototype.checkAuth = function(eventId){
 				}
 			}
 			if (hasAuth == false) {
-				var result=new Result();
-				var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
-				result.navigate(systemErrorUrl);
+				var result=(new Result())
+				.alert(messages.get("OtherErrorException",lang));
 				return result;
 			}
 		}

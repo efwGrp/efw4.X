@@ -63,7 +63,7 @@ function doPost(req) {
 			var ret = efw.server.checkLogin(eventId, lang);
 			if (ret==null){
 				// auth check
-				ret = efw.server.checkAuth(eventId);
+				ret = efw.server.checkAuth(eventId, lang);
 				if (ret == null){
 					ret = efw.server.checkStyle(ev, params, lang);
 					if (ret == null){
