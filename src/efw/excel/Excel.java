@@ -90,6 +90,10 @@ public final class Excel {
 	 */
 	private Workbook workbook;
 	/**
+	 * 計算式計算用。
+	 */
+	private FormulaEvaluator evaluator;
+	/**
 	 * コンストラクタ
 	 * @param path　Excelの相対パス。
 	 * @param workbook　ExcelのPOIオブジェクト。
@@ -111,6 +115,7 @@ public final class Excel {
 		}else{
 			this.workbook = WorkbookFactory.create(tempFile);
 		}
+		this.evaluator = this.workbook.getCreationHelper().createFormulaEvaluator();
 	}
 	/**
 	 * ExcelのPOIオブジェクトを削除する。
@@ -156,7 +161,7 @@ public final class Excel {
 	private Cell getCell(String sheetName, String position){
 		Sheet sheet =this.workbook.getSheet(sheetName);
 		CellReference reference = new CellReference(position);
-        Row row = this.workbook.getSheet(sheetName).getRow(reference.getRow());
+        Row row = sheet.getRow(reference.getRow());
         Cell cell = null;
         if (row == null) {
         	row = sheet.createRow(reference.getRow());
@@ -176,7 +181,7 @@ public final class Excel {
 	 */
 	private Cell getCell(String sheetName, int rowIndex, int colIndex ){
 		Sheet sheet =this.workbook.getSheet(sheetName);
-        Row row = this.workbook.getSheet(sheetName).getRow(rowIndex);
+        Row row = sheet.getRow(rowIndex);
         Cell cell = null;
         if (row == null) {
         	row = sheet.createRow(rowIndex);
@@ -234,9 +239,23 @@ public final class Excel {
 	 */
 	public Object get(String sheetName, String position) {
 		try {
-			Cell cell=getCell(sheetName,position);
-			FormulaEvaluator evaluator = workbook.getCreationHelper()
-					.createFormulaEvaluator();
+			//この関数はセルを作成するから取得用途で不都合がある
+			//Cell cell=getCell(sheetName,position);
+			Sheet sheet =this.workbook.getSheet(sheetName);
+			CellReference reference = new CellReference(position);
+	        Row row = sheet.getRow(reference.getRow());
+	        Cell cell = null;
+	        if (row == null) {
+	        	//行が存在しない場合
+	        	return null;
+	       	}else {
+		        cell = row.getCell(reference.getCol());
+		        if (cell==null){
+		        	//セルが存在しない場合
+		        	return null;
+		        }
+	       	}
+
 			switch (cell.getCellType()) {
 			case BOOLEAN:
 				return cell.getBooleanCellValue();
@@ -251,7 +270,7 @@ public final class Excel {
 			case STRING:
 				return cell.getStringCellValue();
 			case FORMULA:
-				CellValue cellValue = evaluator.evaluate(cell);
+				CellValue cellValue = this.evaluator.evaluate(cell);
 				switch (cellValue.getCellType()) {
 				case BOOLEAN:
 					return cellValue.getBooleanValue();
