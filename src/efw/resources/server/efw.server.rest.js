@@ -10,11 +10,19 @@ function EfwServerRest() {
 
 /**
  * The function to get data from the rest service.
- * @param {String} strUrl
+ * @param {String} apiUrl
+ * @param {key:value} heads
  * @returns {JsonObject}
  */
-EfwServerRest.prototype.get=function(apiUrl){
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"GET","");
+EfwServerRest.prototype.get=function(apiUrl, heads){
+	var mapHeads=new java.util.HashMap();
+	if (heads!=null){
+		for(var key in heads){
+			if (key=="debug")continue;
+			mapHeads.put(key,heads[key]);
+		}
+	}
+    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"GET","",mapHeads);
     if (strRtnVal==""){
     	return null;
     }else{
@@ -24,13 +32,21 @@ EfwServerRest.prototype.get=function(apiUrl){
 
 /**
  * The function to post data to the rest service.
- * @param {String} strUrl
- * @param {id: string} params
+ * @param {String} apiUrl
+ * @param {id:string} params
+ * @param {key:value} heads
  * @returns {JsonObject}
  */
-EfwServerRest.prototype.post=function(apiUrl, params){
+EfwServerRest.prototype.post=function(apiUrl, params, heads){
+	var mapHeads=new java.util.HashMap();
+	if (heads!=null){
+		for(var key in heads){
+			if (key=="debug")continue;
+			mapHeads.put(key,heads[key]);
+		}
+	}
     var strJson = JSON.stringify(params);
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"POST",strJson);
+    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"POST",strJson,mapHeads);
     if (strRtnVal==""){
     	return null;
     }else{
@@ -40,13 +56,21 @@ EfwServerRest.prototype.post=function(apiUrl, params){
 
 /**
  * The function to put data to the rest service.
- * @param {String} strUrl
- * @param {id: string} params
+ * @param {String} apiUrl
+ * @param {id:string} params
+ * @param {key:value} heads
  * @returns {JsonObject}
  */
-EfwServerRest.prototype.put=function(apiUrl, params){
+EfwServerRest.prototype.put=function(apiUrl, params, heads){
+	var mapHeads=new java.util.HashMap();
+	if (heads!=null){
+		for(var key in heads){
+			if (key=="debug")continue;
+			mapHeads.put(key,heads[key]);
+		}
+	}
     var strJson = JSON.stringify(params);
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"PUT",strJson);
+    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"PUT",strJson,mapHeads);
     if (strRtnVal==""){
     	return null;
     }else{
@@ -56,11 +80,19 @@ EfwServerRest.prototype.put=function(apiUrl, params){
 
 /**
  * The function to delete data from the rest service.
- * @param {String} strUrl
+ * @param {String} apiUrl
+ * @param {key:value} heads
  * @returns {JsonObject}
  */
-EfwServerRest.prototype.delete=function(apiUrl){
-	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"DELETE","");
+EfwServerRest.prototype.delete=function(apiUrl, heads){
+	var mapHeads=new java.util.HashMap();
+	if (heads!=null){
+		for(var key in heads){
+			if (key=="debug")continue;
+			mapHeads.put(key,heads[key]);
+		}
+	}
+	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"DELETE","",mapHeads);
     if (strRtnVal==""){
     	return null;
     }else{

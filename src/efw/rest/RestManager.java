@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 import efw.framework;
 
@@ -28,11 +29,12 @@ public class RestManager {
      * Restサービスにアクセス。
      * @param strUrl アクセスURL
      * @param strMethod アクセス方法(POST/PUT/DELETE/GET)
-     * @param param パラメータ
+     * @param params パラメータ
+     * @param heads ヘッダ情報
      * @return Rest Serviceにアクセスの戻り値
      * @throws Exception
      */
-    public static String visit(String strUrl, String strMethod, String param) throws Exception {
+    public static String visit(String strUrl, String strMethod, String params, Map<String, String> heads) throws Exception {
         HttpURLConnection httpConnection = null;
         BufferedReader responseBuffer = null;
         OutputStream outputStream = null;
@@ -45,16 +47,20 @@ public class RestManager {
 
             // アクセスタイプを設定する
             httpConnection.setRequestMethod(strMethod.toUpperCase());
-            // データタイプを設定する
-//            httpConnection.setRequestProperty("Accept", DATA_TYPE);
             // エンコード形式
             httpConnection.setRequestProperty("Content-Type", DATA_TYPE);
+            
+            if (heads!=null) {
+            	for (Map.Entry<String, String> entry : heads.entrySet()) {
+                	httpConnection.setRequestProperty(entry.getKey(),entry.getValue());            	
+            	}
+            }
 
             if ("POST".equalsIgnoreCase(strMethod) || "PUT".equalsIgnoreCase(strMethod)) {
                 httpConnection.setDoOutput(true);
                 // パラメータを設定する
                 outputStream = httpConnection.getOutputStream();
-                outputStream.write(param.getBytes(CHAR_SET));
+                outputStream.write(params.getBytes(CHAR_SET));
                 outputStream.flush();
             }
 
