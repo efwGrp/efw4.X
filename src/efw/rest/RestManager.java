@@ -47,8 +47,10 @@ public class RestManager {
 
             // アクセスタイプを設定する
             httpConnection.setRequestMethod(strMethod.toUpperCase());
-            // エンコード形式
-            httpConnection.setRequestProperty("Content-Type", DATA_TYPE);
+            if ("POST".equalsIgnoreCase(strMethod) || "PUT".equalsIgnoreCase(strMethod)) {
+	            // エンコード形式
+	            httpConnection.setRequestProperty("Content-Type", DATA_TYPE);
+            }
             
             if (heads!=null) {
             	for (Map.Entry<String, String> entry : heads.entrySet()) {
