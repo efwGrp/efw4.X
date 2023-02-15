@@ -21,6 +21,6 @@ The sort function is established to sort the array.
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
 <tr><td>field</td><td>String</td><td>The field name of the array.</td></tr>
-<tr><td>action</td><td>asc|desc</td><td>The sort action.</td></tr>
+<tr><td>action</td><td>String</td><td>asc|desc. The sort action.</td></tr>
 </table>
 
