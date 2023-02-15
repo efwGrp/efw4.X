@@ -21,7 +21,16 @@ The seek function is established to seek in the array.
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
 <tr><td>field</td><td>String</td><td>The field name of the array.</td></tr>
-<tr><td>action</td><td>eq|gt|lt|like|!eq|!gt|!lt|!like</td><td>The comparison action.</td></tr>
+<tr><td>action</td><td>eq|gt|lt|like|!eq|!gt|!lt|!like</td><td>The comparison action.
+eq: equal,
+gt: greater than,
+lt: less than,
+like: contain,
+!eq: not equal,
+!gt: not greater than,
+!let: not less than,
+!like: not contain,
+</td></tr>
 <tr><td>value</td><td>String|Number|Date|Boolean</td><td>The value to compare.</td></tr>
 </table>
 
