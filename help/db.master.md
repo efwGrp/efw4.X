@@ -24,7 +24,6 @@ The first calling to a master means to load it into the memory, and the second c
 <tr><td>masterId</td><td>String</td><td>The name of a master table.</td></tr>
 <tr><td>reload</td><td>Boolean</td><td>The flag to load the master again event it has been loaded.</td></tr>
 <tr><td>jdbcResourceName</td><td>String</td><td>To execute SQL in another database resource, but not the default. 
-<br>For efw-4iAP, it is shared database id.
 </td></tr>
 </table>
 

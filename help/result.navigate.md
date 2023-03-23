@@ -19,8 +19,7 @@ It can be called as far as once.
 
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>url</td><td>String</td><td>The url which will be navigated.<br>
-For efw-4iAP Script, it is a relative path without ext.
+<tr><td>url</td><td>String</td><td>The url which will be navigated.
 </td></tr>
 <tr><td>params</td><td>Object</td><td>The params which will be added after the url.
 <pre>

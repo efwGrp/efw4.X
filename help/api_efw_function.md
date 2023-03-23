@@ -14,8 +14,8 @@ The only thing you must to do is sending the event id.
 <tr><th>Calling</th></tr>
 <tr><td>Efw ( eventId )</td></tr>
 <tr><td>Efw ( eventId , manualParams )</td></tr>
-<tr><td>Efw ( eventId , sever )</td><td>Not for efw-4iAP</td></tr>
-<tr><td>Efw ( eventId , manualParams , sever )</td><td>Not for efw-4iAP</td></tr>
+<tr><td>Efw ( eventId , sever )</td></tr>
+<tr><td>Efw ( eventId , manualParams , sever )</td></tr>
 </table>
 
 <table>

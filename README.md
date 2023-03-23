@@ -95,6 +95,8 @@ Barcode:	Move barcode in Additional Tags.
 
 <tr><td>event</td><td><a href="help/event.fire.md">fire</a></td></tr>
 <tr><td>db</td><td><a href="help/db.select.md">select</a></td><td><a href="help/db.change.md">change</a></td><td><a href="help/db.master.md">master</a></td></tr>
+<tr><td></td><td><a href="help/db._commit.md">_commit</a></td><td><a href="help/db._rollback.md">_rollback</a></td><td><a href="help/db._commitAll.md">_commitAll</a></td><td><a href="help/db._rollbackAll.md">_rollbackAll</a></td></tr>
+<tr><td></td><td colspan=5>All transaction functions, as a default, do not need to be called explicitly.</td></tr>
 <tr><td>mail</td><td><a href="help/mail.send.md">send</a></td></tr>
 <tr><td>properties</td><td><a href="help/properties.get.md">get</a></td></tr>
 <tr><td>session</td><td><a href="help/session.get.md">get</a></td><td><a href="help/session.set.md">set</a></td><td><a href="help/session.create.md">create</a></td><td><a href="help/session.invalidate.md">invalidate</a></td></tr>

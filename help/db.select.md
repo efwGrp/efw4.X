@@ -32,7 +32,6 @@ Its return is an instance of the Record class.
 <pre>{"param1":value1,"param2":value2,...}</pre>
 </td></tr>
 <tr><td>jdbcResourceName</td><td>String</td><td>To execute SQL in another database resource, but not the default. 
-<br>For efw-4iAP, it is shared database id.
 </td></tr>
 <tr><td>sql</td><td>String</td><td>To execute a pure SQL string.</td></tr>
 </table>
