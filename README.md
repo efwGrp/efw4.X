@@ -31,7 +31,7 @@ Barcode:	Move barcode in Additional Tags.
  <a href="https://efwgrp.github.io/efw4_online_ppt/ACアクセスログを覗くv0.2/index.html">アクセスログを覗く</a> )<br>
 <a href="help/environment.md">Environment</a>, <a href="help/files_list.md">Files List</a><br>
 <a href="https://efwgrp.github.io/efw4_codeflower/efw4.X.html">Code Flower of Efw</a>, 
-<a href="https://efwgrp.github.io/efw4_codeflower/efwRuntime.html">Module Relationship Diagram of Efw Runtime</a>, <br>
+Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflower/efwRuntime.html">Runtime</a>, <a href="https://efwgrp.github.io/efw4_codeflower/efwInitialization.html">Initialization</a> )<br>
 
 <h3>Samples</h3>
 <a href="samples/i18nSample">i18n</a>
