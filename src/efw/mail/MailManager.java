@@ -43,42 +43,27 @@ public final class MailManager {
 	 * 「java:comp/env」に固定。
 	 */
 	private static final String JAVA_INITCONTEXT_NAME="java:comp/env";
-	/**
-	 * フレームワークに利用するjavaメールセッションの名称。
-	 * <br>efw.propertiesのefw.mail.resourceで設定、
-	 * デフォルトは「mail/efw」。
-	 */
-    private static String mailResourceName="mail/efw";
     /**
      * javaメールセッション。
      */
     private static Session mailSession;
-	/**
-	 * MailテンプレートXMLファイルの格納パス。
-	 * サーブレットから渡される。
-	 */
-    private static String mailFolder;
     /**
      * サーブレットから設定情報を受け取る。
-     * @param mailFolder　MailテンプレートXMLファイルの格納パス。
      * @throws efwException　MailテンプレートXMLファイルの読み取りエラー。
      */
-	public static void init(String mailFolder) throws NamingException{
-		MailManager.mailFolder=mailFolder;
-		mailResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_MAIL_RESOURCE,mailResourceName);
-        if(mailResourceName.indexOf("java:")>-1){//if the mail resouce begins from [java:], it is full jndi name.
-        	mailSession = (Session) new InitialContext().lookup(mailResourceName);
+	public static void init() throws NamingException{
+        if(framework.getMailResourceName().indexOf("java:")>-1){//if the mail resouce begins from [java:], it is full jndi name.
+        	mailSession = (Session) new InitialContext().lookup(framework.getMailResourceName());
         }else{//or it begins by [java:comp/env/]
-        	mailSession = (Session) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+mailResourceName);
+        	mailSession = (Session) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+framework.getMailResourceName());
         }
 	}
 	public static void initFromBatch(String mailFolder) throws efwException{
-		MailManager.mailFolder=mailFolder;
     	String username=PropertiesManager.EFW_MAIL_USERNAME;
     	String password=PropertiesManager.EFW_MAIL_PASSWORD;
 		String usernameValue=PropertiesManager.getProperty(username, "");
 		String passwordValue=PropertiesManager.getProperty(password, "");
-		mailSession=Session.getInstance(PropertiesManager.prop,new MailAuthenticator(usernameValue,passwordValue));
+		mailSession=Session.getInstance(PropertiesManager.getProp(),new MailAuthenticator(usernameValue,passwordValue));
 	}
 	/**
 	 * メールを送信
@@ -113,7 +98,7 @@ public final class MailManager {
 		}
 		String subject=mail.getSubject(params);
 		if (subject!=null&&!"".equals(subject)){
-			message.setSubject(subject,"UTF-8");
+			message.setSubject(subject,framework.SYSTEM_CHAR_SET);
 		}
 		String body=mail.getBody(params);
 		if (body!=null&&!"".equals(body)){
@@ -186,7 +171,7 @@ public final class MailManager {
 		if (group==null){
 			return true;//xml file is not in memory,so it is need to reload
 		}else{
-			Date fileLastModifytime = new Date(new File(MailManager.mailFolder+"/"+groupId+".xml").lastModified());
+			Date fileLastModifytime = new Date(new File(framework.getMailFolder()+"/"+groupId+".xml").lastModified());
 			if(!fileLastModifytime.equals(group.getLastModifytime())){
 				return true;//xml file is modified, so it is need to reload
 			}else{
@@ -200,7 +185,7 @@ public final class MailManager {
 	 */
 	///////////////////////////////////////////////////////////////////////////
 	private static void load(String groupId) throws efwException{
-		String filename=MailManager.mailFolder+"/"+groupId+".xml";
+		String filename=framework.getMailFolder()+"/"+groupId+".xml";
 		File fl=new File(filename);
 		if (!fl.exists()) return;//ファイルが存在しない場合、なにもしない。
 		
@@ -244,6 +229,6 @@ public final class MailManager {
 	/**
 	 * ロードするMailテンプレートXMLファイルを格納するオブジェクト。
 	 */
-	private static HashMap<String,MailHashMap> groups=new HashMap<String,MailHashMap>();
+	private static final HashMap<String,MailHashMap> groups=new HashMap<String,MailHashMap>();
 
 }

@@ -13,6 +13,7 @@
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>CLIENT</name>
@@ -23,6 +24,7 @@
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>client</name>
@@ -33,6 +35,7 @@
     <attribute><name>theme</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>

@@ -1566,7 +1566,6 @@ var elFinder = function(node, opts) {
 				dataType : 'json',
 				cache    : false,
 				// timeout  : 100,
-				type     : this.requestType,
 				contentType: "application/json;charset=UTF-8",
 				data     : JSON.stringify({"eventId":"elfinder_cmds","lang":efw.lang,"params":data}),//EFW
 				headers  : this.customHeaders,
@@ -7904,7 +7903,7 @@ elFinder.prototype._options = {
 		// current directory menu
 		cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'view', 'sort', 'colwidth', '|', 'info', '|', 'fullscreen'],
 		// current directory file menu
-		files  : ['getfile', '|' ,'open', 'download', 'opendir', 'quicklook', '|', 'upload', 'mkdir', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'rename', 'resize', '|', 'archive', 'extract', '|', 'places', 'info', 'chmod', 'netunmount']//edit
+		files  : ['getfile', '|' ,'open', 'download', 'opendir', '|', 'upload', 'mkdir', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'rename', '|', 'info']//edit , 'chmod', 'netunmount', 'places', '|', 'archive', 'extract', 'resize', 'quicklook'
 	},
 
 	/**

@@ -1,4 +1,5 @@
-﻿/**** efw4.X Copyright 2019 efwGrp ****/
+﻿"use strict";
+/**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to read CSV.<br>
  * @param {String}
@@ -20,7 +21,7 @@
  * @author Chang Kejun
  */
 function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead, offsetBytes, offsetRows) {
-	if (this.constructor.name!="CSVReader"){throw new Packages.efw.NewKeywordWasForgottenException("CSVReader");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("CSVReader");}
 	this._path = path;
 	if (separator != null){this._separator = separator;}
 	if (delimiter != null){this._delimiter = delimiter;}
@@ -39,7 +40,7 @@ function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead, o
 /**
  * CSV locker for openning reader
  */
-var CSVReader_lock = new java.util.concurrent.locks.ReentrantLock();
+CSVReader.prototype._locker = new java.util.concurrent.locks.ReentrantLock();
 /**
  * The attr to keep the path.
  */
@@ -117,12 +118,12 @@ CSVReader.prototype.loopAllLines = function(callback,CRLFCode){
 	}
 	try{
 		try{
-			CSVReader_lock.lock();
+			this._locker.lock();
 			br = new Packages.efw.csv.CSVReader(
 					new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path)),
 					this._encoding,this._CRLFCode);
 		}finally{
-			CSVReader_lock.unlock();
+			this._locker.unlock();
 		}
 		var strLine;
 		var intNum = 0;
@@ -271,7 +272,7 @@ CSVReader.prototype._split = function (rowdata,index) {
  * @author Chang Kejun
  */
 function CSVWriter(path, separator, delimiter, encoding) {
-	if (this.constructor.name!="CSVWriter"){throw new Packages.efw.NewKeywordWasForgottenException("CSVWriter");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("CSVWriter");}
 	this._path = path;
 	if (separator != null){this._separator = separator;}
 	if (delimiter != null){this._delimiter = delimiter;}

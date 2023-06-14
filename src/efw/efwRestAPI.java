@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import efw.script.ScriptManager;
 
-@WebServlet(name="efwRestAPI",loadOnStartup=1,urlPatterns={"/efwRestAPI/*"})
+@WebServlet(name="efwRestAPI",urlPatterns={"/efwRestAPI/*"})
 public final class efwRestAPI extends HttpServlet{
 
 	@Override

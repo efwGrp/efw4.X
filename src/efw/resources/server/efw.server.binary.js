@@ -1,4 +1,5 @@
-﻿/**** efw4.X Copyright 2020 efwGrp ****/
+﻿"use strict";
+/**** efw4.X Copyright 2020 efwGrp ****/
 /**
  * The class to read Binary file.<br>
  * @param {String}
@@ -16,7 +17,7 @@
  * @author Chang kejun
  */
 function BinaryReader(path, aryFieldsDef, aryEncoding, rowSize, skipRows, rowsToRead ) {
-	if (this.constructor.name!="BinaryReader"){throw new Packages.efw.NewKeywordWasForgottenException("BinaryReader");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("BinaryReader");}
 	this._path = path;
 	this._aryFieldsDef = aryFieldsDef;
 	this._aryEncoding = aryEncoding;
@@ -27,7 +28,7 @@ function BinaryReader(path, aryFieldsDef, aryEncoding, rowSize, skipRows, rowsTo
 /**
  * Binary locker for openning reader
  */
-var BinaryReader_lock = new java.util.concurrent.locks.ReentrantLock();
+BinaryReader.prototype._locker = new java.util.concurrent.locks.ReentrantLock();
 /**
  * The attr to keep the path.
  */
@@ -78,13 +79,13 @@ BinaryReader.prototype.loopAllLines = function(callback){
 	try{
 		var intNum = 0;
 		try{
-			BinaryReader_lock.lock();
+			this._locker.lock();
 			br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
 			if (this._skipRows!=-1){
 				br.skip(new java.lang.Long(""+(this._skipRows*this._rowSize)).longValue());
 			}
 		}finally{
-			BinaryReader_lock.unlock();
+			this._locker.unlock();
 		}
 		var buf=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._rowSize);//ファイルから読み込むバファー
 		var bufs=[];

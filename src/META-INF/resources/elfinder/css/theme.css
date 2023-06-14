@@ -70,5 +70,7 @@
 /* font size */
 .elfinder * {
 	font-weight : normal!important;
+	line-height : normal!important;
+	font-family : normal!important;
 }
 

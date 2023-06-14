@@ -13,17 +13,7 @@ import efw.framework;
  * Rest Serviceにアクセスクラス。
  * @author lndljack
  */
-public class RestManager {
-
-    /**
-     * エンコード形式
-     */
-    private static final String CHAR_SET = "UTF-8";
-
-    /**
-     * データタイプ
-     */
-    private static final String DATA_TYPE = "application/json;charset=UTF-8";
+public final class RestManager {
 
     /**
      * Restサービスにアクセス。
@@ -49,7 +39,7 @@ public class RestManager {
             httpConnection.setRequestMethod(strMethod.toUpperCase());
             if ("POST".equalsIgnoreCase(strMethod) || "PUT".equalsIgnoreCase(strMethod)) {
 	            // エンコード形式
-	            httpConnection.setRequestProperty("Content-Type", DATA_TYPE);
+	            httpConnection.setRequestProperty("Content-Type", framework.CONTENT_TYPE);
             }
             
             if (heads!=null) {
@@ -62,7 +52,7 @@ public class RestManager {
                 httpConnection.setDoOutput(true);
                 // パラメータを設定する
                 outputStream = httpConnection.getOutputStream();
-                outputStream.write(params.getBytes(CHAR_SET));
+                outputStream.write(params.getBytes(framework.SYSTEM_CHAR_SET));
                 outputStream.flush();
             }
 
@@ -72,7 +62,7 @@ public class RestManager {
             framework.setRestStatus(status);
 
             // レスポンス内容
-            responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),CHAR_SET));
+            responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),framework.SYSTEM_CHAR_SET));
             String strLine;
             StringBuffer reserveVal = new StringBuffer();
             while ((strLine = responseBuffer.readLine()) != null) {

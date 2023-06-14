@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate file in storage.
@@ -179,7 +180,7 @@ EfwServerFile.prototype.remove = function(path) {
  * @returns {String}
  */
 EfwServerFile.prototype.getStorageFolder = function() {
-	return "" + Packages.efw.file.FileManager.getStorageFolder();
+	return "" + Packages.efw.framework.getStorageFolder();
 };
 /**
  * The function to save a single upload file to the relative path to the storage folder.

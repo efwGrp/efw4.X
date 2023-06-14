@@ -26,7 +26,6 @@ public final class downloadServlet extends HttpServlet {
     /**
      * レスポンスの文字セット定数、XMLHttpRequestのデフォルトに合わせ、「UTF-8」に固定。
      */
-    private static final String RESPONSE_CHAR_SET="UTF-8";
     private static final String EFW_DOWNLOAD_FILE="efw.download.file";
     private static final String EFW_DOWNLOAD_ZIP="efw.download.zip";
     private static final String EFW_DOWNLOAD_SAVEAS="efw.download.saveas";
@@ -62,7 +61,7 @@ public final class downloadServlet extends HttpServlet {
 		try {
 			if(attr_zip!=null&&!"".equals(attr_zip)){
 				tmp_files=attr_zip.split("\\|");
-				File zipFile=File.createTempFile("efw", "zip",new File(FileManager.getStorageFolder()));
+				File zipFile=File.createTempFile("efw", "zip",new File(framework.getStorageFolder()));
 				tmp_zip=zipFile.getName();
 				attr_file=zipFile.getName();
 				FileManager.zip(tmp_zip, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs));
@@ -84,17 +83,17 @@ public final class downloadServlet extends HttpServlet {
 			}
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition","attachment; filename=\""+java.net.URLEncoder.encode(attr_saveas, RESPONSE_CHAR_SET)+"\"");
+			response.setHeader("Content-Disposition","attachment; filename=\""+java.net.URLEncoder.encode(attr_saveas, framework.SYSTEM_CHAR_SET)+"\"");
 			Cookie ck=new Cookie("efw_Downloaded","OK");
 			ck.setPath("/");
 			response.addCookie(ck);
 			FileInputStream hFile;
 			if (tmp_zip!=null) {
-				hFile=new FileInputStream(FileManager.getStorageFolder()+"/"+attr_file);
+				hFile=new FileInputStream(framework.getStorageFolder()+"/"+attr_file);
 			}else {
 				hFile="true".equals(attr_isAbs)?
 						new FileInputStream(attr_file)
-						:new FileInputStream(FileManager.getStorageFolder()+"/"+attr_file);
+						:new FileInputStream(framework.getStorageFolder()+"/"+attr_file);
 			}
 			BufferedInputStream bis = new BufferedInputStream(hFile);
 			int len = 0;
@@ -114,7 +113,7 @@ public final class downloadServlet extends HttpServlet {
 		} catch (IOException ex) {
 			framework.runtimeWLog(ex);
 			response.reset();
-			response.setCharacterEncoding(RESPONSE_CHAR_SET);//URLEncoder.encodeと関連
+			response.setCharacterEncoding(framework.SYSTEM_CHAR_SET);//URLEncoder.encodeと関連
 			response.setContentType("text/html;charset=UTF-8"); 
 			response.getWriter().print("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head><body>");
 			response.getWriter().print(framework.getUsefulInfoFromException(ex));
@@ -131,7 +130,7 @@ public final class downloadServlet extends HttpServlet {
 			}
 			if(tmp_zip!=null){
 				try {
-					(new File(FileManager.getStorageFolder()+"/"+tmp_zip)).delete();
+					(new File(framework.getStorageFolder()+"/"+tmp_zip)).delete();
 				}catch (Exception e){
 				} finally {
 				}

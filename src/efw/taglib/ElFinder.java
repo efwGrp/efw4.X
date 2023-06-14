@@ -132,7 +132,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		String lang=(String) pageContext.getAttribute(Client.EFW_I18N_LANG,PageContext.REQUEST_SCOPE);
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
-			String v=framework.getVersion();
+			String v=framework.version;
 			boolean asMain=false;
 			//メイン部品と実行する場合
 			if ("".equals(appurl)) {

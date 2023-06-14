@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import efw.framework;
 
-public class EfwAuthBean{
+public final class EfwAuthBean{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public EfwAuthBean() {
 		this.loginCheck=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_LOGIN_CHECK, this.loginCheck);

@@ -22,6 +22,7 @@ public final class Client extends TagSupport{
 	private String theme="base";
 	private String lang="en";//en cn jp
 	private String major="4";
+	private String nopromise="false";
 	
 	public String getBaseurl() {
 		return baseurl;
@@ -63,6 +64,14 @@ public final class Client extends TagSupport{
 		this.major = Util.translateAttr(pageContext,major);
 	}
 	
+	public String getNopromise() {
+		return nopromise;
+	}
+
+	public void setNopromise(String nopromise) {
+		this.nopromise = Util.translateAttr(pageContext,nopromise);
+	}
+	
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
 	/**
 	 * タグ処理。
@@ -72,7 +81,7 @@ public final class Client extends TagSupport{
 	public int doStartTag(){
 		JspWriter out = pageContext.getOut();
 		try {
-			String v=framework.getVersion();
+			String v=framework.version;
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");
 			if("jquery-ui".equals(mode)){
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/jquery-ui.structure.min.css?v="+v+"\">\n");
@@ -95,7 +104,12 @@ public final class Client extends TagSupport{
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.messages.jsp?lang="+lang+"&v="+v+"\"></script>\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.format.js?v="+v+"\"></script>\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.inputbehavior.js?v="+v+"\"></script>\n");
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.js?v="+v+"\"></script>\n");
+			if ("true".equals(nopromise)) {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.nopromise.js?v="+v+"\"></script>\n");
+			}else {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.client.js?v="+v+"\"></script>\n");
+			}
+			
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.js?v="+v+"\"></script>\n");
 			out.print("<script type=\"text/javascript\">\n");
 			out.print("	efw.baseurl = \""+baseurl+"\";\n");
@@ -118,6 +132,7 @@ public final class Client extends TagSupport{
 		theme="base";
 		lang="en";
 		major="4";
+		nopromise="false";
 		return SKIP_BODY;
 	}
 }

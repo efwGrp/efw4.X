@@ -16,23 +16,17 @@ import java.util.logging.Level;
 import efw.db.Database;
 import efw.event.RemoteEventManager;
 import efw.excel.Excel;
-import efw.file.FileManager;
 import efw.format.FormatManager;
-import efw.i18n.I18nManager;
 import efw.i18n.I18nProperties;
 import efw.log.LogManager;
 import efw.properties.PropertiesManager;
 import efw.script.ScriptManager;
-import efw.sql.SqlManager;
 
-public class framework {
+public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	private static final String version="4.06.005";// change it when releasing jar.
-	public static String getVersion() {
-		return version;
-	}
+	public static final String version="4.06.014";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -40,28 +34,27 @@ public class framework {
 	public static String getWebHome() {
 		return webHome;
 	}
-	public static void setWebHome(String webHome) {
-		framework.webHome=webHome;
-	}
 	
 	private static void initCommonWBL(String webHome) throws Exception {
 		//-----------------------------------------------------------------
-		framework.setWebHome(webHome);
+		framework.webHome=webHome;
 		framework.initCLog("webHome = "+webHome);
 		//-----------------------------------------------------------------
 		//systemErrorUrl　ここはログを出力しない。filter初期化時出力したから。
-		framework.setSystemErrorUrl(PropertiesManager.getProperty(PropertiesManager.EFW_SYSTEM_ERROR_URL,framework.getSystemErrorUrl()));
+		framework.systemErrorUrl=PropertiesManager.getProperty(PropertiesManager.EFW_SYSTEM_ERROR_URL,framework.getSystemErrorUrl());
 		//-----------------------------------------------------------------
-		FormatManager.init();//プロパティの後で必要。エラーなし。
+		//フォーマットrounder、プロパティの後で必要。エラーなし。
+		framework.formatRounder=PropertiesManager.getProperty(PropertiesManager.EFW_FORMAT_ROUNDER, framework.getFormatRounder());
+		framework.initCLog("formatRounder = " + framework.getFormatRounder());
 		//-----------------------------------------------------------------
 		//get attrs from properties or context
-		framework.setIsDebug(PropertiesManager.getBooleanProperty(PropertiesManager.EFW_ISDEBUG,false));
+		framework.isDebug=PropertiesManager.getBooleanProperty(PropertiesManager.EFW_ISDEBUG,false);
 		framework.initCLog("isDebug = " + framework.getIsDebug());
 		//-----------------------------------------------------------------
 		String propertyPath;
 		propertyPath=PropertiesManager.getProperty(PropertiesManager.EFW_EVENT_FOLDER,framework.getEventFolder());
 		if(propertyPath.startsWith("/WEB-INF/")){propertyPath=webHome+"/"+propertyPath;}
-		framework.setEventFolder((new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/"));
+		framework.eventFolder=(new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/");
 		if (!new File(framework.getEventFolder()).exists()){
 			framework.initWLog("The folder does not exist. eventFolder = "+framework.getEventFolder());
 		}else {
@@ -70,17 +63,16 @@ public class framework {
 		//-----------------------------------------------------------------
 		propertyPath=PropertiesManager.getProperty(PropertiesManager.EFW_SQL_FOLDER,framework.getSqlFolder());
 		if(propertyPath.startsWith("/WEB-INF/")){propertyPath=webHome+"/"+propertyPath;}
-		framework.setSqlFolder((new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/"));
+		framework.sqlFolder=(new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/");
 		if (!new File(framework.getSqlFolder()).exists()){
 			framework.initWLog("The folder does not exist. sqlFolder = "+framework.getSqlFolder());
 		}else{
 			framework.initCLog("sqlFolder = " + framework.getSqlFolder());
 		}
-		SqlManager.init(framework.getSqlFolder());//これはエラーにならない
 		//-----------------------------------------------------------------
 		propertyPath=PropertiesManager.getProperty(PropertiesManager.EFW_MAIL_FOLDER,framework.getMailFolder());
 		if(propertyPath.startsWith("/WEB-INF/")){propertyPath=webHome+"/"+propertyPath;}
-		framework.setMailFolder((new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/"));
+		framework.mailFolder=(new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/");
 		if (!new File(framework.getMailFolder()).exists()){
 			framework.initWLog("The folder does not exist. mailFolder = "+framework.getMailFolder());
 		}else{
@@ -89,24 +81,21 @@ public class framework {
 		//-----------------------------------------------------------------
 		propertyPath=PropertiesManager.getProperty(PropertiesManager.EFW_I18N_FOLDER,framework.getI18nFolder());
 		if(propertyPath.startsWith("/WEB-INF/")){propertyPath=webHome+"/"+propertyPath;}
-		framework.setI18nFolder(propertyPath.replaceAll("\\\\", "/"));
+		framework.i18nFolder=(new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/");
 		if (!new File(framework.getI18nFolder()).exists()){
 			framework.initWLog("The folder does not exist. i18nFolder = "+framework.getI18nFolder());
 		}else{
 			framework.initCLog("i18nFolder = " + framework.getI18nFolder());
 		}
-		I18nManager.init(framework.getI18nFolder());//これはエラーにならない
 		//-----------------------------------------------------------------
 		propertyPath=PropertiesManager.getProperty(PropertiesManager.EFW_STORAGE_FOLDER,framework.getStorageFolder());
 		if(propertyPath.startsWith("/WEB-INF/")){propertyPath=webHome+"/"+propertyPath;}
-		framework.setStorageFolder((new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/"));
+		framework.storageFolder=(new File(propertyPath)).getAbsolutePath().replaceAll("\\\\", "/");
 		if(!new File(framework.getStorageFolder()).exists()){
 			framework.initWLog("The folder does not exist. storageFolder = "+framework.getStorageFolder());
 		}else {
 			framework.initCLog("storageFolder = " + framework.getStorageFolder());
 		}
-		FileManager.init(framework.getStorageFolder());//これはエラーにならない
-		
 		//-----------------------------------------------------------------
 		try {
 			RemoteEventManager.init();//SSL関連を初期化して、removeEvent便利にするだけ。プロパティも不要。
@@ -119,16 +108,16 @@ public class framework {
 	private static void initScript() throws Exception {
 		//-----------------------------------------------------------------
 		try{
-			ScriptManager.init(framework.getEventFolder());//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
+			ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
 			framework.initCLog("ScriptManager inited.");
-			framework.setInitSuccessFlag(true);
+			framework.initSuccessFlag=true;
 		}catch(Exception ex){
 			framework.initSLog("ScriptManager failed.",ex);
-			framework.setInitSuccessFlag(false);
+			framework.initSuccessFlag=false;
 			throw ex;
 		}
 		//-----------------------------------------------------------------
-		framework.initCLog("Efw Version = "+framework.getVersion());		
+		framework.initCLog("Efw Version = "+framework.version);		
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -195,9 +184,11 @@ public class framework {
 		//-----------------------------------------------------------------
 		initCommonWBL(webHome);
 		//-----------------------------------------------------------------
-		framework.setCors(PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors()));
+		framework.cors=PropertiesManager.getProperty(PropertiesManager.EFW_CORS,framework.getCors());
 		framework.initCLog("cors = " + framework.getCors());
 		//-----------------------------------------------------------------
+		framework.jdbcResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_JDBC_RESOURCE,framework.getJdbcResourceName());
+		framework.initCLog("jdbcResourceName = " + framework.getJdbcResourceName());
 		try{
 			Class db = Class.forName("efw.db.DatabaseManager");
 			Method method = db.getDeclaredMethod("init");
@@ -207,6 +198,8 @@ public class framework {
 			framework.initWLog("DatabaseManager failed.",ex);
 		}
 		//-----------------------------------------------------------------
+		framework.mailResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_MAIL_RESOURCE,framework.getMailResourceName());
+		framework.initCLog("mailResourceName = " + framework.getMailResourceName());
 		try{
 			//Besure jar is existed before calling MailManager, or it is error without exception in jar
 			Class.forName("javax.mail.Session");
@@ -241,9 +234,6 @@ public class framework {
 	public static boolean getBrmsImport() {
 		return brmsImport;
 	}
-	public static void setBrmsImport(boolean brmsImport) {
-		framework.brmsImport = brmsImport;
-	}
 	
 	/**
 	 * 初期化成功か否かを表すフラグ。
@@ -251,9 +241,6 @@ public class framework {
 	private static boolean initSuccessFlag=false;
 	public static boolean getInitSuccessFlag() {
 		return initSuccessFlag;
-	}
-	public static void setInitSuccessFlag(boolean initSuccessFlag) {
-		framework.initSuccessFlag = initSuccessFlag;
 	}
 	/**
 	 * イベントJavaScriptファイルの格納パス、
@@ -265,9 +252,6 @@ public class framework {
 	public static String getEventFolder() {
 		return eventFolder;
 	}
-	public static void setEventFolder(String eventFolder) {
-		framework.eventFolder = eventFolder;
-	}
 	/**
 	 * Sql外部化XMLファイルの格納パス、
 	 * Webアプリケーションコンテキストからの相対パスで表す。
@@ -277,9 +261,6 @@ public class framework {
 	private static String sqlFolder="/WEB-INF/efw/sql";
 	public static String getSqlFolder() {
 		return sqlFolder;
-	}
-	public static void setSqlFolder(String sqlFolder) {
-		framework.sqlFolder = sqlFolder;
 	}
 	/**
 	 * ファイルの格納パス、
@@ -291,9 +272,6 @@ public class framework {
 	public static String getStorageFolder() {
 		return storageFolder;
 	}
-	public static void setStorageFolder(String storageFolder) {
-		framework.storageFolder = storageFolder;
-	}
 	/**
 	 * メールテンプレートの格納パス、
 	 * Webアプリケーションコンテキストからの相対パスで表す。
@@ -303,9 +281,6 @@ public class framework {
 	private static String mailFolder="/WEB-INF/efw/mail";
 	public static String getMailFolder() {
 		return mailFolder;
-	}
-	public static void setMailFolder(String mailFolder) {
-		framework.mailFolder = mailFolder;
 	}
 	/**
 	 * 国際化メッセージの格納パス、
@@ -317,9 +292,32 @@ public class framework {
 	public static String getI18nFolder() {
 		return i18nFolder;
 	}
-	public static void setI18nFolder(String i18nFolder) {
-		framework.i18nFolder = i18nFolder;
+	/**
+	 * フォーマット関数用Rounder
+	 */
+	private static String formatRounder="HALF_EVEN";
+	public static String getFormatRounder() {
+		return formatRounder;
 	}
+	/**
+	 * フレームワークに利用するjdbcリソースの名称。
+	 * <br>efw.propertiesのefw.jdbc.resourceで設定、
+	 * デフォルトは「jdbc/efw」。
+	 */
+	private static String jdbcResourceName="jdbc/efw";
+	public static String getJdbcResourceName() {
+		return jdbcResourceName;
+	}
+	/**
+	 * フレームワークに利用するjavaメールセッションの名称。
+	 * <br>efw.propertiesのefw.mail.resourceで設定、
+	 * デフォルトは「mail/efw」。
+	 */
+    private static String mailResourceName="mail/efw";
+	public static String getMailResourceName() {
+		return mailResourceName;
+	}
+	
 	/**
 	 * クロスドメイン通信設定、
 	 * 他のサーバーのウェブページから本サイトのイベントを利用する可否を管理する。
@@ -330,25 +328,20 @@ public class framework {
 	public static String getCors() {
 		return cors;
 	}
-	public static void setCors(String cors) {
-		framework.cors = cors;
-	}
 	/**
 	 * レスポンスの文字セット定数、XMLHttpRequestのデフォルトに合わせ、「UTF-8」に固定。
 	 */
-	private static final String SYSTEM_CHAR_SET="UTF-8";
-	public static String getSystemCharSet() {
-		return SYSTEM_CHAR_SET;
-	}
+	public static final String SYSTEM_CHAR_SET="UTF-8";
+    /**
+     * データタイプ
+     */
+	public static final String CONTENT_TYPE = "application/json;charset=UTF-8";
 	/**
 	 * システムエラー画面遷移のURL、空白は初期値。
 	 */
 	private static String systemErrorUrl="error.jsp";
 	public static String getSystemErrorUrl() {
 		return systemErrorUrl;
-	}
-	public static void setSystemErrorUrl(String systemErrorUrl) {
-		framework.systemErrorUrl = systemErrorUrl;
 	}
 	
 	/**
@@ -361,16 +354,13 @@ public class framework {
 	public static boolean getIsDebug() {
 		return framework.isDebug;
 	}
-	protected static void setIsDebug(boolean isDebug) {
-		framework.isDebug=isDebug;
-	}
 	
 	/**
 	 * requestオブジェクト。
 	 * スレッドローカルにrequestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
 	 * HttpServletRequest
 	 */
-	private static ThreadLocal<Object> request=new ThreadLocal<Object>();
+	private static final ThreadLocal<Object> request=new ThreadLocal<Object>();
 	public static Object getRequest() {
 		return framework.request.get();
 	}
@@ -386,7 +376,7 @@ public class framework {
 	 * スレッドローカルにresponseオブジェクトを格納する。サーバーサイトJavascriptに利用される。
 	 * HttpServletResponse
 	 */
-	private static ThreadLocal<Object> response=new ThreadLocal<Object>();
+	private static final ThreadLocal<Object> response=new ThreadLocal<Object>();
 	public static Object getResponse() {
 		return framework.response.get();
 	}
@@ -402,7 +392,7 @@ public class framework {
 		   * スレッドローカルにi18nPropオブジェクトを格納する。サーバーサイトJavascriptに利用される。
 	 * ここに格納するのは一つの言語のものだけ。そしてsをつけない。
 	 */
-	private static ThreadLocal<I18nProperties> i18nProp=new ThreadLocal<I18nProperties>();
+	private static final ThreadLocal<I18nProperties> i18nProp=new ThreadLocal<I18nProperties>();
 	public static I18nProperties getI18nProp() {
 		return framework.i18nProp.get();
 	}
@@ -416,7 +406,7 @@ public class framework {
 	 * Excelオブジェクト。
 	 * スレッドローカルにExcelオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static ThreadLocal<HashMap<String,Excel>> excels=new ThreadLocal<HashMap<String,Excel>>();
+	private static final ThreadLocal<HashMap<String,Excel>> excels=new ThreadLocal<HashMap<String,Excel>>();
 	public static HashMap<String,Excel> getExcels() {
 		return framework.excels.get();
 	}
@@ -430,7 +420,7 @@ public class framework {
 	 * データベースオブジェクト。
 	 * スレッドローカルにデータベースオブジェクトを格納する。サーバーサイトJavascriptに利用される。
 	 */
-	private static ThreadLocal<HashMap<String,Database>> databases=new ThreadLocal<HashMap<String,Database>>();
+	private static final ThreadLocal<HashMap<String,Database>> databases=new ThreadLocal<HashMap<String,Database>>();
 	public static HashMap<String,Database> getDatabases() {
 		return framework.databases.get();
 	}
@@ -445,7 +435,7 @@ public class framework {
 	 * Writterオブジェクト。
 	 * スレッドローカルにWriterオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static ThreadLocal<HashMap<String,PrintWriter>> writers=new ThreadLocal<HashMap<String,PrintWriter>>();
+	private static final ThreadLocal<HashMap<String,PrintWriter>> writers=new ThreadLocal<HashMap<String,PrintWriter>>();
 	public static HashMap<String,PrintWriter> getWriters() {
 		return framework.writers.get();
 	}
@@ -459,7 +449,7 @@ public class framework {
 	/**
 	 * thread毎のログを記録する
 	 */
-	private static ThreadLocal<ArrayList<String>> threadLogs=new ThreadLocal<ArrayList<String>>();
+	private static final ThreadLocal<ArrayList<String>> threadLogs=new ThreadLocal<ArrayList<String>>();
 	public static ArrayList<String> getThreadLogs() {
 		return framework.threadLogs.get();
 	}
@@ -496,7 +486,7 @@ public class framework {
 	 * restオブジェクト。
 	 * スレッドローカルにrestオブジェクトを格納する。サーバーサイトJavascriptに利用される。
 	 */
-	private static ThreadLocal<Integer> restStatus=new ThreadLocal<Integer>();
+	private static final ThreadLocal<Integer> restStatus=new ThreadLocal<Integer>();
 	public static Integer getRestStatus() {
 		return restStatus.get();
 	}
@@ -509,7 +499,7 @@ public class framework {
 	/**
 	 * 数字フォーマット用
 	 */
-	private static ThreadLocal<HashMap<String,DecimalFormat>> numberFormats=new ThreadLocal<HashMap<String,DecimalFormat>>();
+	private static final ThreadLocal<HashMap<String,DecimalFormat>> numberFormats=new ThreadLocal<HashMap<String,DecimalFormat>>();
 	public static HashMap<String,DecimalFormat> getNumberFormats() {
 		return numberFormats.get();
 	}
@@ -522,7 +512,7 @@ public class framework {
 	/**
 	 * 日付フォーマット用
 	 */
-	private static ThreadLocal<HashMap<String,DateFormat>> dateFormats=new ThreadLocal<HashMap<String,DateFormat>>();
+	private static final ThreadLocal<HashMap<String,DateFormat>> dateFormats=new ThreadLocal<HashMap<String,DateFormat>>();
 	public static HashMap<String,DateFormat> getDateFormats() {
 		return dateFormats.get();
 	}

@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate session.

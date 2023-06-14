@@ -18,8 +18,7 @@ import efw.i18n.I18nManager;
 import efw.properties.EfwAuthBean;
 import efw.properties.PropertiesManager;
 /**
- * efwFilterから初期化される。
- * JSPのログイン要否をチェックする。
+ * efwFilterはJSPのログイン有無と接続権限をチェックする。
  * @author Chang Kejun
  *
  */

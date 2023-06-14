@@ -1,4 +1,5 @@
-﻿/**** efw4.X Copyright 2019 efwGrp ****/
+﻿"use strict";
+/**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to read TXT.<br>
  * @param {String}
@@ -16,7 +17,7 @@
  * @author Liu Xinyu
  */
 function TXTReader(path, regFieldsDef, encoding, rowSize, skipRows, rowsToRead ) {
-	if (this.constructor.name!="TXTReader"){throw new Packages.efw.NewKeywordWasForgottenException("TXTReader");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("TXTReader");}
 	this._path = path;
 	this._regFieldsDef = regFieldsDef;
 	this._regFieldsDefRegExp = new RegExp(this._regFieldsDef);
@@ -28,7 +29,7 @@ function TXTReader(path, regFieldsDef, encoding, rowSize, skipRows, rowsToRead )
 /**
  * TXT locker for openning reader
  */
-var TXTReader_lock = new java.util.concurrent.locks.ReentrantLock();
+TXTReader.prototype._locker = new java.util.concurrent.locks.ReentrantLock();
 /**
  * The attr to keep the path.
  */
@@ -86,14 +87,14 @@ TXTReader.prototype.loopAllLines = function(callback){
 		var intNum = 0;
 		if (this._rowSize==-1){
 			try{
-				TXTReader_lock.lock();
+				this._locker.lock();
 				br = new java.io.BufferedReader(
 							new java.io.InputStreamReader(
 								new java.io.FileInputStream(
 									Packages.efw.file.FileManager.get(this._path)),
 									this._encoding));
 			}finally{
-				TXTReader_lock.unlock();
+				this._locker.unlock();
 			}
 			while ((strLine = br.readLine()) != null) {
 				var aryField = this._split(strLine,intNum);
@@ -102,13 +103,13 @@ TXTReader.prototype.loopAllLines = function(callback){
 			}
 		}else{
 			try{
-				TXTReader_lock.lock();
+				this._locker.lock();
 				br = new java.io.FileInputStream(Packages.efw.file.FileManager.get(this._path));
 				if (this._skipRows!=-1){
 					br.skip(new java.lang.Long(""+(this._skipRows*this._rowSize)).longValue());
 				}
 			}finally{
-				TXTReader_lock.unlock();
+				this._locker.unlock();
 			}
 			var buf=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._rowSize);//ファイルから読み込むバファー
 			var bufs=[];//IBMCp930Cp939用サブバファー

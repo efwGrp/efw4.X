@@ -1,11 +1,12 @@
-/**** efw3.X Copyright 2019 efwGrp ****/
+"use strict";
+/**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate the multiple threads.
  * 
  * @author Hsu Shang Cheng
  */
 function Threads(maxCount) {
-	if (this.constructor.name!="Threads"){throw new Packages.efw.NewKeywordWasForgottenException("Threads");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Threads");}
 	this._threads = [];
 	if (maxCount){
 		this._maxCount=maxCount;

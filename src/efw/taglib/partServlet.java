@@ -16,8 +16,8 @@ import efw.efwDoNotAsSubException;
 import efw.efwSubPartCallingTimeoutException;
 import efw.framework;
 
-@WebServlet(name="partServlet",loadOnStartup=1,urlPatterns={"/partServlet"})
-public class partServlet extends HttpServlet {
+@WebServlet(name="partServlet",urlPatterns={"/partServlet"})
+public final class partServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		try {
 			//asSub実行のみ呼び出し可

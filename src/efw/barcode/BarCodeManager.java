@@ -21,7 +21,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import efw.file.FileManager;
+import efw.framework;
 /**
  * バーコード作成と識別のクラス。
  * @author Chang Kejun
@@ -89,7 +89,7 @@ public final class BarCodeManager {
 	 */
 	public static String decode(String imagePath){
 		try{
-			File file=new File(FileManager.getStorageFolder()+"/"+imagePath);
+			File file=new File(framework.getStorageFolder()+"/"+imagePath);
 	        String value=(new MultiFormatReader())
 	        		.decode(
 	        			new BinaryBitmap(

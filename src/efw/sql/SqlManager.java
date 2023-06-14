@@ -14,11 +14,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import efw.XMLFileIsNotExistsException;
+import efw.XMLFileIsNotLegalException;
 import efw.XMLTagIdIsDuplicateException;
 import efw.XMLTagIdIsNotExistsException;
 import efw.XMLTagIsNotLegalException;
-import efw.XMLFileIsNotExistsException;
-import efw.XMLFileIsNotLegalException;
 import efw.efwException;
 import efw.framework;
 /**
@@ -27,19 +27,6 @@ import efw.framework;
  *
  */
 public final class SqlManager {
-	/**
-	 * Sqlを外部化するXMLファイルの格納パス。
-	 * サーブレットから渡される。
-	 */
-    private static String sqlFolder;
-    /**
-     * サーブレットから設定情報を受け取る。
-     * @param sqlFolder　Sql外部化XMLファイルの格納パス。
-     * @throws efwException　Sql外部化XMLファイルの読み取りエラー。
-     */
-	public static void init(String sqlFolder){
-		SqlManager.sqlFolder=sqlFolder;
-	}
 	/**
 	 * ひとつのSqlオブジェクトを取得する。
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。
@@ -94,7 +81,7 @@ public final class SqlManager {
 		if (group==null){
 			return true;//xml file is not in memory,so it is need to reload
 		}else{
-			Date fileLastModifytime = new Date(new File(SqlManager.sqlFolder+"/"+groupId+".xml").lastModified());
+			Date fileLastModifytime = new Date(new File(framework.getSqlFolder()+"/"+groupId+".xml").lastModified());
 			if(!fileLastModifytime.equals(group.getLastModifytime())){
 				return true;//xml file is modified, so it is need to reload
 			}else{
@@ -108,7 +95,7 @@ public final class SqlManager {
 	 */
 	///////////////////////////////////////////////////////////////////////////
 	private static void load(String groupId) throws efwException{
-		String filename=SqlManager.sqlFolder+"/"+groupId+".xml";
+		String filename=framework.getSqlFolder()+"/"+groupId+".xml";
 		File fl=new File(filename);
 		if (!fl.exists()) return;//ファイルが存在しない場合、なにもしない。
 		
@@ -152,5 +139,5 @@ public final class SqlManager {
 	/**
 	 * ロードするSql外部化XMLファイルを格納するオブジェクト。
 	 */
-	private static HashMap<String,SqlHashMap> groups=new HashMap<String,SqlHashMap>();
+	private static final HashMap<String,SqlHashMap> groups=new HashMap<String,SqlHashMap>();
 }

@@ -4,10 +4,9 @@ package efw.event;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
@@ -19,6 +18,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import efw.framework;
 
 /**
  * リモートイベント実行を管理するクラス。
@@ -65,25 +66,21 @@ public final class RemoteEventManager {
 	 * @return リモートサーバからイベントの実行結果のJSON文字列を戻す
 	 */
 	public static String call(String url, String efwEventJSON) {
-		PrintWriter out = null;
+		OutputStreamWriter out = null;
 		BufferedReader in = null;
 		String result = "";
 		try {
 			URL realUrl = new URL(url);
-			URLConnection conn = realUrl.openConnection();
-			conn.setRequestProperty("accept", "application/json, text/javascript, */*; q=0.01");
-			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-			conn.setRequestProperty("X-Requested-With", "XMLHttpRequest");
-			conn.setRequestProperty("user-agent", "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko");
-			conn.setRequestProperty("Connection", "close");
-			conn.setRequestProperty("Cache-Control", "no-cache");
+			HttpURLConnection conn = (HttpURLConnection)realUrl.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", framework.CONTENT_TYPE);
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
-			out = new PrintWriter(conn.getOutputStream());
-			out.print("data="+URLEncoder.encode(efwEventJSON,"UTF-8"));
+			out = new OutputStreamWriter(conn.getOutputStream(),framework.SYSTEM_CHAR_SET);
+			out.write(efwEventJSON);
 			out.flush();
 
-			in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream(),framework.SYSTEM_CHAR_SET));
 			String line;
 			while ((line = in.readLine()) != null) {
 				result += "\n" + line;

@@ -1,3 +1,4 @@
+"use strict";
 /**** efw3.X Copyright 2019 efwGrp ****/
 /**
  * The class for batch result.
@@ -5,7 +6,7 @@
  * @author Chang Kejun
  */
 function Batch() {
-	if (this.constructor.name!="Batch"){throw new Packages.efw.NewKeywordWasForgottenException("Batch");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Batch");}
 	this.errorlevel=0;
 	this.logs=[];
 	this.echos=[];

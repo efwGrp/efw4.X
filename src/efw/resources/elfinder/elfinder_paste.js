@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 var elfinder_paste = {};
 elfinder_paste.name = "elfinder_paste";

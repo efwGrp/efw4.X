@@ -1,4 +1,5 @@
-﻿/**** efw4.X Copyright 2019 efwGrp ****/
+﻿"use strict";
+/**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class for rule engine calling
  * 

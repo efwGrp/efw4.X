@@ -28,7 +28,6 @@ public final class uploadServlet extends HttpServlet {
     /**
      * レスポンスの文字セット定数、XMLHttpRequestのデフォルトに合わせ、「UTF-8」に固定。
      */
-    private static final String RESPONSE_CHAR_SET="UTF-8";
 	/**
 	 * post方法でアップロードされたファイルを一時ファイルに保存する。
 	 * @param request HttpServletRequest オブジェクト。
@@ -47,7 +46,7 @@ public final class uploadServlet extends HttpServlet {
             			byte[] bPath = new byte[inputStream.available()];
             			inputStream.read(bPath);
             			inputStream.close();
-            			paths.add(new String(bPath,RESPONSE_CHAR_SET));
+            			paths.add(new String(bPath,framework.SYSTEM_CHAR_SET));
             			break;
             		}
             	}

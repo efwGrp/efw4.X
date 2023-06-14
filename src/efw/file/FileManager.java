@@ -29,28 +29,10 @@ import efw.framework;
  * @author Chang Kejun
  */
 public final class FileManager {
-	/**
-	 * ファイルの格納パス。
-	 * サーブレットから渡される。
-	 */
-    private static String storageFolder;
     /**
      * アップロード情報を格納するセッションキー
      */
     private static final String EFW_UPLOAD="EFW_UPLOAD";    
-    /**
-     * サーブレットから設定情報を受け取る。
-     */
-	public static void init(String storageFolder){
-		FileManager.storageFolder=storageFolder;
-	}
-	/**
-	 * ファイルの格納パスを取得する。
-	 * @return　 ファイルの格納パス。
-	 */
-	public static String getStorageFolder(){
-		return storageFolder;
-	}
 	/**
 	 * 拡張子で指定相対パス内のファイル＆フォルダのリストを取得する
 	 * @param path　ファイルの格納パスからの相対パス
@@ -106,7 +88,7 @@ public final class FileManager {
 	}
 	public static File get(String path){
 		if(path==null)path="";
-		File fl=new File(storageFolder+"/"+path);
+		File fl=new File(framework.getStorageFolder()+"/"+path);
 		return fl;
 	}
 	public static File getByAbsolutePath(String absolutePath){
@@ -295,7 +277,7 @@ public final class FileManager {
 	//https://docs.w3cub.com/http/basics_of_http/mime_types/complete_list_of_mime_types.html
 	//https://stackoverflow.com/questions/4212861/what-is-a-correct-mime-type-for-docx-pptx-etc
 	//https://www.freeformatter.com/mime-types-list.html
-	private static Map<String, String> mimeTypes=new HashMap<String, String>() {
+	private static final Map<String, String> mimeTypes=new HashMap<String, String>() {
 		{
 			put("x3d", "application/vnd.hzn-3d-crossword");
 			put("3gp", "video/3gpp");

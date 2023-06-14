@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class CSVReader{
+public final class CSVReader{
 
     private FileInputStream in;
     private String encoding;
@@ -15,7 +15,7 @@ public class CSVReader{
     private byte cb[];
     private int nChars, nextChar;
 
-    private static int defaultCharBufferSize = 8192;
+    private static final int defaultCharBufferSize = 8192;
     private byte CRLFCodeAry[]=null;
     
     /**

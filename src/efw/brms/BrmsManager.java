@@ -4,6 +4,7 @@ package efw.brms;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.innoexpert.rulesclient.ClusterManager;
 import com.innoexpert.rulesclient.Constants;
@@ -16,8 +17,6 @@ import com.innorules.rrt.InitializerHelper;
 
 import efw.framework;
 import efw.properties.PropertiesManager;
-
-import java.util.Map.Entry;
 
 /**
  *ルールエンジンに対する操作を行うクラス。For 7.1
@@ -32,7 +31,7 @@ public final class BrmsManager {
 	public static void initFromBatch() throws Exception{
 		try{
 			// プロパティ ファイルから、codeTypeを取得する。
-			InitializerHelper.initialize(PropertiesManager.prop);
+			InitializerHelper.initialize(PropertiesManager.getProp());
 		}catch(Exception ex){
 			throw ex;
 		}

@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * efw framework server library
@@ -35,6 +36,9 @@ function doPost(req) {
 	var semaphore = null;// the semmaphore to control event maxrequests
 	var semaphoreNeedRelease=false;// the flag about semmaphore release
 	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
+	
+	//イベント維持の呼び出しならからを戻す
+	if (eventId=="efw_keepConnectionAlive") return JSON.stringify(new Result());
 
 	//イベント取得できない場合、エラーを画面に出す。該当エラーはよく発生する。
 	var ev=event._get(eventId);
@@ -123,7 +127,6 @@ function doPost(req) {
 			for(var i in g){
 				if (i=="_eventfolder"
 					||i=="_isdebug"
-					||i=="_engine"
 					||i=="efw"
 					||i=="properties"
 					||i=="session"
@@ -132,20 +135,12 @@ function doPost(req) {
 					||i=="file"
 					||i=="absfile"
 					||i=="brms"
-					||i=="rest"
 					||i=="mail"
 					||i=="cookie"
 					||i=="barcode"
-					||i=="Master_lock"
-					||i=="Event_lock"
-					||i=="TXTReader_lock"
-					||i=="CSVReader_lock"
-					||i=="BinaryReader_lock"
-					||i=="Base64"
 					||i=="messages"
-					||i=="langs"
-					||i=="context"//only rhino
-					||i=="JavaAdapter"//only rhino
+					||i=="rest"
+					||i=="cmd"
 					||i=="global"//global event
 					||typeof g[i]=="function"//common function
 					||(g[i]!=null&&g[i].fire!=null)//event js

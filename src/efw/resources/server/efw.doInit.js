@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * efw framework server library
@@ -17,7 +18,6 @@
 /**
  * The javascript engine.
  */
-//var _engine;// Oracle Nashorn 1.8 or graalvm 1.8
 ///////////////////////////////////////////////////////////////////////////////
 //The class of efw
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,6 +103,7 @@ load("classpath:efw/resources/server/efw.server.binary.js");
 load("classpath:efw/resources/server/efw.server.threads.js");
 load("classpath:efw/resources/server/efw.server.debug.js");
 load("classpath:efw/resources/server/efw.server.rest.js");
+load("classpath:efw/resources/server/efw.server.cmd.js");
 load("classpath:efw/resources/server/efw.doHandles.js");
 
 /**
@@ -121,6 +122,7 @@ var cookie = new EfwServerCookie();
 var barcode = new EfwServerBarcode();
 var messages = new EfwServerMessages();
 var rest = new EfwServerRest();
+var cmd = new EfwServerCmd();
 
 efw.server = new EfwServer();
 // /////////////////////////////////////////////////////////////////////////////

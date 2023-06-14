@@ -5,25 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 
+import efw.efwException;
 import efw.framework;
 
 public final class I18nManager {
-	/**
-	 * Msgを外部化するXMLファイルの格納パス。
-	 * サーブレットから渡される。
-	 */
-    private static String i18nFolder;
-    /**
-     * サーブレットから設定情報を受け取る。
-     * @param msgFolder　Msg外部化XMLファイルの格納パス。
-     * @throws efwException　Msg外部化XMLファイルの読み取りエラー。
-     */
-	public static void init(String i18nFolder){
-		I18nManager.i18nFolder=i18nFolder;
-	}
 	/**
 	 * ひとつのMsgを取得する。
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。
@@ -75,11 +64,17 @@ public final class I18nManager {
 		if (prop==null){
 			return true;//xml file is not in memory,so it is need to reload
 		}else{
-			Date fileLastModifytime = new Date(new File(I18nManager.i18nFolder+"/"+lang+".xml").lastModified());
-			if(!fileLastModifytime.equals(prop.getLastModifytime())){
-				return true;//xml file is modified, so it is need to reload
-			}else{
-				return false;//xml file is not modified
+			String filename=framework.getI18nFolder()+"/"+lang+".xml";
+			File fl=new File(filename);
+			if (fl.exists()){
+				Date fileLastModifytime = new Date(fl.lastModified());
+				if(!fileLastModifytime.equals(prop.getLastModifytime())){
+					return true;//xml file is modified, so it is need to reload
+				}else{
+					return false;//xml file is not modified
+				}
+			}else {
+				return false;
 			}
 		}
 	}
@@ -92,13 +87,19 @@ public final class I18nManager {
 	///////////////////////////////////////////////////////////////////////////
 	private static void load(String lang){
 		try{
-			String filename=I18nManager.i18nFolder+"/"+lang+".xml";
+			String filename=framework.getI18nFolder()+"/"+lang+".xml";
 			File fl=new File(filename);
 			if (fl.exists()){
 				I18nProperties prop=new I18nProperties();
 				prop.setLastModifytime(new Date(fl.lastModified()));
 				FileInputStream strm;
 				prop.loadFromXML(strm=new FileInputStream(fl));
+				strm.close();
+				props.put(lang,prop);
+			}else {
+				I18nProperties prop=new I18nProperties();
+				InputStream strm;
+				prop.loadFromXML(strm=I18nManager.class.getResourceAsStream(lang+".xml"));
 				strm.close();
 				props.put(lang,prop);
 			}
@@ -109,6 +110,6 @@ public final class I18nManager {
 	/**
 	 * ロードするMsg外部化XMLファイルを格納するオブジェクト。
 	 */
-	private static HashMap<String,I18nProperties> props=new HashMap<String,I18nProperties>();
+	private static final HashMap<String,I18nProperties> props=new HashMap<String,I18nProperties>();
 
 }

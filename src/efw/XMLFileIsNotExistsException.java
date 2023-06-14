@@ -3,7 +3,7 @@ package efw;
 /**
  * XMLファイルが存在しないエラー。
  */
-public class XMLFileIsNotExistsException extends efwException {
+public final class XMLFileIsNotExistsException extends efwException {
 	public XMLFileIsNotExistsException(String type,String groupId) {
 		super(" "+type+" xml file = "+groupId+".xml");
 	}

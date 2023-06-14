@@ -102,7 +102,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	public int doStartTag(){
 		JspWriter out;
 		try {
-			String v=framework.getVersion();
+			String v=framework.version;
 			out = pageContext.getOut();
 			String temp="";
 			for(Map.Entry<String, String> e : attrs.entrySet()) {

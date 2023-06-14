@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate the array data.
@@ -8,7 +9,7 @@
  * @author Chang Kejun
  */
 function Record(array) {
-	if (this.constructor.name!="Record"){throw new Packages.efw.NewKeywordWasForgottenException("Record");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Record");}
 	if (array == null) {
 		this.values = [];
 		this.length = 0;

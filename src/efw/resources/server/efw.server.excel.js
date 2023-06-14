@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate Excel.<br>
@@ -8,7 +9,7 @@
  * @author Chang Kejun
  */
 function Excel(path,isLarge) {
-	if (this.constructor.name!="Excel"){throw new Packages.efw.NewKeywordWasForgottenException("Excel");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Excel");}
 	if (isLarge){
 		isLarge=true;
 	}else{

@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import efw.framework;
-import efw.properties.PropertiesManager;
 
 /**
  * 数字と日付のフォーマットを管理するクラス。
@@ -24,43 +23,13 @@ public final class FormatManager {
 	 * ロケール情報（西暦用）。
 	 * 初期化時、システムデフォルトロケールを設定する。
 	 */
-	private static Locale locale;
+	private static final Locale locale=Locale.getDefault();
 	/**
 	 * ロケール情報（和暦用）。
 	 * 初期化時、ja_JP_JPで作成する。
 	 */
-	private static Locale localeJ;
-	/**
-	 * フォーマット関数用Rounder
-	 */
-	private static String formatRounderPro="HALF_EVEN";
-	private static RoundingMode formatRounder=RoundingMode.HALF_EVEN;
+	private static final Locale localeJ=new Locale("ja","JP","JP");
 
-    /**
-     * フォーマット管理を初期化する。
-     */
-    public static void init(){
-    	FormatManager.locale = Locale.getDefault();
-    	FormatManager.localeJ = new Locale("ja","JP","JP");
-    	FormatManager.formatRounderPro = PropertiesManager.getProperty(PropertiesManager.EFW_FORMAT_ROUNDER, FormatManager.formatRounderPro);
-    	if("UP".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.UP;
-    	}else if("DOWN".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.DOWN;
-    	}else if("CEILING".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.CEILING;
-    	}else if("FLOOR".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.FLOOR;
-    	}else if("HALF_UP".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.HALF_UP;
-    	}else if("HALF_DOWN".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.HALF_DOWN;
-    	}else if("HALF_EVEN".equals(FormatManager.formatRounderPro)){
-    		FormatManager.formatRounder=RoundingMode.HALF_EVEN;
-    	}else{
-    		FormatManager.formatRounder=RoundingMode.HALF_EVEN;
-    	}
-	}
     /**
      * 数字を指定フォーマットで文字列に変換する。
      * @param value　数字データ。
@@ -77,6 +46,9 @@ public final class FormatManager {
     		framework.setNumberFormats(map);
     	}
     	if((df=map.get(format+"|"+round)) == null){
+    		if (round==null||"".equals(round)) {
+    			round=framework.getFormatRounder();
+    		}
         	df=new DecimalFormat(format);
 	    	if("UP".equals(round)){
 	    		df.setRoundingMode(RoundingMode.UP);
@@ -93,7 +65,7 @@ public final class FormatManager {
 	    	}else if("HALF_EVEN".equals(round)){
 		    	df.setRoundingMode(RoundingMode.HALF_EVEN);
 	    	}else{
-	    		df.setRoundingMode(FormatManager.formatRounder);
+	    		df.setRoundingMode(RoundingMode.HALF_EVEN);
 	    	}
         	map.put(format+"|"+round, df);
     	}

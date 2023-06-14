@@ -77,6 +77,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <h3>Modules</h3>
 <table>
 <tr><th>Varieties</th><th>Functions</th></tr>
+<tr><td>cmd</td><td><a href="help/cmd.execute.md">execute</a></td></tr>
 <tr><td>file</td><td><a href="help/file.get.md">get</a></td><td><a href="help/file.list.md">list</a></td><td><a href="help/file.isFile.md">isFile</a></td><td><a href="help/file.isFolder.md">isFolder</a></td></td><td><a href="help/file.makeFile.md">makeFile</a></td></tr>
 <tr><td><td><a href="help/file.exists.md">exists</a></td><td><a href="help/file.duplicate.md">duplicate</a></td><td><a href="help/file.rename.md">rename</a></td><td><a href="help/file.remove.md">remove</a></td><td><a href="help/file.makeDir.md">makeDir</a></td></tr>
 <tr><td></td><td><a href="help/file.readAllLines.md">readAllLines</a></td><td><a href="help/file.writeAllLines.md">writeAllLines</a></td><td><a href="help/file.getStorageFolder.md">getStorageFolder</a></td><td><a href="help/file.saveUploadFiles.md">saveUploadFiles</a></td><td><a href="help/file.saveSingleUploadFile.md">saveSingleUploadFile</a></td></tr>

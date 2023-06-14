@@ -3,7 +3,7 @@ package efw;
 /**
  * newキーワードを忘れたエラー。
  */
-public class NewKeywordWasForgottenException extends efwException {
+public final class NewKeywordWasForgottenException extends efwException {
 
 	public NewKeywordWasForgottenException(String className) {
 		super(" new "+className+"(...)");

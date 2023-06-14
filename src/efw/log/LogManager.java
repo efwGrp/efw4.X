@@ -22,7 +22,6 @@ public final class LogManager {
 	}
 	/**
 	 * フレームワークのログ出力を初期化する。
-	 * @throws IOException　ログファイルを作成できないエラー。
 	 */
 	public static void init(){
 		String logLevel="WARNING";

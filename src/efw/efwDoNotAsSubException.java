@@ -3,7 +3,7 @@ package efw;
 /**
  * サブアプリとして定義していないエラー。
  */
-public class efwDoNotAsSubException extends efwException {
+public final class efwDoNotAsSubException extends efwException {
 	public efwDoNotAsSubException() {
 		super("The calling is rejected because [efw.as.main] is not false.");
 	}

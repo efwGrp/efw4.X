@@ -3,7 +3,7 @@ package efw;
 /**
  * 動的パラメータ存在しないエラー
  */
-public class DynamicParamIsNotExistsException extends efwException {
+public final class DynamicParamIsNotExistsException extends efwException {
 	public DynamicParamIsNotExistsException(String dynamicKey) {
 		super("dynamicKey = "+dynamicKey);
 	}

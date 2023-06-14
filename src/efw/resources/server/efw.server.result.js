@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class as event result.
@@ -5,7 +6,7 @@
  * @author Chang Kejun
  */
 function Result() {
-	if (this.constructor.name!="Result"){throw new Packages.efw.NewKeywordWasForgottenException("Result");}
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Result");}
 	this.actions = {};
 	this.values = [];
 };

@@ -22,7 +22,7 @@ import efw.properties.EfwAuthBean;
 import efw.properties.PropertiesManager;
 import efw.taglib.Client;
 /**
- * SameSiteFilterはcookieにSameSiteとSecureを追加
+ * efwCorsFilterはcookieにSameSiteとSecureを追加
  * Cors機能のため
  * @author Chang Kejun
  */
@@ -48,13 +48,13 @@ public final class efwCorsFilter implements Filter {
 			//keep req and resp to thread local for javascript program.
 			framework.setRequest(request);
 			framework.setResponse(response);
-			request.setCharacterEncoding(framework.getSystemCharSet());//すべての外部むけURLは全部ここでエンコードを設定する
+			request.setCharacterEncoding(framework.SYSTEM_CHAR_SET);//すべての外部むけURLは全部ここでエンコードを設定する
 			
 			//elfinder部品の言語のため
 			String lang=request.getParameter(Client.EFW_I18N_LANG);
 			if (lang!=null)request.setAttribute(Client.EFW_I18N_LANG, lang);
 			
-			response.setCharacterEncoding(framework.getSystemCharSet());
+			response.setCharacterEncoding(framework.SYSTEM_CHAR_SET);
 			response.setContentType("application/json");//efwServlet efwRestAPIのためです。jspなどの場合変更される
 			//もしAuthBeanを取れない場合つまり定義間違い。
 			if (getCurrentAuthBean()!=null) {
@@ -135,7 +135,7 @@ public final class efwCorsFilter implements Filter {
 	public static boolean getAsMain() {
 		return asMain;
 	}
-	private static HashMap<String,Map<String,Object>> callToSubs=new HashMap<>();
+	private static final HashMap<String,Map<String,Object>> callToSubs=new HashMap<>();
 	public static Cipher getEncoder(String subAppUrl) {
 		for(String key : callToSubs.keySet()) {
 			HashMap<String,Object> map=(HashMap<String,Object>)callToSubs.get(key);

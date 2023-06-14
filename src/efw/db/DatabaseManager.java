@@ -23,21 +23,11 @@ public final class DatabaseManager {
 	 * 「java:comp/env」に固定。
 	 */
 	private static final String JAVA_INITCONTEXT_NAME="java:comp/env";
-	/**
-	 * フレームワークに利用するjdbcリソースの名称。
-	 * <br>efw.propertiesのefw.jdbc.resourceで設定、
-	 * デフォルトは「jdbc/efw」。
-	 */
-	private static String jdbcResourceName="jdbc/efw";
-	/**
-	 * フレームワークに利用するデータソース。
-	 */
-	private static DataSource dataSource;
 	
 	
     public static Database getDatabase(){
     	try{
-        	return (framework.getDatabases()).get(DatabaseManager.jdbcResourceName);
+        	return (framework.getDatabases()).get(framework.getJdbcResourceName());
     	}catch(Exception e){
     		return null;
     	}
@@ -56,18 +46,14 @@ public final class DatabaseManager {
 	/**
 	 * フレームワークに利用するデータソースを初期化する。
 	 * @throws NamingException データソース初期化失敗のエラー。
+	 * @throws SQLException 
 	 */
-	public static void init() throws NamingException{
-        jdbcResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_JDBC_RESOURCE,jdbcResourceName);
-        if(jdbcResourceName.indexOf("java:")>-1){//if the jdbc resouce begins from [java:], it is full jndi name.
-        	dataSource = (DataSource) new InitialContext().lookup(jdbcResourceName);
-        }else{//or it begins by [java:comp/env/]
-        	dataSource = (DataSource) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+jdbcResourceName);
-        }
+	public static void init() throws NamingException, SQLException{
+        DatabaseManager.open();//jdbc/efwを初期化すると、設定間違いがある場合すぐキャッチできる
 	}
 	
 	private static Boolean fromBatch=false;
-	private static HashMap<String,BatchDataSource> batchDataSources=new HashMap<String,BatchDataSource>();
+	private static final HashMap<String,BatchDataSource> batchDataSources=new HashMap<String,BatchDataSource>();
 	public static synchronized void initFromBatch(){
 		fromBatch=true;
     	for (int idx=0;true;idx++){
@@ -84,7 +70,6 @@ public final class DatabaseManager {
         		dataSource.setUrl(urlValue);
         		dataSource.setUsername(usernameValue);
         		dataSource.setPassword(passwordValue);
-        		if(idx==0)DatabaseManager.dataSource=dataSource;
         		batchDataSources.put(jdbcResourceValue, dataSource);
         	}else{
         		break;
@@ -96,13 +81,10 @@ public final class DatabaseManager {
 	 * フレームワーク用データソースからデータベース接続を取得する。
 	 * @return データベース接続を戻す。
 	 * @throws SQLException データベースアクセスエラー。
+	 * @throws NamingException 
 	 */
-    public static void open() throws SQLException{
-		if(framework.getDatabases()==null)
-			framework.setDatabases(new HashMap<String,Database>());
-
-		framework.getDatabases()
-		.put(DatabaseManager.jdbcResourceName, new Database(dataSource.getConnection()));
+    public static void open() throws SQLException, NamingException{
+    	DatabaseManager.open(framework.getJdbcResourceName());
     }
     /**
      * jdbcリソース名称によりデータベース接続を取得する。
@@ -113,25 +95,23 @@ public final class DatabaseManager {
      */
     public static void open(String jdbcResourceName) throws NamingException, SQLException{
     	if (jdbcResourceName==null||"".equals(jdbcResourceName)){
-    		DatabaseManager.open();
-    		return;
-    	}else{
-            DataSource ds;
-    		if(fromBatch){
-    			ds = batchDataSources.get(jdbcResourceName);
-    		}else{//from web
-                if(jdbcResourceName.indexOf("java:")>-1){//if the jdbc resouce begins from [java:], it is full jndi name.
-                	ds = (DataSource) new InitialContext().lookup(jdbcResourceName);
-                }else{//or it begins by [java:comp/env/]
-                	ds = (DataSource) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+jdbcResourceName);
-                }
-    		}
-            Database otherdb = new Database(ds.getConnection());
-    		if(framework.getDatabases()==null)
-    			framework.setDatabases(new HashMap<String,Database>());
-    		framework.getDatabases()
-    		.put(jdbcResourceName, otherdb);
+    		jdbcResourceName=framework.getJdbcResourceName();
     	}
+        DataSource ds;
+		if(fromBatch){
+			ds = batchDataSources.get(jdbcResourceName);
+		}else{//from web
+            if(jdbcResourceName.indexOf("java:")>-1){//if the jdbc resouce begins from [java:], it is full jndi name.
+            	ds = (DataSource) new InitialContext().lookup(jdbcResourceName);
+            }else{//or it begins by [java:comp/env/]
+            	ds = (DataSource) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+jdbcResourceName);
+            }
+		}
+        Database db = new Database(ds.getConnection());
+		if(framework.getDatabases()==null)
+			framework.setDatabases(new HashMap<String,Database>());
+		framework.getDatabases()
+		.put(jdbcResourceName, db);
     }
     /**
      * すべてのデータベースを閉じる。

@@ -1,4 +1,5 @@
-﻿/**** efw3.X Copyright 2019 efwGrp ****/
+﻿"use strict";
+/**** efw3.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate barcode files.
  * 

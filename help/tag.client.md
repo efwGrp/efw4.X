@@ -18,7 +18,6 @@ You can use the Efw Tag to make the importing easy.
 <tr><td>baseurl</td><td>No</td><td>"."</td><td>The web application base url. If your page is not in the base folder, it is must.</td></tr>
 <tr><td>mode</td><td>No</td><td>"jquery-ui"</td><td>To set the designing mode to "jquery-ui" or "bootstrap".</td></tr>
 <tr><td>theme</td><td>No</td><td>"base"</td><td>To set the theme for "jquery-ui".</td></tr>
-<tr><td>major</td><td>No</td><td>"4"</td><td>To set the major version 2,3,4 or 5 for "bootstrap".</td></tr>
 <tr><td colspan=4>
 	<table>
 	<tr>
@@ -58,6 +57,8 @@ You can use the Efw Tag to make the importing easy.
 	</tr>
 	</table>
 </td></tr>
+<tr><td>major</td><td>No</td><td>"4"</td><td>To set the major version 2,3,4 or 5 for "bootstrap".</td></tr>
 <tr><td>lang</td><td>No</td><td>"en"</td><td>To set the language, which is prepared in the multi language folder as a resource file.</td></tr>
+<tr><td>nopromise</td><td>No</td><td>"false"</td><td>If your browse is old without javaScript Promise object, set the attr with "true".</td></tr>
 </table>
 

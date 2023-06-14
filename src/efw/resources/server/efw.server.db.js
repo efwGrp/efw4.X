@@ -1,3 +1,4 @@
+"use strict";
 /**** efw4.X Copyright 2019 efwGrp ****/
 /**
  * The class to operate Database.
@@ -48,7 +49,7 @@ EfwServerDb.prototype.change = function(groupId, sqlId, params, jdbcResourceName
 /**
  * The locker for master operating.
  */
-var Master_lock = new java.util.concurrent.locks.ReentrantLock();
+EfwServerDb.prototype._locker = new java.util.concurrent.locks.ReentrantLock();
 EfwServerDb.prototype._masters={};
 /**
  * The function to operate master data in memory.
@@ -62,7 +63,7 @@ EfwServerDb.prototype._masters={};
  * @returns {Record}
  */
 EfwServerDb.prototype.master=function(masterId, reload, jdbcResourceName) {
-	Master_lock.lock();
+	this._locker.lock();
 	var values;
 	if (jdbcResourceName==undefined && reload==undefined){
 		jdbcResourceName="";
@@ -90,7 +91,7 @@ EfwServerDb.prototype.master=function(masterId, reload, jdbcResourceName) {
 		}
 		values = this._masters[jdbcResourceName+":"+masterId];
 	} finally {
-		Master_lock.unlock();
+		this._locker.unlock();
 	}
 	return new Record(values);
 };

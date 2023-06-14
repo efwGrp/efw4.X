@@ -160,12 +160,15 @@ public final class PropertiesManager {
 	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */
-	public static Properties prop = new Properties();
+	private static final Properties prop = new Properties();
+	public static Properties getProp() {
+		return PropertiesManager.prop;
+	}
     /**
      * フレームワークに利用するプロパティファイルから、プロパティ値をプロパティオブジェクトにロードする。
      * @throws IOException　プロパティファイルの読み取りエラー。
      */
-    public static void init()throws IOException{
+    public static void init() throws IOException{
     	InputStream inptstrm;
 		prop.load(inptstrm=Thread.currentThread().getContextClassLoader().getResourceAsStream(PropertiesManager.EFW_PROPERTIES_FILE_NAME));
 		inptstrm.close();

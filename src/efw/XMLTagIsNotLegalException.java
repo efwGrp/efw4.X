@@ -3,7 +3,7 @@ package efw;
 /**
  * XMLタグが正しくないエラー。
  */
-public class XMLTagIsNotLegalException extends efwException {
+public final class XMLTagIsNotLegalException extends efwException {
 	public XMLTagIsNotLegalException(String type,String groupId,String id,String message) {
 		super(" "+type+" xml file = "+groupId+".xml; id = "+id+"; error = "+message);
 	}

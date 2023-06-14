@@ -14,11 +14,6 @@ import efw.framework;
  *
  */
 public final class ScriptManager {
-	/**
-	 * イベントJavaScriptファイルの格納パス。
-	 * サーブレットから渡される。
-	 */
-    private static String eventFolder;
     /**
      * スクリプトエンジンに渡すイベントJavaScriptファイルの格納パスのキー。
      * 「_eventfolder」に固定。
@@ -29,24 +24,15 @@ public final class ScriptManager {
      * 「_isdebug」に固定。
      */
     private static final String KEY_ISDEBUG="_isdebug";
-    /**
-     * スクリプトエンジンに渡すスクリプトエンジンのキー。
-     * 「_engine」に固定。
-     */
-    private static final String KEY_ENGINE="_engine";
 
     private static ScriptEngine _se;
     
-    public static final ScriptEngine se(){
-    	return _se;
-    }
 	/**
 	 * サーブレットから設定情報を受け取り、スクリプトエンジン管理オブジェクトを初期化する。
 	 * @param eventFolder イベントJavaScriptファイルの格納パス。
 	 * @throws ScriptException 
 	 */
-	public static void init(String eventFolder) throws ScriptException{
-		ScriptManager.eventFolder=eventFolder;
+	public static void init() throws ScriptException{
 		System.setProperty("polyglot.js.nashorn-compat","true");//graalvmのため、nashornの場合無効だが影響なし
         System.setProperty("nashorn.args", "--language=es6");
         ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
@@ -54,10 +40,9 @@ public final class ScriptManager {
             System.clearProperty("nashorn.args");
             ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
         }
-        se().put(KEY_EVENTFOLDER, ScriptManager.eventFolder);
-        se().put(KEY_ISDEBUG, framework.getIsDebug());
-        se().put(KEY_ENGINE, ScriptManager.se());
-        se().eval("load('classpath:efw/resources/server/efw.doInit.js')");
+        ScriptManager._se.put(KEY_EVENTFOLDER, framework.getEventFolder());
+        ScriptManager._se.put(KEY_ISDEBUG, framework.getIsDebug());
+        ScriptManager._se.eval("load('classpath:efw/resources/server/efw.doInit.js')");
 	}
 	/**
 	 * リクエストをサーバーサイトJavaScriptに転送する。
@@ -68,12 +53,12 @@ public final class ScriptManager {
 	 * @throws ScriptException スクリプトエラー。
 	 */
 	public static String doPost(String req) throws Exception{
-		Invocable invocable = (Invocable) se();
+		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doPost", req);
 	}
 	
 	public static String doDestroy(String req) throws Exception{
-		Invocable invocable = (Invocable) se();
+		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doDestroy", req);
 	}
 	/**
@@ -85,12 +70,12 @@ public final class ScriptManager {
 	 * @throws ScriptException スクリプトエラー。
 	 */
 	public static String doBatch(String req) throws Exception {
-		Invocable invocable = (Invocable) se();
+		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doBatch", req);
 	}
 	
 	public static String doRestAPI(String eventId,String reqKeys,String httpMethod,String reqParams) throws Exception {
-		Invocable invocable = (Invocable) se();
+		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doRestAPI", eventId, reqKeys, httpMethod, reqParams);
 		
 	}

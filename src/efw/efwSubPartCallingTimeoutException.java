@@ -3,7 +3,7 @@ package efw;
 /**
  * サブアプリ部品呼び出しタイムアウトエラー。
  */
-public class efwSubPartCallingTimeoutException extends efwException {
+public final class efwSubPartCallingTimeoutException extends efwException {
 	public efwSubPartCallingTimeoutException() {
 		super("The calling to sub part is timeout.");
 	}
