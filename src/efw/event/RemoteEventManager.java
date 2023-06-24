@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -30,8 +31,8 @@ public final class RemoteEventManager {
 	
 	/**
 	 * リモートイベント実行管理を初期化する。
-	 * @throws NoSuchAlgorithmException 
-	 * @throws KeyManagementException 
+	 * @throws NoSuchAlgorithmException アルコリズムなしエラー。
+	 * @throws KeyManagementException キー管理エラー。
 	 */
 	public static void init() throws NoSuchAlgorithmException, KeyManagementException{
         // Create a trust manager that does not validate certificate chains
@@ -57,17 +58,12 @@ public final class RemoteEventManager {
 	}
 	
 	/**
-	 * 指定URLにPost送信を行う。
-	 * 
-	 * @param url
-	 *            送信先url、http://127.0.0.1:8080/efw、https可。
-	 * @param efwEventJSON
-	 *            {eventId:eventId,params:params}のように。
-	 * @return リモートサーバからイベントの実行結果のJSON文字列を戻す
+	 * 指定URLにリモートイベント呼び出しを行う。
+	 * @param url 送信先url、http://127.0.0.1:8080/efw、https可。
+	 * @param efwEventJSON EFWイベントJSON。{eventId:eventId,params:params}のように。
+	 * @return リモートサーバからのイベントの実行結果のJSON文字列。
 	 */
 	public static String call(String url, String efwEventJSON) {
-		OutputStreamWriter out = null;
-		BufferedReader in = null;
 		String result = "";
 		try {
 			URL realUrl = new URL(url);
@@ -76,24 +72,20 @@ public final class RemoteEventManager {
 			conn.setRequestProperty("Content-Type", framework.CONTENT_TYPE);
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
-			out = new OutputStreamWriter(conn.getOutputStream(),framework.SYSTEM_CHAR_SET);
-			out.write(efwEventJSON);
-			out.flush();
-
-			in = new BufferedReader(new InputStreamReader(conn.getInputStream(),framework.SYSTEM_CHAR_SET));
-			String line;
-			while ((line = in.readLine()) != null) {
-				result += "\n" + line;
+			try(OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream(),framework.SYSTEM_CHAR_SET)){
+				out.write(efwEventJSON);
+				out.flush();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if (out != null) out.close();
-				if (in != null) in.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
+			try(BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),framework.SYSTEM_CHAR_SET))){
+				String line;
+				while ((line = in.readLine()) != null) {
+					result += "\n" + line;
+				}
 			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();//エラーをなげない。
+		} catch (IOException e) {
+			e.printStackTrace();//エラーをなげない。
 		}
 		return result;
 	}

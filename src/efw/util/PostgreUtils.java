@@ -11,8 +11,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.postgresql.PGConnection;
-
+/**
+ * Postgreユティリティ
+ * @author kejun.chang
+ *
+ */
 public final class PostgreUtils {
+	/**
+	 * CSVを取り込む。
+	 * @param url PostgreサーバURL。
+	 * @param username ユーザ名。
+	 * @param password パスワード。
+	 * @param copySQL コピーSQL。
+	 * @param fileFullPathName CSVファイルフルパス。
+	 * @param charsetName 文字セット。
+	 * @throws SQLException SQLエラー。
+	 * @throws IOException 通信エラー。
+	 */
 	public static void copyIn(
 			String url, 
 			String username, 
@@ -20,17 +35,25 @@ public final class PostgreUtils {
 			String copySQL,
 			String fileFullPathName,
 			String charsetName
-			) throws SQLException, IOException{
-		Connection con=DriverManager.getConnection(url, username, password);
-		PGConnection pgcon=(PGConnection)con;
-		InputStreamReader reader=new InputStreamReader(new FileInputStream(new File(fileFullPathName)), charsetName);
-		try{
-			pgcon.getCopyAPI().copyIn(copySQL, reader);
-		}finally{
-			con.close();
-			reader.close();
+			) throws IOException, SQLException{
+		try(Connection con=DriverManager.getConnection(url, username, password)){
+			PGConnection pgcon=(PGConnection)con;
+			try(InputStreamReader reader=new InputStreamReader(new FileInputStream(new File(fileFullPathName)), charsetName)){
+				pgcon.getCopyAPI().copyIn(copySQL, reader);
+			}
 		}
 	}
+	/**
+	 * CSVを取り出す。
+	 * @param url PostgreサーバURL。
+	 * @param username ユーザ名。
+	 * @param password パスワード。
+	 * @param copySQL コピーSQL。
+	 * @param fileFullPathName CSVファイルフルパス。
+	 * @param charsetName 文字セット。
+	 * @throws SQLException SQLエラー。
+	 * @throws IOException 通信エラー。
+	 */
 	public static void copyOut(
 			String url, 
 			String username, 
@@ -38,15 +61,12 @@ public final class PostgreUtils {
 			String copySQL,
 			String fileFullPathName,
 			String charsetName
-		) throws SQLException, IOException {
-		Connection con=DriverManager.getConnection(url, username, password);
-		PGConnection pgcon=(PGConnection)con;
-		OutputStreamWriter writer=new OutputStreamWriter(new FileOutputStream(new File(fileFullPathName)),charsetName);
-		try{
-			pgcon.getCopyAPI().copyOut(copySQL, writer);
-		}finally{
-			con.close();
-			writer.close();
+		) throws IOException, SQLException {
+		try(Connection con=DriverManager.getConnection(url, username, password)){
+			PGConnection pgcon=(PGConnection)con;
+			try(OutputStreamWriter writer=new OutputStreamWriter(new FileOutputStream(new File(fileFullPathName)),charsetName)){
+				pgcon.getCopyAPI().copyOut(copySQL, writer);
+			}
 		}
 	}
 }

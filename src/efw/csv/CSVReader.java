@@ -5,6 +5,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * CSVを読み込むクラス。
+ * @author kejun.chang
+ *
+ */
 public final class CSVReader{
 
     private FileInputStream in;
@@ -19,9 +24,9 @@ public final class CSVReader{
     private byte CRLFCodeAry[]=null;
     
     /**
-     * Create a CSV reader
-     * @param in
-     * @param encoding
+     * @param in ファイルインプットストリーム。
+     * @param encoding エンコード。
+     * @param CRLFCode 改行コード。
      */
     public CSVReader(FileInputStream in,String encoding,String CRLFCode) {
         this.in = in;
@@ -35,10 +40,11 @@ public final class CSVReader{
         }
     }
     /**
-     * skip some bytes
-     * @param n
-     * @return
-     * @throws IOException
+     * 指定バイト数をスキップする。
+     * @param offsetBytes スキップバイト数。
+     * @param offsetRows スキップ行数。
+     * @return 実際スキップバイト数。
+     * @throws IOException 通信エラー。
      */
     public long skip(long offsetBytes,long offsetRows) throws IOException {
         synchronized (in) {
@@ -48,8 +54,8 @@ public final class CSVReader{
         }
     }
     /**
-     * close
-     * @throws IOException
+     * CSVを閉じる。
+     * @throws IOException 通信エラー。
      */
     public void close() throws IOException {
         synchronized (in) {
@@ -65,13 +71,12 @@ public final class CSVReader{
     }
 
     /**
-     * read a line
-     * @return
-     * @throws IOException
+     * 一行を取得する。
+     * @return 行の内容。
+     * @throws IOException 通信エラー。
      */
     public String readLine() throws IOException {
         byte dst[]=new byte[0];
-
         synchronized (in) {
             for (;;) {
 
@@ -125,9 +130,17 @@ public final class CSVReader{
         }
     }
     
+    /**
+     * 現在のバイト数を取得する。
+     * @return バイト数。
+     */
     public double getCurrentOffsetBytes() {
     	return this.offsetBytes+nextChar;
     }
+    /**
+     * 現在の行数を取得する。
+     * @return 行数。
+     */
     public double getCurrentOffsetRows() {
     	return this.offsetRows;
     }

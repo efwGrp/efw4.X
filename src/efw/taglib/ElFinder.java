@@ -16,14 +16,14 @@ import efw.framework;
 
 /**
  * ElFinderタグを処理するクラス。
- * <efw:ElFinder home="" readonly="" lang="" height="" width=""/>
+ * &lt;efw:ElFinder home="myHomeFolder" readonly="false" protected="true" selection="file1" height="400" width="800"/&gt;<br>
+ * &lt;efw:ElFinder home="c:/myHomeFolder" isAbs="true" /&gt;<br>
+ * &lt;efw:ElFinder home="myHomeFolder" appurl="subAppUrl" /&gt;<br>
  * @author Chang Kejun
  *
  */
 public final class ElFinder extends TagSupport implements DynamicAttributes {
 	
-	/**
-	 */
 	private String id="elFinder";
 	private String home="";
 	private boolean isAbs=false;
@@ -33,43 +33,73 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String width="auto";
 	private boolean _protected=false;
 	private String appurl="";
-
+	/**
+	 * ElFinderのIDを取得する。
+	 * @return ElFinderのID。
+	 */
 	public String getId() {
 		return id;
 	}
-
+	/**
+	 * ElFinderのIDを設定する。
+	 * @param id ElFinderのID。
+	 */
 	public void setId(String id) {
 		this.id = Util.translateAttr(pageContext,id);
 	}
-
+	/**
+	 * ホームフォルダを取得する。
+	 * @return ホームフォルダ。
+	 */
 	public String getHome() {
 		return home;
 	}
-
+	/**
+	 * ホームフォルダを設定する。
+	 * @param home ホームフォルダ。
+	 */
 	public void setHome(String home) {
 		this.home = Util.translateAttr(pageContext,home);
 	}
-
+	/**
+	 * 絶対パスフラグを取得する。
+	 * @return 絶対パスフラグ。
+	 */
 	public String getIsAbs() {
 		return ""+isAbs;
 	}
-
+	/**
+	 * 絶対パスフラグを設定する。
+	 * @param isAbs 絶対パスフラグ。
+	 */
 	public void setIsAbs(String isAbs) {
 		this.isAbs = "true".equals(Util.translateAttr(pageContext,isAbs));
 	}
-	
+	/**
+	 * 選択項目を取得する。
+	 * @return 選択項目。
+	 */
 	public String getSelection() {
 		return selection;
 	}
-
+	/**
+	 * 選択項目を設定する。
+	 * @param selection 選択項目。
+	 */
 	public void setSelection(String selection) {
 		this.selection = Util.translateAttr(pageContext,selection);
 	}
-
+	/**
+	 * 読取り専用フラグを取得する。
+	 * @return 読取り専用フラグ。
+	 */
 	public String getReadonly() {
 		return ""+readonly;
 	}
-
+	/**
+	 * 読取り専用フラグを設定する。
+	 * @param readonly 読取り専用フラグ。
+	 */
 	public void setReadonly(String readonly) {
 		if ("true".equalsIgnoreCase(Util.translateAttr(pageContext,readonly))) {
 			this.readonly=true;
@@ -77,27 +107,45 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			this.readonly=false;
 		}
 	}
-
+	/**
+	 * 高さを取得する。
+	 * @return 高さ。
+	 */
 	public String getHeight() {
 		return height;
 	}
-
+	/**
+	 * 高さを設定する。
+	 * @param height 高さ。
+	 */
 	public void setHeight(String height) {
 		this.height = Util.translateAttr(pageContext,height);
 	}
-
+	/**
+	 * 幅を取得する。
+	 * @return 幅。
+	 */
 	public String getWidth() {
 		return width;
 	}
-
+	/**
+	 * 幅を設定する。
+	 * @param width 幅。
+	 */
 	public void setWidth(String width) {
 		this.width = Util.translateAttr(pageContext,width);
 	}
-
+	/**
+	 * 保護モードフラグを取得する。
+	 * @return 保護モードフラグ。
+	 */
 	public String isProtected() {
 		return ""+_protected;
 	}
-
+	/**
+	 * 保護モードフラグを設定する。
+	 * @param _protected 保護モードフラグ。
+	 */
 	public void setProtected(String _protected) {
 		if ("true".equalsIgnoreCase(Util.translateAttr(pageContext,_protected))) {
 			this._protected=true;
@@ -105,11 +153,17 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			this._protected=false;
 		}
 	}
-	
+	/**
+	 * サブアプリURLを取得する。
+	 * @return サブアプリURL。
+	 */
 	public String getAppurl() {
 		return appurl;
 	}
-
+	/**
+	 * サブアプリURLを設定する。
+	 * @param appurl サブアプリURL。
+	 */
 	public void setAppurl(String appurl) {
 		this.appurl = Util.translateAttr(pageContext,appurl);
 	}
@@ -125,6 +179,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 
 	/**
 	 * タグを実行する。
+	 * @return SKIP_BODY。
 	 */
 	@Override
 	public int doStartTag(){
@@ -194,7 +249,9 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 
 	/**
 	 * 動的パラメータを取得する。
-	 * 取得するパラメータをREQUEST_SCOPEに設定する。
+	 * @param uri 名称空間。
+	 * @param name 属性名。
+	 * @param value 属性値。
 	 */
 	@Override
 	public void setDynamicAttribute(String uri, String name, Object value)

@@ -2,6 +2,7 @@
 package efw;
 /**
  * サブアプリとして定義していないエラー。
+ * @author kejun.chang
  */
 public final class efwDoNotAsSubException extends efwException {
 	public efwDoNotAsSubException() {

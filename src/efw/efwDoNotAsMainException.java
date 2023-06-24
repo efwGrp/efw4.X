@@ -2,6 +2,7 @@
 package efw;
 /**
  * メインアプリとして定義していないエラー。
+ * @author kejun.chang
  */
 public final class efwDoNotAsMainException extends efwException {
 	public efwDoNotAsMainException() {

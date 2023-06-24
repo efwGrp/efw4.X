@@ -2,8 +2,14 @@
 package efw;
 
 import java.lang.reflect.Method;
+
 import efw.script.ScriptManager;
 
+/**
+ * efwBatchはバッチイベントを実行する。
+ * @author kejun.chang
+ *
+ */
 public final class efwBatch {
 	/**
 	 * webアプリのフォルダ。
@@ -13,6 +19,11 @@ public final class efwBatch {
 	
 	private static final String PROPERTIES="PROPERTIES";
 
+	/**
+	 * バッチを実行する。
+	 * @param args パラメータ配列。
+	 * @throws Exception エラー。
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String args[]) throws Exception{
 		//初期化関数を呼び出す

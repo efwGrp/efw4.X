@@ -8,17 +8,27 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class InputStreamThread extends Thread {
+/**
+ * インプットストリーム用のスレッド。
+ * @author kejun.chang
+ *
+ */
+final class InputStreamThread extends Thread {
 	private BufferedReader br;
 
 	private List<String> list = new ArrayList<String>();
 
-	/** コンストラクター */
+	/**
+	 * @param is 入力ストリーム。
+	 */
 	public InputStreamThread(InputStream is) {
 		br = new BufferedReader(new InputStreamReader(is));
 	}
 
-	/** コンストラクター */
+	/**
+	 * @param is 入力ストリーム。
+	 * @param charset 文字コード。
+	 */
 	public InputStreamThread(InputStream is, String charset) {
 		try {
 			br = new BufferedReader(new InputStreamReader(is, charset));
@@ -27,6 +37,9 @@ public final class InputStreamThread extends Thread {
 		}
 	}
 
+	/**
+	 * スレッドを実行する。
+	 */
 	@Override
 	public void run() {
 		try {
@@ -47,7 +60,10 @@ public final class InputStreamThread extends Thread {
 		}
 	}
 
-	/** 文字列取得 */
+	/**
+	 * インプットストリームの内容を取得する。
+	 * @return 文字列配列。
+	 */
 	public List<String> getStringList() {
 		return list;
 	}

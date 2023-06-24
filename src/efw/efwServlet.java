@@ -3,7 +3,6 @@ package efw;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import efw.script.ScriptManager;
 
 /**
+ * efwServletはサーバサイトイベントを実行する。
  * サーブレットアノテーション設定で、起動と同時にフレームワークの初期化を行う。
- * JQueryからのAjax通信をサーバーサイトJavaScriptへ転送する。
  * @author Chang Kejun
  */
 @WebServlet(name="efwServlet",loadOnStartup=1,urlPatterns={"/efwServlet"})
 public final class efwServlet extends HttpServlet {
 	/**
-	 * サーバが閉じる時、
-	 * globalのdestory関数を呼び出す。必要に応じてリソース開放処理に備える。
-	 * 
+	 * サーバが閉じる時、globalのdestory関数を呼び出す。
+	 * 必要に応じてリソース開放処理に備える。
 	 */
 	public void destroy() {
 		// call the orgin destroy function
@@ -35,10 +33,8 @@ public final class efwServlet extends HttpServlet {
 		}
 	}
 	/**
-	 * サーブレットの起動と同時に、
-	 * LogManager、SqlManager、ScriptManagerの初期化を行う。
-	 * <br>初期化成功の場合、initSuccessFlagをtrueに設定する。失敗の場合、false。
-	 * @throws ServletException 
+	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
+	 * @throws ServletException サーブレットエラー。
 	 */
 	public void init() throws ServletException {
 		//call the orgin init function
@@ -55,7 +51,7 @@ public final class efwServlet extends HttpServlet {
 	 * <br>efwサーブレット が初期化失敗またはサーバーサイトJavaScript実行エラーの場合、OtherErrorMessageのエラー情報をレスポンスする。
 	 * @param request JQueryがefwサーブレット へ要求したJSON内容を含む HttpServletRequest オブジェクト。
 	 * @param response efwサーブレットがJQueryに返すJSON内容を含む HttpServletResponse オブジェクト 。
-	 * @throws IOException 
+	 * @throws IOException 通信エラー。
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String otherError="{\"values\":[],\"actions\":{\"error\":{\"clientMessageId\":\"OtherErrorException\"}"+
@@ -68,7 +64,6 @@ public final class efwServlet extends HttpServlet {
 			return;
 		}
 		//call script 
-		framework.setThreadLogs(new ArrayList<String>());
 		try {
 			BufferedReader br = new BufferedReader(request.getReader());
 			StringBuilder reqJson=new StringBuilder();

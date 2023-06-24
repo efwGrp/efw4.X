@@ -2,6 +2,7 @@
 package efw;
 /**
  * メインアプリ権限設定不正エラー。
+ * @author kejun.chang
  */
 public final class MainIsNotAuthorizedException extends efwException {
 	public MainIsNotAuthorizedException() {

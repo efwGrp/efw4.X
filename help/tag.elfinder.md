@@ -9,7 +9,7 @@ and included it into Efw as a tag. It must be used after the Client tag for jQue
 	&lt;efw:Client/&gt;
 &lt;/head&gt;
 &lt;body&gt;
-	&lt;efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" lang="en" readonly="false" /&gt; //or efw:elfinder , efw:Elfinder , efw:ELFINDER
+	&lt;efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" readonly="false" /&gt; //or efw:elfinder , efw:Elfinder , efw:ELFINDER
 &lt;/body&gt;
 </pre>
 <h2>Attributes</h2>
@@ -20,7 +20,6 @@ and included it into Efw as a tag. It must be used after the Client tag for jQue
 <tr><td>selection</td><td>No</td><td>""</td><td>A relative path to the home folder. The file or folder of the path will be selected when elfinder openning .</td></tr>
 <tr><td>height</td><td>No</td><td>"400"</td><td>The height of elFinder tag. The unit is "px".</td></tr>
 <tr><td>width</td><td>No</td><td>"auto"</td><td>The width of elFinder tag. The unit is "px". </td></tr>
-<tr><td>lang</td><td>No</td><td>"en"</td><td>The language of elFinder tag.</td></tr>
 <tr><td>readonly</td><td>No</td><td>"false"</td><td>The elFinder tag is for reference or not. </td></tr>
 <tr><td>protected</td><td>No</td><td>"false"</td><td>The elFinder tag is protected or not. If it is true, "setHome" method and "setReadOnly" method calling will be ignored.</td></tr>
 <tr><td>isAbs</td><td>No</td><td>false</td><td>The home path is absolute path or not.</td></tr>

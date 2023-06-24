@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
 import efw.efwException;
 
 /**
- * Sqlを外部化するXMLのsqlタグとマッピングし、1つのSqlを表すクラス。
+ * SQL定義を表すクラス。
  * @author Chang Kejun
  *
  */
@@ -29,7 +29,6 @@ public final class Sql {
 	/**
 	 * SqlタグからSqlオブジェクトを作成する。
 	 * @param element　Sql外部化XMLのsqlタグ
-	 * @param lastModifytime　最終更新日時
 	 * @throws efwException　タグ不正のエラー。
 	 */
 	protected Sql(Element element) throws Exception{
@@ -84,11 +83,11 @@ public final class Sql {
 		return paramPrefix;
 	}
 	/**
-	 * 文字列Sql文を作成する。
-	 * @param params Sqlパラメータのマップ。
-	 * @return　文字列のSql文を返す。
-	 * @throws ScriptException 
-	 * @throws efwException 
+	 * SQL定義を分析し、SQL文とパラメータ配列を作成する。
+	 * @param params SQLパラメータのマップ。
+	 * @return 分析結果を返す。
+	 * @throws ScriptException スクリプトエラー。
+	 * @throws efwException SQL定義エラー。
 	 */
 	public SqlAnalysisResult analyze(Map<String,Object> params) throws ScriptException, efwException{
 		ArrayList<String> paramKeys=new ArrayList<String>();

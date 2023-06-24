@@ -30,7 +30,7 @@ public final class drawServlet extends HttpServlet {
 			BarCodeManager.encode(type, msg, response.getOutputStream());
 		}catch(Exception ex){
 			response.reset();
-			((HttpServletResponse)response).sendRedirect("./efw/images/abort.png");
+			((HttpServletResponse)response).sendRedirect("./efw/images/abort.png");//エラーを投げない。
 		};
 	}
 }

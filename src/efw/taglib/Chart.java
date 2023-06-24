@@ -13,14 +13,12 @@ import javax.servlet.jsp.tagext.TagSupport;
 import efw.framework;
 /**
  * Chartタグを処理するクラス。
- * <efw:Chart id="" type="" height="" width="" data="" version="" setoptions=""/>
+ * &lt;efw:Chart id="chart1" mode="googlechart" type="column" height="400" width="auto" data="mytable1" version="current" setoptions="func1"/&gt;
  * @author Chang Kejun
  *
  */
 public final class Chart extends TagSupport implements DynamicAttributes {
 	
-	/**
-	 */
 	private String id="chart";
 	private String type="column";
 	private String height="400";
@@ -29,66 +27,115 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 	private String version="current";
 	private String setoptions="null";
 	private String mode="googlechart";
+	/**
+	 * ChartのIDを取得する。
+	 * @return ChartのID。
+	 */
 	public String getId() {
 		return id;
 	}
-
+	/**
+	 * ChartのIDを設定する。
+	 * @param id ChartのID。
+	 */
 	public void setId(String id) {
 		this.id = Util.translateAttr(pageContext,id);
 	}
-
+	/**
+	 * チャートのタイプを取得する。
+	 * @return チャートのタイプ。
+	 */
 	public String getType() {
 		return type;
 	}
-
+	/**
+	 * チャートのタイプを設定する。
+	 * @param type チャートのタイプ。
+	 */
 	public void setType(String type) {
 		this.type = Util.translateAttr(pageContext,type);
 	}
-
+	/**
+	 * 高さを取得する。
+	 * @return 高さ。
+	 */
 	public String getHeight() {
 		return height;
 	}
-
+	/**
+	 * 高さを設定する。
+	 * @param height 高さ。
+	 */
 	public void setHeight(String height) {
 		this.height = Util.translateAttr(pageContext,height);
 	}
-
+	/**
+	 * 幅を取得する。
+	 * @return 幅。
+	 */
 	public String getWidth() {
 		return width;
 	}
-
+	/**
+	 * 幅を設定する。
+	 * @param width 幅。
+	 */
 	public void setWidth(String width) {
 		this.width = Util.translateAttr(pageContext,width);
 	}
-
+	/**
+	 * データテーブルIDを取得する。
+	 * @return データテーブルID。
+	 */
 	public String getData() {
 		return data;
 	}
-
+	/**
+	 * データテーブルIDを設定する。
+	 * @param data データテーブルID。
+	 */
 	public void setData(String data) {
 		this.data = Util.translateAttr(pageContext,data);
 	}
-
+	/**
+	 * googlechartバージョンを取得する。
+	 * @return googlechartバージョン。
+	 */
 	public String getVersion() {
 		return version;
 	}
-
+	/**
+	 * googlechartバージョンを設定する。
+	 * @param version googlechartバージョン。
+	 */
 	public void setVersion(String version) {
 		this.version = Util.translateAttr(pageContext,version);
 	}
-
+	/**
+	 * オプション設定関数名を取得する。
+	 * @return オプション設定関数名。
+	 */
 	public String getSetoptions() {
 		return setoptions;
 	}
-
+	/**
+	 * オプション設定関数名を設定する。
+	 * @param setoptions オプション設定関数名。
+	 */
 	public void setSetoptions(String setoptions) {
 		this.setoptions = Util.translateAttr(pageContext,setoptions);
 	}
-
+	/**
+	 * チャートモードを取得する。
+	 * @return チャートモード。
+	 */
 	public String getMode() {
 		return mode;
 	}
-
+	/**
+	 * チャートモードを設定する。
+	 * @param mode チャートモード。
+	 */
 	public void setMode(String mode) {
 		this.mode = Util.translateAttr(pageContext,mode);
 	}
@@ -97,6 +144,7 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 
 	/**
 	 * タグを実行する。
+	 * @return SKIP_BODY。
 	 */
 	@Override
 	public int doStartTag(){
@@ -141,7 +189,9 @@ public final class Chart extends TagSupport implements DynamicAttributes {
 
 	/**
 	 * 動的パラメータを取得する。
-	 * 取得するパラメータをREQUEST_SCOPEに設定する。
+	 * @param uri 名称空間。
+	 * @param name 属性名。
+	 * @param value 属性値。
 	 */
 	@Override
 	public void setDynamicAttribute(String uri, String name, Object value)

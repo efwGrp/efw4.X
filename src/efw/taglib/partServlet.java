@@ -15,7 +15,11 @@ import efw.efwCorsFilter;
 import efw.efwDoNotAsSubException;
 import efw.efwSubPartCallingTimeoutException;
 import efw.framework;
-
+/**
+ * リモート部品依頼を対応するサーブレット。
+ * @author kejun.chang
+ *
+ */
 @WebServlet(name="partServlet",urlPatterns={"/partServlet"})
 public final class partServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{

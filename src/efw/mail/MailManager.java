@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
@@ -33,7 +32,7 @@ import efw.framework;
 import efw.properties.PropertiesManager;
 
 /**
- * MailテンプレートXMLを管理するクラス。
+ * Mail送信を管理するクラス。
  * @author Chang Kejun
  *
  */
@@ -48,8 +47,8 @@ public final class MailManager {
      */
     private static Session mailSession;
     /**
-     * サーブレットから設定情報を受け取る。
-     * @throws efwException　MailテンプレートXMLファイルの読み取りエラー。
+     * サーブレットから初期化する。
+     * @throws NamingException Mailリソース定義エラー。
      */
 	public static void init() throws NamingException{
         if(framework.getMailResourceName().indexOf("java:")>-1){//if the mail resouce begins from [java:], it is full jndi name.
@@ -58,7 +57,10 @@ public final class MailManager {
         	mailSession = (Session) new InitialContext().lookup(JAVA_INITCONTEXT_NAME+"/"+framework.getMailResourceName());
         }
 	}
-	public static void initFromBatch(String mailFolder) throws efwException{
+	/**
+	 * バッチから初期化する。
+	 */
+	public static void initFromBatch(){
     	String username=PropertiesManager.EFW_MAIL_USERNAME;
     	String password=PropertiesManager.EFW_MAIL_PASSWORD;
 		String usernameValue=PropertiesManager.getProperty(username, "");
@@ -66,12 +68,14 @@ public final class MailManager {
 		mailSession=Session.getInstance(PropertiesManager.getProp(),new MailAuthenticator(usernameValue,passwordValue));
 	}
 	/**
-	 * メールを送信
-	 * @param mailId
-	 * @param params
-	 * @throws efwException 
+	 * メールを送信する。
+	 * @param groupId メール定義XMLファイル名。
+	 * @param mailId メール定義ID。
+	 * @param params メール送信要パラメータ。
+	 * @throws efwException メール定義エラー。
+	 * @throws MessagingException メール送信エラー。
 	 */
-	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,AddressException,MessagingException{
+	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,MessagingException{
 		Mail mail=get(groupId,mailId);
 		MimeMessage message = new MimeMessage(mailSession);
 		
@@ -122,9 +126,9 @@ public final class MailManager {
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。
 	 * 通常モードの場合、予めロード済みデータから、Sqlオブジェクトを探す。
 	 * @param groupId MailテンプレートXMLファイルのファイル名（拡張子を除く）。
-	 * @param mailId　mailタグに定義するid。
-	 * @return　Mailオブジェクト。
-	 * @throws efwException　Mail外部化XMLファイルの定義エラーか、存在しないエラーか。
+	 * @param mailId mailタグに定義するID。
+	 * @return Mailオブジェクト。
+	 * @throws efwException メール定義エラー。
 	 */
 	private static Mail get(String groupId,String mailId) throws efwException{
 		//get group

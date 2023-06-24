@@ -6,19 +6,33 @@ import java.io.IOException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
-
+/**
+ * Attrタグを処理するクラス。
+ * &lt;efw:Attr key="myKey"/&gt;
+ * @author kejun.chang
+ *
+ */
 public final class Attr extends TagSupport{
 
 	private String key = "";
-
+	/**
+	 * キーを取得する。
+	 * @return キー。
+	 */
 	public String getKey() {
 		return key;
 	}
-
+	/**
+	 * キーを設定する。
+	 * @param key キー。
+	 */
 	public void setKey(String key) {
 		this.key = Util.translateAttr(pageContext,key);
 	}
-
+	/**
+	 * タグを実行する。
+	 * @return SKIP_BODY。
+	 */
 	@Override
 	public int doStartTag(){
 		JspWriter out = pageContext.getOut();

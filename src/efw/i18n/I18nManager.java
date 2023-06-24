@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 
-import efw.efwException;
 import efw.framework;
 
 public final class I18nManager {
@@ -17,10 +16,10 @@ public final class I18nManager {
 	 * ひとつのMsgを取得する。
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。
 	 * 通常モードの場合、予めロード済みデータから、Msgを探す。
-	 * @param lang Msg外部化XMLファイルのファイル名（拡張子を除く）。
-	 * @param key　Entryタグに定義するkey。
-	 * @return　Msg文字列。
-	 * @throws efwException　Msg外部化XMLファイルの定義エラーか、存在しないエラーか。
+	 * @param lang 多国語ファイル名（拡張子を除く）。
+	 * @param key キー。
+	 * @param defaultValue 初期値。
+	 * @return 値。
 	 */
 	public static String get(String lang,String key,String defaultValue){
 		//get group
@@ -44,7 +43,6 @@ public final class I18nManager {
 					}
 				}
 			}
-			
 		}
 		//if prop is not exists, return the key
 		if (prop==null){
@@ -97,13 +95,19 @@ public final class I18nManager {
 				strm.close();
 				props.put(lang,prop);
 			}else {
-				I18nProperties prop=new I18nProperties();
-				InputStream strm;
-				prop.loadFromXML(strm=I18nManager.class.getResourceAsStream(lang+".xml"));
-				strm.close();
-				props.put(lang,prop);
+				if ("en".equals(lang)||"jp".equals(lang)||"cn".equals(lang)) {
+					I18nProperties prop=new I18nProperties();
+					InputStream strm;
+					prop.loadFromXML(strm=I18nManager.class.getResourceAsStream(lang+".xml"));
+					strm.close();
+					props.put(lang,prop);
+				}
 			}
 		}catch(Exception e){
+			//エラー時ダミーの多国語オブジェクトを作成する。
+			//こうすればlang設定間違い時画面ロードのスピードがアップできる。
+			I18nProperties prop=new I18nProperties();
+			props.put(lang,prop);
 			e.printStackTrace();//エラーを投げない。
 		}
 	}

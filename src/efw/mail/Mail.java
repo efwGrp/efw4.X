@@ -15,12 +15,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import efw.efwException;
+
 /**
  * MailをテンプレートXMLのmailタグとマッピングし、1つのMailを表すクラス。
  * @author Chang Kejun
  *
  */
-public final class Mail {
+final class Mail {
 	/**
 	 * SqlタグからSqlオブジェクトを作成する。
 	 * @param element　Sql外部化XMLのsqlタグ

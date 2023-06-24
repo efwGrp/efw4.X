@@ -12,7 +12,7 @@ import efw.efwCorsFilter;
 import efw.i18n.I18nManager;
 import efw.properties.PropertiesManager;
 
-public final class Util {
+final class Util {
 	/**
 	 * タグのパラメータのスタイルを識別して変換する
 	 * @param pageContext

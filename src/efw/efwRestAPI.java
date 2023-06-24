@@ -3,7 +3,6 @@ package efw;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import efw.script.ScriptManager;
 
+/**
+ * efwRestAPIはRestサービスのイベントを実行する。
+ * @author kejun.chang
+ *
+ */
 @WebServlet(name="efwRestAPI",urlPatterns={"/efwRestAPI/*"})
 public final class efwRestAPI extends HttpServlet{
 
@@ -34,7 +38,7 @@ public final class efwRestAPI extends HttpServlet{
 		doRestAPI(req,resp,"DELETE");
 	}
 	
-	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod) throws ServletException, IOException{
+	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod){
         //if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
@@ -42,7 +46,6 @@ public final class efwRestAPI extends HttpServlet{
 			return;
 		}
 		//call script 
-		framework.setThreadLogs(new ArrayList<String>());
 		try {
 			String[] keys=request.getPathInfo().split("/");
 			String eventId=keys[1];////　一つ目は/です。

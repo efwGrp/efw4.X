@@ -18,14 +18,13 @@ import efw.efwCorsFilter;
 import efw.efwDoNotAsMainException;
 import efw.framework;
 /**
- * Partタグを処理するクラス。
- * <efw:Part path="myPage.jsp" param1="" param2=""/>
+ * Partタグを処理するクラス。<br>
+ * &lt;efw:Part path="myPage.jsp" param1="" param2=""/&gt;<br>
+ * &lt;efw:Part appurl="subAppurl" path="myPage.jsp" shareSessoins="key1,key2" param1="" param2=""/&gt;<br>
  * bodyタグに追加して、myPage.jspの出力をIncludeする。
  * @author Chang Kejun
- *
  */
 public final class Part extends TagSupport implements DynamicAttributes {
-	
 	/**
 	 * ページパス。
 	 */
@@ -38,31 +37,53 @@ public final class Part extends TagSupport implements DynamicAttributes {
 	 * shareSessions。共有するセッション情報。
 	 */
 	private String shareSessions="";
-	
+	/**
+	 * リモート部品呼び出し時間のパラメータ名。
+	 */
 	public static final String EFW_PART_CALLING_TIME="EFW_PART_CALLING_TIME";
+	/**
+	 * リモート部品呼び出しタイムアウト時間。
+	 */
 	public static final long EFW_PART_CALLING_TIMEOUT=30000;
-	
-	
+	/**
+	 * ページパスを取得する。
+	 * @return ページパス。
+	 */
 	public String getPath() {
 		return path;
 	}
-
+	/**
+	 * ページパスを設定する。
+	 * @param path ページパス。
+	 */
 	public void setPath(String path) {
 		this.path = Util.translateAttr(pageContext,path);
 	}
-
+	/**
+	 * リモート部品のアプリURLを取得する。
+	 * @return アプリURL。
+	 */
 	public String getAppurl() {
 		return appurl;
 	}
-
+	/**
+	 * リモート部品のアプリURLを設定する。
+	 * @param appurl アプリURL。
+	 */
 	public void setAppurl(String appurl) {
 		this.appurl = Util.translateAttr(pageContext,appurl);
 	}
-
+	/**
+	 * リモート部品のアプリと共有するセッション情報を取得する。
+	 * @return カンマ区切りのセッションキー配列。
+	 */
 	public String getShareSessions() {
 		return shareSessions;
 	}
-
+	/**
+	 * リモート部品のアプリと共有するセッション情報を設定する。
+	 * @param shareSessions カンマ区切りのセッションキー配列。
+	 */
 	public void setShareSessions(String shareSessions) {
 		this.shareSessions = Util.translateAttr(pageContext,shareSessions);
 	}
@@ -162,6 +183,9 @@ public final class Part extends TagSupport implements DynamicAttributes {
 	/**
 	 * 動的パラメータを取得する。
 	 * 取得するパラメータをREQUEST_SCOPEに設定する。
+	 * @param uri 名称空間。
+	 * @param name 属性名。
+	 * @param value 属性値。
 	 */
 	@Override
 	public void setDynamicAttribute(String uri, String name, Object value)

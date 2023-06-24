@@ -1,6 +1,7 @@
 package efw.rest;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -10,25 +11,22 @@ import java.util.Map;
 import efw.framework;
 
 /**
- * Rest Serviceにアクセスクラス。
+ * RESTサービスを管理するクラス。
  * @author lndljack
  */
 public final class RestManager {
 
     /**
-     * Restサービスにアクセス。
-     * @param strUrl アクセスURL
+     * restサービスにアクセス。
+     * @param strUrl アクセスURL。
      * @param strMethod アクセス方法(POST/PUT/DELETE/GET)
-     * @param params パラメータ
-     * @param heads ヘッダ情報
-     * @return Rest Serviceにアクセスの戻り値
-     * @throws Exception
+     * @param params パラメータ。
+     * @param heads ヘッダ情報。
+     * @return restサービスの戻り値。
+     * @throws IOException 通信エラー。
      */
-    public static String visit(String strUrl, String strMethod, String params, Map<String, String> heads) throws Exception {
+    public static String visit(String strUrl, String strMethod, String params, Map<String, String> heads) throws IOException{
         HttpURLConnection httpConnection = null;
-        BufferedReader responseBuffer = null;
-        OutputStream outputStream = null;
-
         try {
             URL restServiceURL = new URL(strUrl);
 
@@ -51,9 +49,10 @@ public final class RestManager {
             if ("POST".equalsIgnoreCase(strMethod) || "PUT".equalsIgnoreCase(strMethod)) {
                 httpConnection.setDoOutput(true);
                 // パラメータを設定する
-                outputStream = httpConnection.getOutputStream();
-                outputStream.write(params.getBytes(framework.SYSTEM_CHAR_SET));
-                outputStream.flush();
+                try(OutputStream outputStream = httpConnection.getOutputStream()){
+                    outputStream.write(params.getBytes(framework.SYSTEM_CHAR_SET));
+                    outputStream.flush();
+                }
             }
 
             // Restサービスをアクセスする戻りコードを取得する
@@ -62,30 +61,25 @@ public final class RestManager {
             framework.setRestStatus(status);
 
             // レスポンス内容
-            responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),framework.SYSTEM_CHAR_SET));
-            String strLine;
-            StringBuffer reserveVal = new StringBuffer();
-            while ((strLine = responseBuffer.readLine()) != null) {
-                if (strLine != null && !strLine.isEmpty()) {
-                    reserveVal.append(strLine);
+            try (BufferedReader responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),framework.SYSTEM_CHAR_SET))){
+                String strLine;
+                StringBuffer reserveVal = new StringBuffer();
+                while ((strLine = responseBuffer.readLine()) != null) {
+                    if (strLine != null && !strLine.isEmpty()) {
+                        reserveVal.append(strLine);
+                    }
                 }
+                return reserveVal.toString();
             }
-            return reserveVal.toString();
         } finally {
-            if (outputStream != null) {
-                outputStream.close();
-            }
-            if (responseBuffer != null) {
-                responseBuffer.close();
-            }
             if (httpConnection != null) {
                 httpConnection.disconnect();
             }
         }
     }
     /**
-     * RestのResponseコードを戻す
-     * @return
+     * restステータスコードを取得する。
+     * @return restステータスコード。
      */
     public static Integer getStatus() {
     	return framework.getRestStatus();

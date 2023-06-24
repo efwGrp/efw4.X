@@ -22,19 +22,19 @@ import efw.XMLTagIsNotLegalException;
 import efw.efwException;
 import efw.framework;
 /**
- * Sql外部化XMLファイルを管理するクラス。
+ * SQL定義XMLファイルを管理するクラス。
  * @author Chang Kejun
  *
  */
 public final class SqlManager {
 	/**
-	 * ひとつのSqlオブジェクトを取得する。
+	 * ひとつのSQL定義を取得する。
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。
 	 * 通常モードの場合、予めロード済みデータから、Sqlオブジェクトを探す。
-	 * @param groupId Sql外部化XMLファイルのファイル名（拡張子を除く）。
-	 * @param sqlId　sqlタグに定義するid。
-	 * @return　Sqlオブジェクト。
-	 * @throws efwException　Sql外部化XMLファイルの定義エラーか、存在しないエラーか。
+	 * @param groupId SQL定義XMLファイル名（拡張子を除く）。
+	 * @param sqlId SQL定義ID。
+	 * @return SQLオブジェクト。
+	 * @throws efwException SQL定義取得エラー。
 	 */
 	public static Sql get(String groupId,String sqlId) throws efwException{
 		//get group

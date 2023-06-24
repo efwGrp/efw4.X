@@ -32,10 +32,10 @@ public final class BarCodeManager {
 	 * バーコード作成関数。
 	 * @param type バーコードのタイプ。詳細はプログラムから読んでください。
 	 * @param msg バーコードに含む内容。種類によって桁数と文字種類が制限がある。詳細はWEBで調べてください。
-	 * @param out　作成されたバーコードの出力箇所。
-	 * @throws Exception
+	 * @param out 作成されたバーコードの出力箇所。
+	 * @throws Exception バーコード作成エラー。
 	 */
-	public static void encode(String type,String msg,OutputStream out) throws Exception{
+	protected static void encode(String type,String msg,OutputStream out) throws Exception{
 		AbstractBarcodeBean bean=null;
 		if("qrcode".equals(type)){
 			QRCodeWriter writer = new QRCodeWriter();
@@ -85,7 +85,7 @@ public final class BarCodeManager {
 	/**
 	 * 画像から文字を取得する
 	 * @param imagePath 相対パス。
-	 * @return　識別した文字列。識別できない場合、null
+	 * @return 識別した文字列。識別できない場合、null。
 	 */
 	public static String decode(String imagePath){
 		try{
@@ -105,7 +105,7 @@ public final class BarCodeManager {
 	        		.getText();
 	        return value;
 		}catch(Exception ex){
-			return null;
+			return null;//エラーを投げない。
 		}
 	}
 	/**

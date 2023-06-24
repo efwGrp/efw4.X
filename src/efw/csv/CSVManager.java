@@ -2,53 +2,56 @@
 package efw.csv;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import efw.framework;
 import efw.file.FileManager;
 
+/**
+ * CSV作成を管理するクラス。
+ * @author kejun.chang
+ *
+ */
 public final class CSVManager {
 	/**
-	 * 1つExcelを開く。
+	 * 1つCSVを開く。
 	 * @param path CSVのパス。
+	 * @param encoding エンコード。
 	 * @return Writterのオブジェクト。
+	 * @throws FileNotFoundException ファイル無しエラー。
+	 * @throws UnsupportedEncodingException エンコード不正エラー。
 	 */
-	public static PrintWriter open(String path,String encoding) throws Exception{
-		if(framework.getWriters()==null) framework.setWriters(new HashMap<String,PrintWriter>());
-		
-		try{
-			PrintWriter writer = new PrintWriter(
-									new BufferedWriter(
-										new OutputStreamWriter(
-											new FileOutputStream(
-												FileManager.get(path),true),encoding)));
-			framework.getWriters().put(path,writer);
-			return writer;
-		}catch(Exception ex){
-			throw ex;
-		}
+	public static PrintWriter open(String path,String encoding) throws UnsupportedEncodingException, FileNotFoundException{
+		PrintWriter writer;
+		writer = new PrintWriter(
+								new BufferedWriter(
+									new OutputStreamWriter(
+										new FileOutputStream(
+											FileManager.get(path),true),encoding)));
+		framework.setWriter(path, writer);
+		return writer;
 	}
 	/**
-	 * 開いた一つのファイルを閉じる
-	 * @param path
+	 * 開いた一つのファイルを閉じる。
+	 * @param path CSVファイルパス。
 	 */
 	public static void close(String path) {
 		try {
-			PrintWriter writer=framework.getWriters().get(path);
-			framework.getWriters().remove(path);
+			PrintWriter writer=framework.getWriter(path);
+			framework.removeWriter(path);
 			writer.close();
 		}catch(Exception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace();//エラーを投げない。
 		}
 	}
 	/**
 	 * 該当スレッドに、開いたWritterをすべて閉じる。
-	 * @throws IOException
 	 */
 	public static void closeAll(){
 		if(framework.getWriters()==null) return;
@@ -59,7 +62,7 @@ public final class CSVManager {
 			try{
 				writer.close();//2回閉じても大丈夫。
 			}catch(Exception ex){
-				ex.printStackTrace();
+				ex.printStackTrace();//エラーを投げない。
 			}
 		}
 		framework.removeWriters();

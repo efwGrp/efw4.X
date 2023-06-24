@@ -2,8 +2,13 @@
 package efw;
 /**
  * Cmd実行エラー。
+ * @author kejun.chang
  */
 public final class CmdExecuteException extends efwException {
+	/**
+	 * @param params コマンドとパラメータ。
+	 * @param message エラー内容。
+	 */
 	public CmdExecuteException(String[] params,String message) {
 		super("params = "+CmdExecuteException.join(params)+"; error = "+message);
 	}

@@ -95,13 +95,13 @@ public final class Excel {
 	private FormulaEvaluator evaluator;
 	/**
 	 * コンストラクタ
-	 * @param path　Excelの相対パス。
-	 * @param workbook　ExcelのPOIオブジェクト。
+	 * @param path Excelの相対パス。
+	 * @param workbook ExcelのPOIオブジェクト。
 	 * @throws IOException 
 	 * @throws InvalidFormatException 
 	 * @throws EncryptedDocumentException 
 	 */
-	public Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
+	protected Excel(File file,boolean isLarge) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		//一時ファイルを作成する。
 		//引数のfileを一時ファイルにコピーする。
 		//一時ファイルでexcelを開く。
@@ -119,44 +119,43 @@ public final class Excel {
 	}
 	/**
 	 * ExcelのPOIオブジェクトを削除する。
-	 * @throws IOException
 	 */
-	public void close(){
+	protected void close(){
 		try {
 			workbook.close();
 			this.file.delete();
 		} catch (IOException e) {
-			//throw e;エラーが発生してもなにもしない
+			e.printStackTrace();//エラーをなげない。
 		}
 	}
 	/**
 	 * 一時ファイルの名称をキーとして利用する。
-	 * @return
+	 * @return ファイル名。
 	 */
 	public String getKey() {
 		return this.file.getName();
 	}
 	/**
 	 * 指定シートの利用されている最大行番号を戻る。0から開始。
-	 * @param sheetName　シート名
-	 * @return　最大行番号　0から開始
+	 * @param sheetName シート名。
+	 * @return 最大行番号 0から開始。
 	 */
 	public int getMaxRow(String sheetName){
 		return this.workbook.getSheet(sheetName).getLastRowNum();
 	}
 	/**
 	 * 指定シートの利用されている最大列番号を戻る。0から開始。
-	 * @param sheetName　シート名
-	 * @return　最大列番号　0から開始
+	 * @param sheetName シート名。
+	 * @return 最大列番号 0から開始。
 	 */
 	public int getMaxCol(String sheetName){
 		return this.workbook.getSheet(sheetName).getLastRowNum();
 	}
 	/**
 	 * セルを取得する。
-	 * @param sheetName　シート名
-	 * @param position セルの位置　"A0" のように表現する。
-	 * @return セルオブジェクトを戻す
+	 * @param sheetName ート名。
+	 * @param position セルの位置 "A0" のように表現する。
+	 * @return セルオブジェクト。
 	 */
 	private Cell getCell(String sheetName, String position){
 		Sheet sheet =this.workbook.getSheet(sheetName);
@@ -174,10 +173,10 @@ public final class Excel {
 	}
 	/**
 	 * セルを取得する。
-	 * @param sheetName　シート名
-	 * @param rowIndex セルの行インデックス
-	 * @param rowIndex セルの列インデックス
-	 * @return セルオブジェクトを戻す
+	 * @param sheetName シート名。
+	 * @param rowIndex セルの行インデックス。
+	 * @param rowIndex セルの列インデックス。
+	 * @return セルオブジェクト。
 	 */
 	private Cell getCell(String sheetName, int rowIndex, int colIndex ){
 		Sheet sheet =this.workbook.getSheet(sheetName);
@@ -197,8 +196,8 @@ public final class Excel {
 	 * セルを結合する。
 	 * @param sheetName シート名。
 	 * @param position セルの場所、"A1"のように。
-	 * @param templateSheetName　参考するシート名。
-	 * @param templatePosition　参考するセルの場所。
+	 * @param templateSheetName 参考するシート名。
+	 * @param templatePosition 参考するセルの場所。
 	 */
 	public void setMergedRegion(String sheetName, String position, String templateSheetName, String templatePosition){
 		Cell cell = getCell(sheetName,position);
@@ -233,74 +232,71 @@ public final class Excel {
 	}
 	/**
 	 * セルの値を取得する。
-	 * @param sheetName　シート名
-	 * @param position セルの位置　"A0" のように表現する。
-	 * @return
+	 * @param sheetName シート名
+	 * @param position セルの位置 "A0" のように表現する。
+	 * @return セルの値。
 	 */
 	public Object get(String sheetName, String position) {
-		try {
-			//この関数はセルを作成するから取得用途で不都合がある
-			//Cell cell=getCell(sheetName,position);
-			Sheet sheet =this.workbook.getSheet(sheetName);
-			CellReference reference = new CellReference(position);
-	        Row row = sheet.getRow(reference.getRow());
-	        Cell cell = null;
-	        if (row == null) {
-	        	//行が存在しない場合
+		//この関数はセルを作成するから取得用途で不都合がある
+		//Cell cell=getCell(sheetName,position);
+		Sheet sheet =this.workbook.getSheet(sheetName);
+		CellReference reference = new CellReference(position);
+        Row row = sheet.getRow(reference.getRow());
+        Cell cell = null;
+        if (row == null) {
+        	//行が存在しない場合
+        	return null;
+       	}else {
+	        cell = row.getCell(reference.getCol());
+	        if (cell==null){
+	        	//セルが存在しない場合
 	        	return null;
-	       	}else {
-		        cell = row.getCell(reference.getCol());
-		        if (cell==null){
-		        	//セルが存在しない場合
-		        	return null;
-		        }
-	       	}
+	        }
+       	}
 
-			switch (cell.getCellType()) {
+		switch (cell.getCellType()) {
+		case BOOLEAN:
+			return cell.getBooleanCellValue();
+		case ERROR:
+			return cell.getErrorCellValue();
+		case NUMERIC:
+			if (DateUtil.isCellDateFormatted(cell)) {
+				return cell.getDateCellValue();
+			} else {
+				return cell.getNumericCellValue();
+			}
+		case STRING:
+			return cell.getStringCellValue();
+		case FORMULA:
+			CellValue cellValue = this.evaluator.evaluate(cell);
+			switch (cellValue.getCellType()) {
 			case BOOLEAN:
-				return cell.getBooleanCellValue();
+				return cellValue.getBooleanValue();
 			case ERROR:
-				return cell.getErrorCellValue();
+				return cellValue.getErrorValue();
 			case NUMERIC:
 				if (DateUtil.isCellDateFormatted(cell)) {
-					return cell.getDateCellValue();
+					return DateUtil.getJavaDate(cellValue.getNumberValue());
 				} else {
-					return cell.getNumericCellValue();
+					return cellValue.getNumberValue();
 				}
 			case STRING:
-				return cell.getStringCellValue();
-			case FORMULA:
-				CellValue cellValue = this.evaluator.evaluate(cell);
-				switch (cellValue.getCellType()) {
-				case BOOLEAN:
-					return cellValue.getBooleanValue();
-				case ERROR:
-					return cellValue.getErrorValue();
-				case NUMERIC:
-					if (DateUtil.isCellDateFormatted(cell)) {
-						return DateUtil.getJavaDate(cellValue.getNumberValue());
-					} else {
-						return cellValue.getNumberValue();
-					}
-				case STRING:
-					return cellValue.getStringValue();
-				case _NONE:
-				case BLANK:
-				default:
-					break;
-				}
+				return cellValue.getStringValue();
 			case _NONE:
 			case BLANK:
+			default:
+				break;
 			}
-		} catch (Exception e) {
+		case _NONE:
+		case BLANK:
 		}
 		return null;
 	}
 	/**
 	 * シートの印刷範囲を設定。
-	 * @param sheetName　シート名。
-	 * @param startRow　開始行番号。
-	 * @param endRow　終了行番号。
+	 * @param sheetName シート名。
+	 * @param startRow 開始行番号。
+	 * @param endRow 終了行番号。
 	 * @param startCol 開始列番号。
 	 * @param endCol 終了列番号。
 	 */
@@ -310,8 +306,8 @@ public final class Excel {
 	}
 	/**
 	 * シートを作成する。
-	 * @param sheetName　シート名。
-	 * @param templateSheetName　コピー元シート名。
+	 * @param sheetName シート名。
+	 * @param templateSheetName コピー元シート名。
 	 */
 	public void createSheet(String sheetName,String templateSheetName){
 		if (templateSheetName==null){
@@ -335,14 +331,14 @@ public final class Excel {
 	}
 	/**
 	 * シートを削除する。
-	 * @param sheetName　シート名。
+	 * @param sheetName シート名。
 	 */
 	public void removeSheet(String sheetName){
 		workbook.removeSheetAt(workbook.getSheetIndex(sheetName));
 	}
 	/**
 	 * シート名の配列を取得する。
-	 * @return　シート名の配列
+	 * @return シート名の配列。
 	 */
 	public ArrayList<String> getSheetNames(){
 		ArrayList<String> allSheetNames = new ArrayList<String>();
@@ -355,10 +351,10 @@ public final class Excel {
         return allSheetNames;		
 	}
 	/**
-	 * セルにリンクを追加する
-	 * @param sheetName リンクを追加するセルが所属するシート名
-	 * @param position リンクを追加するセル名
-	 * @param linkUrl リンクした先名 "#'シート名'!A1"のように
+	 * セルにリンクを追加する。
+	 * @param sheetName リンクを追加するセルが所属するシート名。
+	 * @param position リンクを追加するセル名。
+	 * @param linkUrl リンクした先名 "#'シート名'!A1"のように。
 	 */
 	public void setLink(String sheetName,String position,String linkUrl){
 		
@@ -379,15 +375,15 @@ public final class Excel {
 	}
 	/**
 	 * シートの順番を設定する。
-	 * @param sheetName　シート名。
-	 * @param order　順番。　0　から。
+	 * @param sheetName シート名。
+	 * @param order 順番。 0 から。
 	 */
 	public void setSheetOrder(String sheetName,int order){
 		workbook.setSheetOrder(sheetName,order);
 	}
 	/**
 	 * シートをActive設定する。
-	 * @param sheetName　シート名。
+	 * @param sheetName ート名。
 	 */
 	public void setActiveSheet(String sheetName){
         Iterator<Sheet> it = workbook.sheetIterator();
@@ -402,8 +398,7 @@ public final class Excel {
 	/**
 	 * 保存する。
 	 * @param path 保存先のパスファイル名。storageからの相対パス。
-	 * @throws GeneralSecurityException 
-	 * @throws InvalidFormatException 
+	 * @param password パスワード。
 	 */
 	public void save(String path,String password){
 		File fileNewExcel = FileManager.get(path);
@@ -416,65 +411,31 @@ public final class Excel {
     		HSSFWorkbook hwb = (HSSFWorkbook) this.workbook;
     		hwb.writeProtectWorkbook(password, "");
     	}
-		FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(fileNewExcel);
+        try (FileOutputStream out = new FileOutputStream(fileNewExcel)){
             workbook.setForceFormulaRecalculation(true);
             workbook.write(out);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                out.close();
-            } catch (IOException e) {
-                System.out.println(e.toString());
-            }
+            e.printStackTrace();//エラーをなげない。
         }
     	//2007の場合
         if (password!=null && !"".equals(password) && this.workbook instanceof XSSFWorkbook){
-        	POIFSFileSystem pOIFSFileSystem=null;
-    		FileOutputStream fileOutputStream = null;
-    		OutputStream outputStream = null;
-        	OPCPackage oPCPackage=null;
-        	try {
-        		pOIFSFileSystem = new POIFSFileSystem();
+        	try (POIFSFileSystem pOIFSFileSystem = new POIFSFileSystem()){
             	Encryptor encryptor = (new EncryptionInfo(EncryptionMode.agile)).getEncryptor();
             	encryptor.confirmPassword(password);
-            	try{
-                	oPCPackage = OPCPackage.open(fileNewExcel, PackageAccess.READ_WRITE);
-                	outputStream = encryptor.getDataStream(pOIFSFileSystem);
+            	try(OPCPackage oPCPackage=OPCPackage.open(fileNewExcel, PackageAccess.READ_WRITE);
+            			OutputStream outputStream = encryptor.getDataStream(pOIFSFileSystem)
+            	){
                 	oPCPackage.save(outputStream);
-            	}finally{
-            		try {
-            			outputStream.close();
-            		}catch(IOException e) {
-            			e.printStackTrace();
-            		}
-            		try {
-            			oPCPackage.close();
-            		}catch(IOException e) {
-            			e.printStackTrace();
-            		}
             	}
-            	fileOutputStream = new FileOutputStream(fileNewExcel);
-    		    pOIFSFileSystem.writeFilesystem(fileOutputStream);
+            	try (FileOutputStream fileOutputStream = new FileOutputStream(fileNewExcel)){
+        		    pOIFSFileSystem.writeFilesystem(fileOutputStream);
+            	}
         	} catch (InvalidFormatException e) {
-				e.printStackTrace();
+				e.printStackTrace();//エラーをなげない。
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.printStackTrace();//エラーをなげない。
 			} catch (GeneralSecurityException e) {
-				e.printStackTrace();
-			}finally{
-				try {
-					fileOutputStream.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-            	try {
-					pOIFSFileSystem.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				e.printStackTrace();//エラーをなげない。
 	        }
     	}
 	}
@@ -523,8 +484,8 @@ public final class Excel {
 	 * セルに書式を設定する。
 	 * @param sheetName シート名。
 	 * @param position セルの場所、"A1"のように。
-	 * @param templateSheetName　参考するシート名。
-	 * @param templatePosition　参考するセルの場所。
+	 * @param templateSheetName 参考するシート名。
+	 * @param templatePosition 参考するセルの場所。
 	 */
 	public void setCellStyle(String sheetName, String position, String templateSheetName, String templatePosition){
 		Cell cell=this.getCell(sheetName, position);
@@ -536,8 +497,8 @@ public final class Excel {
 	 * セルに計算式を設定する。
 	 * @param sheetName シート名。
 	 * @param position セルの場所、"A1"のように。
-	 * @param templateSheetName　参考するシート名。
-	 * @param templatePosition　参考するセルの場所。
+	 * @param templateSheetName 参考するシート名。
+	 * @param templatePosition 参考するセルの場所。
 	 */
 	
 	public void setCellFormula(String sheetName, String position, String templateSheetName, String templatePosition){
@@ -599,7 +560,7 @@ public final class Excel {
 	 * @param position セルの場所、"A1"のように。
 	 * @param checkpointXRate 囲まれるエリアの中央点がセルの幅と比較する割合。0.5は中央。
 	 * @param checkpointYRate 囲まれるエリアの中央点がセルの高さと比較する割合。0.5は中央。 
-	 * @return
+	 * @return 囲まれるかどうか。
 	 */
 	public boolean isEncircled(String sheetName,String position,double checkpointXRate,double checkpointYRate){
 		Cell cell=this.getCell(sheetName, position);
@@ -633,7 +594,7 @@ public final class Excel {
 	 * @param dy1 shape開始セル内、shapeの左上位置の縦座標(EMU)
 	 * @param dx2 shape終了セル内、shapeの左上位置の横座標(EMU)
 	 * @param dy2 shape終了セル内、shapeの左上位置の縦座標(EMU)
-	 * @return　true囲まれる false囲まれない
+	 * @return true囲まれる false囲まれない
 	 */
 	private boolean checkEncircled(
 			int cellrow,int cellcol,int checkPointX,int checkPointY,
@@ -669,12 +630,12 @@ public final class Excel {
 	 * 指定sheetの指定セルの指定位置に、図形をコピーして置く。
 	 * @param sheetName シート名。
 	 * @param position セルの場所、"A1"のように。
-	 * @param templateSheetName　参考するシート名。
-	 * @param templateShapeName　参考する図形の名称。
-	 * @param shapeCenterXRate　新しい図形の中心位置はセルの幅との比率、デフォルト0.5。
-	 * @param shapeCenterYRate　新しい図形の中心位置はセルの高さとの比率、デフォルト0.5。　
-	 * @param shapeWidthRate　新しい図形の幅はセルの幅との比率、デフォルト0.5。
-	 * @param shapeHeightRate　新しい図形の幅はセルの高さとの比率、デフォルト0.5。
+	 * @param templateSheetName 参考するシート名。
+	 * @param templateShapeName 参考する図形の名称。
+	 * @param shapeCenterXRate 新しい図形の中心位置はセルの幅との比率、デフォルト0.5。
+	 * @param shapeCenterYRate 新しい図形の中心位置はセルの高さとの比率、デフォルト0.5。　
+	 * @param shapeWidthRate 新しい図形の幅はセルの幅との比率、デフォルト0.5。
+	 * @param shapeHeightRate 新しい図形の幅はセルの高さとの比率、デフォルト0.5。
 	 */
 	public void encircle(String sheetName,String position,String templateSheetName,String templateShapeName,
 			double shapeCenterXRate,double shapeCenterYRate,double shapeWidthRate,double shapeHeightRate){
@@ -837,11 +798,10 @@ public final class Excel {
 	}	
 	
 	/**
-	 * 行を追加
-	 * @param sheetName シート名
-	 * @param startRow このインデックスの上に、行を追加 
-	 * @param n 追加する行数
-	 * @return
+	 * 行を追加する。
+	 * @param sheetName シート名。
+	 * @param startRow このインデックスの上に、行を追加。
+	 * @param n 追加する行数。
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void addRow(String sheetName,int startRow,int n){
@@ -886,11 +846,11 @@ public final class Excel {
 		}
 	}
 	/**
-	 * 行を削除 インデックスは 「0」から 「endRow」の行を含めない
-	 * @param sheetName シート名
-	 * @param startRow 削除する行の開始インデックス from 0
-	 * @param n 削除する行数
-	 * @return
+	 * 行を削除する。
+	 * インデックスは 「0」から 「endRow」の行を含めない。
+	 * @param sheetName シート名。
+	 * @param startRow 削除する行の開始インデックス from 0。
+	 * @param n 削除する行数。
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void delRow(String sheetName,int startRow,int n){
@@ -947,11 +907,11 @@ public final class Excel {
 	}
 
 	/**
-	 * 行を非表示になる   インデックスは 「0」から 「endRow」の行を含めない
-	 * @param sheetName シート名
-	 * @param startRow 非表示する行の開始インデックス from 0
-	 * @param endRow 非表示する行の終了インデックス from 0
-	 * @return
+	 * 行を非表示する。
+	 * インデックスは 「0」から 「endRow」の行を含めない。
+	 * @param sheetName シート名。
+	 * @param startRow 非表示する行の開始インデックス from 0。
+	 * @param endRow 非表示する行の終了インデックス from 0。
 	 */
 	public void hideRow(String sheetName,int startRow,int endRow){
 		Sheet sheet = this.workbook.getSheet(sheetName);
@@ -965,11 +925,11 @@ public final class Excel {
 	}
 	
 	/**
-	 * 行を表示になる   行数は 「0」から 「endRow」の行を含めない
+	 * 行を表示になる。
+	 * 行数は 「0」から 「endRow」の行を含めない。
 	 * @param sheetName シート名
 	 * @param startRow 表示する行の開始インデックス from 0
 	 * @param endRow 表示する行の終了インデックス from 0
-	 * @return
 	 */
 	public void showRow(String sheetName,int startRow,int endRow){
 		Sheet sheet = this.workbook.getSheet(sheetName);
@@ -978,11 +938,10 @@ public final class Excel {
 		}
 	}
 	/**
-	 * 列の非表示
-	 * @param sheetName シート名
-	 * @param startCol 非表示する列の開始インデックス from 0
-	 * @param endCol 非表示する列の終了インデックス from 0
-	 * @return
+	 * 列を非表示する。
+	 * @param sheetName シート名。
+	 * @param startCol 非表示する列の開始インデックス from 0。
+	 * @param endCol 非表示する列の終了インデックス from 0。
 	 */
 	public void hideCol(String sheetName,int startCol,int endCol){
 		Sheet sheet = this.workbook.getSheet(sheetName);
@@ -991,11 +950,10 @@ public final class Excel {
 		}
 	}
 	/**
-	 * 列の表示
-	 * @param sheetName シート名
-	 * @param startCol 表示する列の開始インデックス from 0
-	 * @param endCol 表示する列の終了インデックス from 0
-	 * @return
+	 * 列を表示する。
+	 * @param sheetName シート名。
+	 * @param startCol 表示する列の開始インデックス from 0。
+	 * @param endCol 表示する列の終了インデックス from 0。
 	 */
 	public void showCol(String sheetName,int startCol,int endCol){
 		Sheet sheet = this.workbook.getSheet(sheetName);
@@ -1004,64 +962,73 @@ public final class Excel {
 		}
 	}
 	/**
-	 * シートの非表示
-	 * @param sheetName シート名
+	 * シートを非表示する。
+	 * @param sheetName シート名。
 	 */
 	public void hideSheet(String sheetName){
 		this.workbook.setSheetHidden(this.workbook.getSheetIndex(sheetName), true);
 	}
 	/**
-	 * シートの表示
-	 * @param sheetName シート名
+	 * シートを表示する。
+	 * @param sheetName シート名。
 	 */
 	public void showSheet(String sheetName){
 		this.workbook.setSheetHidden(this.workbook.getSheetIndex(sheetName), false);
 	}
 	/**
-	 * 画像置換
-	 * @param sheetName
-	 * @param pictureName
-	 * @param newPicturePath
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 * @throws ClassNotFoundException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws IOException 
+	 * 画像を置換する。
+	 * @param sheetName シート名。
+	 * @param shapeName シェイプ名。
+	 * @param newPicturePath 新しい画像ファイルのパス。
 	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	public void replacePicture(String sheetName,String shapeName,String newPicturePath) throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, IOException {
-    	XSSFSheet sheet = (XSSFSheet) this.workbook.getSheet(sheetName);
-    	List<XSSFShape> shapes=((XSSFDrawing) sheet.getDrawingPatriarch()).getShapes();
-    	for (XSSFShape shape : shapes) {
-    		if (shapeName.equals(shape.getShapeName())) {
-    			File newPictureFile = FileManager.get(newPicturePath);
-    			InputStream in = new FileInputStream(newPictureFile);
-    			byte[] bytes = IOUtils.toByteArray(in);
-    			in.close();
-    			String extension = newPicturePath.substring(newPicturePath.lastIndexOf(".")+1).toUpperCase();
-    			int pictureType=0;
-    			if ("BMP".equals(extension)||"DIB".equals(extension))pictureType=Workbook.PICTURE_TYPE_DIB;
-    			if ("EMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_EMF;
-    			if ("JPEG".equals(extension)||"JPG".equals(extension))pictureType=Workbook.PICTURE_TYPE_JPEG;
-    			if ("PICT".equals(extension))pictureType=Workbook.PICTURE_TYPE_PICT;
-    			if ("PNG".equals(extension))pictureType=Workbook.PICTURE_TYPE_PNG;
-    			if ("WMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_WMF;
+	public void replacePicture(String sheetName,String shapeName,String newPicturePath){
+    	try {
+        	XSSFSheet sheet = (XSSFSheet) this.workbook.getSheet(sheetName);
+        	List<XSSFShape> shapes=((XSSFDrawing) sheet.getDrawingPatriarch()).getShapes();
+        	for (XSSFShape shape : shapes) {
+        		if (shapeName.equals(shape.getShapeName())) {
+        			File newPictureFile = FileManager.get(newPicturePath);
+        			InputStream in = new FileInputStream(newPictureFile);
+        			byte[] bytes = IOUtils.toByteArray(in);
+        			in.close();
+        			String extension = newPicturePath.substring(newPicturePath.lastIndexOf(".")+1).toUpperCase();
+        			int pictureType=0;
+        			if ("BMP".equals(extension)||"DIB".equals(extension))pictureType=Workbook.PICTURE_TYPE_DIB;
+        			if ("EMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_EMF;
+        			if ("JPEG".equals(extension)||"JPG".equals(extension))pictureType=Workbook.PICTURE_TYPE_JPEG;
+        			if ("PICT".equals(extension))pictureType=Workbook.PICTURE_TYPE_PICT;
+        			if ("PNG".equals(extension))pictureType=Workbook.PICTURE_TYPE_PNG;
+        			if ("WMF".equals(extension))pictureType=Workbook.PICTURE_TYPE_WMF;
 
-    			int pictureIndex = this.workbook.addPicture(bytes, pictureType);
-    			
-    			XSSFPicture orgPicture=(XSSFPicture)shape;
-				Class XSSFDrawingClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFDrawing");
-				Method addMethod = XSSFDrawingClass.getDeclaredMethod("addPictureReference",int.class);
-				addMethod.setAccessible(true);
-				PackageRelationship rel=(PackageRelationship)addMethod.invoke(sheet.getDrawingPatriarch(),pictureIndex);
-				Class XSSFPictureClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFPicture");
-				Method setMethod = XSSFPictureClass.getDeclaredMethod("setPictureReference",PackageRelationship.class);
-				setMethod.setAccessible(true);
-				setMethod.invoke(orgPicture,rel);
-				break;
-    		}
+        			int pictureIndex = this.workbook.addPicture(bytes, pictureType);
+        			
+        			XSSFPicture orgPicture=(XSSFPicture)shape;
+    				Class XSSFDrawingClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFDrawing");
+    				Method addMethod = XSSFDrawingClass.getDeclaredMethod("addPictureReference",int.class);
+    				addMethod.setAccessible(true);
+    				PackageRelationship rel=(PackageRelationship)addMethod.invoke(sheet.getDrawingPatriarch(),pictureIndex);
+    				Class XSSFPictureClass = Class.forName("org.apache.poi.xssf.usermodel.XSSFPicture");
+    				Method setMethod = XSSFPictureClass.getDeclaredMethod("setPictureReference",PackageRelationship.class);
+    				setMethod.setAccessible(true);
+    				setMethod.invoke(orgPicture,rel);
+    				break;
+        		}
+        	}
+    	}catch(NoSuchMethodException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(SecurityException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(ClassNotFoundException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(IllegalAccessException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(IllegalArgumentException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(InvocationTargetException e) {
+    		e.printStackTrace();//エラーを投げない。
+    	}catch(IOException e) {
+    		e.printStackTrace();//エラーを投げない。
     	}
 	}
 

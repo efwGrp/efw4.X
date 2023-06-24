@@ -3,7 +3,11 @@ package efw.i18n;
 
 import java.util.Date;
 import java.util.Properties;
-
+/**
+ * 多国語プロパティを表すクラス。
+ * @author kejun.chang
+ *
+ */
 public final class I18nProperties extends Properties {
 	private Date lastModifytime=null;
 

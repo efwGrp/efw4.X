@@ -19,7 +19,7 @@ import efw.efwException;
 import efw.framework;
 
 /**
- * ファイルをクライアントからWEBサーバへアップロードする
+ * ファイルをクライアントからWEBサーバへアップロードする。
  * @author Chang Kejun
  */
 @WebServlet(name = "uploadServlet", urlPatterns = { "/uploadServlet" })

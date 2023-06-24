@@ -4,7 +4,7 @@ package efw.mail;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
-public final class MailAuthenticator extends Authenticator {
+final class MailAuthenticator extends Authenticator {
 	
 	String userName = "";
     String password = "";

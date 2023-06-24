@@ -26,27 +26,19 @@ public final class DatabaseManager {
 	
 	
     public static Database getDatabase(){
-    	try{
-        	return (framework.getDatabases()).get(framework.getJdbcResourceName());
-    	}catch(Exception e){
-    		return null;
-    	}
+    	return framework.getDatabase(framework.getJdbcResourceName());
     }
     public static Database getDatabase(String jdbcResourceName){
-    	try{
-        	if(jdbcResourceName==null||"".equals(jdbcResourceName)){
-        		return DatabaseManager.getDatabase();
-        	}
-        	return (framework.getDatabases()).get(jdbcResourceName);
-    	}catch(Exception e){
-    		return null;
+    	if(jdbcResourceName==null||"".equals(jdbcResourceName)){
+    		return DatabaseManager.getDatabase();
     	}
+    	return framework.getDatabase(jdbcResourceName);
     }
     
 	/**
 	 * フレームワークに利用するデータソースを初期化する。
 	 * @throws NamingException データソース初期化失敗のエラー。
-	 * @throws SQLException 
+	 * @throws SQLException SQLエラー。
 	 */
 	public static void init() throws NamingException, SQLException{
         DatabaseManager.open();//jdbc/efwを初期化すると、設定間違いがある場合すぐキャッチできる
@@ -79,9 +71,8 @@ public final class DatabaseManager {
     ///////////////////////////////////////////////////////////////////////////
 	/**
 	 * フレームワーク用データソースからデータベース接続を取得する。
-	 * @return データベース接続を戻す。
-	 * @throws SQLException データベースアクセスエラー。
-	 * @throws NamingException 
+	 * @throws NamingException データソース初期化失敗のエラー。
+	 * @throws SQLException SQLエラー。
 	 */
     public static void open() throws SQLException, NamingException{
     	DatabaseManager.open(framework.getJdbcResourceName());
@@ -89,9 +80,8 @@ public final class DatabaseManager {
     /**
      * jdbcリソース名称によりデータベース接続を取得する。
      * @param jdbcResourceName jdbcリソース名称
-     * @return　データベース接続を戻す。
-     * @throws NamingException　名称不正のエラー。　
-     * @throws SQLException　データベースアクセスエラー。
+	 * @throws NamingException データソース初期化失敗のエラー。
+     * @throws SQLException SQLエラー。
      */
     public static void open(String jdbcResourceName) throws NamingException, SQLException{
     	if (jdbcResourceName==null||"".equals(jdbcResourceName)){
@@ -108,18 +98,14 @@ public final class DatabaseManager {
             }
 		}
         Database db = new Database(ds.getConnection());
-		if(framework.getDatabases()==null)
-			framework.setDatabases(new HashMap<String,Database>());
-		framework.getDatabases()
-		.put(jdbcResourceName, db);
+        framework.setDatabase(jdbcResourceName, db);
     }
     /**
      * すべてのデータベースを閉じる。
-     * @throws SQLException 　データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     public static void closeAll() throws SQLException{
-		if(framework.getDatabases()==null)
-			return;
+		if(framework.getDatabases()==null) return;
 
 		HashMap<String,Database> map=framework.getDatabases();
 		for(Entry<String, Database> e : map.entrySet()) {
@@ -130,11 +116,10 @@ public final class DatabaseManager {
     }
     /**
      * すべてのデータベースをコミット。
-     * @throws SQLException
+     * @throws SQLException SQLエラー。
      */
     public static void commitAll() throws SQLException{
-		if(framework.getDatabases()==null)
-			return;
+		if(framework.getDatabases()==null) return;
 
 		HashMap<String,Database> map=framework.getDatabases();
 		for(Entry<String, Database> e : map.entrySet()) {
@@ -142,7 +127,10 @@ public final class DatabaseManager {
 			db.commit();
 		}
     }
-    
+    /**
+     * すべてのデータベースをロールバック。
+     * @throws SQLException SQLエラー。
+     */
     public static void rollbackAll() throws SQLException{
 		if(framework.getDatabases()==null) return;
 

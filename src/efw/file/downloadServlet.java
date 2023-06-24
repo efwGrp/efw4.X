@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import efw.framework;
 
 /**
- * ファイルをWEBサーバからクライアントへダウンロードする
+ * ファイルをWEBサーバからクライアントへダウンロードする。
  * @author Chang Kejun
  */
 @WebServlet(name="downloadServlet",urlPatterns={"/downloadServlet"})

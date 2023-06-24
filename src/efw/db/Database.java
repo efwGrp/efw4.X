@@ -28,7 +28,7 @@ public final class Database {
 	private Connection mConn;
 	/**
 	 * java.sql.Connectionを取得する。他システム連携用。
-	 * @return
+	 * @return データベースの接続。
 	 */
 	public Connection getConnection() {
 		return mConn;
@@ -39,7 +39,7 @@ public final class Database {
 	private ArrayList<CallableStatement> mStmtAry;
 	/**
 	 * java.sql.CallableStatementを取得する。他システム連携用。
-	 * @return
+	 * @return SQL実行するステートメントを格納する配列。
 	 */
 	public ArrayList<CallableStatement> getCallableStatements(){
 		return mStmtAry;
@@ -47,7 +47,7 @@ public final class Database {
 	/**
 	 * DatabaseManagerのopenにより初期化される。直接新規作成をしない。
 	 * @param mConn データベース接続。
-	 * @throws SQLException データベースアクセスエラー。
+	 * @throws SQLException SQLエラー。
 	 */
     protected Database(Connection mConn) throws SQLException {
     	this.mConn=mConn;
@@ -62,7 +62,8 @@ public final class Database {
      * @param params　Sqlに利用される引数を格納するマップ。
      * @return　指定されたクエリーによって作成されたデータを含む ResultSet オブジェクト。null にはならない。
      * @throws efwException フレームワークの実行時エラー。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
+     * @throws ScriptException スクリプトエラー。
      */
     public ResultSet executeQuery(String groupId,String sqlId,Map<String,Object> params) throws efwException, SQLException, ScriptException{
     	try {
@@ -88,7 +89,7 @@ public final class Database {
      * クエリを閉じる
      * 必ず必要ではない。データベースを閉じる際、クエリは閉じられる。
      * ただし、大量クエリ（数百回）が発生する場合、リソースのためクエリを閉じる必要。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     public void closeQuery() throws SQLException{
         try{
@@ -112,7 +113,8 @@ public final class Database {
      * @param params　Sqlに利用される引数を格納するマップ。
      * @return　実行された行数を戻す。 
      * @throws efwException フレームワークの実行時エラー。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
+     * @throws ScriptException スクリプトエラー。
      */
     public int executeUpdate(String groupId,String sqlId,Map<String,Object> params) throws efwException, SQLException, ScriptException{
     	CallableStatement mStmt=null;
@@ -139,11 +141,12 @@ public final class Database {
     }
     /**
      * 任意のSQL文を実行する。
-     * @param groupId　Sqlを外部化するXMLのファイル名（拡張子を除く）。
+     * @param groupId Sqlを外部化するXMLのファイル名（拡張子を除く）。
      * @param sqlId SqlXMLファイルのsqlタグに定義されるId。
-     * @param params　Sqlに利用される引数を格納するマップ。
+     * @param params Sqlに利用される引数を格納するマップ。
      * @throws efwException フレームワークの実行時エラー。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
+     * @throws ScriptException スクリプトエラー。
      */
     public void execute(String groupId,String sqlId,Map<String,Object> params) throws efwException, SQLException, ScriptException{
     	CallableStatement mStmt=null;
@@ -168,7 +171,7 @@ public final class Database {
     }
     /**
      * データベースへの更新を無効とし、 データベース接続が保持するデータベースロックをすべて解除する。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     public void rollback() throws SQLException{
     	try{
@@ -183,7 +186,7 @@ public final class Database {
     }
     /**
      * データベースへの更新を有効とし、 データベース接続が保持するデータベースロックをすべて解除する。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     public void commit() throws SQLException{
     	try{
@@ -198,7 +201,7 @@ public final class Database {
     }
     /**
      * ステートメントを全部閉じて、データベース接続をコミットして、閉じる。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     public void close() throws SQLException{
     	try{
@@ -224,7 +227,7 @@ public final class Database {
      * Sqlパラメータを配列から設定する。
      * @param mStmt ステートメント。
      * @param prms 配列に格納するパラメータ。
-     * @throws SQLException データベースアクセスエラー。
+     * @throws SQLException SQLエラー。
      */
     private void setSQLParams(CallableStatement mStmt, ArrayList<Object> prms) throws SQLException {
         if (null != prms) {
@@ -250,9 +253,9 @@ public final class Database {
     /**
      * 単一の ResultSetオブジェクトを返すSqlを直接実行する。
      * 
-     * @param sql　実行されるsql。
-     * @return　指定されたクエリーによって作成されたデータを含む ResultSet オブジェクト。null にはならない。
-     * @throws SQLException データベースアクセスエラー。
+     * @param sql 実行されるsql。
+     * @return ResultSet オブジェクト。null にはならない。
+     * @throws SQLException SQLエラー。
      */
     public ResultSet executeQuerySql(String sql) throws SQLException{
     	try{
@@ -267,9 +270,9 @@ public final class Database {
 	}
     /**
      * INSERT文、UPDATE文、DELETE文を直接実行する。
-     * @param sql　実行されるsql。
-     * @return　実行された行数を戻す。 
-     * @throws SQLException データベースアクセスエラー。
+     * @param sql SQL文。
+     * @return データ行数。 
+     * @throws SQLException SQLエラー。
      */
     public int executeUpdateSql(String sql) throws SQLException{
     	CallableStatement mStmt=null;
@@ -287,11 +290,8 @@ public final class Database {
     }
     /**
      * 任意のSQL文を直接実行する。
-     * @param groupId　Sqlを外部化するXMLのファイル名（拡張子を除く）。
-     * @param sqlId SqlXMLファイルのsqlタグに定義されるId。
-     * @param params　Sqlに利用される引数を格納するマップ。
-     * @throws efwException フレームワークの実行時エラー。
-     * @throws SQLException データベースアクセスエラー。
+     * @param sql SQL文。
+     * @throws SQLException SQLエラー。
      */
     public void executeSql(String sql) throws SQLException{
     	CallableStatement mStmt=null;

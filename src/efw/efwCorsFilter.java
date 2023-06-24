@@ -22,8 +22,7 @@ import efw.properties.EfwAuthBean;
 import efw.properties.PropertiesManager;
 import efw.taglib.Client;
 /**
- * efwCorsFilterはcookieにSameSiteとSecureを追加
- * Cors機能のため
+ * efwCorsFilterはリクエストを加工しCors機能を実現する。
  * @author Chang Kejun
  */
 @WebFilter(filterName="efwCorsFilter", urlPatterns={
@@ -35,6 +34,12 @@ import efw.taglib.Client;
 		"/partServlet"
 })
 public final class efwCorsFilter implements Filter {
+	/**
+	 * フィルタを実行する。
+	 * @param request リクエスト。
+	 * @param response リスポンス。
+	 * @param chain チェーン。
+	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req=(HttpServletRequest)request;
@@ -136,6 +141,11 @@ public final class efwCorsFilter implements Filter {
 		return asMain;
 	}
 	private static final HashMap<String,Map<String,Object>> callToSubs=new HashMap<>();
+	/**
+	 * エンコーダを取得する。
+	 * @param subAppUrl サブアプリのURL。
+	 * @return エンコーダ。
+	 */
 	public static Cipher getEncoder(String subAppUrl) {
 		for(String key : callToSubs.keySet()) {
 			HashMap<String,Object> map=(HashMap<String,Object>)callToSubs.get(key);
@@ -149,20 +159,27 @@ public final class efwCorsFilter implements Filter {
 	}
 	private static String efwDecodeKey=null;
 	private static Cipher decoder=null;
+	/**
+	 * デコーダを取得する。
+	 * @return デコーダ。
+	 */
 	public static Cipher getDecoder() {
 		return decoder;
 	}
 	
 	private static EfwAuthBean currentAuthBean=null;
+	/**
+	 * 現行権限ビーンを取得する。
+	 * @return 現行権限ビーン。
+	 */
 	public static EfwAuthBean getCurrentAuthBean() {
 		return currentAuthBean;
 	}
 	
 	/**
 	 * フィルタ初期化の代わりに、efwServletから初期化するための関数。
-	 * @throws IOException 
 	 */
-	public static synchronized void init() throws IOException{
+	protected static void init() {
 		asMain = PropertiesManager.getBooleanProperty(PropertiesManager.EFW_AS_MAIN, asMain);
 		
 		if (asMain) {//メインアプリの場合
@@ -206,8 +223,15 @@ public final class efwCorsFilter implements Filter {
 		currentAuthBean=new EfwAuthBean();
 	}
 	
+	/**
+	 * 初期化する。
+	 * @param config コンフィグ。
+	 */
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {}
+	public void init(FilterConfig config) throws ServletException {}
+	/**
+	 * 破棄する。
+	 */
 	@Override
 	public void destroy() {}
 }

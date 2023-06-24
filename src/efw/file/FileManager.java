@@ -34,69 +34,48 @@ public final class FileManager {
      */
     private static final String EFW_UPLOAD="EFW_UPLOAD";    
 	/**
-	 * 拡張子で指定相対パス内のファイル＆フォルダのリストを取得する
-	 * @param path　ファイルの格納パスからの相対パス
-	 * @param ext　拡張子
-	 * @return　ファイルとサブフォルダのリスト
-	 */
-	public static File[] getListByExt(String path,String ext){
-		File fl=get(path);
-		ArrayList<File> temp=new ArrayList<File>();
-		if(fl.exists()){//もしフォルダが存在する場合
-			File[] files= fl.listFiles();
-	 		for(int i=0;i<files.length;i++){
-	 			if (files[i].getName().endsWith("."+ext)){
-	 				temp.add(files[i]);
-	 			}
-	 		}
-		}
- 		File[] ret=new File[temp.size()];
- 		for(int i=0;i<temp.size();i++){
- 			ret[i]= temp.get(i);
- 		}
-		return ret;
-	}
-	public static File[] getListByExtByAbsolutePath(String absolutePath,String ext){
-		File fl=new File(absolutePath);
-		ArrayList<File> temp=new ArrayList<File>();
-		if(fl.exists()){//もしフォルダが存在する場合
-			File[] files= fl.listFiles();
-	 		for(int i=0;i<files.length;i++){
-	 			if (files[i].getName().endsWith("."+ext)){
-	 				temp.add(files[i]);
-	 			}
-	 		}
-		}
- 		File[] ret=new File[temp.size()];
- 		for(int i=0;i<temp.size();i++){
- 			ret[i]= temp.get(i);
- 		}
-		return ret;
-	}
-	/**
-	 * 指定相対パス内のファイル＆フォルダのリストを取得する
-	 * @param path　ファイルの格納パスからの相対パス
-	 * @return　ファイルとサブフォルダのリスト
+	 * 相対パスフォルダ内のファイル＆フォルダのリストを取得する。
+	 * @param path 相対パスのフォルダ。
+	 * @return ファイルとサブフォルダのリスト。
 	 */
 	public static File[] getList(String path){
 		File fl=get(path);
 		return fl.listFiles();
 	}
+	/**
+	 * 絶対パスフォルダ内のファイル＆フォルダのリストを取得する。
+	 * @param absolutePath 絶対パスフォルダ。
+	 * @return ファイルとサブフォルダのリスト。
+	 */
 	public static File[] getListByAbsolutePath(String absolutePath){
 		File fl=new File(absolutePath);
 		return fl.listFiles();
 	}
+	/**
+	 * 相対パスのファイルあるいはフォルダを取得する。
+	 * @param path 相対パス。
+	 * @return ファイルオブジェクト。
+	 */
 	public static File get(String path){
 		if(path==null)path="";
 		File fl=new File(framework.getStorageFolder()+"/"+path);
 		return fl;
 	}
+	/**
+	 * 絶対パスのファイルあるいはフォルダを取得する。
+	 * @param absolutePath 絶対パス。
+	 * @return ファイルオブジェクト。
+	 */
 	public static File getByAbsolutePath(String absolutePath){
 		if(absolutePath==null)absolutePath="";
 		File fl=new File(absolutePath);
 		return fl;
 	}
-	
+	/**
+	 * フォルダサイズを取得する。
+	 * @param dir フォルダ。
+	 * @return サイズ。
+	 */
 	public static long getFolderSize(File dir) {
 	    long size = 0;
 	    for (File file : dir.listFiles()) {
@@ -108,7 +87,12 @@ public final class FileManager {
 	    }
 	    return size;
 	}
-
+	/**
+	 * ファイルあるいはフォルダを削除する。
+	 * フォルダの場合再帰的に削除する。
+	 * @param f ファイルあるいはフォルダ。
+	 * @throws IOException 通信エラー。
+	 */
 	public static void remove(File f) throws IOException{
         if(!f.exists()) return;	//ファイルまたはディレクトリが存在しない場合は何もしない
         else if(f.isFile()) {//ファイルの場合は削除する
@@ -131,7 +115,7 @@ public final class FileManager {
 	 * @param paths 圧縮対象のファイル配列。
 	 * @throws IOException ファイルアクセスエラー。
 	 */
-	public static void zip(String filename, String[] paths, String basePath, boolean isAbs) throws IOException{
+	protected static void zip(String filename, String[] paths, String basePath, boolean isAbs) throws IOException{
 		//filename is the zip file name, so it is in storage.
 		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(get(filename))));
 		try{
@@ -176,9 +160,9 @@ public final class FileManager {
 	}
 ////////////////////////////////////////////////////////////////
 	/**
-	 * ひとつのアップロードファイルを
-	 * @param f
-	 * @throws IOException
+	 * ひとつのアップロードファイルを保存する。
+	 * @param f 保存先。
+	 * @throws IOException 通信エラー。
 	 */
 	public synchronized static void saveSingleUploadFile(File f) throws IOException{
 		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
@@ -197,10 +181,10 @@ public final class FileManager {
 		}
 		session.removeAttribute(EFW_UPLOAD);
 	}
-	/***
-	 *　アップロードされたファイルを全部相対パスで保存する。
-	 * @param path　スドレジからの相対パス
-	 * @throws IOException 
+	/**
+	 *アップロードされたファイルを全部相対パスで保存する。
+	 * @param f スドレジからの相対パス。
+	 * @throws IOException 通信エラー。
 	 */
 	public synchronized static void saveUploadFiles(File f) throws IOException{
 		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
@@ -228,7 +212,7 @@ public final class FileManager {
 		}
 		session.removeAttribute(EFW_UPLOAD);
 	}
-	/***
+	/**
 	 * アップロードされて一時保存中のファイルを削除する。
 	 */
 	public synchronized static void removeUploadFiles(){
@@ -248,10 +232,11 @@ public final class FileManager {
 		session.removeAttribute(EFW_UPLOAD);
 	}
 	
-	/***
-	 * アッポロードファイル名と一時ファイルパスをセッションに格納する
-	 * @param uploadFileName　アッポロードファイル名（クライアントパスと名称）
-	 * @param tempFileAbsolutePath　一時ファイルパス（サーバ絶対パスと名称）
+	/**
+	 * アッポロードファイル名と一時ファイルパスをセッションに格納する。
+	 * @param uploadPath アップロードパス。（クライアントパス）。
+	 * @param uploadFileName アッポロードファイル名（クライアントファイル名称）。
+	 * @param tempFileAbsolutePath 一時ファイルパス（サーバ絶対パスと名称）。
 	 */
 	public synchronized static void keepUploadFile(String uploadPath,String uploadFileName,String tempFileAbsolutePath){
 		HttpServletRequest request=(HttpServletRequest)framework.getRequest();
@@ -968,6 +953,11 @@ public final class FileManager {
 			put("zaz", "application/vnd.zzazz.deck+xml");
         }
     };
+    /**
+     * メディアタイプを取得する。
+     * @param absolutePath ファイル絶対パス。
+     * @return メディアタイプ。
+     */
 	public static String getMimeType(String absolutePath){
 		File fl=new File(absolutePath);
 		if (fl.isDirectory()){
@@ -984,8 +974,8 @@ public final class FileManager {
 	}
 	/**
 	 * フォルダを作成する
-	 * @param p
-	 * @throws Exception 
+	 * @param p フォルダ。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void makeDir(File p) throws IOException{
 		if (!p.exists()){
@@ -996,10 +986,10 @@ public final class FileManager {
 	}
 	/**
 	 * テキストファイルを読み取る。文字コードは自動判断する。
-	 * @param f
-	 * @param encoding
-	 * @return
-	 * @throws IOException
+	 * @param f ファイルオブジェクト。
+	 * @param encoding エンコード。
+	 * @return ファイル内容。
+	 * @throws IOException 通信エラー。
 	 */
 	public static String readAllLines(File f,String encoding) throws IOException{
         if(encoding!=null){
@@ -1010,9 +1000,9 @@ public final class FileManager {
 	}
 	/**
 	 * ファイルまたはフォルダ名を変更する。
-	 * @param f
-	 * @param newName
-	 * @throws IOException
+	 * @param f 元ファイル。
+	 * @param newName 新名称。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void rename(File f,String newName) throws IOException{
 		Path source = Paths.get(f.getAbsolutePath());
@@ -1020,9 +1010,9 @@ public final class FileManager {
 	}
 	/**
 	 * ファイルまたはフォルダを移動する。
-	 * @param orgFile
-	 * @param newFile
-	 * @throws IOException
+	 * @param orgFile 元場所。
+	 * @param newFile 新場所。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void move(File orgFile,File newFile) throws IOException{
 		Path source = Paths.get(orgFile.getAbsolutePath());
@@ -1030,28 +1020,28 @@ public final class FileManager {
 		Files.move(source, target);
 	}
 	/**
-	 * からのファイルを作成する。
-	 * @param path
-	 * @throws IOException
+	 * 空のファイルを作成する。
+	 * @param f ファイルオブジェクト。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void makeFile(File f) throws IOException{
 		if (!f.exists())f.createNewFile();
 	}
 	/**
 	 * テキストを書き込む。
-	 * @param f
-	 * @param content
-	 * @param encoding
-	 * @throws IOException
+	 * @param f 書込み先。
+	 * @param content 内容。
+	 * @param encoding エンコード。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void writeAllLines(File f,String content,String encoding) throws IOException{
 		Files.write(Paths.get(f.getAbsolutePath()), content.getBytes(encoding));
 	}
 	/**
 	 * ファイルを複製する。
-	 * @param srcf
-	 * @param destf
-	 * @throws IOException
+	 * @param srcf コピー元。
+	 * @param destf コピー先。
+	 * @throws IOException 通信エラー。
 	 */
 	public static void duplicate(File srcf,File destf) throws IOException{
 		duplicateByAbsolutePath(srcf.getAbsolutePath(),destf.getAbsolutePath());
@@ -1083,8 +1073,8 @@ public final class FileManager {
 	}
 	/**
 	 * 一時ファイル名を取る
-	 * @return　ファイル名
-	 * @throws IOException
+	 * @return ファイル名
+	 * @throws IOException 一時ファイル名作成エラー。
 	 */
 	public static String getTempFileName() throws IOException{
 		File fl=File.createTempFile("efw", "tmp");

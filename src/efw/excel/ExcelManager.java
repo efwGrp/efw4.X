@@ -4,6 +4,7 @@ package efw.excel;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import efw.ExcelFileIsNotLegalException;
 import efw.framework;
 import efw.file.FileManager;
 /**
@@ -13,32 +14,30 @@ public final class ExcelManager {
 	/**
 	 * 1つExcelを開く。
 	 * @param path Excelのパス。
+	 * @param isLarge ビッグファイルモード。
 	 * @return Excelのオブジェクト。
-	 * @throws Exception
+	 * @throws ExcelFileIsNotLegalException Excelファイルエラー。
 	 */
-	public static Excel open(String path,boolean isLarge) throws Exception{
-		if(framework.getExcels()==null)
-		framework.setExcels(new HashMap<String,Excel>());
-		try{
+	public static Excel open(String path,boolean isLarge) throws ExcelFileIsNotLegalException {
+		try {
 			Excel excel=new Excel(FileManager.get(path),isLarge);
-			framework.getExcels().put(excel.getKey(),excel);
+			framework.setExcel(excel.getKey(),excel);
 			return excel;
-		}catch(Exception e){
-	        e.printStackTrace();
-			throw e;
+		}catch(Exception e) {//ここでは詳細のExceptionをキャッチできない。そうしたらそれらのクラスをインポートする必要。
+			throw new ExcelFileIsNotLegalException(path,e.getMessage());
 		}
 	}
 	/**
-	 * 開いた一つのファイルを閉じる
-	 * @param path
+	 * 開いた一つのファイルを閉じる。
+	 * @param flnm ファイル名。
 	 */
 	public static void close(String flnm) {
 		try {
-			Excel excel=framework.getExcels().get(flnm);
-			framework.getExcels().remove(flnm);
+			Excel excel=framework.getExcel(flnm);
+			framework.removeExcel(flnm);
 			excel.close();
 		}catch(Exception ex) {
-			ex.printStackTrace();
+			ex.printStackTrace();//エラーをなげない。
 		}
 	}
 	/**
@@ -53,7 +52,7 @@ public final class ExcelManager {
 			try{
 				excel.close();//2回閉じても大丈夫。
 			}catch(Exception ex){
-				ex.printStackTrace();
+				ex.printStackTrace();//エラーをなげない。
 			}
 		}
 		framework.removeExcels();

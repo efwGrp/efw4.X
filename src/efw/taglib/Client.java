@@ -9,8 +9,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import efw.framework;
 /**
- * Clientタグを処理するクラス。
- * <efw:Client/>
+ * Clientタグを処理するクラス。<br>
+ * &lt;efw:Client lang="jp" mode="jquery-ui" theme="base" baseurl="." nopromise="false"/&gt;<br>
+ * &lt;efw:Client lang="jp" mode="bootstrap" major="4"/&gt;<br>
  * headタグ内に追加すれば、efwの基本機能を利用できる。
  * @author Chang Kejun
  *
@@ -23,59 +24,98 @@ public final class Client extends TagSupport{
 	private String lang="en";//en cn jp
 	private String major="4";
 	private String nopromise="false";
-	
+	/**
+	 * ベースURLを取得する。
+	 * @return ベースURL。
+	 */
 	public String getBaseurl() {
 		return baseurl;
 	}
-
+	/**
+	 * ベースURLを設定する。
+	 * @param baseurl ベースURL。
+	 */
 	public void setBaseurl(String baseurl) {
 		this.baseurl = Util.translateAttr(pageContext,baseurl);
 	}
-
+	/**
+	 * モードを取得する。
+	 * @return モード。
+	 */
 	public String getMode() {
 		return mode;
 	}
-
+	/**
+	 * モードを設定する。
+	 * @param mode モード。
+	 */
 	public void setMode(String mode) {
 		this.mode = Util.translateAttr(pageContext,mode);
 	}
-
+	/**
+	 * jquery-uiシーマを取得する。
+	 * @return jquery-uiシーマ。
+	 */
 	public String getTheme() {
 		return theme;
 	}
-
+	/**
+	 * jquery-uiシーマを設定する。
+	 * @param theme jquery-uiシーマ。
+	 */
 	public void setTheme(String theme) {
 		this.theme = Util.translateAttr(pageContext,theme);
 	}
-
+	/**
+	 * 言語を取得する。
+	 * @return 言語。
+	 */
 	public String getLang() {
 		return lang;
 	}
-
+	/**
+	 * 言語を設定する。
+	 * @param lang 言語。
+	 */
 	public void setLang(String lang) {
 		this.lang = Util.translateAttr(pageContext,lang);
 	}
-
+	/**
+	 * bootstrapメージャーを取得する。
+	 * @return bootstrapメージャー。
+	 */
 	public String getMajor() {
 		return major;
 	}
-
+	/**
+	 * bootstrapメージャーを設定する。
+	 * @param major bootstrapメージャー。
+	 */
 	public void setMajor(String major) {
 		this.major = Util.translateAttr(pageContext,major);
 	}
-	
+	/**
+	 * promiseサポート無しフラグを取得する。
+	 * @return promiseサポート無しフラグ。
+	 */
 	public String getNopromise() {
 		return nopromise;
 	}
-
+	/**
+	 * promiseサポート無しフラグを設定する。
+	 * @param nopromise promiseサポート無しフラグ。
+	 */
 	public void setNopromise(String nopromise) {
 		this.nopromise = Util.translateAttr(pageContext,nopromise);
 	}
-	
+	/**
+	 * リクエストに言語を記録する属性名。
+	 */
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
 	/**
-	 * タグ処理。
-	 *efwの基本機能を利用するため、複数のcssとjsを取り込むタグを作成する。
+	 * タグを実行する。
+	 * efwの基本機能を利用するため、複数のcssとjsをhtmlに取り込む。
+	 * @return SKIP_BODY。
 	 */
 	@Override
 	public int doStartTag(){

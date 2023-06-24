@@ -26,7 +26,10 @@ import efw.properties.PropertiesManager;
 public final class efwFilter implements Filter {
 	
 	/**
-	 * フィルタ実行関数。
+	 * フィルタを実行する。
+	 * @param request リクエスト。
+	 * @param response リスポンス。
+	 * @param chain チェーン。
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
@@ -85,8 +88,15 @@ public final class efwFilter implements Filter {
 		framework.removeI18nProp();//jsp画面のタグに多国語対応のメッセージがあり、そのThreadのi18propを削除
 	}
 
+	/**
+	 * 初期化する。
+	 * @param config コンフィグ。
+	 */
 	@Override
 	public void init(FilterConfig config) throws ServletException {}
+	/**
+	 * 破棄する。
+	 */
 	@Override
 	public void destroy() {}
 

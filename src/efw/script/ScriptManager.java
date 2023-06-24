@@ -28,55 +28,65 @@ public final class ScriptManager {
     private static ScriptEngine _se;
     
 	/**
-	 * サーブレットから設定情報を受け取り、スクリプトエンジン管理オブジェクトを初期化する。
-	 * @param eventFolder イベントJavaScriptファイルの格納パス。
-	 * @throws ScriptException 
+	 * スクリプトエンジンを初期化する。
+	 * @throws ScriptException スクリプトエラー。
 	 */
 	public static void init() throws ScriptException{
 		System.setProperty("polyglot.js.nashorn-compat","true");//graalvmのため、nashornの場合無効だが影響なし
-        System.setProperty("nashorn.args", "--language=es6");
-        ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
-        if (ScriptManager._se==null) {
-            System.clearProperty("nashorn.args");
-            ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
-        }
-        ScriptManager._se.put(KEY_EVENTFOLDER, framework.getEventFolder());
-        ScriptManager._se.put(KEY_ISDEBUG, framework.getIsDebug());
-        ScriptManager._se.eval("load('classpath:efw/resources/server/efw.doInit.js')");
+		System.setProperty("nashorn.args", "--language=es6");
+		ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+		if (ScriptManager._se==null) {
+		    System.clearProperty("nashorn.args");
+		    ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+		}
+		ScriptManager._se.put(KEY_EVENTFOLDER, framework.getEventFolder());
+		ScriptManager._se.put(KEY_ISDEBUG, framework.getIsDebug());
+		ScriptManager._se.eval("load('classpath:efw/resources/server/efw.doInit.js')");
 	}
 	/**
-	 * リクエストをサーバーサイトJavaScriptに転送する。
-	 * もしスレッドにスクリプトエンジンが付けられていないなら、スクリプトエンジンを作成し、共通とするefw.server.jsを実行する。
-	 * @param req JQueryがefwサーブレット へ要求したJSON内容を含む HttpServletRequest オブジェクト。
-	 * @return 実行結果のJSON文字列を返す。
-	 * @throws NoSuchMethodException 
+	 * サーバサイトイベントを実行する。
+	 * @param req リクエストからjsイベントへの依頼情報。
+	 * @return 実行結果のJSON文字列。
+	 * @throws NoSuchMethodException 関数なしエラー。
 	 * @throws ScriptException スクリプトエラー。
 	 */
-	public static String doPost(String req) throws Exception{
+	public static String doPost(String req) throws NoSuchMethodException, ScriptException{
 		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doPost", req);
 	}
-	
-	public static String doDestroy(String req) throws Exception{
+	/**
+	 * スクリプトエンジンを破棄する。
+	 * @throws NoSuchMethodException 関数なしエラー。
+	 * @throws ScriptException スクリプトエラー。
+	 */
+	public static void doDestroy() throws NoSuchMethodException, ScriptException{
 		Invocable invocable = (Invocable) _se;
-		return (String)invocable.invokeFunction("doDestroy", req);
+		invocable.invokeFunction("doDestroy");
 	}
 	/**
 	 * バッチを実行する。
 	 * doPostと比較する場合、HttpServletRequestがないようにすること。
-	 * @param req batchがefw へ要求したJSON内容を含む オブジェクト。
-	 * @return 実行結果のJSON文字列を返す。
-	 * @throws NoSuchMethodException 
+	 * @param req バッチからjsイベントへの依頼情報。
+	 * @return 実行結果のJSON文字列。
+	 * @throws NoSuchMethodException 関数なしエラー。
 	 * @throws ScriptException スクリプトエラー。
 	 */
-	public static String doBatch(String req) throws Exception {
+	public static String doBatch(String req) throws NoSuchMethodException, ScriptException{
 		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doBatch", req);
 	}
-	
-	public static String doRestAPI(String eventId,String reqKeys,String httpMethod,String reqParams) throws Exception {
+	/**
+	 * RESTサービスを実行する。
+	 * @param eventId RESTイベントID。
+	 * @param reqKeys RESTイベントのURLのキー。
+	 * @param httpMethod HTTPメソッド。
+	 * @param reqParams RESTイベントのURLのパラメータ。
+	 * @return 実行結果のJSON文字列。
+	 * @throws NoSuchMethodException 関数なしエラー。
+	 * @throws ScriptException スクリプトエラー。
+	 */
+	public static String doRestAPI(String eventId,String reqKeys,String httpMethod,String reqParams) throws NoSuchMethodException, ScriptException{
 		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doRestAPI", eventId, reqKeys, httpMethod, reqParams);
-		
 	}
 }

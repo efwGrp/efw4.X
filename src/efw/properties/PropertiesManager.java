@@ -11,79 +11,97 @@ import java.util.Properties;
  */
 public final class PropertiesManager {
 	/**
-	 * フレームワークに利用するプロパティファイルの名称。
+	 * WEBアプリ用プロパティファイル名。
 	 * 「efw.properties」に固定。
 	 */
     public static final String EFW_PROPERTIES_FILE_NAME = "efw.properties";
     /**
-     * デバッグモードを制御するフラグのプロパティキー。
+     * デバッグモードフラグ。
      * 「efw.isdebug」の定数。
      */
     public static final String EFW_ISDEBUG ="efw.isdebug";
     /**
-     * クロスドメイン通信設定のプロパティキー。
+     * クロスドメイン通信設定。
      * 「efw.cors」の定数。
      */
     public static final String EFW_CORS ="efw.cors";
     /**
-     * フレームワークに利用するjdbcリソースの名称のプロパティキー。
+     * デフォルトjdbcリソースの名称。
      * 「efw.jdbc.resource」の定数。
      */
     public static final String EFW_JDBC_RESOURCE ="efw.jdbc.resource";
-    public static final String EFW_JDBC_RESOURCE_URL ="efw.jdbc.resource.url";
-    public static final String EFW_JDBC_RESOURCE_USERNAME ="efw.jdbc.resource.username";
-    public static final String EFW_JDBC_RESOURCE_PASSWORD ="efw.jdbc.resource.password";
-    
     /**
-     * フレームワークに利用するmailリソースの名称のプロパティキー。
+     * バッチ用jdbcリソースURL。
+     * 「efw.jdbc.resource.url」の定数。
+     */
+    public static final String EFW_JDBC_RESOURCE_URL ="efw.jdbc.resource.url";
+    /**
+     * バッチ用jdbcリソースユーザ名。
+     * 「efw.jdbc.resource.username」の定数。
+     */
+    public static final String EFW_JDBC_RESOURCE_USERNAME ="efw.jdbc.resource.username";//for batch
+    /**
+     * バッチ用jdbcリソースパスワード。
+     * 「efw.jdbc.resource.password」の定数。
+     */
+    public static final String EFW_JDBC_RESOURCE_PASSWORD ="efw.jdbc.resource.password";//for batch
+    /**
+     * デフォルトmailリソースの名称。
      * 「efw.mail.resource」の定数。
      */
     public static final String EFW_MAIL_RESOURCE ="efw.mail.resource";
-    public static final String EFW_MAIL_USERNAME ="efw.mail.username";//for batch
-    public static final String EFW_MAIL_PASSWORD ="efw.mail.password";//for batch
-    
     /**
+     * バッチ用mailユーザ名。
+     * 「efw.mail.username」の定数。
+     */
+    public static final String EFW_MAIL_USERNAME ="efw.mail.username";//for batch
+    /**
+     * バッチ用mailパスワード。
+     * 「efw.mail.password」の定数。
+     */
+    public static final String EFW_MAIL_PASSWORD ="efw.mail.password";//for batch
+    /**
+     * brms利用フラグ。
      * 「efw.brms.import」の定数。
      */
     public static final String EFW_BRMS_IMPORT="efw.brms.import";
     /**
-     * イベントJavaScriptファイルの格納パスのプロパティキー。
+     * イベントフォルダ。
      * 「efw.event.folder」の定数。
      */
     public static final String EFW_EVENT_FOLDER ="efw.event.folder";
     /**
-     * Sqlを外部化するXMLファイルの格納パスのプロパティキー。
+     * SQLフォルダ。
      * 「efw.sql.folder」の定数。
      */
 	public static final String EFW_SQL_FOLDER="efw.sql.folder";
     /**
-     * ファイルの格納パスのプロパティキー。
+     * ストレジフォルダ。
      * 「efw.storage.folder」の定数。
      */
 	public static final String EFW_STORAGE_FOLDER="efw.storage.folder";
 	/**
-     * メールテンプレートの格納パスのプロパティキー。
+     * メールフォルダ。
      * 「efw.mail.folder」の定数。
 	 */
 	public static final String EFW_MAIL_FOLDER="efw.mail.folder";
 	/**
-     * 国際化メッセージの格納パスのプロパティキー。
+     * 多国語フォルダ。
      * 「efw.i18n.folder」の定数。
 	 */
 	public static final String EFW_I18N_FOLDER="efw.i18n.folder";
 	/**
-	 * ログ出力レベルのプロパティキー。
+	 * ログ出力レベル。
 	 *  「efw.logging.level」の定数。
 	 */
 	public static final String EFW_LOG_OUPUT_LEVEL = "efw.logging.level";
 	/**
-	 * ログインチェックフラグのプロパティキー。
+	 * ログインチェックフラグ。
 	 *  「efw.login.check」の定数。
 	 */
 	public static final String EFW_LOGIN_CHECK = "efw.login.check";
-	
 	/**
-	 * ログインセッション情報のプロパティキー。
+	 * ログインセッション情報。
 	 *  「efw.login.key」の定数。
 	 */
 	public static final String EFW_LOGIN_KEY = "efw.login.key";
@@ -93,17 +111,18 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_LOGIN_URL="efw.login.url";
 	/**
-	 * 権限チェックフラグのプロパティキー。
+	 * 権限チェックフラグ。
 	 * 「efw.auth.check」の定数。
 	 */
 	public static final String EFW_AUTH_CHECK = "efw.auth.check";
 	/**
-	 * 権限セッション情報のプロパティキー。
+	 * 権限セッション情報。
 	 * 「efw.auth.key」の定数。
 	 */
 	public static final String EFW_AUTH_KEY = "efw.auth.key";
 	/**
-	 * 権限チェック全ケース、カンマ区切り。
+	 * カンマ区切りロール配列。
+	 * 権限チェックの全ケース。
 	 * 「efw.auth.cases」の定数。
 	 */
 	public static final String EFW_AUTH_CASES = "efw.auth.cases";
@@ -128,61 +147,75 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_SYSTEM_ERROR_URL="efw.system.error.url";
 	/**
-	 * ログインチェック不要なURLの正規表現文字列
+	 * ログインチェック不要なURLのパターン。
+	 * 「efw.outoflogin.url.pattern」の定数。
 	 */
 	public static final String EFW_OUTOFLOGIN_URL_PATTERN="efw.outoflogin.url.pattern";
 	/**
-	 * ログインチェック不要なイベントIDの正規表現文字列
+	 * ログインチェック不要なイベントIDのパターン。
+	 * 「efw.outoflogin.eventid.pattern」の定数。
 	 */
 	public static final String EFW_OUTOFLOGIN_EVENTID_PATTERN="efw.outoflogin.eventid.pattern";
 	/**
-	 * フォーマット関数のROUNDER
+	 * フォーマット関数のROUNDER。
+	 * 「efw.format.rounder」の定数。
 	 */
 	public static final String EFW_FORMAT_ROUNDER="efw.format.rounder";
 	/**
-	 * アプリはメインとして動く
+	 * メインアプリフラグ。
+	 * 「efw.as.main」の定数。
 	 */
 	public static final String EFW_AS_MAIN="efw.as.main";
 	/**
-	 * メインアプリに利用されるサブアプリ
+	 * メインアプリに利用されるサブアプリ。
+	 * 「efw.call.to.subs」の定数。
 	 */
 	public static final String EFW_CALL_TO_SUBS="efw.call.to.subs";
 	/**
-	 * サブ部品のアプリURL
+	 * サブ部品のアプリURL。
+	 * 「efw.appurl」の定数。
 	 */
 	public static final String EFW_APPURL="efw.appurl";
 	/**
-	 * サブの暗号化キー
+	 * サブの暗号化キー。
+	 * 「efw.decodekey」の定数。
 	 */
 	public static final String EFW_DECODEKEY ="efw.decodekey";
-	
-	
 	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */
 	private static final Properties prop = new Properties();
+	/**
+	 * プロパティオブジェクトを取得する。
+	 * @return プロパティオブジェクト。
+	 */
 	public static Properties getProp() {
 		return PropertiesManager.prop;
 	}
     /**
-     * フレームワークに利用するプロパティファイルから、プロパティ値をプロパティオブジェクトにロードする。
-     * @throws IOException　プロパティファイルの読み取りエラー。
+     * サーブレットから初期化する。
+     * @throws IOException 通信エラー。
      */
     public static void init() throws IOException{
-    	InputStream inptstrm;
-		prop.load(inptstrm=Thread.currentThread().getContextClassLoader().getResourceAsStream(PropertiesManager.EFW_PROPERTIES_FILE_NAME));
-		inptstrm.close();
+    	try(InputStream inptstrm=Thread.currentThread().getContextClassLoader().getResourceAsStream(PropertiesManager.EFW_PROPERTIES_FILE_NAME)){
+    		prop.load(inptstrm);
+		}
     }
+    /**
+     * バッチから初期化する。
+     * @param propertiesFileName プロパティファイル名。
+     * @throws IOException 通信エラー。
+     */
     public static void initBatch(String propertiesFileName)throws IOException{
-    	InputStream inptstrm;
-		prop.load(inptstrm=new FileInputStream(propertiesFileName));
-		inptstrm.close();
+    	try(InputStream inptstrm=new FileInputStream(propertiesFileName)){
+    		prop.load(inptstrm);
+		}
     }
     /**
      * 文字列のプロパティを取得する。
-     * @param key プロパティキー。
-     * @param defaultValue デフォルト値。
-     * @return　プロパティ値を返す。
+     * @param key キー。
+     * @param defaultValue 初期値。
+     * @return 値。
      */
     public static String getProperty(String key,String defaultValue) {
     	String vl=prop.getProperty(key);
@@ -191,9 +224,9 @@ public final class PropertiesManager {
     }
     /**
      * ブールのプロパティを取得する。
-     * @param key プロパティキー。
-     * @param defaultValue デフォルト値。
-     * @return　プロパティ値を返す。
+     * @param key キー。
+     * @param defaultValue 初期値。
+     * @return 値。
      */
     public static boolean getBooleanProperty(String key,boolean defaultValue) {
     	String vl=prop.getProperty(key);
@@ -206,9 +239,9 @@ public final class PropertiesManager {
 
     /**
      * 数字のプロパティを取得する。
-     * @param key プロパティキー。
-     * @param defaultValue デフォルト値。
-     * @return　プロパティ値を返す。
+     * @param key キー。
+     * @param defaultValue 初期値。
+     * @return 値。
      */
     public static int getIntProperty(String key,int defaultValue) {
     	String vl=prop.getProperty(key);

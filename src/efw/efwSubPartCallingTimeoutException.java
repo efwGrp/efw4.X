@@ -2,6 +2,7 @@
 package efw;
 /**
  * サブアプリ部品呼び出しタイムアウトエラー。
+ * @author kejun.chang
  */
 public final class efwSubPartCallingTimeoutException extends efwException {
 	public efwSubPartCallingTimeoutException() {

@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import efw.framework;
-
+/**
+ * フレーワーク権限ビーン。
+ * @author kejun.chang
+ *
+ */
 public final class EfwAuthBean{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public EfwAuthBean() {
@@ -95,7 +99,6 @@ public final class EfwAuthBean{
 	 * ログインチェック対象外画面のイベントパターンの文字列。
 	 */
 	public String outOfloginEventIdPatternString="";
-	
 	/**
 	 * WelcomeのURLパターン
 	 */
@@ -128,9 +131,17 @@ public final class EfwAuthBean{
 	 * 権限チェック対象のセッションキー。
 	 */
 	public String authKey ="USER_AUTH";
-	
+	/**
+	 * カンマ区切りのロール配列。
+	 */
 	public String authCases  ="";
+	/**
+	 * ロールごとの定義情報。
+	 */
 	public HashMap<String, HashMap<String,String>> authCasesMap =new HashMap<String, HashMap<String,String>>();
+	/**
+	 * ロールごとのコンパイル後の定義情報。
+	 */
 	public HashMap<String, HashMap<String,Pattern>> authCasePatternsMap =new HashMap<String, HashMap<String,Pattern>>();
 	/**
 	 * エラー画面のURLパターン。

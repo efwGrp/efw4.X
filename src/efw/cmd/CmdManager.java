@@ -1,8 +1,19 @@
 package efw.cmd;
 
-import efw.CmdExecuteException;
+import java.io.IOException;
 
+import efw.CmdExecuteException;
+/**
+ * コマンド実行を管理するクラス。
+ * @author kejun.chang
+ *
+ */
 public final class CmdManager {
+	/**
+	 * コマンドを実行する。
+	 * @param params コマンドとパラメータの配列。
+	 * @throws CmdExecuteException コマンド実行エラー。
+	 */
 	public static void execute(String[] params) throws CmdExecuteException {
 		try {
 			ProcessBuilder pb = new ProcessBuilder(params);
@@ -32,7 +43,9 @@ public final class CmdManager {
 			}
 		}catch(CmdExecuteException e) {
 			throw e;
-		}catch(Exception e) {
+		}catch(IOException e) {
+			throw new CmdExecuteException(params,e.getMessage());
+		}catch(InterruptedException e) {
 			throw new CmdExecuteException(params,e.getMessage());
 		}
 	}
