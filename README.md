@@ -135,7 +135,12 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <td><a href="help/excel.removeSheet.md">removeSheet</a></td>
 <td><a href="help/excel.setSheetOrder.md">setSheetOrder</a></td>
 <td><a href="help/excel.setActiveSheet.md">setActiveSheet</a></td>
+</tr>
+<tr><td></td>
+<td><a href="help/excel.getMaxRow.md">getMaxRow</a></td>
 <td><a href="help/excel.setPrintArea.md">setPrintArea</a></td>
+<td><a href="help/excel.showSheet.md">showSheet</a></td>
+<td><a href="help/excel.hideSheet.md">hideSheet</a></td>
 </tr>
 <tr><td></td>
 <td><a href="help/excel.addRow.md">addRow</a></td>
@@ -150,16 +155,11 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <td><a href="help/excel.hideCol.md">hideCol</a></td>
 </tr>
 <tr><td></td>
-<td><a href="help/excel.setCell.md">setCell</a></td>
-<td><a href="help/excel.setLink.md">setLink</a></td>
-<td><a href="help/excel.showSheet.md">showSheet</a></td>
-<td><a href="help/excel.hideSheet.md">hideSheet</a></td>
-</tr>
-<tr><td></td>
 <td><a href="help/excel.getArray.md">getArray</a></td>
 <td><a href="help/excel.getSingle.md">getSingle</a></td>
 <td><a href="help/excel.getValue.md">getValue</a></td>
-<td><a href="help/excel.getMaxRow.md">getMaxRow</a></td>
+<td><a href="help/excel.setCell.md">setCell</a></td>
+<td><a href="help/excel.setLink.md">setLink</a></td>
 </tr>
 <tr><td></td>
 <td><a href="help/excel.isEncircled.md">isEncircled</a></td>
