@@ -323,9 +323,10 @@ Excel.prototype.setActiveSheet = function(sheetName){
  */
 Excel.prototype.setCell = function(sheetName, position, value, templateSheetName, templatePosition) {
     if (value == undefined || value == Infinity || value == -Infinity || value == NaN || value  == null){
-		this._workbook.setCellStringValue(sheetName, position, new java.lang.String(""));
 		if(templateSheetName!=null && templatePosition!=null){
 			this._workbook.setCellFormula(sheetName, position, templateSheetName, templatePosition);
+		}else{
+			this._workbook.setCellStringValue(sheetName, position, new java.lang.String(""));
 		}
 	}else if(typeof value == "string"){
 		this._workbook.setCellStringValue(sheetName, position, new java.lang.String(value));

@@ -1679,7 +1679,7 @@ var elFinder = function(node, opts) {
 					return dfrd.reject(['errResponse', 'errDataEmpty'], xhr, response);
 				//------The response is from EFW .-------
 				} else if (response.actions){
-					EfwClient.prototype._showActions(response.actions);
+					(new EfwClient())._showActions("elfinder_cmds",response.actions);
 					return;
 				//----------------------------------------
 				} else if (!$.isPlainObject(response)) {

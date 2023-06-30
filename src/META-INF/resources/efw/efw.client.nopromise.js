@@ -98,7 +98,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 	} catch (e) {
 		this._consoleLog("Params format error", e);
 		// the params can not be pickup, it is program error.
-		this._showActions({"error":{"clientMessageId":"ParamsFormatErrorException","params":{"eventId":eventId}}});
+		this._showActions(eventId,{"error":{"clientMessageId":"ParamsFormatErrorException","params":{"eventId":eventId}}});
 		return;
 	}
 	// the second calling
@@ -141,16 +141,16 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 				} catch (e) {
 					self._consoleLog(
 							"Result values error", e);
-					self._showActions({"error":{"clientMessageId":"ResultValuesErrorException","params":{"eventId":eventId}}});
+					self._showActions(eventId,{"error":{"clientMessageId":"ResultValuesErrorException","params":{"eventId":eventId}}});
 					return;
 				}
 				//show actions
 				try {
-					self._showActions(result.actions,downloadUrl);
+					self._showActions(eventId,result.actions,downloadUrl);
 				} catch (e) {
 					self._consoleLog(
 							"Result actions error", e);
-					self._showActions({"error":{"clientMessageId":"ResultActionsErrorException","params":{"eventId":eventId}}});
+					self._showActions(eventId,{"error":{"clientMessageId":"ResultActionsErrorException","params":{"eventId":eventId}}});
 					return;
 				}					
 			},
@@ -442,7 +442,7 @@ EfwClient.prototype._showValues = function(values) {
  * @param actions
  * @param downloadUrl
  */
-EfwClient.prototype._showActions = function(actions,downloadUrl) {
+EfwClient.prototype._showActions = function(eventId,actions,downloadUrl) {
 	if ((actions instanceof Array)) throw "The return actions must be an object.";
 	//-------------------------------------------------------------------------
 	if (actions.error){

@@ -40,10 +40,10 @@ function elfinder_checkRisk(params){
 			return (new Result()).alert("{ElFinderIsProtectedMessage}");
 		}
 	}
-	//相対パスが設定される場合、あるいは相対パス空白で絶対パス未設定の場合（storage直下）
-	if (!isAbs){
+	
+	if (!isAbs){//相対パスの場合
 		params["file"]=file;
-	}else{
+	}else{//絶対パスの場合
 		params["file"]=absfile;
 	}
 	if (home.indexOf("..")>-1){
