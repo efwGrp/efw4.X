@@ -74,7 +74,12 @@ public final class efwRestAPI extends HttpServlet{
 		} catch (Exception ex) {
 			framework.runtimeSLog(ex);
 			response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
-			//response.getWriter().print(otherError);//efw内部エラー。
+			try {
+				response.setStatus(500);
+				response.getWriter().print(ex.getMessage());//errorの詳細情報を渡す
+			} catch (IOException e) {
+				e.printStackTrace();
+			}//efw内部エラー。
 		}finally{
 			framework.removeI18nProp();
 			framework.removeThreadLogs();

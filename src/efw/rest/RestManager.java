@@ -64,13 +64,24 @@ public final class RestManager {
             try (BufferedReader responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(),framework.SYSTEM_CHAR_SET))){
                 String strLine;
                 StringBuffer reserveVal = new StringBuffer();
-                while ((strLine = responseBuffer.readLine()) != null) {
-                    if (strLine != null && !strLine.isEmpty()) {
-                        reserveVal.append(strLine);
-                    }
-                }
+				while ((strLine = responseBuffer.readLine()) != null) {
+				    if (strLine != null && !strLine.isEmpty()) {
+				        reserveVal.append(strLine);
+				    }
+				}
                 return reserveVal.toString();
-            }
+			} catch (IOException e) {
+				try (BufferedReader errBuffer = new BufferedReader(new InputStreamReader(httpConnection.getErrorStream(),framework.SYSTEM_CHAR_SET))){
+	                String strLine;
+	                StringBuffer reserveVal = new StringBuffer();
+					while ((strLine = errBuffer.readLine()) != null) {
+					    if (strLine != null && !strLine.isEmpty()) {
+					        reserveVal.append(strLine);
+					    }
+					}
+					throw new IOException(reserveVal.toString());
+				}
+			}
         } finally {
             if (httpConnection != null) {
                 httpConnection.disconnect();

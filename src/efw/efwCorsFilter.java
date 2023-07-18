@@ -91,7 +91,8 @@ public final class efwCorsFilter implements Filter {
 	private static void doCORSPreflight(HttpServletRequest request, HttpServletResponse response){
 		//if init is failed, return the info instead of throw exception
 		if (framework.getInitSuccessFlag()){
-			response.setHeader("Access-Control-Allow-Headers", "Connection,Content-Length,Content-Type,Host,Origin,Referer,User-Agent,X-Requested-With");
+			//allow header which requested.
+			response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
 			//cors support
 			if("*".equals(framework.getCors())){
 				response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));

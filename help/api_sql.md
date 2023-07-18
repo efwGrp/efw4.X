@@ -23,7 +23,7 @@ field1= :param1
 
 	&lt;/sql>
 	&lt;sql id="sql2">
-		&lt;include groupId="test" sqlId="sql1">
+		&lt;include groupId="test" sqlId="sql1"/>
 		order by field3, @param4
 	&lt;/sql>
 &lt;/sqls>
