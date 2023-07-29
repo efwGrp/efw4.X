@@ -3,6 +3,7 @@ package efw;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +57,10 @@ public final class efwRestAPI extends HttpServlet{
 					sb.append(",");
 				}
 				sb.append("\"");
-				sb.append(keys[i]);
+				sb.append(
+					new String(keys[i].getBytes(StandardCharsets.ISO_8859_1),framework.SYSTEM_CHAR_SET)
+					.replaceAll("\\\"", "\\\\\"").replaceAll("\\n", "\\\\n")
+						);
 				sb.append("\"");
 			}
 			sb.append("]");

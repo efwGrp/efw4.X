@@ -16,31 +16,45 @@ function EfwServerSession() {
  */
 EfwServerSession.prototype.get = function(key) {
 	var value= Packages.efw.framework.getRequest().getSession().getAttribute(key);
-	try{//if value is javascript object{} or array[],it will be error wthen getclass in 1.7
-		if (typeof value == "object") {
-			if (value == null) {
-				value = null;
-			} else if (value.getClass().getName() == "java.lang.String") {
-				value = "" + value;
-			} else if (value.getClass().getName() == "java.lang.Boolean") {
-				value = true && value;
-			} else if (value.getClass().getName() == "java.lang.Byte"
-					|| value.getClass().getName() == "java.lang.Short"
-					|| value.getClass().getName() == "java.lang.Integer"
-					|| value.getClass().getName() == "java.lang.Long"
-					|| value.getClass().getName() == "java.lang.Float"
-					|| value.getClass().getName() == "java.lang.Double"
-					|| value.getClass().getName() == "java.math.BigDecimal") {
-				value = 0 + new Number(value);
-			} else if (value.getClass().getName() == "java.sql.Date"
-					|| value.getClass().getName() == "java.sql.Time"
-					|| value.getClass().getName() == "java.sql.Timestamp") {
+	//javaからsessionに値を設定して、efwからそれを取る場合を考慮して以下の処理を行う
+	if (value == null) {
+		//値がnullの場合処理を飛ばす
+	}else{
+		var valueType=typeof value;
+		//if (valueType == "string") {
+			//以下タイプは自動的に文字と見なす
+			//java.lang.String
+		//}else if (valueType == "number") {
+			//以下タイプは自動的に数字と見なす
+			//java.lang.Byte
+			//java.lang.Double
+			//java.lang.Float
+			//java.lang.Integer
+			//java.lang.Short
+		//}else if (valueType == "boolean") {
+			//以下タイプは自動的にブールと見なす
+			//java.lang.Boolean
+		if (valueType == "object" && value.getClass) {
+			var clsName=value.getClass().getName();
+			if(clsName=="java.lang.Long"
+					|| clsName=="java.math.BigDecimal"){
+				value = 0 + new Number(value);//new Numberはdebug関数を付けていないため+0にする
+			} else if (clsName == "java.sql.Date"
+					|| clsName == "java.sql.Time"
+					|| clsName == "java.sql.Timestamp"
+					|| clsName == "java.util.Date") {
 				var dt = new Date();
 				dt.setTime(value.getTime());
 				value = dt;
+			} else if (clsName == "oracle.sql.TIMESTAMP"){
+				var dt = new Date();
+				dt.setTime(value.timestampValue().getTime());
+				value = dt;
+			//}else{//他のクラスの場合そのまま
 			}
+		//}else{//javascript objectの場合そのまま
 		}
-	}catch(e){}
+	}
 	return value;
 };
 /**

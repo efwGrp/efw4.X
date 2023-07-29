@@ -186,44 +186,39 @@ Excel.prototype._getSingle = function(sheetName, positionMap,currentRow) {
  */
 Excel.prototype.getValue = function(sheetName, position, formatter, rounder) {
 	var value = this._workbook.get(sheetName, position);
-	if (typeof value == "object") {
-		if (value == null) {
-			value = null;
-		} else if (value.getClass().getName() == "java.lang.String") {
-			value = "" + value;
-		} else if (value.getClass().getName() == "java.lang.Boolean") {
-			value = true && value;
-		} else if (value.getClass().getName() == "java.lang.Byte"
-				|| value.getClass().getName() == "java.lang.Short"
-				|| value.getClass().getName() == "java.lang.Integer"
-				|| value.getClass().getName() == "java.lang.Long"
-				|| value.getClass().getName() == "java.lang.Float"
-				|| value.getClass().getName() == "java.lang.Double"
-				|| value.getClass().getName() == "java.math.BigDecimal") {
-			value = 0 + new Number(value);
+	if (value==null){
+		//値がnullの場合処理を飛ばす
+	}else{
+		var valueType=typeof value;
+		//if (valueType == "string") {
+			//以下タイプは自動的に文字と見なす
+			//java.lang.String
+		if (valueType == "number") {
+			//以下タイプは自動的に数字と見なす
+			//java.lang.Byte
+			//java.lang.Double
+			//java.lang.Float
+			//java.lang.Integer
+			//java.lang.Short
 			if (formatter != null) {
 				rounder=""+rounder;
 				value = value.format(formatter, rounder);
 			}
-		} else if (value.getClass().getName() == "java.sql.Date"
-				|| value.getClass().getName() == "java.sql.Time"
-				|| value.getClass().getName() == "java.sql.Timestamp"
-				|| value.getClass().getName() == "java.util.Date") {
-			var dt = new Date();
-			dt.setTime(value.getTime());
-			value = dt;
-			if (formatter != null) {
-				value = value.format(formatter);
+		//}else if (valueType == "boolean") {
+			//以下タイプは自動的にブールと見なす
+			//java.lang.Boolean
+		}else if (valueType == "object" && value.getClass) {
+			var clsName=value.getClass().getName();
+			if (clsName == "java.util.Date") {
+				var dt = new Date();
+				dt.setTime(value.getTime());
+				value = dt;
+				if (formatter != null) {
+					value = value.format(formatter);
+				}
+			//}else{//他のクラスの場合考慮しない
 			}
-		} else {
-			var sValue=""+value;
-			if (sValue.length>50){
-				sValue=sValue.substr(0,50)+"...";
-			}
-			// you should do something if the comment is printed out.
-			Packages.efw.framework.runtimeWLog("[" + sValue + "] is an instance of " + value.getClass().getName()
-					+ " which is treated as a string in efw.");
-			value=""+value;//change unknown type to string.
+		//}else{//javascript objectの場合考慮しない
 		}
 	}
 	return value;
