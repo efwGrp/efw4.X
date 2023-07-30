@@ -34,15 +34,22 @@ Barcode:	Move barcode in Additional Tags.
 Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflower/efwRuntime.html">Runtime</a>, <a href="https://efwgrp.github.io/efw4_codeflower/efwInitialization.html">Initialization</a> )<br>
 
 <h3>Samples</h3>
-<a href="samples/i18nSample">i18n</a>
+<a href="https://qiita.com/changkejun/items/926a29ef46714d8cf9f1">各種類の入力枠を一括テスト</a><br>
+<a href="https://qiita.com/changkejun/items/194b6c300c82167acddc">各種類の値表示をテストする</a><br>
+<a href="https://qiita.com/changkejun/items/c1369438843759d0e890">各種類の画面アクションをテストする</a><br>
+<a href="https://qiita.com/changkejun/items/d79127e27b49bfc8a847">タグ１つでwebのファイル管理</a><br>
+<a href="https://qiita.com/changkejun/items/b563570df2036f5fa7da">タグ１つでwebのチャート機能</a><br>
+<a href="https://qiita.com/changkejun/items/106f2734dd319e9b1201">タグ１つでwebのQRコード作成</a><br>
+<a href="https://qiita.com/changkejun/items/dea128563b608b7dcb43">POIから卒業しましょう</a><br>
+<a href="https://qiita.com/changkejun/items/2777f3006c4a0b8d2213">ギガバイトのテキストを恐れなし</a><br>
+<a href="https://qiita.com/changkejun/items/b273b3ae64c76e5b016a">efwのデータベース処理に関する紹介</a><br>
+<a href="https://qiita.com/changkejun/items/c237ddbc69c9c4cb3319">efwを利用してGmailのSMTPへ送信</a><br>
+<a href="https://qiita.com/changkejun/items/e4afa094a606c14698f3">efwの多国語対応</a><br>
+<a href="https://qiita.com/changkejun/items/70ac1778acd146ad0f9c">Rest API サービスを作りましょう</a><br>
+
 <a href="samples/dialogSample">dialog</a>
-<a href="samples/chartSample">chart</a>
-<a href="samples/elfinderSample">elfinder</a>
-<a href="samples/shortcutSample">shortcut</a>
-<a href="samples/barcodeSample">barcode</a>
 <a href="samples/skeletonSample">skeleton</a>
 <a href="samples/batchSample">batch</a>
-<a href="samples/restSample">restapi</a>
 <a href="samples/helloAzure">helloAzure</a>
 <a href="samples/microServicesSample">microServicesSample</a>
 
