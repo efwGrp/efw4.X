@@ -2,6 +2,7 @@
 
 The contains function is established to check whether a key has been registered into efw.
 <h2>Sample</h2>
+
 ```javascript
 if (!efw.contains("PDFLib")){
 	load(_eventfolder+"/pdf-lib.min.js");

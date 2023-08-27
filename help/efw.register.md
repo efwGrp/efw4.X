@@ -3,6 +3,7 @@
 The register function is established to register a key into efw 
 to prevent the system from recognizing it as an illegal global variable.
 <h2>Sample</h2>
+
 ```javascript
 load(_eventfolder+"/pdf-lib.min.js");
 load(_eventfolder+"/fontkit.umd.min.js");

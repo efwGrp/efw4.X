@@ -2,6 +2,7 @@
 
 The readAllBytes function is established to load a binary file into a bytes array. 
 <h2>Sample</h2>
+
 ```javascript
 var ary=file.readAllBytes("Roboto-Italic.ttf");
 ```
