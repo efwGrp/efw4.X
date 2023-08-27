@@ -1083,4 +1083,14 @@ public final class FileManager {
 		return fileName;
 	}
 	
+	/**
+	 * テキストファイルを読み取る。文字コードは自動判断する。
+	 * @param f ファイルオブジェクト。
+	 * @return ファイル内容。
+	 * @throws IOException 通信エラー。
+	 */
+	public static byte[] readAllBytes(File f) throws IOException{
+    	return Files.readAllBytes(Paths.get(f.getAbsolutePath()));
+	}
+	
 }

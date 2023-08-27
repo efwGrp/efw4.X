@@ -24,8 +24,23 @@
 /**
  * The Efw class
  */
-function Efw() {
-};
+function Efw() {};
+/**
+ */
+Efw.prototype._keys=[];
+/**
+ * Register a key in efw to bypass global pollution checks
+ */
+Efw.prototype.register=function(key){
+	Efw.prototype._keys.push(key);
+}
+Efw.prototype.contains=function(key){
+	if (Efw.prototype._keys.indexOf(key)>-1){
+		return true;
+	}else{
+		return false;
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////
 //The classes of the framework
 ///////////////////////////////////////////////////////////////////////////////
@@ -81,6 +96,7 @@ JSON.clone = function(obj,execFuncFlag) {//TODO
 /**
  * Load all classes
  */
+load("classpath:efw/resources/server/nashorn-ext-for-es6.min.js");
 load("classpath:efw/resources/server/efw.server.messages.js");
 load("classpath:efw/resources/server/efw.server.js");
 load("classpath:efw/resources/server/efw.server.format.js");
@@ -109,21 +125,26 @@ load("classpath:efw/resources/server/efw.doHandles.js");
 /**
  * create instances.
  */
-var efw = new Efw();
-var properties = new EfwServerProperties();
-var session = new EfwServerSession();
-var db = new EfwServerDb();
-var event = new EfwServerEvent();
-var file = new EfwServerFile(false);
-var absfile = new EfwServerFile(true);
-var brms = new EfwServerBRMS();
-var mail = new EfwServerMail();
-var cookie = new EfwServerCookie();
-var barcode = new EfwServerBarcode();
-var messages = new EfwServerMessages();
-var rest = new EfwServerRest();
-var cmd = new EfwServerCmd();
-
+var efw = new Efw();efw.register("efw");
+var properties = new EfwServerProperties();efw.register("properties");
+var session = new EfwServerSession();efw.register("session");
+var db = new EfwServerDb();efw.register("db");
+var event = new EfwServerEvent();efw.register("event");
+var file = new EfwServerFile(false);efw.register("file");
+var absfile = new EfwServerFile(true);efw.register("absfile");
+var brms = new EfwServerBRMS();efw.register("brms");
+var mail = new EfwServerMail();efw.register("mail");
+var cookie = new EfwServerCookie();efw.register("cookie");
+var barcode = new EfwServerBarcode();efw.register("barcode");
+var messages = new EfwServerMessages();efw.register("messages");
+var rest = new EfwServerRest();efw.register("rest");
+var cmd = new EfwServerCmd();efw.register("cmd");
+efw.register("_eventfolder");
+efw.register("_isdebug");
+efw.register("window");
+efw.register("navigator");
+efw.register("self");
+efw.register("console");
 efw.server = new EfwServer();
 // /////////////////////////////////////////////////////////////////////////////
 // The initialization of system.

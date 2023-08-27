@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.000";// change it when releasing jar.
+	public static final String version="4.07.006";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -779,6 +779,16 @@ public final class framework {
 		}
 	}
 	/**
+	 * 初期化時ワーニングログを一括記録する。
+	 * @param info 説明文字列。
+	 * @param ex エラー。javaScript ErrorはExceptionに変換できないため、文字列タイプを準備する。
+	 */
+	public static void initWLog(String info,String ex) {
+		if (LogManager.getLogger().getLevel().intValue()<=Level.WARNING.intValue()) {
+			init(Level.WARNING,info+" "+ex);
+		}
+	}
+	/**
 	 * 初期化時深刻エラーログを記録する。
 	 * @param info 説明文字列。
 	 * @param ex エラー。
@@ -786,6 +796,16 @@ public final class framework {
 	public static void initSLog(String info,Exception ex) {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
 			init(Level.SEVERE,info+" "+getUsefulInfoFromException(ex));
+		}
+	}
+	/**
+	 * 初期化時深刻エラーログを記録する。
+	 * @param info 説明文字列。
+	 * @param ex エラー。javaScript ErrorはExceptionに変換できないため、文字列タイプを準備する。
+	 */
+	public static void initSLog(String info,String ex) {
+		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
+			init(Level.SEVERE,info+" "+ex);
 		}
 	}
 	/**
@@ -815,6 +835,16 @@ public final class framework {
 	public static void runtimeSLog(String info,Exception ex) {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
 			runtime(Level.SEVERE,info+" "+getUsefulInfoFromException(ex));
+		}
+	}
+	/**
+	 * 実行時深刻エラーログを記録する。
+	 * @param info 説明文字列。
+	 * @param ex エラー。javaScript ErrorはExceptionに変換できないため、文字列タイプを準備する。
+	 */
+	public static void runtimeSLog(String info,String ex) {
+		if (LogManager.getLogger().getLevel().intValue()<=Level.SEVERE.intValue()) {
+			runtime(Level.SEVERE,info+" "+ex);
 		}
 	}
 	/**

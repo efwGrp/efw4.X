@@ -162,6 +162,7 @@ EfwServerFormat.prototype.parseDate = function(value, formatter) {
 Number.prototype.format=function(formatter, rounder){
 	return EfwServerFormat.prototype.formatNumber(this,formatter, rounder);
 };
+Object.defineProperty(Number.prototype,"format",{enumerable:false});
 /**
  * The function to parse the value to Number.
  * @param {String} value: required<br>
@@ -175,6 +176,7 @@ Number.parse=function(value,formatter){
 		return EfwServerFormat.prototype.parseNumber(value, formatter); 
 	}
 };
+Object.defineProperty(Number,"parse",{enumerable:false});
 /**
  * The function to format the Date self to String. 
  * @param {String}
@@ -184,6 +186,7 @@ Number.parse=function(value,formatter){
 Date.prototype.format=function(formatter){
 	return EfwServerFormat.prototype.formatDate(this,formatter);
 };
+Object.defineProperty(Date.prototype,"format",{enumerable:false});
 /**
  * The function to parse the value to Date.
  * @param {String} value: required<br>
@@ -197,6 +200,7 @@ Date.parse=function(value,formatter){
 		return EfwServerFormat.prototype.parseDate(value, formatter); 
 	}
 };
+Object.defineProperty(Date,"parse",{enumerable:false});
 /**
  * The function to get years to now. 
   * @param {Date} current: optional<br>
@@ -207,3 +211,4 @@ Date.prototype.getYears=function(current){
 	var diff=Number.parse(current.format("yyyyMMdd"),"0")-Number.parse(this.format("yyyyMMdd"),"0");
 	return Math.floor(diff/10000);
 };
+Object.defineProperty(Date.prototype,"getYears",{enumerable:false});

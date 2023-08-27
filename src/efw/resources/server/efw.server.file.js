@@ -314,6 +314,18 @@ EfwServerFile.prototype.duplicate=function(srcPath,destPath) {
 EfwServerFile.prototype.getTempFileName=function() {
 	return ""+Packages.efw.file.FileManager.getTempFileName();
 };
+/**
+ * The function to read all from a binary file.
+ * @param {String}
+ *            path: required<br>
+ * @returns {Bytes}
+ */
+EfwServerFile.prototype.readAllBytes = function(path){
+	var fl = this.isAbsolutePath
+			?Packages.efw.file.FileManager.getByAbsolutePath(path)
+			:Packages.efw.file.FileManager.get(path);
+	return Packages.efw.file.FileManager.readAllBytes(fl);
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -328,6 +340,7 @@ String.prototype.base64Encode=function(){
 		)
 	);
 };
+Object.defineProperty(String.prototype,"base64Encode",{enumerable:false});
 /**
  * The function to encode the string by base64 for URI.
  * @returns {String}
@@ -339,6 +352,7 @@ String.prototype.base64EncodeURI=function(){
 		)
 	);
 };
+Object.defineProperty(String.prototype,"base64EncodeURI",{enumerable:false});
 /**
  * The function to decode a encoded String by base64.
  * @returns {String}
@@ -350,3 +364,5 @@ String.prototype.base64Decode=function(){
 		)
 	);
 };
+Object.defineProperty(String.prototype,"base64Decode",{enumerable:false});
+

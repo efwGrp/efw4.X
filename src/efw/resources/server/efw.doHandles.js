@@ -123,25 +123,9 @@ function doPost(req) {
 		Packages.efw.file.FileManager.removeUploadFiles();
 		// to find javascript global pollution when debug mode and second calling.
 		if (_isdebug && params!=null){
-			var g = Function('return this')();
+			var g = new Function('return this')();
 			for(var i in g){
-				if (i=="_eventfolder"
-					||i=="_isdebug"
-					||i=="efw"
-					||i=="properties"
-					||i=="session"
-					||i=="db"
-					||i=="event"
-					||i=="file"
-					||i=="absfile"
-					||i=="brms"
-					||i=="mail"
-					||i=="cookie"
-					||i=="barcode"
-					||i=="messages"
-					||i=="rest"
-					||i=="cmd"
-					||i=="global"//global event
+				if (  efw.contains(i)
 					||typeof g[i]=="function"//common function
 					||(g[i]!=null&&g[i].fire!=null)//event js
 					||(g[i]!=null&&(g[i].PUT!=null||g[i].GET!=null||g[i].POST!=null||g[i].DELETE!=null))//restAPI js
