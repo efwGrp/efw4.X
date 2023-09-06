@@ -8,7 +8,7 @@
 	<td>JDK</td>
 	<td>java JDK 1.8 or later.</td>
 	<td>Java JDK is defferent in javascript engines to Open JDK.<br>
-		Please check your JDK for Nashorn or GraalVM.
+		Please check your JDK for Nashorn <s>or GraalVM</s>.
 	</td>
 </tr>
 <tr>
@@ -24,8 +24,8 @@
 </tr>
 <tr>
 	<td>Browsers</td>
-	<td>IE11, FireFox, Chrome, Edge, etc.</td>
-	<td>All browsers that can use jQuery v3.4.1. <br>
+	<td><s>IE11</s>, FireFox, Chrome, Edge, etc.</td>
+	<td>All browsers that can use jQuery v3.7.0. <br>
 		*If you want to use cors, please check the url. 
 		http://caniuse.com/#feat=cors
 	</td>
