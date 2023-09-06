@@ -3,13 +3,14 @@
 The seek function is established to seek in the array.
 
 <h2>Sample</h2>
-<pre>
-	var record = new Record([
-		{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
-		{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
-	]);
-	record.seek("data2","eq",123);
-</pre>
+
+```javascript
+var record = new Record([
+	{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
+	{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
+]);
+record.seek("data2","eq",123);
+```
 
 <h2>API</h2>
 

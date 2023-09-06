@@ -1,46 +1,49 @@
 <H1>Web Event</H1>
-<pre>
+
+```javascript
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/myWebEvent.js
 ////////////////////////////////////////
-var <b>myWebEvent</b>={};
-myWebEvent.<b>service</b>={
+var myWebEvent={};
+myWebEvent.service={
 	max:10,
 	message:'system is busy,please wait a while',
 	retriable:true,
 	interval:20,
 };
-myWebEvent.<b>paramsFormat</b> = { 
-                                "#txt_teststring" : "<b>display-name</b>:Test String;<b>max-length</b>:10;",
-                                "#txt_testnumber" : "<b>format</b>:#,##0.00;<b>required</b>:true;<b>display-name</b>:Test Number;<b>min</b>:-10.00;<b>max</b>:1,000.00",
+myWebEvent.paramsFormat = { 
+                                "#txt_teststring" : "display-name:Test String;max-length:10;",
+                                "#txt_testnumber" : "format:#,##0.00;required:true;display-name:Test Number;min:-10.00;max:1,000.00",
                                 "#txt_testdate"   : function(){
                                                         var date1=new Date();
                                                         var date2=new Date();
                                                         date2.setDate(date1.getDate()+6);
-                                                        return "<b>format</b>:yyyy-MM-dd;<b>required</b>:true;<b>display-name</b>:Test Date;"
-                                                               +"<b>min</b>:"+date1.format("yyyy-MM-dd")+";"
-                                                               +"<b>max</b>:"+date2.format(,"yyyy-MM-dd")+";" ;
+                                                        return "format:yyyy-MM-dd;required:true;display-name:Test Date;"
+                                                               +"min:"+date1.format("yyyy-MM-dd")+";"
+                                                               +"max:"+date2.format(,"yyyy-MM-dd")+";" ;
                                                     },
                                 ... 
                             };
-myWebEvent.<b>fire</b>         = function ( requestParams ) {
+myWebEvent.fire         = function ( requestParams ) {
                                 return (new Result()).alert("hello world! Your entries are correct.");
                             };
-</pre>
+```
+
 <HR>
 
 <H3>Event Variable</H3>
 The event variable must be same to the event file name. In the sample, it is "myWebEvent".
 
 <H3>Service Definition</H3>
-<pre>
+
+```javascript
 myWebEvent.service = {
     max: 10,
     message:'System busy please wait.',
     retriable:true,
     interval:20,
 };
-</pre>
+```
 
 <table>
 <tbody><tr>
@@ -71,14 +74,17 @@ myWebEvent.service = {
 </tbody></table>
 
 <H3>Params Format</H3>
-<pre>myWebEvent.paramsFormat = {
+
+```javascript
+myWebEvent.paramsFormat = {
                      selector1 : null,
                      selector2 : "checkStyle",
                      selector3 : function(){ return "checkStyle"; },
                    { selector4 : ... , },
                  [ { selector5 : ... , } ],
              };
-</pre>
+```
+
 To reference JQuery about the rules of selectors.
 <table>
 <tbody><tr>

@@ -3,18 +3,19 @@
 The encircle function is established to create a shape by coping to encircle a cell. Only XSSF(xlsx,xlsm).
 
 <h2>Sample</h2>
-<pre>
+
+```javascript
 //To run the sample, be sure to put a shape named "shape1" in Sheet1.
 
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet")
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet")
 // To encircle the cell A1 by coping shape1. The new shape is default center with 50% width and 50% height of the cell A1.
-	.encircle("newSheet", "A1", "Sheet1", "shape1")
+.encircle("newSheet", "A1", "Sheet1", "shape1")
 // To encircle the cell B1 by coping shape1. The new shape is top/center with 50% width and 50% height of the cell B1.
-	.encircle("newSheet", "B1", "Sheet1", "shape1", 0.25, 0.5 )				
+.encircle("newSheet", "B1", "Sheet1", "shape1", 0.25, 0.5 )				
 // To encircle the cell C1 by coping shape1. The new shape is center with 50% width and 25% height of the cell C1.
-	.encircle("newSheet", "C1", "Sheet1", "shape1", 0.5, 0.5, 0.5, 0.25 );	
-</pre>
+.encircle("newSheet", "C1", "Sheet1", "shape1", 0.5, 0.5, 0.5, 0.25 );	
+```
 
 <h2>API</h2>
 

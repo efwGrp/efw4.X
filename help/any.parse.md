@@ -4,10 +4,11 @@ The parse function is established to parse String to Number or Date.
 {any} = { Number | Date }
 
 <h2>Sample</h2>
-<pre>
+
+```javascript
 	var nm = Number.parse("12,345.0", "#,000.0");
 	var dt = Date.parse("2016/09/08", "yyyy/MM/dd");
-</pre>
+```
 
 <h2>API</h2>
 

@@ -3,9 +3,10 @@
 The makeFile function is established to create a blank file. If the file is existed, it will do NOTHING.
 
 <h2>Sample</h2>
-<pre>
-	file.makeFile("myFile.txt");
-</pre>
+
+```javascript
+file.makeFile("myFile.txt");
+```
 
 <h2>API</h2>
 

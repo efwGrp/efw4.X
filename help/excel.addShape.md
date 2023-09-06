@@ -3,14 +3,15 @@
 The addShape function is established to create a shape by coping to encircle a cell. Only XSSF(xlsx,xlsm).
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet")
-	.addShape("newSheet","A1","templateSheet","shapeName")
-	.addShape("newSheet","A1","templateSheet","shapeName","text")
-	.addShape("newSheet","A1","templateSheet","shapeName","text",90,30)
-	.addShape("newSheet","A1","templateSheet","shapeName","text",90,30,40,40);	// To create a shape not including line by copying templateSheet's
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet")
+.addShape("newSheet","A1","templateSheet","shapeName")
+.addShape("newSheet","A1","templateSheet","shapeName","text")
+.addShape("newSheet","A1","templateSheet","shapeName","text",90,30)
+.addShape("newSheet","A1","templateSheet","shapeName","text",90,30,40,40);	// To create a shape not including line by copying templateSheet's
+```
 
 <h2>API</h2>
 

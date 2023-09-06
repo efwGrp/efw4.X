@@ -3,25 +3,26 @@
 The function to write all lines into the file.
 
 <h2>Sample</h2>
-<pre>
-	//The content of the test.csv file is 
-	//"A,B,C,D
-	// 1,2,3,4
-	// a,b,c,d"
-	var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
-	var ary = [
-		["Z,X,C,V"],
-		["Q,W,E,R"]
-	];
-	csvWriter.writeAllLines(ary);
 
-	//The content becomes of the test.csv file is 
-	//"A,B,C,D
-	// 1,2,3,4
-	// a,b,c,d
-	// Z,X,C,V
-	// Q,W,E,R"
-</pre>
+```javascript
+//The content of the test.csv file is 
+//"A,B,C,D
+// 1,2,3,4
+// a,b,c,d"
+var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
+var ary = [
+	["Z,X,C,V"],
+	["Q,W,E,R"]
+];
+csvWriter.writeAllLines(ary);
+
+//The content becomes of the test.csv file is 
+//"A,B,C,D
+// 1,2,3,4
+// a,b,c,d
+// Z,X,C,V
+// Q,W,E,R"
+```
 
 <h2>API</h2>
 

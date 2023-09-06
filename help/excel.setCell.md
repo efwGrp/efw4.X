@@ -3,13 +3,14 @@
 The setCell function is established to set a value and styles etc into a cell.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet")
-	.setCell("newSheet", "A1", "hell world!")					// To set a value into a cell.
-	.setCell("newSheet", "B1", "hell world!", "Sheet1", "A1")	// To set a value into a cell and to copy styles from another cell.
-	.setCell("newSheet", "C1", null, "Sheet1", "A2");			// If value is null, it will try to set the formula.
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet")
+.setCell("newSheet", "A1", "hell world!")					// To set a value into a cell.
+.setCell("newSheet", "B1", "hell world!", "Sheet1", "A1")	// To set a value into a cell and to copy styles from another cell.
+.setCell("newSheet", "C1", null, "Sheet1", "A2");			// If value is null, it will try to set the formula.
+```
 
 <h2>API</h2>
 

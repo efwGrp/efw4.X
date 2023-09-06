@@ -3,10 +3,11 @@
 The getYears function is established to get years to now.
 
 <h2>Sample</h2>
-<pre>
-	var date=Date.parse("1980/01/01","yyyy/MM/dd");
-	var years=date.getYears();
-</pre>
+
+```javascript
+var date=Date.parse("1980/01/01","yyyy/MM/dd");
+var years=date.getYears();
+```
 
 <h2>API</h2>
 

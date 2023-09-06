@@ -3,12 +3,13 @@
 The getValue function is established to get the value from a cell.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	var v1 = excel.getValue("Sheet1", "A1");
-	var v2 = excel.getValue("Sheet1", "B2", "yyyy/MM/dd");
-	var v3 = excel.getValue("Sheet1", "C3", "#,##0.0", "HALF_EVEN");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+var v1 = excel.getValue("Sheet1", "A1");
+var v2 = excel.getValue("Sheet1", "B2", "yyyy/MM/dd");
+var v3 = excel.getValue("Sheet1", "C3", "#,##0.0", "HALF_EVEN");
+```
 
 <h2>API</h2>
 

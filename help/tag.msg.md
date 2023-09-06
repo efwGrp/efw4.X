@@ -1,23 +1,24 @@
 <H1>Msg Tag</H1>
 To print muti-language string in JSP.
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;body&gt;
+
+```jsp
+<%@ taglib prefix="efw" uri="efw" %>
+<body>
 ...
-&lt;efw:Msg key="here"/&gt;		//or efw:msg , efw:MSG
+<efw:Msg key="here"/>		//or efw:msg , efw:MSG
 ...
-&lt;/body&gt;
-</pre>
+</body>
+```
 
 The key should be defined in Language XML.
 
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"&gt;
-&lt;properties&gt;
-&lt;entry key="here"&gt;here&lt;/entry&gt;
-&lt;/properties&gt;
-</pre>
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="here">here</entry>
+</properties>
+```
 
 <h2>Attributes</h2>
 <table>

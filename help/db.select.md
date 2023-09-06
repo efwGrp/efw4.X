@@ -4,13 +4,14 @@ The select function is established to execute SELECT SQL.
 Its return is an instance of the Record class.
 
 <h2>Sample</h2>
-<pre>
-	var record1 = db.select("helloWorld", "selectUser", {
-		"country" : "China"
-	}).sort("years", "asc");
-	var record2 = db
-			.select("select * from table_user where country='China' order years asc");
-</pre>
+
+```javascript
+var record1 = db.select("helloWorld", "selectUser", {
+	"country" : "China"
+}).sort("years", "asc");
+var record2 = db
+	.select("select * from table_user where country='China' order years asc");
+```
 
 <h2>API</h2>
 
@@ -29,7 +30,11 @@ Its return is an instance of the Record class.
 <tr><td>sqlId</td><td>String</td><td>The id of a sql tag in a SQL xml file.</td></tr>
 <tr><td>params</td><td>JSON Object</td>
 <td>To send values which is requried by the SQL defined in the SQL xml file. 
-<pre>{"param1":value1,"param2":value2,...}</pre>
+
+```javascript
+{"param1":value1,"param2":value2,...}
+```
+
 </td></tr>
 <tr><td>jdbcResourceName</td><td>String</td><td>To execute SQL in another database resource, but not the default. 
 </td></tr>

@@ -1,5 +1,6 @@
 <H1>Global Event</H1>
-<pre>
+
+```javascript
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/global.js
 ////////////////////////////////////////
@@ -7,7 +8,8 @@ var global={};
 global.fire=function(){
 ...
 };
-</pre>
+```
+
 <HR>
 
 <H3>Event Variable</H3>

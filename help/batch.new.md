@@ -3,9 +3,10 @@
 The constructor function is established to create a batch result object.
 
 <h2>Sample</h2>
-<pre>
-	var batch = new Batch();
-</pre>
+
+```javascript
+var batch = new Batch();
+```
 
 <h2>API</h2>
 

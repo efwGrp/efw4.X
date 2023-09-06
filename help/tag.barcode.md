@@ -4,9 +4,10 @@ To draw barcode in html, you can use drawServlet.
 It is almost based on <a href="http://barcode4j.sourceforge.net/">barcode4j</a> except QR Code
 which is powered by <a href="https://github.com/zxing/zxing">ZXing</a>.
 <h2>Sample for JSP</h2>
-<pre>
-	&lt;img src="drawServlet?type=qrcode&msg=hellword">
-</pre>
+
+```html
+<img src="drawServlet?type=qrcode&msg=hellword">
+```
 
 <h2>API</h2>
 <table>

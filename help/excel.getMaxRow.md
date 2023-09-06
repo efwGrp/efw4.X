@@ -3,10 +3,11 @@
 The getMaxRow function is established to get the last row number starting from 1.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	var maxrow = excel.getMaxRow("Sheet1");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+var maxrow = excel.getMaxRow("Sheet1");
+```
 
 <h2>API</h2>
 

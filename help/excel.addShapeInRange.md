@@ -3,13 +3,14 @@
 The addShapeInRange function is established to create a shape by coping to encircle cell range. Only XSSF(xlsx,xlsm).
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet")
-	.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName")
-	.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName","text")
-	.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName","text",20,20,40,40);	// To create a shape like line by copying templateSheet's
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet")
+.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName")
+.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName","text")
+.addShapeInRange("newSheet","firstCellPosition","lastCellPosition","templateSheet","shapeName","text",20,20,40,40);	// To create a shape like line by copying templateSheet's
+```
 
 <h2>API</h2>
 

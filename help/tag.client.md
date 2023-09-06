@@ -2,15 +2,15 @@
 To programming with Efw, it is required to import several .js files and .css files into JSP.
 You can use the Efw Tag to make the importing easy.
 
-<pre>
+```jsp
 ...
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;head&gt;
+<%@ taglib prefix="efw" uri="efw" %>
+<head>
 ...
-&lt;efw:Client baseurl="/appfolder" mode="jquery-ui" theme="base" lang="en" /&gt;		//efw:client or efw:CLIENT
+<efw:Client baseurl="/appfolder" mode="jquery-ui" theme="base" lang="en" />		//efw:client or efw:CLIENT
 ...
-&lt;/head&gt;
-</pre>
+</head>
+```
 
 <h2>Attributes</h2>
 <table>

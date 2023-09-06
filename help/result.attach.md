@@ -3,14 +3,15 @@
 The attach function is established to download a file or a folder.
 
 <h2>Sample</h2>
-<pre>
-	var result1 = (new Result())
-	.attach("test1.xls")
-	.attach("test2.xls");
-	var result2 = (new Result())
-	.attach("temp/test1.xls","temp")
-	.attach("temp/test2.xls","temp");
-</pre>
+
+```javascript
+var result1 = (new Result())
+.attach("test1.xls")
+.attach("test2.xls");
+var result2 = (new Result())
+.attach("temp/test1.xls","temp")
+.attach("temp/test2.xls","temp");
+```
 
 <h2>API</h2>
 

@@ -3,12 +3,13 @@
 The change function is established to execute INSERT UPDATE or DELETE SQL.
 The return is the count of modefied records.
 <h2>Sample</h2>
-<pre>
-	db.change("helloWorld", "DeleteUser", {
-		"country" : "China"
-	});
-	var count = db.change("delete * from table_user where country='China'");
-</pre>
+
+```javascript
+db.change("helloWorld", "DeleteUser", {
+	"country" : "China"
+});
+var count = db.change("delete * from table_user where country='China'");
+```
 
 <h2>API</h2>
 
@@ -26,7 +27,11 @@ The return is the count of modefied records.
 <tr><td>sqlId</td><td>String</td><td>The id of a sql tag in a SQL xml file.</td></tr>
 <tr><td>params</td><td>JSON Object</td>
 <td>To send values which is requried by the SQL defined in the SQL xml file. 
-<pre>{"param1":value1,"param2":value2,...}</pre>
+
+```javascript
+{"param1":value1,"param2":value2,...}
+```
+
 </td></tr>
 <tr><td>jdbcResourceName</td><td>String</td><td>To execute SQL in another database resource, but not the default. 
 </td></tr>

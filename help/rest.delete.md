@@ -3,9 +3,10 @@
 The delete function is established to call a restAPI with delete method.
 Its return is null or a JSON object.
 <h2>Sample</h2>
-<pre>
-	var ret = rest.delete("http://localhost:8080/restSample/efwRestAPI/customer/u001");
-</pre>
+
+```javascript
+var ret = rest.delete("http://localhost:8080/restSample/efwRestAPI/customer/u001");
+```
 
 <h2>API</h2>
 

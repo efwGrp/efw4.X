@@ -1,13 +1,14 @@
 <H1>Prop Tag</H1>
 To print a string defined in efw.properties to JSP.
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;body&gt;
+
+```jsp
+<%@ taglib prefix="efw" uri="efw" %>
+<body>
 ...
-&lt;efw:Prop key="here"/&gt;		//or efw:prop , efw:PROP
+<efw:Prop key="here"/>		//or efw:prop , efw:PROP
 ...
-&lt;/body&gt;
-</pre>
+</body>
+```
 
 The key should be defined in efw.properties .
 

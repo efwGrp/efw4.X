@@ -3,9 +3,10 @@
 The set function is established to set data to cookie.
 
 <h2>Sample</h2>
-<pre>
-	cookie.set("USER_ID", "Wang");
-</pre>
+
+```javascript
+cookie.set("USER_ID", "Wang");
+```
 
 <h2>API</h2>
 

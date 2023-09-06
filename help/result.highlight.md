@@ -3,10 +3,11 @@
 The highlight function is established to highlight elements in client.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.highlight("#text1");
-</pre>
+
+```javascript
+var result = new Result();
+result.highlight("#text1");
+```
 
 <h2>API</h2>
 

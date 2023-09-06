@@ -3,13 +3,14 @@
 The constructor function is established to create a CSVReader object.
 
 <h2>Sample</h2>
-<pre>
-	//The content of the test.csv file is 
-	//"A,B,C,D
-	// 1,2,3,4
-	// a,b,c,d"
-	var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
-</pre>
+
+```javascript
+//The content of the test.csv file is 
+//"A,B,C,D
+// 1,2,3,4
+// a,b,c,d"
+var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
+```
 
 <h2>API</h2>
 

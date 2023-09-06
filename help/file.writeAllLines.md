@@ -2,9 +2,10 @@
 
 The writeAllLines function is established to write all lines to a text file.
 <h2>Sample</h2>
-<pre>
-	file.writeAllLines("myFolder/myFile.txt","abcdefghijklmn","UTF-8");
-</pre>
+
+```javascript
+file.writeAllLines("myFolder/myFile.txt","abcdefghijklmn","UTF-8");
+```
 
 <h2>API</h2>
 

@@ -4,10 +4,11 @@ The master function is established to store the data from a master table into th
 Its return is an instance of the <a href="record.md">Record</a> class.
 The first calling to a master means to load it into the memory, and the second calling means to get records from memory.
 <h2>Sample for Event</h2>
-<pre>
-	var record1 = db.master("user").sort("years", "asc");
-	var record2 = db.master("user", true);
-</pre>
+
+```javascript
+var record1 = db.master("user").sort("years", "asc");
+var record2 = db.master("user", true);
+```
 
 <h2>API</h2>
 

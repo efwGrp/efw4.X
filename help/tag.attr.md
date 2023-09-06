@@ -1,14 +1,15 @@
 <H1>Attr Tag</H1>
 To print a dynamic parameter string in a part JSP.
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;!-- codes in the part jsp -->
-&lt;div&gt;
+
+```jsp
+<%@ taglib prefix="efw" uri="efw" %>
+<!-- codes in the part jsp -->
+<div>
 ...
-&lt;efw:Attr key="param1"/&gt;		//or efw:attr , efw:ATTR
+<efw:Attr key="param1"/>		//or efw:attr , efw:ATTR
 ...
-&lt;/div&gt;
-</pre>
+</div>
+```
 
 The key should be defined as Part tag dynamic params.
 

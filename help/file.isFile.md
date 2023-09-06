@@ -3,9 +3,10 @@
 The isFile function is established to judge a path is a file or not.
 
 <h2>Sample</h2>
-<pre>
-	var tf = file.isFile("myFile.txt");
-</pre>
+
+```javascript
+var tf = file.isFile("myFile.txt");
+```
 
 <h2>API</h2>
 

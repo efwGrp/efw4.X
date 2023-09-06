@@ -3,10 +3,11 @@
 The exists function is established to judge a file or folder is existed or not.
 
 <h2>Sample</h2>
-<pre>
-	var tf=file.exists("myFile.txt");
-	var tf=file.exists("myFolder");
-</pre>
+
+```javascript
+var tf=file.exists("myFile.txt");
+var tf=file.exists("myFolder");
+```
 
 <h2>API</h2>
 

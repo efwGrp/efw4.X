@@ -4,12 +4,13 @@
 Efw framework will add focus and blur behaviors to input elements by data-format attributes when page-loading. 
 
 <h2>Sample for JSP</h2>
-<pre>
-	&lt;input type=&quot;text&quot; <b>data-format="#,##0.00"</b>&gt;
-	&lt;input type=&quot;text&quot; <b>data-format="0.00%"</b>&gt;
-	&lt;input type=&quot;text&quot; <b>data-format="yyyy-MM-dd HH:mm:ss SSS"</b>&gt;
-	&lt;input type=&quot;text&quot; <b>data-format="yy-M-d H:m:s S"</b>&gt;
-</pre>
+
+```html
+<input type="text" data-format="#,##0.00">
+<input type="text" data-format="0.00%">
+<input type="text" data-format="yyyy-MM-dd HH:mm:ss SSS">
+<input type="text" data-format="yy-M-d H:m:s S">
+```
 
 <h2>API</h2>
 

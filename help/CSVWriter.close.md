@@ -3,11 +3,12 @@
 The function to close the java writter.
 
 <h2>Sample</h2>
-<pre>
-	var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
-	...
-	csvWriter.close();	
-</pre>
+
+```javascript
+var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
+...
+csvWriter.close();	
+```
 
 <h2>API</h2>
 

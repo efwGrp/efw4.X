@@ -4,10 +4,11 @@ The format function is established to format Number or Date to String.
 {any} = { Number | Date }
 
 <h2>Sample</h2>
-<pre>
-	(12345).format("#,000.0");
-	(new Date()).format("yyyy/MM/dd");
-</pre>
+
+```javascript
+(12345).format("#,000.0");
+(new Date()).format("yyyy/MM/dd");
+```
 
 <h2>API</h2>
 

@@ -2,29 +2,28 @@
 <a href="https://developers.google.com/chart/">Google charts</a> and <a href="https://www.chartjs.org/">Chart.js</a> are famous html5 chart tools for web. We made several templates to use it more easier,
 and included them into Efw as a tag. It must be used after the Client tag for jQuery and jQuery UI including.<br>
 
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;head&gt;
-	&lt;efw:Client/&gt;
-	&lt;script&gt;
+```jsp
+<%@ taglib prefix="efw" uri="efw" %>
+<head>
+	<efw:Client/>
+	<script>
 		function func1(options){
 			//alert(JSON.stringify(options));//to show the options as string.
 			options.options.vAxis.ticks=[100,1000000];// it will be preferential to param data-ticks
 		}
-	&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;efw:Chart id="char1" data="chart1_data" type="column" width="400" height="250" version="45.2" setoptions="func1" /&gt; //or efw:chart , efw:CHART
+	</script>
+</head>
+<body>
+	<efw:Chart id="char1" data="chart1_data" type="column" width="400" height="250" version="45.2" setoptions="func1" /> //or efw:chart , efw:CHART
 
-	&lt;table border=1 id="chart1_data" data-format="#,##0百万円" data-legend="bottom" data-ticks="100,1000000">
-	&lt;caption>会社業績&lt;/caption>
-		&lt;tr>&lt;th>年度&lt;/th>&lt;th data-color="red">売上高&lt;/th>&lt;th  data-color="green">営業利益&lt;/th>&lt;th data-color="blue">経常利益&lt;/th>&lt;/tr>
-		&lt;tr>&lt;td>2004 年&lt;/td>&lt;td>1,000百万円&lt;/td>&lt;td>400百万円&lt;/td>&lt;td>380百万円&lt;/td>&lt;/tr>
+	<table border=1 id="chart1_data" data-format="#,##0百万円" data-legend="bottom" data-ticks="100,1000000">
+	<caption>会社業績</caption>
+		<tr><th>年度</th><th data-color="red">売上高</th><th  data-color="green">営業利益</th><th data-color="blue">経常利益</th></tr>
+		<tr><td>2004 年</td><td>1,000百万円</td><td>400百万円</td><td>380百万円</td></tr>
 	...
-	&lt;/table>
-&lt;/body&gt;
-
-</pre>
+	</table>
+</body>
+```
 
 <h2>Attributes</h2>
 <table>

@@ -3,11 +3,12 @@
 The concat function is established to concatenate the batch result to another.
 
 <h2>Sample</h2>
-<pre>
-	var batch = new Batch();
-	var batch1 = new Batch();
-	batch.concat(batch1);
-</pre>
+
+```javascript
+var batch = new Batch();
+var batch1 = new Batch();
+batch.concat(batch1);
+```
 
 <h2>API</h2>
 

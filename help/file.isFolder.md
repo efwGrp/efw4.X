@@ -3,9 +3,10 @@
 The isFolder function is established to judge a path is a folder or not.
 
 <h2>Sample</h2>
-<pre>
-	var tf = file.isFolder("myFolder");
-</pre>
+
+```javascript
+var tf = file.isFolder("myFolder");
+```
 
 <h2>API</h2>
 

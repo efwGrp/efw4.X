@@ -1,5 +1,6 @@
 <H1>Rest Event</H1>
-<pre>
+
+```javascript
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/customer.js
 ////////////////////////////////////////
@@ -18,7 +19,8 @@ customer.GET=function(keys){
 customer.DELETE=function(keys){
 ...
 };
-</pre>
+```
+
 <HR>
 
 <H3>Event Variable</H3>

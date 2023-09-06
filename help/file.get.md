@@ -3,10 +3,11 @@
 The get function is established to get a file or folder information.
 
 <h2>Sample</h2>
-<pre>
-	var infoFile = file.get("myFile.txt");
-	var infoFolder = file.get("myFolder");
-</pre>
+
+```javascript
+var infoFile = file.get("myFile.txt");
+var infoFolder = file.get("myFolder");
+```
 
 <h2>API</h2>
 

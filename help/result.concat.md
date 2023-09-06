@@ -3,10 +3,11 @@
 The concat function is established to concatenate the result to another.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.concat(event.fire("subEvent"));
-</pre>
+
+```javascript
+var result = new Result();
+result.concat(event.fire("subEvent"));
+```
 
 <h2>API</h2>
 

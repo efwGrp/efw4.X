@@ -3,10 +3,11 @@
 The setPrintArea function is established to set a sheet's printarea.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.setPrintArea("mySheet",0,10,0,100);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.setPrintArea("mySheet",0,10,0,100);
+```
 
 <h2>API</h2>
 

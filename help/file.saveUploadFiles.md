@@ -2,9 +2,10 @@
 
 The saveUploadFiles function is established to save uploaded files to a folder in the storage.
 <h2>Sample</h2>
-<pre>
-	file.saveUploadFiles("myFolder");
-</pre>
+
+```javascript
+file.saveUploadFiles("myFolder");
+```
 
 <h2>API</h2>
 

@@ -3,9 +3,10 @@
 The makeDir function is established to create a folder. If the folder is existed, it will do NOTHING.
 
 <h2>Sample</h2>
-<pre>
-	file.makeDir("myFolder");
-</pre>
+
+```javascript
+file.makeDir("myFolder");
+```
 
 <h2>API</h2>
 

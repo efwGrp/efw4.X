@@ -3,11 +3,11 @@
 The constructor function is established to create a Threads object.
 
 <h2>Sample</h2>
-<pre>
-	var threads1 = new Threads();
-	var threads2 = new Threads(4);
 
-</pre>
+```javascript
+var threads1 = new Threads();
+var threads2 = new Threads(4);
+```
 
 <h2>API</h2>
 

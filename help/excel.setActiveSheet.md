@@ -3,10 +3,11 @@
 The setActiveSheet function is established a sheet to be active.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet").setActiveSheet("newSheet");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet").setActiveSheet("newSheet");
+```
 
 <h2>API</h2>
 

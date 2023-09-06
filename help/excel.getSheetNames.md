@@ -3,10 +3,11 @@
 The getSheetNames function is established to get the Array of sheet names.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	var ary = excel.getSheetNames();
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+var ary = excel.getSheetNames();
+```
 
 <h2>API</h2>
 

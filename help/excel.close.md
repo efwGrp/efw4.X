@@ -3,10 +3,11 @@
 The close function is established to close the excel object.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.save("my.xlsx").close();		// test.xlsx and my.xlsx will be kept both.
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.save("my.xlsx").close();		// test.xlsx and my.xlsx will be kept both.
+```
 
 <h2>API</h2>
 

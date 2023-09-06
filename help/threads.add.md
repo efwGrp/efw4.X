@@ -3,22 +3,23 @@
 The add function is established to add a thread into the threads object.
 
 <h2>Sample</h2>
-<pre>
-	var threads = new Threads(4);
-	threads.add({"index":0 ,"successed":false ,run : operate});	
-	// operate is a function can set return value in thread object attrubites.
-	threads.add({"index":1 ,"successed":false ,run : operate});	
-	threads.add({"index":2 ,"successed":false ,run : operate});	
-	threads.add({"index":3 ,"successed":false ,run : operate});	
-	
-	function operate(){
-		if(this.index > 2){
-			this.successed = false;
-		}else{
-			this.successed = true;
-		}
+
+```javascript
+var threads = new Threads(4);
+threads.add({"index":0 ,"successed":false ,run : operate});	
+// operate is a function can set return value in thread object attrubites.
+threads.add({"index":1 ,"successed":false ,run : operate});	
+threads.add({"index":2 ,"successed":false ,run : operate});	
+threads.add({"index":3 ,"successed":false ,run : operate});	
+
+function operate(){
+	if(this.index > 2){
+		this.successed = false;
+	}else{
+		this.successed = true;
 	}
-</pre>
+}
+```
 
 <h2>API</h2>
 

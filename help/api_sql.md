@@ -1,13 +1,12 @@
 <H1>SQL XML</H1>
 
-<pre>
 test.xml
-------------------------------------
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE sqls>
-&lt;sqls>
-	&lt;sql id="sql1" paramPrefix=":" dynamicPrefix="@">
-&lt;!-- this is comment -->
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqls>
+<sqls>
+	<sql id="sql1" paramPrefix=":" dynamicPrefix="@">
+<!-- this is comment -->
 /**
 	this is comment
 **/
@@ -16,19 +15,19 @@ test.xml
 SELECT field1,field2,field3 FROM table1
 WHERE
 field1= :param1
-&lt;if exists="param2"> and field2 &amp;lt; :param2&lt;/if>
-&lt;if notexists="param2"> and field2 &amp;lt; 500&lt;/if>
-&lt;if istrue="param3.substr(0,1)=='x'"> and field3 = :param3 &lt;/if>
-&lt;if isfalse="param3.substr(0,1)=='x'"> and field3 = 'y' &lt;/if>
+<if exists="param2"> and field2 &amp;lt; :param2</if>
+<if notexists="param2"> and field2 &amp;lt; 500</if>
+<if istrue="param3.substr(0,1)=='x'"> and field3 = :param3 </if>
+<if isfalse="param3.substr(0,1)=='x'"> and field3 = 'y' </if>
 
-	&lt;/sql>
-	&lt;sql id="sql2">
-		&lt;include groupId="test" sqlId="sql1"/>
+	</sql>
+	<sql id="sql2">
+		<include groupId="test" sqlId="sql1"/>
 		order by field3, @param4
-	&lt;/sql>
-&lt;/sqls>
+	</sql>
+</sqls>
 
-</pre>
+```
 
 
 <h3>SQL ID</h3>

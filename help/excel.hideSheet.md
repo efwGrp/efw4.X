@@ -3,10 +3,11 @@
 The hideSheet function is established to hide a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.hideSheet("mySheet");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.hideSheet("mySheet");
+```
 
 <h2>API</h2>
 

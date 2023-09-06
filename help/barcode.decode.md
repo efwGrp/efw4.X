@@ -3,9 +3,10 @@
 The decode function is established to decode a barcode image file to get the value.
 If it is not decodable, the return will be null.
 <h2>Sample</h2>
-<pre>
-	var msg = barcode.decode("test.png");
-</pre>
+
+```javascript
+var msg = barcode.decode("test.png");
+```
 
 <h2>API</h2>
 

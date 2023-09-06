@@ -3,12 +3,13 @@
 The setLink function is established to set a link into a cell.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("newSheet")
-	.createSheet("linkSheet")
-	.setLink("newSheet","A1","#\'linkSheet'!A1");		// To set a link into a cell.
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("newSheet")
+.createSheet("linkSheet")
+.setLink("newSheet","A1","#\'linkSheet'!A1");		// To set a link into a cell.
+```
 
 <h2>API</h2>
 

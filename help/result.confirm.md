@@ -5,10 +5,11 @@ It can be called as far as once. The second calling is invalidated without any e
 But if with alert, the alert message will be added in the confirm dialog before the confirm message.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.confirm("Let's do it,OK?" ,{"OK":"window.location='doit.jsp';","CANCEL":null});
-</pre>
+
+```javascript
+var result = new Result();
+result.confirm("Let's do it,OK?" ,{"OK":"window.location='doit.jsp';","CANCEL":null});
+```
 
 <h2>API</h2>
 
@@ -21,24 +22,30 @@ But if with alert, the alert message will be added in the confirm dialog before 
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
 <tr><td>message</td><td>String</td><td>The information to show at the confirm dialog.
-<pre>
-	xxxx{param1}yyy{param2}yy
-</pre>
+
+```javascript
+xxxx{param1}yyy{param2}yy
+```
+
 You can define "{param}" in the message, it will be replaced by the params.
 </td></tr>
 <tr><td>buttons</td><td>Object</td><td>To define the buttons and the click actions.
-<pre>
-	{buttonName1:script1, buttonName2:script2}
-</pre>
+
+```javascript
+{buttonName1:script1, buttonName2:script2}
+```
+
 The script will be run at client after the button is clicked.
 </td></tr>
 <tr><td>params</td><td>Object</td><td>The params to replace "{param}" in the message.
-<pre>
+
+```javascript
 {
 	param1:value1,
 	param2:value2
 }
-</pre>
+```
+
 </td></tr>
 
 </table>

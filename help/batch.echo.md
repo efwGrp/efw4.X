@@ -3,10 +3,11 @@
 The echo function is established to show a message into the batch console.
 
 <h2>Sample</h2>
-<pre>
-	var batch = new Batch();
-	batch.echo("good morning!").echo("good night!");
-</pre>
+
+```javascript
+var batch = new Batch();
+batch.echo("good morning!").echo("good night!");
+```
 
 <h2>API</h2>
 

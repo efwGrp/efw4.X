@@ -1,20 +1,22 @@
 <H1>Batch Event</H1>
-<pre>
+
+```javascript
 ////////////////////////////////////////
 //web/WEB-INF/efw/event/myBatchEvent.js
 ////////////////////////////////////////
-var <b>myBatchEvent</b>={};
-myBatchEvent.<b>paramsFormat</b> = { 
-                                "sysDate" : "<b>format</b>:yyyy/MM/dd;<b>display-name</b>:sysDate;"
+var myBatchEvent={};
+myBatchEvent.paramsFormat = { 
+                                "sysDate" : "format:yyyy/MM/dd;display-name:sysDate;"
                             };
-myBatchEvent.<b>fire</b>         = function ( params ) {
+myBatchEvent.fire         = function ( params ) {
                                 //return;
                                 //return { "param" : params.sysDate };
                                 return (new Batch())
                                 .echo("hello world!")
                                 .exit(1);
                             };
-</pre>
+```
+
 <HR>
 
 <H3>Event Variable</H3>

@@ -3,10 +3,11 @@
 The get function is established to call a restAPI with get method.
 Its return is null or a JSON object.
 <h2>Sample</h2>
-<pre>
-	var ret = rest.get("http://localhost:8080/restSample/efwRestAPI/customer/u001");
-	// {"id":"u001","nm":"customer name"}
-</pre>
+
+```javascript
+var ret = rest.get("http://localhost:8080/restSample/efwRestAPI/customer/u001");
+// {"id":"u001","nm":"customer name"}
+```
 
 <h2>API</h2>
 

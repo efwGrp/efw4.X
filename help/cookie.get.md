@@ -3,9 +3,10 @@
 The get function is established to get data from cookie.
 
 <h2>Sample</h2>
-<pre>
-	var userId = cookie.get("USER_ID");
-</pre>
+
+```javascript
+var userId = cookie.get("USER_ID");
+```
 
 <h2>API</h2>
 

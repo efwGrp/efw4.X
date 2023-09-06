@@ -3,9 +3,10 @@
 The set function is established to set data to session.
 
 <h2>Sample</h2>
-<pre>
-	session.set("USER_ID", "Wang");
-</pre>
+
+```javascript
+session.set("USER_ID", "Wang");
+```
 
 <h2>API</h2>
 

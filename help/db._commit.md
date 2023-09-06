@@ -3,14 +3,15 @@
 The _commit function is established to commit a transaction.
 As a default, it does not need to be called explicitly.
 <h2>Sample</h2>
-<pre>
-	try{
-		db.change("TB1","deleteAll",{});
-		db._commit();
-	}catch(e){
-		db._rollback();
-	}
-</pre>
+
+```javascript
+try{
+	db.change("TB1","deleteAll",{});
+	db._commit();
+}catch(e){
+	db._rollback();
+}
+```
 
 <h2>API</h2>
 

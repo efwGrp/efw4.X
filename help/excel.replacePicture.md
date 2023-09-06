@@ -3,10 +3,11 @@
 The replacePicture function is established to replace an image shape that exists on the excel. Only XSSF(xlsx,xlsm).
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.replacePicture("Sheet1","picture1","templates/tanaka.png");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.replacePicture("Sheet1","picture1","templates/tanaka.png");
+```
 
 <h2>API</h2>
 

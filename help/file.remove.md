@@ -2,10 +2,11 @@
 
 The remove function is established to delete a file or folder.
 <h2>Sample</h2>
-<pre>
-	file.remove("myFolder/myFile.txt");
-	file.remove("yourFolder");
-</pre>
+
+```javascript
+file.remove("myFolder/myFile.txt");
+file.remove("yourFolder");
+```
 
 <h2>API</h2>
 

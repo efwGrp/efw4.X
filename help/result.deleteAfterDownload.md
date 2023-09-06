@@ -3,12 +3,13 @@
 The deleteAfterDownload function is established to delete the files or folders after downloading.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result
-	.attach("test.xls")
-	.deleteAfterDownload();
-</pre>
+
+```javascript
+var result = new Result();
+result
+.attach("test.xls")
+.deleteAfterDownload();
+```
 
 <h2>API</h2>
 

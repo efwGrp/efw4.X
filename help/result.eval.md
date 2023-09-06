@@ -4,12 +4,13 @@ The eval function is established to run a script at the web.
 It can be called more than once.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result
-	.eval("$('#table1 tr:even').css('background-color','green');")
-	.eval("$('#table1 tr:odd').css('background-color','yellow');");
-</pre>
+
+```javascript
+var result = new Result();
+result
+.eval("$('#table1 tr:even').css('background-color','green');")
+.eval("$('#table1 tr:odd').css('background-color','yellow');");
+```
 
 <h2>API</h2>
 

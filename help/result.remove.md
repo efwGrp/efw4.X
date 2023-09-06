@@ -4,12 +4,13 @@ The remove function is established to create the remove attribute to the last re
 It can be called as far as once to a runat. The second calling is invalidated without any exceptions.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result
-	.runat("#table1")
-	.remove("tr");
-</pre>
+
+```javascript
+var result = new Result();
+result
+.runat("#table1")
+.remove("tr");
+```
 
 <h2>API</h2>
 

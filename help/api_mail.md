@@ -1,28 +1,26 @@
 <H1>Mail XML</H1>
 
-<pre>
 mails.xml
-------------------------------------
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE mails>
-&lt;mails>
-	&lt;mail id="mail1">
-		&lt;to>:to&lt;/to>
-		&lt;cc>&lt;/cc>
-		&lt;bcc>&lt;/bcc>
-		&lt;mdn>&lt;/mdn>
-		&lt;subject>About :about &lt;/subject>
-		&lt;body>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mails>
+<mails>
+	<mail id="mail1">
+		<to>:to</to>
+		<cc></cc>
+		<bcc></bcc>
+		<mdn></mdn>
+		<subject>About :about </subject>
+		<body>
 Mr. :userName
 ...
-		&lt;/body>
-	&lt;/mail>
-	&lt;mail id="mail2">
+		</body>
+	</mail>
+	<mail id="mail2">
 	...
-	&lt;/mail>
-&lt;/mails>
-</pre>
-
+	</mail>
+</mails>
+```
 
 <h3>Mail ID</h3>
 Every Mail tag should have an Id. The Id must be unique in the Mail XML file.

@@ -3,10 +3,11 @@
 The showCol function is established to show cols in a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.showCol("mySheet",2,4);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.showCol("mySheet",2,4);
+```
 
 <h2>API</h2>
 

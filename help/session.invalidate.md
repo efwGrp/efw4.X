@@ -3,9 +3,10 @@
 The invalidate function is established to disable the session id of the current request.
 
 <h2>Sample</h2>
-<pre>
-	session.invalidate();
-</pre>
+
+```javascript
+session.invalidate();
+```
 
 <h2>API</h2>
 

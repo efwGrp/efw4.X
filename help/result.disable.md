@@ -3,10 +3,11 @@
 The disable function is established to disable elements in client.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.disable("#button1");
-</pre>
+
+```javascript
+var result = new Result();
+result.disable("#button1");
+```
 
 <h2>API</h2>
 

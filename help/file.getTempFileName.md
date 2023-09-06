@@ -3,10 +3,11 @@
 The getTempFileName function is established to get a unique name for creating a temp file or folder.
 
 <h2>Sample</h2>
-<pre>
-	var tempname = file.getTempFileName();
-	// tempname is a string like "efw##########.tmp"
-</pre>
+
+```javascript
+var tempname = file.getTempFileName();
+// tempname is a string like "efw##########.tmp"
+```
 
 <h2>API</h2>
 

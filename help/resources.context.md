@@ -1,15 +1,15 @@
 <H1>Context XML</H1>
 This example of context xml is compatible in apache-tomcat7 or higher version.
 Be sure to add the resources following your system rules if it is not tomcat.<br>
+<br>
 
-<pre>
 [webApplication]/META-INF/context.xml
-------------------------------------
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;!DOCTYPE Context>
-&lt;Context>
-&lt;!-- Database -->
-	&lt;Resource
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Context>
+<Context>
+<!-- Database -->
+	<Resource
 		name				=	"jdbc/efw"
 		auth				=	"Container"
 		type				=	"javax.sql.DataSource"
@@ -21,7 +21,7 @@ Be sure to add the resources following your system rules if it is not tomcat.<br
 		maxIdle		 	=	"20"
 		maxWait		 	=	"10"
 	/>
-	&lt;Resource
+	<Resource
 		name				=	"jdbc/efw2"
 		auth				=	"Container"
 		type				=	"javax.sql.DataSource"
@@ -36,8 +36,8 @@ Be sure to add the resources following your system rules if it is not tomcat.<br
 	.
 	.
 	.
-&lt;!-- Mail -->
-	&lt;Resource
+<!-- Mail -->
+	<Resource
         name       	    	 	=    "mail/efw" 
         auth       	    	 	=    "Container"
         type       	   	  	=    "javax.mail.Session"
@@ -53,8 +53,9 @@ Be sure to add the resources following your system rules if it is not tomcat.<br
         mail.smtp.starttls.enable   =	"true"
         description        		 =    "E-Mail Resource"
     />
-&lt;/Context>
-</pre>
+</Context>
+```
+
 <h2>Database Resource</h2>
 
 The default one must be named "jdbc/efw". It can be called by <a href="db.select.md">db.select</a> ,
@@ -62,10 +63,11 @@ The default one must be named "jdbc/efw". It can be called by <a href="db.select
 If you need some addition database, add the database resource with another name. In this way, you must call the db functions with the jdbcResourceName param.<br>
 <br>
 For example,<br>
-<pre>
+
+```javascript
 db.select(groupId, sqlId, params)		//using the default db resource "jdbc/efw"
 db.select(groupId, sqlId, params, "jdbc/efw2")	//using the addition db resource "jdbc/efw2"
-</pre>
+```
 
 
 <h2>Mail Resource</h2>

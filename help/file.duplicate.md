@@ -3,10 +3,11 @@
 The duplicate function is established to make a copy of a file or folder.
 If the destination is existed, it will NOT be overwritted.
 <h2>Sample</h2>
-<pre>
-	file.duplicate("myFile.txt","yourFile.txt");
-	file.duplicate("myFolder","yourFolder");
-</pre>
+
+```javascript
+file.duplicate("myFile.txt","yourFile.txt");
+file.duplicate("myFolder","yourFolder");
+```
 
 <h2>API</h2>
 

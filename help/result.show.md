@@ -3,10 +3,11 @@
 The show function is established to show elements in client.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.show("#table1");
-</pre>
+
+```javascript
+var result = new Result();
+result.show("#table1");
+```
 
 <h2>API</h2>
 

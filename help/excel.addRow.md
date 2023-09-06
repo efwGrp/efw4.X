@@ -3,11 +3,12 @@
 The addRow function is established to add rows in a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.addRow("mySheet",0);
-	excel.addRow("mySheet",1,10);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.addRow("mySheet",0);
+excel.addRow("mySheet",1,10);
+```
 
 <h2>API</h2>
 

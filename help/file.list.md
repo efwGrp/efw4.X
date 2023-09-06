@@ -3,9 +3,10 @@
 The list function is established to get an array of files or sub folders information.
 
 <h2>Sample</h2>
-<pre>
-	var infos = file.list("myFolder");
-</pre>
+
+```javascript
+var infos = file.list("myFolder");
+```
 
 <h2>API</h2>
 

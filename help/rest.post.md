@@ -3,11 +3,12 @@
 The post function is established to call a restAPI with post method.
 Its return is a JSON object.
 <h2>Sample</h2>
-<pre>
-	var params={"nm":"customer name 1"};
-	var ret = rest.post("http://localhost:8080/restSample/efwRestAPI/customer/u001",params);
-	// {"id":"u001","nm":"customer name 1"}
-</pre>
+
+```javascript
+var params={"nm":"customer name 1"};
+var ret = rest.post("http://localhost:8080/restSample/efwRestAPI/customer/u001",params);
+// {"id":"u001","nm":"customer name 1"}
+```
 
 <h2>API</h2>
 

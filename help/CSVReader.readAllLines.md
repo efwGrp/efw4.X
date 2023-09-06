@@ -3,19 +3,20 @@
 The function to read all lines into a matrix of arrays.
 
 <h2>Sample</h2>
-<pre>
-	//The content of the test.csv file is 
-	//"A,B,C,D\r\n
-	// 1,2,3,4\r\n
-	// a,b,c,d\r\n"
-	var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
-	var array = csvReader.readAllLines("\r\n");	
 
-	//The array return value is
-	//["A","B","C","D"],
-	//["1","2","3","4"],
-	//["a","b","c","d"]
-</pre>
+```javascript
+//The content of the test.csv file is 
+//"A,B,C,D\r\n
+// 1,2,3,4\r\n
+// a,b,c,d\r\n"
+var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
+var array = csvReader.readAllLines("\r\n");	
+
+//The array return value is
+//["A","B","C","D"],
+//["1","2","3","4"],
+//["a","b","c","d"]
+```
 
 <h2>API</h2>
 

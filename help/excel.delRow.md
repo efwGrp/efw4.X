@@ -3,11 +3,12 @@
 The delRow function is established to delete rows in a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.delRow("mySheet,0);
-	excel.delRow("mySheet,1,10);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.delRow("mySheet,0);
+excel.delRow("mySheet,1,10);
+```
 
 <h2>API</h2>
 

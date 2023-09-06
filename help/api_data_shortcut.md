@@ -4,11 +4,12 @@
 Efw framework will add shortcut behaviors to button elements by data-shortcut attributes when page-loading.
 
 <h2>Sample for JSP</h2>
-<pre>
-	&lt;input type=&quot;button&quot; <b>data-shortcut="F1"</b>&gt;
-	&lt;input type=&quot;button&quot; <b>data-shortcut="CTRL+A"</b>&gt;
-	&lt;input type=&quot;button&quot; <b>data-shortcut="ALT+Z"</b>&gt;
-</pre>
+
+```html
+<input type="button" data-shortcut="F1">
+<input type="button" data-shortcut="CTRL+A">
+<input type="button" data-shortcut="ALT+Z">
+```
 
 <h2>API</h2>
 <table>

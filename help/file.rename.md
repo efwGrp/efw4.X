@@ -2,10 +2,11 @@
 
 The rename function is established to rename a file or folder.
 <h2>Sample</h2>
-<pre>
-	file.rename("myFolder/myFile.txt","yourFile.txt");
-	file.rename("myFolder","yourFolder");
-</pre>
+
+```javascript
+file.rename("myFolder/myFile.txt","yourFile.txt");
+file.rename("myFolder","yourFolder");
+```
 
 <h2>API</h2>
 

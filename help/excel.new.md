@@ -4,11 +4,12 @@ The constructor function is established to open an existed excel file.
 Even you want to create new excel file, you must create it from a template file.
 
 <h2>Sample</h2>
-<pre>
-	var excelHSSF = new Excel("small.xls");
-	var excelXSSF = new Excel("small.xlsx");
-	var excelSXSSF = new Excel("large.xlsx" , true);
-</pre>
+
+```javascript
+var excelHSSF = new Excel("small.xls");
+var excelXSSF = new Excel("small.xlsx");
+var excelSXSSF = new Excel("large.xlsx" , true);
+```
 
 <h2>API</h2>
 

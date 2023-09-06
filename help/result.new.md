@@ -3,9 +3,10 @@
 The constructor function is established to create a result object for event returning.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-</pre>
+
+```javascript
+var result = new Result();
+```
 
 <h2>API</h2>
 

@@ -3,9 +3,10 @@
 The get function is established to get data from session.
 
 <h2>Sample</h2>
-<pre>
-	var userId = session.get("USER_ID");
-</pre>
+
+```javascript
+var userId = session.get("USER_ID");
+```
 
 <h2>API</h2>
 

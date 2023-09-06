@@ -3,10 +3,11 @@
 The enable function is established to enable elements in client.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.enable("#button1");
-</pre>
+
+```javascript
+var result = new Result();
+result.enable("#button1");
+```
 
 <h2>API</h2>
 

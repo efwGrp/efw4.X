@@ -3,10 +3,11 @@
 The showSheet function is established to show a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.showSheet("mySheet");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.showSheet("mySheet");
+```
 
 <h2>API</h2>
 

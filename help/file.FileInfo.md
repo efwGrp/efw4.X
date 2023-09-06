@@ -2,14 +2,14 @@
 
 The FileInfo object is established to keep a file or folder information.
 
-<pre>
-	{
-		name : String,
- 		length : Number,
- 		lastModified : Date,
- 		absolutePath : String,
- 		mineType : String,
- 		isHidden : Boolean,
- 		isBlank : Boolean,
-	}
-</pre>
+```javascript
+{
+	name : String,
+	length : Number,
+	lastModified : Date,
+	absolutePath : String,
+	mineType : String,
+	isHidden : Boolean,
+	isBlank : Boolean,
+}
+```

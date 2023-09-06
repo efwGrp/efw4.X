@@ -4,14 +4,15 @@ The fire function is established to execute a application event.
 Its return is an instance of the <a href="result.md">Result</a> class.
 
 <h2>Sample</h2>
-<pre>
-	var data = {
-		"#txtUser" : "Wang"
-	};
-	return (new Result()).runat("body").withdata({
-		"#txtUser" : "Wang"
-	}).alert("hello world!").concat(event.fire("subEvent", data));
-</pre>
+
+```javascript
+var data = {
+	"#txtUser" : "Wang"
+};
+return (new Result()).runat("body").withdata({
+	"#txtUser" : "Wang"
+}).alert("hello world!").concat(event.fire("subEvent", data));
+```
 
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
@@ -24,10 +25,18 @@ Its return is an instance of the <a href="result.md">Result</a> class.
 <tr><td>eventId</td><td>String</td><td>The event file name.</td></tr>
 <tr><td>params</td><td>JSON Object</td>
 <td>To send values to the event. 
-<pre>{"param1":value1,"param2":value2,...}</pre>
+
+```javascript
+{"param1":value1,"param2":value2,...}
+```
+
 </td></tr>
 <tr><td>server</td><td>String</td>
 <td>To call the event from a remote server. 
-<pre>http://remoteserver/efwapp</pre>
+
+```javascript
+http://remoteserver/efwapp
+```
+
 </td></tr>
 </table>

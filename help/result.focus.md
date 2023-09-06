@@ -4,10 +4,11 @@ The focus function is established to set an element focused at the web.
 It can be called as far as once.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.focus("#text1");
-</pre>
+
+```javascript
+var result = new Result();
+result.focus("#text1");
+```
 
 <h2>API</h2>
 

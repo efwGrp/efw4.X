@@ -3,10 +3,11 @@
 The save function is established to save the excel object to a file.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.save("my.xlsx");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.save("my.xlsx");
+```
 
 <h2>API</h2>
 

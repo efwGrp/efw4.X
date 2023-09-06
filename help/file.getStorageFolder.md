@@ -2,9 +2,10 @@
 
 The getStorageFolder function is established to get the absolute path of the storage folder.
 <h2>Sample</h2>
-<pre>
-	var absPath=file.getStorageFolder();
-</pre>
+
+```javascript
+var absPath=file.getStorageFolder();
+```
 
 <h2>API</h2>
 

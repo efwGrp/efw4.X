@@ -3,19 +3,19 @@
 The constructor function is established to create a TXTReader object.
 
 <h2>Sample</h2>
-<pre>
-	//The content of the test.txt file is 
-	//"12345678901234567890
-	// 11111222223333344444
-	// 99999777777777722222"
-	var regFieldsDef="(.{5})(.{10})(.{5})";
-	var txtReader = new TXTReader("input/test.txt", regFieldsDef, "MS932"); 
-	
-	//The content of the test.txt file is 
-	//"123456789012345678901111122222333334444499999777777777722222"
-	var txtReader = new TXTReader("input/test.txt", regFieldsDef, "MS932", 20); 
 
-</pre>
+```javascript
+//The content of the test.txt file is 
+//"12345678901234567890
+// 11111222223333344444
+// 99999777777777722222"
+var regFieldsDef="(.{5})(.{10})(.{5})";
+var txtReader = new TXTReader("input/test.txt", regFieldsDef, "MS932"); 
+
+//The content of the test.txt file is 
+//"123456789012345678901111122222333334444499999777777777722222"
+var txtReader = new TXTReader("input/test.txt", regFieldsDef, "MS932", 20); 
+```
 
 <h2>API</h2>
 

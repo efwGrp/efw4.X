@@ -3,10 +3,11 @@
 The hideRow function is established to hide rows in a sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.hideRow("mySheet",2,4);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.hideRow("mySheet",2,4);
+```
 
 <h2>API</h2>
 

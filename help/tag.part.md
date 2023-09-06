@@ -1,13 +1,14 @@
 <H1>Part Tag</H1>
 It will be more easy to include a common page part made by JSP with Part tag.
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;body&gt;
+
+```javascript
+<%@ taglib prefix="efw" uri="efw" %>
+<body>
 ...
-&lt;efw:Part path="part.jsp" param1="####" param2="####" /&gt;		//or efw:part , efw:PART
+<efw:Part path="part.jsp" param1="####" param2="####" />		//or efw:part , efw:PART
 ...
-&lt;/body&gt;
-</pre>
+</body>
+```
 
 
 <h2>Attributes</h2>
@@ -22,20 +23,21 @@ It will be more easy to include a common page part made by JSP with Part tag.
 
 You can get the params in the part jsp by request.getAttribute like the next.
 
-<pre>
+```javascript
 <%=request.getAttribute("param1")%>	//this coding is for local part.
 <%=request.getAttribute("param2")%>
 <%=request.getParameter("param1")%>	//this coding is for reomote part.
 <%=request.getParameter("param2")%>
-&lt;efw:attr key="param1"/> //or use this coding for both.
-&lt;efw:attr key="param2"/> 
-</pre>
+<efw:attr key="param1"/> //or use this coding for both.
+<efw:attr key="param2"/> 
+```
 
 
 If you want send dynamic value to a part attr, you can do it like this.
-<pre>
-&lt;% 
+
+```javascript
+<% 
 String param1="hello";
 %>
-&lt;efw:part path="part.jsp" param1="<%=param1%>"/>
-</pre>
+<efw:part path="part.jsp" param1="<%=param1%>"/>
+```

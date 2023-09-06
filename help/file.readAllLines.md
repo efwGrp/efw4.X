@@ -2,10 +2,11 @@
 
 The readAllLines function is established to read all lines from a text file.
 <h2>Sample</h2>
-<pre>
-	var txt=file.readAllLines("myFolder/myFile.txt");
-	var txt=file.readAllLines("myFolder/myFile.txt", "UTF-8");
-</pre>
+
+```javascript
+var txt=file.readAllLines("myFolder/myFile.txt");
+var txt=file.readAllLines("myFolder/myFile.txt", "UTF-8");
+```
 
 <h2>API</h2>
 

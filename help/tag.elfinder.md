@@ -3,15 +3,16 @@ ElFinder is a famous file manager for web. We made a customized version from <a 
 and included it into Efw as a tag. It must be used after the Client tag for jQuery and jQuery UI including. For protecting system files just like Thumb.db, all hidden files will not been shown.<br>
 <img src="addition_tag_elfinder.png">
 
-<pre>
-&lt;%@ taglib prefix=&quot;efw&quot; uri=&quot;efw&quot; %&gt;
-&lt;head&gt;
-	&lt;efw:Client/&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" readonly="false" /&gt; //or efw:elfinder , efw:Elfinder , efw:ELFINDER
-&lt;/body&gt;
-</pre>
+```jsp
+<%@ taglib prefix="efw" uri="efw" %>
+<head>
+	<efw:Client/>
+</head>
+<body>
+	<efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" readonly="false" /> //or efw:elfinder , efw:Elfinder , efw:ELFINDER
+</body>
+```
+
 <h2>Attributes</h2>
 <table>
 <tr><th>Name</th><th>Required</th><th>Default</th><th>Description</th></tr>

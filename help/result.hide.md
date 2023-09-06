@@ -3,10 +3,11 @@
 The hide function is established to hide elements in client.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.hide("#table1");
-</pre>
+
+```javascript
+var result = new Result();
+result.hide("#table1");
+```
 
 <h2>API</h2>
 

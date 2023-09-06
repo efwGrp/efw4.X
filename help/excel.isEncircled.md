@@ -3,11 +3,12 @@
 The isEncircled function is established to judge whether a point is encircled by a shape or not. Only XSSF(xlsx,xlsm).
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	var tf1 = excel.isEncircled("Sheet1", "A1");
-	var tf2 = excel.isEncircled("Sheet1", "B2", 0.25, 0.5);
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+var tf1 = excel.isEncircled("Sheet1", "A1");
+var tf2 = excel.isEncircled("Sheet1", "B2", 0.25, 0.5);
+```
 
 <h2>API</h2>
 

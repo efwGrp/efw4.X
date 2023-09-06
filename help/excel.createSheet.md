@@ -3,10 +3,11 @@
 The createSheet function is established to create a new sheet or clone an existed sheet.
 
 <h2>Sample</h2>
-<pre>
-	var excel = new Excel("test.xlsx");
-	excel.createSheet("blankSheet").createSheet("Sheet1Clone", "Sheet1");
-</pre>
+
+```javascript
+var excel = new Excel("test.xlsx");
+excel.createSheet("blankSheet").createSheet("Sheet1Clone", "Sheet1");
+```
 
 <h2>API</h2>
 

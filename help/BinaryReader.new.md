@@ -3,11 +3,12 @@
 The constructor function is established to create a BinaryReader object.
 
 <h2>Sample</h2>
-<pre>
-	//The content of the test.txt file is 
-	//"123456789012345678901111122222333334444499999777777777722222"
-	var binaryReader = new BinaryReader("input/test.txt", [5,10,5], ["MS932","MS932","MS932"], 20); 
-</pre>
+
+```javascript
+//The content of the test.txt file is 
+//"123456789012345678901111122222333334444499999777777777722222"
+var binaryReader = new BinaryReader("input/test.txt", [5,10,5], ["MS932","MS932","MS932"], 20); 
+```
 
 <h2>API</h2>
 

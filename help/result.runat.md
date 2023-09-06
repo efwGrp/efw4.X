@@ -3,10 +3,11 @@
 The runat function is established to add the result a return value which will be shown in the web.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.runat("#table1");
-</pre>
+
+```javascript
+var result = new Result();
+result.runat("#table1");
+```
 
 <h2>API</h2>
 

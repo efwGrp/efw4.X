@@ -3,11 +3,12 @@
 The saveas function is established to rename the download file.
 
 <h2>Sample</h2>
-<pre>
-	var result = new Result();
-	result.attach("test.xls")
-		.saveas("hello.xls");
-</pre>
+
+```javascript
+var result = new Result();
+result.attach("test.xls")
+	.saveas("hello.xls");
+```
 
 <h2>API</h2>
 

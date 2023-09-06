@@ -3,13 +3,14 @@
 The sort function is established to sort the array.
 
 <h2>Sample</h2>
-<pre>
-	var record = new Record([
-		{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
-		{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
-	]);
-	record.sort("data2","asc");
-</pre>
+
+```javascript
+var record = new Record([
+	{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
+	{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
+]);
+record.sort("data2","asc");
+```
 
 <h2>API</h2>
 

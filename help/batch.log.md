@@ -3,10 +3,11 @@
 The log function is established to save a message into the batch log file.
 
 <h2>Sample</h2>
-<pre>
-	var batch = new Batch();
-	batch.log("good morning!").log("good night!");
-</pre>
+
+```javascript
+var batch = new Batch();
+batch.log("good morning!").log("good night!");
+```
 
 <h2>API</h2>
 

@@ -2,9 +2,10 @@
 
 The saveSingleUploadFile function is established to save a uploaded file to a file path in the storage.
 <h2>Sample</h2>
-<pre>
-	file.saveSingleUploadFile("myFile");
-</pre>
+
+```javascript
+file.saveSingleUploadFile("myFile");
+```
 
 <h2>API</h2>
 
