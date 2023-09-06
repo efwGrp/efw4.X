@@ -34,11 +34,12 @@ The map for getting data from a row.<br>
 
 ```javascript
 {	data1:position, 
-	data2:[position, <a href="formatter&rounder.md">formatter</a>, <a href="formatter&rounder.md">rounder</a>], 
+	newField2:[oldField2, "#,##0.0", "HALF_EVEN"],//formatter, rounder
 	data3:function(){ return String|Number|Date|Boolean;} 
 }
 ```
 
+About <a href="formatter&rounder.md">formatter&rounder</a> .
 </td></tr>
 
 </table>
