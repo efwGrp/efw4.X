@@ -5,8 +5,8 @@ The exit function is established to set ERRORLEVEL of the batch execution.
 <h2>Sample</h2>
 
 ```javascript
-	var batch = new Batch();
-	batch.exit(1);
+var batch = new Batch();
+batch.exit(1);
 ```
 
 <h2>API</h2>

@@ -34,11 +34,12 @@ record.map({
 ```javascript
 {
 	newField1:oldField1,
-	newField2:[oldField2, <a href="formatter&rounder.md">formatter</a>, <a href="formatter&rounder.md">rounder</a>],
+	newField2:[oldField2, "#,##0.0", "HALF_EVEN"],//formatter, rounder
 	newField3:function(data){return String|Number|Date|Boolean;}
 }
 ```
 
+About <a href="formatter&rounder.md">formatter&rounder</a> .
 </td></tr>
 </table>
 
