@@ -243,3 +243,17 @@ Record.prototype.group = function(/*field1,field2,field3...*/) {
 	}
 	return root;
 };
+/**
+ * The function to show the debug info about the record.
+ * @param {String}
+ * 			label: optional<br>
+ * @returns {Record}
+ */
+Record.prototype.debug = function(label) {
+	if (!label)
+		label = "";
+	java.lang.System.out.println("-----" + label + "-----");
+	java.lang.System.out.println("This is an instance of Record class.");
+	java.lang.System.out.println("records:"+JSON.stringify(this.values));
+	return this;
+};

@@ -5,9 +5,9 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Map;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
+import javax.script.ScriptContext;
 import javax.script.ScriptException;
+import javax.script.SimpleScriptContext;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -19,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import efw.efwException;
+import efw.script.ScriptManager;
 
 /**
  * SQL定義を表すクラス。
@@ -153,11 +154,11 @@ public final class Sql {
 	 * @throws ScriptException 
 	 */
 	protected static boolean isTrue(Map<String,Object> params,String script) throws ScriptException{
-		ScriptEngine se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+		ScriptContext ct=new SimpleScriptContext();
 		for(Map.Entry<String, Object> entry : params.entrySet()) {
-			se.put(entry.getKey(), entry.getValue());
+			ct.setAttribute(entry.getKey(), entry.getValue(), ScriptContext.ENGINE_SCOPE);
 		}
-		return (Boolean)se.eval(script);
+		return (Boolean)ScriptManager.se().eval(script,ct);
 	}
 	/**
 	 * パラメータマップに指定キーのパラメータが空白か否か判断する。

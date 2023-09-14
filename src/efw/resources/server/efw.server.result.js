@@ -378,3 +378,17 @@ Result.prototype.eval = function(script){
 	}
 	return this;
 };
+/**
+ * The function to show the debug info about the Result.
+ * @param {String} label: optional<br>
+ * @returns {Result}
+ */
+Result.prototype.debug = function(label) {
+	if (!label)
+		label = "";
+	java.lang.System.out.println("-----" + label + "-----");
+	java.lang.System.out.println("This is an instance of Result class.");
+	java.lang.System.out.println("result values:"+JSON.stringify(this.values));
+	java.lang.System.out.println("result actions:"+JSON.stringify(this.actions));
+	return this;
+};

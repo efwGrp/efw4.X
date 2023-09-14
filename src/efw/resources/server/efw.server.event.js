@@ -122,6 +122,7 @@ EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
 			}
 		}
 	}catch(e){
+		if (e instanceof Error)e=""+e;
 		if (loadingGlobal){
 			Packages.efw.framework.initSLog("global.js cannot be loaded.",e);
 		}else{

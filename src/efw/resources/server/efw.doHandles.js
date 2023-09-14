@@ -14,6 +14,7 @@ function doDestroy(){
 		try{
 			efw.server.fire(event._get("destroy"));
 		}catch(e){
+			if (e instanceof Error)e=""+e;
 			Packages.efw.framework.runtimeSLog("destory event failed.",e);
 			throw e;//destoryエラーの場合
 		}
@@ -98,6 +99,7 @@ function doPost(req) {
 			return messages.translate(JSON.stringify(ret),lang);
 		}
 	}catch(e){
+		if (e instanceof Error)e=""+e;
 		Packages.efw.framework.runtimeSLog(e);
 		var errorMsg=""+Packages.efw.framework.getUsefulInfoFromException(e);
 		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
@@ -186,6 +188,7 @@ function doBatch(req) {
 			return;//event return has errorlevel
 		}
 	}catch(e){
+		if (e instanceof Error)e=""+e;
 		Packages.efw.framework.runtimeSLog(e);
 		return;//exception return;
 	}
@@ -253,6 +256,7 @@ function doRestAPI(eventId,reqkeys,httpMethod,reqParams) {
 			return;
 		}
 	}catch(e){
+		if (e instanceof Error)e=""+e;
 		Packages.efw.framework.runtimeSLog(e);
 		db._rollbackAll();
 		throw e;//500 Internal Server Error

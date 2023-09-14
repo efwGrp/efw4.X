@@ -565,3 +565,15 @@ Excel.prototype.hideSheet = function(sheetName) {
 	this._workbook.hideSheet(sheetName);
 	return this;
 };
+/**
+ * The function to show the debug info about the Excel.
+ * @param {String} label: optional<br>
+ * @returns {Excel}
+ */
+Excel.prototype.debug = function(label) {
+	if (!label)
+		label = "";
+	java.lang.System.out.println("-----" + label + "-----");
+	java.lang.System.out.println("This is an instance of Excel class.");
+	return this;
+};

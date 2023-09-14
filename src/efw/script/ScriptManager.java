@@ -26,22 +26,32 @@ public final class ScriptManager {
     private static final String KEY_ISDEBUG="_isdebug";
 
     private static ScriptEngine _se;
-    
+    /**
+     * javaScriptエンジンのインスタンスを取得する。
+     * @return javaScriptエンジンのインスタンス
+     */
+    public static ScriptEngine se(){
+    	return _se;
+    }
 	/**
 	 * スクリプトエンジンを初期化する。
 	 * @throws ScriptException スクリプトエラー。
 	 */
 	public static void init() throws ScriptException{
-		System.setProperty("polyglot.js.nashorn-compat","true");//graalvmのため、nashornの場合無効だが影響なし
-		System.setProperty("nashorn.args", "--language=es6");
-		ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
-		if (ScriptManager._se==null) {
-		    System.clearProperty("nashorn.args");
-		    ScriptManager._se=(new ScriptEngineManager()).getEngineByName("JavaScript");
+		String scrptnms=(new ScriptEngineManager()).getEngineFactories().get(0).getNames().toString();
+		if (scrptnms.indexOf("Nashorn")>-1) {
+			System.setProperty("nashorn.args", "--language=es6");
+			_se=(new ScriptEngineManager()).getEngineByName("Nashorn");
+			if (_se==null) {//jdk8の場合es6はサポートしない。
+			    System.clearProperty("nashorn.args");
+			    _se=(new ScriptEngineManager()).getEngineByName("Nashorn");
+			}
+			_se.put(KEY_EVENTFOLDER, framework.getEventFolder());
+			_se.put(KEY_ISDEBUG, framework.getIsDebug());
+			_se.eval("load('classpath:efw/resources/server/efw.doInit.js')");
+		}else {
+			throw new ScriptException("Nashorn is not exists.");
 		}
-		ScriptManager._se.put(KEY_EVENTFOLDER, framework.getEventFolder());
-		ScriptManager._se.put(KEY_ISDEBUG, framework.getIsDebug());
-		ScriptManager._se.eval("load('classpath:efw/resources/server/efw.doInit.js')");
 	}
 	/**
 	 * サーバサイトイベントを実行する。

@@ -15,9 +15,7 @@
  * The boolean flag to show the mode is debug or not.
  */
 //var _isdebug;
-/**
- * The javascript engine.
- */
+
 ///////////////////////////////////////////////////////////////////////////////
 //The class of efw
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,6 +32,9 @@ Efw.prototype._keys=[];
 Efw.prototype.register=function(key){
 	Efw.prototype._keys.push(key);
 }
+/**
+ * Check a key is exists in efw context or not.
+ */
 Efw.prototype.contains=function(key){
 	if (Efw.prototype._keys.indexOf(key)>-1){
 		return true;
@@ -45,61 +46,13 @@ Efw.prototype.contains=function(key){
 //The classes of the framework
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * Add clone function to JSON for deep copy
- */
-JSON.clone = function(obj,execFuncFlag) {//TODO
-	if (obj === null || obj === undefined) { // null copy
-		return obj;
-	} else if (typeof obj == "function") { // function executed value
-		if (execFuncFlag){
-			return obj();
-		}else{
-			return obj;
-		}
-	} else if (typeof obj !== "object") { // simple value copy
-		return obj;
-	}
-	var oClone;
-	switch (obj.constructor) {
-	case RegExp:
-		oClone = new RegExp(obj.source, "g".substr(0, Number(obj.global)) + "i".substr(0, Number(obj.ignoreCase)) + "m".substr(0, Number(obj.multiline)));
-		break;
-	case Date:
-		oClone = new Date(obj.getTime());
-		break;
-	case String:
-		oClone = "" + obj;
-		break;
-	case Boolean:
-		oClone = false && obj;
-		break;
-	case Number:
-		oClone = 0 + obj;
-		break;
-	case Array:
-		oClone = [];
-		for (var sProp in obj) {
-			if (sProp=="debug") continue;// debug function is skipped
-			oClone[sProp] = JSON.clone(obj[sProp],execFuncFlag); 
-		}
-		break;
-	// etc.
-	default:
-		oClone = {};
-		for (var sProp in obj) {
-			if (sProp=="debug") continue;// debug function is skipped
-			oClone[sProp] = JSON.clone(obj[sProp],execFuncFlag); 
-		}
-	}
-	return oClone;
-};
-/**
  * Load all classes
  */
+load("classpath:efw/resources/server/efw.server.format.js");
 load("classpath:efw/resources/server/nashorn-ext-for-es6.min.js");
+load("classpath:efw/resources/server/nashorn-ext-for-efw.js");
 load("classpath:efw/resources/server/efw.server.messages.js");
 load("classpath:efw/resources/server/efw.server.js");
-load("classpath:efw/resources/server/efw.server.format.js");
 load("classpath:efw/resources/server/efw.server.properties.js");
 load("classpath:efw/resources/server/efw.server.session.js");
 load("classpath:efw/resources/server/efw.server.db.js");
@@ -117,11 +70,9 @@ load("classpath:efw/resources/server/efw.server.csv.js");
 load("classpath:efw/resources/server/efw.server.txt.js");
 load("classpath:efw/resources/server/efw.server.binary.js");
 load("classpath:efw/resources/server/efw.server.threads.js");
-load("classpath:efw/resources/server/efw.server.debug.js");
 load("classpath:efw/resources/server/efw.server.rest.js");
 load("classpath:efw/resources/server/efw.server.cmd.js");
 load("classpath:efw/resources/server/efw.doHandles.js");
-
 /**
  * create instances.
  */
@@ -159,6 +110,7 @@ if (event._load("global",true)){
 	try{
 		efw.server.fire(event._get("global"));
 	}catch(e){
+		if (e instanceof Error)e=""+e;
 		Packages.efw.framework.initSLog("Global event failed.",e);
 		throw e;//globalエラーの場合、初期化失敗
 	}
