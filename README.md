@@ -64,7 +64,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <a href="help/resources.context.md">Context XML</a>
 <h2>JSP</h2>
 <table>
-<tr><th>Categories</th><th>Items</th></tr>
+<tr><th>Categories</th><th colspan=5>Items</th></tr>
 <tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.attr.md">Attr</a></td><td><a href="help/tag.msg.md">Msg</a></td><td><a href="help/tag.prop.md">Prop</a></td></tr>
 <tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
 <tr><td>{Tag Params}</td><td><a href="help/tag.attr.msg.md">msg:</a></td><td><a href="help/tag.attr.prop.md">prop:</a></td></tr>
@@ -84,7 +84,9 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <a href="help/api_global.md">Global Event</a> fires on system loading.<br>
 <h3>Modules</h3>
 <table>
-<tr><th>Varieties</th><th>Functions</th></tr>
+<tr><th>Modules</th><th colspan=5>Attributes/Functions</th></tr>
+<tr><td>[global]</td><td><a href="help/global._eventfolder.md">_eventfolder</a></td><td><a href="help/global._isdebug.md">_isdebug</a></td><td><a href="help/global.load.md">load</a></td><td><a href="help/global.loadWithNewGlobal.md">loadWithNewGlobal</a></td><td><a href="help/global.loadWithGlobalPool.md">loadWithGlobalPool</a></td></tr>
+
 <tr><td>efw</td><td><a href="help/efw.register.md">register</a></td><td><a href="help/efw.contains.md">contains</a></td></tr>
 <tr><td>cmd</td><td><a href="help/cmd.execute.md">execute</a></td></tr>
 <tr><td>file</td><td><a href="help/file.get.md">get</a></td><td><a href="help/file.list.md">list</a></td><td><a href="help/file.isFile.md">isFile</a></td><td><a href="help/file.isFolder.md">isFolder</a></td></td><td><a href="help/file.makeFile.md">makeFile</a></td></tr>
@@ -111,7 +113,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 </table>
 <h3>Classes</h3>
 <table>
-<tr><th>Classes</th><th>Functions</th></tr>
+<tr><th>Classes</th><th colspan=5>Functions</th></tr>
 <tr><td>BinaryReader</td>
 <td><a href="help/BinaryReader.new.md">new</a></td>
 <td><a href="help/BinaryReader.readAllLines.md">readAllLines</a></td>
