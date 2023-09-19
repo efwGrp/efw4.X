@@ -10,14 +10,16 @@ function doDestroy(){
 	/**
 	 * Run by servlet destory.
 	 */
-	if (event._load("destroy",true)){
-		try{
+	try{
+		if (event._load("destroy",true)){
 			efw.server.fire(event._get("destroy"));
-		}catch(e){
-			if (e instanceof Error)e=""+e;
-			Packages.efw.framework.runtimeSLog("destory event failed.",e);
-			throw e;//destoryエラーの場合
 		}
+	}catch(e){
+		if (e instanceof Error)e=""+e;
+		Packages.efw.framework.runtimeSLog("destory event failed.",e);
+		throw e;//destoryエラーの場合
+	}finally{
+		closeTimer4doDestroy();
 	}
 }
 /**
@@ -191,6 +193,8 @@ function doBatch(req) {
 		if (e instanceof Error)e=""+e;
 		Packages.efw.framework.runtimeSLog(e);
 		return;//exception return;
+	}finally{
+		closeTimer4doDestroy();
 	}
 };
 ///////////////////////////////////////////////////////////////////////////////

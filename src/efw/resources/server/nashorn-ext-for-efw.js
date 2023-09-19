@@ -289,5 +289,17 @@ Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
 			borrowed.running=false;
 		}
 	}
+	function closeTimer4doDestroy(){
+		_timer.cancel();
+		for(var key in pool){
+			var scs=pool[key].scs;
+			if (scs!=null){
+				for(var i=0;i<scs.length;i++){
+					Packages.efw.script.ScriptManager.se().eval("closeTimer4doDestroy();",scs[i]._sc);
+				}
+			}
+		}
+	}
 	context.loadWithGlobalPool=loadWithGlobalPool;
+	context.closeTimer4doDestroy=closeTimer4doDestroy;
 })(new Function('return this')());
