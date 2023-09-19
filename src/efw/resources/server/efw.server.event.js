@@ -108,20 +108,20 @@ EfwServerEvent.prototype._load = function(eventId,loadingGlobal){
 			load(_eventfolder + "/" + eventId + ".js");
 			var ev=this._get(eventId);
 			if (ev){
-				ev.lastModified =""+file.get(_eventfolder + "/" + eventId + ".js").lastModified;
+				ev.lastModified =""+absfile.get(_eventfolder + "/" + eventId + ".js").lastModified;
 				if(eventId!="global")setService(ev,null,null);
 				ev.from="file";//from is checked in fire event, so it must be the last step.
 			}
 		}else if (_isdebug){
 			var org=this._get(eventId);
 			var orgLastModified=""+org.lastModified;
-			var evLastModified=""+file.get(_eventfolder + "/" + eventId + ".js").lastModified;
+			var evLastModified=""+absfile.get(_eventfolder + "/" + eventId + ".js").lastModified;
 			if (orgLastModified!=evLastModified){
 				this._set(eventId,null);
 				load(_eventfolder + "/" + eventId + ".js");
 				var ev=this._get(eventId);
 				if (ev){
-					ev.lastModified =file.get(_eventfolder + "/" + eventId + ".js").lastModified;
+					ev.lastModified =absfile.get(_eventfolder + "/" + eventId + ".js").lastModified;
 					setService(ev,org.service,org.semaphore);
 					ev.from="file";//from is checked in fire event, so it must be the last step.
 				}

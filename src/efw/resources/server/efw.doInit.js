@@ -96,6 +96,7 @@ efw.register("window");
 efw.register("navigator");
 efw.register("self");
 efw.register("console");
+efw.register("_timer");
 efw.server = new EfwServer();
 // /////////////////////////////////////////////////////////////////////////////
 // The initialization of system.
