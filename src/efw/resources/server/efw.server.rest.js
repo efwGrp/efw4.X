@@ -19,7 +19,6 @@ EfwServerRest.prototype.get=function(apiUrl, heads){
 	var mapHeads=new java.util.HashMap();
 	if (heads!=null){
 		for(var key in heads){
-			if (key=="debug")continue;
 			mapHeads.put(key,heads[key]);
 		}
 	}
@@ -42,7 +41,6 @@ EfwServerRest.prototype.post=function(apiUrl, params, heads){
 	var mapHeads=new java.util.HashMap();
 	if (heads!=null){
 		for(var key in heads){
-			if (key=="debug")continue;
 			mapHeads.put(key,heads[key]);
 		}
 	}
@@ -66,7 +64,6 @@ EfwServerRest.prototype.put=function(apiUrl, params, heads){
 	var mapHeads=new java.util.HashMap();
 	if (heads!=null){
 		for(var key in heads){
-			if (key=="debug")continue;
 			mapHeads.put(key,heads[key]);
 		}
 	}
@@ -89,7 +86,6 @@ EfwServerRest.prototype.delete=function(apiUrl, heads){
 	var mapHeads=new java.util.HashMap();
 	if (heads!=null){
 		for(var key in heads){
-			if (key=="debug")continue;
 			mapHeads.put(key,heads[key]);
 		}
 	}

@@ -14,7 +14,9 @@ function EfwServer() {
  */
 EfwServer.prototype.checkLogin = function(eventId, lang){
 	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
+	var asMain=Packages.efw.efwCorsFilter.getAsMain();
 	var needLoginCheck = currentAuthBean.loginCheck;
+	var loginUrl = currentAuthBean.loginUrl;
 	var outOfLoginEventIdPattern = ""+currentAuthBean.outOfloginEventIdPatternString;
 	var loginkey = ""+currentAuthBean.loginKey;
 	if (needLoginCheck && outOfLoginEventIdPattern!="" && eventId.search(new RegExp(outOfLoginEventIdPattern))==-1) { // the login check
@@ -22,6 +24,11 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
 		if (vl == null ||(typeof(vl) == "string" && vl == "")) {
 			var result=(new Result())
 			.alert(messages.get("SessionTimeoutException",lang));
+			//メインアプリとして呼び出す場合、ログインURL遷移。
+			//もしサブアプリ呼び出し場合、なにもしない。サブアプリはメインアプリのログインURLを知らないから。
+			if (asMain) {
+				result.navigate(loginUrl);
+			}
 			return result;
 		}
 	}
@@ -76,7 +83,6 @@ EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
 		if (parentkey != null && parentkey != "")
 			parentkey += " ";// in order for the space, parentkey+" "+sonkey"
 		for ( var key in fts) { // check requestParams by every format define
-			if (key=="debug") continue;// debug function is skipped
 			var paramdef = fts[key];
 			var param = pms[key];
 
@@ -321,7 +327,6 @@ EfwServer.prototype._checkSingleStyle =function(param,paramdef,lang){
 	function createReturnInfo(param,message,params){
 		if (message!=null){
 			for(var key in params){
-				if (key=="debug") continue;// debug function is skipped
 				message=message.replace(new RegExp("{"+key+"}", "g"), params[key]);
 			}
 			return {

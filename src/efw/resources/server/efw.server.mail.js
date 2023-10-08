@@ -21,7 +21,6 @@ function EfwServerMail() {
 EfwServerMail.prototype.send = function(groupId, mailId, params) {
 	var hashMapParams = new java.util.HashMap();
 	for ( var key in params) {
-		if (key=="debug") continue;// debug function is skipped
 		var vl = "" + params[key];
 		hashMapParams.put(key, vl);
 	}

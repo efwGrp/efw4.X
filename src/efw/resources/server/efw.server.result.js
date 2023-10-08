@@ -283,7 +283,6 @@ Result.prototype.alert = function(message, title, params) {
 		this.actions.alert = this.actions.alert.concat(message);
 	} else {
 		for(var key in params){
-			if (key=="debug") continue;// debug function is skipped
 			message=message.replace(new RegExp("{"+key+"}", "g"), params[key]);
 		}
 		this.actions.alert.push(message);
@@ -350,7 +349,6 @@ Result.prototype.confirm = function(message, buttons, title, params) {
 	}
 	if (!this.actions.confirm) {
 		for ( var key in params) {
-			if (key=="debug") continue;// debug function is skipped
 			message = message.replace(new RegExp("{" + key + "}", "g"),
 					params[key]);
 		}

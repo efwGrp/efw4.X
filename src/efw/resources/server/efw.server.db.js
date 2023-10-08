@@ -158,7 +158,6 @@ EfwServerDb.prototype._executeQuery = function(executionParams) {
 	var aryParam = executionParams.params;
 	var params = new java.util.HashMap();
 	for ( var key in aryParam) {
-		if (key=="debug") continue;// debug function is skipped
 		var vl = aryParam[key];
 		if (null == vl ||(typeof(vl) == "string" && vl == "")){
 			vl = null;
@@ -268,7 +267,6 @@ EfwServerDb.prototype._executeUpdate = function(executionParams) {
 	var aryParam = executionParams.params;
 	var params = new java.util.HashMap();
 	for ( var key in aryParam) {
-		if (key=="debug") continue;// debug function is skipped
 		var vl = aryParam[key];
 		if (null == vl ||(typeof(vl) == "string" && vl == "")){
 			vl = null;

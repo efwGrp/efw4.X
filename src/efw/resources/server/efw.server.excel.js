@@ -87,7 +87,6 @@ Excel.prototype.getArray = function(sheetName, startRow, endCondition, positionR
 			for(var i=0;i<positionRowMaps.length;i++){
 				var mp=positionRowMaps[i];
 				for(var key in mp){
-					if (key=="debug") continue;// debug function is skipped
 					var v=mp[key];
 					if(v instanceof Array){
 						ret[key]=[v[0]+(row+i),v[1],v[2]];//["A0",formatter,rounder]
@@ -100,7 +99,6 @@ Excel.prototype.getArray = function(sheetName, startRow, endCondition, positionR
 			}
 		}else{
 			for(var key in positionRowMaps){
-				if (key=="debug") continue;// debug function is skipped
 				var v=positionRowMaps[key];
 				if(v instanceof Array){
 					ret[key]=[v[0]+row,v[1],v[2]];//["A0",formatter,rounder]
@@ -156,7 +154,6 @@ Excel.prototype.getSingle = function(sheetName, positionMap) {
 Excel.prototype._getSingle = function(sheetName, positionMap,currentRow) {
 	var obj = {};
 	for (var key in positionMap) {
-		if (key=="debug") continue;// debug function is skipped
 		var pos = positionMap[key];
 		if (pos instanceof Array){
 			obj[key]= this.getValue(sheetName, pos[0], pos[1], pos[2]);

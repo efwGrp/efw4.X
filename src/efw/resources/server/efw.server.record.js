@@ -141,6 +141,38 @@ Record.prototype.sort = function(field, action) {
 	return new Record(ret);
 };
 /**
+ * to make all keys uppercase
+ * @returns {Record}
+ */
+Record.prototype.makeAllKeysUpperCase = function(){
+	var array = [];
+	for (var i = 0; i< this.values.length; i++) {
+		var rsdata = this.values[i];
+		var item = {};
+		for (var key in rsdata){
+			item[key.toUpperCase()]=rsdata[key];
+		}
+		array.push(item);
+	}
+	return new Record(array);
+}
+/**
+ * to make all keys lowercase
+ * @returns {Record}
+ */
+Record.prototype.makeAllKeysLowerCase = function(){
+	var array = [];
+	for (var i = 0; i< this.values.length; i++) {
+		var rsdata = this.values[i];
+		var item = {};
+		for (var key in rsdata){
+			item[key.toLowerCase()]=rsdata[key];
+		}
+		array.push(item);
+	}
+	return new Record(array);
+}
+/**
  * The function to change the record format.
  * 
  * @param mapping:
@@ -159,7 +191,6 @@ Record.prototype.map = function(mapping) {
 		var itemfix = null;
 		var item = {};
 		for ( var key in mapping) {
-			if (key=="debug") continue;// debug function is skipped
 			var mp = mapping[key];
 			if (typeof mp == "string") {
 				var vl = rsdata[mp];

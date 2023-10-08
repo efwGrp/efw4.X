@@ -81,7 +81,6 @@ EfwServerBRMS.prototype._executeQuery = function(executionParams) {
 		ruleDate = (new Date()).format("yyyy-MM-dd");
 	}
 	for ( var key in aryParam) {
-		if (key=="debug") continue;// debug function is skipped
 		var vl = aryParam[key];
 
 		if (null == vl){//null is not equals to ""
