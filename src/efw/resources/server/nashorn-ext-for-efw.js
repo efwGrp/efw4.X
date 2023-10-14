@@ -40,7 +40,6 @@ JSON.clone = function(obj,execFuncFlag) {//TODO
 	case Array:
 		oClone = [];
 		for (var sProp in obj) {
-			if (sProp=="debug") continue;// debug function is skipped
 			oClone[sProp] = JSON.clone(obj[sProp],execFuncFlag); 
 		}
 		break;
@@ -48,7 +47,6 @@ JSON.clone = function(obj,execFuncFlag) {//TODO
 	default:
 		oClone = {};
 		for (var sProp in obj) {
-			if (sProp=="debug") continue;// debug function is skipped
 			oClone[sProp] = JSON.clone(obj[sProp],execFuncFlag); 
 		}
 	}
@@ -226,17 +224,28 @@ Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
 	//name:{max:10,scs:[{running:true,_sc:objSimpleScriptContext},]}
 	var pool={};
 	var _locker = new java.util.concurrent.locks.ReentrantLock();
-	//param={name:"",max:9,initializer:"",script:"",context:{}}
+	//param={name:"",max:9,initializer:"",script:"",context:{},engine:"",returnVar:""}
+	
 	function loadWithGlobalPool(param){
 		var name=param.name;
 		var max=new Number(param.max);
 		var initializer=param.initializer;
 		var script=param.script;
 		var context=param.context;
+		var engine=param.engine;
+		var returnVar=param.returnVar;
 		if (name==null)name="default";
 		if (isNaN(max))max=10;
 		if (initializer==null)initializer="";
 		if (script==null)script="";
+		if (engine==null||engine==""){
+			engine="nashorn";
+		}else{
+			engine=engine.toLowerCase();
+			if (engine!="nashorn"&&engine!="javet"){
+				throw new Error("Please use one of the next engines [ nasorn | javet ].");
+			}
+		}
 		var borrowed=null;
 		_locker.lock();
 		try{
@@ -259,19 +268,35 @@ Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
 					borrowed.running=true;
 					break;
 				}else if (scs.length<max){
-					borrowed={running:true,_sc:new javax.script.SimpleScriptContext()}
-					var innerScript="";
-					innerScript+="var _isdebug="+_isdebug+";\n";
-					innerScript+="var _eventfolder='"+_eventfolder+"';\n";
-					innerScript+="load('classpath:efw/resources/server/efw.server.format.js');\n";
-					innerScript+="load('classpath:efw/resources/server/nashorn-ext-for-es6.min.js');\n";
-					innerScript+="load('classpath:efw/resources/server/nashorn-ext-for-efw.js');\n";
-					Packages.efw.script.ScriptManager.se().eval(innerScript,borrowed._sc);
-					for(var key in context){
-						borrowed._sc.setAttribute(key, context[key], javax.script.ScriptContext.ENGINE_SCOPE);
+					if (engine=="nashorn"){
+						borrowed={running:true,_sc:new javax.script.SimpleScriptContext()};
+						var _sc=borrowed._sc;
+						_sc.setAttribute("_isdebug", _isdebug, javax.script.ScriptContext.ENGINE_SCOPE);
+						_sc.setAttribute("_eventfolder", _eventfolder, javax.script.ScriptContext.ENGINE_SCOPE);
+						var innerScript="";
+						innerScript+="load('classpath:efw/resources/server/efw.server.format.js');\n";
+						innerScript+="load('classpath:efw/resources/server/nashorn-ext-for-es6.min.js');\n";
+						innerScript+="load('classpath:efw/resources/server/nashorn-ext-for-efw.js');\n";
+						Packages.efw.script.ScriptManager.se().eval(innerScript,_sc);
+						for(var key in context){
+							_sc.setAttribute(key, context[key], javax.script.ScriptContext.ENGINE_SCOPE);
+						}
+						Packages.efw.script.ScriptManager.se().eval(initializer,_sc);
+						scs.push(borrowed);
+					}else if (engine=="javet"){
+						borrowed={running:true,_sc:Packages.com.caoccao.javet.interop.V8Host.getNodeInstance().createV8Runtime()};
+						var _sc=borrowed._sc;
+						var g=_sc.getGlobalObject();
+						g.set("_isdebug",_isdebug);
+						g.set("_eventfolder",_eventfolder);
+						for(var key in context){
+							g.set(key,context[key]);
+						}
+						g.close();
+						_sc.getExecutor(initializer).executeVoid();
+						_sc.await();
+						scs.push(borrowed);
 					}
-					Packages.efw.script.ScriptManager.se().eval(initializer,borrowed._sc);
-					scs.push(borrowed);
 					break;
 				}else{
 					java.lang.Thread.sleep(50);
@@ -281,10 +306,27 @@ Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
 			_locker.unlock();
 		}
 		try{
-			for(var key in context){
-				borrowed._sc.setAttribute(key, context[key], javax.script.ScriptContext.ENGINE_SCOPE);
+			var _sc=borrowed._sc;
+			if (engine=="nashorn"){
+				for(var key in context){
+					_sc.setAttribute(key, context[key], javax.script.ScriptContext.ENGINE_SCOPE);
+				}
+				if (returnVar==null){
+					return Packages.efw.script.ScriptManager.se().eval(script,_sc);
+				}else{
+					Packages.efw.script.ScriptManager.se().eval(script,_sc);
+					return Packages.efw.script.ScriptManager.se().eval(returnVar+";",_sc);
+				}
+			}else if (engine=="javet"){
+				var g=_sc.getGlobalObject();
+				for(var key in context){
+					g.set(key,context[key]);
+				}
+				g.close();
+				_sc.getExecutor(script).executeVoid();
+				_sc.await();
+				return _sc.getExecutor(returnVar+";").executeString();
 			}
-			return Packages.efw.script.ScriptManager.se().eval(script,borrowed._sc);
 		}finally{
 			borrowed.running=false;
 		}
