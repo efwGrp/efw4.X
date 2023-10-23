@@ -20,21 +20,18 @@ Barcode:	Move barcode in Additional Tags.
 <h3>Introduction</h3>
 <table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
 <td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a> ( 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a>  ), 
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a>, 
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4/index.html">EFWプログラミング</a>, 
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.3/index.html">サンプルSkeletonのデザイン説明</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">セキュリティ関連</a>, 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW Nashorn非推薦の影響v0.2/index.html">Nashorn非推薦の影響</a><br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat環境構築v0.4/index.html">高負荷対応のTomcat環境構築</a>
- ( <a href="https://efwgrp.github.io/efw4_online_ppt/DB処理スピードの経験値v0.3/index.html">DB処理スピードの経験値</a>、
- <a href="https://efwgrp.github.io/efw4_online_ppt/ACアクセスログを覗くv0.2/index.html">アクセスログを覗く</a> )<br>
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat環境構築v0.4/index.html">高負荷対応のTomcat環境構築</a><br>
 <a href="help/environment.md">Environment</a>, <a href="help/files_list.md">Files List</a><br>
 <a href="https://efwgrp.github.io/efw4_codeflower/efw4.X.html">Code Flower of Efw</a>, 
 Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflower/efwRuntime.html">Runtime</a>, <a href="https://efwgrp.github.io/efw4_codeflower/efwInitialization.html">Initialization</a> )<br>
 
 <h3>Samples</h3>
-<a href="https://qiita.com/changkejun/items/926a29ef46714d8cf9f1">各種類の入力枠を一括テスト</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/194b6c300c82167acddc">各種類の値表示をテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/c1369438843759d0e890">各種類の画面アクションをテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/ActionTest.jsp">helloworld/ActionTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/d79127e27b49bfc8a847">タグ１つでwebのファイル管理</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloElfinder.jsp">helloworld/helloElfinder.jsp</a> )<br>
