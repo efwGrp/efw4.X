@@ -47,9 +47,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <a href="https://qiita.com/changkejun/items/e4afa094a606c14698f3">efwの多国語対応(helloworld/helloI18n.jsp)</a><br>
 <a href="https://qiita.com/changkejun/items/70ac1778acd146ad0f9c">Rest API サービスを作りましょう(helloworld/helloRestAPI.jsp)</a><br>
 <a href="https://qiita.com/changkejun/items/2e7a68149eab8f2281cf">efwのwebアプリのログイン制御＆権限制御(skeletonSample)</a><br>
-<a href="https://qiita.com/changkejun/items/6a966c87575989ac21b8">pdf-libとpdfmakeをefwに使ってみる</a><br>
-<a href="https://qiita.com/changkejun/items/bbb3c094c4c2e4a7a120">「pdf-libとpdfmakeをefwに使ってみる」の問題点と解決方法</a><br>
-
+<a href="https://qiita.com/changkejun/items/350ca12a3276c4d1378a">Javetを利用して、pdf-libとpdfmakeをefwに使ってみる(hello-pdf-lib3,hello-pdfmake3)</a><br>
 
 
 <a href="samples/dialogSample">dialog</a>
