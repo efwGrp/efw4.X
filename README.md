@@ -53,7 +53,6 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 
 
 <a href="samples/dialogSample">dialog</a>
-<a href="samples/skeletonSample">skeleton</a>
 <a href="samples/batchSample">batch</a>
 <a href="samples/helloAzure">helloAzure</a>
 <a href="samples/microServicesSample">microServicesSample</a>
