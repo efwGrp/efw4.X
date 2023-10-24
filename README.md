@@ -32,7 +32,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 
 <h3>Samples</h3>
 <a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/f634ae1c8040cef4cc01">Test each type of value display</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/private/f634ae1c8040cef4cc01">Test Each Type of Value Display</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/private/3accadd827594d1bccdf">Test Each Type of Screen Action</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/ActionTest.jsp">helloworld/ActionTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/private/3f943f089d44d83296af">Web File Management with One Tag</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloElfinder.jsp">helloworld/helloElfinder.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/private/dc976ccaaf82458c7771">Web Chart Function with One Tag</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloChart.jsp">helloworld/helloChart.jsp</a> )<br>
