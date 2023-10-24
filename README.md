@@ -32,7 +32,7 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 
 <h3>Samples</h3>
 <a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/items/194b6c300c82167acddc">各種類の値表示をテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/private/f634ae1c8040cef4cc01">Test each type of value display</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/c1369438843759d0e890">各種類の画面アクションをテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/ActionTest.jsp">helloworld/ActionTest.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/d79127e27b49bfc8a847">タグ１つでwebのファイル管理</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloElfinder.jsp">helloworld/helloElfinder.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/items/b563570df2036f5fa7da">タグ１つでwebのチャート機能</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloChart.jsp">helloworld/helloChart.jsp</a> )<br>
