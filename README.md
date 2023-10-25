@@ -23,8 +23,7 @@ Barcode:	Move barcode in Additional Tags.
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a><br>
 <a href="https://qiita.com/changkejun/private/70184f814ff52f862d91">Efw Security Related Explanation</a><br>
-
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat環境構築v0.4/index.html">高負荷対応のTomcat環境構築</a><br>
+<a href="https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0">Build a High Loads Tomcat Environment</a><br>
 
 <h3>Samples</h3>
 <a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
