@@ -24,7 +24,8 @@ Barcode:	Move barcode in Additional Tags.
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4/index.html">EFWプログラミング</a>, 
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.3/index.html">サンプルSkeletonのデザイン説明</a><br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWセキュリティ関連v0.2/index.html">セキュリティ関連</a>, 
+<a href="https://qiita.com/changkejun/private/70184f814ff52f862d91">Efw Security Related Explanation</a><br>
+
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat環境構築v0.4/index.html">高負荷対応のTomcat環境構築</a><br>
 <a href="help/environment.md">Environment</a>, <a href="help/files_list.md">Files List</a><br>
 <a href="https://efwgrp.github.io/efw4_codeflower/efw4.X.html">Code Flower of Efw</a>, 
