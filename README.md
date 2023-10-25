@@ -20,16 +20,11 @@ Barcode:	Move barcode in Additional Tags.
 <h3>Introduction</h3>
 <table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
 <td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a>, 
+<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a><br>
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a><br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWプログラミングv1.4/index.html">EFWプログラミング</a>, 
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWサンプルSkeletonのデザイン説明v0.3/index.html">サンプルSkeletonのデザイン説明</a><br>
 <a href="https://qiita.com/changkejun/private/70184f814ff52f862d91">Efw Security Related Explanation</a><br>
 
 <a href="https://efwgrp.github.io/efw4_online_ppt/EFW高負荷対応のTomcat環境構築v0.4/index.html">高負荷対応のTomcat環境構築</a><br>
-<a href="help/environment.md">Environment</a>, <a href="help/files_list.md">Files List</a><br>
-<a href="https://efwgrp.github.io/efw4_codeflower/efw4.X.html">Code Flower of Efw</a>, 
-Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflower/efwRuntime.html">Runtime</a>, <a href="https://efwgrp.github.io/efw4_codeflower/efwInitialization.html">Initialization</a> )<br>
 
 <h3>Samples</h3>
 <a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
