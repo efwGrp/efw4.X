@@ -43,8 +43,8 @@ Efw Module Relationship Diagram ( <a href="https://efwgrp.github.io/efw4_codeflo
 <a href="https://qiita.com/changkejun/private/26fe53af470ee1a96b05">Send to Gmail SMTP</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloMail.jsp">helloworld/helloMail.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/private/7d0999b90b0e5370f928">Multilingual Support</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloI18n.jsp">helloworld/helloI18n.jsp</a> )<br>
 <a href="https://qiita.com/changkejun/private/54c3df529a1b83093790">Let's Create a Rest API Service</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloRestAPI.jsp">helloworld/helloRestAPI.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/items/2e7a68149eab8f2281cf">efwのwebアプリのログイン制御＆権限制御</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample">skeletonSample</a> )<br>
-<a href="https://qiita.com/changkejun/items/350ca12a3276c4d1378a">Javetを利用して、pdf-libとpdfmakeをefwに使ってみる</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3">hello-pdf-lib3</a>, <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3">hello-pdfmake3</a> )<br>
+<a href="https://qiita.com/changkejun/private/c36d3671493225ad14ce">Web App Login Control & Authority Control</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample">skeletonSample</a> )<br>
+<a href="https://qiita.com/changkejun/private/5f50cf3d3e935dd90989">Try to use pdf-lib and pdfmake on Efw with Javet</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3">hello-pdf-lib3</a>, <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3">hello-pdfmake3</a> )<br>
 
 
 <a href="samples/dialogSample">dialog</a>
