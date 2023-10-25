@@ -12,7 +12,7 @@ cmd.execute(["java","-version"]);
 
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . get ( params )</td><td>void</td></tr>
+<tr><td>cmd . execute ( params )</td><td>void</td></tr>
 </table>
 
 
