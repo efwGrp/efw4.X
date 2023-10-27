@@ -20,8 +20,7 @@ Barcode:	Move barcode in Additional Tags.
 <h3>Introduction</h3>
 <table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
 <td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFW紹介v2.0/index.html">EFW紹介</a><br>
-<a href="https://efwgrp.github.io/efw4_online_ppt/EFWとMVCの比較v0.1/index.html">MVCと比較</a><br>
+<a href="https://qiita.com/changkejun/private/844953846f3e6bed4a9d">What is Efw?</a><br>
 <a href="https://qiita.com/changkejun/private/70184f814ff52f862d91">Efw Security Related Explanation</a><br>
 <a href="https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0">Build a High Loads Tomcat Environment</a><br>
 
