@@ -1,27 +1,27 @@
-[<a href="README_J.md">日本語</a>]
+[<a href="README.md">English</a>]
 <H1>efw4.X</H1>
-<h3>Introduction</h3>
+<h3>紹介</h3>
 <table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
 <td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
-<a href="https://qiita.com/changkejun/private/844953846f3e6bed4a9d">What is Efw?</a><br>
-<a href="https://qiita.com/changkejun/private/70184f814ff52f862d91">Efw Security Related Explanation</a><br>
-<a href="https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0">Build a High Loads Tomcat Environment</a><br>
+<a href="https://qiita.com/changkejun/items/d9ef1bbffecb8dab4ffc">Efwとは</a><br>
+<a href="https://qiita.com/changkejun/items/5e10a96e0b1efce8653e">Efwのセキュリティ関連の説明</a><br>
+<a href="https://qiita.com/changkejun/items/1d850b109f8b26381268">高負荷対応のTomcat環境構築</a><br>
 
-<h3>Samples</h3>
-<a href="https://qiita.com/changkejun/private/2f59403e8fa3b0f40eb7">Test Each Type of Input Element</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/f634ae1c8040cef4cc01">Test Each Type of Value Display</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/3accadd827594d1bccdf">Test Each Type of Screen Action</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/ActionTest.jsp">helloworld/ActionTest.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/3f943f089d44d83296af">Web File Management with One Tag</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloElfinder.jsp">helloworld/helloElfinder.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/dc976ccaaf82458c7771">Web Chart Function with One Tag</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloChart.jsp">helloworld/helloChart.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/0cdef7d8d288f9f0a563">Create Web QR Code with One Tag</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloBarcode.jsp">helloworld/helloBarcode.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/5f6c5b234dc1322ec859">Let's Graduate from POI</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloExcelbyPOI.jsp">helloworld/helloExcelbyPOI.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/97af2b8722c149f5335d">Don't be Afraid of Gigabytes of Text</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloTextCSVThread.jsp">helloworld/helloTextCSVThread.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/d046d1804b4c996700e2">Introduction to Database Processing</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloDB.jsp">helloworld/helloDB.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/26fe53af470ee1a96b05">Send to Gmail SMTP</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloMail.jsp">helloworld/helloMail.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/7d0999b90b0e5370f928">Multilingual Support</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloI18n.jsp">helloworld/helloI18n.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/54c3df529a1b83093790">Let's Create a Rest API Service</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloRestAPI.jsp">helloworld/helloRestAPI.jsp</a> )<br>
-<a href="https://qiita.com/changkejun/private/c36d3671493225ad14ce">Web App Login Control & Authority Control</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample">skeletonSample</a> )<br>
-<a href="https://qiita.com/changkejun/private/5f50cf3d3e935dd90989">Try to use pdf-lib and pdfmake on Efw with Javet</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3">hello-pdf-lib3</a>, <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3">hello-pdfmake3</a> )<br>
+<h3>サンプル</h3>
+<a href="https://qiita.com/changkejun/items/926a29ef46714d8cf9f1">各種類の入力枠を一括テスト</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/194b6c300c82167acddc">各種類の値表示をテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/OutputTest.jsp">helloworld/OutputTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/c1369438843759d0e890">各種類の画面アクションをテストする</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/ActionTest.jsp">helloworld/ActionTest.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/d79127e27b49bfc8a847">タグ１つでwebのファイル管理</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloElfinder.jsp">helloworld/helloElfinder.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/b563570df2036f5fa7da">タグ１つでwebのチャート機能</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloChart.jsp">helloworld/helloChart.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/106f2734dd319e9b1201">タグ１つでwebのQRコード作成</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloBarcode.jsp">helloworld/helloBarcode.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/dea128563b608b7dcb43">POIから卒業しましょう</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloExcelbyPOI.jsp">helloworld/helloExcelbyPOI.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/2777f3006c4a0b8d2213">ギガバイトのテキストを恐れなし</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloTextCSVThread.jsp">helloworld/helloTextCSVThread.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/b273b3ae64c76e5b016a">efwのデータベース処理に関する紹介</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloDB.jsp">helloworld/helloDB.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/c237ddbc69c9c4cb3319">efwを利用してGmailのSMTPへ送信</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloMail.jsp">helloworld/helloMail.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/e4afa094a606c14698f3">efwの多国語対応</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloI18n.jsp">helloworld/helloI18n.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/70ac1778acd146ad0f9c">Rest API サービスを作りましょう</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/helloRestAPI.jsp">helloworld/helloRestAPI.jsp</a> )<br>
+<a href="https://qiita.com/changkejun/items/2e7a68149eab8f2281cf">efwのwebアプリのログイン制御＆権限制御</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample">skeletonSample</a> )<br>
+<a href="https://qiita.com/changkejun/items/350ca12a3276c4d1378a">Javetを利用して、pdf-libとpdfmakeをefwに使ってみる</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3">hello-pdf-lib3</a>, <a href="https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3">hello-pdfmake3</a> )<br>
 
 
 <a href="samples/dialogSample">dialog</a>
