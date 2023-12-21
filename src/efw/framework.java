@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.009";// change it when releasing jar.
+	public static final String version="4.07.010";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
