@@ -29,6 +29,7 @@
 <tr><td>s</td><td>ｓ</td></tr>
 <tr><td>SSS</td><td>ＳＳＳ</td></tr>
 <tr><td>S</td><td>Ｓ</td></tr>
+<tr><td colspan=2>JSON_DATE</td><td>2024-01-17T02:11:18.605Z</td></tr>
 </table>
 
 <table>

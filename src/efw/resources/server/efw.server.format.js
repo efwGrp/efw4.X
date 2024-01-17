@@ -85,6 +85,14 @@ EfwServerFormat.prototype.parseNumber = function(value, formatter) {
  * @returns {String}
  */
 EfwServerFormat.prototype.formatDate = function(value, formatter) {
+	if (value == null)
+		return "";// it value is not null, return ""
+	if (!value.getTime)
+		return "";// if value is not date, return ""
+
+	if (formatter=="JSON_DATE"){
+		return JSON.stringify(value).replace(/"/g,"");
+	}
 	var isFullWidth =false;
 	if (formatter.indexOf("Ｇ")>-1 || formatter.indexOf("ｙ")>-1
 			|| formatter.indexOf("Ｍ")>-1|| formatter.indexOf("ｄ")>-1
@@ -102,11 +110,6 @@ EfwServerFormat.prototype.formatDate = function(value, formatter) {
 			.replace(/Ｓ/g,"S")
 			;	
 	}
-	if (value == null)
-		return "";// it value is not null, return ""
-	if (!value.getTime)
-		return "";// if value is not date, return ""
-	
 	
 	var ret = "" + Packages.efw.format.FormatManager.formatDate(value.getTime(),
 					formatter);
@@ -145,6 +148,9 @@ EfwServerFormat.prototype.parseDate = function(value, formatter) {
 	if (!value)
 		return null; // if value is blank return null
 	var dt = new Date();
+	if (formatter=="JSON_DATE"){//clientからjsonの日付を送ってくれる場合の対応
+		return new Date(value);
+	}
 	dt.setTime(Packages.efw.format.FormatManager.parseDate(value, formatter)
 			.getTime());
 	return dt;

@@ -5,7 +5,7 @@ You can use Prop: to get value from efw.properties.
 <%@ taglib prefix="efw" uri="efw" %>
 <body>
 ...
-<efw:Part path="part.jsp" appurl="prop:sub1.appurl" />		//or Prop:sub1.appurl , PROP:sub1.appurl
+<efw:Part path="part.jsp" myparam="prop:part.myparam" />		//or Prop:part.myparam , PROP:part.myparam
 ...
 </body>
 ```

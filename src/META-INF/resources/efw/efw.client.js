@@ -264,6 +264,8 @@ EfwClient.prototype._pickupParams = function(eventId, paramsFormat, context,
 										"files")[0]);
 							}
 						}
+					} else if (tgNm == "IMG") {
+						vl=element.attr("src");
 					} else if (tgNm == "HTML") {
 						// the next puzzle code is only for firefox
 						$("input,button").each(function() {
@@ -396,6 +398,8 @@ EfwClient.prototype._showValues = function(eventId, values) {
 								// set data to value attribute
 							} else if (this.tagName == "INPUT" || this.tagName == "TEXTAREA") {
 								$(this).val(data);
+							} else if (this.tagName == "IMG") {
+								$(this).attr("src",data);
 								// set data with selected attribute
 							} else if (this.tagName == "SELECT") {
 								var dataAry = ("" + data)

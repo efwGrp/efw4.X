@@ -99,4 +99,13 @@ public final class ScriptManager {
 		Invocable invocable = (Invocable) _se;
 		return (String)invocable.invokeFunction("doRestAPI", eventId, reqKeys, httpMethod, reqParams);
 	}
+	/**
+	 * NashornエンジンからJSONを取得する関数。
+	 * @param script JSONを指すスクリプト。
+	 * @return JSONオブジェクト。
+	 * @throws ScriptException スクリプトエラー。
+	 */
+	public static Object getJSON(String script) throws ScriptException {
+		return _se.eval("Java.asJSONCompatible("+script+");");
+	}
 }

@@ -44,8 +44,6 @@
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>shareSessions</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>PART</name>
@@ -53,8 +51,6 @@
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>shareSessions</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>part</name>
@@ -62,8 +58,6 @@
     <body-content>empty</body-content>
     <dynamic-attributes>true</dynamic-attributes>
     <attribute><name>path</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>shareSessions</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   
   <tag>
@@ -79,7 +73,6 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>ELFINDER</name>
@@ -94,7 +87,6 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elfinder</name>
@@ -109,7 +101,6 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elFinder</name>
@@ -124,7 +115,6 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
-    <attribute><name>appurl</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>

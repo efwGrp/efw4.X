@@ -1,8 +1,11 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.sql;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -80,6 +83,8 @@ public final class SqlManager {
 		SqlHashMap group=groups.get(groupId);
 		if (group==null){
 			return true;//xml file is not in memory,so it is need to reload
+		}else if (group.getIsFromResource()) {
+			return false;//リソース取得の場合更新日チェック不要
 		}else{
 			Date fileLastModifytime = new Date(new File(framework.getSqlFolder()+"/"+groupId+".xml").lastModified());
 			if(!fileLastModifytime.equals(group.getLastModifytime())){
@@ -88,6 +93,58 @@ public final class SqlManager {
 				return false;//xml file is not modified
 			}
 		}
+	}
+	/**
+	 * アプリのxmlをパッケージした場合、そのxmlをロードするための関数。
+	 * ほかのケースの利用を推薦しない。
+	 * @param groupId MailテンプレートXMLファイルのファイル名（拡張子を除く）。
+	 * @param path jarファイル内のパス。
+	 * @throws efwException メール定義エラー。
+	 */
+	public static void loadFromResource(String groupId,String path) throws efwException {
+		try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+			SqlHashMap group=new SqlHashMap();
+			group.setIsFromResource(true);//リソース取得の意味
+			group.setLastModifytime(null);//この場合更新日を保管しない
+			//add a new map by file name in aryData 
+			groups.put(groupId,group);
+			//read xml to get Mails 
+			NodeList sqls;
+			try {
+				sqls = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+									.parse(is)
+									.getDocumentElement()
+									.getElementsByTagName("sql");
+			} catch (SAXException e) {
+				throw new XMLFileIsNotLegalException("sql",groupId,e.getMessage());
+			} catch (IOException e) {
+				throw new XMLFileIsNotLegalException("sql",groupId,e.getMessage());
+			} catch (ParserConfigurationException e) {
+				throw new XMLFileIsNotLegalException("sql",groupId,e.getMessage());
+			}
+
+			//get sql from element
+			for(int i=0;i<sqls.getLength();i++){
+				Node node = sqls.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE){
+					Element element= (Element)node;
+					String sqlId=element.getAttribute("id");
+					if (group.get(sqlId)==null){
+						try {
+							group.put(sqlId, new Sql(element));
+						}catch(Exception e) {
+							throw new XMLTagIsNotLegalException("sql",groupId,sqlId,e.getMessage());
+						}
+					}else{
+						throw new XMLTagIdIsDuplicateException("sql",groupId,sqlId);
+					}
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	/**
 	 * Sql外部化XMLファイルのファイル名によりロードする。

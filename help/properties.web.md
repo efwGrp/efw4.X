@@ -72,7 +72,7 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 </tr>
 
 <tr>
-	<th rowspan=6>Login Check<br>(for web event)</th>
+	<th rowspan=5>Login Check<br>(for web event)</th>
 	<td>efw.login.check</td>
 	<td>false</td>
 	<td>The flag indicating whether the web application does the login check.</td>
@@ -96,11 +96,6 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>efw.outoflogin.<br>eventid.pattern</td>
 	<td></td>
 	<td>The regexp to set events which are out of logining check. </td>
-</tr>
-<tr>
-	<td>efw.sso.enable</td>
-	<td>false</td>
-	<td>The flag indicating whether the web application does the sso authentication check. </td>
 </tr>
 
 <tr>
@@ -134,43 +129,6 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td></td>
 	<td>The page regexp of the set. </td>
 </tr>
-
-<tr>
-	<th>Application</th>
-	<td>efw.as.main</td>
-	<td>true</td>
-	<td>The application will be running as a main application or a sub one.</td>
-</tr>
-
-<tr>
-	<th rowspan=3>Properties For Main App</th>
-	<td>efw.call.to.subs</td>
-	<td></td>
-	<td>The sub applications splitted by [,].</td>
-</tr>
-<tr>
-	<td>####.appurl</td>
-	<td></td>
-	<td>The sub application url.</td>
-</tr>
-<tr>
-	<td>####.encodekey</td>
-	<td></td>
-	<td>The encode key for sharing session to the sub application.</td>
-</tr>
-
-<tr>
-	<th rowspan=3>Properties For Sub App</th>
-	<td>efw.appurl</td>
-	<td></td>
-	<td>The appurl for the sub application.</td>
-</tr>
-<tr>
-	<td>efw.decodekey</td>
-	<td></td>
-	<td>The decode key for the sub application to get sharing session from the main application.</td>
-</tr>
-
 
 </table>
 </DL></DD>

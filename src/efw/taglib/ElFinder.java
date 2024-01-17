@@ -18,7 +18,6 @@ import efw.framework;
  * ElFinderタグを処理するクラス。
  * &lt;efw:ElFinder home="myHomeFolder" readonly="false" protected="true" selection="file1" height="400" width="800"/&gt;<br>
  * &lt;efw:ElFinder home="c:/myHomeFolder" isAbs="true" /&gt;<br>
- * &lt;efw:ElFinder home="myHomeFolder" appurl="subAppUrl" /&gt;<br>
  * @author Chang Kejun
  *
  */
@@ -32,7 +31,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	private String height="400";
 	private String width="auto";
 	private boolean _protected=false;
-	private String appurl="";
 	/**
 	 * ElFinderのIDを取得する。
 	 * @return ElFinderのID。
@@ -153,20 +151,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			this._protected=false;
 		}
 	}
-	/**
-	 * サブアプリURLを取得する。
-	 * @return サブアプリURL。
-	 */
-	public String getAppurl() {
-		return appurl;
-	}
-	/**
-	 * サブアプリURLを設定する。
-	 * @param appurl サブアプリURL。
-	 */
-	public void setAppurl(String appurl) {
-		this.appurl = Util.translateAttr(pageContext,appurl);
-	}
 
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
@@ -188,14 +172,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		if ("".equals(lang)||lang==null)lang="en";
 		try {
 			String v=framework.version;
-			boolean asMain=false;
-			//メイン部品と実行する場合
-			if ("".equals(appurl)) {
-				asMain=true;
-			}else {
-				//サブ部品実行、サブpartにelfinderのappurl属性を設定する想定。
-				asMain=false;
-			}
 			out = pageContext.getOut();
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
@@ -205,10 +181,9 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\">");
 			out.print("var "+id+";$(function(){"+id+"=$(\"#"+id+"\")"
 					+ ".elfinder({"
-					+"\"url\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/efwServlet\","
-					+"\"urlUpload\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/uploadServlet\","
-					+"\"soundPath\":"+(asMain?"efw.baseurl+\"":"\""+appurl)+"/elfinder/sounds\","
-					+ "\"appurl\":"+(asMain?"efw.baseurl":"\""+appurl+"\"")+","
+					+"\"url\":efw.baseurl+\"/efwServlet\","
+					+"\"urlUpload\":efw.baseurl+\"/uploadServlet\","
+					+"\"soundPath\":efw.baseurl+\"/elfinder/sounds\","
 					+"\"requestType\":\"POST\","
 					+"\"lang\":\""+lang+"\","
 					+"\"height\":\""+height+"\","
@@ -242,7 +217,6 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		height="400";
 		width="auto";
 		_protected=false;
-		appurl="";
 		attrs=new HashMap<String, String>();
 		return SKIP_BODY;
 	}

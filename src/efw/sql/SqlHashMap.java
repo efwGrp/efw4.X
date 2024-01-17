@@ -14,4 +14,11 @@ final class SqlHashMap extends HashMap<String, Sql> {
 	protected void setLastModifytime(Date lastModifytime) {
 		this.lastModifytime = lastModifytime;
 	}
+	private boolean isFromResource=false;
+	protected boolean getIsFromResource() {
+		return isFromResource;
+	}
+	protected void setIsFromResource(boolean isFromResource) {
+		this.isFromResource=isFromResource;
+	}
 }

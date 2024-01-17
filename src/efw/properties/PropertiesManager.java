@@ -162,26 +162,6 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_FORMAT_ROUNDER="efw.format.rounder";
 	/**
-	 * メインアプリフラグ。
-	 * 「efw.as.main」の定数。
-	 */
-	public static final String EFW_AS_MAIN="efw.as.main";
-	/**
-	 * メインアプリに利用されるサブアプリ。
-	 * 「efw.call.to.subs」の定数。
-	 */
-	public static final String EFW_CALL_TO_SUBS="efw.call.to.subs";
-	/**
-	 * サブ部品のアプリURL。
-	 * 「efw.appurl」の定数。
-	 */
-	public static final String EFW_APPURL="efw.appurl";
-	/**
-	 * サブの暗号化キー。
-	 * 「efw.decodekey」の定数。
-	 */
-	public static final String EFW_DECODEKEY ="efw.decodekey";
-	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */
 	private static final Properties prop = new Properties();

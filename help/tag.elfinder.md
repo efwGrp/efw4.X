@@ -24,7 +24,6 @@ and included it into Efw as a tag. It must be used after the Client tag for jQue
 <tr><td>readonly</td><td>No</td><td>"false"</td><td>The elFinder tag is for reference or not. </td></tr>
 <tr><td>protected</td><td>No</td><td>"false"</td><td>The elFinder tag is protected or not. If it is true, "setHome" method and "setReadOnly" method calling will be ignored.</td></tr>
 <tr><td>isAbs</td><td>No</td><td>false</td><td>The home path is absolute path or not.</td></tr>
-<tr><td>appurl</td><td>No</td><td>""</td><td>If the elfinder is in a remote sub part,the appurl should be set.</td></tr>
 
 </table>
 <h2>Methods</h2>

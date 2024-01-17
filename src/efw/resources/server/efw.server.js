@@ -14,7 +14,6 @@ function EfwServer() {
  */
 EfwServer.prototype.checkLogin = function(eventId, lang){
 	var currentAuthBean=Packages.efw.efwCorsFilter.getCurrentAuthBean();
-	var asMain=Packages.efw.efwCorsFilter.getAsMain();
 	var needLoginCheck = currentAuthBean.loginCheck;
 	var loginUrl = currentAuthBean.loginUrl;
 	var outOfLoginEventIdPattern = ""+currentAuthBean.outOfloginEventIdPatternString;
@@ -25,10 +24,7 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
 			var result=(new Result())
 			.alert(messages.get("SessionTimeoutException",lang));
 			//メインアプリとして呼び出す場合、ログインURL遷移。
-			//もしサブアプリ呼び出し場合、なにもしない。サブアプリはメインアプリのログインURLを知らないから。
-			if (asMain) {
-				result.navigate(loginUrl);
-			}
+			result.navigate(loginUrl);
 			return result;
 		}
 	}
@@ -41,7 +37,6 @@ EfwServer.prototype.checkLogin = function(eventId, lang){
  */
 EfwServer.prototype.checkAuth = function(eventId, lang){
 	var currentAuthBean = Packages.efw.efwCorsFilter.getCurrentAuthBean();
-	var asMain = Packages.efw.efwCorsFilter.getAsMain();
 	var systemErrorUrl = currentAuthBean.systemErrorUrl;
 	var outOfLoginEventIdPattern =""+currentAuthBean.outOfloginEventIdPatternString;
 	if (eventId.search(new RegExp(outOfLoginEventIdPattern)) == -1) {
@@ -63,10 +58,8 @@ EfwServer.prototype.checkAuth = function(eventId, lang){
 			}
 			if (hasAuth == false) {
 				var result=(new Result())
-				.alert(messages.get("OtherErrorException",lang));
-				if (asMain) {
-					result.navigate(systemErrorUrl);
-				}
+				.alert(messages.get("OtherErrorException",lang))
+				.navigate(systemErrorUrl);
 				return result;
 			}
 		}

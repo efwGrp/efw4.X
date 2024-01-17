@@ -1,8 +1,11 @@
 /**** efw4.X Copyright 2019 efwGrp ****/
 package efw.mail;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -174,6 +177,8 @@ public final class MailManager {
 		MailHashMap group=groups.get(groupId);
 		if (group==null){
 			return true;//xml file is not in memory,so it is need to reload
+		}else if (group.getIsFromResource()) {
+			return false;//リソース取得の場合更新日チェック不要
 		}else{
 			Date fileLastModifytime = new Date(new File(framework.getMailFolder()+"/"+groupId+".xml").lastModified());
 			if(!fileLastModifytime.equals(group.getLastModifytime())){
@@ -182,6 +187,58 @@ public final class MailManager {
 				return false;//xml file is not modified
 			}
 		}
+	}
+	/**
+	 * アプリのxmlをパッケージした場合、そのxmlをロードするための関数。
+	 * ほかのケースの利用を推薦しない。
+	 * @param groupId MailテンプレートXMLファイルのファイル名（拡張子を除く）。
+	 * @param path jarファイル内のパス。
+	 * @throws efwException メール定義エラー。
+	 */
+	public static void loadFromResource(String groupId,String path) throws efwException {
+		try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+			MailHashMap group=new MailHashMap();
+			group.setIsFromResource(true);//リソース取得の意味
+			group.setLastModifytime(null);//この場合更新日を保管しない
+			//add a new map by file name in aryData 
+			groups.put(groupId,group);
+			//read xml to get Mails 
+			NodeList mails;
+			try {
+				mails = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+									.parse(is)
+									.getDocumentElement()
+									.getElementsByTagName("mail");
+			} catch (SAXException e) {
+				throw new XMLFileIsNotLegalException("mail",groupId,e.getMessage());
+			} catch (IOException e) {
+				throw new XMLFileIsNotLegalException("mail",groupId,e.getMessage());
+			} catch (ParserConfigurationException e) {
+				throw new XMLFileIsNotLegalException("mail",groupId,e.getMessage());
+			}
+
+			//get sql from element
+			for(int i=0;i<mails.getLength();i++){
+				Node node = mails.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE){
+					Element element= (Element)node;
+					String mailId=element.getAttribute("id");
+					if (group.get(mailId)==null){
+						try {
+							group.put(mailId, new Mail(element));
+						}catch(Exception e) {
+							throw new XMLTagIsNotLegalException("mail",groupId,mailId,e.getMessage());
+						}
+					}else{
+						throw new XMLTagIdIsDuplicateException("mail",groupId,mailId);
+					}
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	/**
 	 * MailテンプレートXMLファイルのファイル名によりロードする。
