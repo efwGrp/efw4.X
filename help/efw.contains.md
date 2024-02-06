@@ -21,5 +21,5 @@ if (!efw.contains("PDFLib")){
 
 <table>
 <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>Array</td><td>The name of the global variable to be registered.</td></tr>
+<tr><td>key</td><td>String</td><td>The name of the global variable to be registered.</td></tr>
 </table>
