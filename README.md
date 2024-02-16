@@ -80,6 +80,7 @@
 <tr><td>properties</td><td><a href="help/properties.get.md">get</a></td></tr>
 <tr><td>session</td><td><a href="help/session.get.md">get</a></td><td><a href="help/session.set.md">set</a></td><td><a href="help/session.create.md">create</a></td><td><a href="help/session.invalidate.md">invalidate</a></td></tr>
 <tr><td>cookie</td><td><a href="help/cookie.get.md">get</a></td><td><a href="help/cookie.set.md">set</a></td></tr>
+<tr><td>request</td><td><a href="help/request.get.md">get</a></td></tr>
 <tr><td>{ any }</td><td><a href="help/any.debug.md">debug</a></td></tr>
 <tr><td>{ Date }</td><td><a href="help/any.format.md">format</a></td><td><a href="help/any.parse.md">parse</a></td><td><a href="help/Date.getYears.md">getYears</a></td></tr>
 <tr><td>{ Number }</td><td><a href="help/any.format.md">format</a></td><td><a href="help/any.parse.md">parse</a></td></tr>
