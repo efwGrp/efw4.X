@@ -2,12 +2,15 @@
 package efw.sql;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,6 +33,29 @@ import efw.framework;
  *
  */
 public final class SqlManager {
+	/**
+	 * Sourceにより、SQLオブジェクトを作成する
+	 * @param source SQL文、ifタグなど含める
+	 * @param params Sqlに利用される引数を格納するマップ。
+	 * @return SQLオブジェクト
+	 * @throws efwException
+	 */
+	protected static Sql getSqlFromSource(String source,Map<String,Object> params) throws efwException {
+		String sql="<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE sqls><sqls><sql>"+(String)params.get(source)+"</sql></sqls>";
+		InputStream inputStream =
+		        new ByteArrayInputStream(sql.getBytes(StandardCharsets.UTF_8));
+		try {
+			NodeList sqls = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+					.parse(inputStream)
+					.getDocumentElement()
+					.getElementsByTagName("sql");
+			Node node = sqls.item(0);
+			Element element= (Element)node;
+			return new Sql(element);
+		} catch (Exception e) {
+			throw new XMLTagIsNotLegalException(source,(String)params.get(source));
+		}
+	}
 	/**
 	 * ひとつのSQL定義を取得する。
 	 * デバッグモードの場合、最終更新日時により再ロードするか否か判断する。

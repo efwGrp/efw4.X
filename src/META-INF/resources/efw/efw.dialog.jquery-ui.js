@@ -58,7 +58,11 @@ EfwDialog.prototype.alert = function(message, buttons, title, callback) {
 		}
 		self._alert.dialog("option", "buttons", dialogButtons);
 		self._alert.dialog("option", "title", title!=null?title:efw.messages.AlertDialogTitle);
-		if(callback)self._alert.dialog("option", "beforeClose", function(){window.setTimeout(callback);});
+		if(callback){
+			self._alert.dialog("option", "beforeClose", function(){window.setTimeout(callback);});
+		}else{
+			self._alert.dialog("option", "beforeClose", null);
+		}
 		$("#efw_client_alert p").html(message.replace(/\n/g, "<br>"));
 		
 		self._alert.dialog("open");

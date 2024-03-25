@@ -132,8 +132,22 @@ public final class Sql {
 				}
 			}else if(obj.getClass().getName().equals("efw.sql.SqlInclude")){
 				SqlInclude sqlinclude=(SqlInclude)obj;
-				Sql subsql=SqlManager.get(sqlinclude.getGroupId(), sqlinclude.getSqlId());
-				bf.append(subsql.getSqlString(params,paramKeys));
+				String source=sqlinclude.getSource();
+				if (!"".equals(source)&&source!=null){
+					if(params.containsKey(source)){
+						String v=(String)params.get(source);
+						if (!"".equals(v)&&v!=null){
+							Sql subsql=SqlManager.getSqlFromSource(source,params);
+							String sqlsource=subsql.getSqlString(params,paramKeys);
+							if (sqlsource!=null) {
+								bf.append(sqlsource);
+							}
+						}
+					}
+				}else {
+					Sql subsql=SqlManager.get(sqlinclude.getGroupId(), sqlinclude.getSqlId());
+					bf.append(subsql.getSqlString(params,paramKeys));
+				}
 			}
 		}
 		return bf.toString();

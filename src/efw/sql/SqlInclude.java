@@ -11,6 +11,8 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Element;
 
+import efw.efwException;
+
 /**
  * サブSqlをインクロードするクラス。
  * @author Chang Kejun
@@ -25,7 +27,12 @@ final class SqlInclude {
 	protected SqlInclude(Element element) throws Exception{
 		groupId=element.getAttribute("groupId");
 		sqlId=element.getAttribute("sqlId");
-		if (Sql.isBlank(groupId)||Sql.isBlank(sqlId)){//group sqlid未設定の場合
+		source=element.getAttribute("source");
+		if (!Sql.isBlank(groupId)&&!Sql.isBlank(sqlId)){//group sqlid設定の場合
+			//OK
+		}else if (!Sql.isBlank(source)){
+			//OK
+		}else{
 			String information;
 			try{
 				StreamResult xmlOutput = new StreamResult(new StringWriter());
@@ -63,5 +70,17 @@ final class SqlInclude {
 	protected String getSqlId() {
 		return sqlId;
 	}
+	/**
+	 * sourceのキー。
+	 */
+	private String source;
+	/**
+	 * sourceのキーを取得する
+	 * @return パラメータのキー。
+	 */
+	protected String getSource() {
+		return source;
+	}
+	
 
 }
