@@ -50,6 +50,7 @@ function doPost(req) {
 		ev=event._load(eventId);
 	}
 	if (ev==null){
+		eventId=eventId.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error eventid for showing in alert dialog.
 		var result=(new Result())
 		.error("RuntimeErrorException", {"eventId":eventId,"message":""+messages.get("EventIsNotExistsMessage",lang)});
 		var systemErrorUrl=""+currentAuthBean.systemErrorUrl;

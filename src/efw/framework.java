@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.016";// change it when releasing jar.
+	public static final String version="4.07.017";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -273,7 +273,12 @@ public final class framework {
 	public static boolean getInitSuccessFlag() {
 		return initSuccessFlag;
 	}
-
+	/**
+	 * 初期化成功フラグをリセットする。アプリ再起動のため。
+	 */
+	public static void resetInitSuccessFlag(){
+		framework.initSuccessFlag=false;
+	}
 	private static String eventFolder="/WEB-INF/efw/event";
 	/**
 	 * イベントフォルダを取得する。

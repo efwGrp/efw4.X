@@ -130,5 +130,18 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>The page regexp of the set. </td>
 </tr>
 
+<tr>
+	<th rowspan=6>Forbidden Chars</th>
+	<td>efw.forbidden.characters</td>
+	<td></td>
+	<td>The forbidden characters should not be send as params to event js.</td>
+</tr>
+<tr>
+	<td>efw.forbidden.replacement</td>
+	<td></td>
+	<td>The characters to replace the forbidden characters. If blank, the forbidden characters will be removed from request.</td>
+</tr>
+
+
 </table>
 </DL></DD>

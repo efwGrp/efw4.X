@@ -162,6 +162,16 @@ public final class PropertiesManager {
 	 */
 	public static final String EFW_FORMAT_ROUNDER="efw.format.rounder";
 	/**
+	 * 禁則文字定義。
+	 * 「efw.forbidden.characters」の定数。
+	 */
+	public static final String EFW_FORBIDDEN_CHARACTERS="efw.forbidden.characters";
+	/**
+	 * 禁則文字の置換文字。
+	 * 「efw.forbidden.replacement」の定数。
+	 */
+	public static final String EFW_FORBIDDEN_REPLACEMENT="efw.forbidden.replacement";
+	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */
 	private static final Properties prop = new Properties();

@@ -304,6 +304,10 @@ EfwClient.prototype._pickupParams = function(eventId, paramsFormat, context,
 				} else {
 					throw "'" + key + "' can not be matched to multiple elements.";
 				}
+				//if format string contains secure
+				if ( format!=null && format.indexOf("secure:true")>-1){
+					if (vl!=null)vl=btoa(encodeURIComponent(vl));
+				}
 			} else if ($.type(format) == "array") {
 				if ($.type(format[0]) == "object") {
 					var ary = [];

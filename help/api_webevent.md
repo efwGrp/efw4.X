@@ -22,6 +22,7 @@ myWebEvent.paramsFormat = {
                                                                +"min:"+date1.format("yyyy-MM-dd")+";"
                                                                +"max:"+date2.format(,"yyyy-MM-dd")+";" ;
                                                     },
+                                "#txt_password"   :"secure:true",//the secure value will be encoded before sending.
                                 ... 
                             };
 myWebEvent.fire         = function ( requestParams ) {
@@ -140,6 +141,7 @@ To reference JQuery about the rules of selectors.
 	<tr><td>max</td><td>String</td><td>The max (formatted) value to an element.</td><td>MinOrMaxOverMessage or MaxOverMessage</td></tr>
 	<tr><td>required</td><td>Boolean</td><td>The element is must or not.</td><td>IsRequiredMessage</td></tr>
 	<tr><td>accept</td><td>String</td><td>The extension file-names seperated by "," which will be accepted as uploading files. </td><td>NotAcceptMessage</td></tr>
+	<tr><td>secure</td><td>String</td><td>The element value should be encoded or not. </td><td></td></tr>
 </table>
 <H3>Fire Method</H3>
 

@@ -76,6 +76,14 @@ EfwServer.prototype.checkAuth = function(eventId, lang){
  * @returns {null | Result}<br>
  */
 EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
+	//禁則文字の定義を取得する
+	var characters = Packages.efw.properties.PropertiesManager.getProperty(
+		Packages.efw.properties.PropertiesManager.EFW_FORBIDDEN_CHARACTERS,"");
+	var replacement= Packages.efw.properties.PropertiesManager.getProperty(
+		Packages.efw.properties.PropertiesManager.EFW_FORBIDDEN_REPLACEMENT,"");
+	characters=characters.split("");
+	replacement=replacement.split("");
+
 	function _check(pms, fts, parentkey) { // required,format,display-name,max-length,min,max,
 		var result = new Result();
 		if (parentkey != null && parentkey != "")
@@ -121,6 +129,7 @@ EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
 				var min = validators["min"]; // min value in format define
 				var max = validators["max"]; // max value in format define
 				var accept = validators["accept"]; // file ext name
+				var secure = validators["secure"];
 				var minv = null; // min value
 				var maxv = null; // max value
 				var value = null; // the value of param
@@ -203,7 +212,20 @@ EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
 						maxv = null;
 					else
 						maxv = max;
-					value = param;
+
+					value=param;
+					//暗号化の場合復号化する
+					if (secure=="true"){
+						value=decodeURIComponent(value.base64Decode());
+					}
+					//禁則文字対応
+					for (var i=0;i<characters.length;i++){
+						var chr=characters[i];
+						var rpl=replacement[i];
+						if (rpl==null)rpl="";
+						value=value.replace(new RegExp("["+chr+"]","g"),rpl);
+					}
+					pms[key] = value;
 				}
 
 				if (value != null && value != "") {// check min max

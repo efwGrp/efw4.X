@@ -22,7 +22,22 @@ EfwServerRequest.prototype.get = function(key) {
 	        results = regex.exec(url);
 	    if (!results) return null;
 	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	    var value= decodeURIComponent(results[2].replace(/\+/g, " "));
+		//禁則文字の定義を取得する
+		var characters = Packages.efw.properties.PropertiesManager.getProperty(
+			Packages.efw.properties.PropertiesManager.EFW_FORBIDDEN_CHARACTERS,"");
+		var replacement= Packages.efw.properties.PropertiesManager.getProperty(
+			Packages.efw.properties.PropertiesManager.EFW_FORBIDDEN_REPLACEMENT,"");
+		characters=characters.split("");
+		replacement=replacement.split("");
+		//禁則文字対応
+		for (var i=0;i<characters.length;i++){
+			var chr=characters[i];
+			var rpl=replacement[i];
+			if (rpl==null)rpl="";
+			value=value.replace(new RegExp("["+chr+"]","g"),rpl);
+		}
+	    return value;
 	}
 	return getParam(url,key);
 };
