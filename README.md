@@ -221,6 +221,8 @@
 <a href="help/jQuery_Selectors_API.md">jQuery Selectors API</a><br>
 <a href="https://wiki.openjdk.org/display/Nashorn/Nashorn+extensions">Nashorn Extensions</a><br>
 <a href="https://github.com/efwGrp/nashorn-ext-for-es6">Nashorn Ext for ES6</a><br>
+<a href="https://www.tohoho-web.com/html/index2.htm">HTML</a><br>
+<a href="https://www.tohoho-web.com/css/index.htm">CSS</a><br>
 
 <H1>They use our products</H1>
 <a href="https://www.escco.co.jp"><img src="help/logos/escco.png"></a>
