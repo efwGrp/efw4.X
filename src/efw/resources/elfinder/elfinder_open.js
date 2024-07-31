@@ -15,7 +15,18 @@ elfinder_open.fire = function(params) {
 	var saveupload=params["saveupload"];//アップロード後の再表示のため。1,0
 	//---------------------------------------------------------------------
 	var options={
-         "uploadMaxConn":-1,		//アップロードファイルは分割しない
+		"uploadMaxConn":-1,		//アップロードファイルは分割しない
+		"archivers": {
+			"create": [
+				"application\/zip"
+			],
+			"extract": [
+				"application\/zip"
+			],
+			"createext": {
+				"application\/zip": "zip"
+			}
+		},
 	};
 
 	//---------------------------------------------------------------------

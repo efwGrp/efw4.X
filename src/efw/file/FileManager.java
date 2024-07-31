@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -111,52 +112,121 @@ public final class FileManager {
     
     /**
 	 * ファイルを圧縮する。
-	 * @param filename 圧縮後のファイル名。
-	 * @param paths 圧縮対象のファイル配列。
+	 * @param toZipPath 圧縮後のファイルパス。
+	 * @param toZipPathIsAbs 圧縮後のファイルパスは絶対パスか相対パスかのフラグ。
+	 * @param fromFilePaths 圧縮対象のファイル配列。
+	 * @param basePath 圧縮ファイルのベースパス。
+	 * @param basePathIsAbs 圧縮対象と圧縮ファイルのベースパスか相対パスかのフラグ。
 	 * @throws IOException ファイルアクセスエラー。
 	 */
-	protected static void zip(String filename, String[] paths, String basePath, boolean isAbs) throws IOException{
+	public static void zip(String toZipPath,  boolean toZipPathIsAbs, String[] fromFilePaths, String basePath, boolean basePathIsAbs) throws IOException{
 		//filename is the zip file name, so it is in storage.
-		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(get(filename))));
+		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(
+			new FileOutputStream(toZipPathIsAbs?getByAbsolutePath(toZipPath):get(toZipPath))
+		));
 		try{
-			_zip(zos,paths,basePath,isAbs);
+			_zip(zos,fromFilePaths,basePath,basePathIsAbs);
 		}finally{
 			zos.close();
 		}
 	}
-	
+	/**
+	 * ファイルを圧縮する内部関数
+	 * @param zos
+	 * @param paths
+	 * @param basePath
+	 * @param isAbs
+	 * @throws IOException
+	 */
 	private static void _zip(ZipOutputStream zos,String[] paths, String basePath, boolean isAbs) throws IOException {
 		for (String path : paths) {
 			File fl=isAbs?getByAbsolutePath(path):get(path);
 			if(fl.isDirectory()){
 				File[] f = isAbs?getListByAbsolutePath(path):getList(path);
 				String[] paths2=new String[f.length];
-			    for(int i=0;i<f.length;i++){
-			    	paths2[i] = path +"/" + f[i].getName();
-			    }
-			    _zip(zos,paths2,basePath,isAbs);
+				for(int i=0;i<f.length;i++){
+					paths2[i] = path +"/" + f[i].getName();
+				}
+				_zip(zos,paths2,basePath,isAbs);
 			}else{
 				byte[] buf = new byte[1024];
-	            InputStream is = new BufferedInputStream(new FileInputStream(fl));
-	            try{
-	            	//ベースフォルダからzipのrootを作成する。
-	            	if (path.indexOf(basePath)==0){
-	            		path=path.substring(basePath.length());
-	            		if (path.indexOf("/")==0){
-	            			path=path.substring(1);
-	            		}
-	            	}
-		            zos.putNextEntry(new ZipEntry(path));
-		            int len = 0;
-		            while ((len = is.read(buf)) != -1) {
-		            	zos.write(buf, 0, len);
-		            }
-		            zos.closeEntry();
-	            }finally{
-		            is.close();
-	            }
+				InputStream is = new BufferedInputStream(new FileInputStream(fl));
+				try{
+					//ベースフォルダからzipのrootを作成する。
+					if (path.indexOf(basePath)==0){
+						path=path.substring(basePath.length());
+						if (path.indexOf("/")==0){
+							path=path.substring(1);
+						}
+					}
+					zos.putNextEntry(new ZipEntry(path));
+					int len = 0;
+					while ((len = is.read(buf)) != -1) {
+						zos.write(buf, 0, len);
+					}
+					zos.closeEntry();
+				}finally{
+					is.close();
+				}
 			}
-        }	
+		}	
+	}
+	
+	/**
+	 * ZIPを解凍する
+	 * @param fromZipPath 解凍するZIPファイルのパス。
+	 * @param fromZipPathIsAbs 解凍するZIPファイルのパスは絶対パスか相対パスかのフラグ。
+	 * @param basePath 解凍先のパス。
+	 * @param basePathIsAbs 解凍先のパスは絶対パスか相対パスかのフラグ。
+	 * @throws IOException ファイルアクセスエラー。
+	 */
+	public static void unZip(String fromZipPath, boolean fromZipPathIsAbs, String basePath, boolean basePathIsAbs) throws IOException {
+		ZipInputStream zis = new ZipInputStream(new FileInputStream(
+				fromZipPathIsAbs?getByAbsolutePath(fromZipPath):get(fromZipPath)
+		));
+		try{
+			_unZip(zis,basePath,basePathIsAbs);
+		}finally{
+			zis.close();
+		}
+	}
+	/**
+	 * ZIPを解凍する内部関数
+	 * @param zis
+	 * @param basePath
+	 * @param isAbs
+	 * @throws IOException
+	 */
+	private static void _unZip(ZipInputStream zis,String basePath,boolean isAbs) throws IOException {
+		//streamから一つ処理すべきものを取る
+		ZipEntry zipEntry = zis.getNextEntry();
+		//処理すべきものがなければ終わり
+		if (zipEntry==null) return;
+		
+		File newFile = new File(isAbs?getByAbsolutePath(basePath):get(basePath), zipEntry.getName());
+		//フォルダの場合
+		if (zipEntry.isDirectory()) {
+			if (!newFile.isDirectory() && !newFile.mkdirs()) {
+				throw new IOException("Failed to create directory " + newFile);
+			}
+		//ファイルの場合
+		} else {
+			// fix for Windows-created archives
+			File parent = newFile.getParentFile();
+			if (!parent.isDirectory() && !parent.mkdirs()) {
+				throw new IOException("Failed to create directory " + parent);
+			}
+			// write file content
+			FileOutputStream fos = new FileOutputStream(newFile);
+			int len;
+			byte[] buffer = new byte[1024];
+			while ((len = zis.read(buffer)) > 0) {
+				fos.write(buffer, 0, len);
+			}
+			fos.close();
+		}
+		
+		_unZip(zis,basePath,isAbs);
 	}
 ////////////////////////////////////////////////////////////////
 	/**

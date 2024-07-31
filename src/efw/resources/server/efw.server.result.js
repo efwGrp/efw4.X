@@ -99,6 +99,7 @@ Result.prototype.concat = function(result) {
 			if (result.actions.download){
 				if (result.actions.download.zip)this.attach(result.actions.download.zip,result.actions.download.zipBasePath);
 				if (result.actions.download.file)this.attach(result.actions.download.file,result.actions.download.zipBasePath);
+				if (result.actions.download.saveas)this.saveas(result.actions.download.saveas);
 				if (result.actions.download.deleteafterdownload)this.deleteAfterDownload();
 			}
 			if (result.actions.alert)this.alert(result.actions.alert,result.actions.alertTitle);

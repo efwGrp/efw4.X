@@ -15,6 +15,8 @@ load("classpath:efw/resources/elfinder/elfinder_rename.js");
 load("classpath:efw/resources/elfinder/elfinder_rm.js");
 load("classpath:efw/resources/elfinder/elfinder_size.js");
 load("classpath:efw/resources/elfinder/elfinder_tree.js");
+load("classpath:efw/resources/elfinder/elfinder_achive.js");
+load("classpath:efw/resources/elfinder/elfinder_extract.js");
 
 function elfinder_checkRisk(params){
 	var volumeId="EFW_";

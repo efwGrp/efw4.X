@@ -64,7 +64,8 @@ public final class downloadServlet extends HttpServlet {
 				File zipFile=File.createTempFile("efw", "zip",new File(framework.getStorageFolder()));
 				tmp_zip=zipFile.getName();
 				attr_file=zipFile.getName();
-				FileManager.zip(tmp_zip, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs));
+				//ダウンロード時の一時ファイルは相対パスで保存する
+				FileManager.zip(tmp_zip,false, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs));
 
 				if(attr_saveas==null||"".equals(attr_saveas)){
 					attr_saveas="attachment.zip";

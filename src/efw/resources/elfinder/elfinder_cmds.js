@@ -19,7 +19,8 @@ elfinder_cmds.fire = function(params) {
 		else if(cmd=="duplicate"){return event.fire("elfinder_duplicate", params);}//create copy of file
 		else if(cmd=="upload"){return event.fire("elfinder_upload", params);}//upload file
 		else if(cmd=="paste"){return event.fire("elfinder_paste", params);}//copy or move files
-			 
+		else if(cmd=="archive"){return event.fire("elfinder_archive", params);}//zip files
+		else if(cmd=="extract"){return event.fire("elfinder_extract", params);}//unzip a file
 		//これらのコマンドは直接Efw関数で実行される。 
 		//else if(cmd=="file"){return event.fire("elfinder_file", params);}//output file contents to the browser (download/preview)
 		//else if(cmd=="download"){return event.fire("elfinder_download", params);}//download multiple items by archive

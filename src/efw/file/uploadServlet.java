@@ -60,14 +60,19 @@ public final class uploadServlet extends HttpServlet {
 	                    File fl=File.createTempFile("efw", null);//efw#####.tmpのファイル名
 	                    //Change code for resin4.
 	                    inputStream =part.getInputStream();
-	                    byte[] b = new byte[inputStream.available()];
-	                    inputStream.read(b);
+	                    outputStream = new FileOutputStream(fl.getAbsolutePath());
+	                    byte[] buffer = new byte[1024];
+	                    int len;
+	                    while ((len = inputStream.read(buffer)) != -1) {
+	                    	outputStream.write(buffer, 0, len);
+	                    }
+
 	                    inputStream.close();
 	                    inputStream=null;
-	                    outputStream = new FileOutputStream(fl.getAbsolutePath());
-	                    outputStream.write(b);
 	                    outputStream.close();
 	                    outputStream=null;
+	                    
+	                    
 	                    //part.write(fl.getAbsolutePath());//This line cant run at resin4 but ok to tomcat.
 	                    String uploadPath =null;
 	                    for(int i=0;i<paths.size();i++){
