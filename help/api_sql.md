@@ -15,8 +15,8 @@ test.xml
 SELECT field1,field2,field3 FROM table1
 WHERE
 field1= :param1
-<if exists="param2"> and field2 &amp;lt; :param2</if>
-<if notexists="param2"> and field2 &amp;lt; 500</if>
+<if exists="param2"> and field2 &lt; :param2</if>
+<if notexists="param2"> and field2 &lt; 500</if>
 <if istrue="param3.substr(0,1)=='x'"> and field3 = :param3 </if>
 <if isfalse="param3.substr(0,1)=='x'"> and field3 = 'y' </if>
 
