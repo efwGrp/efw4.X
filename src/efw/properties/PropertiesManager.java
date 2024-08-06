@@ -171,6 +171,13 @@ public final class PropertiesManager {
 	 * 「efw.forbidden.replacement」の定数。
 	 */
 	public static final String EFW_FORBIDDEN_REPLACEMENT="efw.forbidden.replacement";
+	
+	/**
+	 * ZIP圧縮と解凍の文字コード
+	 * 「efw.zip.charset」の定数。
+	 */
+	public static final String EFW_ZIP_CHARSET="efw.zip.charset";
+	
 	/**
 	 * プロパティ値を格納するプロパティオブジェクト。
 	 */

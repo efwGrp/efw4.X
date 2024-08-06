@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import efw.framework;
+import efw.properties.PropertiesManager;
 
 /**
  * アップロードとダウンロードファイルを管理するクラス。
@@ -33,7 +34,11 @@ public final class FileManager {
     /**
      * アップロード情報を格納するセッションキー
      */
-    private static final String EFW_UPLOAD="EFW_UPLOAD";    
+    private static final String EFW_UPLOAD="EFW_UPLOAD";
+    /**
+     * ZIP取り扱い時の文字コードの初期値
+     */
+    private static final String ZIP_CHARSET="UTF-8";
 	/**
 	 * 相対パスフォルダ内のファイル＆フォルダのリストを取得する。
 	 * @param path 相対パスのフォルダ。
@@ -123,6 +128,10 @@ public final class FileManager {
 		//filename is the zip file name, so it is in storage.
 		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(
 			new FileOutputStream(toZipPathIsAbs?getByAbsolutePath(toZipPath):get(toZipPath))
+		),Charset.forName(
+			PropertiesManager.getProperty(
+				PropertiesManager.EFW_ZIP_CHARSET,ZIP_CHARSET
+			)
 		));
 		try{
 			_zip(zos,fromFilePaths,basePath,basePathIsAbs);
@@ -182,7 +191,11 @@ public final class FileManager {
 	 */
 	public static void unZip(String fromZipPath, boolean fromZipPathIsAbs, String basePath, boolean basePathIsAbs) throws IOException {
 		ZipInputStream zis = new ZipInputStream(new FileInputStream(
-				fromZipPathIsAbs?getByAbsolutePath(fromZipPath):get(fromZipPath)
+			fromZipPathIsAbs?getByAbsolutePath(fromZipPath):get(fromZipPath)
+		),Charset.forName(
+			PropertiesManager.getProperty(
+				PropertiesManager.EFW_ZIP_CHARSET,ZIP_CHARSET
+			)
 		));
 		try{
 			_unZip(zis,basePath,basePathIsAbs);

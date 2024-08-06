@@ -64,6 +64,12 @@ the file /WEB-INF/classes/efw.properties is established to set the framework. If
 	<td>The default rounder for format method. UP,DOWN,CEILING,FLOOR,HALF_UP,HALF_DOWN,HALF_EVEN</td>
 </tr>
 <tr>
+	<th>Zip</th>
+	<td>efw.zip.charset</td>
+	<td>UTF-8</td>
+	<td>The charset for achive and extract.</td>
+</tr>
+<tr>
 	<th>Cors</th>
 	<td>efw.cors</td>
 	<td>*</td>
