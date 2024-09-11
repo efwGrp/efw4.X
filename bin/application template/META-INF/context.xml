@@ -31,4 +31,34 @@
 		description		=	"E-Mail Resource"
 	/>
 -->
+<!-- for jakarta
+	<Resource
+		name			=	"jdbc/efw"
+		auth			=	"Container"
+		type			=	"jakarta.sql.DataSource"
+		driverClassName	=	"org.postgresql.Driver"
+		url				=	"jdbc:postgresql://localhost:5432/skeletonSample"
+		username		=	"postgres"
+		password		=	"postgres"
+		maxTotal		=	"10"
+		maxIdle			=	"10"
+		maxWaitMillis	=	"10"
+	/>
+	<Resource
+		name			=	"mail/efw"
+		auth			=	"Container"
+		type			=	"jakarta.mail.Session"
+		username		=	"username"
+		password		=	"password"
+		mail.debug		=	"false"
+		mail.user		=	"user"
+		mail.from		=	"from@host"
+		mail.transport.protocol="smtp"
+		mail.smtp.host	=	"mailhost"
+		mail.smtp.auth	=	"true"
+		mail.smtp.port	=	"25"
+		mail.smtp.starttls.enable="true"
+		description		=	"E-Mail Resource"
+	/>
+-->
 </Context>

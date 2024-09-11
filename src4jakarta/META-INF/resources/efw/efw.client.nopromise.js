@@ -62,7 +62,7 @@ EfwClient.prototype.fire = function(eventParams) {
 			self._consoleLog("First calling result", result);
 			// if it is success,the result must be a json object.
 			if (result.actions){
-				self._showActions(result.actions);
+				self._showActions(eventId,result.actions);
 			} else {// if no error, run the second fire, in this case , result is paramsFormat
 				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl);
 			}
