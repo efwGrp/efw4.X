@@ -161,6 +161,8 @@
 <td><a href="help/record.seek.md">seek</a></td>
 <td><a href="help/record.sort.md">sort</a></td>
 <td><a href="help/record.map.md">map</a></td>
+<td><a href="help/record.makeAllKeysUpperCase.md">makeAllKeysUpperCase</a></td>
+<td><a href="help/record.makeAllKeysLowerCase.md">makeAllKeysLowerCase</a></td>
 </tr>
 <tr><td></td>
 <td><a href="help/record.getArray.md">getArray</a></td>

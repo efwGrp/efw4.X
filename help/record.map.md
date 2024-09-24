@@ -1,6 +1,6 @@
 <H1>Record.map</H1>
 
-The sort function is established to change the array data format.
+The map function is established to change the array data format.
 
 <h2>Sample</h2>
 
