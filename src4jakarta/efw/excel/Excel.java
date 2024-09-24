@@ -1147,5 +1147,22 @@ public final class Excel {
 		}
 		return null;
 	}
+	
+	/**
+	 * シートのzoomを設定する
+	 * @param sheetName シート名
+	 * @param percent パーセント
+	 */
+	public void zoomSheet(String sheetName, int percent) {
+		Sheet sheet=workbook.getSheet(sheetName);
+		sheet.setZoom(percent);
+	}
 
+	/**
+	 * ExcelのPOIオブジェクトを取得する
+	 * @return ExcelのPOIオブジェクト
+	 */
+	public Workbook getWorkbook() {
+		return this.workbook;
+	}
 }

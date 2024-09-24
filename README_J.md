@@ -127,6 +127,7 @@
 <td><a href="help/excel.setPrintArea.md">setPrintArea</a></td>
 <td><a href="help/excel.showSheet.md">showSheet</a></td>
 <td><a href="help/excel.hideSheet.md">hideSheet</a></td>
+<td><a href="help/excel.zoomSheet.md">zoomSheet</a></td>
 </tr>
 <tr><td></td>
 <td><a href="help/excel.addRow.md">addRow</a></td>

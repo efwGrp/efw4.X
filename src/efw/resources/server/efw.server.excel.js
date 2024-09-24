@@ -563,6 +563,16 @@ Excel.prototype.hideSheet = function(sheetName) {
 	return this;
 };
 /**
+ * The function to zoom the sheet
+ * @param sheetName sheetName: required<br>
+ * @param percent percent: required<br>
+ * @returns {Excel}
+ */
+Excel.prototype.zoomSheet = function(sheetName,percent) {
+	this._workbook.zoomSheet(sheetName,percent);
+	return this;
+};
+/**
  * The function to show the debug info about the Excel.
  * @param {String} label: optional<br>
  * @returns {Excel}
