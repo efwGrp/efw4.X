@@ -85,6 +85,8 @@
 <tr><td>{ Date }</td><td><a href="help/any.format.md">format</a></td><td><a href="help/any.parse.md">parse</a></td><td><a href="help/Date.getYears.md">getYears</a></td></tr>
 <tr><td>{ Number }</td><td><a href="help/any.format.md">format</a></td><td><a href="help/any.parse.md">parse</a></td></tr>
 <tr><td>{ String }</td><td><a href="help/String.base64Encode.md">base64Encode</a></td><td><a href="help/String.base64EncodeURI.md">base64EncodeURI</a></td><td><a href="help/String.base64Decode.md">base64Decode</a></td></tr>
+<tr><td>Math</td><td><a href="help/Math.ROUND.md">ROUND</a></td><td><a href="help/Math.ROUNDUP.md">ROUNDUP</a></td><td><a href="help/Math.ROUNDDOWN.md">ROUNDDOWN</a></td></tr>
+
 </table>
 <h3>Classes</h3>
 <table>

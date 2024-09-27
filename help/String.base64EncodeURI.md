@@ -18,5 +18,5 @@ value=value.base64Decode();//value="A=B B=C C=D"
 
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{String} . base64EncodeURI ( )</td><td>{String}</td></tr>
+<tr><td>{String} . base64EncodeURI ( )</td><td>String</td></tr>
 </table>
