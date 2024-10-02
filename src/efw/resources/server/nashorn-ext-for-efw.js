@@ -218,6 +218,31 @@ Date.prototype.getYears=function(current){
 Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
 ///////////////////////////////////////////////////////////////////////////////
 /**
+ * 四捨五入
+ */
+Math.ROUND=function(num, digit){
+	var sign =  num < 0 ? -1 : 1;
+	var digitVal = Math.pow( 10, digit );
+	return Math.round( num * sign * digitVal ) * sign/ digitVal;
+};
+/**
+ * 切上げ
+ */
+Math.ROUNDUP=function(num, digit){
+	var sign =  num < 0 ? -1 : 1;
+	var digitVal = Math.pow( 10, digit );
+	return Math.ceil( num * sign * digitVal ) *sign / digitVal;
+};
+/**
+ * 切捨て
+ */
+Math.ROUNDDOWN=function(num, digit){
+	var sign =  num < 0 ? -1 : 1;
+	var digitVal = Math.pow( 10, digit );
+	return Math.floor( num * sign * digitVal ) * sign/ digitVal;
+};
+///////////////////////////////////////////////////////////////////////////////
+/**
  * Eval script in another engine context,and return several values.
  */
 (function(context){
