@@ -5,6 +5,9 @@ The readAllBytes function is established to load a binary file into a bytes arra
 
 ```javascript
 var ary=file.readAllBytes("Roboto-Italic.ttf");
+var uint8Array = new Uint8Array(ary.length);
+uint8Array.set(Java.from(ary));
+
 ```
 
 <h2>API</h2>

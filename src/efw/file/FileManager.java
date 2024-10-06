@@ -43,19 +43,25 @@ public final class FileManager {
 	 * 相対パスフォルダ内のファイル＆フォルダのリストを取得する。
 	 * @param path 相対パスのフォルダ。
 	 * @return ファイルとサブフォルダのリスト。
+	 * @throws IOException 
 	 */
-	public static File[] getList(String path){
+	public static File[] getList(String path) throws IOException{
 		File fl=get(path);
-		return fl.listFiles();
+		File[] ret= fl.listFiles();
+		if (ret==null) throw new IOException("The path does not exist.");
+		return ret;
 	}
 	/**
 	 * 絶対パスフォルダ内のファイル＆フォルダのリストを取得する。
 	 * @param absolutePath 絶対パスフォルダ。
 	 * @return ファイルとサブフォルダのリスト。
+	 * @throws IOException 
 	 */
-	public static File[] getListByAbsolutePath(String absolutePath){
+	public static File[] getListByAbsolutePath(String absolutePath) throws IOException{
 		File fl=new File(absolutePath);
-		return fl.listFiles();
+		File[] ret= fl.listFiles();
+		if (ret==null) throw new IOException("The path does not exist.");
+		return ret;
 	}
 	/**
 	 * 相対パスのファイルあるいはフォルダを取得する。

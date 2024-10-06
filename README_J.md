@@ -1,8 +1,10 @@
 [<a href="README.md">English</a>]
 <H1>efw4.X</H1>
 <h3>紹介</h3>
-<table><tr><td><a href="./help/framework_correlation_org.png"><img src="./help/framework_correlation.png"></a></td>
-<td colspan=2><a href="./help/framework_function_org.png"><img src="./help/framework_function.png"></a></td></tr></table>
+<a href="./help/efw_flow_org.png"><img src="./help/efw_flow.png"></a><br>
+<a href="./help/efw_client_org.png"><img src="./help/efw_client.png"></a>
+<a href="./help/efw_server_org.png"><img src="./help/efw_server.png"></a>
+
 <a href="https://qiita.com/changkejun/items/d9ef1bbffecb8dab4ffc">Efwとは</a><br>
 <a href="https://qiita.com/changkejun/items/5e10a96e0b1efce8653e">Efwのセキュリティ関連の説明</a><br>
 <a href="https://qiita.com/changkejun/items/1d850b109f8b26381268">高負荷対応のTomcat環境構築</a><br>
