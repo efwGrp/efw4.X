@@ -16,7 +16,9 @@ result.confirm("Let's do it,OK?" ,{"OK":"window.location='doit.jsp';","CANCEL":n
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>Result . confirm ( message , buttons )</td><td>Result</td></tr>
+<tr><td>Result . confirm ( message , buttons , title )</td><td>Result</td></tr>
 <tr><td>Result . confirm ( message , buttons , params )</td><td>Result</td></tr>
+<tr><td>Result . confirm ( message , buttons , title , params )</td><td>Result</td></tr>
 </table>
 
 <table>
@@ -47,6 +49,7 @@ The script will be run at client after the button is clicked.
 ```
 
 </td></tr>
+<tr><td>title</td><td>String</td><td>The title for the confirm dialog.</td></tr>
 
 </table>
 

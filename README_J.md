@@ -45,7 +45,7 @@
 <tr><td>Base Tags</td><td><a href="help/tag.client.md">Client</a></td><td><a href="help/tag.part.md">Part</a></td><td><a href="help/tag.attr.md">Attr</a></td><td><a href="help/tag.msg.md">Msg</a></td><td><a href="help/tag.prop.md">Prop</a></td></tr>
 <tr><td>Additional Tags</td><td><a href="help/tag.elfinder.md">elFinder</a></td><td><a href="help/tag.chart.md">Chart</a></td><td><a href="help/tag.barcode.md">Barcode</a></td></tr>
 <tr><td>{Tag Params}</td><td><a href="help/tag.attr.msg.md">msg:</a></td><td><a href="help/tag.attr.prop.md">prop:</a></td></tr>
-<tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td></tr>
+<tr><td>Functions</td><td><a href="help/api_efw_function.md">Efw</a></td><td><a href="help/efw.dialog.alert.md">alert</a></td><td><a href="help/efw.dialog.wait.md">wait</a></td></tr>
 <tr><td>Attributes</td><td><a href="help/api_data_format.md">data-format</a></td><td><a href="help/api_data_shortcut.md">data-shortcut</a></td></tr>
 </table>
 <h2>Outside SQL</h2>

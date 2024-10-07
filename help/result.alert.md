@@ -15,7 +15,9 @@ result.alert("good morning!").alert("good night!");
 <table>
 <tr><th>Calling</th><th>Returning</th></tr>
 <tr><td>Result . alert ( message )</td><td>Result</td></tr>
+<tr><td>Result . alert ( message , title )</td><td>Result</td></tr>
 <tr><td>Result . alert ( message , params )</td><td>Result</td></tr>
+<tr><td>Result . alert ( message , title , params )</td><td>Result</td></tr>
 </table>
 
 <table>
@@ -38,6 +40,7 @@ You can define "{param}" in the message, it will be replaced by the params.
 ```
 
 </td></tr>
+<tr><td>title</td><td>function</td><td>The function to run afeter alert dialog.</td></tr>
 
 </table>
 
