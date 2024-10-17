@@ -10,7 +10,7 @@ var result = new Result();
 result
 .runat("#table1")
 .remove("tr")
-.append("&lt;tr>&lt;td>{data1}&lt;/td>&lt;td>{{data2}}<&lt;/td>&lt;/tr>");
+.append("<tr><td>{data1}</td><td>{{data2}}</td></tr>");
 ```
 
 <h2>API</h2>

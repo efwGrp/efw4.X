@@ -10,10 +10,10 @@ var result = new Result();
 result
 .runat("#table1")
 .remove("tr")
-.append("&lt;tr>&lt;td>{data1}&lt;/td>&lt;td>{{data2}}<&lt;/td>&lt;/tr>")
+.append("<tr><td>{data1}</td><td>{{data2}}</td></tr>")
 .withdata([
-	{"data1":"hellworld1", "data2":"&lt;span style='color:greed'>OK&lt;/span>"},
-	{"data1":"hellworld2", "data2":"&lt;span style='color:red'>NG&lt;/span>"},
+	{"data1":"hellworld1", "data2":"<span style='color:greed'>OK</span>"},
+	{"data1":"hellworld2", "data2":"<span style='color:red'>NG</span>"},
 ])
 .runat("body")
 .withdata(
