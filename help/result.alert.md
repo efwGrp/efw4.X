@@ -40,7 +40,7 @@ You can define "{param}" in the message, it will be replaced by the params.
 ```
 
 </td></tr>
-<tr><td>title</td><td>function</td><td>The function to run afeter alert dialog.</td></tr>
+<tr><td>title</td><td>function</td><td>	The title for the alert dialog.</td></tr>
 
 </table>
 

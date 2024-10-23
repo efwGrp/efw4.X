@@ -37,6 +37,8 @@ public final class efwCorsFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse) response;
+		//動的ページはキャッシュを保存しないように。
+		((HttpServletResponse)response).setHeader("Cache-Control", "no-store");
 		if ("OPTIONS".equals(req.getMethod())){
 			efwCorsFilter.doCORSPreflight(req, res);
 			return;
