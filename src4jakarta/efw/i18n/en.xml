@@ -12,6 +12,7 @@
 <entry key="AlertDialogTitle">Message</entry>
 <entry key="AlertDialogOK">OK</entry>
 <entry key="WaitDialogTitle">Busy</entry>
+<entry key="PreviewDialogTitle">Preview</entry>
 
 <!--EfwServerMessages-->
 <entry key="NumberType">number</entry>
@@ -31,6 +32,10 @@
 <entry key="ElFinderIsProtectedMessage">The action is rejected because of elFinder protection mode.</entry>
 <entry key="ElFinderHackingRiskMessage">The action is rejected because of hacking risk detection.</entry>
 <entry key="ElFinderHomeNotExistsMessage">The value of the home attribute is not an existing folder.</entry>
+<entry key="PreviewNoFileMessage">No file was specified to preview.</entry>
+<entry key="PreviewFileNotExistsMessage">The specified file does not exist.</entry>
+<entry key="PreviewFileNotPreviewMessage">The specified file cannot be previewed.</entry>
+<entry key="PreviewFileTooBigMessage">The specified file is too big to preview.</entry>
 
 <!--ElFinderClientMessages-->
 <entry key="ElFinder_translator">ElFinder</entry>

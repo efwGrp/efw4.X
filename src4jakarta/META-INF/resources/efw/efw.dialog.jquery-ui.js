@@ -22,10 +22,18 @@ var EfwDialog = function() {
 		title : "Message",
 		autoOpen: false
 	});
+	//--preview------------------------------------------------------------
+	$("body").append("<div id='efw_client_preview' style='display:none'></div>");
+	this._preview = $("#efw_client_preview").dialog({
+		modal : true,
+		height : 500,
+		title : "Preview",
+		autoOpen: false
+	});
 };
 EfwDialog.prototype._alert=null;
 EfwDialog.prototype._wait=null;
-
+EfwDialog.prototype._preview=null;
 /**
  * The function to show alert.
  * @param {String} message: required<br>
@@ -98,6 +106,44 @@ EfwDialog.prototype.wait = function(message, countdown, title, callback) {
 	}else{
 		window.setTimeout(function(){
 			self.wait(message, countdown, title, callback);
+		},1000);
+	}
+};
+
+/**
+ * The function to show preview.
+ * @param {String} previewUrl: required<br>
+ * @param {String} fileName: optional<br>
+ */
+EfwDialog.prototype.preview = function(previewUrl,fileName) {
+	var self=this;
+	if (!self._preview.dialog("isOpen")){
+		var ary=fileName.split("/");
+		var fileName=ary[ary.length-1];
+		var ary=fileName.split(".");
+		var ext=ary[ary.length-1].toLowerCase();
+		self._preview.dialog("option", "title", efw.messages.PreviewDialogTitle+" : "+fileName);
+		self._preview.dialog("option", "height", $(window).height()*0.95 );
+		self._preview.dialog("option", "width", $(window).width()*0.95 );
+		$("#efw_client_preview").css("overflow","hidden");
+		if (previewUrl.indexOf("?")==-1){
+			previewUrl+="?";
+		}else{
+			previewUrl+="&";
+		}
+		previewUrl+="dt="+new Date().getTime();
+		//画像かどうか判断する
+		if(ext=="tiff"||ext=="svg"||ext=="png"||ext=="jpeg"||ext=="jpg"||ext=="gif"){
+			//ヘッダがあるからheightを90%にする
+			$("#efw_client_preview").html('<img src="'+previewUrl+'" style="max-width:100%;max-height:100%;">');
+		}else{
+			$("#efw_client_preview").html('<object data="'+previewUrl+'" style="width:100%;height:100%;"></object>');
+		}
+
+		self._preview.dialog("open");
+	}else{
+		window.setTimeout(function(){
+			self._preview(previewUrl,fileName);
 		},1000);
 	}
 };

@@ -322,6 +322,22 @@ EfwServer.prototype.fire = function(event, requestParams) {
 			session.set("efw.download.saveas", tmpsaveas);
 			session.set("efw.download.zipBasePath", tmpzipBasePath);
 			session.set("efw.download.isAbs", tmpisAbs);
+			
+		}
+		if (result != null && result["actions"] != null
+				&& result["actions"]["preview"] != null) {// save preview
+			var preview = result["actions"]["preview"];
+			var tmpfile = preview.file;
+			if (tmpfile == null)
+				tmpfile = "";
+			var tmpisAbs = preview.isAbs;
+			if (tmpisAbs == null)
+				tmpisAbs ="";
+			else
+				tmpisAbs =""+tmpisAbs;
+				
+			session.set("efw.preview.file", tmpfile);
+			session.set("efw.preview.isAbs", tmpisAbs);
 		}
 		db._commitAll();
 		return result;

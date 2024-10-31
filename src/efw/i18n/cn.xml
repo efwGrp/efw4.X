@@ -12,6 +12,7 @@
 <entry key="AlertDialogTitle">信息</entry>
 <entry key="AlertDialogOK">确定</entry>
 <entry key="WaitDialogTitle">繁忙</entry>
+<entry key="PreviewDialogTitle">预览</entry>
 
 <!--EfwServerMessages-->
 <entry key="NumberType">数字</entry>
@@ -31,6 +32,10 @@
 <entry key="ElFinderIsProtectedMessage">因处于保护模式，当前elFinder操作不能执行。</entry>
 <entry key="ElFinderHackingRiskMessage">检测到侵入风险，当前elFinder操作不能执行。</entry>
 <entry key="ElFinderHomeNotExistsMessage">home属性的值不是一个存在的路径。</entry>
+<entry key="PreviewNoFileMessage">未指定要预览的文件。</entry>
+<entry key="PreviewFileNotExistsMessage">指定的文件不存在。</entry>
+<entry key="PreviewFileNotPreviewMessage">无法预览指定的文件。</entry>
+<entry key="PreviewFileTooBigMessage">指定的文件太大，无法预览。</entry>
 
 <!--ElFinderClientMessages-->
 <entry key="ElFinder_translator">ElFinder</entry>

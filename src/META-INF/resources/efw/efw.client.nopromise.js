@@ -46,6 +46,12 @@ EfwClient.prototype.fire = function(eventParams) {
 	}else{
 		downloadUrl = efw.baseurl + "/" + downloadUrl;
 	}
+	var previewUrl = "previewServlet";
+	if (eventParams.server) {
+		previewUrl = eventParams.server + "/" + previewUrl;
+	} else {
+		previewUrl = efw.baseurl + "/" + previewUrl;
+	}
 	var self=this;
 	$.ajax(this._options={
 		url : servletUrl,
@@ -64,7 +70,7 @@ EfwClient.prototype.fire = function(eventParams) {
 			if (result.actions){
 				self._showActions(eventId,result.actions);
 			} else {// if no error, run the second fire, in this case , result is paramsFormat
-				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl);
+				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl);
 			}
 		},
 		error : function(errorResponse, errorType, errorMessage) {
@@ -86,8 +92,9 @@ EfwClient.prototype.fire = function(eventParams) {
  * @param servletUrl
  * @param uploadUrl
  * @param downloadUrl
+ * @param previewUrl
  */
-EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl, downloadUrl) {
+EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl) {
 	// auto collect params
 	// ---------------------------------------------------------------------
 	try {
@@ -146,7 +153,7 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 				}
 				//show actions
 				try {
-					self._showActions(eventId,result.actions,downloadUrl);
+					self._showActions(eventId,result.actions,downloadUrl,previewUrl);
 				} catch (e) {
 					self._consoleLog(
 							"Result actions error", e);
@@ -439,10 +446,12 @@ EfwClient.prototype._showValues = function(values) {
 };
 /**
  * The internal function to show actions to web.
+ * @param eventId
  * @param actions
  * @param downloadUrl
+ * @param previewUrl
  */
-EfwClient.prototype._showActions = function(eventId,actions,downloadUrl) {
+EfwClient.prototype._showActions = function(eventId,actions,downloadUrl,previewUrl) {
 	if ((actions instanceof Array)) throw "The return actions must be an object.";
 	//-------------------------------------------------------------------------
 	if (actions.error){
@@ -472,6 +481,7 @@ EfwClient.prototype._showActions = function(eventId,actions,downloadUrl) {
 	if (actions.enable)$(actions.enable).prop("disabled",false);
 	if (actions.disable)$(actions.disable).prop("disabled",true);
 	if (actions.highlight)$(actions.highlight).addClass("efw_input_error");
+	if (actions.preview) efw.dialog.preview(previewUrl+"?lang="+efw.lang+"&fl="+actions.preview.file,actions.preview.file);
 	//-------------------------------------------------------------------------
 	function continueAfterDownloaded(){
 		function continueAfterConfirmAlert(){

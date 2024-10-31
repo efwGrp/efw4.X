@@ -40,6 +40,12 @@ EfwClient.prototype.fire = async function(eventParams) {
 	} else {
 		downloadUrl = efw.baseurl + "/" + downloadUrl;
 	}
+	var previewUrl = "previewServlet";
+	if (eventParams.server) {
+		previewUrl = eventParams.server + "/" + previewUrl;
+	} else {
+		previewUrl = efw.baseurl + "/" + previewUrl;
+	}
 	try {
 		//first calling
 		this._consoleLog("First calling parameters", eventParams);
@@ -60,7 +66,7 @@ EfwClient.prototype.fire = async function(eventParams) {
 		//auto show values
 		if (result.values) this._showValues(eventId, result.values);
 		//auto do actions
-		if (result.actions) this._showActions(eventId, result.actions, downloadUrl);
+		if (result.actions) this._showActions(eventId, result.actions, downloadUrl, previewUrl);
 	} catch (e) {
 		if (e.errorTitle) {
 			this._consoleLog(e.errorTitle, e.errorData);
@@ -488,10 +494,12 @@ EfwClient.prototype._showValues = function(eventId, values) {
 };
 /**
  * The internal function to show actions to web.
+ * @param eventId
  * @param actions
  * @param downloadUrl
+ * @param previewUrl
  */
-EfwClient.prototype._showActions = function(eventId, actions, downloadUrl) {
+EfwClient.prototype._showActions = function(eventId, actions, downloadUrl, previewUrl) {
 	try {
 		if ((actions instanceof Array)) throw "The return actions must be an object.";
 		//-------------------------------------------------------------------------
@@ -522,6 +530,7 @@ EfwClient.prototype._showActions = function(eventId, actions, downloadUrl) {
 		if (actions.enable) $(actions.enable).prop("disabled", false);
 		if (actions.disable) $(actions.disable).prop("disabled", true);
 		if (actions.highlight) $(actions.highlight).addClass("efw_input_error");
+		if (actions.preview) efw.dialog.preview(previewUrl+"?lang="+efw.lang+"&fl="+actions.preview.file,actions.preview.file);
 		//-------------------------------------------------------------------------
 		function continueAfterDownloaded() {
 			function continueAfterConfirmAlert() {

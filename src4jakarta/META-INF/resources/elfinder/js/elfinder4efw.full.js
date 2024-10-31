@@ -6824,7 +6824,7 @@ if ($.ui) {
 /*!
  * jQuery UI Touch Punch 0.2.3
  *
- * Copyright 2011–2014, Dave Furfero
+ * Copyright 2011窶?2014, Dave Furfero
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
  * Depends:
@@ -7903,7 +7903,7 @@ elFinder.prototype._options = {
 		// current directory menu
 		cwd    : ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'view', 'sort', 'colwidth', '|', 'info', '|', 'fullscreen'],
 		// current directory file menu
-		files  : ['getfile', '|' ,'open', 'download', 'opendir', '|', 'upload', 'mkdir', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'rename', '|', 'archive', 'extract','|', 'info']//edit , 'chmod', 'netunmount', 'places', '|', 'resize', 'quicklook'
+		files  : ['getfile', '|' ,'open', 'download', 'opendir', '|', 'upload', 'mkdir', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'rename', '|', 'archive', 'extract','|', 'info','quicklook']//edit , 'chmod', 'netunmount', 'places', '|', 'resize', 'quicklook'
 	},
 
 	/**
@@ -10254,7 +10254,7 @@ $.fn.elfindercwd = function(fm, options) {
 						htr = thead.children('tr:first');
 						hheight = htr.outerHeight(true);
 						cwd.css('margin-top', hheight - parseInt(table.css('padding-top')));
-						base = $('<div/>').addClass(cwd.attr('class')).append($('<table/>').append(thead));
+						base = $('<div></div>').addClass(cwd.attr('class')).append($('<table></table>').append(thead));
 						tableHeader = $('<div></div>').addClass(wrapper.attr('class') + ' elfinder-cwd-fixheader')
 							.removeClass('ui-droppable native-droppable')
 							.css(wrapper.position())
@@ -17988,3 +17988,46 @@ elFinder.prototype.commands.view = function() {
 
 return elFinder;
 }));
+	
+///////////////////////
+/*
+ * File: /js/commands/quicklook.js
+ */
+
+/**
+ * @class  elFinder command "quicklook"
+ * Fast preview for some files types
+ *
+ * @author Dmitry (dio) Levashov
+ **/
+(elFinder.prototype.commands.quicklook = function() {
+	var closed     = 0,
+		opened     = 2,
+		state      = closed;
+
+	this.shortcuts = [{
+		pattern     : 'space'
+	}];
+
+	this.getstate = function() {
+		var fm  = this.fm,
+			sel = fm.selected(),
+			chk = sel.length === 1 && $('#'+fm.cwdHash2Id(sel[0])).length;
+		return chk? state == opened ? 1 : 0 : -1;
+	};
+	
+	this.exec = function() {
+		var fm  = this.fm;
+		Efw("elfinder_preview",{
+			"cmd":"preview",
+			"home":fm.options.customData.home,
+			"isAbs":fm.options.customData.isAbs,
+			"readonly":fm.options.customData.readonly,
+			"id":fm.options.customData.id,
+			"target":this.fm.selected()[0],
+			}
+		);
+	};
+
+
+}).prototype = { forceLoad : true }; // this is required command

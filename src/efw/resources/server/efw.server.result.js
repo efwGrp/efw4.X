@@ -108,7 +108,7 @@ Result.prototype.concat = function(result) {
 			if (result.actions.error)this.error(result.actions.error.clientMessageId,result.actions.error.params);
 			if (result.actions.confirm)this.confirm(result.actions.confirm.message, result.actions.confirm.buttons, result.actions.confirmTitle);
 			if (result.actions.eval)this.eval(result.actions.eval);
-			
+			if (result.actions.preview)this.preview(result.actions.preview.file,result.actions.preview.isAbs);
 		}		
 	}
 	return this;
@@ -389,5 +389,19 @@ Result.prototype.debug = function(label) {
 	java.lang.System.out.println("This is an instance of Result class.");
 	java.lang.System.out.println("result values:"+JSON.stringify(this.values));
 	java.lang.System.out.println("result actions:"+JSON.stringify(this.actions));
+	return this;
+};
+/**
+ * The function to set preview a file.
+ * 
+ * @param {String |
+ *            Array} filePath: required<br>
+ * @param {boolean} isAbs: optional<br>
+ * @returns {Result}
+ */
+Result.prototype.preview = function(filePath,isAbs) {
+	if (!this.actions.preview)this.actions.preview={};
+	this.actions.preview.file = filePath;
+	this.actions.preview.isAbs=isAbs;
 	return this;
 };

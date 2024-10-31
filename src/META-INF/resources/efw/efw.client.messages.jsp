@@ -23,4 +23,5 @@ EfwClientMessages.prototype = {
 	AlertDialogTitle : "<efw:Msg key="AlertDialogTitle" default="Message"/>",
 	AlertDialogOK : "<efw:Msg key="AlertDialogOK" default="OK"/>",
 	WaitDialogTitle : "<efw:Msg key="WaitDialogTitle" default="Busy"/>",
+	PreviewDialogTitle: "<efw:Msg key="PreviewDialogTitle" default="Preview"/>",
 };

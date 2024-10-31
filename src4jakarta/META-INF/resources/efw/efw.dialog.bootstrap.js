@@ -12,8 +12,6 @@ var EfwDialog = function() {
 		$("body").append("<div class='modal hide' id='efw_client_alert' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
 	}else if (efw.major=="3"){
 		$("body").append("<div class='modal' id='efw_client_alert' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
-	}else if (efw.major=="2"){
-		$("body").append("<div class='modal hide' id='efw_client_alert' data-backdrop='static' tabindex='-1'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div>");
 	}
 	this._alert = $("#efw_client_alert");
 	this._alert.on("hide.bs.modal", function(){if (efw.dialog._alert._callback) window.setTimeout(efw.dialog._alert._callback);});
@@ -24,14 +22,22 @@ var EfwDialog = function() {
 		$("body").append("<div class='modal hide' id='efw_client_wait' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
 	}else if (efw.major=="3"){
 		$("body").append("<div class='modal' id='efw_client_wait' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
-	}else if (efw.major=="2"){
-		$("body").append("<div class='modal hide' id='efw_client_wait' data-backdrop='static' tabindex='-1'><div class='modal-header'><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div>");
 	}
 	this._wait = $("#efw_client_wait");
 	this._wait.on("hide.bs.modal", function(){if (efw.dialog._wait._callback) window.setTimeout(efw.dialog._wait._callback);});
+	//--preview------------------------------------------------------------
+	if (efw.major=="5"){
+		$("body").append("<div class='modal hide' id='efw_client_preview' data-bs-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body'></div></div></div></div>");
+	}else if (efw.major=="4"){
+		$("body").append("<div class='modal hide' id='efw_client_preview' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'></div></div></div></div>");
+	}else if (efw.major=="3"){
+		$("body").append("<div class='modal' id='efw_client_preview' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div></div></div></div>");
+	}
+	this._preview = $("#efw_client_preview");
 };
 EfwDialog.prototype._alert=null;
 EfwDialog.prototype._wait=null;
+EfwDialog.prototype._preview=null;
 
 /**
  * The function to show alert.
@@ -54,8 +60,6 @@ EfwDialog.prototype.alert = function(message, buttons, title, callback) {
 						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+key+"</button>");
 					}else if (efw.major=="3"){
 						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+key+"</button>");
-					}else if (efw.major=="2"){
-						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+key+"</button>");
 					}
 					isPrimary=false;
 				}else{
@@ -64,8 +68,6 @@ EfwDialog.prototype.alert = function(message, buttons, title, callback) {
 					}else if (efw.major=="4"){
 						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-secondary' data-dismiss='modal'>"+key+"</button>");
 					}else if (efw.major=="3"){
-						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-secondary' data-dismiss='modal'>"+key+"</button>");
-					}else if (efw.major=="2"){
 						$(".modal-footer",self._alert).append("<button type='button' class='btn btn-secondary' data-dismiss='modal'>"+key+"</button>");
 					}
 				}
@@ -86,8 +88,6 @@ EfwDialog.prototype.alert = function(message, buttons, title, callback) {
 			}else if (efw.major=="4"){
 				$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+efw.messages.AlertDialogOK+"</button>");
 			}else if (efw.major=="3"){
-				$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+efw.messages.AlertDialogOK+"</button>");
-			}else if (efw.major=="2"){
 				$(".modal-footer",self._alert).append("<button type='button' class='btn btn-primary' data-dismiss='modal'>"+efw.messages.AlertDialogOK+"</button>");
 			}
 		}
@@ -128,6 +128,46 @@ EfwDialog.prototype.wait = function(message, countdown, title, callback) {
 	}else{
 		window.setTimeout(function(){
 			self.wait(message, countdown, title, callback);
+		},1000);
+	}
+};
+/**
+ * The function to show preview.
+ * @param {String} previewUrl: required<br>
+ * @param {String} fileName: optional<br>
+ */
+EfwDialog.prototype.preview = function(previewUrl,fileName) {
+	var self=this;
+	if (!self._preview.is(":visible")){
+		var ary=fileName.split("/");
+		var fileName=ary[ary.length-1];
+		var ary=fileName.split(".");
+		var ext=ary[ary.length-1].toLowerCase();
+		$(".modal-title",self._preview).html(efw.messages.PreviewDialogTitle+" : "+fileName);
+		$(".modal-dialog",self._preview).css("height",$(window).height()*0.95);
+		$(".modal-dialog",self._preview).css("max-height",$(window).height()*0.95);
+		$(".modal-dialog",self._preview).css("width",$(window).width()*0.95);
+		$(".modal-dialog",self._preview).css("max-width",$(window).width()*0.95);
+		$(".modal-dialog",self._preview).css("margin-left","auto");
+		$(".modal-content",self._preview).css("height","100%");
+		$(".modal-body",self._preview).css("overflow","hidden");
+		if (previewUrl.indexOf("?")==-1){
+			previewUrl+="?";
+		}else{
+			previewUrl+="&";
+		}
+		previewUrl+="dt="+new Date().getTime();
+		//画像かどうか判断する
+		if(ext=="tiff"||ext=="svg"||ext=="png"||ext=="jpeg"||ext=="jpg"||ext=="gif"){
+			//ヘッダがあるからheightを90%にする
+			$(".modal-body",self._preview).html('<img src="'+previewUrl+'" style="max-width:100%;max-height:100%;">');
+		}else{
+			$(".modal-body",self._preview).html('<object data="'+previewUrl+'" style="width:100%;height:100%;"></object>');
+		}
+		self._preview.modal("show");
+	}else{
+		window.setTimeout(function(){
+			self._preview(previewUrl,fileName);
 		},1000);
 	}
 };
