@@ -122,10 +122,13 @@ EfwDialog.prototype.preview = function(previewUrl,fileName) {
 		var fileName=ary[ary.length-1];
 		var ary=fileName.split(".");
 		var ext=ary[ary.length-1].toLowerCase();
+		var bodyHeight=$("body").css("height");
+		$("body").css("height","100%");
 		self._preview.dialog("option", "title", efw.messages.PreviewDialogTitle+" : "+fileName);
 		self._preview.dialog("option", "height", $(window).height()*0.95 );
 		self._preview.dialog("option", "width", $(window).width()*0.95 );
 		$("#efw_client_preview").css("overflow","hidden");
+		$("body").css("height",bodyHeight);
 		if (previewUrl.indexOf("?")==-1){
 			previewUrl+="?";
 		}else{

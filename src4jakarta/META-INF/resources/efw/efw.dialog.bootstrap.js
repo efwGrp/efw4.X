@@ -144,6 +144,8 @@ EfwDialog.prototype.preview = function(previewUrl,fileName) {
 		var ary=fileName.split(".");
 		var ext=ary[ary.length-1].toLowerCase();
 		$(".modal-title",self._preview).html(efw.messages.PreviewDialogTitle+" : "+fileName);
+		var bodyHeight=$("body").css("height");
+		$("body").css("height","100%");
 		$(".modal-dialog",self._preview).css("height",$(window).height()*0.95);
 		$(".modal-dialog",self._preview).css("max-height",$(window).height()*0.95);
 		$(".modal-dialog",self._preview).css("width",$(window).width()*0.95);
@@ -151,6 +153,7 @@ EfwDialog.prototype.preview = function(previewUrl,fileName) {
 		$(".modal-dialog",self._preview).css("margin-left","auto");
 		$(".modal-content",self._preview).css("height","100%");
 		$(".modal-body",self._preview).css("overflow","hidden");
+		$("body").css("height",bodyHeight);
 		if (previewUrl.indexOf("?")==-1){
 			previewUrl+="?";
 		}else{
