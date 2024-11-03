@@ -174,7 +174,9 @@ public final class FileManager {
 							path=path.substring(1);
 						}
 					}
-					zos.putNextEntry(new ZipEntry(path));
+					ZipEntry zipEntry=new ZipEntry(path);
+					zipEntry.setLastModifiedTime(Files.getLastModifiedTime(Paths.get(fl.getAbsolutePath())));
+					zos.putNextEntry(zipEntry);
 					int len = 0;
 					while ((len = is.read(buf)) != -1) {
 						zos.write(buf, 0, len);
@@ -264,8 +266,7 @@ public final class FileManager {
 			if (array.size()>0){
 				HashMap<String,String> item=array.get(0);
 				String srcPath=(String)item.get("tempFileAbsolutePath");
-				duplicateByAbsolutePath(srcPath,f.getAbsolutePath());
-		        new File(srcPath).delete();
+				move(new File(srcPath),f);
 			}
 		}
 		session.removeAttribute(EFW_UPLOAD);
@@ -292,11 +293,10 @@ public final class FileManager {
 					if (uploadFileName.indexOf(":")>-1){//もしc:\のIE書き方なら、最後のファイル名のみを取る。
 						uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 					}
-					duplicateByAbsolutePath(tempFileAbsolutePath,f.getAbsolutePath()+"/"+uploadFileName);
+					move(new File(tempFileAbsolutePath),new File(f.getAbsolutePath()+"/"+uploadFileName));
 				}else{
-					duplicateByAbsolutePath(tempFileAbsolutePath,f.getAbsolutePath()+"/"+ uploadPath);
+					move(new File(tempFileAbsolutePath),new File(f.getAbsolutePath()+"/"+uploadPath));
 				}
-				new File(tempFileAbsolutePath).delete();
 			}
 		}
 		session.removeAttribute(EFW_UPLOAD);
