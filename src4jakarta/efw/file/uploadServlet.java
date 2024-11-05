@@ -60,7 +60,7 @@ public final class uploadServlet extends HttpServlet {
 	                    //Change code for resin4.
 	                    inputStream =part.getInputStream();
 	                    outputStream = new FileOutputStream(fl.getAbsolutePath());
-	                    byte[] buffer = new byte[1024];
+	                    byte[] buffer = new byte[1048576];//1MB
 	                    int len;
 	                    while ((len = inputStream.read(buffer)) != -1) {
 	                    	outputStream.write(buffer, 0, len);
