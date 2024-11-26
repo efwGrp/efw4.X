@@ -177,7 +177,7 @@
 <td><a href="help/record.getValue.md">getValue</a></td>
 <td><a href="help/record.length.md">length</a></td>
 </tr>
-<tr><td>Result</td>
+<tr><td><a>Result</a></td>
 <td><a href="help/result.new.md">new</a></td>
 <td><a href="help/result.concat.md">concat</a></td>
 </tr>
