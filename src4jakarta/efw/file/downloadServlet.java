@@ -28,6 +28,7 @@ public final class downloadServlet extends HttpServlet {
     private static final String EFW_DOWNLOAD_FILE="efw.download.file";
     private static final String EFW_DOWNLOAD_ZIP="efw.download.zip";
     private static final String EFW_DOWNLOAD_SAVEAS="efw.download.saveas";
+    private static final String EFW_DOWNLOAD_PASSWORD="efw.download.password";
     private static final String EFW_DOWNLOAD_DELETEAFTERDOWNLOAD="efw.download.deleteafterdownload";
     private static final String EFW_DOWNLOAD_ZIPBASEPATH="efw.download.zipBasePath";
     private static final String EFW_DOWNLOAD_ISABS="efw.download.isAbs";
@@ -43,12 +44,14 @@ public final class downloadServlet extends HttpServlet {
 		String attr_file=(String)sn.getAttribute(EFW_DOWNLOAD_FILE);
 		String attr_zip=(String)sn.getAttribute(EFW_DOWNLOAD_ZIP);
 		String attr_saveas=(String)sn.getAttribute(EFW_DOWNLOAD_SAVEAS);
+		String attr_password=(String)sn.getAttribute(EFW_DOWNLOAD_PASSWORD);
 		String attr_deleteafterdownload=(String)sn.getAttribute(EFW_DOWNLOAD_DELETEAFTERDOWNLOAD);
 		String attr_zipBasePath=(String)sn.getAttribute(EFW_DOWNLOAD_ZIPBASEPATH);
 		String attr_isAbs=(String)sn.getAttribute(EFW_DOWNLOAD_ISABS);
 		sn.removeAttribute(EFW_DOWNLOAD_FILE);
 		sn.removeAttribute(EFW_DOWNLOAD_ZIP);
 		sn.removeAttribute(EFW_DOWNLOAD_SAVEAS);
+		sn.removeAttribute(EFW_DOWNLOAD_PASSWORD);
 		sn.removeAttribute(EFW_DOWNLOAD_DELETEAFTERDOWNLOAD);
 		sn.removeAttribute(EFW_DOWNLOAD_ZIPBASEPATH);
 		sn.removeAttribute(EFW_DOWNLOAD_ISABS);
@@ -64,7 +67,7 @@ public final class downloadServlet extends HttpServlet {
 				tmp_zip=zipFile.getName();
 				attr_file=zipFile.getName();
 				//ダウンロード時の一時ファイルは相対パスで保存する
-				FileManager.zip(tmp_zip,false, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs));
+				FileManager.zip(tmp_zip,false, tmp_files, attr_zipBasePath,"true".equals(attr_isAbs),attr_password);
 
 				if(attr_saveas==null||"".equals(attr_saveas)){
 					attr_saveas="attachment.zip";
@@ -83,7 +86,8 @@ public final class downloadServlet extends HttpServlet {
 			}
 			
 			response.setContentType("application/octet-stream");
-			response.setHeader("Content-Disposition","attachment; filename=\""+java.net.URLEncoder.encode(attr_saveas, framework.SYSTEM_CHAR_SET)+"\"");
+			response.setHeader("Content-Disposition","attachment; filename=\""
+			+java.net.URLEncoder.encode(attr_saveas, framework.SYSTEM_CHAR_SET).replace("+", "%20")+"\"");
 			Cookie ck=new Cookie("efw_Downloaded","OK");
 			ck.setPath("/");
 			response.addCookie(ck);

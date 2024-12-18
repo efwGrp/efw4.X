@@ -21,7 +21,7 @@ elfinder_archive.fire = function(params) {
 		files.push(cwdFile);
 	}
 	//圧縮する
-	Packages.efw.file.FileManager.zip(newFile,isAbs, files, parentPath,isAbs);
+	Packages.efw.file.FileManager.zip(newFile,isAbs, files, parentPath,isAbs, null);
 	//圧縮ファイル情報を取得する
 	var target=(new Record([file.get(newFile,true)]))
 	.map({

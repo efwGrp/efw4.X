@@ -306,6 +306,9 @@ EfwServer.prototype.fire = function(event, requestParams) {
 			var tmpsaveas = download.saveas;
 			if (tmpsaveas == null)
 				tmpsaveas = "";
+			var tmppassword=download.password;
+			if (tmppassword == null)
+				tmppassword = "";
 			var tmpzipBasePath =download.zipBasePath;
 			if (tmpzipBasePath == null)
 				tmpzipBasePath = "";
@@ -320,6 +323,7 @@ EfwServer.prototype.fire = function(event, requestParams) {
 			session.set("efw.download.deleteafterdownload",
 					tmpdeleteafterdownload);
 			session.set("efw.download.saveas", tmpsaveas);
+			session.set("efw.download.password", tmppassword);
 			session.set("efw.download.zipBasePath", tmpzipBasePath);
 			session.set("efw.download.isAbs", tmpisAbs);
 			

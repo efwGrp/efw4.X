@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.022_jakarta";// change it when releasing jar.
+	public static final String version="4.07.023_jakarta";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -867,7 +867,7 @@ public final class framework {
 	 */
 	public static void runtimeWLog(Exception ex) {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.WARNING.intValue()) {
-			runtime(Level.SEVERE,getUsefulInfoFromException(ex));
+			runtime(Level.WARNING,getUsefulInfoFromException(ex));
 		}
 	}
 	/**

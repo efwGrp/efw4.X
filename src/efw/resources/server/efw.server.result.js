@@ -99,7 +99,7 @@ Result.prototype.concat = function(result) {
 			if (result.actions.download){
 				if (result.actions.download.zip)this.attach(result.actions.download.zip,result.actions.download.zipBasePath);
 				if (result.actions.download.file)this.attach(result.actions.download.file,result.actions.download.zipBasePath);
-				if (result.actions.download.saveas)this.saveas(result.actions.download.saveas);
+				if (result.actions.download.saveas)this.saveas(result.actions.download.saveas,result.actions.download.password);
 				if (result.actions.download.deleteafterdownload)this.deleteAfterDownload();
 			}
 			if (result.actions.alert)this.alert(result.actions.alert,result.actions.alertTitle);
@@ -241,11 +241,13 @@ Result.prototype.attach = function(path,zipBasePath,isAbs) {
  * The function to set the file name for saving .
  * 
  * @param {String} filename: required<br>
+ * @param {String} password: optional<br>
  * @returns {Result}
  */
-Result.prototype.saveas = function(filename) {
+Result.prototype.saveas = function(filename,password) {
 	if (!this.actions.download)this.actions.download={};
 	this.actions.download.saveas=filename;
+	this.actions.download.password=password;
 	return this;
 };
 

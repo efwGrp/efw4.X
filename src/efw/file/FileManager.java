@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -128,22 +129,43 @@ public final class FileManager {
 	 * @param fromFilePaths 圧縮対象のファイル配列。
 	 * @param basePath 圧縮ファイルのベースパス。
 	 * @param basePathIsAbs 圧縮対象と圧縮ファイルのベースパスか相対パスかのフラグ。
+	 * @param password パスワード。
 	 * @throws IOException ファイルアクセスエラー。
 	 */
-	public static void zip(String toZipPath,  boolean toZipPathIsAbs, String[] fromFilePaths, String basePath, boolean basePathIsAbs) throws IOException{
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void zip(String toZipPath,  boolean toZipPathIsAbs, String[] fromFilePaths, String basePath, boolean basePathIsAbs, String password) throws IOException{
 		//filename is the zip file name, so it is in storage.
-		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(
-			new FileOutputStream(toZipPathIsAbs?getByAbsolutePath(toZipPath):get(toZipPath))
-		),Charset.forName(
-			PropertiesManager.getProperty(
-				PropertiesManager.EFW_ZIP_CHARSET,ZIP_CHARSET
-			)
-		));
-		try{
-			_zip(zos,fromFilePaths,basePath,basePathIsAbs);
-		}finally{
-			zos.close();
+		if (password!=null && !"".equals(password)) {
+			try{
+				Class.forName("net.lingala.zip4j.ZipFile");//もしjar存在しない場合エラーさせるため
+				Class zip4jUtils = Class.forName("efw.util.Zip4jUtils");
+				Method method = zip4jUtils.getDeclaredMethod("zip", 
+					String.class,//toZipPath
+					boolean.class,//toZipPathIsAbs
+					String[].class,//fromFilePaths
+					String.class,//basePath
+					boolean.class,//basePathIsAbs
+					String.class//password
+				);
+				method.invoke(null,toZipPath,toZipPathIsAbs,fromFilePaths,basePath,basePathIsAbs,password);
+				return;
+			}catch(Exception ex){
+				framework.runtimeWLog(ex);
+			}
 		}
+		//パスワードなしまたはzip4j失敗の場合、JDKの仕組みでzipする
+		ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(
+				new FileOutputStream(toZipPathIsAbs?getByAbsolutePath(toZipPath):get(toZipPath))
+			),Charset.forName(
+				PropertiesManager.getProperty(
+					PropertiesManager.EFW_ZIP_CHARSET,ZIP_CHARSET
+				)
+			));
+			try{
+				_zip(zos,fromFilePaths,basePath,basePathIsAbs);
+			}finally{
+				zos.close();
+			}
 	}
 	/**
 	 * ファイルを圧縮する内部関数
