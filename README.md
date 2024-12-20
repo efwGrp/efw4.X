@@ -105,7 +105,7 @@
 <td><a href="help/TXTReader.readAllLines.md">readAllLines</a></td>
 <td><a href="help/TXTReader.loopAllLines.md">loopAllLines</a></td>
 </tr>
-<tr><td>>CSVReader</td>
+<tr><td>CSVReader</td>
 <td><a href="help/CSVReader.new.md">new</a></td>
 <td><a href="help/CSVReader.readAllLines.md">readAllLines</a></td>
 <td><a href="help/CSVReader.loopAllLines.md">loopAllLines</a></td>
