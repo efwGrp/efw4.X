@@ -287,6 +287,7 @@ public final class FileManager {
 			if (array.size()>0){
 				HashMap<String,String> item=array.get(0);
 				String srcPath=(String)item.get("tempFileAbsolutePath");
+				if (f.exists())f.delete();
 				move(new File(srcPath),f);
 			}
 		}
@@ -314,9 +315,13 @@ public final class FileManager {
 					if (uploadFileName.indexOf(":")>-1){//もしc:\のIE書き方なら、最後のファイル名のみを取る。
 						uploadFileName=uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 					}
-					move(new File(tempFileAbsolutePath),new File(f.getAbsolutePath()+"/"+uploadFileName));
+					File ff=new File(f.getAbsolutePath()+"/"+uploadFileName);
+					if (ff.exists())ff.delete();
+					move(new File(tempFileAbsolutePath),ff);
 				}else{
-					move(new File(tempFileAbsolutePath),new File(f.getAbsolutePath()+"/"+uploadPath));
+					File ff=new File(f.getAbsolutePath()+"/"+uploadPath);
+					if (ff.exists())ff.delete();
+					move(new File(tempFileAbsolutePath),ff);
 				}
 			}
 		}
