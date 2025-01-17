@@ -21,6 +21,7 @@
 <entry key="SessionTimeoutException">Session timeout. Please log in again.</entry>
 <entry key="NumberIsReuqiredMessage">Please enter {display-name} with a valid number.</entry>
 <entry key="DateIsReuqiredMessage">Please enter {display-name} with a valid date.</entry>
+<entry key="EnumIsReuqiredMessage">Please enter {display-name} with a valid enum.</entry>
 <entry key="IsRequiredMessage">Please enter {display-name}.</entry>
 <entry key="MaxLengthOverMessage">{display-name} cannot be greater than {max-length} words.</entry>
 <entry key="MinOrMaxOverMessage">{display-name} is {data-type} between {min} and {max}.</entry>

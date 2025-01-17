@@ -21,6 +21,7 @@
 <entry key="SessionTimeoutException">セッションタイムアウトになりました。再ログインしてください。</entry>
 <entry key="NumberIsReuqiredMessage">{display-name}を数字で正しく入力してください。</entry>
 <entry key="DateIsReuqiredMessage">{display-name}を日付で正しく入力してください。</entry>
+<entry key="EnumIsReuqiredMessage">{display-name}を列挙型で正しく入力してください。</entry>
 <entry key="IsRequiredMessage">{display-name}を入力してください。</entry>
 <entry key="MaxLengthOverMessage">{display-name}を{max-length}文字以内で入力してください。</entry>
 <entry key="MinOrMaxOverMessage">{display-name}を{min}以上{max}以内の{data-type}で入力してください。</entry>

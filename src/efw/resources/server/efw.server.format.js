@@ -155,3 +155,67 @@ EfwServerFormat.prototype.parseDate = function(value, formatter) {
 			.getTime());
 	return dt;
 };
+/**
+ * The function to format any value to Enum string.
+ * 
+ * @param {Any}
+ *            value: required<br>
+ * @param {String}
+ *            formatter: required<br>
+ * @returns {String}
+ */
+EfwServerFormat.prototype.formatEnum = function(value, formatter) {
+	var _value=""+value;
+	if (formatter==null) return _value;//formatter未設定の場合文字列に変換するだけ。
+	if (formatter.indexOf("{")!=0) return _value;
+	if (formatter.indexOf("}")!=formatter.length-1) return _value;
+	formatter=formatter.substring(1,formatter.length-1);
+	var ary=formatter.split(",");
+	for(var i=0;i<ary.length;i++){
+		var item=ary[i].split("=");
+		if (item.length!=2) return _value;//formatterはただしくない場合文字列に変換するだけ。
+		var nm=item[0];
+		var cd=item[1];
+		if (cd.indexOf("'")==0&&cd.lastIndexOf("'")==cd.length-1){
+			cd=cd.substring(1,cd.length-1);
+		}
+		if (_value==cd) return item[0];
+	}
+	return "";
+};
+/**
+ * The function to parse String to Enum.
+ * 
+ * @param {Boolean}
+ *            value: required<br>
+ * @param {String}
+ *            formatter: required<br>
+ * @returns {null | Boolean}
+ */
+EfwServerFormat.prototype.parseEnum = function(value, formatter) {
+	var _value=""+value;
+	if (formatter==null) return _value;//formatter未設定の場合文字列に変換するだけ。
+	if (formatter.indexOf("{")!=0) return _value;
+	if (formatter.indexOf("}")!=formatter.length-1) return _value;
+	formatter=formatter.substring(1,formatter.length-1);
+	var ary=formatter.split(",");
+	for(var i=0;i<ary.length;i++){
+		var item=ary[i].split("=");
+		if (item.length!=2) return _value;//formatterはただしくない場合文字列に変換するだけ。
+		var nm=item[0];
+		var cd=item[1];
+		if (_value==nm) {
+			if ((cd.indexOf("'")==0&&cd.lastIndexOf("'")==cd.length-1)||
+			(cd.indexOf("\"")==0&&cd.lastIndexOf("\"")==cd.length-1)){
+				return cd.substring(1,cd.length-1);
+			}else{
+				if (cd=="true")return true;
+				if (cd=="false")return false;
+				if (!isNaN(cd))return 0+new Number(cd);
+				if (!isNaN(new Date(cd)))return new Date(cd);
+				return cd;
+			}
+		}
+	}
+	return null;
+};

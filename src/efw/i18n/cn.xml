@@ -21,6 +21,7 @@
 <entry key="SessionTimeoutException">会话超时。请再次登录。</entry>
 <entry key="NumberIsReuqiredMessage">请在{display-name}输入正确的数字。</entry>
 <entry key="DateIsReuqiredMessage">请在{display-name}输入正确的日期。</entry>
+<entry key="EnumIsReuqiredMessage">请在{display-name}输入正确的枚举值。</entry>
 <entry key="IsRequiredMessage">请输入{display-name}。</entry>
 <entry key="MaxLengthOverMessage">{display-name}不能大于{max-length}个文字。</entry>
 <entry key="MinOrMaxOverMessage">{display-name}是{min}到{max}之间的{data-type}。</entry>

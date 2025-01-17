@@ -164,7 +164,11 @@ Object.defineProperty(String.prototype,"base64Decode",{enumerable:false});
  * @returns {String}
  */
 Number.prototype.format=function(formatter, rounder){
-	return EfwServerFormat.prototype.formatNumber(this,formatter, rounder);
+	if (formatter.indexOf("{")==0&&formatter.indexOf("}")==formatter.length-1){
+		return EfwServerFormat.prototype.formatEnum(this,formatter);
+	}else{
+		return EfwServerFormat.prototype.formatNumber(this,formatter, rounder);
+	}
 };
 Object.defineProperty(Number.prototype,"format",{enumerable:false});
 /**
@@ -175,7 +179,7 @@ Object.defineProperty(Number.prototype,"format",{enumerable:false});
  */
 Number.parse=function(value,formatter){
 	if(formatter==null){
-		return new Number(value);
+		return 0+new Number(value);
 	}else{
 		return EfwServerFormat.prototype.parseNumber(value, formatter); 
 	}
@@ -188,7 +192,11 @@ Object.defineProperty(Number,"parse",{enumerable:false});
  * @returns {String}
  */
 Date.prototype.format=function(formatter){
-	return EfwServerFormat.prototype.formatDate(this,formatter);
+	if (formatter.indexOf("{")==0&&formatter.indexOf("}")==formatter.length-1){
+		return EfwServerFormat.prototype.formatEnum(this,formatter);
+	}else{
+		return EfwServerFormat.prototype.formatDate(this,formatter);
+	}
 };
 Object.defineProperty(Date.prototype,"format",{enumerable:false});
 /**
@@ -216,6 +224,56 @@ Date.prototype.getYears=function(current){
 	return Math.floor(diff/10000);
 };
 Object.defineProperty(Date.prototype,"getYears",{enumerable:false});
+/**
+ * The function to format the Boolean self to String. 
+ * @param {String}
+ *            formatter: required<br>
+ * @returns {String}
+ */
+Boolean.prototype.format=function(formatter){
+	return EfwServerFormat.prototype.formatEnum(this,formatter);
+};
+Object.defineProperty(Boolean.prototype,"format",{enumerable:false});
+/**
+ * The function to parse the value to Boolean.
+ * @param {String} value: required<br>
+ * @param {String} formatter: required<br>
+ * @returns {Boolean}
+ */
+Boolean.parse=function(value,formatter){
+	if(formatter==null){
+		return true && new Boolean(value);
+	}else{
+		return EfwServerFormat.prototype.parseEnum(value, formatter); 
+	}
+};
+Object.defineProperty(Boolean,"parse",{enumerable:false});
+
+/**
+ * The function to format the String self to String. 
+ * @param {String}
+ *            formatter: required<br>
+ * @returns {String}
+ */
+String.prototype.format=function(formatter){
+	return EfwServerFormat.prototype.formatEnum(this,formatter);
+};
+Object.defineProperty(String.prototype,"format",{enumerable:false});
+/**
+ * The function to parse the value to String.
+ * @param {String} value: required<br>
+ * @param {String} formatter: required<br>
+ * @returns {Boolean}
+ */
+String.parse=function(value,formatter){
+	if(formatter==null){
+		return value;
+	}else{
+		return EfwServerFormat.prototype.parseEnum(value, formatter); 
+	}
+};
+Object.defineProperty(String,"parse",{enumerable:false});
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * 四捨五入

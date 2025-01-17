@@ -202,14 +202,15 @@ Record.prototype.map = function(mapping) {
 				var vl = rsdata[mp[0]];
 				var ft = mp[1];
 				if (vl != null && ft != null) {
-					if (vl.toFixed) {// if vl is number #,##0.00
+					if (ft.indexOf("{")==0&&ft.indexOf("}")==ft.length-1){
+						vl = EfwServerFormat.prototype.formatEnum(vl, ft);
+					}else if (vl.toFixed) {// if vl is number #,##0.00
 						var round = "" + mp[2];
-						vl = EfwServerFormat.prototype.formatNumber(vl, ft,
-								round);
+						vl = EfwServerFormat.prototype.formatNumber(vl, ft, round);
 					} else if (vl.getTime) {// if vl is date yyyyMMdd
 						vl = EfwServerFormat.prototype.formatDate(vl, ft);
 					}
-					// if vl is not date or number, it should not have format
+					// if vl is not date or number or boolean, it should not have format
 				}
 				item[key] = vl;
 			}
