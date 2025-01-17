@@ -180,6 +180,10 @@ EfwServerFormat.prototype.formatEnum = function(value, formatter) {
 			cd=cd.substring(1,cd.length-1);
 		}
 		if (_value==cd) return item[0];
+		if (!isNaN(cd)) cd=""+new Number(cd);//数字と日付は書き方により違い発生するため、変換してから比較
+		if (_value==cd) return item[0];
+		if (!isNaN(new Date(cd)))cd=""+ new Date(cd);
+		if (_value==cd) return item[0];
 	}
 	return "";
 };

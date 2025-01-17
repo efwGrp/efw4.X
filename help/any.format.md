@@ -1,13 +1,21 @@
 <H1>any.format</H1>
 
-The format function is established to format Number or Date to String.
-{any} = { Number | Date }
+The format function is established to format any value to String.
+{any} = { Number | Date | Boolean | String }
 
 <h2>Sample</h2>
 
 ```javascript
 (12345).format("#,000.0");
 (new Date()).format("yyyy/MM/dd");
+//the enum format
+true.format("{YES=true,NO=false}");
+"ONE".format("{一=ONE,二=TWO,三=THREE}");
+"1".format("{一=1,二=2,三=3}");
+"1".format("{一='1',二='2',三='3'}");
+"1".format('{一="1",二="2",三="3"}');
+var a=1;a.format("{一=1,二=2,三=3}");
+new Date("2025-01-01").format("{25Y=2025-01-01,24Y=2024-01-01}");
 ```
 
 <h2>API</h2>

@@ -180,6 +180,8 @@ Object.defineProperty(Number.prototype,"format",{enumerable:false});
 Number.parse=function(value,formatter){
 	if(formatter==null){
 		return 0+new Number(value);
+	}else if (formatter.indexOf("{")==0&&formatter.indexOf("}")==formatter.length-1){
+		return EfwServerFormat.prototype.parseEnum(value, formatter);
 	}else{
 		return EfwServerFormat.prototype.parseNumber(value, formatter); 
 	}
@@ -208,6 +210,8 @@ Object.defineProperty(Date.prototype,"format",{enumerable:false});
 Date.parse=function(value,formatter){
 	if(formatter==null){
 		return (new Date(value)).getTime();
+	}else if (formatter.indexOf("{")==0&&formatter.indexOf("}")==formatter.length-1){
+		return EfwServerFormat.prototype.parseEnum(value, formatter);
 	}else{
 		return EfwServerFormat.prototype.parseDate(value, formatter); 
 	}
