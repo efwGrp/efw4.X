@@ -69,7 +69,7 @@
 <tr><td>file</td><td><a href="help/file.get.md">get</a></td><td><a href="help/file.list.md">list</a></td><td><a href="help/file.isFile.md">isFile</a></td><td><a href="help/file.isFolder.md">isFolder</a></td></td><td><a href="help/file.makeFile.md">makeFile</a></td></tr>
 <tr><td><td><a href="help/file.exists.md">exists</a></td><td><a href="help/file.duplicate.md">duplicate</a></td><td><a href="help/file.rename.md">rename</a></td><td><a href="help/file.remove.md">remove</a></td><td><a href="help/file.makeDir.md">makeDir</a></td></tr>
 <tr><td></td><td><a href="help/file.readAllLines.md">readAllLines</a></td><td><a href="help/file.writeAllLines.md">writeAllLines</a></td><td><a href="help/file.getStorageFolder.md">getStorageFolder</a></td><td><a href="help/file.saveUploadFiles.md">saveUploadFiles</a></td><td><a href="help/file.saveSingleUploadFile.md">saveSingleUploadFile</a></td></tr>
-<tr><td></td><td><a href="help/file.getTempFileName.md">getTempFileName</a></td><td><a href="help/file.readAllBytes.md">readAllBytes</a></td><td><a href="help/file.move.md">move</a></td></tr>
+<tr><td></td><td><a href="help/file.readAllBytes.md">readAllBytes</a></td><td><a href="help/file.writeAllBytes.md">writeAllBytes</a></td><td><a href="help/file.getTempFileName.md">getTempFileName</a></td><td><a href="help/file.move.md">move</a></td></tr>
 
 <tr><td>absfile</td><td colspan=5>All APIs are the same as the file object, except that the path param is an absolute one.</td></tr>
 <tr><td>barcode</td><td><a href="help/barcode.decode.md">decode</a></td></tr>

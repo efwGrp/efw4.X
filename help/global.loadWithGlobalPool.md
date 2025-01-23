@@ -36,5 +36,5 @@ return new Result().eval("$('"+params.pdf+"')[0].src='" +pdfDataUri +"'");
 <tr><td>script</td><td>String</td><td>Script string executed by the pool on call.</td></tr>
 <tr><td>context</td><td>Object</td><td>The attributes of the context parameter will be set into the global of the script context.</td></tr>
 <tr><td>engine</td><td>String</td><td>The name of the engines in the pool.Only "nashorn" or "javet".</td></tr>
-<tr><td>returnVar</td><td>String</td><td>The var name to get the return value.</td></tr>
+<tr><td>returnVar</td><td>{ any }</td><td>The var name to get the return value.</td></tr>
 </table>
