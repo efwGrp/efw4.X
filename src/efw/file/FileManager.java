@@ -1234,4 +1234,13 @@ public final class FileManager {
     	return Files.readAllBytes(Paths.get(f.getAbsolutePath()));
 	}
 	
+	/**
+	 * テキストファイルを読み取る。文字コードは自動判断する。
+	 * @param f ファイルオブジェクト。
+	 * @param content ファイル内容。
+	 * @throws IOException 通信エラー。
+	 */
+	public static void writeAllBytes(File f, byte[] content) throws IOException{
+    	Files.write(Paths.get(f.getAbsolutePath()),content);
+	}
 }

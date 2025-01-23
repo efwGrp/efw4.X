@@ -327,3 +327,18 @@ EfwServerFile.prototype.readAllBytes = function(path){
 	return Packages.efw.file.FileManager.readAllBytes(fl);
 };
 
+/**
+ * The function to write all binary bytes to a file.
+ * @param {Uinit8Array}
+ *            content: required<br>
+ * @param {String}
+ *            path: required<br>
+ * @returns {Bytes}
+ */
+EfwServerFile.prototype.writeAllBytes = function(path, content){
+	var fl = this.isAbsolutePath
+			?Packages.efw.file.FileManager.getByAbsolutePath(path)
+			:Packages.efw.file.FileManager.get(path);
+	return Packages.efw.file.FileManager.writeAllBytes(fl, content);
+};
+

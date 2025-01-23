@@ -412,7 +412,7 @@ Math.ROUNDDOWN=function(num, digit){
 				g.close();
 				_sc.getExecutor(script).executeVoid();
 				_sc.await();
-				return _sc.getExecutor(returnVar+";").executeString();
+				return _sc.getExecutor(returnVar+";").executeObject();
 			}
 		}finally{
 			borrowed.running=false;
