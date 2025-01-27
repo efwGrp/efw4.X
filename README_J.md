@@ -9,6 +9,7 @@
 <a href="https://qiita.com/changkejun/items/d9ef1bbffecb8dab4ffc">Efwとは</a><br>
 <a href="https://qiita.com/changkejun/items/5e10a96e0b1efce8653e">Efwのセキュリティ関連の説明</a><br>
 <a href="https://qiita.com/changkejun/items/1d850b109f8b26381268">高負荷対応のTomcat環境構築</a><br>
+<a href="https://qiita.com/Victory963/items/ec028606e382a1d3a174">EFWコーディング規約</a><br>
 
 <h3>サンプル</h3>
 <a href="https://qiita.com/changkejun/items/926a29ef46714d8cf9f1">各種類の入力枠を一括テスト</a> ( <a href="https://github.com/efwGrp/qittaSamples/tree/main/helloworld/InputTest.jsp">helloworld/InputTest.jsp</a> )<br>
