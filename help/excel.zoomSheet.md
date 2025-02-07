@@ -1,24 +1,21 @@
-<H1>Excel.zoomSheet</H1>
+# Excel.zoomSheet
 
-The zoomSheet function is established to zoom a sheet.
+The `zoomSheet` function is used to zoom a sheet.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 excel.zoomSheet("mySheet",75);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . zoomSheet ( sheetName, percent )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.zoomSheet(sheetName, percent)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-<tr><td>percent</td><td>Number</td><td>The percent to zoom.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |
+| `percent` | `Number` | The percentage to zoom. |

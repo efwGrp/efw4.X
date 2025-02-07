@@ -1,11 +1,11 @@
-<H1>Language XML</H1>
+# Language XML
 
 en.xml
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<!DOCTYPE properties SYSTEM "[http://java.sun.com/dtd/properties.dtd](http://java.sun.com/dtd/properties.dtd)">
 <properties>
-<!--EfwClientMessages-->
 <entry key="OtherErrorException">An unexpected error has occurred.</entry>
 <entry key="CommunicationErrorException">A communication error has occurred. Do you want to retry?</entry>
 <entry key="EventIsBusyException">The function is crowded. Please wait.</entry>
@@ -16,7 +16,6 @@ en.xml
 <entry key="AlertDialogTitle">Message</entry>
 <entry key="AlertDialogOK">OK</entry>
 <entry key="WaitDialogTitle">Busy</entry>
-<!--EfwServerMessages-->
 <entry key="NumberType">number</entry>
 <entry key="DateType">date</entry>
 <entry key="StringType">string</entry>
@@ -36,17 +35,13 @@ en.xml
 <entry key="ElFinderIsProtectedMessage">The action is rejected because of elFinder protection mode.</entry>
 <entry key="ElFinderHackingRiskMessage">The action is rejected because of hacking risk detection.</entry>
 
-<!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New keyword was forgotten.</entry>
-<!-- test -->
 <entry key="here">here</entry>
 </properties>
-
 ```
 
+### Entry Key
+The entry key must be unique within a file.
 
-<h3>Entry Key</h3>
-The entry key must be unique in a file.
-
-<h3>File Name</h3>
+### File Name
 The file name is the language code for i18n.

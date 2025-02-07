@@ -1,8 +1,8 @@
-<H1>db._commit</H1>
+# db._commit
 
-The _commit function is established to commit a transaction.
-As a default, it does not need to be called explicitly.
-<h2>Sample</h2>
+The `_commit` function is established to commit a transaction. By default, it does not need to be called explicitly.
+
+## Sample
 
 ```javascript
 try{
@@ -13,18 +13,14 @@ try{
 }
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>db . _commit ( )</td><td>void</td></tr>
-<tr><td>db . _commit ( jdbcResourceName )</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `db._commit()` | `void` |
+| `db._commit(jdbcResourceName)` | `void` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>jdbcResourceName</td><td>String</td><td>To operate the transaction for another database resource, but not the default. 
-</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `jdbcResourceName` | `String` | To operate the transaction for another database resource, not the default. |
 

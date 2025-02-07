@@ -1,18 +1,17 @@
-<H1>CSVWriter.close</H1>
+# CSVWriter.close
 
-The function to close the java writter.
+The function to close the Java writer.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
 ...
-csvWriter.close();	
+csvWriter.close();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>CSVWriter . close()</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `CSVWriter.close()` | `void` |

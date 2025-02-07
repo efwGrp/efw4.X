@@ -1,22 +1,19 @@
-<H1>file.isFile</H1>
+# file.isFile
 
-The isFile function is established to judge a path is a file or not.
+The `isFile` function is used to determine if a given path represents a file.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var tf = file.isFile("myFile.txt");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . isFile ( path )</td><td>Boolean</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . isFile ( path )` | `Boolean` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative path to the storage.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative path to the storage. |

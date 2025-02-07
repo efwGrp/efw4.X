@@ -1,8 +1,8 @@
-<H1>efw.register</H1>
+# efw.register
 
-The register function is established to register a key into efw 
-to prevent the system from recognizing it as an illegal global variable.
-<h2>Sample</h2>
+The `register` function is established to register a key in `efw` to prevent the system from recognizing it as an illegal global variable.
+
+## Sample
 
 ```javascript
 load(_eventfolder+"/pdf-lib.min.js");
@@ -11,15 +11,12 @@ efw.register("PDFLib");
 efw.register("fontkit");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>efw . register ( key )</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `efw.register(key)` | `void` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>The name of the global variable to be registered.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | The name of the global variable to be registered. |

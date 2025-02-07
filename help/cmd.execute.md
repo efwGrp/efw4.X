@@ -1,22 +1,19 @@
-<H1>cmd.execute</H1>
+# cmd.execute
 
-The execute function is established to invoke a program or system command.
-If something wrong in the execution, CmdExecuteException will be thrown.
-<h2>Sample</h2>
+The `execute` function is established to invoke a program or system command. If something goes wrong in the execution, `CmdExecuteException` will be thrown.
+
+## Sample
 
 ```javascript
 cmd.execute(["java","-version"]);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>cmd . execute ( params )</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `cmd.execute(params)` | `void` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>params</td><td>Array</td><td>An array to contain the command and parameters.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `params` | `Array` | An array to contain the command and parameters. |

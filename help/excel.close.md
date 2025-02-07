@@ -1,20 +1,16 @@
-<H1>Excel.close</H1>
+# Excel.close
 
-The close function is established to close the excel object.
+The `close` function is used to close the Excel object.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
-excel.save("my.xlsx").close();		// test.xlsx and my.xlsx will be kept both.
+excel.save("my.xlsx").close();		// Both test.xlsx and my.xlsx will be kept.
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . close ( )</td><td>void</td></tr>
-</table>
-
-
-
+| Calling | Returning |
+|---|---|
+| `Excel.close()` | `void` |

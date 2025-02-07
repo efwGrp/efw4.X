@@ -1,4 +1,4 @@
-<H1>Batch Event</H1>
+# Batch Event
 
 ```javascript
 ////////////////////////////////////////
@@ -17,16 +17,16 @@ myBatchEvent.fire         = function ( params ) {
                             };
 ```
 
-<HR>
+### Event Variable
+The event variable must be the same as the event file name. In the sample, it is "myBatchEvent".
 
-<H3>Event Variable</H3>
-The event variable must be same to the event file name. In the sample, it is "myBatchEvent".
+### Params Format
+Same as [Web Event](api_webevent.md).
 
-<H3>Params Format</H3>
-Same to <a href="api_webevent.md">Web Event</a>.
-<H3>Check Style</H3>
-Same to <a href="api_webevent.md">Web Event</a>.
-<H3>Fire Method</H3>
+### Check Style
+Same as [Web Event](api_webevent.md).
 
-<H3>Event Return</H3>
-The event return must be void or an instance of <a href="batch.new.md">Batch</a> or anything can be changed to JSON.
+### Fire Method
+
+### Event Return
+The event return must be void, an instance of [Batch](batch.new.md), or anything that can be converted to JSON.

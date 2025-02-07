@@ -1,8 +1,8 @@
-<H1>CSVWriter.writeAllLines</H1>
+# CSVWriter.writeAllLines
 
 The function to write all lines into the file.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 //The content of the test.csv file is 
@@ -16,7 +16,7 @@ var ary = [
 ];
 csvWriter.writeAllLines(ary);
 
-//The content becomes of the test.csv file is 
+//The content of the test.csv file becomes:
 //"A,B,C,D
 // 1,2,3,4
 // a,b,c,d
@@ -24,14 +24,12 @@ csvWriter.writeAllLines(ary);
 // Q,W,E,R"
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>CSVWriter.writeAllLines(ary)</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `CSVWriter.writeAllLines(ary)` | `void` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>ary</td><td>Array</td><td>The matrix of arrays that is expected to be write.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `ary` | `Array` | The matrix of arrays that is expected to be written. |

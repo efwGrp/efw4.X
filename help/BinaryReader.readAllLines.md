@@ -1,8 +1,8 @@
-<H1>BinaryReader.readAllLines</H1>
+# BinaryReader.readAllLines
 
 The function to read all lines into a matrix of arrays.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 //The content of the test.txt file is 
@@ -12,14 +12,12 @@ var array = binaryReader.readAllLines();
 
 //The array return value is
 //[ ["12345","6789012345","67890"]
-//  ["11111","2222233333","44444"]
-//  ["99999","7777777777","22222"] ]
+//  ["11111","2222233333","44444"]
+//  ["99999","7777777777","22222"] ]
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>BinaryReader . readAllLines()</td><td>Array</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `BinaryReader.readAllLines()` | `Array` |

@@ -1,8 +1,8 @@
-<H1>Excel.addRow</H1>
+# Excel.addRow
 
-The addRow function is established to add rows in a sheet.
+The `addRow` function is used to add rows to a sheet.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
@@ -10,18 +10,15 @@ excel.addRow("mySheet",0);
 excel.addRow("mySheet",1,10);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . addRow ( sheetName , startRow)</td><td>Excel</td></tr>
-<tr><td>Excel . addRow ( sheetName , startRow , n)</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.addRow(sheetName, startRow)` | `Excel` |
+| `Excel.addRow(sheetName, startRow, n)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-<tr><td>startRow</td><td>Number</td><td>The row index where new rows will be added before it. Indexed from 0. </td></tr>
-<tr><td>n</td><td>Number</td><td>The blank row count to be added. The default value is 1.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |
+| `startRow` | `Number` | The row index where new rows will be added *before* it. Indexed from 0. |
+| `n` | `Number` | The number of blank rows to be added. The default value is 1. |

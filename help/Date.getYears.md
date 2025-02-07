@@ -1,24 +1,22 @@
-<H1>Date.getYears</H1>
+# Date.getYears
 
-The getYears function is established to get years to now.
+The `getYears` function is established to get the number of years between the date and the current time.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
-var date=Date.parse("1980/01/01","yyyy/MM/dd");
-var years=date.getYears();
+var date = Date.parse("1980/01/01","yyyy/MM/dd");
+var years = date.getYears();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{Date} . getYears ( )</td><td>Number</td></tr>
-<tr><td>{Date} . getYears ( current )</td><td>Number</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `{Date}.getYears()` | `Number` |
+| `{Date}.getYears(current)` | `Number` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>current</td><td>Date</td><td>A date as the current date.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `current` | `Date` | A date to be used as the current date. |
 

@@ -1,22 +1,20 @@
-<H1>file.remove</H1>
+# file.remove
 
-The remove function is established to delete a file or folder.
-<h2>Sample</h2>
+The `remove` function is used to delete a file or folder.
+
+## Sample
 
 ```javascript
 file.remove("myFolder/myFile.txt");
 file.remove("yourFolder");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . remove ( path )</td><td></td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . remove ( path )` |  |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative file or folder path which will be deleted.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative file or folder path to be deleted. |

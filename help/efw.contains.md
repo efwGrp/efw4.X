@@ -1,7 +1,8 @@
-<H1>efw.contains</H1>
+# efw.contains
 
-The contains function is established to check whether a key has been registered into efw.
-<h2>Sample</h2>
+The `contains` function is established to check whether a key has been registered in `efw`.
+
+## Sample
 
 ```javascript
 if (!efw.contains("PDFLib")){
@@ -11,15 +12,12 @@ if (!efw.contains("PDFLib")){
 	efw.register("fontkit");
 };
 ```
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>efw . contains ( key )</td><td>boolean</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `efw.contains(key)` | `boolean` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>The name of the global variable to be registered.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | The name of the global variable to be registered. |

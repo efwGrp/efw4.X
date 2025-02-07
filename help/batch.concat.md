@@ -1,8 +1,8 @@
-<H1>Batch.concat</H1>
+# Batch.concat
 
-The concat function is established to concatenate the batch result to another.
+The `concat` function is used to concatenate the batch result to another.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var batch = new Batch();
@@ -10,15 +10,12 @@ var batch1 = new Batch();
 batch.concat(batch1);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Batch . concat ( batch )</td><td>Batch</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Batch . concat ( batch )` | `Batch` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>batch</td><td>Batch</td><td>The sub batch result.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `batch` | `Batch` | The sub-batch result. |

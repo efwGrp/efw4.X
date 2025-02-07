@@ -1,8 +1,10 @@
-<H1>any.debug</H1>
+# any.debug
 
-The debug function is established to print information of any objects to the console.
-{ any } = { String | Number | Boolean | Date | Array | Function | Object | Record | Result }
-<h2>Sample</h2>
+The `debug` function is established to print information of any objects to the console.
+
+`{ any } = { String | Number | Boolean | Date | Array | Function | Object | Record | Result }`
+
+## Sample
 
 ```javascript
 "hello world!".debug("test1");
@@ -15,15 +17,12 @@ return (new Result()).runat().withData({
 }.debug("test3")).debug("test4");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{any} . debug ( label )</td><td>{any}</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `{any} . debug ( label )` | `{any}` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>label</td><td>String</td><td>The label printed before the debugging info.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `label` | `String` | The label printed before the debugging info. |

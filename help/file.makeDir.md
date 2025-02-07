@@ -1,22 +1,19 @@
-<H1>file.makeDir</H1>
+# file.makeDir
 
-The makeDir function is established to create a folder. If the folder is existed, it will do NOTHING.
+The `makeDir` function is used to create a folder. If the folder already exists, the function does nothing.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 file.makeDir("myFolder");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . makeDir ( path )</td><td></td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . makeDir ( path )` |  |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative folder path to the storage.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative folder path to the storage. |

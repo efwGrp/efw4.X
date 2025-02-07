@@ -1,33 +1,24 @@
-<H1>brms.getRuleById</H1>
+# brms.getRuleById
 
-The getRuleById function is established to call a rule by Id from the BRMS of <a href="https://www.escco.co.jp/innorules/">innorules</a>.
-Its return is an instance of the Record class.
-<h2>Sample</h2>
+The `getRuleById` function is established to call a rule by Id from the BRMS of [innorules](https://www.escco.co.jp/innorules/). Its return is an instance of the `Record` class.
 
-```javascript
-	var record = brms.getRuleById("ChineseFavorites", {
-		"lessThan" : 30
-	}).sort("years", "asc");
-```
-
-<h2>API</h2>
-
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>brms . getRuleById ( ruleId , params  )</td><td rowspan=2>Record</td></tr>
-<tr><td>brms . getRuleById ( ruleId , params , ruleDate )</td></tr>
-</table>
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>ruleId</td><td>String</td><td>The Id of a rule stored in BRMS.</td></tr>
-<tr><td>params</td><td>JSON Object</td>
-<td>To send values which is requried by the rule. 
+## Sample
 
 ```javascript
-{"param1":value1,"param2":value2,...}
+var record = brms.getRuleById("ChineseFavorites", {
+	"lessThan" : 30
+}).sort("years", "asc");
 ```
 
-<tr><td>ruleDate</td><td>Date</td><td>The calling date. Default is the system date.</td></tr>
-</table>
+## API
 
+| Calling | Returning |
+|---|---|
+| `brms.getRuleById(ruleId, params)` | `Record` |
+| `brms.getRuleById(ruleId, params, ruleDate)` | `Record` |
+
+| Parameters | Type | Description |
+|---|---|---|
+| `ruleId` | `String` | The Id of a rule stored in BRMS. |
+| `params` | `JSON Object` | To send values which are required by the rule.<br>```{"param1":value1,"param2":value2,...}``` |
+| `ruleDate` | `Date` | The calling date. Default is the system date. |

@@ -1,40 +1,40 @@
-<H1>loadWithGlobalPool</H1>
+# loadWithGlobalPool
 
-The loadWithGlobalPool function is established to load and evaluate script from a script object with a pool to store the script context.
-<h2>Sample</h2>
+The `loadWithGlobalPool` function is used to load and evaluate a script from a script object, utilizing a pool to manage the script's context.
+
+## Sample
 
 ```javascript
-var runscript=`
-	var pdfDataUri;
-	for(var i=0;i<10;i++){
-		var pdfDoc=await(PDFLib.PDFDocument.create());
-		var page = pdfDoc.addPage([350, 400]);
-		page.moveTo(110, 200);
-		page.drawText(msg);
-		pdfDataUri=await(pdfDoc.saveAsBase64({ dataUri: true }));
-	}
-	pdfDataUri;
+var runscript = `
+    var pdfDataUri;
+    for (var i = 0; i < 10; i++) {
+        var pdfDoc = await(PDFLib.PDFDocument.create());
+        var page = pdfDoc.addPage([350, 400]);
+        page.moveTo(110, 200);
+        page.drawText(msg);
+        pdfDataUri = await(pdfDoc.saveAsBase64({ dataUri: true }));
+    }
+    pdfDataUri;
 `;
-var pdfDataUri=loadWithGlobalPool({
-	name:"pdf-lib",
-	max:3,
-	initializer:"load(_eventfolder+'/pdf-lib.min.js');",
-	script:runscript,
-	context:{msg:"Hello World!"},
-	engine:"nashorn",
-	returnVar:"pdfDataUri"
+var pdfDataUri = loadWithGlobalPool({
+    name: "pdf-lib",
+    max: 3,
+    initializer: "load(_eventfolder+'/pdf-lib.min.js');",
+    script: runscript,
+    context: { msg: "Hello World!" },
+    engine: "nashorn",
+    returnVar: "pdfDataUri"
 });
-return new Result().eval("$('"+params.pdf+"')[0].src='" +pdfDataUri +"'");
+return new Result().eval("$('" + params.pdf + "')[0].src='" + pdfDataUri + "'");
 ```
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>name</td><td>String</td><td>The name of the pool.</td></tr>
-<tr><td>max</td><td>Number</td><td>The max size of the pool.</td></tr>
-<tr><td>initializer</td><td>String</td><td>Script string executed by the pool when initializing the script context.</td></tr>
-<tr><td>script</td><td>String</td><td>Script string executed by the pool on call.</td></tr>
-<tr><td>context</td><td>Object</td><td>The attributes of the context parameter will be set into the global of the script context.</td></tr>
-<tr><td>engine</td><td>String</td><td>The name of the engines in the pool.Only "nashorn" or "javet".</td></tr>
-<tr><td>returnVar</td><td>{ any }</td><td>The var name to get the return value.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `name` | `String` | The name of the pool. |
+| `max` | `Number` | The maximum size of the pool. |
+| `initializer` | `String` | Script string executed by the pool when initializing the script context. |
+| `script` | `String` | Script string executed by the pool on call. |
+| `context` | `Object` | The attributes of the `context` parameter will be set into the global scope of the script context. |
+| `engine` | `String` | The name of the engine in the pool. Only "nashorn" or "javet" are allowed. |
+| `returnVar` | `{ any }` | The variable name to retrieve the return value. |

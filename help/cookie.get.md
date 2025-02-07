@@ -1,23 +1,19 @@
-<H1>cookie.get</H1>
+# cookie.get
 
-The get function is established to get data from cookie.
+The `get` function is established to get data from a cookie.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var userId = cookie.get("USER_ID");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>cookie . get ( key )</td><td>{String}</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `cookie.get(key)` | `{String}` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>To idetify the cookie info.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | To identify the cookie info. |

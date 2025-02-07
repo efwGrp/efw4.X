@@ -1,9 +1,10 @@
-<H1>any.format</H1>
+# any.format
 
-The format function is established to format any value to String.
-{any} = { Number | Date | Boolean | String }
+The `format` function is established to format any value to String.
 
-<h2>Sample</h2>
+`{any} = { Number | Date | Boolean | String }`
+
+## Sample
 
 ```javascript
 (12345).format("#,000.0");
@@ -18,17 +19,14 @@ var a=1;a.format("{一=1,二=2,三=3}");
 new Date("2025-01-01").format("{25Y=2025-01-01,24Y=2024-01-01}");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{any} . format ( formatter )</td><td>String</td></tr>
-<tr><td>{any} . format ( formatter , rounder )</td><td>String</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `{any} . format ( formatter )` | `String` |
+| `{any} . format ( formatter , rounder )` | `String` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td><a href="formatter&rounder.md">formatter</a></td><td>String</td><td>Number formatter or date formatter.</td></tr>
-<tr><td><a href="formatter&rounder.md">rounder</a></td><td>String</td><td>The rounder for number format.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| [`formatter`](formatter&rounder.md) | `String` | Number formatter or date formatter. |
+| [`rounder`](formatter&rounder.md) | `String` | The rounder for number format. |

@@ -1,25 +1,22 @@
-<H1>Excel.replacePicture</H1>
+# Excel.replacePicture
 
-The replacePicture function is established to replace an image shape that exists on the excel. Only XSSF(xlsx,xlsm).
+The `replacePicture` function is used to replace an image shape that exists in the Excel file. This function is only available for XSSF (xlsx, xlsm) files.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 excel.replacePicture("Sheet1","picture1","templates/tanaka.png");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . addShapeInRange ( sheetName , shapeName , newPicturePath )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.replacePicture(sheetName, shapeName, newPicturePath)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The template sheet name.</td></tr>
-<tr><td>shapeName</td><td>String</td><td>The name of the copied shape.</td></tr>
-<tr><td>newPicturePath</td><td>String</td><td>The image file path relatived to the storage folder.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |
+| `shapeName` | `String` | The name of the shape (picture) to replace. |
+| `newPicturePath` | `String` | The image file path relative to the storage folder. |

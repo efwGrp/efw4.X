@@ -1,22 +1,19 @@
-<H1>barcode.decode</H1>
+# barcode.decode
 
-The decode function is established to decode a barcode image file to get the value.
-If it is not decodable, the return will be null.
-<h2>Sample</h2>
+The `decode` function is used to decode a barcode image file and retrieve its value. If the barcode cannot be decoded, the function returns `null`.
+
+## Sample
 
 ```javascript
 var msg = barcode.decode("test.png");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>barcode . decode ( imagePath )</td><td>{String | null}</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `barcode . decode ( imagePath )` | `{String | null}` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>imagePath</td><td>String</td><td>The barcode image file path relatived to the storage folder.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `imagePath` | `String` | The barcode image file path relative to the storage folder. |

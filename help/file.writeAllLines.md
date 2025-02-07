@@ -1,24 +1,22 @@
-<H1>file.writeAllLines</H1>
+# file.writeAllLines
 
-The writeAllLines function is established to write all lines to a text file.
-<h2>Sample</h2>
+The `writeAllLines` function is used to write all lines to a text file.
+
+## Sample
 
 ```javascript
 file.writeAllLines("myFolder/myFile.txt","abcdefghijklmn","UTF-8");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . writeAllLines ( path, content )</td><td>String</td></tr>
-<tr><td>file . writeAllLines ( path, content, encoding )</td><td>String</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . writeAllLines ( path, content )` | `String` |
+| `file . writeAllLines ( path, content, encoding )` | `String` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative text file path to the storage folder.</td></tr>
-<tr><td>content</td><td>String</td><td>The text value will be saved.</td></tr>
-<tr><td>encoding</td><td>String</td><td>The charset name of the text file. The default value is UTF-8;</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative text file path to the storage folder. |
+| `content` | `String` | The text content to be saved. |
+| `encoding` | `String` | The charset name of the text file. The default value is UTF-8. |

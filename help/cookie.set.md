@@ -1,24 +1,19 @@
-<H1>cookie.set</H1>
+# cookie.set
 
-The set function is established to set data to cookie.
+The `set` function is established to set data to a cookie.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 cookie.set("USER_ID", "Wang");
 ```
+## API
 
-<h2>API</h2>
+| Calling | Returning |
+|---|---|
+| `cookie.set(key, value)` | `void` |
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>cookie . set ( key , value )</td><td>void</td></tr>
-</table>
-
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>To idetify the cookie info.</td></tr>
-<tr><td>value</td><td>String</td><td>The info to set into the cookie.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | To identify the cookie info. |
+| `value` | `String` | The info to set into the cookie. |

@@ -1,9 +1,8 @@
-<H1>efw.dialog.alert</H1>
+# efw.dialog.alert
 
-The alert function is established to call client alert with specified buttons.
-It is the base function for Result.alert and Result.confirm.
+The `alert` function is established to call a client-side alert with specified buttons. It is the base function for `Result.alert` and `Result.confirm`.
 
-<h2>Sample</h2>
+## Sample
 
 ```html
 <script>
@@ -18,27 +17,18 @@ It is the base function for Result.alert and Result.confirm.
 </script>
 <input type="button" value="Send" onclick="btnClick()">
 ```
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th></tr>
-<tr><td>efw.dialog.alert ( message )</td></tr>
-<tr><td>efw.dialog.alert ( message, buttons )</td></tr>
-<tr><td>efw.dialog.alert ( message, buttons, title )</td></tr>
-<tr><td>efw.dialog.alert ( message, buttons, title, callback )</td></tr>
-</table>
+| Calling |
+|---|
+| `efw.dialog.alert(message)` |
+| `efw.dialog.alert(message, buttons)` |
+| `efw.dialog.alert(message, buttons, title)` |
+| `efw.dialog.alert(message, buttons, title, callback)` |
 
-<table>
-<tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
-<tr><td>message</td><td>String</td><td>	The information to show at the alert dialog.</td></tr>
-<tr><td>buttons</td><td>Object</td><td>To define the buttons and the click actions.
-
-```javascript
-{buttonName1:script1, buttonName2:script2}
-```
-
-The script will be run at client after the button is clicked.
-</td></tr>
-<tr><td>title</td><td>String</td><td>The title for the alert dialog.</td></tr>
-<tr><td>callback</td><td>Function</td><td>The callback function will be called after the alert dialog closing.</td></tr>
-</table>
+| Parameter | Type | Description |
+|---|---|---|
+| `message` | `String` | The information to show in the alert dialog. |
+| `buttons` | `Object` | To define the buttons and their click actions.<br>```{buttonName1: script1, buttonName2: script2}```<br>The script will be run on the client after the button is clicked. |
+| `title` | `String` | The title for the alert dialog. |
+| `callback` | `Function` | The callback function will be called after the alert dialog closes. |

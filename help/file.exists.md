@@ -1,23 +1,20 @@
-<H1>file.exists</H1>
+# file.exists
 
-The exists function is established to judge a file or folder is existed or not.
+The `exists` function is used to determine whether a file or folder exists.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
-var tf=file.exists("myFile.txt");
-var tf=file.exists("myFolder");
+var tf = file.exists("myFile.txt");
+var tf = file.exists("myFolder");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . exists ( path )</td><td>Boolean</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file.exists(path)` | `Boolean` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative file or folder path to the storage.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative file or folder path to the storage. |

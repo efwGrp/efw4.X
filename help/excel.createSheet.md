@@ -1,26 +1,21 @@
-<H1>Excel.createSheet</H1>
+# Excel.createSheet
 
-The createSheet function is established to create a new sheet or clone an existed sheet.
+The `createSheet` function is used to create a new sheet or clone an existing sheet.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 excel.createSheet("blankSheet").createSheet("Sheet1Clone", "Sheet1");
 ```
+## API
 
-<h2>API</h2>
+| Calling | Returning |
+|---|---|
+| `Excel.createSheet(sheetName)` | `Excel` |
+| `Excel.createSheet(sheetName, copyFrom)` | `Excel` |
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . createSheet ( sheetName )</td><td>Excel</td></tr>
-<tr><td>Excel . createSheet ( sheetName , copyFrom )</td><td>Excel</td></tr>
-</table>
-
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The new sheet name.</td></tr>
-<tr><td>copyFrom</td><td>String</td><td>The existed sheet name.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The name of the new sheet. |
+| `copyFrom` | `String` | The name of an existing sheet to clone. |

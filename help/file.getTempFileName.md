@@ -1,19 +1,17 @@
-<H1>file.getTempFileName</H1>
+# file.getTempFileName
 
-The getTempFileName function is established to get a unique name for creating a temp file or folder.
+The `getTempFileName` function is used to get a unique name for creating a temporary file or folder.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var tempname = file.getTempFileName();
 // tempname is a string like "efw##########.tmp"
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . getTempFileName ( )</td><td>String</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `file . getTempFileName ( )` | `String` |
 

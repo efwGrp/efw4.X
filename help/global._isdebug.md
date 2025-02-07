@@ -1,10 +1,11 @@
-<H1>_isdebug</H1>
+# _isdebug
 
-The _isdebug constant is established to store the property value of efw.isdebug .
-<h2>Sample</h2>
+The `_isdebug` constant stores the value of `efw.isdebug`.
+
+## Sample
 
 ```javascript
 if (_isdebug){
-	"Now it is the debug mode.".debug();
+    "Now it is the debug mode.".debug();
 }
 ```

@@ -1,24 +1,22 @@
-<H1>file.readAllBytes</H1>
+# file.readAllBytes
 
-The readAllBytes function is established to load a binary file into a bytes array. 
-<h2>Sample</h2>
+The `readAllBytes` function is used to load a binary file into a byte array.
+
+## Sample
 
 ```javascript
-var ary=file.readAllBytes("Roboto-Italic.ttf");
+var ary = file.readAllBytes("Roboto-Italic.ttf");
 var uint8Array = new Uint8Array(ary.length);
 uint8Array.set(Java.from(ary));
 
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . readAllBytes ( path )</td><td>byte[]</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . readAllBytes ( path )` | `byte[]` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative file or folder path to the storage.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative file path to the storage. |

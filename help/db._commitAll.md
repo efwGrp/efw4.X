@@ -1,8 +1,8 @@
-<H1>db._commitAll</H1>
+# db._commitAll
 
-The _commitAll function is established to commit all transactions for all database resources.
-As a default, it does not need to be called explicitly.
-<h2>Sample</h2>
+The `_commitAll` function is established to commit all transactions for all database resources. By default, it does not need to be called explicitly.
+
+## Sample
 
 ```javascript
 try{
@@ -14,10 +14,9 @@ try{
 }
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>db . _commitAll ( )</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `db._commitAll()` | `void` |
 

@@ -1,22 +1,19 @@
-<H1>file.makeFile</H1>
+# file.makeFile
 
-The makeFile function is established to create a blank file. If the file is existed, it will do NOTHING.
+The `makeFile` function is used to create a blank file. If the file already exists, the function does nothing.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 file.makeFile("myFile.txt");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . makeFile ( path )</td><td></td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . makeFile ( path )` |  |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative file path to the storage.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative file path to the storage. |

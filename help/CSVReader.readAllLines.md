@@ -1,8 +1,8 @@
-<H1>CSVReader.readAllLines</H1>
+# CSVReader.readAllLines
 
 The function to read all lines into a matrix of arrays.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 //The content of the test.csv file is 
@@ -18,16 +18,13 @@ var array = csvReader.readAllLines("\r\n");
 //["a","b","c","d"]
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>CSVReader . readAllLines()</td><td>Array</td></tr>
-<tr><td>CSVReader . readAllLines(CRLFCode)</td><td>Array</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `CSVReader.readAllLines()` | `Array` |
+| `CSVReader.readAllLines(CRLFCode)` | `Array` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>CRLFCode</td><td>String</td>
-	<td>To define the code for line-feed. exp. \r\n, \n</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `CRLFCode` | `String` | To define the code for line-feed. exp. `\r\n`, `\n` |

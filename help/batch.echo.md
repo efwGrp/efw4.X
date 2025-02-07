@@ -1,25 +1,20 @@
-<H1>Batch.echo</H1>
+# Batch.echo
 
-The echo function is established to show a message into the batch console.
+The `echo` function is used to display a message in the batch console.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var batch = new Batch();
 batch.echo("good morning!").echo("good night!");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Batch . echo ( message )</td><td>Batch</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Batch . echo ( message )` | `Batch` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>message</td><td>String</td><td>The information to show into the batch console.
-</td></tr>
-
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `message` | `String` | The information to show in the batch console. |

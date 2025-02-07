@@ -1,4 +1,4 @@
-<H1>Global Event</H1>
+# Global Event
 
 ```javascript
 ////////////////////////////////////////
@@ -10,14 +10,11 @@ global.fire=function(){
 };
 ```
 
-<HR>
+### Event Variable
+The event variable must be named "global," which is the same as the file name.
 
-<H3>Event Variable</H3>
-The event variable must be named as "global" which is same to the file name.
+### Fire Method
+Be careful not to operate on the session object in the global event.
 
-<H3>Fire Method</H3>
-Pay attention not to operate the session object in the global event.
-
-<H3>Event Return</H3>
+### Event Return
 The global event does not return anything.
-

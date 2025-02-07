@@ -1,8 +1,8 @@
-<H1>Excel.setCell</H1>
+# Excel.setCell
 
-The setCell function is established to set a value and styles etc into a cell.
+The `setCell` function is used to set a value, styles, etc., into a cell.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
@@ -12,22 +12,17 @@ excel.createSheet("newSheet")
 .setCell("newSheet", "C1", null, "Sheet1", "A2");			// If value is null, it will try to set the formula.
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . setCell ( sheetName , position , value )</td><td>Excel</td></tr>
-<tr><td>Excel . setCell ( sheetName , position , value , templateSheetName , templatePosition )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.setCell(sheetName, position, value)` | `Excel` |
+| `Excel.setCell(sheetName, position, value, templateSheetName, templatePosition)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-<tr><td>position</td><td>String</td><td>The absolute reference of the cell.</td></tr>
-<tr><td>value</td><td>String | Number | Date | Boolean | null</td><td>The value for setting into a cell. If it is null, it will try to set the formula.</td></tr>
-<tr><td>templateSheetName</td><td>String</td><td>The template sheet name.</td></tr>
-<tr><td>templatePosition</td><td>String</td><td>The absolute reference of the template cell.</td></tr>
-
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |
+| `position` | `String` | The absolute reference of the cell. |
+| `value` | `String` \| `Number` \| `Date` \| `Boolean` \| `null` | The value for setting into a cell. If it is `null`, it will try to set the formula. |
+| `templateSheetName` | `String` | The template sheet name. |
+| `templatePosition` | `String` | The absolute reference of the template cell. |

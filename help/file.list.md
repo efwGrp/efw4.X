@@ -1,24 +1,21 @@
-<H1>file.list</H1>
+# file.list
 
-The list function is established to get an array of files or sub folders information.
+The `list` function is used to retrieve an array of file or subfolder information.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var infos = file.list("myFolder");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . list ( path )</td><td>Array of <a href="file.FileInfo.md">FileInfo</a></td></tr>
-<tr><td>file . list ( path , withoutFolderLength )</td><td>Array of <a href="file.FileInfo.md">FileInfo</a></td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . list ( path )` | Array of [FileInfo](file.FileInfo.md) |
+| `file . list ( path , withoutFolderLength )` | Array of [FileInfo](file.FileInfo.md) |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The relative folder path to the storage.</td></tr>
-<tr><td>withoutFolderLength</td><td>Boolean</td><td>A flag to get sub folders size or not. The default value is false.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The relative folder path to the storage. |
+| `withoutFolderLength` | `Boolean` | A flag to indicate whether to calculate subfolder sizes. The default value is `false`. |

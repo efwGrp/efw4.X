@@ -1,15 +1,15 @@
-<H1>file.getStorageFolder</H1>
+# file.getStorageFolder
 
-The getStorageFolder function is established to get the absolute path of the storage folder.
-<h2>Sample</h2>
+The `getStorageFolder` function is used to get the absolute path of the storage folder.
+
+## Sample
 
 ```javascript
-var absPath=file.getStorageFolder();
+var absPath = file.getStorageFolder();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>file . getStorageFolder ( )</td><td>String</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `file . getStorageFolder ( )` | `String` |

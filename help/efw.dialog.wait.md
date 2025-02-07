@@ -1,9 +1,8 @@
-<H1>efw.dialog.wait</H1>
+# efw.dialog.wait
 
-The wait function is established to call a countdown dialog for waiting.
-It is one base function for Web Event service.
+The `wait` function is established to call a countdown dialog for waiting. It is a base function for the Web Event service.
 
-<h2>Sample</h2>
+## Sample
 
 ```html
 <script>
@@ -16,19 +15,17 @@ It is one base function for Web Event service.
 </script>
 <input type="button" value="Send" onclick="btnClick()">
 ```
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th></tr>
-<tr><td>efw.dialog.wait ( message, countdown )</td></tr>
-<tr><td>efw.dialog.wait ( message, countdown, title )</td></tr>
-<tr><td>efw.dialog.wait ( message, countdown, title, callback )</td></tr>
-</table>
+| Calling |
+|---|
+| `efw.dialog.wait(message, countdown)` |
+| `efw.dialog.wait(message, countdown, title)` |
+| `efw.dialog.wait(message, countdown, title, callback)` |
 
-<table>
-<tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
-<tr><td>message</td><td>String</td><td>	The information to show at the wait dialog.</td></tr>
-<tr><td>countdown</td><td>Number</td><td>The seconds to wait.</td></tr>
-<tr><td>title</td><td>String</td><td>The title for the wait dialog.</td></tr>
-<tr><td>callback</td><td>Function</td><td>The callback function will be called after the wait dialog closing.</td></tr>
-</table>
+| Parameter | Type | Description |
+|---|---|---|
+| `message` | `String` | The information to show in the wait dialog. |
+| `countdown` | `Number` | The number of seconds to wait. |
+| `title` | `String` | The title for the wait dialog. |
+| `callback` | `Function` | The callback function will be called after the wait dialog closes. |

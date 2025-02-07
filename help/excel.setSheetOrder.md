@@ -1,25 +1,21 @@
-<H1>Excel.setSheetOrder</H1>
+# Excel.setSheetOrder
 
-The setSheetOrder function is established to move a sheet's position.
+The `setSheetOrder` function is used to move a sheet's position.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 excel.createSheet("newSheet").setSheetOrder("newSheet", 1);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . setSheetOrder ( sheetName , order )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.setSheetOrder(sheetName, order)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-<tr><td>order</td><td>Number</td><td>The position of the sheet.Starting from 1.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |
+| `order` | `Number` | The position of the sheet, starting from 1. |

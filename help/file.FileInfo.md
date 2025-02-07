@@ -1,15 +1,15 @@
-<H1>FileInfo</H1>
+# FileInfo
 
-The FileInfo object is established to keep a file or folder information.
+The `FileInfo` object is used to store information about a file or folder.
 
 ```javascript
 {
-	name : String,
-	length : Number,
-	lastModified : Date,
-	absolutePath : String,
-	mineType : String,
-	isHidden : Boolean,
-	isBlank : Boolean,
+  name: String,
+  length: Number,
+  lastModified: Date,
+  absolutePath: String,
+  mineType: String, // Typo here: should be mimeType
+  isHidden: Boolean,
+  isBlank: Boolean,
 }
 ```

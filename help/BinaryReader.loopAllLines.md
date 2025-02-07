@@ -1,8 +1,8 @@
-<H1>BinaryReader.loopAllLines</H1>
+# BinaryReader.loopAllLines
 
 The function to loop all lines for the callback function calling.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 //The content of the test.txt file is 
@@ -15,18 +15,12 @@ function callback(aryField, index) {
 };
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>BinaryReader . loopAllLines(callback)</td><td>Array</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `BinaryReader.loopAllLines(callback)` | `Array` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>callback(aryField, index)</td><td>Function</td>
-	<td>The function that is expected to execute line-by-line.<br>
-		aryField : The array data.<br>
-		index : The line number which counts from 0.
-	</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `callback(aryField, index)` | `Function` | The function that is expected to execute line-by-line.<br> `aryField`: The array data.<br> `index`: The line number which counts from 0. |

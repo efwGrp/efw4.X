@@ -1,8 +1,8 @@
-<H1>loadWithNewGlobal</H1>
+# loadWithNewGlobal
 
-loadWithNewGlobal is almost like the function "load" in that it loads script from a file or a URL or a script object. But unlike 'load', loadWithNewGlobal creates a fresh ECMAScript global scope object and loads the script into it. The loaded script's global definitions go into the fresh global scope. Also, the loaded script's modifications of builtin objects (like String.prototype.indexOf) is not reflected in the caller's global scope - these are affected in the newly created global scope.
+`loadWithNewGlobal` is similar to the `load` function in that it loads a script from a file, a URL, or a script object. However, unlike `load`, `loadWithNewGlobal` creates a new ECMAScript global scope object and loads the script into it. The loaded script's global definitions are placed in this new global scope.  Furthermore, modifications made by the loaded script to built-in objects (such as `String.prototype.indexOf`) are *not* reflected in the caller's global scope; these modifications only affect the newly created global scope.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 loadWithNewGlobal({

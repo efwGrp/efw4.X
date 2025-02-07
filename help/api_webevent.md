@@ -1,4 +1,4 @@
-<H1>Web Event</H1>
+# Web Event
 
 ```javascript
 ////////////////////////////////////////
@@ -6,36 +6,35 @@
 ////////////////////////////////////////
 var myWebEvent={};
 myWebEvent.service={
-	max:10,
-	message:'system is busy,please wait a while',
-	retriable:true,
-	interval:20,
+    max:10,
+    message:'system is busy,please wait a while',
+    retriable:true,
+    interval:20,
 };
 myWebEvent.paramsFormat = { 
-                                "#txt_teststring" : "display-name:Test String;max-length:10;",
-                                "#txt_testnumber" : "format:#,##0.00;required:true;display-name:Test Number;min:-10.00;max:1,000.00",
-                                "#txt_testdate"   : function(){
-                                                        var date1=new Date();
-                                                        var date2=new Date();
-                                                        date2.setDate(date1.getDate()+6);
-                                                        return "format:yyyy-MM-dd;required:true;display-name:Test Date;"
-                                                               +"min:"+date1.format("yyyy-MM-dd")+";"
-                                                               +"max:"+date2.format(,"yyyy-MM-dd")+";" ;
-                                                    },
-                                "#txt_password"   :"secure:true",//the secure value will be encoded before sending.
-                                ... 
-                            };
+    "#txt_teststring" : "display-name:Test String;max-length:10;",
+    "#txt_testnumber" : "format:#,##0.00;required:true;display-name:Test Number;min:-10.00;max:1,000.00",
+    "#txt_testdate"   : function(){
+        var date1=new Date();
+        var date2=new Date();
+        date2.setDate(date1.getDate()+6);
+        return "format:yyyy-MM-dd;required:true;display-name:Test Date;"
+            +"min:"+date1.format("yyyy-MM-dd")+";"
+            +"max:"+date2.format("yyyy-MM-dd")+";" ; // Fixed typo here
+    },
+    "#txt_password"   :"secure:true",//the secure value will be encoded before sending.
+    ... 
+};
 myWebEvent.fire         = function ( requestParams ) {
-                                return (new Result()).alert("hello world! Your entries are correct.");
-                            };
+    return (new Result()).alert("hello world! Your entries are correct.");
+};
 ```
 
-<HR>
 
-<H3>Event Variable</H3>
-The event variable must be same to the event file name. In the sample, it is "myWebEvent".
+### Event Variable
+The event variable must be the same as the event file name. In the sample, it is "myWebEvent".
 
-<H3>Service Definition</H3>
+### Service Definition
 
 ```javascript
 myWebEvent.service = {
@@ -46,109 +45,70 @@ myWebEvent.service = {
 };
 ```
 
-<table>
-<tbody><tr>
-    <th>Parameters</th>
-    <th>Description</th>
-    <th>Attention</th>
-</tr>
-<tr>
-    <td>max</td>
-    <td>The max requests count can be execute at the same time.</td>
-    <td>"max" is requried for events with service definition.</td>
-</tr>
-<tr>
-    <td>message</td>
-    <td>the message when the max requests count is reached.</td>
-    <td>"message" is optional.</td>
-</tr>
-<tr>
-    <td>retriable</td>
-    <td>The event will try to re-execute automatically or not.</td>
-    <td>The default value is false.</td>
-</tr>
-<tr>
-    <td>interval</td>
-    <td>The interval for re-execution.</td>
-    <td>The default value is 30 seconds. "interval" is enable only when "retriable" is true.</td>
-</tr>
-</tbody></table>
+| Parameters | Description | Attention |
+|---|---|---|
+| `max` | The max requests count can be execute at the same time. | "max" is required for events with service definition. |
+| `message` | The message when the max requests count is reached. | "message" is optional. |
+| `retriable` | The event will try to re-execute automatically or not. | The default value is `false`. |
+| `interval` | The interval for re-execution. | The default value is 30 seconds. "interval" is enabled only when "retriable" is `true`. |
 
-<H3>Params Format</H3>
+### Params Format
 
 ```javascript
 myWebEvent.paramsFormat = {
-                     selector1 : null,
-                     selector2 : "checkStyle",
-                     selector3 : function(){ return "checkStyle"; },
-                   { selector4 : ... , },
-                 [ { selector5 : ... , } ],
-             };
+    selector1 : null,
+    selector2 : "checkStyle",
+    selector3 : function(){ return "checkStyle"; },
+    { selector4 : ... , },
+    [ { selector5 : ... , } ],
+};
 ```
 
-To reference JQuery about the rules of selectors.
-<table>
-<tbody><tr>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Normal</th>
-    <th>Abnormal</th>
-</tr>
-<tr>
-    <td>selector : null</td>
-    <td>To get a single input data from the client by the JQuery selector without input checking.</td>
-    <td>If one html tag is matched to the selector, the value attribute or text attribute will be looked as the input data to the fire method.</td>
-    <td>Error if multi tags are matched to the selector.</td>
-</tr>
-<tr>
-    <td>selector : "checkStyle"</td>
-    <td>To get a single input data from the element matched by the JQuery selector with input checking.</td>
-    <td>If the input data is matched to the check style, it will be used.</td>
-    <td>Error if multi tags are matched to the selector.<br>
-    	Error if the input data is not matched the check style.
-    </td>
-</tr>
-<tr>
-    <td>selector : function(){ return "checkStyle"; } </td>
-    <td>To get a single input data from the element with input checking matched by the JQuery selector which is created by a function.</td>
-    <td>If the input data is matched to the check style, it will be used.</td>
-    <td>Error if multi tags are matched to the selector.<br>
-    	Error if the input data is not matched the check style.
-    </td>
-</tr>
-<tr>
-    <td>selector : {...}</td>
-    <td>To get several input datas stored in the element matched by the selector.</td>
-    <td>If one element is matched to the selector, it will be used. And the selector will be as the context to the sub selectors.</td>
-    <td>Error if multi tags are matched to the selector.</td>
-</tr>
-<tr>
-    <td>selector : [{...}]</td>
-    <td>To get an array of input datas stored in the element matched by the selector.</td>
-    <td>Multi elements matched to the selector will be as the context to the sub selectors.</td>
-    <td>-</td>
-</tr>
-</tbody></table>
+### Params Format - Selector Rules
+
+To reference jQuery about the rules of selectors.
+
+| Type | Description | Normal | Abnormal |
+|---|---|---|---|
+| `selector : null` | To get a single input data from the client by the jQuery selector without input checking. | If one HTML tag is matched to the selector, the `value` attribute or `text` attribute will be used as the input data for the `fire` method. | Error if multiple tags are matched to the selector. |
+| `selector : "checkStyle"` | To get a single input data from the element matched by the jQuery selector with input checking. | If the input data matches the check style, it will be used. | Error if multiple tags are matched to the selector.<br>Error if the input data does not match the check style. |
+| `selector : function(){ return "checkStyle"; }` | To get a single input data from the element with input checking matched by the jQuery selector which is created by a function. | If the input data matches the check style, it will be used. | Error if multiple tags are matched to the selector.<br>Error if the input data does not match the check style. |
+| `selector : {...}` | To get several input datas stored in the element matched by the selector. | If one element is matched to the selector, it will be used. And the selector will be the context for the sub-selectors. | Error if multiple tags are matched to the selector. |
+| `selector : [{...}]` | To get an array of input datas stored in the element matched by the selector. | Multiple elements matched to the selector will be the context for the sub-selectors. | - |
 
 
-<H3>Check Style</H3>
-<table>
-	<tr><th>Item</th><th>Value</th><th>Description</th><th>Error</th></tr>
-	<tr><td>display-name</td><td>String</td><td>The element name which will be shown in the check error message.</td><td></td></tr>
-	<tr><td>max-length</td><td>Number</td><td>The max length for an element.</td><td>MaxLengthOverMessage</td></tr>
-	<tr><td>format</td><td>String</td><td>The number format or date format expected to an element.</td><td>NumberIsReuqiredMessage or DateIsReuqiredMessage</td></tr>
-	<tr><td>min</td><td>String</td><td>The min (formatted) value to an element.</td><td>MinOrMaxOverMessage or MinOverMessage</td></tr>
-	<tr><td>max</td><td>String</td><td>The max (formatted) value to an element.</td><td>MinOrMaxOverMessage or MaxOverMessage</td></tr>
-	<tr><td>required</td><td>Boolean</td><td>The element is must or not.</td><td>IsRequiredMessage</td></tr>
-	<tr><td>accept</td><td>String</td><td>The extension file-names seperated by "," which will be accepted as uploading files. </td><td>NotAcceptMessage</td></tr>
-	<tr><td>secure</td><td>String</td><td>The element value should be encoded or not. </td><td></td></tr>
-</table>
-<H3>Fire Method</H3>
+### Check Style
 
-<H3>Event Return</H3>
-The event return must be void or an instance of <a href="result.new.md">Result</a>.
+| Item | Value | Description | Error |
+|---|---|---|---|
+| `display-name` | `String` | The element name which will be shown in the check error message. |  |
+| `max-length` | `Number` | The max length for an element. | `MaxLengthOverMessage` |
+| `format` | `String` | The number format or date format expected for an element. | `NumberIsReuqiredMessage` or `DateIsReuqiredMessage` |
+| `min` | `String` | The min (formatted) value for an element. | `MinOrMaxOverMessage` or `MinOverMessage` |
+| `max` | `String` | The max (formatted) value for an element. | `MinOrMaxOverMessage` or `MaxOverMessage` |
+| `required` | `Boolean` | Whether the element is required. | `IsRequiredMessage` |
+| `accept` | `String` | The extension file-names separated by "," which will be accepted as uploading files. | `NotAcceptMessage` |
+| `secure` | `String` | Whether the element value should be encoded. |  |
 
-<H3>i18n Message Key</H3>
-For muti-language, you can set mesage keys in next items. To see details in <a href="../samples/i18nSample/WEB-INF/efw/event/i18nSampleTest.js">the Sample</a>.
-<li>display-name in check style.
-<li>any string value in Result object.
+### Fire Method
+
+### Event Return
+
+The event return must be void or an instance of [Result](result.new.md).
+
+### i18n Message Key
+
+For multi-language support, you can set message keys in the following items.
+
+*   `display-name` in check style.
+*   Any string value in the `Result` object.
+
+ See details in the next Sample.
+```js
+var helloI18n_submit={};
+helloI18n_submit.paramsFormat={};
+helloI18n_submit.fire=function(params){
+	return new Result()
+	.alert("{here} {language} {testservermsg}");
+}
+```

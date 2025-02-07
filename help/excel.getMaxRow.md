@@ -1,23 +1,20 @@
-<H1>Excel.getMaxRow</H1>
+# Excel.getMaxRow
 
-The getMaxRow function is established to get the last row number starting from 1.
+The `getMaxRow` function is used to retrieve the last row number, starting from 1.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 var maxrow = excel.getMaxRow("Sheet1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . getMaxRow ( sheetName )</td><td>Number</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.getMaxRow(sheetName)` | `Number` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |

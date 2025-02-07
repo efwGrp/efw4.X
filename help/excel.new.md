@@ -1,9 +1,8 @@
-<H1>new Excel</H1>
+# new Excel
 
-The constructor function is established to open an existed excel file.
-Even you want to create new excel file, you must create it from a template file.
+The constructor function is used to open an existing Excel file. Even if you want to create a new Excel file, you must create it from a template file.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excelHSSF = new Excel("small.xls");
@@ -11,18 +10,14 @@ var excelXSSF = new Excel("small.xlsx");
 var excelSXSSF = new Excel("large.xlsx" , true);
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>new Excel ( path )</td><td>Excel</td></tr>
-<tr><td>new Excel ( path , isLarge )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `new Excel(path)` | `Excel` |
+| `new Excel(path, isLarge)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>The excel file path relatived to the storage folder.</td></tr>
-<tr><td>isLarge</td><td>Boolean</td><td>If the value is true, the excel file can be operated with very large data. Please pay attention to the details about <a href="http://poi.apache.org/components/spreadsheet/how-to.html#sxssf">SXSSF</a>.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The Excel file path relative to the storage folder. |
+| `isLarge` | `Boolean` | If the value is `true`, the Excel file can be operated with very large data. Please pay attention to the details about [SXSSF](http://poi.apache.org/components/spreadsheet/how-to.html#sxssf). |

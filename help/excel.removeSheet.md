@@ -1,24 +1,20 @@
-<H1>Excel.removeSheet</H1>
+# Excel.removeSheet
 
-The removeSheet function is established to remove a sheet.
+The `removeSheet` function is used to remove a sheet.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var excel = new Excel("test.xlsx");
 excel.removeSheet("Sheet1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Excel . removeSheet ( sheetName )</td><td>Excel</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `Excel.removeSheet(sheetName)` | `Excel` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>sheetName</td><td>String</td><td>The sheet name.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `sheetName` | `String` | The sheet name. |

@@ -1,9 +1,10 @@
-<H1>any.parse</H1>
+# any.parse
 
-The parse function is established to parse String to any value.
-{any} = { Number | Date | Boolean | String }
+The `parse` function is established to parse String to any value.
 
-<h2>Sample</h2>
+`{any} = { Number | Date | Boolean | String }`
+
+## Sample
 
 ```javascript
 var nm = Number.parse("12,345.0", "#,000.0");
@@ -16,45 +17,44 @@ var st = String.parse("一", "{一='1',二='2',三='3'}");
 var st = String.parse("一", '{一="1",二="2",三="3"}');
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{any} . parse ( value , formatter )</td><td>String</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `{any} . parse ( value , formatter )` | `String` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>value</td><td>String</td><td>The string value of Number or Date.</td></tr>
-<tr><td>formatter</td><td>String</td><td>Number Formatter or Date Formatter</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `value` | `String` | The string value of Number or Date. |
+| `formatter` | `String` | Number Formatter or Date Formatter |
 
-<table>
-<tr><th>Number Formatter</th></tr>
-<tr><td>0</td></tr>
-<tr><td>#</td></tr>
-<tr><td>,</td></tr>
-<tr><td>.</td></tr>
-<tr><td>%</td></tr>
-</table>
+### Number Formatter
 
-<table>
-<tr><th>Date Formatter</th></tr>
-<tr><td>GGGGy</td><td>Japan WAREKI, 2016 -- 平成28</td></tr>
-<tr><td>Gy</td><td>Japan WAREKI, 2016 -- H28</td></tr>
-<tr><td>yyyy</td></tr>
-<tr><td>yy</td></tr>
-<tr><td>MM</td></tr>
-<tr><td>M</td></tr>
-<tr><td>dd</td></tr>
-<tr><td>d</td></tr>
-<tr><td>HH</td></tr>
-<tr><td>H</td></tr>
-<tr><td>mm</td></tr>
-<tr><td>m</td></tr>
-<tr><td>ss</td></tr>
-<tr><td>s</td></tr>
-<tr><td>SSS</td></tr>
-<tr><td>S</td></tr>
-</table>
+|  |  |
+|---|---|
+| `0` |  |
+| `#` |  |
+| `,` |  |
+| `.` |  |
+| `%` |  |
 
+### Date Formatter
+
+|  |  |
+|---|---|
+| `GGGGy` | Japan WAREKI, 2016 -- 平成28 |
+| `Gy` | Japan WAREKI, 2016 -- H28 |
+| `yyyy` |  |
+| `yy` |  |
+| `MM` |  |
+| `M` |  |
+| `dd` |  |
+| `d` |  |
+| `HH` |  |
+| `H` |  |
+| `mm` |  |
+| `m` |  |
+| `ss` |  |
+| `s` |  |
+| `SSS` |  |
+| `S` |  |

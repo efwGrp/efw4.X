@@ -1,8 +1,8 @@
-<H1>db._rollbackAll</H1>
+# db._rollbackAll
 
-The _rollbackAll function is established to rollback all transactions for all database resources.
-As a default, it does not need to be called explicitly.
-<h2>Sample</h2>
+The `_rollbackAll` function is established to rollback all transactions for all database resources. By default, it does not need to be called explicitly.
+
+## Sample
 
 ```javascript
 try{
@@ -14,10 +14,8 @@ try{
 }
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>db . _rollbackAll ( )</td><td>void</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `db._rollbackAll()` | `void` |

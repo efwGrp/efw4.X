@@ -1,4 +1,4 @@
-<H1>Rest Event</H1>
+# Rest Event
 
 ```javascript
 ////////////////////////////////////////
@@ -21,22 +21,20 @@ customer.DELETE=function(keys){
 };
 ```
 
-<HR>
 
-<H3>Event Variable</H3>
-The event variable must be same to the event file name. In the sample, it is "customer".
+### Event Variable
+The event variable must be the same as the event file name. In the sample, it is "customer".
 
+### PUT POST GET DELETE Method
 
-<H3>PUT POST GET DELETE Method</H3>
+### Event Return
+The event return must be void or anything that can be converted to JSON.
 
-<H3>Event Return</H3>
-The event return must be void or or anything can be changed to JSON.
+### HTTP Status
 
-<H3>HTTP Status</H3>
-<table>
-<tr><th>Status Code</th><th>Description</th></tr>
-<tr><td>( 404 ) Not Found</td><td>Any not exists event id in the url.</td></tr>
-<tr><td>( 500 ) Internal Server Error</td><td>Any exception in methods.</td></tr>
-<tr><td>( 200 ) OK</td><td>The return value is not null.</td></tr>
-<tr><td>( 204 ) No Content</td><td>The return value is null.</td></tr>
-</table>
+| Status Code | Description |
+|---|---|
+| `( 404 ) Not Found` | Any non-existent event ID in the URL. |
+| `( 500 ) Internal Server Error` | Any exception in methods. |
+| `( 200 ) OK` | The return value is not null. |
+| `( 204 ) No Content` | The return value is null. |
