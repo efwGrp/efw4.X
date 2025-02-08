@@ -49,7 +49,7 @@
 
 ## JSP
 
-| Categories | Items | Items | Items | Items | Items |
+| Categories | Items  |||||
 |---|---|---|---|---|---|
 | Base Tags | [Client](help/e/tag.client.md) | [Part](help/e/tag.part.md) | [Attr](help/e/tag.attr.md) | [Msg](help/e/tag.msg.md) | [Prop](help/e/tag.prop.md) |
 | Additional Tags | [elFinder](help/e/tag.elfinder.md) | [Chart](help/e/tag.chart.md) | [Barcode](help/e/tag.barcode.md) |  |  |
