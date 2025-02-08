@@ -47,7 +47,7 @@
 
 | Calling | Returning | Description |
 |---|---|---|
-| `chart. draw()` | `void` | Redraws the chart. |
-| `chart. setType`(type) | `void` | Sets the `type` attribute. |
-| `chart. setHeight`(height) | `void` | Sets the `height` attribute. |
-| `chart. setWidth`(width) | `void` | Sets the `width` attribute. |
+| `chart. draw ( )` | `void` | Redraws the chart. |
+| `chart. setType ( type )` | `void` | Sets the `type` attribute. |
+| `chart. setHeight ( height )` | `void` | Sets the `height` attribute. |
+| `chart. setWidth ( width )` | `void` | Sets the `width` attribute. |
