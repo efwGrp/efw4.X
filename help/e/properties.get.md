@@ -19,4 +19,4 @@ var str = properties.get("efw.login.key");
 | Parameters | Type | Description |
 |---|---|---|
 | `key` | `String` | Identifies the property. |
-| `defaultValue` | `{any}` | The default value if the property is not defined in the `efw.properties` file. |
+| `defaultValue` | `String` \| `Number` \| `Boolean` | The default value if the property is not defined in the `efw.properties` file. |
