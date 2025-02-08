@@ -16,4 +16,4 @@ session.set("USER_ID", "Wang");
 | Parameters | Type | Description |
 |---|---|---|
 | `key` | `String` | The key used to identify the session information. |
-| `value` | `any` | The information to store in the session. |
+| `value` | `String` \| `Number` \| `Boolean` \| `Date` \| `Object` \| `Array` \| ... | The information to store in the session. |

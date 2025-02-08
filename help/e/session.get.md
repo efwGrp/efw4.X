@@ -12,7 +12,7 @@ var userId = session.get("USER_ID");
 
 | Calling | Returning |
 |---|---|
-| `session. get ( key )` | `any` |
+| `session. get ( key )` | `String` \| `Number` \| `Boolean` \| `Date` \| `Object` \| `Array` \| ... |
 
 | Parameters | Type | Description |
 |---|---|---|
