@@ -13,7 +13,7 @@ file.remove("yourFolder");
 
 | Calling | Returning |
 |---|---|
-| `file . remove ( path )` |  |
+| `file. remove ( path )` |  |
 
 | Parameters | Type | Description |
 |---|---|---|

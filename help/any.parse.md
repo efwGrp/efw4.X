@@ -2,7 +2,7 @@
 
 The `parse` function is established to parse String to any value.
 
-`{any} = { Number | Date | Boolean | String }`
+`any = { Number | Date | Boolean | String }`
 
 ## Sample
 
@@ -21,7 +21,7 @@ var st = String.parse("一", '{一="1",二="2",三="3"}');
 
 | Calling | Returning |
 |---|---|
-| `{any} . parse ( value , formatter )` | `String` |
+| `any. parse ( value, formatter )` | `String` |
 
 | Parameters | Type | Description |
 |---|---|---|

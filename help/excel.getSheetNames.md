@@ -13,4 +13,4 @@ var ary = excel.getSheetNames();
 
 | Calling | Returning |
 |---|---|
-| `Excel.getSheetNames()` | `Array` |
+| `excel. getSheetNames ( )` | `Array` |

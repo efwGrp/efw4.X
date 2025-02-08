@@ -1,8 +1,8 @@
-<H1>rest.put</H1>
+# rest.put
 
-The put function is established to call a restAPI with put method.
-Its return is a JSON object.
-<h2>Sample</h2>
+The `put` function calls a REST API using the PUT method. It returns a JSON object.
+
+## Sample
 
 ```javascript
 var params={"nm":"customer name 1"};
@@ -10,18 +10,15 @@ var ret = rest.put("http://localhost:8080/restSample/efwRestAPI/customer/u001",p
 // {"id":"u001","nm":"customer name 1"}
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>rest . put ( apiUrl , params )</td><td>null or JSON</td></tr>
-<tr><td>rest . put ( apiUrl , params , heads )</td><td>null or JSON</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `rest. put ( apiUrl, params )` | `null` or `JSON` |
+| `rest. put ( apiUrl, params, heads )` | `null` or `JSON` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>apiUrl</td><td>String</td><td>The url for the called rest api.</td></tr>
-<tr><td>params</td><td>JSON Object</td><td>To send values to the rest api.</td></tr>
-<tr><td>heads</td><td>JSON Object</td><td>The additional request heads.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `apiUrl` | `String` | The URL for the REST API. |
+| `params` | `JSON Object` | The data to send to the REST API. |
+| `heads` | `JSON Object` | Additional request headers. |

@@ -15,7 +15,7 @@ excel.createSheet("newSheet")
 
 | Calling | Returning |
 |---|---|
-| `Excel.setLink(sheetName, position, linkUrl)` | `Excel` |
+| `excel. setLink ( sheetName, position, linkUrl )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

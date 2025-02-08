@@ -1,17 +1,15 @@
-<H1>new Result</H1>
+# new Result
 
-The constructor function is established to create a result object for event returning.
+The constructor function creates a new `Result` object, used for returning data from events.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>new Result ( )</td><td>Result</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `new Result ( )` | `Result` |

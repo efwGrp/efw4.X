@@ -13,7 +13,7 @@ excel.zoomSheet("mySheet",75);
 
 | Calling | Returning |
 |---|---|
-| `Excel.zoomSheet(sheetName, percent)` | `Excel` |
+| `excel. zoomSheet ( sheetName, percent )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

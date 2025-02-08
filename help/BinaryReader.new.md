@@ -14,9 +14,9 @@ var binaryReader = new BinaryReader("input/test.txt", [5,10,5], ["MS932","MS932"
 
 | Calling | Returning |
 |---|---|
-| `new binaryReader(path, aryFieldsDef, aryEncoding, rowSize)` | `binaryReader` |
-| `new binaryReader(path, regFieldsDef, aryEncoding, rowSize, skipRows)` | `binaryReader` |
-| `new binaryReader(path, regFieldsDef, aryEncoding, rowSize, skipRows, rowsToRead)` | `binaryReader` |
+| `new BinaryReader ( path, aryFieldsDef, aryEncoding, rowSize )` | `binaryReader` |
+| `new BinaryReader ( path, regFieldsDef, aryEncoding, rowSize, skipRows )` | `binaryReader` |
+| `new BinaryReader ( path, regFieldsDef, aryEncoding, rowSize, skipRows, rowsToRead )` | `binaryReader` |
 
 | Parameters | Type | Description |
 |---|---|---|

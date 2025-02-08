@@ -23,7 +23,7 @@ csvWriter.writeLine(ary);
 
 | Calling | Returning |
 |---|---|
-| `CSVWriter.writeLine(ary)` | `void` |
+| `csvWriter. writeLine ( ary )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

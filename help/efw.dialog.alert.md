@@ -21,10 +21,10 @@ The `alert` function is established to call a client-side alert with specified b
 
 | Calling |
 |---|
-| `efw.dialog.alert(message)` |
-| `efw.dialog.alert(message, buttons)` |
-| `efw.dialog.alert(message, buttons, title)` |
-| `efw.dialog.alert(message, buttons, title, callback)` |
+| `efw. dialog. alert ( message )` |
+| `efw. dialog. alert ( message, buttons )` |
+| `efw. dialog. alert ( message, buttons, title )` |
+| `efw. dialog. alert ( message, buttons, title, callback )` |
 
 | Parameter | Type | Description |
 |---|---|---|

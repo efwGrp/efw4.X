@@ -16,8 +16,8 @@ excel.createSheet("newSheet")
 
 | Calling | Returning |
 |---|---|
-| `Excel.setCell(sheetName, position, value)` | `Excel` |
-| `Excel.setCell(sheetName, position, value, templateSheetName, templatePosition)` | `Excel` |
+| `excel. setCell ( sheetName, position, value )` | `Excel` |
+| `excel. setCell ( sheetName, position, value, templateSheetName, templatePosition )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

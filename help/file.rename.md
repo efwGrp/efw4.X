@@ -13,7 +13,7 @@ file.rename("myFolder","yourFolder");
 
 | Calling | Returning |
 |---|---|
-| `file . rename ( orgPath, newName )` |  |
+| `file. rename ( orgPath, newName )` |  |
 
 | Parameters | Type | Description |
 |---|---|---|

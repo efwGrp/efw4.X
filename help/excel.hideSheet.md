@@ -13,7 +13,7 @@ excel.hideSheet("mySheet");
 
 | Calling | Returning |
 |---|---|
-| `Excel.hideSheet(sheetName)` | `Excel` |
+| `excel. hideSheet ( sheetName )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

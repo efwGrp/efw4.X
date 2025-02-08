@@ -13,7 +13,7 @@ excel.hideCol("mySheet",2,4);
 
 | Calling | Returning |
 |---|---|
-| `Excel.hideCol(sheetName, startCol, endCol)` | `Excel` |
+| `excel. hideCol ( sheetName, startCol, endCol )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

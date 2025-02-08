@@ -15,9 +15,9 @@ var v3 = excel.getValue("Sheet1", "C3", "#,##0.0", "HALF_EVEN");
 
 | Calling | Returning |
 |---|---|
-| `Excel.getValue(sheetName, position)` | `String` \| `Number` \| `Date` \| `Boolean` |
-| `Excel.getValue(sheetName, position, formatter)` | `String` \| `Number` \| `Date` \| `Boolean` |
-| `Excel.getValue(sheetName, position, formatter, rounder)` | `String` \| `Number` \| `Date` \| `Boolean` |
+| `excel. getValue ( sheetName, position )` | `String` \| `Number` \| `Date` \| `Boolean` |
+| `excel. getValue ( sheetName, position, formatter )` | `String` \| `Number` \| `Date` \| `Boolean` |
+| `excel. getValue ( sheetName, position, formatter, rounder )` | `String` \| `Number` \| `Date` \| `Boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -13,7 +13,7 @@ excel.replacePicture("Sheet1","picture1","templates/tanaka.png");
 
 | Calling | Returning |
 |---|---|
-| `Excel.replacePicture(sheetName, shapeName, newPicturePath)` | `Excel` |
+| `excel. replacePicture ( sheetName, shapeName, newPicturePath )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

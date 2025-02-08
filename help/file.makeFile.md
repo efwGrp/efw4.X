@@ -12,7 +12,7 @@ file.makeFile("myFile.txt");
 
 | Calling | Returning |
 |---|---|
-| `file . makeFile ( path )` |  |
+| `file. makeFile ( path )` |  |
 
 | Parameters | Type | Description |
 |---|---|---|

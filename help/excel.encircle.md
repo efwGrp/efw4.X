@@ -21,9 +21,9 @@ excel.createSheet("newSheet")
 
 | Calling | Returning |
 |---|---|
-| `Excel.encircle(sheetName, position, templateSheetName, templateShapeName)` | `Excel` |
-| `Excel.encircle(sheetName, position, templateSheetName, templateShapeName, shapeCenterXRate, shapeCenterYRate)` | `Excel` |
-| `Excel.encircle(sheetName, position, templateSheetName, templateShapeName, shapeCenterXRate, shapeCenterYRate, shapeWidthRate, shapeHeightRate)` | `Excel` |
+| `excel. encircle ( sheetName, position, templateSheetName, templateShapeName )` | `Excel` |
+| `excel. encircle ( sheetName, position, templateSheetName, templateShapeName, shapeCenterXRate, shapeCenterYRate )` | `Excel` |
+| `excel. encircle ( sheetName, position, templateSheetName, templateShapeName, shapeCenterXRate, shapeCenterYRate, shapeWidthRate, shapeHeightRate )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

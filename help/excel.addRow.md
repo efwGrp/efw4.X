@@ -14,8 +14,8 @@ excel.addRow("mySheet",1,10);
 
 | Calling | Returning |
 |---|---|
-| `Excel.addRow(sheetName, startRow)` | `Excel` |
-| `Excel.addRow(sheetName, startRow, n)` | `Excel` |
+| `excel. addRow ( sheetName, startRow )` | `Excel` |
+| `excel. addRow ( sheetName, startRow, n )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

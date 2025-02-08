@@ -14,7 +14,7 @@ file.writeAllBytes("test.ttf", ary);
 
 | Calling | Returning |
 |---|---|
-| `file . writeAllBytes ( path, content )` | `byte[]` |
+| `file. writeAllBytes ( path, content )` | `byte[]` |
 
 | Parameters | Type | Description |
 |---|---|---|

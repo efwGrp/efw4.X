@@ -12,7 +12,7 @@ var userId = cookie.get("USER_ID");
 
 | Calling | Returning |
 |---|---|
-| `cookie.get(key)` | `{String}` |
+| `cookie. get ( key )` | `{String}` |
 
 | Parameters | Type | Description |
 |---|---|---|

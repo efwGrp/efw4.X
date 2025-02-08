@@ -13,8 +13,8 @@ excel.save("my.xlsx");
 
 | Calling | Returning |
 |---|---|
-| `Excel.save(path)` | `Excel` |
-| `Excel.save(path, password)` | `Excel` |
+| `excel. save ( path )` | `Excel` |
+| `excel. save ( path, password )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -1,23 +1,19 @@
-<H1>request.get</H1>
+# request.get
 
-The get function is established to get data from request.
+The `get` function retrieves data from the request.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var defId = request.get("defId");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>request . get ( key )</td><td>{String}</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `request. get ( key )` | `{String}` |
 
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>To idetify the request info.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | Identifies the requested information. |

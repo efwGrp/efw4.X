@@ -16,9 +16,9 @@ excel.createSheet("newSheet")
 
 | Calling | Returning |
 |---|---|
-| `Excel.addShapeInRange(sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName)` | `Excel` |
-| `Excel.addShapeInRange(sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName, text)` | `Excel` |
-| `Excel.addShapeInRange(sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName, text, x1, y1, x2, y2)` | `Excel` |
+| `excel. addShapeInRange ( sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName )` | `Excel` |
+| `excel. addShapeInRange ( sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName, text )` | `Excel` |
+| `excel. addShapeInRange ( sheetName, firstCellPosition, lastCellPosition, templateSheetName, templateShapeName, text, x1, y1, x2, y2 )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

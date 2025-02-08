@@ -13,7 +13,7 @@ excel.showSheet("mySheet");
 
 | Calling | Returning |
 |---|---|
-| `Excel.showSheet(sheetName)` | `Excel` |
+| `excel. showSheet ( sheetName )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

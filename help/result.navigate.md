@@ -1,34 +1,22 @@
-<H1>Result.navigate</H1>
+# Result.navigate
 
-The navigate function is established to navigate to another jsp.
-It can be called as far as once.
+The `navigate` function redirects the client to another JSP page. It can only be called once.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.navigate("the next page url");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . navigate ( url )</td><td>Result</td></tr>
-<tr><td>Result . navigate ( url , params )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. navigate ( url )` | `Result` |
+| `result. navigate ( url, params )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>url</td><td>String</td><td>The url which will be navigated.
-</td></tr>
-<tr><td>params</td><td>Object</td><td>The params which will be added after the url.
-
-```javascript
-{param1:value1, param2:value2,...}
-```
-
-</td></tr>
-
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `url` | `String` | The URL to which the client will be navigated. |
+| `params` | `Object` | The parameters to be appended to the URL. <br> ```{param1:value1, param2:value2,...}``` |

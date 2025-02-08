@@ -13,8 +13,8 @@ excel.delRow("mySheet",1,10);
 
 | Calling | Returning |
 |---|---|
-| `Excel.delRow(sheetName, startRow)` | `Excel` |
-| `Excel.delRow(sheetName, startRow, n)` | `Excel` |
+| `excel. delRow ( sheetName, startRow )` | `Excel` |
+| `excel. delRow ( sheetName, startRow, n )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

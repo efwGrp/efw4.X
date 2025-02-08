@@ -1,22 +1,21 @@
-<H1>String.base64Encode</H1>
+# String.base64Encode
 
-The base64Encode function is established to encode a String by base64.
-This function is powered by <a href="https://github.com/dankogai/js-base64">base64</a>.
+The `base64Encode` function encodes a String using Base64. This function is powered by [base64](https://github.com/dankogai/js-base64).
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var value;
-value=("A=B B=C C=D".base64Encode());//value="QT1CIEI9QyBDPUQ=";
-value=value.base64Decode();//value="A=B B=C C=D"
+value = "A=B B=C C=D".base64Encode(); // value = "QT1CIEI9QyBDPUQ=";
+value = value.base64Decode(); // value = "A=B B=C C=D"
 
-value=("A=B B=C C=D".base64EncodeURI());//value="QT1CIEI9QyBDPUQ";
-value=value.base64Decode();//value="A=B B=C C=D"
+// Note: The following line uses base64EncodeURI, not base64Encode
+value = "A=B B=C C=D".base64EncodeURI(); // value = "QT1CIEI9QyBDPUQ";
+value = value.base64Decode(); // value = "A=B B=C C=D"
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>{String} . base64Encode ( )</td><td>String</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `string. base64Encode ( )` | `String` |

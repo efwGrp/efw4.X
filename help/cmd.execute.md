@@ -12,7 +12,7 @@ cmd.execute(["java","-version"]);
 
 | Calling | Returning |
 |---|---|
-| `cmd.execute(params)` | `void` |
+| `cmd. execute ( params )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

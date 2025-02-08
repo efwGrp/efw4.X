@@ -17,8 +17,8 @@ try{
 
 | Calling | Returning |
 |---|---|
-| `db._commit()` | `void` |
-| `db._commit(jdbcResourceName)` | `void` |
+| `db. _commit ( )` | `void` |
+| `db. _commit ( jdbcResourceName )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

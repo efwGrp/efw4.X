@@ -2,7 +2,7 @@
 
 The `format` function is established to format any value to String.
 
-`{any} = { Number | Date | Boolean | String }`
+`any = { Number | Date | Boolean | String }`
 
 ## Sample
 
@@ -23,8 +23,8 @@ new Date("2025-01-01").format("{25Y=2025-01-01,24Y=2024-01-01}");
 
 | Calling | Returning |
 |---|---|
-| `{any} . format ( formatter )` | `String` |
-| `{any} . format ( formatter , rounder )` | `String` |
+| `any. format ( formatter )` | `String` |
+| `any. format ( formatter, rounder )` | `String` |
 
 | Parameters | Type | Description |
 |---|---|---|

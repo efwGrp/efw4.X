@@ -16,7 +16,7 @@ if (!efw.contains("PDFLib")){
 
 | Calling | Returning |
 |---|---|
-| `efw.contains(key)` | `boolean` |
+| `efw. contains ( key )` | `boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

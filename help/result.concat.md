@@ -1,23 +1,20 @@
-<H1>Result.concat</H1>
+# Result.concat
 
-The concat function is established to concatenate the result to another.
+The `concat` function concatenates the current result with another `Result` object.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.concat(event.fire("subEvent"));
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . concat ( result )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. concat ( result )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>result</td><td>Result</td><td>The sub result.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `result` | `Result` | The other `Result` object to concatenate with. |

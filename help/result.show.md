@@ -1,23 +1,20 @@
-<H1>Result.show</H1>
+# Result.show
 
-The show function is established to show elements in client.
+The `show` function displays elements on the client-side.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.show("#table1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . show ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. show ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be shown.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be shown. |

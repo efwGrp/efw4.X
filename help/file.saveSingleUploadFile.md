@@ -12,7 +12,7 @@ file.saveSingleUploadFile("myFile");
 
 | Calling | Returning |
 |---|---|
-| `file . saveSingleUploadFile ( path )` |  |
+| `file. saveSingleUploadFile ( path )` |  |
 
 | Parameters | Type | Description |
 |---|---|---|

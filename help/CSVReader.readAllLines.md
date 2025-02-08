@@ -22,8 +22,8 @@ var array = csvReader.readAllLines("\r\n");
 
 | Calling | Returning |
 |---|---|
-| `CSVReader.readAllLines()` | `Array` |
-| `CSVReader.readAllLines(CRLFCode)` | `Array` |
+| `csvReader. readAllLines ( )` | `Array` |
+| `csvReader. readAllLines ( CRLFCode )` | `Array` |
 
 | Parameters | Type | Description |
 |---|---|---|

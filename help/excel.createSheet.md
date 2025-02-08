@@ -12,8 +12,8 @@ excel.createSheet("blankSheet").createSheet("Sheet1Clone", "Sheet1");
 
 | Calling | Returning |
 |---|---|
-| `Excel.createSheet(sheetName)` | `Excel` |
-| `Excel.createSheet(sheetName, copyFrom)` | `Excel` |
+| `excel. createSheet ( sheetName )` | `Excel` |
+| `excel. createSheet ( sheetName, copyFrom )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

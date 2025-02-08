@@ -1,23 +1,20 @@
-<H1>Result.enable</H1>
+# Result.enable
 
-The enable function is established to enable elements in client.
+The `enable` function enables elements on the client-side.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.enable("#button1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . enable ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. enable ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be enabled.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be enabled. |

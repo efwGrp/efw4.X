@@ -1,17 +1,33 @@
-<H1>jQuery Selectors API ( for reference )</H1>
-Attribute Selectors<br>
-<a href="https://api.jquery.com/attribute-contains-prefix-selector/">[attribute|='value']</a>, <a href="https://api.jquery.com/attribute-contains-selector/">[attribute*='value']</a>, <a href="https://api.jquery.com/attribute-contains-word-selector/">[attribute~='value']</a>, <a href="https://api.jquery.com/attribute-ends-with-selector/">[attribute$='value']</a>, <a href="https://api.jquery.com/attribute-equals-selector/">[attribute='value']</a>, <a href="https://api.jquery.com/attribute-not-equal-selector/">[attribute!='value']</a>, <a href="https://api.jquery.com/attribute-contains-word-selector/">[attribute^='value']</a>, <a href="https://api.jquery.com/has-attribute-selector/">[attribute]</a>, <a href="https://api.jquery.com/multiple-attribute-selector/">[attributeFilter1][attributeFilter2][attributeFilterN]</a>, <br>
-Basic<br>
-<a href="https://api.jquery.com/all-selector/">*</a>, <a href="https://api.jquery.com/class-selector/">.class</a>, <a href="https://api.jquery.com/element-selector/">element</a>, <a href="https://api.jquery.com/id-selector/">#id</a>, <a href="https://api.jquery.com/multiple-selector/">selector1, selector2, selectorN</a>, <br>
-Basic Filter<br>
-<a href="https://api.jquery.com/animated-selector/">:animated</a>, <a href="https://api.jquery.com/eq-selector/">:eq(index)</a>, <a href="https://api.jquery.com/eq-selector/">:eq(-index)</a>, <a href="https://api.jquery.com/even-selector/">:even</a>, <a href="https://api.jquery.com/first-selector/">:first</a>, <a href="https://api.jquery.com/focus-selector/">:focus</a>, <a href="https://api.jquery.com/gt-selector/">:gt(index)</a>, <a href="https://api.jquery.com/header-selector/">:header</a>, <a href="https://api.jquery.com/lang-selector/">:lang(language)</a>, <a href="https://api.jquery.com/last-selector/">:last</a>, <a href="https://api.jquery.com/lt-selector/">:lt(index)</a>, <a href="https://api.jquery.com/not-selector/">:not(selector)</a>, <a href="https://api.jquery.com/odd-selector/">:odd</a>, <a href="https://api.jquery.com/root-selector/">:root</a>, <a href="https://api.jquery.com/target-selector/">:target</a>, <br>
-Child Filter<br>
-<a href="https://api.jquery.com/first-child-selector/">:first-child</a>, <a href="https://api.jquery.com/first-of-type-selector/">:first-of-type</a>, <a href="https://api.jquery.com/last-child-selector/">:last-child</a>, <a href="https://api.jquery.com/last-of-type-selector/">:last-of-type</a>, <a href="https://api.jquery.com/nth-child-selector/">:nth-child(index/even/odd/equation)</a>, <a href="https://api.jquery.com/nth-last-child-selector/">:nth-last-child(index/even/odd/equation)</a>, <a href="https://api.jquery.com/nth-last-of-type-selector/">:nth-last-of-type(index/even/odd/equation)</a>, <a href="https://api.jquery.com/nth-of-type-selector/">:nth-of-type(index/even/odd/equation)</a>, <a href="https://api.jquery.com/only-child-selector/">:only-child</a>, <a href="https://api.jquery.com/only-of-type-selector/">:only-of-type</a>, <br>
-Content Filter<br>
-<a href="https://api.jquery.com/contains-selector/">:contains(text)</a>, <a href="https://api.jquery.com/empty-selector/">:empty</a>, <a href="https://api.jquery.com/has-selector/">:has(selector)</a>, <a href="https://api.jquery.com/parent-selector/">:parent</a>, <br>
-Form<br>
-<a href="https://api.jquery.com/button-selector/">:button</a>, <a href="https://api.jquery.com/checkbox-selector/">:checkbox</a>, <a href="https://api.jquery.com/checked-selector/">:checked</a>, <a href="https://api.jquery.com/disabled-selector/">:disabled</a>, <a href="https://api.jquery.com/enabled-selector/">:enabled</a>, <a href="https://api.jquery.com/file-selector/">:file</a>, <a href="https://api.jquery.com/focus-selector/">:focus</a>, <a href="https://api.jquery.com/image-selector/">:image</a>, <a href="https://api.jquery.com/input-selector/">:input</a>, <a href="https://api.jquery.com/password-selector/">:password</a>, <a href="https://api.jquery.com/radio-selector/">:radio</a>, <a href="https://api.jquery.com/reset-selector/">:reset</a>, <a href="https://api.jquery.com/selected-selector/">:selected</a>, <a href="https://api.jquery.com/submit-selector/">:submit</a>, <a href="https://api.jquery.com/text-selector/">:text</a>, <br>
-Hierarchy<br>
-<a href="https://api.jquery.com/child-selector/">parent > child</a>, <a href="https://api.jquery.com/descendant-selector/">ancestor descendant</a>, <a href="https://api.jquery.com/next-adjacent-selector/">prev + next</a>, <a href="https://api.jquery.com/next-siblings-selector/">prev ~ siblings</a>, <br>
-Visibility Filter<br>
-<a href="https://api.jquery.com/hidden-selector/">:hidden</a>, <a href="https://api.jquery.com/visible-selector/">:visible</a>, <br>
+# jQuery Selectors API (for reference)
+
+## Attribute Selectors
+
+[`[attribute|='value']`](https://api.jquery.com/attribute-contains-prefix-selector/), [`[attribute*='value']`](https://api.jquery.com/attribute-contains-selector/), [`[attribute~='value']`](https://api.jquery.com/attribute-contains-word-selector/), [`[attribute$='value']`](https://api.jquery.com/attribute-ends-with-selector/), [`[attribute='value']`](https://api.jquery.com/attribute-equals-selector/), [`[attribute!='value']`](https://api.jquery.com/attribute-not-equal-selector/), [`[attribute^='value']`](https://api.jquery.com/attribute-starts-with-selector/), [`[attribute]`](https://api.jquery.com/has-attribute-selector/), [`[attributeFilter1][attributeFilter2][attributeFilterN]`](https://api.jquery.com/multiple-attribute-selector/)
+
+## Basic
+
+[`*`](https://api.jquery.com/all-selector/), [`.class`](https://api.jquery.com/class-selector/), [`element`](https://api.jquery.com/element-selector/), [`#id`](https://api.jquery.com/id-selector/), [`selector1, selector2, selectorN`](https://api.jquery.com/multiple-selector/)
+
+## Basic Filter
+
+[`:animated`](https://api.jquery.com/animated-selector/), [`:eq(index)`](https://api.jquery.com/eq-selector/), [`:eq(-index)`](https://api.jquery.com/eq-selector/), [`:even`](https://api.jquery.com/even-selector/), [`:first`](https://api.jquery.com/first-selector/), [`:focus`](https://api.jquery.com/focus-selector/), [`:gt(index)`](https://api.jquery.com/gt-selector/), [`:header`](https://api.jquery.com/header-selector/), [`:lang(language)`](https://api.jquery.com/lang-selector/), [`:last`](https://api.jquery.com/last-selector/), [`:lt(index)`](https://api.jquery.com/lt-selector/), [`:not(selector)`](https://api.jquery.com/not-selector/), [`:odd`](https://api.jquery.com/odd-selector/), [`:root`](https://api.jquery.com/root-selector/), [`:target`](https://api.jquery.com/target-selector/)
+
+## Child Filter
+
+[`:first-child`](https://api.jquery.com/first-child-selector/), [`:first-of-type`](https://api.jquery.com/first-of-type-selector/), [`:last-child`](https://api.jquery.com/last-child-selector/), [`:last-of-type`](https://api.jquery.com/last-of-type-selector/), [`:nth-child(index/even/odd/equation)`](https://api.jquery.com/nth-child-selector/), [`:nth-last-child(index/even/odd/equation)`](https://api.jquery.com/nth-last-child-selector/), [`:nth-last-of-type(index/even/odd/equation)`](https://api.jquery.com/nth-last-of-type-selector/), [`:nth-of-type(index/even/odd/equation)`](https://api.jquery.com/nth-of-type-selector/), [`:only-child`](https://api.jquery.com/only-child-selector/), [`:only-of-type`](https://api.jquery.com/only-of-type-selector/)
+
+## Content Filter
+
+[`:contains(text)`](https://api.jquery.com/contains-selector/), [`:empty`](https://api.jquery.com/empty-selector/), [`:has(selector)`](https://api.jquery.com/has-selector/), [`:parent`](https://api.jquery.com/parent-selector/)
+
+## Form
+
+[`:button`](https://api.jquery.com/button-selector/), [`:checkbox`](https://api.jquery.com/checkbox-selector/), [`:checked`](https://api.jquery.com/checked-selector/), [`:disabled`](https://api.jquery.com/disabled-selector/), [`:enabled`](https://api.jquery.com/enabled-selector/), [`:file`](https://api.jquery.com/file-selector/), [`:focus`](https://api.jquery.com/focus-selector/), [`:image`](https://api.jquery.com/image-selector/), [`:input`](https://api.jquery.com/input-selector/), [`:password`](https://api.jquery.com/password-selector/), [`:radio`](https://api.jquery.com/radio-selector/), [`:reset`](https://api.jquery.com/reset-selector/), [`:selected`](https://api.jquery.com/selected-selector/), [`:submit`](https://api.jquery.com/submit-selector/), [`:text`](https://api.jquery.com/text-selector/)
+
+## Hierarchy
+
+[`parent > child`](https://api.jquery.com/child-selector/), [`ancestor descendant`](https://api.jquery.com/descendant-selector/), [`prev + next`](https://api.jquery.com/next-adjacent-selector/), [`prev ~ siblings`](https://api.jquery.com/next-siblings-selector/)
+
+## Visibility Filter
+
+[`:hidden`](https://api.jquery.com/hidden-selector/), [`:visible`](https://api.jquery.com/visible-selector/)

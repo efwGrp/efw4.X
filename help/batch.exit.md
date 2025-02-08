@@ -13,7 +13,7 @@ batch.exit(1);
 
 | Calling | Returning |
 |---|---|
-| `Batch . exit ( level )` | `Batch` |
+| `batch. exit ( level )` | `Batch` |
 
 | Parameters | Type | Description |
 |---|---|---|

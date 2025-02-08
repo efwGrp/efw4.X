@@ -12,7 +12,7 @@ var msg = barcode.decode("test.png");
 
 | Calling | Returning |
 |---|---|
-| `barcode . decode ( imagePath )` | `{String | null}` |
+| `barcode. decode ( imagePath )` | `{String | null}` |
 
 | Parameters | Type | Description |
 |---|---|---|

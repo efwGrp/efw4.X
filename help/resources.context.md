@@ -1,76 +1,72 @@
-<H1>Context XML</H1>
-This example of context xml is compatible in apache-tomcat7 or higher version.
-Be sure to add the resources following your system rules if it is not tomcat.<br>
-<br>
+# Context XML
 
-[webApplication]/META-INF/context.xml
+This example `context.xml` is compatible with Apache Tomcat 7 or later.  For non-Tomcat servers, ensure the resources are added according to your system's conventions.
+
+`/META-INF/context.xml`
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Context>
 <Context>
-<!-- Database -->
-	<Resource
-		name				=	"jdbc/efw"
-		auth				=	"Container"
-		type				=	"javax.sql.DataSource"
-		driverClassName	 =	"org.postgresql.Driver"
-		url				 =	"jdbc:postgresql://localhost:5432/efw"
-		username			=	"username"
-		password			=	"password"
-		maxActive		   =	"100"
-		maxIdle		 	=	"20"
-		maxWait		 	=	"10"
-	/>
-	<Resource
-		name				=	"jdbc/efw2"
-		auth				=	"Container"
-		type				=	"javax.sql.DataSource"
-		driverClassName	 =	"org.postgresql.Driver"
-		url				 =	"jdbc:postgresql://localhost:5432/efw2"
-		username			=	"username"
-		password			=	"password"
-		maxActive		   =	"100"
-		maxIdle			 =	"20"
-		maxWait			 =	"10"
-	/>
-	.
-	.
-	.
-<!-- Mail -->
-	<Resource
-        name       	    	 	=    "mail/efw" 
-        auth       	    	 	=    "Container"
-        type       	   	  	=    "javax.mail.Session"
-        username   	    	 	=    ""
-        password   	    		 =    ""
-        mail.debug 	   	      =    "false"
-        mail.user  	   	      =    ""
-        mail.from  	   	      =    "admin@test.co.jp"
-        mail.transport.protocol 	=	"smtp" 
-        mail.smtp.host    		  =    "127.0.0.1"
-        mail.smtp.auth    		  =    "false"
-        mail.smtp.port    		  =    "25"
-        mail.smtp.starttls.enable   =	"true"
-        description        		 =    "E-Mail Resource"
+    <Resource
+        name="jdbc/efw"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://localhost:5432/efw"
+        username="username"
+        password="password"
+        maxActive="100"
+        maxIdle="20"
+        maxWait="10"
+    />
+    <Resource
+        name="jdbc/efw2"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://localhost:5432/efw2"
+        username="username"
+        password="password"
+        maxActive="100"
+        maxIdle="20"
+        maxWait="10"
+    />
+    <Resource
+        name="mail/efw"
+        auth="Container"
+        type="javax.mail.Session"
+        username=""
+        password=""
+        mail.debug="false"
+        mail.user=""
+        mail.from="admin@test.co.jp"
+        mail.transport.protocol="smtp"
+        mail.smtp.host="127.0.0.1"
+        mail.smtp.auth="false"
+        mail.smtp.port="25"
+        mail.smtp.starttls.enable="true"
+        description="E-Mail Resource"
     />
 </Context>
 ```
 
-<h2>Database Resource</h2>
+## Database Resource
 
-The default one must be named "jdbc/efw". It can be called by <a href="db.select.md">db.select</a> ,
- <a href="db.change.md">db.change</a> and <a href="db.master.md">db.master</a> without the jdbcResourceName param.
-If you need some addition database, add the database resource with another name. In this way, you must call the db functions with the jdbcResourceName param.<br>
-<br>
-For example,<br>
+The default database resource must be named "jdbc/efw". It can be used by [`db.select`](db.select.md), [`db.change`](db.change.md), and [`db.master`](db.master.md) without the `jdbcResourceName` parameter.
+
+If you need additional databases, add database resources with different names.  When using these additional resources, you *must* call the database functions with the `jdbcResourceName` parameter.
+
+For example:
 
 ```javascript
-db.select(groupId, sqlId, params)		//using the default db resource "jdbc/efw"
-db.select(groupId, sqlId, params, "jdbc/efw2")	//using the addition db resource "jdbc/efw2"
+db.select(groupId, sqlId, params)        // Using the default database resource "jdbc/efw"
+db.select(groupId, sqlId, params, "jdbc/efw2")    // Using the additional database resource "jdbc/efw2"
 ```
 
 
-<h2>Mail Resource</h2>
+## Mail Resource
 
-<h3>name</h3>
-If <a href="mail.send.md">mail.send</a> is called in your program, the mail resource must be set up with the name "mail/efw".
+### Name
+
+If [`mail.send`](mail.send.md) is called in your program, the mail resource *must* be configured with the name "mail/efw".

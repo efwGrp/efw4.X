@@ -13,7 +13,7 @@ excel.createSheet("newSheet").setSheetOrder("newSheet", 1);
 
 | Calling | Returning |
 |---|---|
-| `Excel.setSheetOrder(sheetName, order)` | `Excel` |
+| `excel. setSheetOrder ( sheetName, order )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

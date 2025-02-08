@@ -14,8 +14,8 @@ var excelSXSSF = new Excel("large.xlsx" , true);
 
 | Calling | Returning |
 |---|---|
-| `new Excel(path)` | `Excel` |
-| `new Excel(path, isLarge)` | `Excel` |
+| `new Excel ( path )` | `Excel` |
+| `new Excel ( path, isLarge )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

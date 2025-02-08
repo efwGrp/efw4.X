@@ -28,7 +28,7 @@ csvWriter.writeAllLines(ary);
 
 | Calling | Returning |
 |---|---|
-| `CSVWriter.writeAllLines(ary)` | `void` |
+| `csvWriter. writeAllLines ( ary )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

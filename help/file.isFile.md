@@ -12,7 +12,7 @@ var tf = file.isFile("myFile.txt");
 
 | Calling | Returning |
 |---|---|
-| `file . isFile ( path )` | `Boolean` |
+| `file. isFile ( path )` | `Boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

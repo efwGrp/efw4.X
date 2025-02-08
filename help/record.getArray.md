@@ -1,22 +1,20 @@
-<H1>Record.getArray</H1>
+# Record.getArray
 
-The getArray function is established to get the array data from the record.
+The `getArray` function retrieves the array data from a `Record` object.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var record = new Record([
-	{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
-	{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
+    {"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
+    {"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
 ]);
 var array = record.getArray();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Record . getArray ( )</td><td>Array</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `record. getArray ( )` | `Array` |
 

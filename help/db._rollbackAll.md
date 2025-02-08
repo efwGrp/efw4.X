@@ -18,4 +18,4 @@ try{
 
 | Calling | Returning |
 |---|---|
-| `db._rollbackAll()` | `void` |
+| `db. _rollbackAll ( )` | `void` |

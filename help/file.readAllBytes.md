@@ -15,7 +15,7 @@ uint8Array.set(Java.from(ary));
 
 | Calling | Returning |
 |---|---|
-| `file . readAllBytes ( path )` | `byte[]` |
+| `file. readAllBytes ( path )` | `byte[]` |
 
 | Parameters | Type | Description |
 |---|---|---|

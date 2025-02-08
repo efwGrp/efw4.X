@@ -1,8 +1,8 @@
-<H1>Record.map</H1>
+# Record.map
 
-The map function is established to change the array data format.
+The `map` function transforms the format of the array data within a `Record` object.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var record = new Record([
@@ -20,26 +20,19 @@ record.map({
 });
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>record .map ( mapping )</td><td>Record</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `record. map ( mapping )` | `Record` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>mapping</td><td>Object</td><td>The mapping of ToBe and AsIs.
-
+| Parameters | Type | Description |
+|---|---|---|
+| `mapping` | `Object` | The mapping between the new and existing fields. <br> See also: [formatter&rounder](formatter&rounder.md). |
+The sample for `mapping`.
 ```javascript
 {
-	newField1:oldField1,
-	newField2:[oldField2, "#,##0.0", "HALF_EVEN"],//formatter, rounder
-	newField3:function(data){return String|Number|Date|Boolean;}
+    newField1: oldField1,
+    newField2: [oldField2, "#,##0.0", "HALF_EVEN"], // formatter, rounder
+    newField3: function(data){return String|Number|Date|Boolean;}
 }
-```
-
-About <a href="formatter&rounder.md">formatter&rounder</a> .
-</td></tr>
-</table>
-

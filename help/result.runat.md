@@ -1,24 +1,21 @@
-<H1>Result.runat</H1>
+# Result.runat
 
-The runat function is established to add the result a return value which will be shown in the web.
+The `runat` function specifies the target element on the web page where subsequent operations (like `remove`, `append`, `withdata` etc.) will be applied.  It essentially sets the context for those operations.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.runat("#table1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . runat ( )</td><td>Result</td></tr>
-<tr><td>Result . runat ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. runat ( )` | `Result` |
+| `result. runat ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the place the data will be shown. The default is "body".</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the element where the data will be displayed. The default is `"body"`. |

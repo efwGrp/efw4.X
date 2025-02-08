@@ -12,8 +12,8 @@ file.writeAllLines("myFolder/myFile.txt","abcdefghijklmn","UTF-8");
 
 | Calling | Returning |
 |---|---|
-| `file . writeAllLines ( path, content )` | `String` |
-| `file . writeAllLines ( path, content, encoding )` | `String` |
+| `file. writeAllLines ( path, content )` | `String` |
+| `file. writeAllLines ( path, content, encoding )` | `String` |
 
 | Parameters | Type | Description |
 |---|---|---|

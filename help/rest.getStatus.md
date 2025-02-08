@@ -1,8 +1,8 @@
-<H1>rest.getStatus</H1>
+# rest.getStatus
 
-The getStatus function is established to get the http status after calling a restAPI.
-Its return is an integer number.
-<h2>Sample</h2>
+The `getStatus` function retrieves the HTTP status code after a REST API call. It returns an integer.
+
+## Sample
 
 ```javascript
 var ret = rest.get("http://localhost:8080/restSample/efwRestAPI/customer/u001");
@@ -11,11 +11,8 @@ var status = rest.getStatus();
 // 200
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>rest . getStatus ( )</td><td>number</td></tr>
-</table>
-
-
+| Calling | Returning |
+|---|---|
+| `rest. getStatus ( )` | `number` |

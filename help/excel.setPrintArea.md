@@ -13,7 +13,7 @@ excel.setPrintArea("mySheet",0,10,0,100);
 
 | Calling | Returning |
 |---|---|
-| `Excel.setPrintArea(sheetName, startRow, endRow, startCol, endCol)` | `Excel` |
+| `excel. setPrintArea ( sheetName, startRow, endRow, startCol, endCol )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

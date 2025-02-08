@@ -13,7 +13,7 @@ var maxrow = excel.getMaxRow("Sheet1");
 
 | Calling | Returning |
 |---|---|
-| `Excel.getMaxRow(sheetName)` | `Number` |
+| `excel. getMaxRow ( sheetName )` | `Number` |
 
 | Parameters | Type | Description |
 |---|---|---|

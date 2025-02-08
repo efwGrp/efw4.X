@@ -18,5 +18,5 @@ try{
 
 | Calling | Returning |
 |---|---|
-| `db._commitAll()` | `void` |
+| `db. _commitAll ( )` | `void` |
 

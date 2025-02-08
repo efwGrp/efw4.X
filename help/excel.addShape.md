@@ -17,10 +17,10 @@ excel.createSheet("newSheet")
 
 | Calling | Returning |
 |---|---|
-| `Excel.addShape(sheetName, position, templateSheetName, templateShapeName)` | `Excel` |
-| `Excel.addShape(sheetName, position, templateSheetName, templateShapeName, text)` | `Excel` |
-| `Excel.addShape(sheetName, position, templateSheetName, templateShapeName, text, x, y)` | `Excel` |
-| `Excel.addShape(sheetName, position, templateSheetName, templateShapeName, text, x, y, width, height)` | `Excel` |
+| `excel. addShape ( sheetName, position, templateSheetName, templateShapeName )` | `Excel` |
+| `excel. addShape ( sheetName, position, templateSheetName, templateShapeName, text )` | `Excel` |
+| `excel. addShape ( sheetName, position, templateSheetName, templateShapeName, text, x, y )` | `Excel` |
+| `excel. addShape ( sheetName, position, templateSheetName, templateShapeName, text, x, y, width, height )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

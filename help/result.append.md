@@ -1,9 +1,8 @@
-<H1>Result.append</H1>
+# Result.append
 
-The append function is established to create the append attribute to the last return value.
-It can be called as far as once to a runat. The second calling is invalidated without any exceptions.
+The `append` function adds content to the element specified by the most recent `runat` call. It can only be called once per `runat`. Subsequent calls within the same `runat` have no effect.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
@@ -13,23 +12,12 @@ result
 .append("<tr><td>{data1}</td><td>{{data2}}</td></tr>");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . append ( mask )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. append ( mask )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>mask</td><td>String</td><td>The sub html with data masks which will be replaced to the removed tags.<br>
-
-```html
-<tr><td>{data1}</td><td>{{data2}}</td></tr>"
-```
-
-The "{data1}" will be replaced and htmlEncoded with the data1 as a field in withdata.
-The "{{field}}" will be only replaced and be not htmlEncoded.
-</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `mask` | `String` | The HTML snippet with data placeholders that will replace the removed tags. Example: <br> ```<tr><td>{data1}</td><td>{{data2}}</td></tr>```<br> `{data1}` will be replaced and HTML-encoded with the value of the `data1` field. `{{field}}` will be replaced but *not* HTML-encoded. |

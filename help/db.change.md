@@ -15,10 +15,10 @@ var count = db.change("delete * from table_user where country='China'");
 
 | Calling | Returning |
 |---|---|
-| `db.change(groupId, sqlId, params)` | `Number` |
-| `db.change(groupId, sqlId, params, jdbcResourceName)` | `Number` |
-| `db.change(sql)` | `Number` |
-| `db.change(sql, jdbcResourceName)` | `Number` |
+| `db. change ( groupId, sqlId, params )` | `Number` |
+| `db. change ( groupId, sqlId, params, jdbcResourceName )` | `Number` |
+| `db. change ( sql )` | `Number` |
+| `db. change ( sql, jdbcResourceName )` | `Number` |
 
 | Parameters | Type | Description |
 |---|---|---|

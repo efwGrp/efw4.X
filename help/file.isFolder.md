@@ -12,7 +12,7 @@ var tf = file.isFolder("myFolder");
 
 | Calling | Returning |
 |---|---|
-| `file . isFolder ( path )` | `Boolean` |
+| `file. isFolder ( path )` | `Boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

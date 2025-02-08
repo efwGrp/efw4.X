@@ -36,7 +36,7 @@ var ary3 = excel.getArray{"Sheet1", 1, 4,[{"data1":"A"},{"data2":"A"}]};
 
 | Calling | Returning |
 |---|---|
-| `Excel.getArray(sheetName, startRow, endCondition, positionRowMaps)` | `Array` |
+| `excel. getArray ( sheetName, startRow, endCondition, positionRowMaps )` | `Array` |
 
 | Parameters | Type | Description |
 |---|---|---|

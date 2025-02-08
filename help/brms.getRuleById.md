@@ -14,8 +14,8 @@ var record = brms.getRuleById("ChineseFavorites", {
 
 | Calling | Returning |
 |---|---|
-| `brms.getRuleById(ruleId, params)` | `Record` |
-| `brms.getRuleById(ruleId, params, ruleDate)` | `Record` |
+| `brms. getRuleById ( ruleId, params )` | `Record` |
+| `brms. getRuleById ( ruleId, params, ruleDate )` | `Record` |
 
 | Parameters | Type | Description |
 |---|---|---|

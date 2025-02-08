@@ -15,7 +15,7 @@ efw.register("fontkit");
 
 | Calling | Returning |
 |---|---|
-| `efw.register(key)` | `void` |
+| `efw. register ( key )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -1,24 +1,20 @@
-<H1>Result.focus</H1>
+# Result.focus
 
-The focus function is established to set an element focused at the web.
-It can be called as far as once.
+The `focus` function sets focus to a specified element on the client-side. It can only be called once.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.focus("#text1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . focus ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. focus ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the element which will be focused.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the element to receive focus. |

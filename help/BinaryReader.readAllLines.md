@@ -20,4 +20,4 @@ var array = binaryReader.readAllLines();
 
 | Calling | Returning |
 |---|---|
-| `BinaryReader.readAllLines()` | `Array` |
+| `binaryReader. readAllLines ( )` | `Array` |

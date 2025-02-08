@@ -13,7 +13,7 @@ batch.log("good morning!").log("good night!");
 
 | Calling | Returning |
 |---|---|
-| `Batch . log ( message )` | `Batch` |
+| `batch. log ( message )` | `Batch` |
 
 | Parameters | Type | Description |
 |---|---|---|

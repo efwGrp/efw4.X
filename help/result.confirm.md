@@ -1,55 +1,26 @@
-<H1>Result.confirm</H1>
+# Result.confirm
 
-The confirm function is established to show a confirm dialog.
-It can be called as far as once. The second calling is invalidated without any exceptions.
-But if with alert, the alert message will be added in the confirm dialog before the confirm message.
+The `confirm` function displays a confirmation dialog. It can only be called once. Subsequent calls have no effect. However, if `alert` has been called, the alert message will be displayed in the confirmation dialog *before* the confirmation message.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.confirm("Let's do it,OK?" ,{"OK":"window.location='doit.jsp';","CANCEL":null});
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . confirm ( message , buttons )</td><td>Result</td></tr>
-<tr><td>Result . confirm ( message , buttons , title )</td><td>Result</td></tr>
-<tr><td>Result . confirm ( message , buttons , params )</td><td>Result</td></tr>
-<tr><td>Result . confirm ( message , buttons , title , params )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. confirm ( message, buttons )` | `Result` |
+| `result. confirm ( message, buttons, title )` | `Result` |
+| `result. confirm ( message, buttons, params )` | `Result` |
+| `result. confirm ( message, buttons, title, params )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>message</td><td>String</td><td>The information to show at the confirm dialog.
-
-```javascript
-xxxx{param1}yyy{param2}yy
-```
-
-You can define "{param}" in the message, it will be replaced by the params.
-</td></tr>
-<tr><td>buttons</td><td>Object</td><td>To define the buttons and the click actions.
-
-```javascript
-{buttonName1:script1, buttonName2:script2}
-```
-
-The script will be run at client after the button is clicked.
-</td></tr>
-<tr><td>params</td><td>Object</td><td>The params to replace "{param}" in the message.
-
-```javascript
-{
-	param1:value1,
-	param2:value2
-}
-```
-
-</td></tr>
-<tr><td>title</td><td>String</td><td>The title for the confirm dialog.</td></tr>
-
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `message` | `String` | The message to display in the confirmation dialog. Placeholders can be used: <br> ```xxxx{param1}yyy{param2}yy```<br> You can define "{param}" in the message; it will be replaced by the corresponding value in the `params` object. |
+| `buttons` | `Object` | Defines the buttons and their click actions. <br> ```{buttonName1: script1, buttonName2: script2}```<br> The script will be executed on the client-side after the button is clicked. |
+| `params` | `Object` | The parameters used to replace the "{param}" placeholders in the message. Example: <br>```{param1: value1,param2: value2}``` |
+| `title` | `String` | The title for the confirmation dialog. |

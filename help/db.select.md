@@ -16,10 +16,10 @@ var record2 = db
 
 | Calling | Returning |
 |---|---|
-| `db.select(groupId, sqlId, params)` | `Record` |
-| `db.select(groupId, sqlId, params, jdbcResourceName)` | `Record` |
-| `db.select(sql)` | `Record` |
-| `db.select(sql, jdbcResourceName)` | `Record` |
+| `db. select ( groupId, sqlId, params )` | `Record` |
+| `db. select ( groupId, sqlId, params, jdbcResourceName )` | `Record` |
+| `db. select ( sql )` | `Record` |
+| `db. select ( sql, jdbcResourceName )` | `Record` |
 
 | Parameters | Type | Description |
 |---|---|---|

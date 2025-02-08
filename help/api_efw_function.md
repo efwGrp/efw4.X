@@ -13,9 +13,9 @@ The EFW function is established to call server events from JSP in AJAX. It is no
 | Calling |
 |---|
 | `Efw ( eventId )` |
-| `Efw ( eventId , manualParams )` |
-| `Efw ( eventId , sever )` |
-| `Efw ( eventId , manualParams , sever )` |
+| `Efw ( eventId, manualParams )` |
+| `Efw ( eventId, sever )` |
+| `Efw ( eventId, manualParams, sever )` |
 
 | Parameter | Type | Description |
 |---|---|---|

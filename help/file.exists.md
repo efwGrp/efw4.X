@@ -13,7 +13,7 @@ var tf = file.exists("myFolder");
 
 | Calling | Returning |
 |---|---|
-| `file.exists(path)` | `Boolean` |
+| `file. exists ( path )` | `Boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

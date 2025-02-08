@@ -22,7 +22,7 @@ var ary = excel.getSingle("Sheet1", 
 
 | Calling | Returning |
 |---|---|
-| `Excel.getSingle(sheetName, positionMap)` | `Object` |
+| `excel. getSingle ( sheetName, positionMap )` | `Object` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -1,23 +1,20 @@
-<H1>Result.hide</H1>
+# Result.hide
 
-The hide function is established to hide elements in client.
+The `hide` function hides elements on the client-side.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.hide("#table1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . hide ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. hide ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be hidden.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be hidden. |

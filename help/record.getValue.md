@@ -1,26 +1,24 @@
-<H1>Record.getValue</H1>
+# Record.getValue
 
-The getValue function is established to get a field value from the first object of the record.
+The `getValue` function retrieves a field value from the first object within the `Record`.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var record = new Record([
-	{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
-	{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
+    {"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
+    {"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
 ]);
 var value = record.getValue("data1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Record . getValue ( field )</td><td>String|Number|Date|Boolean</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `record. getValue ( field )` | `String` \| `Number` \| `Date` \| `Boolean` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>field</td><td>String</td><td>The field name of the array.</td></tr>
-</table>
+| Parameters | Type | Description |
+|---|---|---|
+| `field` | `String` | The field name. |
 

@@ -1,26 +1,23 @@
-<H1>Result.saveas</H1>
+# Result.saveas
 
-The saveas function is established to rename the download file.
+The `saveas` function renames the file when it is downloaded.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.attach("test.xls")
-	.saveas("hello.xls");
+    .saveas("hello.xls");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . saveas ( filename )</td><td>Result</td></tr>
-<tr><td>Result . saveas ( filename , password )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. saveas ( filename )` | `Result` |
+| `result. saveas ( filename, password )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>filename</td><td>String</td><td>The file name for saving.</td></tr>
-<tr><td>password</td><td>String</td><td>If a folder or multi files are attached, you can save all to a named zip with password.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `filename` | `String` | The filename for saving. |
+| `password` | `String` | If a folder or multiple files are attached, you can save them all to a named, password-protected zip archive. |

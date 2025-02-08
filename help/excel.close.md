@@ -13,4 +13,4 @@ excel.save("my.xlsx").close();		// Both test.xlsx and my.xlsx will be kept.
 
 | Calling | Returning |
 |---|---|
-| `Excel.close()` | `void` |
+| `excel. close ( )` | `void` |

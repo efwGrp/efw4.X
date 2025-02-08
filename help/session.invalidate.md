@@ -1,17 +1,15 @@
-<H1>session.invalidate</H1>
+# session.invalidate
 
-The invalidate function is established to disable the session id of the current request.
+The `invalidate` function invalidates the session ID for the current request, effectively destroying the session.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 session.invalidate();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>session . invalidate ( )</td><td>void</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `session. invalidate ( )` | `void` |

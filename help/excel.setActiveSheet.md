@@ -13,7 +13,7 @@ excel.createSheet("newSheet").setActiveSheet("newSheet");
 
 | Calling | Returning |
 |---|---|
-| `Excel.setActiveSheet(sheetName)` | `Excel` |
+| `excel. setActiveSheet ( sheetName )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

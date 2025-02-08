@@ -1,9 +1,8 @@
-<H1>Result.remove</H1>
+# Result.remove
 
-The remove function is established to create the remove attribute to the last return value.
-It can be called as far as once to a runat. The second calling is invalidated without any exceptions.
+The `remove` function removes elements from the element specified by the most recent `runat` call. It can only be called once per `runat`. Subsequent calls within the same `runat` have no effect.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
@@ -12,15 +11,12 @@ result
 .remove("tr");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . remove ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. remove ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be deleted.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be removed. |

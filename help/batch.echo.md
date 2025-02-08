@@ -13,7 +13,7 @@ batch.echo("good morning!").echo("good night!");
 
 | Calling | Returning |
 |---|---|
-| `Batch . echo ( message )` | `Batch` |
+| `batch. echo ( message )` | `Batch` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -14,7 +14,7 @@ batch.concat(batch1);
 
 | Calling | Returning |
 |---|---|
-| `Batch . concat ( batch )` | `Batch` |
+| `batch. concat ( batch )` | `Batch` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -13,7 +13,7 @@ excel.removeSheet("Sheet1");
 
 | Calling | Returning |
 |---|---|
-| `Excel.removeSheet(sheetName)` | `Excel` |
+| `excel. removeSheet ( sheetName )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

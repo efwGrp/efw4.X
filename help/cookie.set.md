@@ -11,7 +11,7 @@ cookie.set("USER_ID", "Wang");
 
 | Calling | Returning |
 |---|---|
-| `cookie.set(key, value)` | `void` |
+| `cookie. set ( key, value )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

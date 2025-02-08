@@ -16,10 +16,10 @@ var csvWriter = new CSVWriter("input/test.txt", ",", "\"", "MS932");
 
 | Calling | Returning |
 |---|---|
-| `new CSVWriter(path)` | `CSVWriter` |
-| `new CSVWriter(path, separator)` | `CSVWriter` |
-| `new CSVWriter(path, separator, delimiter)` | `CSVWriter` |
-| `new CSVWriter(path, separator, delimiter, encoding)` | `CSVWriter` |
+| `new CSVWriter ( path )` | `CSVWriter` |
+| `new CSVWriter ( path, separator )` | `CSVWriter` |
+| `new CSVWriter ( path, separator, delimiter )` | `CSVWriter` |
+| `new CSVWriter ( path, separator, delimiter, encoding )` | `CSVWriter` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -13,5 +13,5 @@ var tempname = file.getTempFileName();
 
 | Calling | Returning |
 |---|---|
-| `file . getTempFileName ( )` | `String` |
+| `file. getTempFileName ( )` | `String` |
 

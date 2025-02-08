@@ -19,9 +19,9 @@ The `wait` function is established to call a countdown dialog for waiting. It is
 
 | Calling |
 |---|
-| `efw.dialog.wait(message, countdown)` |
-| `efw.dialog.wait(message, countdown, title)` |
-| `efw.dialog.wait(message, countdown, title, callback)` |
+| `efw. dialog. wait ( message, countdown )` |
+| `efw. dialog. wait ( message, countdown, title )` |
+| `efw. dialog. wait ( message, countdown, title, callback )` |
 
 | Parameter | Type | Description |
 |---|---|---|

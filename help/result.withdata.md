@@ -1,9 +1,8 @@
-<H1>Result.withdata</H1>
+# Result.withdata
 
-The withdata function is established to create the withdata attribute to the last return value.
-It can be called as far as once to a runat. The second calling is invalidated without any exceptions.
+The `withdata` function provides the data to be used with the most recent `runat` call.  It can only be called once per `runat`. Subsequent calls within the same `runat` have no effect.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
@@ -12,35 +11,31 @@ result
 .remove("tr")
 .append("<tr><td>{data1}</td><td>{{data2}}</td></tr>")
 .withdata([
-	{"data1":"hellworld1", "data2":"<span style='color:greed'>OK</span>"},
-	{"data1":"hellworld2", "data2":"<span style='color:red'>NG</span>"},
+    {"data1":"hellworld1", "data2":"<span style='color:greed'>OK</span>"},
+    {"data1":"hellworld2", "data2":"<span style='color:red'>NG</span>"},
 ])
 .runat("body")
-.withdata(
-	{ "#text1":"good morning","#text2":"good day" }
-);
+.withdata({
+    "#text1":"good morning",
+    "#text2":"good day"
+});
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . withdata ( data )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. withdata ( data )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>data</td><td>Array|Object</td><td>The data which will be shown at the web.<br>
-Tf with the append attribute, the withdata attribute must be an array. Or it can be an object.
+| Parameters | Type | Description |
+|---|---|---|
+| `data` | `Array` or `Object` | The data to be displayed on the web page. <br> If used with the `append` function, the `withdata` argument *must* be an array. Otherwise, it can be an object. |
 
+The sample for `data`.
 ```javascript
 //as an array
-[{maskkey1:value1, maskkey2]:value2 ...},{...}]
+[{maskkey1: value1, maskkey2: value2 ...},{...}]
 
 //as an object
-{selector1:value1, selector2:value2 }
+{selector1: value1, selector2: value2 }
 ```
-
-</td></tr>
-</table>
-

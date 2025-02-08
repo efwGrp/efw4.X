@@ -13,7 +13,7 @@ excel.showRow("mySheet",2,4);
 
 | Calling | Returning |
 |---|---|
-| `Excel.showRow(sheetName, startRow, endRow)` | `Excel` |
+| `excel. showRow ( sheetName, startRow, endRow )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

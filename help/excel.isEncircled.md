@@ -13,8 +13,8 @@ var tf2 = excel.isEncircled("Sheet1", "B2", 0.25, 0.5);
 
 | Calling | Returning |
 |---|---|
-| `Excel.isEncircled(sheetName, position)` | `Boolean` |
-| `Excel.isEncircled(sheetName, position, checkpointXRate, checkpointYRate)` | `Boolean` |
+| `excel. isEncircled ( sheetName, position )` | `Boolean` |
+| `excel. isEncircled ( sheetName, position, checkpointXRate, checkpointYRate )` | `Boolean` |
 
 | Parameters | Type | Description |
 |---|---|---|

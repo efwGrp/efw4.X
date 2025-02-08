@@ -14,4 +14,4 @@ csvWriter.close();
 
 | Calling | Returning |
 |---|---|
-| `CSVWriter.close()` | `void` |
+| `csvWriter. close ( )` | `void` |

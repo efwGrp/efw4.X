@@ -1,24 +1,19 @@
-<H1>session.set</H1>
+# session.set
 
-The set function is established to set data to session.
+The `set` function stores data in the current session.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 session.set("USER_ID", "Wang");
 ```
+## API
 
-<h2>API</h2>
+| Calling | Returning |
+|---|---|
+| `session. set ( key, value )` | `void` |
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>session . set ( key , value )</td><td>void</td></tr>
-</table>
-
-
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>key</td><td>String</td><td>To idetify the session info.</td></tr>
-<tr><td>value</td><td>{any}</td><td>The info to set into the session.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `key` | `String` | The key used to identify the session information. |
+| `value` | `any` | The information to store in the session. |

@@ -1,8 +1,8 @@
-<H1>Result.attach</H1>
+# Result.attach
 
-The attach function is established to download a file or a folder.
+The `attach` function allows downloading of files or folders.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result1 = (new Result())
@@ -13,19 +13,16 @@ var result2 = (new Result())
 .attach("temp/test2.xls","temp");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . attach ( path )</td><td>Result</td></tr>
-<tr><td>Result . attach ( path, zipBasePath )</td><td>Result</td></tr>
-<tr><td>Result . attach ( path, zipBasePath, isAbs )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. attach ( path )` | `Result` |
+| `result. attach ( path, zipBasePath )` | `Result` |
+| `result. attach ( path, zipBasePath, isAbs )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>path</td><td>String</td><td>File or folder path.</td></tr>
-<tr><td>zipBasePath</td><td>String</td><td>The root path of the zip for downloading.</td></tr>
-<tr><td>isAbs</td><td>boolean</td><td>The path is absolute path or a relative path to the storage.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `path` | `String` | The file or folder path. |
+| `zipBasePath` | `String` | The root path for creating the zip archive for download. |
+| `isAbs` | `boolean` | Indicates whether the `path` is an absolute path or a relative path (relative to the storage location). |

@@ -12,7 +12,7 @@ excel.showCol("mySheet",2,4);
 
 | Calling | Returning |
 |---|---|
-| `Excel.showCol(sheetName, startCol, endCol)` | `Excel` |
+| `excel. showCol ( sheetName, startCol, endCol )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|

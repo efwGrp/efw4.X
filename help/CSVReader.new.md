@@ -16,13 +16,13 @@ var csvReader = new CSVReader("input/test.txt", ",", "\"", "MS932");
 
 | Calling | Returning |
 |---|---|
-| `new CSVReader(path)` | `CSVReader` |
-| `new CSVReader(path, separator)` | `CSVReader` |
-| `new CSVReader(path, separator, delimiter)` | `CSVReader` |
-| `new CSVReader(path, separator, delimiter, encoding)` | `CSVReader` |
-| `new CSVReader(path, separator, delimiter, encoding, skipRows)` | `CSVReader` |
-| `new CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead)` | `CSVReader` |
-| `new CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead, offsetBytes, offsetRows)` | `CSVReader` |
+| `new CSVReader ( path )` | `CSVReader` |
+| `new CSVReader ( path, separator )` | `CSVReader` |
+| `new CSVReader ( path, separator, delimiter )` | `CSVReader` |
+| `new CSVReader ( path, separator, delimiter, encoding )` | `CSVReader` |
+| `new CSVReader ( path, separator, delimiter, encoding, skipRows )` | `CSVReader` |
+| `new CSVReader ( path, separator, delimiter, encoding, skipRows, rowsToRead )` | `CSVReader` |
+| `new CSVReader ( path, separator, delimiter, encoding, skipRows, rowsToRead, offsetBytes, offsetRows )` | `CSVReader` |
 
 | Parameters | Type | Description |
 |---|---|---|

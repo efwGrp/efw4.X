@@ -1,23 +1,20 @@
-<H1>Result.highlight</H1>
+# Result.highlight
 
-The highlight function is established to highlight elements in client.
+The `highlight` function highlights elements on the client-side.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.highlight("#text1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . highlight ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. highlight ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be highlighted.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be highlighted. |

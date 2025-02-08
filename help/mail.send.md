@@ -1,31 +1,21 @@
-<H1>mail.send</H1>
+# mail.send
 
-The send function is established to send mail by templates defined in the mail xml.
+The `send` function is used to send emails using templates defined in the mail XML configuration.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 mail.send("mails","test01",{"to":"you@abc.def","nowdate":new Date(),"username":"Wang"});
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>mail . send ( groupId, mailId, params )</td><td>void</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `mail. send ( groupId, mailId, params )` | `void` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>groupId</td><td>String</td><td>"SubFolder/FileName". SubFolder is relatived from efw.mail.folder. FileName is the name of a mail xml file.</td></tr>
-<tr><td>mailId</td><td>String</td><td>The id of a mail tag in a mail xml file.</td></tr>
-<tr><td>params</td><td>JSON Object</td>
-<td>To send values which is requried by the mail defined in the mail xml file. 
-
-```javascript
-{"param1":value1,"param2":value2,...}
-```
-
-</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `groupId` | `String` | `"SubFolder/FileName"`. `SubFolder` is relative to `efw.mail.folder`. `FileName` is the name of a mail XML file. |
+| `mailId` | `String` | The ID of a `mail` tag within a mail XML file. |
+| `params` | `JSON Object` | Values required by the mail definition in the mail XML file. Example:<br>```{"param1":value1,"param2":value2,...}``` |

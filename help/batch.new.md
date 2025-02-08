@@ -12,4 +12,4 @@ var batch = new Batch();
 
 | Calling | Returning |
 |---|---|
-| `new Batch()` | `Record` |
+| `new Batch ( )` | `Record` |

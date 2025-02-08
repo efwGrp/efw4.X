@@ -12,4 +12,4 @@ var absPath = file.getStorageFolder();
 
 | Calling | Returning |
 |---|---|
-| `file . getStorageFolder ( )` | `String` |
+| `file. getStorageFolder ( )` | `String` |

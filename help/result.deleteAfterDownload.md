@@ -1,8 +1,8 @@
-<H1>Result.deleteAfterDownload</H1>
+# Result.deleteAfterDownload
 
-The deleteAfterDownload function is established to delete the files or folders after downloading.
+The `deleteAfterDownload` function specifies that files or folders should be deleted after they have been downloaded.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
@@ -11,10 +11,8 @@ result
 .deleteAfterDownload();
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . deleteAfterDownload ( )</td><td>Result</td></tr>
-</table>
-
+| Calling | Returning |
+|---|---|
+| `result . deleteAfterDownload ( )` | `Result` |

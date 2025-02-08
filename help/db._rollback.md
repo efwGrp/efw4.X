@@ -17,8 +17,8 @@ try{
 
 | Calling | Returning |
 |---|---|
-| `db._rollback()` | `void` |
-| `db._rollback(jdbcResourceName)` | `void` |
+| `db. _rollback ( )` | `void` |
+| `db. _rollback ( jdbcResourceName )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

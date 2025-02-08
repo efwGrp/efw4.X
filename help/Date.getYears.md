@@ -13,8 +13,8 @@ var years = date.getYears();
 
 | Calling | Returning |
 |---|---|
-| `{Date}.getYears()` | `Number` |
-| `{Date}.getYears(current)` | `Number` |
+| `date. getYears ( )` | `Number` |
+| `date. getYears ( current )` | `Number` |
 
 | Parameters | Type | Description |
 |---|---|---|

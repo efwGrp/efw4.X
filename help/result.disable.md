@@ -1,23 +1,20 @@
-<H1>Result.disable</H1>
+# Result.disable
 
-The disable function is established to disable elements in client.
+The `disable` function disables elements on the client-side.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var result = new Result();
 result.disable("#button1");
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Result . disable ( selector )</td><td>Result</td></tr>
-</table>
+| Calling | Returning |
+|---|---|
+| `result. disable ( selector )` | `Result` |
 
-<table>
-<tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
-<tr><td>selector</td><td>String</td><td>A jQuery selector key to mark the tags which will be disabled.</td></tr>
-</table>
-
+| Parameters | Type | Description |
+|---|---|---|
+| `selector` | `String` | A jQuery selector identifying the elements to be disabled. |

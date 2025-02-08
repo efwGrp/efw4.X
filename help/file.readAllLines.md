@@ -13,8 +13,8 @@ var txt = file.readAllLines("myFolder/myFile.txt", "UTF-8");
 
 | Calling | Returning |
 |---|---|
-| `file . readAllLines ( path )` | `String` |
-| `file . readAllLines ( path, encoding )` | `String` |
+| `file. readAllLines ( path )` | `String` |
+| `file. readAllLines ( path, encoding )` | `String` |
 
 | Parameters | Type | Description |
 |---|---|---|

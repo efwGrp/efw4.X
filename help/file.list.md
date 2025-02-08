@@ -12,8 +12,8 @@ var infos = file.list("myFolder");
 
 | Calling | Returning |
 |---|---|
-| `file . list ( path )` | Array of [FileInfo](file.FileInfo.md) |
-| `file . list ( path , withoutFolderLength )` | Array of [FileInfo](file.FileInfo.md) |
+| `file. list ( path )` | Array of [FileInfo](file.FileInfo.md) |
+| `file. list ( path, withoutFolderLength )` | Array of [FileInfo](file.FileInfo.md) |
 
 | Parameters | Type | Description |
 |---|---|---|

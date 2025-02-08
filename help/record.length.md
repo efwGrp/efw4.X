@@ -1,22 +1,19 @@
-<H1>Record.length</H1>
+# Record.length
 
-The length attribute is established to get length of the array.
+The `length` attribute returns the number of objects (rows) in the `Record`.
 
-<h2>Sample</h2>
+## Sample
 
 ```javascript
 var record = new Record([
-	{"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
-	{"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
+    {"data1":"hello world", "data2":123, "data3":new Date("2016/12/13") },
+    {"data1":"hello human", "data2":456, "data3":new Date("2016/12/14") }
 ]);
 var len = record.length;
 ```
 
-<h2>API</h2>
+## API
 
-<table>
-<tr><th>Calling</th><th>Returning</th></tr>
-<tr><td>Record . length</td><td>Number</td></tr>
-</table>
-
-
+| Calling | Returning |
+|---|---|
+| `record. length` | `Number` |

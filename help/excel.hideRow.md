@@ -13,7 +13,7 @@ excel.hideRow("mySheet",2,4);
 
 | Calling | Returning |
 |---|---|
-| `Excel.hideRow(sheetName, startRow, endRow)` | `Excel` |
+| `excel. hideRow ( sheetName, startRow, endRow )` | `Excel` |
 
 | Parameters | Type | Description |
 |---|---|---|
