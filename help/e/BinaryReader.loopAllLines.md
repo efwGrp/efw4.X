@@ -23,4 +23,4 @@ function callback(aryField, index) {
 
 | Parameters | Type | Description |
 |---|---|---|
-| `callback(aryField, index)` | `Function` | The function that is expected to execute line-by-line.<br> `aryField`: The array data.<br> `index`: The line number which counts from 0. |
+| `callback ( aryField, index )` | `Function` | The function that is expected to execute line-by-line.<br> `aryField`: The array data.<br> `index`: The line number which counts from 0. |
