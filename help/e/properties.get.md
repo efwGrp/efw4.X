@@ -14,7 +14,7 @@ var str = properties.get("efw.login.key");
 | Calling | Returning |
 |---|---|
 | `properties. get ( key )` | `String` |
-| `properties. get ( key, defaultValue )` | `{any}` (The type of `defaultValue`) |
+| `properties. get ( key, defaultValue )` | `String` \| `Number` \| `Boolean` (The type of `defaultValue`) |
 
 | Parameters | Type | Description |
 |---|---|---|

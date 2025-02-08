@@ -2,7 +2,7 @@
 
 The `debug` function is established to print information of any objects to the console.
 
-`any = { String | Number | Boolean | Date | Array | Function | Object | Record | Result }`
+`any = { String | Number | Boolean | Date | Array | Function | Object | Excel | Record | Result }`
 
 ## Sample
 
@@ -21,7 +21,7 @@ return (new Result()).runat().withData({
 
 | Calling | Returning |
 |---|---|
-| `any. debug ( label )` | `{any}` |
+| `any. debug ( label )` | `String` \| `Number` \| `Boolean` \| `Date` \| `Array` \| `Function` \| `Object` \| `Excel` \| `Record` \| `Result` |
 
 | Parameters | Type | Description |
 |---|---|---|

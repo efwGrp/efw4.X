@@ -37,4 +37,4 @@ return new Result().eval("$('" + params.pdf + "')[0].src='" + pdfDataUri + "'");
 | `script` | `String` | Script string executed by the pool on call. |
 | `context` | `Object` | The attributes of the `context` parameter will be set into the global scope of the script context. |
 | `engine` | `String` | The name of the engine in the pool. Only "nashorn" or "javet" are allowed. |
-| `returnVar` | `{ any }` | The variable name to retrieve the return value. |
+| `returnVar` | `String` \| `Number` \| `Boolean` \| `Date` \| `Array` \| `Object` \| `Class`  | The variable name to retrieve the return value. |
