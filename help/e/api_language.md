@@ -16,24 +16,8 @@ en.xml
 <entry key="AlertDialogTitle">Message</entry>
 <entry key="AlertDialogOK">OK</entry>
 <entry key="WaitDialogTitle">Busy</entry>
-<entry key="NumberType">number</entry>
-<entry key="DateType">date</entry>
-<entry key="StringType">string</entry>
-<entry key="SessionTimeoutException">Session timeout. Please log in again.</entry>
-<entry key="NumberIsReuqiredMessage">Please enter {display-name} with a valid number.</entry>
-<entry key="DateIsReuqiredMessage">Please enter {display-name} with a valid date.</entry>
-<entry key="IsRequiredMessage">Please enter {display-name}.</entry>
-<entry key="MaxLengthOverMessage">{display-name} cannot be greater than {max-length} words.</entry>
-<entry key="MinOrMaxOverMessage">{display-name} is {data-type} between {min} and {max}.</entry>
-<entry key="MinOverMessage">{display-name} is {data-type} not less than {min}.</entry>
-<entry key="MaxOverMessage">{display-name} is {data-type} no larger than {max}.</entry>
-<entry key="NotAcceptMessage">Please select the correct file for {display-name}.</entry>
-<entry key="EventIsNotExistsMessage">The event cannot be loaded because there is no file or JavaScript language violation.</entry>
-
-<entry key="ElFinderIdNotRegisteredMessage">The elFinder is inoperable without id registration.</entry>
-<entry key="ElFinderSessionTimeoutMessage">The elFinder is inoperable because of session timeout.</entry>
-<entry key="ElFinderIsProtectedMessage">The action is rejected because of elFinder protection mode.</entry>
-<entry key="ElFinderHackingRiskMessage">The action is rejected because of hacking risk detection.</entry>
+<entry key="PreviewDialogTitle">Preview</entry>
+・・・
 
 <entry key="NewKeywordWasForgottenException">New keyword was forgotten.</entry>
 <entry key="here">here</entry>
