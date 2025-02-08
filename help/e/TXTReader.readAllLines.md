@@ -1,6 +1,6 @@
 # TXTReader.readAllLines
 
-The `readAllLines` function reads all lines from a text file into an array of arrays (a matrix).
+The `readAllLines` function reads all lines from a text file into a matrix of arrays.
 
 ## Sample
 
