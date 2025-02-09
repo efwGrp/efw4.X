@@ -134,7 +134,7 @@
 | `Threads` | [`new`](help/j/threads.new.md) | [`add`](help/j/threads.add.md) | [`run`](help/j/threads.run.md) |  |  |
 
 
-# 参考文献
+# 参考
 
 * [標準Javascript API](help/j/Standard_Javascript_API.md)
 * [jQueryセレクターAPI](help/j/jQuery_Selectors_API.md)
@@ -143,7 +143,7 @@
 * [HTML](https://www.tohoho-web.com/html/index2.htm)
 * [CSS](https://www.tohoho-web.com/css/index.htm)
 
-# 導入事例
+# 導入実績
 
 [![ESCCO](help/img/logos/escco.png)](https://www.escco.co.jp) 
 [![YIKE](help/img/logos/yike.jpg)](https://www.escco.com.cn) 
