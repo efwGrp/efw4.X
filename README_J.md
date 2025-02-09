@@ -74,7 +74,7 @@
 * [Web Event](help/j/api_webevent.md)
 * [Batch Event](help/j/api_batchevent.md)
 * [Rest Event](help/j/api_restevent.md)
-* [Global Event](help/j/api_global.md) (システム読み込み時に発火)
+* [Global Event](help/j/api_global.md) (システム読み込み時に実行される)
 
 ### モジュール
 
