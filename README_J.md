@@ -1,4 +1,4 @@
-[English](README.md)
+[English](README.md) [中文](README_C.md)
 
 # efw4.X
 

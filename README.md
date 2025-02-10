@@ -1,4 +1,4 @@
-[日本語](README_J.md)
+[日本語](README_J.md) [中文](README_C.md)
 
 # efw4.X
 
