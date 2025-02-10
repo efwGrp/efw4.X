@@ -4,7 +4,7 @@ ja.xml (例)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "[http://java.sun.com/dtd/properties.dtd](http://java.sun.com/dtd/properties.dtd)">
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <entry key="OtherErrorException">予想外エラーが発生しました。</entry>
 <entry key="CommunicationErrorException">通信エラーが発生しました。リトライしますか。</entry>

@@ -23,5 +23,5 @@ var v3 = excel.getValue("Sheet1", "C3", "#,##0.0", "HALF_EVEN");
 |---|---|---|
 | `sheetName` | `String` | The sheet name. |
 | `position` | `String` | The absolute reference of the cell. |
-| [formatter](formatter&rounder.md) | `String` | Number formatter or date formatter. |
-| [rounder](formatter&rounder.md) | `String` | The rounder for number format. |
+| [`formatter`](formatter&rounder.md) | `String` | Number formatter or date formatter. |
+| [`rounder`](formatter&rounder.md) | `String` | The rounder for number format. |

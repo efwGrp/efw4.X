@@ -15,8 +15,8 @@ return (new Result()).runat("body").withdata({
 
 | Calling | Returning |
 |---|---|
-| `event. fire ( eventId, params )` | [Result](result.md) |
-| `event. fire ( eventId, params, server )` | [Result](result.md) |
+| `event. fire ( eventId, params )` | [`Result`](result.md) |
+| `event. fire ( eventId, params, server )` | [`Result`](result.md) |
 
 | Parameters | Type | Description |
 |---|---|---|

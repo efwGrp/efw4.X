@@ -14,8 +14,8 @@ var record = brms.getRuleByAlias("ChineseFavorites", {
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `brms. getRuleByAlias ( ruleAlias, params )` | `Record` |
-| `brms. getRuleByAlias ( ruleAlias, params, ruleDate )` | `Record` |
+| `brms. getRuleByAlias ( ruleAlias, params )` | [`Record`](record.md) |
+| `brms. getRuleByAlias ( ruleAlias, params, ruleDate )` | [`Record`](record.md) |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

@@ -23,5 +23,5 @@ var v3 = excel.getValue("Sheet1", "C3", "#,##0.0", "HALF_EVEN");
 |---|---|---|
 | `sheetName` | `String` | シート名。 |
 | `position` | `String` | セルの絶対参照。 |
-| [formatter](formatter&rounder.md) | `String` | 数値フォーマッタまたは日付フォーマッタ。 |
-| [rounder](formatter&rounder.md) | `String` | 数値フォーマットの丸め処理。 |
+| [`formatter`](formatter&rounder.md) | `String` | 数値フォーマッタまたは日付フォーマッタ。 |
+| [`rounder`](formatter&rounder.md) | `String` | 数値フォーマットの丸め処理。 |

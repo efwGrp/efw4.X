@@ -28,7 +28,7 @@ csvWriter.writeAllLines(ary);
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `csvWriter.writeAllLines(ary)` | `void` |
+| `csvWriter. writeAllLines ( ary )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

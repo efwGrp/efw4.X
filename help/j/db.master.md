@@ -11,14 +11,14 @@ var record2 = db.master("user", true);
 
 ## API
 
-| Calling | Returning |
+| 呼び出し | 戻り値 |
 |---|---|
-| `db. master ( masterId )` | [Record](record.md) |
-| `db. master ( masterId, reload )` | [Record](record.md) |
-| `db. master ( masterId, jdbcResourceName )` | [Record](record.md) |
-| `db. master ( masterId, reload, jdbcResourceName )` | [Record](record.md) |
+| `db. master ( masterId )` | [`Record`](record.md) |
+| `db. master ( masterId, reload )` | [`Record`](record.md) |
+| `db. master ( masterId, jdbcResourceName )` | [`Record`](record.md) |
+| `db. master ( masterId, reload, jdbcResourceName )` | [`Record`](record.md) |
 
-| Parameter | Type | Description |
+| パラメータ | 型 | 説明 |
 |---|---|---|
 | `masterId` | `String` | マスターテーブルの名前。 |
 | `reload` | `Boolean` | マスターテーブルが既にロードされている場合でも、リロードするフラグ。 |

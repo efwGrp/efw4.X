@@ -15,8 +15,8 @@ return (new Result()).runat("body").withdata({
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `event. fire ( eventId, params )` | [Result](result.md) |
-| `event. fire ( eventId, params, server )` | [Result](result.md) |
+| `event. fire ( eventId, params )` | [`Result`](result.md) |
+| `event. fire ( eventId, params, server )` | [`Result`](result.md) |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

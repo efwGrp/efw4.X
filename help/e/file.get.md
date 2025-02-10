@@ -13,8 +13,8 @@ var infoFolder = file.get("myFolder");
 
 | Calling | Returning |
 |---|---|
-| `file. get ( path )` | [FileInfo](file.FileInfo.md) |
-| `file. get ( path, withoutFolderLength )` | [FileInfo](file.FileInfo.md) |
+| `file. get ( path )` | [`FileInfo`](file.FileInfo.md) |
+| `file. get ( path, withoutFolderLength )` | [`FileInfo`](file.FileInfo.md) |
 
 | Parameters | Type | Description |
 |---|---|---|

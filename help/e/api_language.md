@@ -4,7 +4,7 @@ en.xml
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE properties SYSTEM "[http://java.sun.com/dtd/properties.dtd](http://java.sun.com/dtd/properties.dtd)">
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <entry key="OtherErrorException">An unexpected error has occurred.</entry>
 <entry key="CommunicationErrorException">A communication error has occurred. Do you want to retry?</entry>

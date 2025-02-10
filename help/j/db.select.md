@@ -16,10 +16,10 @@ var record2 = db
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `db. select ( groupId, sqlId, params )` | `Record` |
-| `db. select ( groupId, sqlId, params, jdbcResourceName )` | `Record` |
-| `db. select ( sql )` | `Record` |
-| `db. select ( sql, jdbcResourceName )` | `Record` |
+| `db. select ( groupId, sqlId, params )` | [`Record`](record.md) |
+| `db. select ( groupId, sqlId, params, jdbcResourceName )` | [`Record`](record.md) |
+| `db. select ( sql )` | [`Record`](record.md) |
+| `db. select ( sql, jdbcResourceName )` | [`Record`](record.md) |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

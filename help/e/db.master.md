@@ -13,10 +13,10 @@ var record2 = db.master("user", true);
 
 | Calling | Returning |
 |---|---|
-| `db. master ( masterId )` | [Record](record.md) |
-| `db. master ( masterId, reload )` | [Record](record.md) |
-| `db. master ( masterId, jdbcResourceName )` | [Record](record.md) |
-| `db. master ( masterId, reload, jdbcResourceName )` | [Record](record.md) |
+| `db. master ( masterId )` | [`Record`](record.md) |
+| `db. master ( masterId, reload )` | [`Record`](record.md) |
+| `db. master ( masterId, jdbcResourceName )` | [`Record`](record.md) |
+| `db. master ( masterId, reload, jdbcResourceName )` | [`Record`](record.md) |
 
 | Parameter | Type | Description |
 |---|---|---|

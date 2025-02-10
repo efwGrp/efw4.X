@@ -12,8 +12,8 @@ var infos = file.list("myFolder");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. list ( path )` | [FileInfo](file.FileInfo.md) の配列 |
-| `file. list ( path, withoutFolderLength )` | [FileInfo](file.FileInfo.md) の配列 |
+| `file. list ( path )` | [`FileInfo`](file.FileInfo.md) の配列 |
+| `file. list ( path, withoutFolderLength )` | [`FileInfo`](file.FileInfo.md) の配列 |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|
