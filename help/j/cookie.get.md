@@ -12,7 +12,7 @@ var userId = cookie.get("USER_ID");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `cookie. get ( key )` | `{String}` |
+| `cookie. get ( key )` | `String` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

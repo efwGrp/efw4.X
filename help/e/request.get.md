@@ -12,7 +12,7 @@ var defId = request.get("defId");
 
 | Calling | Returning |
 |---|---|
-| `request. get ( key )` | `{String}` |
+| `request. get ( key )` | `String` |
 
 | Parameters | Type | Description |
 |---|---|---|

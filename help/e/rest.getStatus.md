@@ -15,4 +15,4 @@ var status = rest.getStatus();
 
 | Calling | Returning |
 |---|---|
-| `rest. getStatus ( )` | `number` |
+| `rest. getStatus ( )` | `Number` |

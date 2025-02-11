@@ -15,4 +15,4 @@ var status = rest.getStatus();
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `rest. getStatus ( )` | `number` |
+| `rest. getStatus ( )` | `Number` |

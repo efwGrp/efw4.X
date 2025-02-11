@@ -13,7 +13,7 @@ file.remove("yourFolder");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. remove ( path )` |  |
+| `file. remove ( path )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

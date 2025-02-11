@@ -38,3 +38,4 @@ record.map({
     newField2: [oldField2, "#,##0.0", "HALF_EVEN"], // formatter（フォーマッター）, rounder（丸め処理）
     newField3: function(data){return String|Number|Date|Boolean;}
 }
+```

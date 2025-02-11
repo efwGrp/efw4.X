@@ -12,7 +12,7 @@ var defId = request.get("defId");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `request. get ( key )` | `{String}` |
+| `request. get ( key )` | `String` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

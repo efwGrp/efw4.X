@@ -21,8 +21,8 @@ function callback(aryField, index) {
 
 | Calling | Returning |
 |---|---|
-| `csvReader. loopAllLines ( callback )` | `Array` |
-| `csvReader. loopAllLines ( callback, CRLFCode )` | `Array` |
+| `csvReader. loopAllLines ( callback )` | `void` |
+| `csvReader. loopAllLines ( callback, CRLFCode )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

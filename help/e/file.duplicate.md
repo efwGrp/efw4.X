@@ -13,7 +13,7 @@ file.duplicate("myFolder","yourFolder");
 
 | Calling | Returning |
 |---|---|
-| `file. duplicate  ( srcPath, destPath )` | `Boolean` |
+| `file. duplicate  ( srcPath, destPath )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

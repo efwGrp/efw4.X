@@ -23,7 +23,7 @@ function callback(aryField, index) {
 
 | Calling | Returning |
 |---|---|
-| `txtReader. loopAllLines ( callback )` | `void` |  *(Technically, many `loop` functions in JS return the original object.  However, it's more accurate here to say `void` as the primary purpose isn't to use the return value.)*
+| `txtReader. loopAllLines ( callback )` | `void` |
 
 ## Parameters
 

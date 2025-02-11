@@ -19,7 +19,7 @@ function callback(aryField, index) {
 
 | Calling | Returning |
 |---|---|
-| `binaryReader. loopAllLines ( callback )` | `Array` |
+| `binaryReader. loopAllLines ( callback )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

@@ -12,7 +12,7 @@ file.saveUploadFiles("myFolder");
 
 | Calling | Returning |
 |---|---|
-| `file. saveUploadFiles ( path )` |  |
+| `file. saveUploadFiles ( path )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

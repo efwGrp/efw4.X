@@ -13,7 +13,7 @@ file.rename("myFolder","yourFolder");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. rename ( orgPath, newName )` |  |
+| `file. rename ( orgPath, newName )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

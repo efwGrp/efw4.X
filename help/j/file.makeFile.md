@@ -12,7 +12,7 @@ file.makeFile("myFile.txt");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. makeFile ( path )` |  |
+| `file. makeFile ( path )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

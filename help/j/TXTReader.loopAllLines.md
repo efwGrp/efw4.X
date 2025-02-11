@@ -23,7 +23,7 @@ function callback(aryField, index) {
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `txtReader. loopAllLines ( callback )` | `void` |  *(厳密には、JavaScriptの多くの`loop`関数は元のオブジェクトを返します。しかし、ここでは戻り値を使うことが主な目的ではないため、`void`と記述する方が正確です。)*
+| `txtReader. loopAllLines ( callback )` | `void` |
 
 ## パラメータ
 

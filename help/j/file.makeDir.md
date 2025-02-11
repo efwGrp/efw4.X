@@ -12,7 +12,7 @@ file.makeDir("myFolder");
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. makeDir ( path )` |  |
+| `file. makeDir ( path )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|

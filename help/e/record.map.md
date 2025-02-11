@@ -36,3 +36,4 @@ The sample for `mapping`.
     newField2: [oldField2, "#,##0.0", "HALF_EVEN"], // formatter, rounder
     newField3: function(data){return String|Number|Date|Boolean;}
 }
+```

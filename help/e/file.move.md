@@ -13,7 +13,7 @@ file.move("myFolder","yourFolder");
 
 | Calling | Returning |
 |---|---|
-| `file. move ( orgPath, newPath )` | `Boolean` |
+| `file. move ( orgPath, newPath )` | `void` |
 
 | Parameters | Type | Description |
 |---|---|---|

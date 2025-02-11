@@ -14,7 +14,7 @@ file.writeAllBytes("test.ttf", ary);
 
 | 呼び出し | 戻り値 |
 |---|---|
-| `file. writeAllBytes ( path, content )` | `byte[]` |
+| `file. writeAllBytes ( path, content )` | `void` |
 
 | パラメータ | 型 | 説明 |
 |---|---|---|
