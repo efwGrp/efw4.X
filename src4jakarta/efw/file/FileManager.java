@@ -284,6 +284,7 @@ public final class FileManager {
 		if (array==null){
 			return;
 		}else{
+			makeDir(f.getParentFile());//コピー先のフォルダを確保する  
 			if (array.size()>0){
 				HashMap<String,String> item=array.get(0);
 				String srcPath=(String)item.get("tempFileAbsolutePath");
@@ -306,6 +307,7 @@ public final class FileManager {
 		if (array==null){
 			return;
 		}else{
+			makeDir(f);//コピー先のフォルダを確保する
 			for (int i=0;i<array.size();i++){
 				HashMap<String,String> item=(HashMap<String,String>)array.get(i);
 				String uploadPath=(String)item.get("uploadPath");

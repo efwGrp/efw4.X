@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.025";// change it when releasing jar.
+	public static final String version="4.07.026";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -179,7 +179,7 @@ public final class framework {
 		// begin to init efwServletのinitと同等
 		//-----------------------------------------------------------------
 		PropertiesManager.initBatch(properties);//ここからエラーになると、処理を中断する。
-		LogManager.init();
+		LogManager.initBatch();
 		framework.initCLog("properties = "+properties);
 		framework.initCLog("PropertiesManager.inited.");
 		//-----------------------------------------------------------------

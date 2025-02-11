@@ -71,7 +71,6 @@ BinaryReader.prototype.readAllLines = function(){
  * 
  * @param {Function}
  *            callback: required<br>
- * @returns {Array}
  */
 BinaryReader.prototype.loopAllLines = function(callback){
 	var br=null;

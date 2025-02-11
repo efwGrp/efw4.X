@@ -20,6 +20,16 @@ public final class LogManager {
 	public static Logger getLogger() {
 		return LogManager.logger;
 	}
+	public static void initBatch() {
+		init();
+		//これを追加すればバッチのログはコンソール画面に表示する。
+		logger.addHandler(new StreamHandler() {
+			{
+				setOutputStream(System.out);
+				setLevel(Level.ALL);
+			}
+		});
+	}
 	/**
 	 * フレームワークのログ出力を初期化する。
 	 */
@@ -49,12 +59,5 @@ public final class LogManager {
 		}
 		logger = Logger.getLogger(LogManager.class.getName());
 		logger.setLevel(level);
-		//これを追加すればバッチのログはコンソール画面に表示する。
-		logger.addHandler(new StreamHandler() {
-			{
-				setOutputStream(System.out);
-				setLevel(Level.ALL);
-			}
-		});
 	}
 }

@@ -108,7 +108,6 @@ CSVReader.prototype.readAllLines = function(CRLFCode){
  *            callback: required<br>
  * @param {String}
  *            CRLFCode: optional<br>
- * @returns {Array}
  */
 CSVReader.prototype.loopAllLines = function(callback,CRLFCode){
 	var br=null;
