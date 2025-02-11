@@ -1,8 +1,8 @@
 # Result.eval
 
-The `eval` function executes a JavaScript script on the client-side. It can be called multiple times.
+`eval` 函数在客户端执行 JavaScript 脚本。它可以被多次调用。
 
-## Sample
+## 示例
 
 ```javascript
 var result = new Result()
@@ -12,10 +12,10 @@ var result = new Result()
 
 ## API
 
-| Calling | Returning |
+| 调用 | 返回值 |
 |---|---|
 | `result. eval ( script )` | `Result` |
 
-| Parameters | Type | Description |
+| 参数 | 类型 | 描述 |
 |---|---|---|
-| `script` | `String` | The JavaScript code to be executed on the web page. |
+| `script` | `String` | 要在网页上执行的 JavaScript 代码。 |

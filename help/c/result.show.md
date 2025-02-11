@@ -1,0 +1,20 @@
+# Result.show
+
+`show` 函数在客户端显示元素。
+
+## 示例
+
+```javascript
+var result = new Result();
+result.show("#table1");
+```
+
+## API
+
+| 调用 | 返回值 |
+|---|---|
+| `result. show ( selector )` | `Result` |
+
+| 参数 | 类型 | 描述 |
+|---|---|---|
+| `selector` | `String` | 一个 jQuery 选择器，用于标识要显示的元素。 |

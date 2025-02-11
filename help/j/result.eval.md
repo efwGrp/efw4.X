@@ -5,10 +5,9 @@
 ## サンプル
 
 ```javascript
-var result = new Result();
-result
-.eval("<span class="math-inline">\('\#table1 tr\:even'\)\.css\('background\-color','green'\);"\)
-\.eval\("</span>('#table1 tr:odd').css('background-color','yellow');");
+var result = new Result()
+.eval("$('#table1 tr:even').css('background-color','green');")
+.eval("$('#table1 tr:odd').css('background-color','yellow');");
 ```
 
 ## API
