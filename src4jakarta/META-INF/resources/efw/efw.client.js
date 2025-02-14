@@ -173,7 +173,7 @@ EfwClient.prototype._callSecondAjax = function(servletUrl, eventId, params) {
 	var self = this;
 	return new Promise(function(resolve, reject) {
 		$.ajax(self._options = {
-			url: (servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + encodeURIComponent(JSON.stringify(params))).substring(0, 1024),//to save info for access log  
+			url: servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + encodeURIComponent(JSON.stringify(params).substring(0, 1024)),//to save info for access log  
 			xhrFields: { withCredentials: true },
 			type: "POST",// post method
 			cache: false,// don't use cache
