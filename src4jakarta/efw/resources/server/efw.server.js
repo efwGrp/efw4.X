@@ -147,7 +147,7 @@ EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
 					// check format and convert data type
 					var parser = null;
 					var requriedMessage = null;
-					if (format.indexOf("{")==0&&format.indexOf("}")==format.length-1){
+					if (format.indexOf("{")==0&&format.lastIndexOf("}")==format.length-1){
 						parser = EfwServerFormat.prototype.parseEnum;
 						requriedMessage = messages.get("BooleanIsReuqiredMessage",lang);
 					}else if (format.indexOf("#") > -1 || format.indexOf("0") > -1) {// number #,##0.0

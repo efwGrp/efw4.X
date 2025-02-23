@@ -99,7 +99,11 @@ function doPost(req) {
 				}
 			}
 			// change data to string and return it to client
-			return messages.translate(JSON.stringify(ret),lang);
+			if(ret.withoutI18nTranslation){
+				return JSON.stringify(ret);
+			}else{
+				return messages.translate(JSON.stringify(ret),lang);
+			}
 		}
 	}catch(e){
 		if (e instanceof Error)e=""+e;

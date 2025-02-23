@@ -5,10 +5,11 @@
  * 
  * @author Chang Kejun
  */
-function Result() {
+function Result(withoutI18nTranslation) {
 	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Result");}
 	this.actions = {};
 	this.values = [];
+	this.withoutI18nTranslation=withoutI18nTranslation;
 };
 
 /**
@@ -23,6 +24,10 @@ Result.prototype.values = null;
  * The array to keep threadLogs.
  */
 Result.prototype.threadLogs = null;
+/**
+ * The flag to stop i18n translation
+ */
+Result.prototype.withoutI18nTranslation = false;
 /**
  * The function to add one return value in the result.<br>
  * And create runat attribute to it.

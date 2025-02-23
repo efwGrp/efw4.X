@@ -111,9 +111,20 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 	// the second calling
 	// ---------------------------------------------------------------------
 	var self=this;
+	//this function is for tomcat11 URL integrity check
+	function beSureDecodable(str){
+		for(var i=0;i<10;i++){
+			str=str.substring(0,str.length-1);
+			try{
+				decodeURIComponent(str);
+				return str;
+			}catch(e){}
+		}
+		return str;
+	}
 	var callSecondAjax = function() {
 		$.ajax(self._options={
-			url : (servletUrl+"?eventId="+eventId +"&lang="+efw.lang+"&params="+encodeURIComponent(JSON.stringify(params))).substring(0,1024),//to save info for access log  
+			url: servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log  
 			xhrFields : {withCredentials:true},
 			type : "POST",// post method
 			cache : false,// don't use cache

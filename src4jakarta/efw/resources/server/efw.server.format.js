@@ -168,7 +168,7 @@ EfwServerFormat.prototype.formatEnum = function(value, formatter) {
 	var _value=""+value;
 	if (formatter==null) return _value;//formatter未設定の場合文字列に変換するだけ。
 	if (formatter.indexOf("{")!=0) return _value;
-	if (formatter.indexOf("}")!=formatter.length-1) return _value;
+	if (formatter.lastIndexOf("}")!=formatter.length-1) return _value;
 	formatter=formatter.substring(1,formatter.length-1);
 	var ary=formatter.split(",");
 	for(var i=0;i<ary.length;i++){
@@ -200,7 +200,7 @@ EfwServerFormat.prototype.parseEnum = function(value, formatter) {
 	var _value=""+value;
 	if (formatter==null) return _value;//formatter未設定の場合文字列に変換するだけ。
 	if (formatter.indexOf("{")!=0) return _value;
-	if (formatter.indexOf("}")!=formatter.length-1) return _value;
+	if (formatter.lastIndexOf("}")!=formatter.length-1) return _value;
 	formatter=formatter.substring(1,formatter.length-1);
 	var ary=formatter.split(",");
 	for(var i=0;i<ary.length;i++){

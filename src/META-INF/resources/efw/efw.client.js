@@ -171,9 +171,20 @@ EfwClient.prototype._callUploadAjax = function(uploadUrl) {
  */
 EfwClient.prototype._callSecondAjax = function(servletUrl, eventId, params) {
 	var self = this;
+	//this function is for tomcat11 URL integrity check
+	function beSureDecodable(str){
+		for(var i=0;i<10;i++){
+			str=str.substring(0,str.length-1);
+			try{
+				decodeURIComponent(str);
+				return str;
+			}catch(e){}
+		}
+		return str;
+	}
 	return new Promise(function(resolve, reject) {
 		$.ajax(self._options = {
-			url: servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + encodeURIComponent(JSON.stringify(params).substring(0, 1024)),//to save info for access log  
+			url: servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log  
 			xhrFields: { withCredentials: true },
 			type: "POST",// post method
 			cache: false,// don't use cache

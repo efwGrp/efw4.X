@@ -202,7 +202,7 @@ Record.prototype.map = function(mapping) {
 				var vl = rsdata[mp[0]];
 				var ft = mp[1];
 				if (vl != null && ft != null) {
-					if (ft.indexOf("{")==0&&ft.indexOf("}")==ft.length-1){
+					if (ft.indexOf("{")==0&&ft.lastIndexOf("}")==ft.length-1){
 						vl = EfwServerFormat.prototype.formatEnum(vl, ft);
 					}else if (vl.toFixed) {// if vl is number #,##0.00
 						var round = "" + mp[2];
