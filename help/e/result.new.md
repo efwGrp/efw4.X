@@ -6,6 +6,7 @@ The constructor function creates a new `Result` object, used for returning data 
 
 ```javascript
 var result = new Result();
+var result = new Result(true);
 ```
 
 ## API
@@ -13,3 +14,8 @@ var result = new Result();
 | Calling | Returning |
 |---|---|
 | `new Result ( )` | `Result` |
+| `new Result ( withoutI18nTranslation )` | `Result` |
+
+| Parameters | Type | Description |
+|---|---|---|
+| `withoutI18nTranslation` | `Boolean` | If true, the `Result` instance will not support multiple languages. |
