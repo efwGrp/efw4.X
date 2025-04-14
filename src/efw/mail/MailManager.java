@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.activation.DataHandler;
+import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -145,7 +146,7 @@ public final class MailManager {
 						ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(FileManager.readAllBytes(fl));
 						String mimeType=FileManager.getMimeTypeByFileName(fileName);
 						if ("unknown".equals(mimeType))mimeType="application/octet-stream";
-						ByteArrayDataSource dataSource = new ByteArrayDataSource(byteArrayInputStream, mimeType);
+						DataSource dataSource = (DataSource)new ByteArrayDataSource(byteArrayInputStream, mimeType);
 						attPart.setDataHandler(new DataHandler(dataSource));
 						attPart.setFileName(fileName);
 						multipart.addBodyPart(attPart);
