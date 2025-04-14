@@ -16,6 +16,7 @@ mails.xml
 Mr. :userName
 ...
         </body>
+        <attachment></attachment>
     </mail>
     <mail id="mail2">
     ...
@@ -27,7 +28,11 @@ Mr. :userName
 Every `<mail>` tag should have an `id`. The `id` must be unique within the Mail XML file. It will be called by [mail.send](mail.send.md).
 
 ### Param
-You can define params in `TO`, `CC`, `BCC`, `MDN`, `SUBJECT`, and `BODY` just by writing `:param`. The `mdn` tag means "Disposition-Notification-To".
+You can define params in `TO`, `CC`, `BCC`, `MDN`, `SUBJECT`, `BODY` and `ATTACHMENT` just by writing `:param`. The `mdn` tag means "Disposition-Notification-To".
+
+You can write multi-data by `;` for `TO`, `CC`, `BCC`, `MDN` and `ATTACHMENT`.
+
+`ATTACHMENT` must contain the storage-relative path name of the file to attach.
 
 #### Encode
 Pay attention to the mark "<". You must write it like "&amp;lt;" to conform to XML syntax.
