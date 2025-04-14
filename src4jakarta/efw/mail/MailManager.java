@@ -2,6 +2,7 @@
 package efw.mail;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,12 +28,18 @@ import efw.XMLTagIdIsNotExistsException;
 import efw.XMLTagIsNotLegalException;
 import efw.efwException;
 import efw.framework;
+import efw.file.FileManager;
 import efw.properties.PropertiesManager;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.util.ByteArrayDataSource;
 
 /**
  * Mail送信を管理するクラス。
@@ -77,8 +84,9 @@ public final class MailManager {
 	 * @param params メール送信要パラメータ。
 	 * @throws efwException メール定義エラー。
 	 * @throws MessagingException メール送信エラー。
+	 * @throws IOException 添付ファイルエラー。
 	 */
-	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,MessagingException{
+	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,MessagingException, IOException{
 		Mail mail=get(groupId,mailId);
 		MimeMessage message = new MimeMessage(mailSession);
 		
@@ -107,9 +115,14 @@ public final class MailManager {
 		if (subject!=null&&!"".equals(subject)){
 			message.setSubject(subject,framework.SYSTEM_CHAR_SET);
 		}
+
+		MimeMultipart multipart = new MimeMultipart("mixed");
+		
 		String body=mail.getBody(params);
 		if (body!=null&&!"".equals(body)){
-			message.setContent(body,"text/plain;charset=UTF-8");//text/html;charset=UTF-8
+			MimeBodyPart textPart = new MimeBodyPart();
+			textPart.setText(body, "UTF-8");
+			multipart.addBodyPart(textPart);
 		}
 		String from=mail.getFrom(params);
 		if (from!=null&&!"".equals(from)){
@@ -121,7 +134,29 @@ public final class MailManager {
 		if (mdn!=null&&!"".equals(mdn)){
 			message.addHeader("Disposition-Notification-To",mdn);
 		}
-		
+		String attachment=mail.getAttachment(params);//添付ファイルを行う
+		if (attachment!=null&&!"".equals(attachment)){
+			String[] ary=attachment.split(";");//一つずつのファイルと想定する
+			for(int i=0;i<ary.length;i++){
+				if(!"".equals(ary[i])){
+					File fl=FileManager.get(ary[i]);
+					String fileName=fl.getName();
+					if (fl.isFile()&&fl.exists()) {
+						MimeBodyPart attPart = new MimeBodyPart();
+						ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(FileManager.readAllBytes(fl));
+						String mimeType=FileManager.getMimeTypeByFileName(fileName);
+						if ("unknown".equals(mimeType))mimeType="application/octet-stream";
+						DataSource dataSource = (DataSource)new ByteArrayDataSource(byteArrayInputStream, mimeType);
+						attPart.setDataHandler(new DataHandler(dataSource));
+						attPart.setFileName(fileName);
+						multipart.addBodyPart(attPart);
+					}else {
+						framework.runtimeWLog(" The file "+fileName+" cannot be attached.");
+					}
+				}
+			}
+		}
+		message.setContent(multipart);
 		Transport.send(message);
 	}
 	/**

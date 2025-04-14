@@ -53,6 +53,8 @@ final class Mail {
 					from= step.getTextContent();
 				}else if (step.getTagName().equals("mdn")){//開封確認送信先
 					mdn= step.getTextContent();
+				}else if (step.getTagName().equals("attachment")){//開封確認送信先
+					attachment= step.getTextContent();
 				}else{
 					String information;
 					try{
@@ -96,6 +98,10 @@ final class Mail {
 	private String mdn;//開封確認送信先
 	protected String getMdn(Map<String,String> params){
 		return replaceParams(mdn,params);
+	}
+	private String attachment;
+	protected String getAttachment(Map<String,String> params){
+		return replaceParams(attachment,params);
 	}
 	
 	private String replaceParams(String data,Map<String,String> params){

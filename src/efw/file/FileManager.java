@@ -1085,7 +1085,7 @@ public final class FileManager {
      * @param fileName ファイル名。
      * @return メディアタイプ。
      */
-    protected static String getMimeTypeByFileName(String fileName){
+	public static String getMimeTypeByFileName(String fileName){
 		File fl=new File(fileName);
 		String name = fl.getName();
 		String extension = name.substring(name.lastIndexOf(".")+1).toLowerCase();
@@ -1093,7 +1093,7 @@ public final class FileManager {
 		if (mime!=null) {
 			return mime;
 		}else {
-			return "application/octet-stream";
+			return "unknown";
 		}
 	}
     /**

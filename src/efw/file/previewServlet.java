@@ -57,7 +57,7 @@ public class previewServlet extends HttpServlet {
 			return;
 		}
 		String mimeType=FileManager.getMimeTypeByFileName(fl.getName());
-		if ("application/octet-stream".equals(mimeType)) {
+		if ("unknown".equals(mimeType)) {
 			outputError(response,I18nManager.get(lang, "PreviewFileNotPreviewMessage", "The specified file cannot be previewed."));
 			return;
 		}
