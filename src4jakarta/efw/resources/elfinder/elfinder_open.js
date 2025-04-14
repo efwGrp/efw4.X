@@ -38,9 +38,9 @@ elfinder_open.fire = function(params) {
 		cwdFolder=target.substring(volumeId.length).base64Decode();
 	}
 	//---------------------------------------------------------------------
-	if (saveupload==1){
-		file.saveUploadFiles(cwdFolder);
-	};
+//	if (saveupload==1){//この機能をここでの実装をやめて、uploadServletに移しました。
+//		file.saveUploadFiles(cwdFolder);
+//	};
 	//---------------------------------------------------------------------
 	folderinfo=file.get(cwdFolder,true);
 	var cwd={

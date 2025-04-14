@@ -1,14 +1,14 @@
 /*!
- * jQuery UI CSS Framework 1.13.2
- * http://jqueryui.com
+ * jQuery UI CSS Framework 1.14.1
+ * https://jqueryui.com
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license.
- * http://jquery.org/license
+ * https://jquery.org/license
  *
- * http://api.jqueryui.com/category/theming/
+ * https://api.jqueryui.com/category/theming/
  *
- * To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=&folderName=overcast&cornerRadiusShadow=0px&offsetLeftShadow=-4px&offsetTopShadow=-4px&thicknessShadow=4px&opacityShadow=60&bgImgOpacityShadow=0&bgTextureShadow=flat&bgColorShadow=aaaaaa&opacityOverlay=80&bgImgOpacityOverlay=0&bgTextureOverlay=flat&bgColorOverlay=eeeeee&iconColorError=fbc856&fcError=ffffff&borderColorError=c0402a&bgImgOpacityError=55&bgTextureError=flat&bgColorError=c0402a&iconColorHighlight=3383bb&fcHighlight=444444&borderColorHighlight=ffffff&bgImgOpacityHighlight=55&bgTextureHighlight=flat&bgColorHighlight=eeeeee&iconColorActive=454545&fcActive=ffffff&borderColorActive=999999&bgImgOpacityActive=75&bgTextureActive=inset_hard&bgColorActive=999999&iconColorHover=3383bb&fcHover=599fcf&borderColorHover=bbbbbb&bgImgOpacityHover=100&bgTextureHover=glass&bgColorHover=f8f8f8&iconColorDefault=70b2e1&fcDefault=3383bb&borderColorDefault=cccccc&bgImgOpacityDefault=60&bgTextureDefault=glass&bgColorDefault=eeeeee&iconColorContent=999999&fcContent=333333&borderColorContent=aaaaaa&bgImgOpacityContent=50&bgTextureContent=inset_soft&bgColorContent=c9c9c9&iconColorHeader=999999&fcHeader=444444&borderColorHeader=bbbbbb&bgImgOpacityHeader=35&bgTextureHeader=glass&bgColorHeader=dddddd&cornerRadius=6px&fsDefault=1.1em&fwDefault=bold&ffDefault=Trebuchet%20MS%2CHelvetica%2CArial%2Csans-serif
+ * To view and modify this theme, visit https://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CHelvetica%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=6px&bgColorHeader=dddddd&bgTextureHeader=glass&bgImgOpacityHeader=35&borderColorHeader=bbbbbb&fcHeader=444444&iconColorHeader=999999&bgColorContent=c9c9c9&bgTextureContent=inset_soft&bgImgOpacityContent=50&borderColorContent=aaaaaa&fcContent=333333&iconColorContent=999999&bgColorDefault=eeeeee&bgTextureDefault=glass&bgImgOpacityDefault=60&borderColorDefault=cccccc&fcDefault=3383bb&iconColorDefault=70b2e1&bgColorHover=f8f8f8&bgTextureHover=glass&bgImgOpacityHover=100&borderColorHover=bbbbbb&fcHover=599fcf&iconColorHover=3383bb&bgColorActive=999999&bgTextureActive=inset_hard&bgImgOpacityActive=75&borderColorActive=999999&fcActive=ffffff&iconColorActive=454545&bgColorHighlight=eeeeee&bgTextureHighlight=flat&bgImgOpacityHighlight=55&borderColorHighlight=ffffff&fcHighlight=444444&iconColorHighlight=3383bb&bgColorError=c0402a&bgTextureError=flat&bgImgOpacityError=55&borderColorError=c0402a&fcError=ffffff&iconColorError=fbc856&bgColorOverlay=eeeeee&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=0px
  */
 
 
@@ -172,18 +172,13 @@ a.ui-button:active,
 .ui-widget-content .ui-priority-secondary,
 .ui-widget-header .ui-priority-secondary {
 	opacity: .7;
-	-ms-filter: "alpha(opacity=70)"; /* support: IE8 */
 	font-weight: normal;
 }
 .ui-state-disabled,
 .ui-widget-content .ui-state-disabled,
 .ui-widget-header .ui-state-disabled {
 	opacity: .35;
-	-ms-filter: "alpha(opacity=35)"; /* support: IE8 */
 	background-image: none;
-}
-.ui-state-disabled .ui-icon {
-	-ms-filter: "alpha(opacity=35)"; /* support: IE8 - See #6059 */
 }
 
 /* Icons
@@ -438,9 +433,7 @@ a.ui-button:active,
 .ui-widget-overlay {
 	background: #eeeeee;
 	opacity: .8;
-	-ms-filter: Alpha(Opacity=80); /* support: IE8 */
 }
 .ui-widget-shadow {
-	-webkit-box-shadow: -4px -4px 4px #aaaaaa;
 	box-shadow: -4px -4px 4px #aaaaaa;
 }

@@ -470,6 +470,7 @@
 <entry key="ElFinder_kindVideoFlash">Flash 视频</entry>
 <entry key="ElFinder_kindVideoMKV">Matroska 视频</entry>
 <entry key="ElFinder_kindVideoOGG">Ogg 视频</entry>
+<entry key="ElFinder_downloadFileList">下载文件列表</entry>
 
 <!--RuntimeExceptions-->
 <entry key="NewKeywordWasForgottenException">New关键字被遗忘了。</entry>

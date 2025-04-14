@@ -4593,7 +4593,7 @@ elFinder.prototype = {
 
 				//--------Use Efw uploadServlet----------------
 				//data.target
-				fm.request({"data":{"cmd":"open","target":data.target,"saveupload":1,"reload":1,"tree":1,"compare":""}});//To refresh the elfinder view
+				fm.request({"data":{"cmd":"open","target":data.target,"reload":1,"tree":1,"compare":""}});//To refresh the elfinder view
 				dfrd.resolve({});//close loading dialog
 				return;
 				//---------------------------------------------
@@ -16053,7 +16053,10 @@ elFinder.prototype.commands.fullscreen = function() {
 			owner    : fm.i18n('owner'),
 			group    : fm.i18n('group'),
 			perm     : fm.i18n('perm'),
-			getlink  : fm.i18n('getLink')
+			getlink  : fm.i18n('getLink'),
+			//------------------Efw add----
+			downloadFileList: fm.i18n('downloadFileList'),
+			//-----------------------------
 		};
 		
 	this.tpl = {
@@ -16234,6 +16237,19 @@ elFinder.prototype.commands.fullscreen = function() {
 			
 		if (cnt == 1) {
 			file  = files[0];
+			//---Efw customization: download function about file list of the folder -------
+			if (file.mime=="directory"){
+				view=view+"<button onclick="+
+				"\"Efw('elfinder_downloadFileList',{"+
+					"cmd:'downloadFileList',"+
+					"home:'"+fm.options.customData.home+"',"+
+					"isAbs:"+fm.options.customData.isAbs+","+
+					"readonly:"+fm.options.customData.readonly+","+
+					"id:'"+fm.options.customData.id+"',"+
+					"target:'"+file.hash+"',"+
+				"})\">"+msg.downloadFileList+"</button>";
+			}
+			//-----------------------------------------------------------------------------
 			
 			view  = view.replace('{dirclass}', file.csscls? fm.escape(file.csscls) : '').replace('{class}', fm.mime2class(file.mime));
 			title = tpl.itemTitle.replace('{name}', fm.escape(file.i18 || file.name)).replace('{kind}', '<span title="'+fm.escape(file.mime)+'">'+fm.mime2kind(file)+'</span>');

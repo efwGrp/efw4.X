@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import efw.efwException;
 import efw.framework;
@@ -38,18 +39,26 @@ public final class uploadServlet extends HttpServlet {
 		FileOutputStream outputStream = null;
 		try{
 			ArrayList<String> paths=new ArrayList<String>();
-            for (Part partPath : request.getParts()) {//elfinderのフォルダアップロード対応
-            	for (String cdPath : partPath.getHeader("Content-Disposition").split(";")) {
-            		if (cdPath.trim().startsWith("name=\"upload_path[]\"")) {
-            			inputStream =partPath.getInputStream();
-            			byte[] bPath = new byte[inputStream.available()];
-            			inputStream.read(bPath);
-            			inputStream.close();
-            			paths.add(new String(bPath,framework.SYSTEM_CHAR_SET));
+			String cmd="";
+			String target="";
+			String isAbs="";
+	        for (Part part : request.getParts()) {
+	            for (String cd : part.getHeader("Content-Disposition").split(";")) {
+	            	if (cd.trim().startsWith("name=\"cmd\"")) {
+            			cmd=getParam(part);
+            			break;
+	            	}else if (cd.trim().startsWith("name=\"target\"")) {
+	            		target=getParam(part);
+            			break;
+	            	}else if (cd.trim().startsWith("name=\"isAbs\"")) {
+	            		isAbs=getParam(part);
+            			break;
+	            	}else if (cd.trim().startsWith("name=\"upload_path[]\"")) {//elfinderのフォルダアップロード対応
+	            		paths.add(getParam(part));
             			break;
             		}
-            	}
-            }
+	            }
+	        }
 			
 	        for (Part part : request.getParts()) {
 	            String uploadFileName=null;
@@ -86,6 +95,15 @@ public final class uploadServlet extends HttpServlet {
 	                }
 	            }
 	        }
+	        if ("upload".equals(cmd)) {//elfinderのuploadの場合
+	        	String cwdFolder=new String(
+	        			Base64.getUrlDecoder().decode(target.substring("EFW_".length()).getBytes())
+	        		);
+	        	File fl=("true".equals(isAbs))?
+	        			FileManager.getByAbsolutePath(cwdFolder):FileManager.get(cwdFolder);
+	        	FileManager.saveUploadFiles(fl);//アップロードファイルを正しい場所に移す。
+	        }
+	        
 	        response.getWriter().print("[]");
 		}finally{
 			framework.removeRequest();
@@ -104,5 +122,13 @@ public final class uploadServlet extends HttpServlet {
                 }
             }
 		}
+    }
+    
+    private static String getParam(Part part) throws IOException {
+    	InputStream inputStream =part.getInputStream();
+		byte[] param = new byte[inputStream.available()];
+		inputStream.read(param);
+		inputStream.close();
+		return new String(param,framework.SYSTEM_CHAR_SET);
     }
 }

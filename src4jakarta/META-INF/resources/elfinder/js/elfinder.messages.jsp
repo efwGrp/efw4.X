@@ -465,6 +465,8 @@ if (typeof elFinder === 'function' && elFinder.prototype.i18) {
 			'kindVideoFlash'  : "<efw:Msg key="ElFinder_kindVideoFlash" default="Flash movie"/>",
 			'kindVideoMKV'    : "<efw:Msg key="ElFinder_kindVideoMKV" default="Matroska movie"/>",
 			'kindVideoOGG'    : "<efw:Msg key="ElFinder_kindVideoOGG" default="Ogg movie"/>",
+			/********************************** mimetypes **********************************/
+			'downloadFileList': "<efw:Msg key="ElFinder_downloadFileList" default="Download file list"/>",
 		}
 	};
 }
