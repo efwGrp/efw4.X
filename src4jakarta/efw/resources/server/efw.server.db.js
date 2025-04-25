@@ -1,5 +1,5 @@
 "use strict";
-/**** efw4.X Copyright 2019 efwGrp ****/
+/**** efw4.X Copyright 2024 efwGrp ****/
 /**
  * The class to operate Database.
  * 
@@ -200,7 +200,7 @@ EfwServerDb.prototype._executeQuery = function(executionParams) {
 			//}else if (valueType == "boolean") {
 				//以下タイプは自動的にブールと見なす
 				//java.lang.Boolean
-			if (valueType == "object" && value.getClass) {
+			if ((valueType == "object"||valueType =="function") && value.getClass) {
 				var clsName=value.getClass().getName();
 				if(clsName=="java.lang.Long"
 						|| clsName=="java.math.BigDecimal"){
@@ -215,6 +215,10 @@ EfwServerDb.prototype._executeQuery = function(executionParams) {
 				} else if (clsName == "oracle.sql.TIMESTAMP"){
 					var dt = new Date();
 					dt.setTime(value.timestampValue().getTime());
+					value = dt;
+				} else if (clsName == "java.time.LocalDateTime"){
+					var dt = new Date();
+					dt.setTime(java.sql.Timestamp.valueOf(value).getTime());
 					value = dt;
 				} else {
 					var sValue=""+value;
