@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>test</TITLE>
+<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
+<script type="text/javascript" charset="UTF-8" src="./efw/jquery.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./efw/efw.client.format.js"></script>
+</HEAD>
+<BODY>
+	<table><tr>
+	<td rowspan=2 style="vertical-align:top">
+		<table border=1 id="chart1_data" data-format="$#,##0" data-legend="bottom">
+			<caption>Chart Caption</caption>
+			<tr><th>Row0Col0</th><th data-color="coral" style="background-color:coral">col1</th><th data-color="red" style="background-color:red">col2</th><th  data-color="deeppink" style="background-color:deeppink">col3</th></tr>
+			<tr><td data-color="darkcyan" style="background-color:darkcyan">row1</td><td>$1,000</td><td>$700</td><td>$300</td></tr>
+			<tr><td data-color="darkgreen" style="background-color:darkgreen">row2</td><td>$900</td><td>$700</td><td>$600</td></tr>
+			<tr><td data-color="seagreen" style="background-color:seagreen">row3</td><td>$800</td><td>$600</td><td>$500</td></tr>
+			<tr><td data-color="darkseagreen" style="background-color:darkseagreen">row4</td><td>$700</td><td>$500</td><td>$400</td></tr>
+			<tr><td data-color="lightgreen" style="background-color:lightgreen">row5</td><td>$1,000</td><td>$800</td><td>$700</td></tr>
+		</table>
+	</td>
+	<td>
+		<script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/loader.js"></script><script type="text/javascript" charset="UTF-8" src="efw/efw.chart.googlechart.js"></script><div id="char1" style="width:400px;height:300px;" ></div><script>var char1;$(function(){char1=new EfwClientChartGL("char1","chart1_data","column","current",null);char1.draw();});</script>
+	</td>
+	<td>
+		<div id="char2" style="width:400px;height:300px;" ></div><script>var char2;$(function(){char2=new EfwClientChartGL("char2","chart1_data","pie","current",null);char2.draw();});</script>
+	</td></tr>
+	<tr>
+	<td>
+		<script type="text/javascript" charset="UTF-8" src="chart/Chart.min.js"></script><script type="text/javascript" charset="UTF-8" src="efw/efw.chart.chartjs.js"></script><div id="char3" style="width:400px;height:300px;" ><canvas></canvas></div><script>var char3;$(function(){char3=new EfwClientChartJS("char3","chart1_data","column","current",null);char3.draw();});</script>
+	</td>
+	<td>
+		<div id="char4" style="width:400px;height:300px;" ></div><script>var char4;$(function(){char4=new EfwClientChartJS("char4","chart1_data","pie","current",null);char4.draw();});</script>
+	</td></tr>
+	</table>
+	
+</BODY>
+</HTML>

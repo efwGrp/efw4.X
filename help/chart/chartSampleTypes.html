@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>test</TITLE>
+<META CONTENT="TEXT/HTML;CHARSET=UTF-8" HTTP-EQUIV="CONTENT-TYPE">
+<script type="text/javascript" charset="UTF-8" src="./efw/jquery.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./efw/efw.client.format.js"></script>
+
+<script>
+	function setChar1Options(options){
+		$("#char1Options").html(JSON.stringify(options));
+	}
+	function setChar2Options(options){
+		$("#char2Options").html(JSON.stringify(options));
+	}
+</script>
+</HEAD>
+<BODY>
+	<table><tr>
+	<td rowspan=2 style="vertical-align:top">
+		<table border=1 id="chart1_data" data-format="$#,##0" data-legend="bottom">
+		<!--table border=1 id="chart1_data" data-format="$#,##0" data-legend="bottom" data-ticks="0,200,400,600,800,1000"-->
+			<caption>Chart Caption</caption>
+			<tr><th>Row0Col0</th><th>col1</th><th>col2</th><th>col3</th></tr>
+			<tr><td>row1</td><td>$1,000</td><td>$700</td><td>$300</td></tr>
+			<tr><td>row2</td><td>$900</td><td>$700</td><td>$600</td></tr>
+			<tr><td>row3</td><td>$800</td><td>$600</td><td>$500</td></tr>
+			<tr><td>row4</td><td>$700</td><td>$500</td><td>$400</td></tr>
+			<tr><td>row5</td><td>$1,000</td><td>$800</td><td>$700</td></tr>
+		</table>
+	</td>
+	<td>
+		<script type="text/javascript" charset="UTF-8" src="https://www.gstatic.com/charts/loader.js"></script><script type="text/javascript" charset="UTF-8" src="efw/efw.chart.googlechart.js"></script><div id="char1" style="width:400px;height:300px;" ></div><script>var char1;$(function(){char1=new EfwClientChartGL("char1","chart1_data","pie","current",setChar1Options);char1.draw();});</script>
+	</td>
+	<td id="char1Options"></td></tr>
+	<tr>
+	<td>
+		<script type="text/javascript" charset="UTF-8" src="chart/Chart.min.js"></script><script type="text/javascript" charset="UTF-8" src="efw/efw.chart.chartjs.js"></script><div id="char2" style="width:400px;height:300px;" ><canvas></canvas></div><script>var char2;$(function(){char2=new EfwClientChartJS("char2","chart1_data","pie","current",setChar2Options);char2.draw();});</script>
+	</td>
+	<td id="char2Options"></td></tr></table>
+	
+	<button onclick="char1.setType('area');char2.setType('area');">area</button>
+	<button onclick="char1.setType('bar');char2.setType('bar');">bar</button>
+	<button onclick="char1.setType('column');char2.setType('column');">column</button>
+	<button onclick="char1.setType('donut');char2.setType('donut');">donut</button>
+	<button onclick="char1.setType('line');char2.setType('line');">line</button>
+	<button onclick="char1.setType('pie');char2.setType('pie');">pie</button>
+	<button onclick="char1.setType('scatter');char2.setType('scatter');">scatter</button>
+	<button onclick="char1.setType('stackedarea');char2.setType('stackedarea');">stackedarea</button>
+	<button onclick="char1.setType('stackedbar');char2.setType('stackedbar');">stackedbar</button>
+	<button onclick="char1.setType('stackedcolumn');char2.setType('stackedcolumn');">stackedcolumn</button>
+	<button onclick="char2.setType('radar');">radar</button>
+</BODY>
+</HTML>
