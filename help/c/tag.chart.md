@@ -33,7 +33,6 @@
 | `mode` | 否 | `"googlechart"` | 设置图表库为 `"googlechart"` 或 `"chartjs"`。 |
 | `data` | 是 |  | 要与 `Chart` 标签一起使用的数据表的 ID。 |
 | `type` | 是 |  | 图表的类型。 [演示](https://efwgrp.github.io/efw4.X/help/chart/chartSampleTypes.html)。 |
-|  |  |  | **googlechart:**<br><table><tr><th>柱状图<br>![Column Chart](../img/chart/gl_column.png)</th><th>堆叠柱状图<br>![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)</th><th>折线图<br>![Line Chart](../img/chart/gl_line.png)</th><th>饼图<br>![Pie Chart](../img/chart/gl_pie.png)</th><th>甜甜圈图<br>![Donut Chart](../img/chart/gl_donut.png)</th></tr><tr><th>条形图<br>![Bar Chart](../img/chart/gl_bar.png)</th><th>堆叠面积图<br>![Stacked Area Chart](../img/chart/gl_stackedarea.png)</th><th>面积图<br>![Area Chart](../img/chart/gl_area.png)</th><th>散点图<br>![Scatter Chart](../img/chart/gl_scatter.png)</th></tr></table><br>**chartjs:**<br><table><tr><th>柱状图<br>![Column Chart](../img/chart/js_column.png)</th><th>堆叠柱状图<br>![Stacked Column Chart](../img/chart/js_stackedcolumn.png)</th><th>折线图<br>![Line Chart](../img/chart/js_line.png)</th><th>饼图<br>![Pie Chart](../img/chart/js_pie.png)</th><th>甜甜圈图<br>![Donut Chart](../img/chart/js_donut.png)</th></tr><tr><th>条形图<br>![Bar Chart](../img/chart/js_bar.png)</th><th>堆叠面积图<br>![Stacked Area Chart](../img/chart/js_stackedarea.png)</th><th>面积图<br>![Area Chart](../img/chart/js_area.png)</th><th>散点图<br>![Scatter Chart](../img/chart/js_scatter.png)</th><th>雷达图<br>![Radar Chart](../img/chart/js_radar.png)</th></tr></table> |
 | `height` | 否 | `"400"` | `Chart` 标签的高度，单位为像素。 |
 | `width` | 否 | `"auto"` | `Chart` 标签的宽度，单位为像素。 |
 | `version` | 否 | `"current"` | 要使用的 Google Charts 版本。 |
@@ -51,3 +50,20 @@
 | `chart.setType(type)` | `void` | 设置 `type` 属性。 |
 | `chart.setHeight(height)` | `void` | 设置 `height` 属性。 |
 | `chart.setWidth(width)` | `void` | 设置 `width` 属性。 |
+
+
+##### 面向Google Chart的图标类型
+| | | | | |
+|---|---|---|---|---|
+|column|stackedcolumn|line|pie|donut|
+|![Column Chart](../img/chart/gl_column.png)|![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)|![Line Chart](../img/chart/gl_line.png)|![Pie Chart](../img/chart/gl_pie.png)|![Donut Chart](../img/chart/gl_donut.png)|
+|bar|stackedarea|area|scatter| |
+|![Bar Chart](../img/chart/gl_bar.png)|![Stacked Area Chart](../img/chart/gl_stackedarea.png)|![Area Chart](../img/chart/gl_area.png)|![Scatter Chart](../img/chart/gl_scatter.png)||
+
+##### 面向Chart Js的图标类型
+| | | | | |
+|---|---|---|---|---|
+|column|stackedcolumn|line|pie|donut|
+|![Column Chart](../img/chart/js_column.png)|![Stacked Column Chart](../img/chart/js_stackedcolumn.png)|![Line Chart](../img/chart/js_line.png)|![Pie Chart](../img/chart/js_pie.png)|![Donut Chart](../img/chart/js_donut.png)|
+|bar|stackedarea|area|scatter|radar|
+|![Bar Chart](../img/chart/js_bar.png)|![Stacked Area Chart](../img/chart/js_stackedarea.png)|![Area Chart](../img/chart/js_area.png)|![Scatter Chart](../img/chart/gl_scatter.png)|![Radar Chart](../img/chart/js_radar.png)|

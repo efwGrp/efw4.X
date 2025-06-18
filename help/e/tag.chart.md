@@ -33,7 +33,6 @@
 | `mode` | No | `"googlechart"` | Sets the charting library to `"googlechart"` or `"chartjs"`. |
 | `data` | Yes |  | The ID of the data table to use with the `Chart` tag. |
 | `type` | Yes |  | The type of chart. [Demo](https://efwgrp.github.io/efw4.X/help/chart/chartSampleTypes.html). |
-|  |  |  | **googlechart:**<br><table><tr><th>column<br>![Column Chart](../img/chart/gl_column.png)</th><th>stackedcolumn<br>![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)</th><th>line<br>![Line Chart](../img/chart/gl_line.png)</th><th>pie<br>![Pie Chart](../img/chart/gl_pie.png)</th><th>donut<br>![Donut Chart](../img/chart/gl_donut.png)</th></tr><tr><th>bar<br>![Bar Chart](../img/chart/gl_bar.png)</th><th>stackedarea<br>![Stacked Area Chart](../img/chart/gl_stackedarea.png)</th><th>area<br>![Area Chart](../img/chart/gl_area.png)</th><th>scatter<br>![Scatter Chart](../img/chart/gl_scatter.png)</th></tr></table><br>**chartjs:**<br><table><tr><th>column<br>![Column Chart](../img/chart/js_column.png)</th><th>stackedcolumn<br>![Stacked Column Chart](../img/chart/js_stackedcolumn.png)</th><th>line<br>![Line Chart](../img/chart/js_line.png)</th><th>pie<br>![Pie Chart](../img/chart/js_pie.png)</th><th>donut<br>![Donut Chart](../img/chart/js_donut.png)</th></tr><tr><th>bar<br>![Bar Chart](../img/chart/js_bar.png)</th><th>stackedarea<br>![Stacked Area Chart](../img/chart/js_stackedarea.png)</th><th>area<br>![Area Chart](../img/chart/js_area.png)</th><th>scatter<br>![Scatter Chart](../img/chart/js_scatter.png)</th><th>radar<br>![Radar Chart](../img/chart/js_radar.png)</th></tr></table> |
 | `height` | No | `"400"` | The height of the `Chart` tag in pixels. |
 | `width` | No | `"auto"` | The width of the `Chart` tag in pixels. |
 | `version` | No | `"current"` | The version of Google Charts to use. |
@@ -51,3 +50,21 @@
 | `chart. setType ( type )` | `void` | Sets the `type` attribute. |
 | `chart. setHeight ( height )` | `void` | Sets the `height` attribute. |
 | `chart. setWidth ( width )` | `void` | Sets the `width` attribute. |
+
+##### Type for Google Chart
+| | | | | |
+|---|---|---|---|---|
+|column|stackedcolumn|line|pie|donut|
+|![Column Chart](../img/chart/gl_column.png)|![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)|![Line Chart](../img/chart/gl_line.png)|![Pie Chart](../img/chart/gl_pie.png)|![Donut Chart](../img/chart/gl_donut.png)|
+|bar|stackedarea|area|scatter| |
+|![Bar Chart](../img/chart/gl_bar.png)|![Stacked Area Chart](../img/chart/gl_stackedarea.png)|![Area Chart](../img/chart/gl_area.png)|![Scatter Chart](../img/chart/gl_scatter.png)||
+
+##### Type for Chart Js
+| | | | | |
+|---|---|---|---|---|
+|column|stackedcolumn|line|pie|donut|
+|![Column Chart](../img/chart/js_column.png)|![Stacked Column Chart](../img/chart/js_stackedcolumn.png)|![Line Chart](../img/chart/js_line.png)|![Pie Chart](../img/chart/js_pie.png)|![Donut Chart](../img/chart/js_donut.png)|
+|bar|stackedarea|area|scatter|radar|
+|![Bar Chart](../img/chart/js_bar.png)|![Stacked Area Chart](../img/chart/js_stackedarea.png)|![Area Chart](../img/chart/js_area.png)|![Scatter Chart](../img/chart/gl_scatter.png)|![Radar Chart](../img/chart/js_radar.png)|
+
+
