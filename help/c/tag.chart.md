@@ -32,7 +32,7 @@
 | `id` | 是 |  | `Chart` 标签的 ID。 |
 | `mode` | 否 | `"googlechart"` | 设置图表库为 `"googlechart"` 或 `"chartjs"`。 |
 | `data` | 是 |  | 要与 `Chart` 标签一起使用的数据表的 ID。 |
-| `type` | 是 |  | 图表的类型。 [演示](https://efwgrp.github.io/efw4_chart/chartSampleTypes.html)。 |
+| `type` | 是 |  | 图表的类型。 [演示](https://efwgrp.github.io/efw4.X/help/chart/chartSampleTypes.html)。 |
 |  |  |  | **googlechart:**<br><table><tr><th>柱状图<br>![Column Chart](../img/chart/gl_column.png)</th><th>堆叠柱状图<br>![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)</th><th>折线图<br>![Line Chart](../img/chart/gl_line.png)</th><th>饼图<br>![Pie Chart](../img/chart/gl_pie.png)</th><th>甜甜圈图<br>![Donut Chart](../img/chart/gl_donut.png)</th></tr><tr><th>条形图<br>![Bar Chart](../img/chart/gl_bar.png)</th><th>堆叠面积图<br>![Stacked Area Chart](../img/chart/gl_stackedarea.png)</th><th>面积图<br>![Area Chart](../img/chart/gl_area.png)</th><th>散点图<br>![Scatter Chart](../img/chart/gl_scatter.png)</th></tr></table><br>**chartjs:**<br><table><tr><th>柱状图<br>![Column Chart](../img/chart/js_column.png)</th><th>堆叠柱状图<br>![Stacked Column Chart](../img/chart/js_stackedcolumn.png)</th><th>折线图<br>![Line Chart](../img/chart/js_line.png)</th><th>饼图<br>![Pie Chart](../img/chart/js_pie.png)</th><th>甜甜圈图<br>![Donut Chart](../img/chart/js_donut.png)</th></tr><tr><th>条形图<br>![Bar Chart](../img/chart/js_bar.png)</th><th>堆叠面积图<br>![Stacked Area Chart](../img/chart/js_stackedarea.png)</th><th>面积图<br>![Area Chart](../img/chart/js_area.png)</th><th>散点图<br>![Scatter Chart](../img/chart/js_scatter.png)</th><th>雷达图<br>![Radar Chart](../img/chart/js_radar.png)</th></tr></table> |
 | `height` | 否 | `"400"` | `Chart` 标签的高度，单位为像素。 |
 | `width` | 否 | `"auto"` | `Chart` 标签的宽度，单位为像素。 |
@@ -40,7 +40,7 @@
 | `setoptions` | 否 |  | 用于为 Google Charts 设置选项的自定义 JavaScript 函数的名称。 |
 | `data-format` | 否 |  | 数据的格式。如果定义，则工具提示数据将格式化。 |
 | `data-legend` | 否 |  | 图例的位置：`none`、`left`、`right`、`top` 或 `bottom`。 |
-| `data-color` | 否 |  | 项目的颜色。使用 RGB 或行或列标题中的颜色名称设置。[演示](https://efwgrp.github.io/efw4_chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
+| `data-color` | 否 |  | 项目的颜色。使用 RGB 或行或列标题中的颜色名称设置。[演示](https://efwgrp.github.io/efw4.X/help/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
 | `data-ticks` | 否 |  | 图表的刻度。 |
 
 ## 方法

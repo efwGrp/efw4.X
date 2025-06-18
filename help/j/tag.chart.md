@@ -32,7 +32,7 @@
 | `id` | はい |  | `Chart` タグのID。 |
 | `mode` | いいえ | `"googlechart"` | チャートライブラリを `"googlechart"` または `"chartjs"` に設定します。 |
 | `data` | はい |  | `Chart` タグで使用するデータテーブルのID。 |
-| `type` | はい |  | チャートの種類。[デモ](https://efwgrp.github.io/efw4_chart/chartSampleTypes.html)。 |
+| `type` | はい |  | チャートの種類。[デモ](https://efwgrp.github.io/efw4.X/help/chart/chartSampleTypes.html)。 |
 |  |  |  | **googlechart:**<br><table><tr><th>column<br>![Column Chart](../img/chart/gl_column.png)</th><th>stackedcolumn<br>![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)</th><th>line<br>![Line Chart](../img/chart/gl_line.png)</th><th>pie<br>![Pie Chart](../img/chart/gl_pie.png)</th><th>donut<br>![Donut Chart](../img/chart/gl_donut.png)</th></tr><tr><th>bar<br>![Bar Chart](../img/chart/gl_bar.png)</th><th>stackedarea<br>![Stacked Area Chart](../img/chart/gl_stackedarea.png)</th><th>area<br>![Area Chart](../img/chart/gl_area.png)</th><th>scatter<br>![Scatter Chart](../img/chart/gl_scatter.png)</th></tr></table><br>**chartjs:**<br><table><tr><th>column<br>![Column Chart](../img/chart/js_column.png)</th><th>stackedcolumn<br>![Stacked Column Chart](../img/chart/js_stackedcolumn.png)</th><th>line<br>![Line Chart](../img/chart/js_line.png)</th><th>pie<br>![Pie Chart](../img/chart/js_pie.png)</th><th>donut<br>![Donut Chart](../img/chart/js_donut.png)</th></tr><tr><th>bar<br>![Bar Chart](../img/chart/js_bar.png)</th><th>stackedarea<br>![Stacked Area Chart](../img/chart/js_stackedarea.png)</th><th>area<br>![Area Chart](../img/chart/js_area.png)</th><th>scatter<br>![Scatter Chart](../img/chart/js_scatter.png)</th><th>radar<br>![Radar Chart](../img/chart/js_radar.png)</th></tr></table> |
 | `height` | いいえ | `"400"` | `Chart` タグの高さをピクセル単位で指定します。 |
 | `width` | いいえ | `"auto"` | `Chart` タグの幅をピクセル単位で指定します。 |
@@ -40,7 +40,7 @@
 | `setoptions` | いいえ |  | Google Charts のオプションを設定するカスタム JavaScript 関数の名前。 |
 | `data-format` | いいえ |  | データの形式。定義されている場合、ツールチップデータがフォーマットされます。 |
 | `data-legend` | いいえ |  | 凡例の位置：`none`、`left`、`right`、`top`、または `bottom`。 |
-| `data-color` | いいえ |  | 項目の色。行または列のタイトルでRGBまたは色名を設定します。[デモ](https://efwgrp.github.io/efw4_chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
+| `data-color` | いいえ |  | 項目の色。行または列のタイトルでRGBまたは色名を設定します。[デモ](https://efwgrp.github.io/efw4.X/help/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
 | `data-ticks` | いいえ |  | チャートの目盛り。 |
 
 ## メソッド
