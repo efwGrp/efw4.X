@@ -1,1 +1,9 @@
-theme: jekyll-theme-cayman
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+gem "github-pages", group: :jekyll_plugins
+title: efw4.X
+description: Ajax Framework By Server Side JavaScript for Java Web-App made by ESCCO.
+show_downloads: true
+github:
+  zip_url:https://github.com/efwGrp/efw4.X/releases
+  another_url:https://github.com/efwGrp/efw4.X/releases
