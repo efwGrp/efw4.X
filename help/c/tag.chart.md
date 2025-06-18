@@ -53,7 +53,8 @@
 
 
 ##### 面向Google Chart的图标类型
-| | | | | |
+
+||||||
 |---|---|---|---|---|
 |column|stackedcolumn|line|pie|donut|
 |![Column Chart](../img/chart/gl_column.png)|![Stacked Column Chart](../img/chart/gl_stackedcolumn.png)|![Line Chart](../img/chart/gl_line.png)|![Pie Chart](../img/chart/gl_pie.png)|![Donut Chart](../img/chart/gl_donut.png)|
@@ -61,7 +62,8 @@
 |![Bar Chart](../img/chart/gl_bar.png)|![Stacked Area Chart](../img/chart/gl_stackedarea.png)|![Area Chart](../img/chart/gl_area.png)|![Scatter Chart](../img/chart/gl_scatter.png)||
 
 ##### 面向Chart Js的图标类型
-| | | | | |
+
+||||||
 |---|---|---|---|---|
 |column|stackedcolumn|line|pie|donut|
 |![Column Chart](../img/chart/js_column.png)|![Stacked Column Chart](../img/chart/js_stackedcolumn.png)|![Line Chart](../img/chart/js_line.png)|![Pie Chart](../img/chart/js_pie.png)|![Donut Chart](../img/chart/js_donut.png)|
