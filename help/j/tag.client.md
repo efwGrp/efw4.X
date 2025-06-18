@@ -18,7 +18,7 @@ Efwを使って開発するには、いくつかの`.js`ファイルと`.css`フ
 | `baseurl` | いいえ | `"."` | WebアプリケーションのベースURL。ページがベースフォルダにない場合は必須です。 |
 | `mode` | いいえ | `"jquery-ui"` | UIフレームワークを`"jquery-ui"`または`"bootstrap"`に設定します。 |
 | `theme` | いいえ | `"base"` | jQuery UIのテーマを設定します。 |
-|  |  |  | **jQuery UI テーマ:**<table><tr><td>base</td><td>black-tie</td>blitzer<td></td><td>cupertino</td><td>dark-hive</td></tr><tr><td>![Base Theme](../img/themes/base.png)</td><td>![Black Tie Theme](../img/themes/black-tie.png)</td><td>![Blitzer Theme](../img/themes/blitzer.png)</td><td>![Cupertino Theme](../img/themes/cupertino.png)</td><td>![Dark Hive Theme](../img/themes/dark-hive.png)</td></tr></table> |
+|  |  |  | **jQuery UI テーマ:**<table><tr><td>base</td><td>black-tie</td><td>blitzer</td><td>cupertino</td><td>dark-hive</td></tr><tr><td>![Base Theme](../img/themes/base.png)</td><td>![Black Tie Theme](../img/themes/black-tie.png)</td><td>![Blitzer Theme](../img/themes/blitzer.png)</td><td>![Cupertino Theme](../img/themes/cupertino.png)</td><td>![Dark Hive Theme](../img/themes/dark-hive.png)</td></tr><tr><td>dot-luv</td><td>eggplant</td><td>excite-bike</td><td>flick</td><td>hot-sneaks</td></tr><tr><td>![Dot Luv Theme](../img/themes/dot-luv.png)</td><td>![Eggplant Theme](../img/themes/eggplant.png)</td><td>![Excite Bike Theme](../img/themes/excite-bike.png)</td><td>![Flick Theme](../img/themes/flick.png)</td><td>![Hot Sneaks Theme](../img/themes/hot-sneaks.png)</td></tr></table> |
 | `major` | いいえ | `"4"` | Bootstrapのメジャーバージョン（2、3、4、または5）を設定します。 |
 | `lang` | いいえ | `"en"` | 言語を設定します。言語ファイルは多言語フォルダに配置する必要があります。 |
 | `nopromise` | いいえ | `"false"` | ブラウザがJavaScript Promiseをサポートしていない場合は`"true"`に設定します。 |
