@@ -11,15 +11,12 @@
 // a,b,c,d"
 var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
 var ary = [
-	["Z,X,C,V"],
-	["Q,W,E,R"]
+	["Z","X","C",V"],
+	["Q","W","E","R"]
 ];
 csvWriter.writeAllLines(ary);
 
 // test.csv 文件的内容变为：
-// "A,B,C,D
-// 1,2,3,4
-// a,b,c,d
 // Z,X,C,V
 // Q,W,E,R"
 ```

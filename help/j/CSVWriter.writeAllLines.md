@@ -17,9 +17,6 @@ var ary = [
 csvWriter.writeAllLines(ary);
 
 //test.csvファイルの内容は次のようになります。
-//"A,B,C,D
-// 1,2,3,4
-// a,b,c,d
 // Z,X,C,V
 // Q,W,E,R"
 ```

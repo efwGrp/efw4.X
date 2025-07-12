@@ -8,8 +8,8 @@
 // test.csv 文件的内容是
 // "1234567890,0987654321"
 var ary = new Array(2);
-ary[0] = "887766,554433";
-ary[1] = "1111,2222";
+ary[0] = ["887766","554433"];
+ary[1] = ["1111","2222"];
 var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
 csvWriter.writeLine(ary);	
 

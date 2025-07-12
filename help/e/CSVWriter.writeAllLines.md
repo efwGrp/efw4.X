@@ -11,15 +11,12 @@ The function to write all lines into the file.
 // a,b,c,d"
 var csvWriter = new CSVWriter("output/test.txt", ",", "\"", "MS932");
 var ary = [
-	["Z,X,C,V"],
-	["Q,W,E,R"]
+	["Z","X","C",V"],
+	["Q","W","E","R"]
 ];
 csvWriter.writeAllLines(ary);
 
 //The content of the test.csv file becomes:
-//"A,B,C,D
-// 1,2,3,4
-// a,b,c,d
 // Z,X,C,V
 // Q,W,E,R"
 ```
