@@ -1,5 +1,5 @@
 ﻿"use strict";
-/**** efw4.X Copyright 2020 efwGrp ****/
+/**** efw4.X Copyright 2025 efwGrp ****/
 /**
  * The class to read Binary file.<br>
  * @param {String}
@@ -163,3 +163,114 @@ BinaryReader.prototype.loopAllLines = function(callback){
 		}
 	}
 };
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * The class to write binary file.<br>
+ * @param {String}
+ *			path: required<br>
+ * @author Chang Kejun
+ */
+function BinaryWriter(path,aryFieldsDef,aryEncoding,rowSize) {
+	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("BinaryWriter");}
+	this._path = path;
+	this._aryFieldsDef = aryFieldsDef;
+	this._aryEncoding = aryEncoding;
+	this._rowSize = rowSize;
+	this._printWriter = Packages.efw.binary.BinaryManager.open(path);
+};
+/**
+ * The attr to keep the path.
+ */
+BinaryWriter.prototype._path = null;
+/**
+ * The attr to keep the aryFieldsDef.
+ */
+BinaryWriter.prototype._aryFieldsDef = null;
+/**
+ * The attr to keep the aryEncoding.
+ */
+BinaryWriter.prototype._aryEncoding = null;
+/**
+ * The attr to keep the rowSize.
+ */
+BinaryWriter.prototype._rowSize = null;
+/**
+ * The attr to keep the java writter.
+ */
+BinaryWriter.prototype._printWriter = null;
+/**
+ * The function to close the java writter.
+ */
+BinaryWriter.prototype.close = function(){
+	Packages.efw.binary.BinaryManager.close(this._path);
+};
+/**
+ * The inner function to close the java writter.
+ */
+BinaryWriter.prototype._closeAll = function(){
+	Packages.efw.binary.BinaryManager.closeAll();
+};
+/**
+ * The function to write all lines into the file.
+ * @param {Array}
+ *            aryLines: required<br>
+ */
+BinaryWriter.prototype.writeAllLines = function(aryLines){
+	var buf=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._rowSize*aryLines.length);//ファイルから読み込むバファー
+
+	for (var i = 0; i < aryLines.length; i++) {
+		var buf4row=this._join(aryLines[i]);
+		java.lang.System.arraycopy(buf4row, 0, buf, this._rowSize*i, this._rowSize);
+	}
+	file.writeAllBytes(this._path,buf);
+};
+/**
+ * The function to write an array into the file.
+ * @param {Array}
+ *            aryLine: required<br>
+ */
+BinaryWriter.prototype.writeLine = function(aryLine){
+	var buf = this._join(aryLine);
+	this._printWriter.write(buf);
+};
+/**
+ * The inner function to join an array into a buffer
+ * @param {Array}
+ *            aryLine: required<br>
+ * @returns {String}
+ */
+BinaryWriter.prototype._join = function(aryLine){
+	var bufs=[];
+	for(var i=0;i<this._aryFieldsDef.length;i++){
+		if (this._aryEncoding[i]=="Cp939WithoutShiftInOut"){
+			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]+2);
+			bufs[i][0]=14;//shift in 
+			bufs[i][this._aryFieldsDef[i]+2-1]=15;//shift out
+			var buf4item=new java.lang.String(""+aryLine[i]).getBytes("Cp939");
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 1, this._aryFieldsDef[i]);
+			
+		}else if (this._aryEncoding[i]=="S9"){
+			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]);
+			var buf4item=new java.lang.String(""+aryLine[i]).getBytes("Cp930");
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, this._aryFieldsDef[i]);
+			
+		}else{
+			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]);
+			var buf4item=new java.lang.String(""+aryLine[i]).getBytes(this._aryEncoding[i]);
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, this._aryFieldsDef[i]);
+		}
+	}
+	var fromP=0;
+	var buf=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._rowSize);//ファイルから読み込むバファー
+	for(var i=0;i<this._aryFieldsDef.length;i++){
+		if (this._aryEncoding[i]=="Cp939WithoutShiftInOut"){
+			java.lang.System.arraycopy(bufs[i], 1, buf, fromP, this._aryFieldsDef[i]);
+		}else{
+			java.lang.System.arraycopy(bufs[i], 0, buf, fromP, this._aryFieldsDef[i]);
+		}
+		fromP+=this._aryFieldsDef[i];
+	}
+	return buf;
+};
+
+

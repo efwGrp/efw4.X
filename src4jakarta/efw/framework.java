@@ -1,8 +1,8 @@
-/**** efw4.X Copyright 2019 efwGrp ****/
+/**** efw4.X Copyright 2025 efwGrp ****/
 package efw;
+import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -33,7 +33,7 @@ public final class framework {
 	/**
 	 * バージョンを表す。
 	 */
-	public static final String version="4.07.031_jakarta";// change it when releasing jar.
+	public static final String version="4.08.000_jakarta";// change it when releasing jar.
 	/**
 	 * webHome
 	 */
@@ -567,12 +567,12 @@ public final class framework {
 	 * Writerオブジェクト。
 	 * スレッドローカルにWriterオブジェクトを格納する。サーバーサイトJavascriptの処理後、必ず閉じるため。
 	 */
-	private static final ThreadLocal<HashMap<String,PrintWriter>> writers=new ThreadLocal<HashMap<String,PrintWriter>>();
+	private static final ThreadLocal<HashMap<String,Closeable>> writers=new ThreadLocal<HashMap<String,Closeable>>();
 	/**
 	 * Writerオブジェクトを一括取得する（スレッドローカル用）。
 	 * @return Writerオブジェクトマップ。
 	 */
-	public static HashMap<String,PrintWriter> getWriters(){
+	public static HashMap<String,Closeable> getWriters(){
 		return framework.writers.get();
 	}
 	/**
@@ -580,7 +580,7 @@ public final class framework {
 	 * @param key キー。
 	 * @return Writerオブジェクト。
 	 */
-	public static PrintWriter getWriter(String key) {
+	public static Closeable getWriter(String key) {
 		if (framework.writers.get()==null) return null;
 		return framework.writers.get().get(key);
 	}
@@ -589,8 +589,8 @@ public final class framework {
 	 * @param key キー。
 	 * @param writer Writerオブジェクト。
 	 */
-	public static void setWriter(String key,PrintWriter writer) {
-		if (writers.get()==null) writers.set(new HashMap<String,PrintWriter>());
+	public static void setWriter(String key,Closeable writer) {
+		if (writers.get()==null) writers.set(new HashMap<String,Closeable>());
 		framework.writers.get().put(key,writer);
 	}
 	/**
@@ -868,6 +868,15 @@ public final class framework {
 	public static void runtimeWLog(Exception ex) {
 		if (LogManager.getLogger().getLevel().intValue()<=Level.WARNING.intValue()) {
 			runtime(Level.WARNING,getUsefulInfoFromException(ex));
+		}
+	}
+	/**
+	 * 実行時ログを記録する。
+	 * @param info 説明文字列。
+	 */
+	public static void runtimeCLog(String info) {
+		if (LogManager.getLogger().getLevel().intValue()<=Level.INFO.intValue()) {
+			runtime(Level.INFO,info);
 		}
 	}
 	/**

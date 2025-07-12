@@ -73,6 +73,7 @@ load("classpath:efw/resources/server/efw.server.binary.js");
 load("classpath:efw/resources/server/efw.server.threads.js");
 load("classpath:efw/resources/server/efw.server.rest.js");
 load("classpath:efw/resources/server/efw.server.cmd.js");
+load("classpath:efw/resources/server/efw.server.pdf.js");
 load("classpath:efw/resources/server/efw.doHandles.js");
 /**
  * create instances.

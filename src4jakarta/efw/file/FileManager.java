@@ -284,7 +284,7 @@ public final class FileManager {
 		if (array==null){
 			return;
 		}else{
-			makeDir(f.getParentFile());//コピー先のフォルダを確保する  
+			makeDir(f.getParentFile());//コピー先のフォルダを確保する
 			if (array.size()>0){
 				HashMap<String,String> item=array.get(0);
 				String srcPath=(String)item.get("tempFileAbsolutePath");

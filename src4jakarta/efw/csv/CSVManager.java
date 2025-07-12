@@ -2,6 +2,7 @@
 package efw.csv;
 
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -43,7 +44,7 @@ public final class CSVManager {
 	 */
 	public static void close(String path) {
 		try {
-			PrintWriter writer=framework.getWriter(path);
+			Closeable writer=framework.getWriter(path);
 			framework.removeWriter(path);
 			writer.close();
 		}catch(Exception ex) {
@@ -56,9 +57,9 @@ public final class CSVManager {
 	public static void closeAll(){
 		if(framework.getWriters()==null) return;
 
-		HashMap<String,PrintWriter> map=framework.getWriters();
-		for(Entry<String, PrintWriter> e : map.entrySet()) { 
-			PrintWriter writer=e.getValue();
+		HashMap<String,Closeable> map=framework.getWriters();
+		for(Entry<String, Closeable> e : map.entrySet()) { 
+			Closeable writer=e.getValue();
 			try{
 				writer.close();//2回閉じても大丈夫。
 			}catch(Exception ex){
