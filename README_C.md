@@ -108,6 +108,7 @@
 | 类 | 属性/函数 |||||
 |---|---|---|---|---|---|
 | `BinaryReader` | [`new`](help/c/BinaryReader.new.md) | [`readAllLines`](help/c/BinaryReader.readAllLines.md) | [`loopAllLines`](help/c/BinaryReader.loopAllLines.md) |  |  |
+| `BinaryWriter` | [`new`](help/c/BinaryWriter.new.md) | [`writeAllLines`](help/c/BinaryWriter.writeAllLines.md) | [`writeLine`](help/c/BinaryWriter.writeLine.md) | [`close`](help/c/BinaryWriter.close.md) |  |
 | `TXTReader` | [`new`](help/c/TXTReader.new.md) | [`readAllLines`](help/c/TXTReader.readAllLines.md) | [`loopAllLines`](help/c/TXTReader.loopAllLines.md) |  |  |
 | `CSVReader` | [`new`](help/c/CSVReader.new.md) | [`readAllLines`](help/c/CSVReader.readAllLines.md) | [`loopAllLines`](help/c/CSVReader.loopAllLines.md) |  |  |
 | `CSVWriter` | [`new`](help/c/CSVWriter.new.md) | [`writeAllLines`](help/c/CSVWriter.writeAllLines.md) | [`writeLine`](help/c/CSVWriter.writeLine.md) | [`close`](help/c/CSVWriter.close.md) |  |
@@ -118,6 +119,7 @@
 |  |  |  | [`showCol`](help/c/excel.showCol.md) | [`hideCol`](help/c/excel.hideCol.md) |  |
 |  | [`getArray`](help/c/excel.getArray.md) | [`getSingle`](help/c/excel.getSingle.md) | [`getValue`](help/c/excel.getValue.md) | [`setCell`](help/c/excel.setCell.md) | [`setLink`](help/c/excel.setLink.md) |
 |  | [`isEncircled`](help/c/excel.isEncircled.md) | [`encircle`](help/c/excel.encircle.md) | [`addShape`](help/c/excel.addShape.md) | [`addShapeInRange`](help/c/excel.addShapeInRange.md) | [`replacePicture`](help/c/excel.replacePicture.md) |
+| `Pdf` | [`new`](help/c/pdf.new.md) | [`save`](help/c/pdf.save.md) | [`close`](help/c/pdf.close.md) | [`setField`](help/c/excel.setField.md) |  |
 | `Record` | [`new`](help/c/record.new.md) |  |  |  |  |
 |  | [`seek`](help/c/record.seek.md) | [`sort`](help/c/record.sort.md) | [`map`](help/c/record.map.md) | [`makeAllKeysUpperCase`](help/c/record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](help/c/record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](help/c/record.getArray.md) | [`getSingle`](help/c/record.getSingle.md) | [`getValue`](help/c/record.getValue.md) | [`length`](help/c/record.length.md) |  |

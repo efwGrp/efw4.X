@@ -109,6 +109,7 @@
 | クラス | 属性/関数 |  |  |  |  |
 |---|---|---|---|---|---|
 | `BinaryReader` | [`new`](help/j/BinaryReader.new.md) | [`readAllLines`](help/j/BinaryReader.readAllLines.md) | [`loopAllLines`](help/j/BinaryReader.loopAllLines.md) |  |  |
+| `BinaryWriter` | [`new`](help/j/BinaryWriter.new.md) | [`writeAllLines`](help/j/BinaryWriter.writeAllLines.md) | [`writeLine`](help/j/BinaryWriter.writeLine.md) | [`close`](help/j/BinaryWriter.close.md) |  |
 | `TXTReader` | [`new`](help/j/TXTReader.new.md) | [`readAllLines`](help/j/TXTReader.readAllLines.md) | [`loopAllLines`](help/j/TXTReader.loopAllLines.md) |  |  |
 | `CSVReader` | [`new`](help/j/CSVReader.new.md) | [`readAllLines`](help/j/CSVReader.readAllLines.md) | [`loopAllLines`](help/j/CSVReader.loopAllLines.md) |  |  |
 | `CSVWriter` | [`new`](help/j/CSVWriter.new.md) | [`writeAllLines`](help/j/CSVWriter.writeAllLines.md) | [`writeLine`](help/j/CSVWriter.writeLine.md) | [`close`](help/j/CSVWriter.close.md) |  |
@@ -119,6 +120,7 @@
 |  |  |  | [`showCol`](help/j/excel.showCol.md) | [`hideCol`](help/j/excel.hideCol.md) |  |
 |  | [`getArray`](help/j/excel.getArray.md) | [`getSingle`](help/j/excel.getSingle.md) | [`getValue`](help/j/excel.getValue.md) | [`setCell`](help/j/excel.setCell.md) | [`setLink`](help/j/excel.setLink.md) |
 |  | [`isEncircled`](help/j/excel.isEncircled.md) | [`encircle`](help/j/excel.encircle.md) | [`addShape`](help/j/excel.addShape.md) | [`addShapeInRange`](help/j/excel.addShapeInRange.md) | [`replacePicture`](help/j/excel.replacePicture.md) |
+| `Pdf` | [`new`](help/j/pdf.new.md) | [`save`](help/j/pdf.save.md) | [`close`](help/j/pdf.close.md) | [`setField`](help/j/excel.setField.md) |  |
 | `Record` | [`new`](help/j/record.new.md) |  |  |  |  |
 |  | [`seek`](help/j/record.seek.md) | [`sort`](help/j/record.sort.md) | [`map`](help/j/record.map.md) | [`makeAllKeysUpperCase`](help/j/record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](help/j/record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](help/j/record.getArray.md) | [`getSingle`](help/j/record.getSingle.md) | [`getValue`](help/j/record.getValue.md) | [`length`](help/j/record.length.md) |  |
