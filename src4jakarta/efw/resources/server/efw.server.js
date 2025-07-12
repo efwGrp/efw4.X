@@ -355,6 +355,7 @@ EfwServer.prototype.fire = function(event, requestParams) {
 		Excel.prototype._closeAll();
 		CSVWriter.prototype._closeAll();
 		BinaryWriter.prototype._closeAll();
+		Pdf.prototype._closeAll();
 	}
 };
 
