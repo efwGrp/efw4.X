@@ -244,20 +244,26 @@ BinaryWriter.prototype._join = function(aryLine){
 	for(var i=0;i<this._aryFieldsDef.length;i++){
 		if (this._aryEncoding[i]=="Cp939WithoutShiftInOut"){
 			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]+2);
+			for(var j=0;j<bufs[i].length;j++){bufs[i][j]=32}
 			bufs[i][0]=14;//shift in 
 			bufs[i][this._aryFieldsDef[i]+2-1]=15;//shift out
 			var buf4item=new java.lang.String(""+aryLine[i]).getBytes("Cp939");
-			java.lang.System.arraycopy(buf4item, 0, bufs[i], 1, this._aryFieldsDef[i]);
+			var copyLength=Math.min(buf4item.length,this._aryFieldsDef[i]);
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 1, copyLength);
 			
 		}else if (this._aryEncoding[i]=="S9"){
 			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]);
+			for(var j=0;j<bufs[i].length;j++){bufs[i][j]=32}
 			var buf4item=new java.lang.String(""+aryLine[i]).getBytes("Cp930");
-			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, this._aryFieldsDef[i]);
+			var copyLength=Math.min(buf4item.length,this._aryFieldsDef[i]);
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, copyLength);
 			
 		}else{
 			bufs[i]=java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, this._aryFieldsDef[i]);
+			for(var j=0;j<bufs[i].length;j++){bufs[i][j]=32}
 			var buf4item=new java.lang.String(""+aryLine[i]).getBytes(this._aryEncoding[i]);
-			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, this._aryFieldsDef[i]);
+			var copyLength=Math.min(buf4item.length,this._aryFieldsDef[i]);
+			java.lang.System.arraycopy(buf4item, 0, bufs[i], 0, copyLength);
 		}
 	}
 	var fromP=0;
