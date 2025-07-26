@@ -37,10 +37,36 @@ Pdf.prototype._closeAll = function() {
  */
 Pdf.prototype._pdf = null;
 
+/**
+ * The function to set the value in the form field.
+ */
 Pdf.prototype.setField = function(fieldName,fieldValue) {
 	if (fieldValue==null)fieldValue="";
 	this._pdf.setField(fieldName,fieldValue);
 	return this;
+}
+/**
+ * The function to convert the html string to a pdf.
+ */
+Pdf.html2pdf = function(html,baseUrl,pdfPath,fontsPath,fontsPathIsAbs){
+	var fl = fontsPathIsAbs
+			?Packages.efw.file.FileManager.getByAbsolutePath(fontsPath)
+			:Packages.efw.file.FileManager.get(fontsPath);
+	Packages.efw.pdf.PdfManager.html2pdf(html,baseUrl,pdfPath,fl);
+};
+/**
+ * The function to get a names array of all fonts contained in the path.
+ */
+Pdf.getFontNames = function(fontsPath,fontsPathIsAbs){
+	var fl = fontsPathIsAbs
+			?Packages.efw.file.FileManager.getByAbsolutePath(fontsPath)
+			:Packages.efw.file.FileManager.get(fontsPath);
+	var ary=Packages.efw.pdf.PdfManager.getFontNames(fl);
+	var ret=[];
+	for (var i=0;i<ary.length;i++){
+		ret.push(""+ary[i]);
+	}
+	return ret;
 }
 /**
  * The function to show the debug info about the Pdf.
