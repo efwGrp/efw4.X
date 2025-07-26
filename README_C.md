@@ -120,7 +120,7 @@
 |  | [`getArray`](help/c/excel.getArray.md) | [`getSingle`](help/c/excel.getSingle.md) | [`getValue`](help/c/excel.getValue.md) | [`setCell`](help/c/excel.setCell.md) | [`setLink`](help/c/excel.setLink.md) |
 |  | [`isEncircled`](help/c/excel.isEncircled.md) | [`encircle`](help/c/excel.encircle.md) | [`addShape`](help/c/excel.addShape.md) | [`addShapeInRange`](help/c/excel.addShapeInRange.md) | [`replacePicture`](help/c/excel.replacePicture.md) |
 | `Pdf` | [`new`](help/c/pdf.new.md) | [`save`](help/c/pdf.save.md) | [`close`](help/c/pdf.close.md) | [`setField`](help/c/excel.setField.md) |  |
-|  | [`html2pdf`](help/c/pdf.html2pdf.md) | [`getFontNames`](help/c/getFontNames.md) |
+|  | [`html2pdf`](help/c/pdf.html2pdf.md) | [`getFontNames`](help/c/pdf.getFontNames.md) |
 | `Record` | [`new`](help/c/record.new.md) |  |  |  |  |
 |  | [`seek`](help/c/record.seek.md) | [`sort`](help/c/record.sort.md) | [`map`](help/c/record.map.md) | [`makeAllKeysUpperCase`](help/c/record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](help/c/record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](help/c/record.getArray.md) | [`getSingle`](help/c/record.getSingle.md) | [`getValue`](help/c/record.getValue.md) | [`length`](help/c/record.length.md) |  |
