@@ -1,14 +1,13 @@
 /**** efw4.X Copyright 2025 efwGrp ****/
 package efw.pdf;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import org.openpdf.pdf.ITextRenderer;
-
-import com.lowagie.text.pdf.BaseFont;
 
 import efw.PdfFileIsNotLegalException;
 import efw.framework;
@@ -18,6 +17,12 @@ import efw.file.FileManager;
  * Pdfファイルを取り扱うクラス。
  */
 public class PdfManager {
+	/**
+	 * PDFオブジェクトを作成する。
+	 * @param path テンプレートパス。
+	 * @return PDFオブジェクト。
+	 * @throws PdfFileIsNotLegalException Pdfファイルが正しくないエラー。
+	 */
 	public static Pdf open(String path) throws PdfFileIsNotLegalException {
 		try {
 	        Pdf pdf= new Pdf(FileManager.get(path));
@@ -57,21 +62,60 @@ public class PdfManager {
 		}
 		framework.removePdfs();
 	}
-	
-	public static void Test() throws IOException {
-		String html = "<html><head><style>body { font-family:IPAexGothic,sans-serif; }h1 { color: navy; }</style>"
-		      +"</head><body><h1 style=\"position:absolute;top:100px;left:400px;\">あいうえお森盛</h1><p>あいうえお森盛。</p>"
-		      +"<table border=\"1\"><tr><td>a</td><td>B</td><td style=\"color:red\">B</td></tr></table><input type=\"text\" name=\"text-input\" value=\"123\" /></body></html>";
+	/**
+	 * OpenPDFに利用するフォント名称の配列を取得する
+	 * @param fontsFolder フォントファイルを格納する場所。
+	 * @return PpenPDFに利用されるFamilyNameの配列
+	 * @throws IOException IOエラー。
+	 */
+	public static String[] getFontNames(File fontsFolder) throws IOException {
+	    File lst[]=fontsFolder.listFiles();
+	    //openodfのデフォルトフォントを全部配列にいれる。
+	    ArrayList<String> defaultFonts=new ArrayList<String>(Arrays.asList("TimesRoman","SansSerif","Dialog","Symbol","ZapfDingbats","DialogInput","Helvetica","Monospaced","Courier","Serif"));
+	    ArrayList<String> myFonts=new ArrayList<String>();
+	    for(int i=0;i<lst.length;i++) {
+	    	if (lst[i].getName().toLowerCase().endsWith(".ttf")) {
+		    	String name= org.openpdf.pdf.TrueTypeUtil.getFamilyNames(
+		    			com.lowagie.text.pdf.BaseFont.createFont(lst[i].getAbsolutePath(),com.lowagie.text.pdf.BaseFont.IDENTITY_H,false)
+		    		).toArray(new String[0])[0];
+		    	myFonts.add(name);
+	    	}else if (lst[i].getName().toLowerCase().endsWith(".ttc")) {
+	    		String[] fnts = com.lowagie.text.pdf.BaseFont.enumerateTTCNames(lst[i].getAbsolutePath());
+		    	for (int j=0;j<fnts.length;j++) {
+			    	String name= org.openpdf.pdf.TrueTypeUtil.getFamilyNames(
+			    			com.lowagie.text.pdf.BaseFont.createFont(lst[i].getAbsolutePath()+","+j,com.lowagie.text.pdf.BaseFont.IDENTITY_H,false)
+			    		).toArray(new String[0])[0];
+			    	myFonts.add(name);
+		    	}
+	    	}
+	    }
+	    myFonts.addAll(defaultFonts);
+	    return myFonts.toArray(new String[0]);
+	}
+	/**
+	 * WEB画面をpdfに変換する機能。
+	 * @param html WEB画面。
+	 * @param baseUrl ベースURL。
+	 * @param pdfPath 変換先のPDFパス。
+	 * @param fontsFolder 必要なフォントの保存場所。
+	 * @throws IOException IOエラー。
+	 */
+	public static void html2pdf(String html,String baseUrl,String pdfPath,File fontsFolder) throws IOException {
 		
-		try (FileOutputStream outputStream = new FileOutputStream("C:\\EFW_ALL\\apache-tomcat-7.0.109\\webapps\\helloworld\\WEB-INF\\lib\\openpdf-html-hello.pdf")) {
-		    ITextRenderer renderer = new ITextRenderer();
-		    renderer.getFontResolver().addFont("C:\\EFW_ALL\\apache-tomcat-7.0.109\\webapps\\helloworld\\WEB-INF\\efw\\pdfbox\\ipaexg00401.ttf",
-		    		BaseFont.IDENTITY_H,false);
-		    renderer.setDocumentFromString(html);
+		try (FileOutputStream outputStream = new FileOutputStream(FileManager.get(pdfPath))) {
+			org.openpdf.pdf.ITextRenderer renderer = new org.openpdf.pdf.ITextRenderer();
+		    File lst[]=fontsFolder.listFiles();
+		    for(int i=0;i<lst.length;i++) {
+		    	try {
+				    renderer.getFontResolver().addFont(lst[i].getAbsolutePath(),com.lowagie.text.pdf.BaseFont.IDENTITY_H,false);
+		    	}catch(Exception e) {
+		    		//もしフォントフォルダに不要ファイルがある場合に備える
+		    	}
+		    }
+		    
+	        renderer.setDocumentFromString(html,baseUrl);
 		    renderer.layout();
 		    renderer.createPDF(outputStream);
 		}
-		System.out.println("PDF created: flying-saucer-hello.pdf");
 	}
-	
 }
