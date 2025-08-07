@@ -128,8 +128,8 @@
 | `Result` | [`new`](help/j/result.new.md) | [`concat`](help/j/result.concat.md) |  |  |  |
 |  | [`runat`](help/j/result.runat.md) | [`remove`](help/j/result.remove.md) | [`append`](help/j/result.append.md) | [`withdata`](help/j/result.withdata.md) |  |
 |  | [`show`](help/j/result.show.md) | [`hide`](help/j/result.hide.md) | [`enable`](help/j/result.enable.md) | [`disable`](help/j/result.disable.md) |  |
-|  | [`highlight`](help/j/result.highlight.md) | [`attach`](help/j/result.attach.md) | [`deleteAfterDownload`](help/j/result.deleteAfterDownload.md) | [`saveas`](help/j/result.saveas.md) |  |
-|  | [`confirm`](help/j/result.confirm.md) | [`alert`](help/j/result.alert.md) | [`focus`](help/j/result.focus.md) | [`eval`](help/j/result.eval.md) | [`navigate`](help/j/result.navigate.md) |
+|  | [`focus`](help/j/result.focus.md) | [`highlight`](help/j/result.highlight.md) | [`attach`](help/j/result.attach.md) | [`deleteAfterDownload`](help/j/result.deleteAfterDownload.md) | [`saveas`](help/j/result.saveas.md) |  |
+|  | [`confirm`](help/j/result.confirm.md) | [`alert`](help/j/result.alert.md) | [`preview`](help/j/result.preview.md) | [`eval`](help/j/result.eval.md) | [`navigate`](help/j/result.navigate.md) |
 | `Batch` | [`new`](help/j/batch.new.md) | [`concat`](help/j/batch.concat.md) |  |  |  |
 |  | [`log`](help/j/batch.log.md) | [`echo`](help/j/batch.echo.md) | [`exit`](help/j/batch.exit.md) |  |  |
 | `Threads` | [`new`](help/j/threads.new.md) | [`add`](help/j/threads.add.md) | [`run`](help/j/threads.run.md) |  |  |

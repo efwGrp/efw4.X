@@ -1,4 +1,0 @@
-https://search.maven.org/artifact/org.openjdk.nashorn/nashorn-core
-https://repo1.maven.org/maven2/org/openjdk/nashorn/nashorn-core
-https://github.com/openjdk/nashorn
-https://es5.github.io/
