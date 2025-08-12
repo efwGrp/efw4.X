@@ -29,7 +29,6 @@
 * [Web App Login Control & Authority Control](https://qiita.com/changkejun/items/c36d3671493225ad14ce) ([skeletonSample](https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample))
 * [Try to use pdf-lib and pdfmake on Efw with Javet](https://qiita.com/changkejun/items/5f50cf3d3e935dd90989) ([hello-pdf-lib3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3), [hello-pdfmake3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3))
 
-* [dialog](samples/dialogSample)
 * [batch](samples/batchSample)
 * [helloAzure](samples/helloAzure)
 

@@ -29,7 +29,6 @@
 * [Web应用登录控制和权限控制](https://qiita.com/changkejun/private/c36d3671493225ad14ce) ([skeletonSample](https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample))
 * [尝试在 Efw 上通过 Javet 使用 pdf-lib 和 pdfmake](https://qiita.com/changkejun/private/5f50cf3d3e935dd90989) ([hello-pdf-lib3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3), [hello-pdfmake3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3))
 
-* [dialog](samples/dialogSample)
 * [batch](samples/batchSample)
 * [helloAzure](samples/helloAzure)
 

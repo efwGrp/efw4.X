@@ -29,7 +29,6 @@
 * [efwのwebアプリのログイン制御＆権限制御](https://qiita.com/changkejun/items/2e7a68149eab8f2281cf) ([skeletonSample](https://github.com/efwGrp/qittaSamples/tree/main/skeletonSample))
 * [Javetを利用して、pdf-libとpdfmakeをefwに使ってみる](https://qiita.com/changkejun/items/350ca12a3276c4d1378a) ([hello-pdf-lib3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdf-lib3), [hello-pdfmake3](https://github.com/efwGrp/qittaSamples/tree/main/hello-pdfmake3))
 
-* [dialog](samples/dialogSample)
 * [batch](samples/batchSample)
 * [helloAzure](samples/helloAzure)
 
