@@ -32,7 +32,7 @@ public final class FormatManager {
 	 * ロケール情報（和暦用）。
 	 * 初期化時、ja_JP_JPで作成する。
 	 */
-	private static final Locale localeJ=Locale.of("ja","JP","JP");
+	private static final Locale localeJ=new Locale("ja","JP","JP");
 
     /**
      * 数字を指定フォーマットで文字列に変換する。
