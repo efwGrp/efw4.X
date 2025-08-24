@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mails>
+<mails>
+	<mail id="freeMail">
+		<to>:to</to>
+		<cc>:cc</cc>
+		<bcc>:bcc</bcc>
+		<mdn>:mdn</mdn>
+		<from>:from</from>
+		<subject>:subject</subject>
+		<body>:body</body>
+		<attachment>:attachment</attachment>
+	</mail>
+</mails>

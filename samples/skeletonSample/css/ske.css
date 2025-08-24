@@ -1,0 +1,808 @@
+/******************************************************************************
+* 全体
+******************************************************************************/
+:root {
+  --main-bage-width:1250px;
+  --main-table-width:1261px;
+  --efw-client-common-background-color:black;
+  --efw-client-common-title-font-color:white;
+}
+/******************
+* カーソル場所の枠線を不要
+******************/
+*{
+	box-sizing:border-box;
+	font-size:100%;
+}
+/******************
+* カーソル場所の枠線を不要
+******************/
+*:focus {
+	outline:none;
+}
+/******************
+* プレースホルダーの定義
+******************/
+:-MS-INPUT-PLACEHOLDER {
+	color:silver;
+}
+::-WEBKIT-INPUT-PLACEHOLDER {
+	color:silver;
+}
+:-MOZ-PLACEHOLDER {
+	color:silver;
+}
+::-MOZ-PLACEHOLDER {
+	color:silver;opacity:1;
+}
+:PLACEHOLDER-SHOWN {
+	color:silver;
+}
+/******************
+* 画面の高さとスクロールバーなしの設定
+******************/
+HTML {
+	height:100%;
+}
+BODY {
+	height:100%;
+	margin:0px;
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+/******************
+* 文字サイズ14px
+******************/
+BODY {
+	font-size:14px;
+}
+.FORM *:not(.monaco-editor *,.elfinder *){
+	font-size:14px;
+}
+.FOOTER {
+	font-size:14px;
+}
+/******************
+* ラベルはradio checkboxと連動するため、カーソルを設定する
+******************/
+LABEL {
+	white-space:nowrap;
+}
+LABEL[for] {
+	cursor:pointer;
+}
+/******************
+* 各種入力可能タグの活性設定
+******************/
+INPUT {
+	height:28px;
+	border:1px solid silver;
+	padding:0 5px 0 5px;
+	vertical-align:middle;
+}
+INPUT[type='BUTTON'] {
+	height:28px;
+	min-width:40px;
+	border:1px solid silver;
+	background-color:#f0f0f0;
+	cursor:pointer;
+}
+INPUT[type='radio'] {
+	margin:3px 3px 3px 4px;
+}
+INPUT[type='checkbox'] {
+	position: relative;
+	margin:3px 3px 3px 4px;
+	width: 13px;
+	height: 13px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+input[type="checkbox"]:checked:before {
+	position: absolute;
+	top: -1px;
+	left: 3px;
+	transform: rotate(50deg);
+	width: 4px;
+	height: 8px;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	content: '';
+}
+
+SELECT {
+	height:28px;
+	border:1px solid silver;
+	padding:0 5px 0 5px;
+	cursor:pointer;
+	vertical-align:middle; 
+}
+TEXTAREA {
+	padding:5px;
+	margin:2.5px 0 2.5px 0;
+	border:1px solid silver;
+}
+IMG {
+	margin:2.5px 0 2.5px 0;
+}
+BUTTON {
+	height:28px;
+	border:none;
+	background-color:var(--efw-client-common-background-color);
+	color:var(--efw-client-common-title-font-color);
+	cursor:pointer;
+	border-radius:10px;
+	margin:1px;
+	min-width:100px;
+	width:auto;
+	padding-left:15px;
+	padding-right:15px;
+}
+/******************
+* 各種入力可能タグのFocusの設定
+******************/
+BUTTON:focus {
+	font-weight:bold;
+}
+/******************
+* 各種入力可能タグの読取り専用の設定
+******************/
+INPUT[readonly],TEXTAREA[readonly] {
+	color:black;
+	background-color:gainsboro;
+	opacity: 1;
+}
+/******************
+* 各種入力可能タグの非活性の設定
+******************/
+INPUT:disabled,SELECT:disabled,TEXTAREA:disabled {
+	color:black;
+	background-color:gainsboro;
+	opacity: 1;
+}
+INPUT[type='BUTTON']:disabled {
+	opacity: 0.5;
+}
+BUTTON:disabled {
+	opacity: 0.5;
+}
+/*****************************************************************************/
+DIV.MAIN {
+	width:var(--main-bage-width);
+	margin:auto;
+	display:none;
+}
+/******************************************************************************
+* ヘッダエリア
+******************************************************************************/
+DIV.HEADER {
+}
+DIV.HEADER TABLE {
+	min-height:40px;
+	width:100%;
+	border:none;
+	border-collapse: collapse;
+}
+DIV.HEADER TABLE TD {
+	border:none;
+}
+/******************
+* ロゴ
+******************/
+DIV.HEADER TABLE TD:FIRST-CHILD {
+	width:150px;
+	background-image:url(../img/logo.png);
+	background-size: 125px 34px;
+	background-position-y:center;
+	background-position-x:5px;
+	background-repeat:no-repeat;
+}
+DIV.HEADER TABLE TD.GOTO-MENU {
+	cursor:pointer;
+}
+/******************
+* システム名
+******************/
+DIV.HEADER TABLE TD:NTH-CHILD(2) {
+	font-size:20px;
+	color:var(--efw-client-common-title-font-color);
+	text-align:left;
+}
+/******************
+* ログインユーザ名とログアウトとメニューアイコン
+******************/
+DIV.HEADER TABLE TD:NTH-CHILD(3) {
+	font-size:15px;
+	color:var(--efw-client-common-title-font-color);
+	text-align:right;
+}
+DIV.HEADER TABLE TD:NTH-CHILD(3) I {
+	padding-left:15px;
+}
+DIV.HEADER TABLE TD:NTH-CHILD(3) A {
+	padding-left:15px;
+}
+DIV.HEADER TABLE TD:NTH-CHILD(3) *:LAST-CHILD {
+	padding-right:20px;
+}
+/******************
+* アイコン
+******************/
+DIV.HEADER TABLE I {
+	cursor:pointer;
+}
+DIV.HEADER TABLE A {
+	cursor:pointer;
+	color:var(--efw-client-common-title-font-color);
+	text-decoration:none;
+}
+DIV.HEADER TABLE A:visited {
+	color:var(--efw-client-common-title-font-color);
+}
+
+/************************************************
+* ヘッダのメニュー部
+************************************************/
+DIV.HEADER-MENU {
+	min-height:25px;
+	border-bottom:#ccc 1px solid;
+	padding:2px 10px 2px 10px;
+	text-align:left;
+}
+/******************
+* ヘッダのメニュー部のリンク
+******************/
+DIV.HEADER-MENU A {
+	text-decoration: underline dotted silver;
+	color:black;
+}
+DIV.HEADER-MENU A:visited {
+	color:black;
+}
+/******************************************************************************
+*メインメニューエリア
+******************************************************************************/
+DIV.MAIN-MENU{
+	text-align:left;
+	overflow-y:auto;
+	line-height:35px;
+}
+/******************
+* メインメニューのメニュー項目
+******************/
+DIV.MAIN-MENU A{
+	text-decoration: underline dotted silver;
+	color:black;
+	font-size:20px;
+}
+/******************
+* メインメニューのメニュー項目分類
+******************/
+DIV.MAIN-MENU LABEL{
+	font-size:20px;
+}
+/******************************************************************************
+*サイドバーエリア、monacoより上にするためz-index 10
+******************************************************************************/
+DIV.ASIDE {
+	background-color: var(--efw-client-common-background-color);
+	opacity: 0.9;
+	width: 300px;
+	height:550px;
+	top: 0px;
+	right: -300px;
+	position: fixed;
+	z-index:10;
+	border-radius: 10px 0 0 10px;
+	border-left:0.5px solid white;
+	text-align:left;
+}
+/******************
+* サイドバー閉じる
+******************/
+SPAN.ASIDE_CLOSE_BTN {
+	cursor:pointer;
+	position:relative;
+	left:249px;
+	top:10px;
+	color:var(--efw-client-common-title-font-color);
+	opacity:1;
+}
+/******************
+* サイドバー中身
+******************/
+DIV.ASIDE_CONTENT {
+	line-height:25px;
+	margin:0px;
+	position:relative;
+	top:-15px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	width:275px;height:500px;margin-top:20px;margin-left:20px;
+	scrollbar-color: #EEEEEE #E0E0E0;
+	scrollbar-width: thin; 
+}
+/******************
+* サイドバー中身のスクロール
+******************/
+DIV.ASIDE_CONTENT::-webkit-scrollbar {
+	background-color:var(--efw-client-common-background-color);
+	width:8px;
+	height:8px;
+}
+DIV.ASIDE_CONTENT::-webkit-scrollbar-thumb {
+	background-color:var(--efw-client-common-title-font-color);
+}
+/******************
+* サイドバーのメニュー項目
+******************/
+DIV.ASIDE_CONTENT A {
+	color:var(--efw-client-common-title-font-color);
+	text-decoration:none;
+}
+/******************
+* サイドバーのメニュー項目分類
+******************/
+DIV.ASIDE_CONTENT LABEL {
+	color:var(--efw-client-common-title-font-color);
+	opacity: 0.5;
+}
+/******************************************************************************
+*フッターエリア
+******************************************************************************/
+DIV.FOOTER {
+	text-align:left;
+	position:fixed;
+	background:white;
+	min-height:40px;
+	width:var(--main-bage-width);
+	bottom:0px;
+	padding-top:0px;
+}
+DIV.FOOTER TABLE {
+	width:100%;
+	height:40px;
+}
+DIV.FOOTER .COPYRIGHT {
+	text-align:center;
+}
+DIV.FOOTER .VERSION {
+	text-align:right;
+	width:180px;
+	color:silver;
+	font-size:10px;
+}
+/******************************************************************************
+*ログインエリア
+******************************************************************************/
+FIELDSET.LOGIN{
+	width:300px;
+	line-height:33px;
+	text-align:left;
+	padding:20px;
+	border:1px solid silver;
+	border-radius:10px;
+}
+FIELDSET.LOGIN LABEL{
+	min-width:90px;
+	display:inline-block;
+}
+/******************************************************************************
+*検索条件エリア
+******************************************************************************/
+TABLE.CONDITION{
+	table-layout:fixed;
+	width:var(--main-bage-width);
+}
+/******************
+* 検索条件部分
+******************/
+TABLE.CONDITION TD:first-child{
+	line-height:33px;
+	vertical-align:top;
+	padding:10px;
+}
+/******************
+* 操作ボタン部分
+******************/
+TABLE.CONDITION TD:last-child{
+	width:220px;
+	text-align:right;
+	vertical-align:bottom;
+	padding:10px 0 10px 0;
+}
+/******************************************************************************
+*検索結果エリア
+******************************************************************************/
+DIV.MAIN-TABLE {
+	overflow-y: scroll;
+	overflow-x: auto;
+	width:var(--main-table-width);
+	background-color:#F6F6F6;
+	height: 390px;
+	scrollbar-color: #EEEEEE #E0E0E0;
+	scrollbar-width: thin; 
+}
+/******************
+* 検索結果のスクロールバー
+******************/
+DIV.MAIN-TABLE::-webkit-scrollbar {
+	background-color:#EEEEEE;
+	width:8px;
+	height:8px;
+}
+DIV.MAIN-TABLE::-webkit-scrollbar-thumb {
+	background-color:#E0E0E0;
+}
+/******************
+* テーブルの設定
+******************/
+DIV.MAIN-TABLE TABLE {
+	width:var(--main-bage-width);
+	border-collapse: collapse;
+	border-spacing: 0;
+	border:none;
+	table-layout: fixed;
+}
+/******************
+* TRの設定
+******************/
+DIV.MAIN-TABLE TR {
+	height:33px!important;
+}
+/******************
+* THセルの設定、最初と最後の線を特別に設定する
+******************/
+DIV.MAIN-TABLE TH {
+	border:0.5px solid var(--efw-client-common-background-color);
+	border-left:0.5px solid white;
+	border-right:0.5px solid white;
+	font-weight:normal;
+	background-color:var(--efw-client-common-background-color);
+	background-repeat:no-repeat;
+	background-position-x:right;
+	background-position-y: center;
+	color:var(--efw-client-common-title-font-color);
+}
+DIV.MAIN-TABLE TR TH:first-child {
+	border-left:0.5px solid var(--efw-client-common-background-color);
+}
+DIV.MAIN-TABLE TR TH:last-child {
+	border-right:0.5px solid var(--efw-client-common-background-color);
+}
+/******************
+* ソートの設定
+******************/
+DIV.MAIN-TABLE  TH {
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border:none;
+}
+DIV.MAIN-TABLE TH::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	border-left:0.5px solid white;
+	border-right:0.5px solid white;
+}
+DIV.MAIN-TABLE TH.SORT {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-dash-square-dotted' viewBox='0 0 16 16'%3E%3Cpath d='m2.5,0c-0.17,0 -0.33,0.02 -0.49,0.05l0.2,0.98a1.51,1.51 0 0 1 0.29,-0.03l0.46,0l0,-1l-0.46,0zm2.29,0l-0.91,0l0,1l0.91,0l0,-1zm1.84,0l-0.92,0l0,1l0.92,0l0,-1zm1.83,0l-0.92,0l0,1l0.92,0l0,-1zm1.83,0l-0.91,0l0,1l0.91,0l0,-1zm1.84,0l-0.92,0l0,1l0.92,0l0,-1zm1.37,0l-0.46,0l0,1l0.46,0c0.1,0 0.2,0.01 0.29,0.03l0.2,-0.98a2.51,2.51 0 0 0 -0.49,-0.05zm2.08,1.11a2.51,2.51 0 0 0 -0.69,-0.69l-0.56,0.83c0.17,0.11 0.31,0.25 0.42,0.42l0.83,-0.56zm-14.47,-0.69a2.51,2.51 0 0 0 -0.69,0.69l0.83,0.56c0.11,-0.17 0.25,-0.31 0.42,-0.42l-0.56,-0.83zm14.89,2.08c0,-0.17 -0.02,-0.33 -0.05,-0.49l-0.98,0.2c0.02,0.09 0.03,0.19 0.03,0.29l0,0.46l1,0l0,-0.46zm-15.95,-0.49a2.51,2.51 0 0 0 -0.05,0.49l0,0.46l1,0l0,-0.46c0,-0.1 0.01,-0.2 0.03,-0.29l-0.98,-0.2zm-0.05,1.87l0,0.91l1,0l0,-0.91l-1,0zm16,0.91l0,-0.91l-1,0l0,0.91l1,0zm-16,0.92l0,0.92l1,0l0,-0.92l-1,0zm16,0.92l0,-0.92l-1,0l0,0.92l1,0zm-16,0.91l0,0.92l1,0l0,-0.92l-1,0zm15,0.92l1,0l0,-0.92l-1,0l0,0.92zm-15,0.92l0,0.91l1,0l0,-0.91l-1,0zm16,0.91l0,-0.91l-1,0l0,0.91l1,0zm-16,0.92l0,0.92l1,0l0,-0.92l-1,0zm16,0.92l0,-0.92l-1,0l0,0.92l1,0zm-16,0.91l0,0.46c0,0.17 0.02,0.33 0.05,0.49l0.98,-0.2a1.51,1.51 0 0 1 -0.03,-0.29l0,-0.46l-1,0zm16,0.46l0,-0.46l-1,0l0,0.46c0,0.1 -0.01,0.2 -0.03,0.29l0.98,0.2c0.03,-0.16 0.05,-0.32 0.05,-0.49zm-15.58,1.39c0.18,0.27 0.42,0.51 0.69,0.69l0.56,-0.83a1.51,1.51 0 0 1 -0.42,-0.42l-0.83,0.56zm14.47,0.69c0.27,-0.18 0.51,-0.42 0.69,-0.69l-0.83,-0.56c-0.11,0.17 -0.25,0.31 -0.42,0.42l0.56,0.83zm-12.88,0.37c0.16,0.03 0.32,0.05 0.49,0.05l0.46,0l0,-1l-0.46,0c-0.1,0 -0.2,-0.01 -0.29,-0.03l-0.2,0.98zm11.49,0.05c0.17,0 0.33,-0.02 0.49,-0.05l-0.2,-0.98a1.51,1.51 0 0 1 -0.29,0.03l-0.46,0l0,1l0.46,0zm-9.62,0l0.91,0l0,-1l-0.91,0l0,1zm1.83,0l0.92,0l0,-1l-0.92,0l0,1zm1.83,0l0.92,0l0,-1l-0.92,0l0,1zm1.84,0l0.91,0l0,-1l-0.91,0l0,1zm1.83,0l0.92,0l0,-1l-0.92,0l0,1z'/%3E%3C/svg%3E");
+	background-size:18px 12px;
+	cursor:pointer;
+}
+DIV.MAIN-TABLE TH.ASC {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-up-fill' viewBox='0 0 16 16'%3E%3Cpath d='m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z'/%3E%3C/svg%3E");
+}
+DIV.MAIN-TABLE TH.DESC {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-caret-down-fill' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+}
+/******************
+* 検索結果行のTDセル、表示しきれない場合...表示
+******************/
+DIV.MAIN-TABLE TD {
+	border:0.5px solid silver;
+	border-top:none;
+	padding:0 5px 0 5px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	color:black;
+}
+/******************
+* 検索結果エリアの奇数偶数と選択行の背景色
+******************/
+DIV.MAIN-TABLE TR.ROW0 {
+	background: #eeffff
+}
+DIV.MAIN-TABLE TR.ROW1 {
+	background: #ffffff
+}
+DIV.MAIN-TABLE TR.SELECTED {
+	background: #ffddff
+}
+/************************************************
+* メインテーブルの隣接の改ページ
+************************************************/
+DIV.MAIN-TABLE+.PAGING{
+	position:fixed;
+	z-index:3;
+	right:20px;
+	bottom:20px;
+	text-align:right;
+}
+DIV.MAIN-TABLE+.PAGING I{
+	vertical-align:middle;
+	height:16px;
+	cursor:pointer;
+	margin-left:2px;
+	margin-right:2px;
+	color:var(--efw-client-common-background-color)
+}
+/******************************************************************************
+* 上記css設定は各種ツールへの影響をここで改修する
+******************************************************************************/
+/************************************************
+* ui-dialogが影響される箇所を元の状態に戻す設定
+************************************************/
+/******************
+* ウィジェットの文字サイズを変更しないように
+******************/
+.ui-widget {
+	font-family:inherit;
+	font-size:inherit;
+}
+/******************
+* ダイアログの中身
+******************/
+.ui-dialog-content {
+	line-height:33px;
+	vertical-align:top;
+	padding:10px;
+}
+/******************
+* ダイアログとフッターを白背景黒字にする
+******************/
+.ui-widget-content {
+	background:white;
+	color:black;
+}
+/******************
+* タイトルバーの文字サイズと行高さを設定する
+******************/
+.ui-dialog-title {
+	font-size:13px;
+	line-height:16px;
+}
+.ui-dialog-titlebar {
+	padding-top:3px!important;
+	padding-bottom:3px!important;
+}
+/******************
+* ダイアログのbottom部に表示するボタンの設定
+******************/
+.ui-dialog .ui-dialog-buttonpane BUTTON {
+	height:28px;
+	border:none;
+	background-color:var(--efw-client-common-background-color);
+	color:var(--efw-client-common-title-font-color);
+	cursor:pointer;
+	border-radius:10px;
+	margin:1px;
+	min-width:100px;
+	width:auto;
+	padding-left:15px;
+	padding-right:15px;
+}
+/******************
+* bottom部にbuttons属性で追加されるボタンの設定
+******************/
+.ui-dialog .ui-dialog-buttonpane BUTTON.ui-button{
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:15px;
+	padding-right:15px;
+	font-weight: normal;
+	margin:1px;
+	background-image:none;
+}
+/******************
+* タイトル部の標準ボタンの設定
+******************/
+.ui-dialog .ui-dialog-titlebar BUTTON.ui-button{
+	min-width:auto;
+}
+/******************
+* bottom部のボタン位置を調整可能のため、幅を100%、初期位置を右
+******************/
+.ui-dialog .ui-dialog-buttonset{
+	width:100%;
+	text-align:right;
+}
+/************************************************
+* ui-dialogが影響される箇所を元の状態に戻す設定
+************************************************/
+/******************
+* ツリー部分の調整
+******************/
+.ui-widget-content .ui-state-hover{
+	background: #6293df;
+	color:#fff;
+}
+.ui-widget-content .ui-state-default{
+	color:black;
+}
+/******************
+* 背景色をjquery-uiのthemeに影響されないように固定
+******************/
+.elfinder-toolbar {
+	border: 1px solid #dddddd!important;
+	background:none!important;
+	background-color:#e9e9e9!important;
+}
+.elfinder-statusbar {
+	border: 1px solid #dddddd!important;
+	background:none!important;
+	background-color:#e9e9e9!important;
+}
+.elfinder-button {
+	border: 0 solid #dddddd!important;
+	background:none!important;
+	background-color:#f6f6f6!important;
+}
+.elfinder-tree{
+	font-weight:normal;
+}
+/******************
+* ボタンの幅を戻す
+******************/
+.elfinder-dialog BUTTON{
+	width:auto;
+	min-width:auto;
+}
+
+/******************
+* 検索条件の幅を戻す
+******************/
+DIV.ui-dialog TABLE.CONDITION{
+	width:100%;
+}
+/******************
+* 検索条件のボタンエリアの微調整
+******************/
+DIV.ui-dialog TABLE.CONDITION TD:last-child{
+	padding-right:5px;
+}
+/******************
+* メインテーブルの幅を戻す
+******************/
+DIV.ui-dialog DIV.MAIN-TABLE {
+	width:100%;
+}
+/******************
+* ページンの位置を調整
+******************/
+DIV.ui-dialog DIV.MAIN-TABLE+.PAGING{
+	position:fixed;
+	z-index:3;
+	top:495px;
+	right:auto;
+	bottom:auto;
+	text-align:right;
+	width:200px;
+}
+/******************
+* フッターをdefaultのdivにする
+******************/
+DIV.ui-dialog DIV.FOOTER {
+	position:static;
+	background-color:transparent;
+	min-height:auto;
+	width:auto;
+	bottom:auto;
+	padding-top:auto;
+}
+/******************
+* フッターtopの線を消す
+******************/
+DIV.ui-dialog .ui-dialog-buttonpane.ui-widget-content{
+	border:none;
+}
+
+/************************************************
+* 項目自動作成エリア
+************************************************/
+DIV.FORM nobr{
+	display:inline-block;
+}
+DIV.FORM input[type=range]{margin:0px;}
+
+DIV.FORM label{
+	display:inline-block;
+	padding-left:10px;
+	padding-right:5px;
+}
+DIV.FORM DIV.FIELDSET{
+	display:inline-block;
+	border:none;
+	background-color:#f3f3f3;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	border-top-right-radius:5px;
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:15px;
+	margin-bottom:15px;
+	position:relative;
+	top:0px;
+	left:0px;
+}
+DIV.FORM DIV.FIELDSET DIV.FIELDSET_CONTENT{
+	padding-top:10px;
+	padding-bottom:10px;
+	scrollbar-color: #E0E0E0 #f3f3f3;
+	scrollbar-width: thin; 
+	width:100%;
+	height:100%;
+	overflow:auto;
+}
+DIV.FORM DIV.FIELDSET DIV.LEGEND{
+	background-color:#f3f3f3;
+	line-height:20px;
+	padding-left:10px;
+	padding-right:10px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	position:absolute;
+	padding-top:5px;
+	top:-20px;
+	left:0px;
+}
+/***************************/
+
+/******************************************************************************
+* 入力画面のメインエリア
+******************************************************************************/
+DIV.MAIN-FORM {
+	overflow-y: scroll;
+	overflow-x: auto;
+	width:var(--main-table-width);
+	height: 390px;
+	scrollbar-color: #EEEEEE #E0E0E0;
+	scrollbar-width: thin; 
+	line-height:33px;
+	vertical-align:top;
+	text-align:left;
+	padding:10px;
+}
+/******************
+* 入力エリアのスクロールバー
+******************/
+DIV.MAIN-FORM::-webkit-scrollbar {
+	background-color:#EEEEEE;
+	width:8px;
+	height:8px;
+}
+DIV.MAIN-FORM::-webkit-scrollbar-thumb {
+	background-color:#E0E0E0;
+}
+/******************************************************************************
+* jexcelの行高さ
+******************************************************************************/
+.jexcel tr{
+	height:33px!important;
+}
+.jexcel td{
+	height:33px!important;
+	line-height:20px;
+}
+.jexcel td select{
+	height:22px!important;
+}

@@ -1,0 +1,19 @@
+EFW
+	tomcat7,8,9の場合、efwX.XX.XXX.jarをご利用ください。
+	tomcat10,11の場合、efwX.XX.XXXjakarta.jarをご利用ください。
+JDK
+	Efw4の場合、JDK8以上をご利用ください。
+	Efw5の場合、JDK21以上をご利用ください。
+JavaScriptEngine
+	Efw4+JDK8,9の場合、JDK内蔵nashornエンジン利用する。
+	Efw4+JDK11以上の場合、nashorn15.6をご利用ください。
+	Efw5の場合、graal24.2.2以上をご利用ください。
+Mail
+	tomcat7,8,9の場合、javax.mailをご利用ください。
+	tomcat10,11の場合、jakarta.mailをご利用ください。
+その他
+	Excel：poi_5.3.0
+	DB（PostgreSQL）：postgresql-42.2.6
+
+JDKとEfwを除く、ほかの関連のjarは以下リポジトリからダウンロードできます。
+https://github.com/efwGrp/efw-related-jars

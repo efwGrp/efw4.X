@@ -1,0 +1,66 @@
+var InputTest_submit={};
+InputTest_submit.paramsFormat={
+	"#item1":null,
+	"#item2":null,
+	"#item3":null,
+	"#item4":null,
+	"#item5":null,
+	"#item6":null,
+	"#item7":null,
+	"#item8":null,
+	"#item9":null,
+	"#item10":null,
+	"#item11":null,
+	"#item12":null,
+	"#item13":null,
+	"#item14":null,
+	"#item15":null,
+	"#item16":null,
+	"#item17":null,
+	"#item18":null,
+	"[name=item19]:checked":null,
+	"#item20":null,
+	"#item21":null,
+	"#item22":null,
+	"#item23":"format:#,##0.00",
+	"#item24":"format:yyyy/MM/dd HH:mm:ss",
+	"#item25":"format:yyyy/MM/dd",
+	"#item26":"format:yyyy/MM",
+};
+InputTest_submit.fire=function(params){
+//	java.lang.Thread.sleep(3000);
+	return new Result()
+	.runat("body")
+	.withdata({
+		"#spnItem1":params["#item1"],
+		"#spnItem2":params["#item2"],
+		"#spnItem3":params["#item3"],
+		"#spnItem4":params["#item4"],
+		"#spnItem5":params["#item5"],
+		"#spnItem6":params["#item6"],
+		"#spnItem7":params["#item7"],
+		"#spnItem8":params["#item8"],
+		"#spnItem9":params["#item9"],
+		"#spnItem10":params["#item10"],
+		"#spnItem11":params["#item11"],
+		"#spnItem12":params["#item12"],
+		"#spnItem13":params["#item13"],
+		"#spnItem14":params["#item14"],
+		"#spnItem15":params["#item15"],
+		"#spnItem16":params["#item16"],
+		"#spnItem17":params["#item17"],
+		"#spnItem18":params["#item18"],
+		"#spnItem19":params["[name=item19]:checked"],
+		"#spnItem20":params["#item20"],
+		"#spnItem21":JSON.stringify(params["#item21"]),
+		"#spnItem22":params["#item22"],
+		"#spnItem23":params["#item23"],
+		"#spnItem24":params["#item24"],
+		"#spnItem25":params["#item25"],
+		"#spnItem26":params["#item26"],
+	})
+	.runat("body")
+	.withdata({
+		"#divParams":JSON.stringify(params).replace(/,\"/g,",\n\""),
+	});
+}

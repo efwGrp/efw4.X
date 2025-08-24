@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqls>
+<sqls>
+<sql id="createTbl">
+	CREATE TABLE tbl_customer(
+		id character varying(10) NOT NULL,
+		name character varying(20),
+		CONSTRAINT tbl_customer_pkey PRIMARY KEY (id)
+	)
+</sql>
+<sql id="dropTbl">
+	DROP TABLE tbl_customer;
+</sql>
+<sql id="selectRow">
+	SELECT
+		id,
+		name
+	FROM tbl_customer
+	WHERE
+		id=:id;
+</sql>
+<sql id="insertRow">
+	INSERT INTO tbl_customer(
+		id,
+		name
+	)VALUES (
+		:id,
+		:name
+	);
+</sql>
+<sql id="updateRow">
+	UPDATE tbl_customer
+	SET
+		name=:name
+	WHERE id=:id;
+</sql>
+<sql id="deleteRow">
+	DELETE FROM tbl_customer
+	WHERE id=:id;
+</sql>
+</sqls>

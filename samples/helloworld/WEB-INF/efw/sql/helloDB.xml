@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqls>
+<sqls>
+<sql id="createTbl">
+	CREATE TABLE tbl_hello(
+		id character varying(10) NOT NULL,	<!-- これはコメント -->
+		name character varying(20),			--これもコメント
+		birthday date,						//これもコメント
+		years integer,
+		CONSTRAINT tbl_hello_pkey PRIMARY KEY (id)
+	)
+</sql>
+<sql id="dropTbl">
+	--動的パラメータテスト
+	DROP TABLE @tbl
+</sql>
+<sql id="allFields">
+	id,
+	name,		--文字テスト
+	birthday,	--日付テスト
+	years		--数字テスト
+</sql>
+<sql id="selectAll">
+	SELECT
+		--includeのテスト
+		<include groupId="helloDB" sqlId="allFields"/>
+	FROM tbl_hello
+</sql>
+<sql id="insertRow">
+	INSERT INTO tbl_hello(
+		--includeのテスト
+		<include groupId="helloDB" sqlId="allFields"/>
+	)VALUES (
+		:id,
+		:name,
+		:birthday,
+		:years
+	)
+</sql>
+<!-- パラメータと動的パラメータの頭文字のカスタマイズ定義 -->
+<sql id="updateName" paramPrefix="#" dynamicPrefix="!">
+	UPDATE !tbl
+	SET
+		name=#name
+	WHERE id=#id
+</sql>
+<sql id="deleteRow">
+	DELETE FROM tbl_hello
+	WHERE id=:id
+</sql>
+</sqls>

@@ -1,0 +1,2 @@
+PDF機能をテストするため
+windows/fonts/msgothic.ttcをここにコピーしてください。
