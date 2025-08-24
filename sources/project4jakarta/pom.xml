@@ -148,14 +148,14 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>innorules</groupId>
       <artifactId>api</artifactId>
-      <version>1.0.0</version>
+      <version>7.1.0</version>
       <scope>system</scope>
       <systemPath>${basedir}/lib/innorules-api.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>innorules</groupId>
       <artifactId>core</artifactId>
-      <version>1.0.0</version>
+      <version>7.1.0</version>
       <scope>system</scope>
       <systemPath>${basedir}/lib/innorules-core.jar</systemPath>
     </dependency>

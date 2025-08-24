@@ -139,7 +139,7 @@ It is provided as open source free software.</description>
       <optional>true</optional>
     </dependency>
     <!-- innorules -->
-    <dependency>
+    <!-- <dependency>
       <groupId>innorules</groupId>
       <artifactId>api</artifactId>
       <version>7.1.0</version>
@@ -152,7 +152,7 @@ It is provided as open source free software.</description>
       <version>7.1.0</version>
       <scope>system</scope>
       <systemPath>${basedir}/lib/innorules-core.jar</systemPath>
-    </dependency>
+    </dependency> -->
   </dependencies>
   <build>
     <plugins>

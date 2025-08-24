@@ -7,7 +7,7 @@ $prj = "efw5x"
 $ver = $Version
 
 cd .\target
-copy-item ../pom.xml efw-$ver.pom
+copy-item ../pom_for_maven_upload.xml efw-$ver.pom
 
 gpg -ab efw-$ver.pom
 gpg -ab efw-$ver-javadoc.jar
