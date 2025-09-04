@@ -101,7 +101,7 @@
 |  |  |  | [`showCol`](help/e/excel.showCol.md) | [`hideCol`](help/e/excel.hideCol.md) |  |
 |  | [`getArray`](help/e/excel.getArray.md) | [`getSingle`](help/e/excel.getSingle.md) | [`getValue`](help/e/excel.getValue.md) | [`setCell`](help/e/excel.setCell.md) | [`setLink`](help/e/excel.setLink.md) |
 |  | [`isEncircled`](help/e/excel.isEncircled.md) | [`encircle`](help/e/excel.encircle.md) | [`addShape`](help/e/excel.addShape.md) | [`addShapeInRange`](help/e/excel.addShapeInRange.md) | [`replacePicture`](help/e/excel.replacePicture.md) |
-| `Pdf` | [`new`](help/e/pdf.new.md) | [`save`](help/e/pdf.save.md) | [`close`](help/e/pdf.close.md) | [`setField`](help/e/excel.setField.md) |  |
+| `Pdf` | [`new`](help/e/pdf.new.md) | [`save`](help/e/pdf.save.md) | [`close`](help/e/pdf.close.md) | [`setField`](help/e/pdf.setField.md) |  |
 |  | [`html2pdf`](help/e/pdf.html2pdf.md) | [`getFontNames`](help/e/pdf.getFontNames.md) |
 | `Record` | [`new`](help/e/record.new.md) |  |  |  |  |
 |  | [`seek`](help/e/record.seek.md) | [`sort`](help/e/record.sort.md) | [`map`](help/e/record.map.md) | [`makeAllKeysUpperCase`](help/e/record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](help/e/record.makeAllKeysLowerCase.md) |
