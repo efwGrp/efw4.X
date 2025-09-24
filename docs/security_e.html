@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFW Framework Security Features - Comprehensive Web Application Protection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 42px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff7b72, #4299e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4299e1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #4299e1;
+        }
+        
+        .subsection {
+            margin-bottom: 25px;
+        }
+        
+        .subsection-title {
+            color: #4299e1;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subsection-title i {
+            margin-right: 8px;
+        }
+        
+        .problem-solution {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .problem, .solution {
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .problem {
+            background: #fff5f5;
+            border-left: 5px solid #e53e3c;
+        }
+        
+        .solution {
+            background: #ebf8ff;
+            border-left: 5px solid #4299e1;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #4299e1;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        .keyword {
+            color: #ff7b72;
+        }
+        
+        .string {
+            color: #a3bffa;
+        }
+        
+        .comment {
+            color: #a0aec0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #bee3f8 0%, #ebf8ff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #bee3f8;
+        }
+        
+        .highlight-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .flow-diagram {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background: #3182ce;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4299e1;
+            color: #4299e1;
+        }
+        
+        .btn-outline:hover {
+            background: #4299e1;
+            color: white;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .problem-solution {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">
+            English
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('jp')">
+            日本語
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('cn')">
+            中文
+        </button>
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>EFW</span> Framework Security Features
+            </div>
+            <h1>Comprehensive Web Application Protection</h1>
+            <p class="subtitle">Multi-layered security mechanisms provided by the EFW framework to protect web applications from various attacks</p>
+            <div style="margin-top: 35px;">
+                <a href="#intro" class="btn">Learn More</a>
+                <a href="https://github.com/efwGrp/efw4.X" class="btn btn-outline">GitHub Source</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="intro" class="section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> EFW Framework Security Overview</h2>
+            <p>EFW (Escco-Framework) is a server-side JavaScript Ajax framework designed and developed by Escco Japan Co., Ltd. using a <strong>goal-oriented approach</strong>, providing multi-layered security protection mechanisms.</p>
+            <p>EFW framework ensures application security from three dimensions: file security, parameter security, and injection attack protection.</p>
+            
+            <div class="highlight">
+                <p class="highlight-text">Multi-layered Security Protection - Comprehensive Defense from File Management to Injection Attacks</p>
+                <div>
+                    <a href="#file-security" class="btn">File Security</a>
+                    <a href="#param-security" class="btn">Parameter Security</a>
+                    <a href="#injection-security" class="btn">Injection Protection</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="file-security" class="section">
+            <h2 class="section-title"><i class="fas fa-file-shield"></i> 1. File Leakage Protection Measures</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> What is File Leakage?</h3>
+                <p>File leakage refers to a category of security issues where files within a web server are continuously read by attackers on the internet. This is one of the most basic vulnerabilities in web applications. Websites without file leakage protection measures fall into the category of the lowest security level.</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-folder"></i> 1-1. EFW Folder Location Strategy</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Traditional Problem</h4>
+                        <p>Application files and resources are typically stored in web-accessible areas, making them vulnerable to direct access by attackers.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Solution</h4>
+                        <p>EFW framework defaults to storing application programs and various resources (excluding jsp, css, etc.) in the WEB-INF folder, which is in the web non-public area.</p>
+                        <ul>
+                            <li>event: Folder for storing event js files</li>
+                            <li>i18n: Folder for storing multilingual message definitions</li>
+                            <li>mail: Folder for storing email templates</li>
+                            <li>sql: Folder for storing external SQL</li>
+                            <li>storage: Folder for storing application operation files</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-tools"></i> 1-2. Enhanced File Management Tool Elfinder</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Original Elfinder Issues</h4>
+                        <p>In the original elfinder, home path, read-only flag, etc. can be modified in client-side JavaScript, posing security risks.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Enhancement</h4>
+                        <p>EFW's elfinder tag has a protected attribute that makes the home path and read-only flag unchangeable, significantly enhancing security.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-download"></i> 1-3. Secure Download Mechanism</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Traditional Download Issues</h4>
+                        <p>Direct file path downloads may lead to unauthorized access and file leakage.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Secure Download Mechanism</h4>
+                        <p>Downloads must start from an event dispatch. Between event execution and download initiation, the download target is stored in the session.</p>
+                        <p>This prevents downloads from being executed solely through client-side JavaScript tampering.</p>
+                        <div class="code-block">
+                            <span class="comment">// In event JS, use attach function to set download file name or path name</span><br>
+                            <span class="keyword">return</span> (<span class="keyword">new</span> Result())<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.attach(<span class="string">"myfile.txt"</span>);
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="param-security" class="section">
+            <h2 class="section-title"><i class="fas fa-key"></i> 2. Parameter Information Leakage Protection</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> What is Parameter Information Leakage?</h3>
+                <p>Parameter information leakage refers to vulnerabilities where parameters passed during page transitions cause issues such as unauthorized access to personal information. Although named "information leakage," this category also includes tampering issues such as manipulating parameters for improper low-price shopping on e-commerce sites.</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-check-double"></i> 2-1. Event Parameter Check Mechanism</h3>
+                <p>EFW provides a parameter definition check mechanism that verifies whether event parameters obtained from the client match the expected types, preventing server failures caused by client tampering.</p>
+                <div class="code-block">
+                    <span class="keyword">var</span> myEvent = {};<br>
+                    myEvent.paramsFormat = {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_date"</span>: <span class="string">"format:yyyy/MM/dd;required;display-name:Date Field"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_number"</span>: <span class="string">"format:###,##0;min:0;max:1,000;display-name:Number Field"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_string"</span>: <span class="string">"maxlength:100;display-name:String Field"</span>,<br>
+                    };
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-user-check"></i> 2-2. Login Check Mechanism</h3>
+                <p>Through property file settings, automatic login checks are performed on pages that require authentication and events that require login, preventing information leakage caused by directly entering addresses without logging in.</p>
+                <div class="code-block">
+                    <span class="comment"># Login check flag</span><br>
+                    efw.login.check = <span class="keyword">true</span><br>
+                    <span class="comment"># Session key for login</span><br>
+                    efw.login.key = USER_ID<br>
+                    <span class="comment"># Login URL</span><br>
+                    efw.login.url = login.jsp<br>
+                    <span class="comment"># URL patterns exempt from login check</span><br>
+                    efw.outoflogin.url.pattern = [/](LG01|LG02|LG03|error).jsp
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-user-lock"></i> 2-3. Role Check Mechanism</h3>
+                <p>Through property file settings, automatic role checks are performed on pages viewable only by administrators and events operable only by administrators, preventing information leakage caused by regular users directly entering administrator-only page addresses.</p>
+                <div class="code-block">
+                    <span class="comment"># Authorization check flag</span><br>
+                    efw.auth.check = <span class="keyword">true</span><br>
+                    <span class="comment"># All authorization check cases</span><br>
+                    efw.auth.cases = admin,user<br>
+                    <span class="comment"># Define cases one by one</span><br>
+                    admin.auth.pattern = ^admin.*$<br>
+                    admin.url.pattern = [/]*.jsp<br>
+                    admin.eventid.pattern = .*
+                </div>
+            </div>
+        </section>
+
+        <section id="injection-security" class="section">
+            <h2 class="section-title"><i class="fas fa-syringe"></i> 3. Injection Attack Protection Measures</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> What is Injection Attack?</h3>
+                <p>Injection refers to the act of injecting something into the inside. Injection attacks are attack techniques that cleverly mix security-compromising commands into input data that programs normally receive, making them functional inside the computer.</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-code"></i> 3-1. JavaScript Injection Prevention in JSON Communication</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Risk of Using eval()</h4>
+                        <p>If eval() is used to parse JSON data, malicious code may be executed.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Solution</h4>
+                        <p>EFW uses JSON.parse() to parse strings sent from the client, preventing JavaScript injection in JSON communication.</p>
+                        <div class="code-block">
+                            <span class="comment">// Safe - using JSON.parse</span><br>
+                            <span class="keyword">var</span> data = JSON.parse(requestData);
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-desktop"></i> 3-2. HTML Injection Prevention in Automatic Result Display</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Risk of Using html()</h4>
+                        <p>If jQuery's html() method is used to directly display data, HTML injection attacks may occur.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Solution</h4>
+                        <p>EFW utilizes jQuery's val() and text() methods to display return values, preventing HTML injection.</p>
+                        <div class="code-block">
+                            <span class="comment">// Safe - using val() and text()</span><br>
+                            <span class="keyword">return</span> (<span class="keyword">new</span> Result())<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.runat(<span class="string">"body"</span>)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.withdata({<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#span_value"</span>: params[<span class="string">"#input1"</span>]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;});
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-database"></i> 3-3. SQL Injection Prevention with Prepared Statements</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Risk of String Concatenation</h4>
+                        <p>Using string concatenation to build SQL statements may lead to SQL injection attacks.</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW Solution</h4>
+                        <p>EFW converts parameters of external SQL into prepared statement-style parameters, preventing SQL injection.</p>
+                        <div class="code-block">
+                            <span class="comment">&lt;!-- Safe - using prepared statements --&gt;</span><br>
+                            &lt;sql id=<span class="string">"select_user_by_uid"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;SELECT uid, unm, pwd<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;FROM tb_user<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;WHERE uid = :txt_uid<br>
+                            &lt;/sql&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> Comprehensive Security Assurance</h2>
+            <p>EFW framework provides comprehensive protection for web applications from file management to injection attacks through multi-layered security mechanisms.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-lock"></i> File Security</h3>
+                    <p>Comprehensive prevention of file leakage through non-web public area storage, secure download mechanisms, and enhanced file management tools.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-shield"></i> Parameter Security</h3>
+                    <p>Prevention of parameter tampering and unauthorized access through parameter checks, login checks, and role checks.</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-bug"></i> Injection Protection</h3>
+                    <p>Comprehensive prevention of various injection attacks through secure JSON parsing, secure HTML display, and SQL prepared statements.</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <p class="highlight-text">EFW Framework - Providing Comprehensive Security for Your Web Applications</p>
+                <div>
+                    <a href="https://github.com/efwGrp/efw4.X" class="btn">GitHub Source</a>
+                    <a href="http://id.nii.ac.jp/1001/00147552/" class="btn btn-outline">Academic Paper</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EFW Framework - Designed and Developed by Escco Japan Co., Ltd.</p>
+            <p>© 2025 EFW Group | Comprehensive Web Application Security Solution</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching function
+        function switchLanguage(lang) {
+            const pages = {
+                'cn': 'security_c.html',
+                'jp': 'security_j.html',
+                'en': 'security_e.html'
+            };
+            window.location.href = pages[lang];
+        }
+
+        // Simple scroll animation effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section');
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.5s ease';
+            });
+            
+            function checkVisibility() {
+                const triggerBottom = window.innerHeight * 0.9;
+                
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < triggerBottom) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < triggerBottom) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // Initial check
+        });
+
+        // Language switching functionality
+        function switchTo(path) {
+            window.location.href = path;
+        }
+
+    </script>
+</body>
+</html>

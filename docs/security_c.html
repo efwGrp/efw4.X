@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFW框架安全特性 - 全面防护Web应用安全</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 42px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff7b72, #4299e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4299e1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #4299e1;
+        }
+        
+        .subsection {
+            margin-bottom: 25px;
+        }
+        
+        .subsection-title {
+            color: #4299e1;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .subsection-title i {
+            margin-right: 8px;
+        }
+        
+        .problem-solution {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .problem, .solution {
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .problem {
+            background: #fff5f5;
+            border-left: 5px solid #e53e3c;
+        }
+        
+        .solution {
+            background: #ebf8ff;
+            border-left: 5px solid #4299e1;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #4299e1;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+        
+        .keyword {
+            color: #ff7b72;
+        }
+        
+        .string {
+            color: #a3bffa;
+        }
+        
+        .comment {
+            color: #a0aec0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #bee3f8 0%, #ebf8ff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #bee3f8;
+        }
+        
+        .highlight-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2c5282;
+            margin-bottom: 15px;
+        }
+        
+        .flow-diagram {
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background: #3182ce;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4299e1;
+            color: #4299e1;
+        }
+        
+        .btn-outline:hover {
+            background: #4299e1;
+            color: white;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .problem-solution {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">
+            English
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('jp')">
+            日本語
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('cn')">
+            中文
+        </button>
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>EFW</span>框架安全特性
+            </div>
+            <h1>全面防护Web应用安全</h1>
+            <p class="subtitle">EFW框架提供的多层次安全防护机制，保障Web应用程序免受各种攻击</p>
+            <div style="margin-top: 30px;">
+                <a href="#intro" class="btn">了解更多</a>
+                <a href="https://github.com/efwGrp/efw4.X" class="btn btn-outline">GitHub源码</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="intro" class="section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> EFW框架安全概述</h2>
+            <p>EFW（Escco-Framework）是日本エスコ株式会社（Escco Japan Co., Ltd.）设计和开发的服务器端JavaScript Ajax框架，采用<strong>目标导向方法</strong>，提供多层次的安全防护机制。</p>
+            <p>EFW框架从文件安全、参数安全和注入攻击防护三个维度，全面保障Web应用程序的安全性。</p>
+            
+            <div class="highlight">
+                <p class="highlight-text">多层次安全防护 - 从文件管理到注入攻击的全面防护</p>
+                <div>
+                    <a href="#file-security" class="btn">文件安全</a>
+                    <a href="#param-security" class="btn">参数安全</a>
+                    <a href="#injection-security" class="btn">注入防护</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="file-security" class="section">
+            <h2 class="section-title"><i class="fas fa-file-shield"></i> 1. 文件泄露防护措施</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> 什么是文件泄露？</h3>
+                <p>文件泄露是指Web服务器内的文件被互联网上的攻击者不断读取的安全问题类别。这是Web应用程序漏洞中最基本的一种。没有文件泄露防护措施的网站属于安全级别最低的网站类别。</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-folder"></i> 1-1. efw文件夹的存放位置</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 传统问题</h4>
+                        <p>应用程序文件和资源通常存放在Web可访问区域，容易被攻击者直接访问。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW解决方案</h4>
+                        <p>EFW框架默认将应用程序程序和各种资源（除jsp・css等外）存放在Web非公开区域的WEB-INF文件夹中。</p>
+                        <ul>
+                            <li>event：存放事件js文件的文件夹</li>
+                            <li>i18n：存放多国语言消息定义的文件夹</li>
+                            <li>mail：存放邮件模板的文件夹</li>
+                            <li>sql：存放外部SQL的文件夹</li>
+                            <li>storage：存放应用程序操作文件的文件夹</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-tools"></i> 1-2. 文件管理工具elfinder的改造</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 原始elfinder的问题</h4>
+                        <p>原始elfinder的主路径、只读标志等可以在客户端JavaScript中修改，存在安全风险。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW改进</h4>
+                        <p>EFW的elfinder标签设置了protected属性，使主路径、只读标志不可更改，大大增强了安全性。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-download"></i> 1-3. 下载机制</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 传统下载问题</h4>
+                        <p>直接文件路径下载可能导致未授权访问和文件泄露。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW安全下载机制</h4>
+                        <p>下载必须从一个事件发布开始，在事件执行和下载开始之间，下载对象在会话中保管。</p>
+                        <p>这防止了仅通过客户端JavaScript篡改就执行下载的情况。</p>
+                        <div class="code-block">
+                            <span class="comment">// 在事件JS中，使用attach函数设置下载文件名或路径名</span><br>
+                            <span class="keyword">return</span> (<span class="keyword">new</span> Result())<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.attach(<span class="string">"myfile.txt"</span>);
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="param-security" class="section">
+            <h2 class="section-title"><i class="fas fa-key"></i> 2. 参数信息泄露防护措施</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> 什么是参数信息泄露？</h3>
+                <p>参数信息泄露是指在页面切换时传递的参数导致他人个人信息被读取等问题的漏洞类别。虽然命名为"信息泄露"，但包括在购物网站中参数被篡改以不当低价购物等篡改类问题也属于此类别。</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-check-double"></i> 2-1. 事件参数检查机制</h3>
+                <p>EFW提供参数定义检查机制，检查从客户端获取的事件参数是否符合预期类型，防止客户端篡改导致的服务器故障。</p>
+                <div class="code-block">
+                    <span class="keyword">var</span> myEvent = {};<br>
+                    myEvent.paramsFormat = {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_date"</span>: <span class="string">"format:yyyy/MM/dd;required;display-name:日期项目"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_number"</span>: <span class="string">"format:###,##0;min:0;max:1,000;display-name:数字项目"</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#txt_string"</span>: <span class="string">"maxlength:100;display-name:文字项目"</span>,<br>
+                    };
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-user-check"></i> 2-2. 登录检查机制</h3>
+                <p>通过属性文件设置，自动对登录后才能浏览的页面和操作的事件进行登录检查，防止未登录状态下直接输入地址导致的信息泄露。</p>
+                <div class="code-block">
+                    <span class="comment">#登录检查标志</span><br>
+                    efw.login.check = <span class="keyword">true</span><br>
+                    <span class="comment">#登录的会话键</span><br>
+                    efw.login.key = USER_ID<br>
+                    <span class="comment">#登录URL</span><br>
+                    efw.login.url = login.jsp<br>
+                    <span class="comment">#免登录检查的URL模式</span><br>
+                    efw.outoflogin.url.pattern = [/](LG01|LG02|LG03|error).jsp
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-user-lock"></i> 2-3. 角色检查机制</h3>
+                <p>通过属性文件设置，自动对仅管理员可浏览的页面和操作的事件进行角色检查，防止普通用户直接输入管理员专用页面地址导致的信息泄露。</p>
+                <div class="code-block">
+                    <span class="comment">#权限检查标志</span><br>
+                    efw.auth.check = <span class="keyword">true</span><br>
+                    <span class="comment">#所有权限检查情况</span><br>
+                    efw.auth.cases = admin,user<br>
+                    <span class="comment">#逐一定义情况</span><br>
+                    admin.auth.pattern = ^admin.*$<br>
+                    admin.url.pattern = [/]*.jsp<br>
+                    admin.eventid.pattern = .*
+                </div>
+            </div>
+        </section>
+
+        <section id="injection-security" class="section">
+            <h2 class="section-title"><i class="fas fa-syringe"></i> 3. 注入攻击防护措施</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-question-circle"></i> 什么是注入攻击？</h3>
+                <p>注入（injection）是指向内部注入某些东西的词语。注入攻击是指巧妙地在程序正常接收的输入数据中混入侵害安全的命令，使其在计算机内部功能化的攻击手法。</p>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-code"></i> 3-1. JSON通信的JavaScript注入防护</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 使用eval()的风险</h4>
+                        <p>如果使用eval()解析JSON数据，恶意代码可能被执行。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW解决方案</h4>
+                        <p>EFW使用JSON.parse()解析客户端发送的字符串，防止JSON通信中的JavaScript注入攻击。</p>
+                        <div class="code-block">
+                            <span class="comment">// 安全 - 使用JSON.parse</span><br>
+                            <span class="keyword">var</span> data = JSON.parse(requestData);
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-desktop"></i> 3-2. 处理结果自动显示的HTML注入防护</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 使用html()的风险</h4>
+                        <p>如果使用jQuery的html()方法直接显示数据，可能导致HTML注入攻击。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW解决方案</h4>
+                        <p>EFW利用jQuery的val()和text()方法显示返回值，防止HTML注入。</p>
+                        <div class="code-block">
+                            <span class="comment">// 安全 - 使用val()和text()</span><br>
+                            <span class="keyword">return</span> (<span class="keyword">new</span> Result())<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.runat(<span class="string">"body"</span>)<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;.withdata({<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"#span_value"</span>: params[<span class="string">"#input1"</span>]<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;});
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h3 class="subsection-title"><i class="fas fa-database"></i> 3-3. 预处理语句的SQL注入防护</h3>
+                <div class="problem-solution">
+                    <div class="problem">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 字符串拼接的风险</h4>
+                        <p>使用字符串拼接构建SQL语句可能导致SQL注入攻击。</p>
+                    </div>
+                    <div class="solution">
+                        <h4><i class="fas fa-check-circle"></i> EFW解决方案</h4>
+                        <p>EFW将外部SQL的参数转换为预处理语句方式的参数，防止SQL注入。</p>
+                        <div class="code-block">
+                            <span class="comment">&lt;!-- 安全 - 使用预处理语句 --&gt;</span><br>
+                            &lt;sql id=<span class="string">"select_user_by_uid"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;SELECT uid, unm, pwd<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;FROM tb_user<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;WHERE uid = :txt_uid<br>
+                            &lt;/sql&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> 全面安全保障</h2>
+            <p>EFW框架通过多层次的安全防护机制，为Web应用程序提供从文件管理到注入攻击的全面防护。</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-lock"></i> 文件安全</h3>
+                    <p>通过非Web公开区域存储、安全下载机制和文件管理工具改造，全面防止文件泄露。</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-user-shield"></i> 参数安全</h3>
+                    <p>通过参数检查、登录检查和角色检查机制，防止参数篡改和未授权访问。</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><i class="fas fa-bug"></i> 注入防护</h3>
+                    <p>通过JSON安全解析、HTML安全显示和SQL预处理语句，全面防止各种注入攻击。</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <p class="highlight-text">EFW框架 - 为您的Web应用程序提供全面安全保障</p>
+                <div>
+                    <a href="https://github.com/efwGrp/efw4.X" class="btn">GitHub源码</a>
+                    <a href="http://id.nii.ac.jp/1001/00147552/" class="btn btn-outline">学术论文</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EFW框架 - 由エスコ・ジャパン株式会社设计与开发</p>
+            <p>© 2025 EFW工作组 | 全面Web应用安全解决方案</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language switching function
+        function switchLanguage(lang) {
+            const pages = {
+                'cn': 'security_c.html',
+                'jp': 'security_j.html',
+                'en': 'security_e.html'
+            };
+            window.location.href = pages[lang];
+        }
+        // 简单的滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section');
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+            
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.5s ease';
+            });
+            
+            function checkVisibility() {
+                const triggerBottom = window.innerHeight * 0.9;
+                
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < triggerBottom) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < triggerBottom) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // 初始检查
+        });
+
+        // Language switching functionality
+        function switchTo(path) {
+            window.location.href = path;
+        }
+
+    </script>
+</body>
+</html>
