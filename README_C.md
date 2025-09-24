@@ -7,7 +7,7 @@
 [![Efw Client](./help/img/efw_client.png)](./help/img/efw_client_org.png)
 [![Efw Server](./help/img/efw_server.png)](./help/img/efw_server_org.png)
 
-* [Efw 是什么？](https://qiita.com/changkejun/private/844953846f3e6bed4a9d)
+* [Efw 是什么？](https://efwgrp.github.io/efw4.X/index_c.html)
 * [Efw 安全相关说明](https://qiita.com/changkejun/private/70184f814ff52f862d91)
 * [构建高负载 Tomcat 环境](https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0)
 
