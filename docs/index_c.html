@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFW框架 - 目标导向的Web开发解决方案</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 42px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .problem-solution {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .problem, .solution {
+            flex: 1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .problem {
+            background: #ffecec;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .solution {
+            background: #e8f4fc;
+            border-left: 5px solid #3498db;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 25px 15px;
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-author {
+            font-weight: 500;
+            color: #7f8c8d;
+            text-align: right;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .highlight-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #3498db;
+            color: #3498db;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .problem-solution {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .lang-btn {
+            height: 40px;
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchTo('index.html')">English</button>
+        <button class="lang-btn" onclick="switchTo('index_j.html')">日本語</button>
+        <button class="lang-btn" onclick="switchTo('index_c.html')">中文</button>
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code-branch"></i>
+                <span>EFW</span>框架
+            </div>
+            <h1>革命性的Web开发解决方案</h1>
+            <p class="subtitle">采用目标导向方法，通过Ajax和服务器端JavaScript高速构建Web系统</p>
+            <div style="margin-top: 30px;">
+                <a href="#intro" class="btn">了解更多</a>
+                <a href="https://github.com/efwGrp/efw4.X" class="btn btn-outline">GitHub源码</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="intro" class="section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> EFW框架简介</h2>
+            <p>EFW（Escco-Framework）是由日本エスコ株式会社（Escco Japan Co., Ltd.）采用<strong>目标导向方法</strong>设计与开发的一款用于服务器端JavaScript的Ajax框架。</p>
+            <p>引入EFW可显著降低Web开发的复杂度，其特性包括<strong>大幅减少代码量</strong>、<strong>快速响应需求评审与规格变更</strong>等。</p>
+            
+            <div class="highlight">
+                <p class="highlight-text">使用Ajax和服务器端JavaScript构建目标导向的高速Web系统</p>
+                <div>
+                    <a href="http://id.nii.ac.jp/1001/00147552/" class="btn">学术论文</a>
+                    <a href="https://github.com/efwGrp/efw4.X" class="btn btn-outline">GitHub项目</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-exclamation-circle"></i> 传统Web开发的问题</h2>
+            
+            <div class="problem-solution">
+                <div class="problem">
+                    <h3><i class="fas fa-times-circle"></i> 问题一：代码膨胀</h3>
+                    <p>基本设计仅需10行说明，但基于MVC架构的程序可能需要超过100行代码实现。</p>
+                    <p>规格说明中的每一行常对应几十行程序代码。</p>
+                </div>
+                <div class="solution">
+                    <h3><i class="fas fa-check-circle"></i> EFW解决方案</h3>
+                    <p>通过领域特定语言(DSL)实现输入数据收集与处理结果显示的自动化。</p>
+                    <p>大幅减少重复代码，提高开发效率。</p>
+                </div>
+            </div>
+            
+            <div class="problem-solution">
+                <div class="problem">
+                    <h3><i class="fas fa-times-circle"></i> 问题二：流程混乱</h3>
+                    <p>尽管规格说明中有明确的处理顺序，但程序代码跳转频繁。</p>
+                    <p>非专业人员难以理清执行流程，增加维护成本。</p>
+                </div>
+                <div class="solution">
+                    <h3><i class="fas fa-check-circle"></i> EFW解决方案</h3>
+                    <p>所有逻辑集中在事件JS文件中，无论客户端还是服务器端操作。</p>
+                    <p>程序粒度易于与设计文档映射，处理流程清晰易懂。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> EFW核心优势</h2>
+            
+            <div class="card-container">
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3 class="card-title">代码可读性</h3>
+                    <p>程序目的和处理流程清晰易懂，大幅提升代码可维护性。</p>
+                </div>
+                
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="card-title">开发效率</h3>
+                    <p>减少重复编码工作，显著缩短开发周期，快速响应需求变更。</p>
+                </div>
+                
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="card-title">热重载支持</h3>
+                    <p>修改代码后无需重启服务器，F5刷新即可查看变化，提升开发体验。</p>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="card-title">易于学习</h3>
+                    <p>简洁的API和直观的设计，降低新团队成员上手难度。</p>
+                </div>
+                
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="card-title">易于维护</h3>
+                    <p>逻辑集中，结构清晰，大幅降低系统维护成本和风险。</p>
+                </div>
+                
+                <div class="card benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="card-title">成本效益</h3>
+                    <p>减少开发与维护成本，提高项目投资回报率。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-comment-alt"></i> 用户评价</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"在咨询业务中使用EFW制作原型进行需求确认，非常实用。对于突然想到的构想也能快速实现！"</p>
+                <p class="testimonial-author">- 项目经理</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Skeleton示例设计得很好！操作体验非常流畅！修改源码后无需重启，按F5即可确认，非常方便！"</p>
+                <p class="testimonial-author">- 前端开发工程师</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"使用EFW几个月后，再也不想回到Spring了！开发效率和体验都有质的飞跃。"</p>
+                <p class="testimonial-author">- 全栈开发工程师</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> 开始使用EFW</h2>
+            <p>EFW为Web开发提供了全新的解决方案，无论是新项目还是现有系统改造，都能显著提升开发效率和系统质量。</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://github.com/efwGrp/efw4.X" class="btn">
+                    <i class="fab fa-github"></i> 访问GitHub获取源码
+                </a>
+                <a href="http://id.nii.ac.jp/1001/00147552/" class="btn btn-outline">
+                    <i class="fas fa-file-pdf"></i> 阅读学术论文
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EFW框架 - 由エスコ・ジャパン株式会社设计与开发</p>
+            <p>© 2025 EFW工作组 | 采用目标导向的Web开发解决方案</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('.section');
+            
+            // 添加卡片动画
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+            
+            // 添加区域动画
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.5s ease';
+            });
+            
+            // 滚动时触发动画
+            function checkVisibility() {
+                const triggerBottom = window.innerHeight * 0.9;
+                
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (cardTop < triggerBottom) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+                
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop < triggerBottom) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkVisibility);
+            checkVisibility(); // 初始检查
+        });
+
+        // Language switching functionality
+        function switchTo(path) {
+            window.location.href = path;
+        }
+    </script>
+</body>
+</html>
