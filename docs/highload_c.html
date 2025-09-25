@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <title>高负载应对的Tomcat EFW环境构建</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --primary-light: #4a6491;
+            --accent: #3498db;
+            --accent-light: #5dade2;
+            --warning: #e74c3c;
+            --success: #2ecc71;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(30deg);
+        }
+        
+        .logo {
+            font-size: 36px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .meta-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .note-box {
+            background: #fff9e6;
+            border-left: 5px solid #ffcc00;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .note-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-title i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        .system-diagram {
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--box-shadow);
+            overflow-x: auto;
+        }
+        
+        .diagram-container {
+            min-width: 800px;
+            position: relative;
+        }
+        
+        .server-node {
+            background: var(--light);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .server-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            width: 15px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .server-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 15px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .connection-line {
+            height: 40px;
+            border-left: 2px solid var(--accent);
+            margin: 0 auto;
+            width: 2px;
+            position: relative;
+        }
+        
+        .connection-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .queue-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px dashed var(--accent);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .queue-title {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .config-table th, .config-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .config-table th {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .config-table tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .explanation-box {
+            background: #e8f4fc;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .scenario-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .scenario-box {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .scenario-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scenario-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .scenario-warning {
+            border-left: 5px solid var(--warning);
+        }
+        
+        .scenario-success {
+            border-left: 5px solid var(--success);
+        }
+        
+        .scenario-content {
+            margin-top: 15px;
+        }
+        
+        .countdown {
+            display: inline-block;
+            background: var(--warning);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .system-diagram {
+                padding: 10px;
+            }
+            
+            .diagram-container {
+                min-width: 600px;
+            }
+        }
+        
+        .animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .image-placeholder:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-container p {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+                
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">
+             English
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('jp')">
+             日本語
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('cn')">
+             中文
+        </button>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-server"></i>
+                <span>EFW</span>环境构建指南
+            </div>
+            <h1>高负载应对的Tomcat EFW环境构建</h1>
+            <p class="subtitle">面向Java经验者 - 日本エスコ株式会社</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> WEB系统的"同时连接"是什么？</h2>
+            
+            <div class="explanation-box">
+                <p>"同时连接数"是Web系统开发中常用的术语，但常常在没有明确定义的情况下被误用。这次，我们将包含相关术语，尝试创建严格的定义。</p>
+                
+                <ul>
+                    <li><strong>最大登录用户数</strong>: 登录后创建会话信息，占用一定内存。根据系统方法，如果会话内存较大，需要注意会话超时时间内登录的用户数。</li>
+                    <li><strong>最大同时连接数</strong>: TCP连接从"Established"到"Closed"被视为"连接中"。任意时间点打开的连接数就是同时连接数。一次画面操作会产生2个连接（JSP和各种静态内容）。输出完成后，连接会保持15秒。</li>
+                    <li><strong>最大同时执行数</strong>: 服务器能够同时处理的请求数。</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <div class="note-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    备注
+                </div>
+                <p>如果Proxy、FireWall等具有缓存功能，对静态内容的连接可能不会到达WEB服务器。而且，稍微严格来说，不是2而是1.X。</p>
+            </div>
+            
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> 系统概念图</h2>
+            
+            <!-- 系统概念图的占位符 -->
+            <div class="image-placeholder" style="height:400px;">
+            	<img src="./img/efw_env.png" style="height:95%">
+            </div>
+            
+            <div class="config-table">
+                <table>
+                    <tr>
+                        <th>设置项目</th>
+                        <th>值</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr>
+                        <td>ListenBacklog</td>
+                        <td>3000</td>
+                        <td>已建立的TCP连接的排队请求的最大连接等待队列数</td>
+                    </tr>
+                    <tr>
+                        <td>maxConnections</td>
+                        <td>1000</td>
+                        <td>服务器接受处理的并发连接最大数</td>
+                    </tr>
+                    <tr>
+                        <td>acceptCount</td>
+                        <td>100</td>
+                        <td>所有可能的请求处理线程都在使用时，传入连接请求的最大队列长度</td>
+                    </tr>
+                    <tr>
+                        <td>MaxClients</td>
+                        <td>100</td>
+                        <td>可响应的并发请求数</td>
+                    </tr>
+                    <tr>
+                        <td>maxthreads</td>
+                        <td>200 (默认)</td>
+                        <td>为请求处理创建的最大线程数（最大同时执行数）</td>
+                    </tr>
+                    <tr>
+                        <td>ServerLimit</td>
+                        <td>1000</td>
+                        <td>MaxClients的可设置最大值（Apache进程运行中的最大值，限制在20000以下）</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-cogs"></i> 系统概念图说明</h2>
+            
+            <div class="explanation-box">
+                <p>当客户端有大量连接时：</p>
+                <ul>
+                    <li>首先存储在Apache的ListenBacklog队列中，其中1000个连接传递给Tomcat。</li>
+                    <li>Tomcat接收连接请求，存储在Connection队列中。</li>
+                    <li>从Connection队列中取出100个连接转到Accept队列进行处理。</li>
+                    <li>后续连接请求补充Connection队列中的空缺。</li>
+                    <li>为了不超过Connection队列的最大值，需要匹配MaxClients和maxConnections的值。</li>
+                </ul>
+                
+                <p>当EFW框架处理Connection队列中的连接请求时：</p>
+                <ul>
+                    <li>对于繁重处理，为每个事件设置可同时处理的队列。当达到队列最大值时，返回错误。</li>
+                    <li>对于轻量处理，不设置同时处理队列。</li>
+                </ul>
+                
+                <p>事件队列最大值达到错误有两种情况：</p>
+                <ul>
+                    <li>如果可以重试，显示错误消息，并进行30秒倒计时。</li>
+                    <li>如果设置为不可重试，仅显示错误消息。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> 错误场景</h2>
+            
+            <div class="scenario-container">
+                <div class="scenario-box scenario-warning">
+                    <h3 class="scenario-title">ListenBacklog队列溢出</h3>
+                    <div class="scenario-content">
+                        <p>当服务器连接已满时，进行新操作会显示以下错误消息：</p>
+                        <div class="note-box">
+                            <p>连接错误：服务器繁忙。请稍后再试。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-box scenario-success">
+                    <h3 class="scenario-title">事件队列溢出（可重试）</h3>
+                    <div class="scenario-content">
+                        <p>当繁重操作受限时，会显示以下倒计时消息（30秒计时）。可重试。</p>
+                        <div class="note-box">
+                            <p>系统繁忙。请等待直到可以操作。</p>
+                            <div class="countdown">30秒</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-box scenario-warning">
+                    <h3 class="scenario-title">事件队列溢出（不可重试）</h3>
+                    <div class="scenario-content">
+                        <p>当操作受限时，会显示以下繁忙消息。不可重试。</p>
+                        <div class="note-box">
+                            <p>该功能繁忙。请稍等片刻。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-wrench"></i> 设置位置</h2>
+            
+            <div class="explanation-box">
+                <p>可以通过以下配置文件调整各种参数：</p>
+                
+                <ul>
+                    <li><strong>Apache设置 (httpd.conf)</strong>: ListenBacklog, MaxClients, ServerLimit</li>
+                    <li><strong>Tomcat设置 (server.xml)</strong>: maxConnections, acceptCount, maxthreads</li>
+                    <li><strong>EFW设置 (efw.properties)</strong>: 事件队列大小, 重试设置</li>
+                    <li><strong>PostgreSQL设置 (postgresql.conf)</strong>: max_connections</li>
+                </ul>
+                
+                <p>为了应对高负载环境，需要根据系统需求适当调整这些值。</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>高负载应对的Tomcat EFW环境构建 - 日本エスコ株式会社</p>
+            <p>© 2025 EFW工作组 | 面向Java经验者的技术资料</p>
+        </div>
+    </footer>
+
+    <script>
+        // 语言切换功能
+        function switchLanguage(lang) {
+            const pages = {
+                'cn': 'highload_c.html',
+                'jp': 'highload_j.html',
+                'en': 'highload_e.html'
+            };
+            window.location.href = pages[lang];
+        }
+        // 滚动时的动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

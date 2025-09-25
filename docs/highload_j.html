@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <title>高負荷対応のTomcat Efw環境構築</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --primary-light: #4a6491;
+            --accent: #3498db;
+            --accent-light: #5dade2;
+            --warning: #e74c3c;
+            --success: #2ecc71;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            transform: rotate(30deg);
+        }
+        
+        .logo {
+            font-size: 36px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo span {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .meta-info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .note-box {
+            background: #fff9e6;
+            border-left: 5px solid #ffcc00;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+        }
+        
+        .note-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .note-title i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        .system-diagram {
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: var(--box-shadow);
+            overflow-x: auto;
+        }
+        
+        .diagram-container {
+            min-width: 800px;
+            position: relative;
+        }
+        
+        .server-node {
+            background: var(--light);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .server-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            width: 15px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .server-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            width: 15px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .connection-line {
+            height: 40px;
+            border-left: 2px solid var(--accent);
+            margin: 0 auto;
+            width: 2px;
+            position: relative;
+        }
+        
+        .connection-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -4px;
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .queue-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px dashed var(--accent);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .queue-title {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .config-table th, .config-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .config-table th {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .config-table tr:hover {
+            background-color: #e9f7fe;
+        }
+        
+        .explanation-box {
+            background: #e8f4fc;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .scenario-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .scenario-box {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .scenario-box:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scenario-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .scenario-warning {
+            border-left: 5px solid var(--warning);
+        }
+        
+        .scenario-success {
+            border-left: 5px solid var(--success);
+        }
+        
+        .scenario-content {
+            margin-top: 15px;
+        }
+        
+        .countdown {
+            display: inline-block;
+            background: var(--warning);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .system-diagram {
+                padding: 10px;
+            }
+            
+            .diagram-container {
+                min-width: 600px;
+            }
+        }
+        
+        .animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .image-placeholder:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-container p {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+                
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: #238636;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-btn:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="switchLanguage('en')">
+             English
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('jp')">
+             日本語
+        </button>
+        <button class="lang-btn" onclick="switchLanguage('cn')">
+             中文
+        </button>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-server"></i>
+                <span>EFW</span>環境構築ガイド
+            </div>
+            <h1>高負荷対応のTomcat EFW環境構築</h1>
+            <p class="subtitle">Java経験者向け - エスコ・ジャパン株式会社</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> WEBシステムの「同時接続」とは？</h2>
+            
+            <div class="explanation-box">
+                <p>「同時接続数」とは、Webシステム開発でよく使われる用語ですが、明確な定義なしに誤用されることが多いです。今回は、関連するいくつかの用語を含めて厳密な定義を作成してみます。</p>
+                
+                <ul>
+                    <li><strong>最大ログインユーザー数</strong>: ログイン後、セッション情報が作成され、一定のメモリを占有します。システムの方法によっては、セッションメモリが大きい場合、セッションタイムアウト期間内にログインするユーザー数に注意する。</li>
+                    <li><strong>最大同時接続数</strong>: TCP接続は「Established」から「Closed」までを「接続中」とみなします。任意の時点で開いている接続の数が同時接続数です。1回の画面操作で2つの接続が発生します（JSPと各種静的コンテンツ）。出力完了後、接続は15秒間維持されます。</li>
+                    <li><strong>最大同時実行数</strong>: サーバーが同時に処理できるリクエストの数。</li>
+                </ul>
+            </div>
+
+            <div class="note-box">
+                <div class="note-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    備考
+                </div>
+                <p>Proxy、FireWallなどにキャッシング機能がある場合、静的コンテンツへの接続はWEBサーバまでたどり着かない可能性があります。そして、ちょっと厳密にする場合、２ではなく1.Xです。</p>
+            </div>
+            
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> システム概念図</h2>
+            
+            <!-- システム概念図のプレースホルダー -->
+            <div class="image-placeholder" style="height:400px;">
+            	<img src="./img/efw_env.png" style="height:95%">
+            </div>
+            
+            <div class="config-table">
+                <table>
+                    <tr>
+                        <th>設定項目</th>
+                        <th>値</th>
+                        <th>説明</th>
+                    </tr>
+                    <tr>
+                        <td>ListenBacklog</td>
+                        <td>3000</td>
+                        <td>確立されたTCP接続のキューイングリクエストの最大接続待機キュー数</td>
+                    </tr>
+                    <tr>
+                        <td>maxConnections</td>
+                        <td>1000</td>
+                        <td>サーバーが受け入れ処理する同時接続の最大数</td>
+                    </tr>
+                    <tr>
+                        <td>acceptCount</td>
+                        <td>100</td>
+                        <td>すべての可能なリクエスト処理スレッドが使用されている場合の受信接続リクエストの最大キュー長</td>
+                    </tr>
+                    <tr>
+                        <td>MaxClients</td>
+                        <td>100</td>
+                        <td>応答可能な同時リクエスト数</td>
+                    </tr>
+                    <tr>
+                        <td>maxthreads</td>
+                        <td>200 (デフォルト)</td>
+                        <td>リクエスト処理のために作成する最大数（最大同時実行数）</td>
+                    </tr>
+                    <tr>
+                        <td>ServerLimit</td>
+                        <td>1000</td>
+                        <td>MaxClientsの設定可能な最大値（Apacheプロセス実行中の最大値、20000以下に制限）</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-cogs"></i> システム概念図説明</h2>
+            
+            <div class="explanation-box">
+                <p>クライアントから大量に接続される場合、</p>
+                <ul>
+                    <li>まずApacheのListenBacklogキューに格納し、その中に1000接続をTomcatに渡す。</li>
+                    <li>Tomcatは、接続要求を受け取り、Connectionキューに格納する。</li>
+                    <li>Connectionキューから100接続をAcceptキューに回して、処理する。</li>
+                    <li>Connectionキューに空きの分を、後続の接続要求で補う。</li>
+                    <li>Connectionキューの最大値を超えないようにするため、MaxClientsとmaxConnectionsの値を合わせる。</li>
+                </ul>
+                
+                <p>Connectionキューの接続要求をEFWフレームワークで処理する場合、</p>
+                <ul>
+                    <li>重い処理に対して、イベントごとに同時処理可能キューを設定する。キューの最大値に到達したら、エラーを戻す。</li>
+                    <li>軽い処理に対して、同時処理可能キューを設定しない。</li>
+                </ul>
+                
+                <p>イベントキューの最大値到達エラーの場合2種類がある。</p>
+                <ul>
+                    <li>リトライ可能にする場合、エラーメッセージを表示し、３０秒カウントダウンする。</li>
+                    <li>リトライ不可に設定する場合、エラーメッセージを表示するだけ。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> エラーシナリオ</h2>
+            
+            <div class="scenario-container">
+                <div class="scenario-box scenario-warning">
+                    <h3 class="scenario-title">ListenBacklogキューオーバー</h3>
+                    <div class="scenario-content">
+                        <p>サーバーの接続が満杯状態になっている時、新たに操作したら、以下のエラーメッセージが表示します。</p>
+                        <div class="note-box">
+                            <p>接続エラー: サーバーが混雑しています。しばらく時間をおいてから再度お試しください。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-box scenario-success">
+                    <h3 class="scenario-title">イベントキューオーバー（リトライ可）</h3>
+                    <div class="scenario-content">
+                        <p>重い操作が制限になる時、以下のカウントダウンメッセージが表示します（30秒計）。リトライ可。</p>
+                        <div class="note-box">
+                            <p>システムが混雑しています。操作可能までお待ちください。</p>
+                            <div class="countdown">30秒</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scenario-box scenario-warning">
+                    <h3 class="scenario-title">イベントキューオーバー（リトライ不可）</h3>
+                    <div class="scenario-content">
+                        <p>操作が制限になる時、以下の混雑メッセージが表示します。リトライ不可。</p>
+                        <div class="note-box">
+                            <p>該当機能は混雑しています。しばらくお待ちください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section animated">
+            <h2 class="section-title"><i class="fas fa-wrench"></i> 設定場所</h2>
+            
+            <div class="explanation-box">
+                <p>以下の設定ファイルで各種パラメータを調整できます：</p>
+                
+                <ul>
+                    <li><strong>Apache設定 (httpd.conf)</strong>: ListenBacklog, MaxClients, ServerLimit</li>
+                    <li><strong>Tomcat設定 (server.xml)</strong>: maxConnections, acceptCount, maxthreads</li>
+                    <li><strong>EFW設定 (efw.properties)</strong>: イベントキューサイズ, リトライ設定</li>
+                    <li><strong>PostgreSQL設定 (postgresql.conf)</strong>: max_connections</li>
+                </ul>
+                
+                <p>高負荷環境に対応するためには、これらの値をシステムの要件に合わせて適切に調整する必要があります。</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>高負荷対応のTomcat EFW環境構築 - エスコ・ジャパン株式会社</p>
+            <p>© 2025 EFWグループ | Java経験者向け技術資料</p>
+        </div>
+    </footer>
+
+    <script>
+        // 言語切り替え機能
+        function switchLanguage(lang) {
+            const pages = {
+                'cn': 'highload_c.html',
+                'jp': 'highload_j.html',
+                'en': 'highload_e.html'
+            };
+            window.location.href = pages[lang];
+        }
+        // スクロール時のアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
