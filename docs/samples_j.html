@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/favicon.png" />
-    <title>High-Load Tomcat EFW Environment Setup</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>EFW サンプル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -31,7 +31,7 @@
         }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
@@ -415,6 +415,71 @@
             background: #2ea043;
             transform: scale(1.05);
         }
+        
+        /* カスタムスタイル */
+        .sample-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .sample-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .sample-item:hover {
+            background: #e8f4fc;
+            transform: translateX(5px);
+        }
+        
+        .sample-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+        
+        .sample-link:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        .doc-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: rgba(52, 152, 219, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .doc-link:hover {
+            color: white;
+            background: var(--accent);
+        }
+        
+        .doc-link i {
+            margin-right: 5px;
+        }
+        
+        .ref-link {
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #ffcc00;
+        }
     </style>
 </head>
 <body>
@@ -434,172 +499,106 @@
         <div class="container">
             <div class="logo">
                 <i class="fas fa-server"></i>
-                <span>EFW</span> Environment Setup Guide
+                <span>EFW</span> 環境設定ガイド
             </div>
-            <h1>High-Load Tomcat EFW Environment Setup</h1>
-            <p class="subtitle">For Java Experienced Developers - Escco Japan Co., Ltd.</p>
+            <h1>EFW サンプル</h1>
+            <p class="subtitle">ドキュメントリンク付きの実装サンプルとテストのコレクション</p>
         </div>
     </header>
 
     <div class="container">
         <section class="section animated">
-            <h2 class="section-title"><i class="fas fa-question-circle"></i> What is "Concurrent Connections" in Web Systems?</h2>
+            <h2 class="section-title"><i class="fas fa-code"></i> サンプル</h2>
             
-            <div class="explanation-box">
-                <p>"Concurrent connections" is a term often used in web system development, but it is frequently misused without a clear definition. Here, we will create a strict definition including several related terms.</p>
-                
-                <ul>
-                    <li><strong>Maximum Login Users</strong>: After login, session information is created and occupies certain memory. Depending on the system method, if session memory is large, pay attention to the number of users logging in within the session timeout period.</li>
-                    <li><strong>Maximum Concurrent Connections</strong>: TCP connections are considered "connected" from "Established" to "Closed". The number of open connections at any given time is the concurrent connection count. One screen operation generates two connections (JSP and various static content). After output completion, the connection is maintained for 15 seconds.</li>
-                    <li><strong>Maximum Concurrent Executions</strong>: The number of requests the server can process simultaneously.</li>
-                </ul>
-            </div>
-
-            <div class="note-box">
-                <div class="note-title">
-                    <i class="fas fa-exclamation-circle"></i>
-                    Note
-                </div>
-                <p>If Proxy, FireWall, etc. have caching capabilities, connections to static content may not reach the WEB server. And to be more precise, it's not 2 but 1.X.</p>
-            </div>
-            
+            <ul class="sample-list">
+                <li class="sample-item">
+                    <a href="../samples/helloworld/InputTest.jsp" class="sample-link">各入力タイプの一括テスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/OutputTest.jsp" class="sample-link">各値表示タイプの一括テスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/ActionTest.jsp" class="sample-link">各画面操作タイプの一括テスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloDialog.jsp" class="sample-link">ダイアログテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloDialog4.jsp" class="sample-link">ダイアログテスト 4</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloDialog5.jsp" class="sample-link">ダイアログテスト 5</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloElfinder.jsp" class="sample-link">ElFinder タグテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloElfinder4.jsp" class="sample-link">ElFinder タグテスト 4</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloChart.jsp" class="sample-link">チャートタグテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloBarcode.jsp" class="sample-link">QRコードタグテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloExcel.jsp" class="sample-link">Excel クラステスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloTextCSV.jsp" class="sample-link">テキストファイル処理テスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloDB.jsp" class="sample-link">DB モジュールテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloMail.jsp" class="sample-link">メールモジュールテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloI18n.jsp" class="sample-link">efw 多言語サポート</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloRestAPI.jsp" class="sample-link">Rest API サービステスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloPdf.jsp" class="sample-link">Pdf クラステスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/helloVue.jsp" class="sample-link">Vue 統合テスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/skeletonSample" class="sample-link">Web アプリログインと権限制御</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+                <li class="sample-item">
+                    <a href="../samples/helloworld/WEB-INF/efw/event/helloBatch.js" class="sample-link">バッチテスト</a>
+                    <a href="#" class="doc-link"><i class="fas fa-book"></i> ドキュメント</a>
+                </li>
+            </ul>
         </section>
 
-        <section class="section animated">
-            <h2 class="section-title"><i class="fas fa-project-diagram"></i> System Concept Diagram</h2>
-            
-            <!-- Placeholder for system concept diagram -->
-            <div class="image-placeholder" style="height:400px;">
-            	<img src="./img/efw_env.png" style="height:95%">
-            </div>
-            
-            <div class="config-table">
-                <table>
-                    <tr>
-                        <th>Configuration Item</th>
-                        <th>Value</th>
-                        <th>Description</th>
-                    </tr>
-                    <tr>
-                        <td>ListenBacklog</td>
-                        <td>3000</td>
-                        <td>Maximum connection wait queue number for queuing requests of established TCP connections</td>
-                    </tr>
-                    <tr>
-                        <td>maxConnections</td>
-                        <td>1000</td>
-                        <td>Maximum number of concurrent connections the server accepts and processes</td>
-                    </tr>
-                    <tr>
-                        <td>acceptCount</td>
-                        <td>100</td>
-                        <td>Maximum queue length for incoming connection requests when all possible request processing threads are in use</td>
-                    </tr>
-                    <tr>
-                        <td>MaxClients</td>
-                        <td>100</td>
-                        <td>Number of concurrent requests that can be responded to</td>
-                    </tr>
-                    <tr>
-                        <td>maxthreads</td>
-                        <td>200 (default)</td>
-                        <td>Maximum number created for request processing (maximum concurrent executions)</极>
-                    </tr>
-                    <tr>
-                        <td>ServerLimit</td>
-                        <td>1000</td>
-                        <td>Maximum configurable value for MaxClients (maximum during Apache process execution, limited to 20000 or less)</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <section class="section animated">
-            <h2 class="section-title"><i class="fas fa-cogs"></i> System Concept Diagram Explanation</h2>
-            
-            <div class="explanation-box">
-                <p>When there are many connections from clients:</p>
-                <ul>
-                    <li>First stored in Apache's ListenBacklog queue,其中1000 connections are passed to Tomcat.</li>
-                    <li>Tomcat receives connection requests and stores them in the Connection queue.</li>
-                    <li>100 connections are moved from the Connection queue to the Accept queue for processing.</li>
-                    <li>Subsequent connection requests fill the vacancies in the Connection queue.</li>
-                    <li>To ensure the Connection queue does not exceed its maximum value, match the values of MaxClients and maxConnections.</li>
-                </ul>
-                
-                <p>When processing connection requests in the Connection queue with the EFW framework:</p>
-                <ul>
-                    <li>For heavy processing, set a concurrently processable queue for each event. When the queue maximum is reached, return an error.</li>
-                    <li>For light processing, do not set a concurrently processable queue.</li>
-                </ul>
-                
-                <p>There are two types of errors when the event queue maximum is reached:</p>
-                <ul>
-                    <li>If retry is allowed, display an error message and count down for 30 seconds.</li>
-                    <li>If set to no retry, only display an error message.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="section animated">
-            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Error Scenarios</h2>
-            
-            <div class="scenario-container">
-                <div class="scenario-box scenario-warning">
-                    <h3 class="scenario-title">ListenBacklog Queue Overflow</h3>
-                    <div class="scenario-content">
-                        <p>When the server connections are full, new operations will display the following error message:</p>
-                        <div class="note-box">
-                            <p>Connection error: The server is busy. Please try again after a while.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="scenario-box scenario-success">
-                    <h3 class="scenario-title">Event Queue Overflow (Retry Allowed)</h3>
-                    <div class="scenario-content">
-                        <p>When heavy operations are restricted, the following countdown message will be displayed (30-second count). Retry allowed.</p>
-                        <div class极"note-box">
-                            <p>The system is busy. Please wait until the operation becomes available.</p>
-                            <div class="countdown">30 seconds</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="scenario-box scenario-warning">
-                    <h3 class="scenario-title">Event Queue Overflow (No Retry)</h3>
-                    <div class="scenario-content">
-                        <p>When operations are restricted, the following busy message will be displayed. No retry.</p>
-                        <div class="note-box">
-                            <p>This function is busy. Please wait for a while.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section animated">
-            <h2 class="section-title"><i class="fas fa-wrench"></i> Configuration Locations</h2>
-            
-            <div class="explanation-box">
-                <p>Various parameters can be adjusted in the following configuration files:</p>
-                
-                <ul>
-                    <li><strong>Apache Configuration (httpd.conf)</strong>: ListenBacklog, MaxClients, ServerLimit</li>
-                    <li><strong>Tomcat Configuration (server.xml)</strong>: maxConnections, acceptCount, maxthreads</li>
-                    <li><strong>EFW Configuration (efw.properties)</strong>: Event queue size, retry settings</li>
-                    <li><strong>PostgreSQL Configuration (postgresql.conf)</strong>: max_connections</li>
-                </ul>
-                
-                <p>To handle high-load environments, these values need to be appropriately adjusted according to system requirements.</p>
-            </div>
-        </section>
     </div>
 
     <footer>
         <div class="container">
-            <p>High-Load Tomcat EFW Environment Setup - Escco Japan Co., Ltd.</p>
-            <p>© 2025 EFW Group | Technical Documentation for Java Experienced Developers</p>
+            <p>EFW サンプル | 開発者向け利用可能</p>
         </div>
     </footer>
 
@@ -613,6 +612,7 @@
             };
             window.location.href = pages[lang];
         }
+        
         // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const animatedElements = document.querySelectorAll('.animated');
