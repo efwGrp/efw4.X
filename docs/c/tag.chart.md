@@ -32,14 +32,14 @@
 | `id` | 是 |  | `Chart` 标签的 ID。 |
 | `mode` | 否 | `"googlechart"` | 设置图表库为 `"googlechart"` 或 `"chartjs"`。 |
 | `data` | 是 |  | 要与 `Chart` 标签一起使用的数据表的 ID。 |
-| `type` | 是 |  | 图表的类型。 [演示](https://efwgrp.github.io/efw4.X/help/chart/chartSampleTypes.html)。 |
+| `type` | 是 |  | 图表的类型。 [演示](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleTypes.html)。 |
 | `height` | 否 | `"400"` | `Chart` 标签的高度，单位为像素。 |
 | `width` | 否 | `"auto"` | `Chart` 标签的宽度，单位为像素。 |
 | `version` | 否 | `"current"` | 要使用的 Google Charts 版本。 |
 | `setoptions` | 否 |  | 用于为 Google Charts 设置选项的自定义 JavaScript 函数的名称。 |
 | `data-format` | 否 |  | 数据的格式。如果定义，则工具提示数据将格式化。 |
 | `data-legend` | 否 |  | 图例的位置：`none`、`left`、`right`、`top` 或 `bottom`。 |
-| `data-color` | 否 |  | 项目的颜色。使用 RGB 或行或列标题中的颜色名称设置。[演示](https://efwgrp.github.io/efw4.X/help/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
+| `data-color` | 否 |  | 项目的颜色。使用 RGB 或行或列标题中的颜色名称设置。[演示](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
 | `data-ticks` | 否 |  | 图表的刻度。 |
 
 ## 方法
