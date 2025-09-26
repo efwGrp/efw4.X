@@ -32,14 +32,14 @@
 | `id` | はい |  | `Chart` タグのID。 |
 | `mode` | いいえ | `"googlechart"` | チャートライブラリを `"googlechart"` または `"chartjs"` に設定します。 |
 | `data` | はい |  | `Chart` タグで使用するデータテーブルのID。 |
-| `type` | はい |  | チャートの種類。[デモ](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleTypes.html)。 |
+| `type` | はい |  | チャートの種類。[デモ](https://efwgrp.github.io/efw4.X/chart/chartSampleTypes.html)。 |
 | `height` | いいえ | `"400"` | `Chart` タグの高さをピクセル単位で指定します。 |
 | `width` | いいえ | `"auto"` | `Chart` タグの幅をピクセル単位で指定します。 |
 | `version` | いいえ | `"current"` | 使用する Google Charts のバージョン。 |
 | `setoptions` | いいえ |  | Google Charts のオプションを設定するカスタム JavaScript 関数の名前。 |
 | `data-format` | いいえ |  | データの形式。定義されている場合、ツールチップデータがフォーマットされます。 |
 | `data-legend` | いいえ |  | 凡例の位置：`none`、`left`、`right`、`top`、または `bottom`。 |
-| `data-color` | いいえ |  | 項目の色。行または列のタイトルでRGBまたは色名を設定します。[デモ](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
+| `data-color` | いいえ |  | 項目の色。行または列のタイトルでRGBまたは色名を設定します。[デモ](https://efwgrp.github.io/efw4.X/chart/chartSampleColors.html)。<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
 | `data-ticks` | いいえ |  | チャートの目盛り。 |
 
 ## メソッド

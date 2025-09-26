@@ -32,14 +32,14 @@
 | `id` | Yes |  | The ID of the `Chart` tag. |
 | `mode` | No | `"googlechart"` | Sets the charting library to `"googlechart"` or `"chartjs"`. |
 | `data` | Yes |  | The ID of the data table to use with the `Chart` tag. |
-| `type` | Yes |  | The type of chart. [Demo](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleTypes.html). |
+| `type` | Yes |  | The type of chart. [Demo](https://efwgrp.github.io/efw4.X/chart/chartSampleTypes.html). |
 | `height` | No | `"400"` | The height of the `Chart` tag in pixels. |
 | `width` | No | `"auto"` | The width of the `Chart` tag in pixels. |
 | `version` | No | `"current"` | The version of Google Charts to use. |
 | `setoptions` | No |  | The name of a custom JavaScript function to set options for Google Charts. |
 | `data-format` | No |  | The format of the data. If defined, the tooltip data will be formatted. |
 | `data-legend` | No |  | The position of the legend: `none`, `left`, `right`, `top`, or `bottom`. |
-| `data-color` | No |  | The color of items. Set with RGB or color names in row or column titles. [Demo](https://efwgrp.github.io/efw4.X/docs/chart/chartSampleColors.html).<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
+| `data-color` | No |  | The color of items. Set with RGB or color names in row or column titles. [Demo](https://efwgrp.github.io/efw4.X/chart/chartSampleColors.html).<br>![Data Table](../img/chart/table.png)![Chart 1](../img/chart/chart1.png)![Chart 2](../img/chart/chart2.png) |
 | `data-ticks` | No |  | The gradations of the chart. |
 
 ## Methods
