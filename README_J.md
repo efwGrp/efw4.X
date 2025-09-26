@@ -3,9 +3,9 @@
 ## はじめに
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![Efw Flow](./help/img/efw_flow.png)](./help/img/efw_flow_org.png)<br>
-[![Efw Client](./help/img/efw_client.png)](./help/img/efw_client_org.png)
-[![Efw Server](./help/img/efw_server.png)](./help/img/efw_server_org.png)
+[![Efw Flow](./docs/img/efw_flow.png)](./docs/img/efw_flow_org.png)<br>
+[![Efw Client](./docs/img/efw_client.png)](./docs/img/efw_client_org.png)
+[![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
 
 * [Efwとは](https://efwgrp.github.io/efw4.X/index_j.html)
 * [Efwのセキュリティ関連の説明](https://qiita.com/changkejun/items/5e10a96e0b1efce8653e)
@@ -18,10 +18,10 @@
 
 # 導入実績
 
-[![ESCCO](help/img/logos/escco.png)](https://www.escco.co.jp) 
-[![YIKE](help/img/logos/yike.jpg)](https://www.escco.com.cn) 
-[![JWTS](help/img/logos/jwts.png)](https://www.jwts.co.jp) 
-[![LAYER10](help/img/logos/layer10.png)](http://www.layer10.jp/) 
-[![SOMPO-JAPAN](help/img/logos/jpn_sompo.jpg)](https://www.sompo-japan.co.jp/) 
-[![QUALICA](help/img/logos/qualica.png)](https://www.qualica.co.jp/) 
-[![JOT](help/img/logos/jot.png)](https://www.jotnw.or.jp/)
+[![ESCCO](docs/img/logos/escco.png)](https://www.escco.co.jp) 
+[![YIKE](docs/img/logos/yike.jpg)](https://www.escco.com.cn) 
+[![JWTS](docs/img/logos/jwts.png)](https://www.jwts.co.jp) 
+[![LAYER10](docs/img/logos/layer10.png)](http://www.layer10.jp/) 
+[![SOMPO-JAPAN](docs/img/logos/jpn_sompo.jpg)](https://www.sompo-japan.co.jp/) 
+[![QUALICA](docs/img/logos/qualica.png)](https://www.qualica.co.jp/) 
+[![JOT](docs/img/logos/jot.png)](https://www.jotnw.or.jp/)
