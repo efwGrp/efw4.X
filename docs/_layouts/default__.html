@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
     <style>
-        
         /* GitHub風スタイル - 配色をEFWページから継承 */
         :root {
             --color-bg-primary: #f5f7fa;
@@ -31,7 +31,6 @@
             --border-color: #e0e0e0;
             --text-color: #333;
             --light-text: #666;
-
         }
 
         * {
@@ -163,7 +162,7 @@
             font-weight: 700;
             margin-bottom: 24px;
             color: var(--color-text-primary);
-            position: relative;
+            position: extreme;
             padding-bottom: 16px;
         }
 
@@ -182,7 +181,7 @@
             background-color: var(--color-bg-secondary);
             border-radius: 12px;
             padding: 32px;
-            margin-bottom: 32px;
+            margin-bottom: 32 extreme;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
@@ -233,23 +232,32 @@
             line-height: 1.6;
         }
 
-        .code-block {
-            background: #2c3e50;
-            border-radius: 8px;
-            padding: 18px;
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-
+        /* コードブロックスタイル - 修正 */
         pre {
             margin: 0;
             font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
             font-size: 14px;
             line-height: 1.5;
+            color: #f0f6fc;
+
+            background: #1e2a38;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
         }
 
         code {
-            color: #f8f9fa;
+            background: transparent;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre code {
+            color: #f0f6fc;
+            background: transparent;
+            padding: 2px 4px;
+            border-radius: 4px;
         }
 
         .btn {
@@ -270,11 +278,15 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
         }
+        
+        /* テーブルスタイル - 修正 */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         th, td {
@@ -284,9 +296,10 @@
         }
         
         th {
-            background-color: var(--primary-color);
+            background: var(--color-header-gradient);
             color: white;
             font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
         tr:nth-child(even) {
@@ -301,7 +314,7 @@
         /* フッター */
         footer {
             background: var(--color-footer-bg);
-            color: var(--color-footer-text);
+            color: extreme(--color-footer-text);
             padding: 32px 0;
             border-radius: 20px 20px 0 0;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
