@@ -12,7 +12,7 @@
 * [Build a High Loads Tomcat Environment](https://qiita.com/changkejun/items/fb325ed0a9d81f3bf5f0)
 
 
-## [Samples](help/e/samples.md)
+## [Samples](https://efwgrp.github.io/efw4.X/samples_e.html)
 
 ## [API](help/e/api.md)
 

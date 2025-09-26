@@ -12,7 +12,7 @@
 * [高負荷対応のTomcat環境構築](https://qiita.com/changkejun/items/1d850b109f8b26381268)
 * [EFWコーディング規約](https://qiita.com/Victory963/items/ec028606e382a1d3a174)
 
-## [サンプル](help/j/samples.md)
+## [サンプル](https://efwgrp.github.io/efw4.X/samples_j.html)
 
 ## [API](help/j/api.md)
 

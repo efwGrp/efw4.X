@@ -12,7 +12,7 @@
 * [构建高负载 Tomcat 环境](https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0)
 
 
-## [示例](help/c/samples.md)
+## [示例](https://efwgrp.github.io/efw4.X/samples_c.html)
 
 
 ## [API](help/c/api.md)
