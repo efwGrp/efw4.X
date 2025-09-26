@@ -318,9 +318,8 @@
         }
 
         .footer-content {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
+            text-align:center;
         }
 
         .footer-links {
@@ -386,15 +385,11 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">
+                <a href="{{ site.url }}{{ site.baseurl }}/e/api.html" class="logo">
                     <i class="fab fa-github"></i>
-                    <span>GitHub</span>テンプレート	
+                    <span>efw4.X</span> API Documentation
                 </a>
                 <nav>
-                    <ul>
-                        <li><a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i> ホーム</a></li>
-                        <li><a href="https://github.com/efwGrp/efw4.X"><i class="fas fa-box"></i> リポジトリ</a></li>
-                    </ul>
                     <div class="language-switcher">
                         <button class="lang-btn" onclick="switchLanguage('en')">
                             English
