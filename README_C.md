@@ -8,8 +8,8 @@
 [![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
 
 * [Efw 是什么？](https://efwgrp.github.io/efw4.X/index_c.html)
-* [Efw 安全相关说明](https://qiita.com/changkejun/private/70184f814ff52f862d91)
-* [构建高负载 Tomcat 环境](https://qiita.com/changkejun/private/fb325ed0a9d81f3bf5f0)
+* [Efw 安全相关说明](https://efwgrp.github.io/efw4.X/security_c.html)
+* [构建高负载 Tomcat 环境](https://efwgrp.github.io/efw4.X/highload_c.html)
 
 
 ## [示例](https://efwgrp.github.io/efw4.X/samples_c.html)

@@ -8,8 +8,8 @@
 [![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
 
 * [Efwとは](https://efwgrp.github.io/efw4.X/index_j.html)
-* [Efwのセキュリティ関連の説明](https://qiita.com/changkejun/items/5e10a96e0b1efce8653e)
-* [高負荷対応のTomcat環境構築](https://qiita.com/changkejun/items/1d850b109f8b26381268)
+* [EFWのセキュリティ](https://efwgrp.github.io/efw4.X/security_j.html)
+* [高負荷Tomcat環境の構築](https://efwgrp.github.io/efw4.X/highload_j.html)
 * [EFWコーディング規約](https://qiita.com/Victory963/items/ec028606e382a1d3a174)
 
 ## [サンプル](https://efwgrp.github.io/efw4.X/samples_j.html)
