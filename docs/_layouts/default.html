@@ -4,71 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
-            --background-color: #f8f9fa;
-            --border-color: #e0e0e0;
-            --text-color: #333;
-            --light-text: #666;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--background-color);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        h2 {
-            color: var(--secondary-color);
-            font-size: 1.8rem;
-            margin-top: 30px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        h3 {
-            color: var(--secondary-color);
-            font-size: 1.4rem;
-            margin-top: 25px;
-        }
-        
-        ul {
-            padding-left: 20px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        a:hover {
-            color: var(--secondary-color);
-            text-decoration: underline;
-        }
         
         table {
             width: 100%;
@@ -112,38 +49,404 @@
         .module-table td {
             vertical-align: top;
         }
+
         
-        .back-to-top {
-            display: block;
-            text-align: right;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: var(--light-text);
+        /* GitHub風スタイル - 配色をEFWページから継承 */
+        :root {
+            --color-bg-primary: #f5f7fa;
+            --color-bg-secondary: #ffffff;
+            --color-border-primary: #e4e8f0;
+            --color-text-primary: #2c3e50;
+            --color-text-secondary: #4a6491;
+            --color-text-link: #3498db;
+            --color-accent: #3498db;
+            --color-accent-dark: #2980b9;
+            --color-header-bg: #2c3e50;
+            --color-header-gradient: linear-gradient(120deg, #2c3e50 0%, #4a6491 100%);
+            --color-header-text: #ffffff;
+            --color-footer-bg: #2c3e50;
+            --color-footer-text: #ffffff;
+            --color-button-bg: #238636;
+            --color-button-hover: #2ea043;
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg-primary);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダースタイル */
+        header {
+            background: var(--color-header-gradient);
+            color: var(--color-header-text);
+            padding: 16px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-header-text);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 12px;
+            color: #ff7e5f;
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin-right: 20px;
+        }
+
+        nav ul li {
+            margin-left: 24px;
+        }
+
+        nav ul li a {
+            color: var(--color-header-text);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* 言語切り替えボタン */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: var(--color-button-bg);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-btn i {
+            margin-right: 6px;
+        }
+
+        .lang-btn:hover {
+            background: var(--color-button-hover);
+            transform: scale(1.05);
+        }
+
+        /* メインコンテンツ */
+        main {
+            min-height: calc(100vh - 180px);
+            padding: 40px 0;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--color-text-primary);
+            position: relative;
+            padding-bottom: 16px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .content {
+            background-color: var(--color-bg-secondary);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--color-accent);
+        }
+
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: var(--color-text-secondary);
+            margin: 24px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-border-primary);
+        }
+
+        h3 {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            margin: 20px 0 12px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        code {
+            color: #f8f9fa;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        /* フッター */
+        footer {
+            background: var(--color-footer-bg);
+            color: var(--color-footer-text);
+            padding: 32px 0;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            color: var(--color-footer-text);
+            text-decoration: none;
+            margin-right: 24px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #feb47b;
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
+            .header-content, .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            
-            table {
-                display: block;
-                overflow-x: auto;
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
             }
-            
-            th, td {
-                padding: 8px 10px;
+
+            nav ul {
+                margin: 20px 0;
+                flex-wrap: wrap;
+            }
+
+            nav ul li {
+                margin: 0 16px 12px 0;
+            }
+
+            .language-switcher {
+                margin-top: 20px;
+            }
+
+            .footer-links {
+                margin-bottom: 20px;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                margin: 0 16px 12px 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>EFW API ドキュメント</h1>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>テンプレート	
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i> ホーム</a></li>
+                        <li><a href="https://github.com/efwGrp/efw4.X"><i class="fas fa-box"></i> リポジトリ</a></li>
+                    </ul>
+                    <div class="language-switcher">
+                        <button class="lang-btn" onclick="switchLanguage('en')">
+                            English
+                        </button>
+                        <button class="lang-btn" onclick="switchLanguage('jp')">
+                            日本語
+                        </button>
+                        <button class="lang-btn" onclick="switchLanguage('cn')">
+                            中文a
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    {{ content }}
+    <main class="container">
+        <div class="content">
+           {{ content }}
+        </div>
+    </main>
 
-    <a href="#" class="back-to-top">↑ ページトップへ戻る</a>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2025 efwGrp. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 言語切り替え関数
+        function switchLanguage(lang) {
+            console.log(`言語を切り替え: ${lang}`);
+            // 実際の実装ではここで言語切り替え処理を行う
+            // 例: window.location.href = `${lang}/index.html`;
+            
+            // ボタンのアクティブ状態を更新
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.style.opacity = '0.7';
+            });
+            event.target.style.opacity = '1';
+            
+            // ここではアラートで代用
+            const langNames = {
+                'en': '英語',
+                'jp': '日本語',
+                'cn': '中国語'
+            };
+            alert(`${langNames[lang]}に切り替えました`);
+        }
+    </script>
 </body>
 </html>
