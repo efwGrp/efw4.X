@@ -14,7 +14,7 @@
 
 ## [サンプル](https://efwgrp.github.io/efw4.X/samples_j.html)
 
-## [API](help/j/api.md)
+## [API](https://efwgrp.github.io/efw4.X/j/api.html)
 
 # 導入実績
 

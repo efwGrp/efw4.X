@@ -14,7 +14,7 @@
 
 ## [Samples](https://efwgrp.github.io/efw4.X/samples_e.html)
 
-## [API](help/e/api.md)
+## [API](https://efwgrp.github.io/efw4.X/e/api.html)
 
 # They use our products
 

@@ -15,7 +15,7 @@
 ## [示例](https://efwgrp.github.io/efw4.X/samples_c.html)
 
 
-## [API](help/c/api.md)
+## [API](https://efwgrp.github.io/efw4.X/c/api.html)
 
 
 # 他们使用我们的产品
