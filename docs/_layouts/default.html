@@ -97,23 +97,14 @@
             align-items: center;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
+
+        nav a {
             margin-right: 20px;
-        }
-
-        nav ul li {
-            margin-left: 24px;
-        }
-
-        nav ul li a {
             color: var(--color-header-text);
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
             transition: all 0.3s ease;
-            padding: 8px 12px;
             border-radius: 6px;
         }
 
@@ -386,10 +377,12 @@
         <div class="container">
             <div class="header-content">
                 <a href="{{ site.url }}{{ site.baseurl }}/e/api.html" class="logo">
-                    <i class="fab fa-github"></i>
-                    <span>efw4.X</span> API Documentation
+                    <span>efw4.X</span>&nbsp;
+                    API Documentation
                 </a>
                 <nav>
+                	<a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i></a>
+                	<a href="https://github.com/efwGrp/efw4.X"><i class="fab fa-github"></i></a>
                     <div class="language-switcher">
                         <button class="lang-btn" onclick="switchLanguage('en')">
                             English
