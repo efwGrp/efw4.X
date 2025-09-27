@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" />
     <title>{{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
     <style>
+        
         /* GitHub風スタイル - 配色をEFWページから継承 */
         :root {
             --color-bg-primary: #f5f7fa;
@@ -25,12 +28,9 @@
             --color-button-bg: #238636;
             --color-button-hover: #2ea043;
 
-            --primary-color: #3498db;
-            --secondary-color: #2980b9;
             --background-color: #f8f9fa;
             --border-color: #e0e0e0;
             --text-color: #333;
-            --light-text: #666;
         }
 
         * {
@@ -40,18 +40,20 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             line-height: 1.6;
             color: var(--color-text-primary);
             background: var(--color-bg-primary);
             padding: 0;
             margin: 0;
+            font-size:16px;
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
+            width:auto;
         }
 
         /* ヘッダースタイル */
@@ -97,23 +99,14 @@
             align-items: center;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
+
+        nav a {
             margin-right: 20px;
-        }
-
-        nav ul li {
-            margin-left: 24px;
-        }
-
-        nav ul li a {
             color: var(--color-header-text);
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
             transition: all 0.3s ease;
-            padding: 8px 12px;
             border-radius: 6px;
         }
 
@@ -162,7 +155,7 @@
             font-weight: 700;
             margin-bottom: 24px;
             color: var(--color-text-primary);
-            position: extreme;
+            position: relative;
             padding-bottom: 16px;
         }
 
@@ -181,7 +174,7 @@
             background-color: var(--color-bg-secondary);
             border-radius: 12px;
             padding: 32px;
-            margin-bottom: 32 extreme;
+            margin-bottom: 32px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
@@ -232,34 +225,6 @@
             line-height: 1.6;
         }
 
-        /* コードブロックスタイル - 修正 */
-        pre {
-            margin: 0;
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #f0f6fc;
-
-            background: #1e2a38;
-            border-radius: 8px;
-            padding: 18px;
-            margin: 20px 0;
-            overflow-x: auto;
-            border-left: 4px solid #3498db;
-        }
-
-        code {
-            background: transparent;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        pre code {
-            color: #f0f6fc;
-            background: transparent;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-
         .btn {
             display: inline-block;
             background: var(--color-accent);
@@ -278,15 +243,11 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
         }
-        
-        /* テーブルスタイル - 修正 */
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
         }
         
         th, td {
@@ -296,7 +257,7 @@
         }
         
         th {
-            background: var(--color-header-gradient);
+            background: #4a6491;
             color: white;
             font-weight: 600;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -310,20 +271,47 @@
             background-color: rgba(0,0,0,0.05);
         }
         
+        /* コードブロックスタイル - 修正 */
+        pre {
+            margin: 0;
+            line-height: 1.5;
+            color: #f0f6fc;
+            background: #1e2a38;
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+            font-size: 16px;
+        }
+
+        code {
+            background: seashell;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        pre code {
+            color: #24292e;
+            background: transparent;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
 
         /* フッター */
         footer {
             background: var(--color-footer-bg);
-            color: extreme(--color-footer-text);
+            color: var(--color-footer-text);
             padding: 32px 0;
             border-radius: 20px 20px 0 0;
             box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .footer-content {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
+            text-align:center;
         }
 
         .footer-links {
@@ -389,15 +377,13 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>テンプレート	
+                <a href="{{ site.url }}{{ site.baseurl }}/j/api.html" class="logo">
+                    <span>efw4.X</span>&nbsp;
+                    API ドキュメント
                 </a>
                 <nav>
-                    <ul>
-                        <li><a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i> ホーム</a></li>
-                        <li><a href="https://github.com/efwGrp/efw4.X"><i class="fas fa-box"></i> リポジトリ</a></li>
-                    </ul>
+                	<a href="{{ site.url }}{{ site.baseurl }}"><i class="fas fa-home"></i></a>
+                	<a href="https://github.com/efwGrp/efw4.X"><i class="fab fa-github"></i></a>
                     <div class="language-switcher">
                         <button class="lang-btn" onclick="switchLanguage('en')">
                             English
@@ -406,7 +392,7 @@
                             日本語
                         </button>
                         <button class="lang-btn" onclick="switchLanguage('cn')">
-                            中文a
+                            中文 
                         </button>
                     </div>
                 </nav>
@@ -434,23 +420,13 @@
     <script>
         // 言語切り替え関数
         function switchLanguage(lang) {
-            console.log(`言語を切り替え: ${lang}`);
-            // 実際の実装ではここで言語切り替え処理を行う
-            // 例: window.location.href = `${lang}/index.html`;
-            
-            // ボタンのアクティブ状態を更新
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.style.opacity = '0.7';
-            });
-            event.target.style.opacity = '1';
-            
-            // ここではアラートで代用
-            const langNames = {
-                'en': '英語',
-                'jp': '日本語',
-                'cn': '中国語'
-            };
-            alert(`${langNames[lang]}に切り替えました`);
+        	var pageurl="{{ site.url }}{{ site.baseurl }}{{ page.url }}";
+        	var ary=pageurl.split("/");
+        	if (lang=="en") ary[ary.length-2]="e";
+        	if (lang=="jp") ary[ary.length-2]="j";
+        	if (lang=="cn") ary[ary.length-2]="c";
+        	pageurl=ary.join("/");
+            window.location.href = pageurl;
         }
     </script>
 </body>
