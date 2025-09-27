@@ -1,6 +1,3 @@
----
-layout: e
----
 # API
 
 ## Properties

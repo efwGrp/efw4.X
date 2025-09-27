@@ -1,0 +1,13 @@
+defaults:
+  - scope:
+      path: "e" # docs/e/ フォルダ内のファイル
+    values:
+      layout: "e"
+  - scope:
+      path: "j" # docs/j/ フォルダ内のファイル
+    values:
+      layout: "j"
+  - scope:
+      path: "c" # docs/c/ フォルダ内のファイル
+    values:
+      layout: "c"
