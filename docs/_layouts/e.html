@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png" />
     <title>{{ page.title }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -420,7 +421,7 @@
         // 言語切り替え関数
         function switchLanguage(lang) {
         	var pageurl="{{ page.url }}";
-        	var ary=pageurl.split("/"):
+        	var ary=pageurl.split("/");
         	if (lang=="en") ary[ary.length-2]="e";
         	if (lang=="jp") ary[ary.length-2]="j";
         	if (lang=="cn") ary[ary.length-2]="c";
