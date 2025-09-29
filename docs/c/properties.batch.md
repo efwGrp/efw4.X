@@ -23,6 +23,7 @@
 |  | `mail.smtp.port` |  |  |
 |  | *JavaMail 属性链接* |  | [smtp api](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html)<br>[pop3 api](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html)<br>[imap api](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html) |
 | BRMS | `efw.brms.import` | `false` | 导入 InnoRules？ |
+|  | `efw.brms.version` | `7` | InnoRules的版本。 |
 |  | `innorules.home` | `""` | InnoRules 主文件夹。 |
 |  | `innorules.system` | `""` | InnoRules 系统 ID。 |
 |  | `innorules.rule-application-config` | `""` | InnoRules 应用程序 ID。 |

@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.efwgrp</groupId>
   <artifactId>efw</artifactId>
-  <version>4.08.001</version>
+  <version>4.08.002</version>
   <name>ESCCO-Framework</name>
   <description>"efw" is an Ajax framework for server site JavaScript designed 
 and developed by Escco Co., Ltd. using a goal-oriented method. 
@@ -140,18 +140,32 @@ It is provided as open source free software.</description>
     </dependency>
     <!-- innorules -->
     <dependency>
-      <groupId>innorules</groupId>
+      <groupId>innorules7</groupId>
       <artifactId>api</artifactId>
       <version>7.1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/innorules-api.jar</systemPath>
+      <systemPath>${basedir}/lib/innorules-api7.jar</systemPath>
     </dependency>
     <dependency>
-      <groupId>innorules</groupId>
+      <groupId>innorules7</groupId>
       <artifactId>core</artifactId>
       <version>7.1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}/lib/innorules-core.jar</systemPath>
+      <systemPath>${basedir}/lib/innorules-core7.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules8</groupId>
+      <artifactId>api</artifactId>
+      <version>8.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-api8.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules8</groupId>
+      <artifactId>core</artifactId>
+      <version>8.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-core8.jar</systemPath>
     </dependency>
   </dependencies>
   <build>

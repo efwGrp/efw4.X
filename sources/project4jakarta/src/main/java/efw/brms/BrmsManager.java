@@ -1,28 +1,24 @@
 /**** efw4.X Copyright 2025 efwGrp ****/
 package efw.brms;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import com.innoexpert.rulesclient.ClusterManager;
-import com.innoexpert.rulesclient.Constants;
-import com.innoexpert.rulesclient.Item;
-import com.innoexpert.rulesclient.ResultSet;
-import com.innoexpert.rulesclient.RuleInterface;
-import com.innoexpert.rulesclient.RuleReq;
-import com.innoexpert.rulesclient.RulesException;
 import com.innorules.rrt.InitializerHelper;
 
+import efw.BrmsExcuteException;
 import efw.framework;
 import efw.properties.PropertiesManager;
 
 /**
- *ルールエンジンに対する操作を行うクラス。For 7.1
- * @author he.lin と tian.liang
+ *ルールエンジンに対する操作を行うクラス。For 7.X 8.X
+ * @author Chang
  */
 public final class BrmsManager {
+	private static int CODETYPE_ID = 0;
+	private static int CODETYPE_NAME = 1;
+	private static int CODETYPE_ALIAS = 2;
+	private static String VERSION_7 ="7";
+	private static String VERSION_8 ="8";
 	/**
 	 * ダミーコンストラクタ
 	 */
@@ -47,11 +43,11 @@ public final class BrmsManager {
 	 * @param ruleDate ルール呼び出し基準日(yyyy-MM-dd)。
 	 * @param params ルール呼び出しパラメーター。
 	 * @return ルール実行結果。
-	 * @throws RulesException ルール実行エラー。
+	 * @throws BrmsExcuteException ルール実行エラー。
 	 */
-	public static ResultSet getRuleById(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws RulesException{
-		framework.brmsLog(Constants.CODETYPE_ID,ruleIndentifier,ruleDate,params);
-		return BrmsManager.execute(Constants.CODETYPE_ID,ruleIndentifier,ruleDate,params);
+	public static Object getRuleById(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws BrmsExcuteException{
+		framework.brmsLog(BrmsManager.CODETYPE_ID,ruleIndentifier,ruleDate,params);
+		return BrmsManager.execute(BrmsManager.CODETYPE_ID,ruleIndentifier,ruleDate,params);
 	}
 	/**
 	 * 名称でルール呼び出し。
@@ -59,11 +55,11 @@ public final class BrmsManager {
 	 * @param ruleDate ルール呼び出し基準日(yyyy-MM-dd)。
 	 * @param params ルール呼び出しパラメーター。
 	 * @return ルール実行結果。
-	 * @throws RulesException ルール実行エラー。
+	 * @throws BrmsExcuteException ルール実行エラー。
 	 */
-	public static ResultSet getRuleByName(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws RulesException{
-		framework.brmsLog(Constants.CODETYPE_NAME,ruleIndentifier,ruleDate,params);
-		return BrmsManager.execute(Constants.CODETYPE_NAME,ruleIndentifier,ruleDate,params);
+	public static Object getRuleByName(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws BrmsExcuteException{
+		framework.brmsLog(BrmsManager.CODETYPE_NAME,ruleIndentifier,ruleDate,params);
+		return BrmsManager.execute(BrmsManager.CODETYPE_NAME,ruleIndentifier,ruleDate,params);
 	}
 	/**
 	 * ALIASでルール呼び出し。
@@ -71,11 +67,11 @@ public final class BrmsManager {
 	 * @param ruleDate ルール呼び出し基準日(yyyy-MM-dd)。
 	 * @param params ルール呼び出しパラメーター。
 	 * @return ルール実行結果。
-	 * @throws RulesException ルール実行エラー。
+	 * @throws BrmsExcuteException ルール実行エラー。
 	 */
-	public static ResultSet getRuleByAlias(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws RulesException{
-		framework.brmsLog(Constants.CODETYPE_ALIAS,ruleIndentifier,ruleDate,params);
-		return BrmsManager.execute(Constants.CODETYPE_ALIAS,ruleIndentifier,ruleDate,params);
+	public static Object getRuleByAlias(String ruleIndentifier, String ruleDate, Map<String, Object> params)throws BrmsExcuteException{
+		framework.brmsLog(BrmsManager.CODETYPE_ALIAS,ruleIndentifier,ruleDate,params);
+		return BrmsManager.execute(BrmsManager.CODETYPE_ALIAS,ruleIndentifier,ruleDate,params);
 	}
 	/**
 	 * ルール呼び出し。
@@ -84,56 +80,20 @@ public final class BrmsManager {
 	 * @param ruleDate ルール呼び出し基準日(yyyy-MM-dd)。
 	 * @param params ルール呼び出しパラメーター。
 	 * @return ルール実行結果。
-	 * @throws RulesException ルール実行エラー。
+	 * @throws BrmsExcuteException ルール実行エラー。
 	 */
-	@SuppressWarnings("rawtypes")
-	private static ResultSet execute(int codeType, String ruleIndentifier, String ruleDate, Map<String, Object> params) throws RulesException {
-		RuleReq req = new RuleReq();
-		req.setRuleCode(ruleIndentifier);
-		req.setDate(ruleDate);
-		req.resetItems();
-		Iterator<Entry<String, Object>> it = params.entrySet().iterator();
-		while(it.hasNext()){
-			Entry<String,Object> entry = (Entry<String,Object>)it.next();
-			String key=entry.getKey().toString();
-			Object value=entry.getValue();
-			
-			if (value==null){
-				req.addStringItem(key).add(null);
-			}else if(value instanceof String){
-				req.addStringItem(key).add((String) value);
-			}else if(value instanceof Double){
-				req.addNumberItem(key).add((Double) value);
-			}else if(value instanceof ArrayList){
-				ArrayList ary=(ArrayList)value;
-				Item item=null;
-				for(int i=0;i<ary.size();i++){
-					Object subValue=ary.get(i);
-					if (i==0){
-						if (subValue==null){
-							item=req.addStringItem(key);
-						}else if (subValue instanceof String){
-							item=req.addStringItem(key);
-						}else if(subValue instanceof Double){
-							item=req.addNumberItem(key);
-						}
-					}
-					if (subValue==null){
-						item.add(null);
-					}else if (subValue instanceof String){
-						item.add((String)subValue);
-					}else if(subValue instanceof Double){
-						item.add((Double)subValue);
-					}
-					
-				}
-			}
-		}
-		RuleInterface intf = ClusterManager.getInterface();
+	protected static Object execute(int codeType, String ruleIndentifier, String ruleDate, Map<String, Object> params) throws BrmsExcuteException {
 		try {
-			return intf.execute(req, codeType);
-		} finally {
-			intf.close();
+			if (VERSION_7.equals(PropertiesManager.getProperty(PropertiesManager.EFW_BRMS_VERESION, VERSION_7))) {
+				return BrmsManager7.execute(codeType,ruleIndentifier,ruleDate,params);
+			};
+			if (VERSION_8.equals(PropertiesManager.getProperty(PropertiesManager.EFW_BRMS_VERESION, VERSION_7))) {
+				return BrmsManager8.execute(codeType,ruleIndentifier,ruleDate,params);
+			};
+		}catch(Exception e) {
+			throw new BrmsExcuteException(e);
 		}
+		return null;
 	}
+
 }

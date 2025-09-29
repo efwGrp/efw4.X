@@ -23,6 +23,7 @@ The `/WEB-INF/classes/batch.properties` file is used to configure the framework 
 |  | `mail.smtp.port` |  |  |
 |  | *JavaMail Properties Links* |  | [smtp api](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html)<br>[pop3 api](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html)<br>[imap api](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html) |
 | BRMS | `efw.brms.import` | `false` | Import InnoRules? |
+|  | `efw.brms.version` | `7` | The version of InnoRules. |
 |  | `innorules.home` | `""` | InnoRules home folder. |
 |  | `innorules.system` | `""` | InnoRules system ID. |
 |  | `innorules.rule-application-config` | `""` | InnoRules application ID. |

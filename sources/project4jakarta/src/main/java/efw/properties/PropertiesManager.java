@@ -71,6 +71,11 @@ public final class PropertiesManager {
      */
     public static final String EFW_BRMS_IMPORT="efw.brms.import";
     /**
+     * brmsバージョン。
+     * 「efw.brms.version」の定数。
+     */
+    public static final String EFW_BRMS_VERESION="efw.brms.version";
+    /**
      * イベントフォルダ。
      * 「efw.event.folder」の定数。
      */

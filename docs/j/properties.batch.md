@@ -23,6 +23,7 @@
 |  | `mail.smtp.port` |  |  |
 |  | *JavaMailプロパティリンク* |  | [smtp api](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html)<br>[pop3 api](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html)<br>[imap api](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html) |
 | BRMS | `efw.brms.import` | `false` | InnoRulesをインポートしますか？ |
+|  | `efw.brms.version` | `7` | InnoRulesのバージョン。 |
 |  | `innorules.home` | `""` | InnoRulesホームフォルダ。 |
 |  | `innorules.system` | `""` | InnoRulesシステムID。 |
 |  | `innorules.rule-application-config` | `""` | InnoRulesアプリケーションID。 |

@@ -112,11 +112,11 @@ EfwServerBRMS.prototype._executeQuery = function(executionParams) {
 	var meta = rs.getMetaData();
 	var parseValue = function(rs, idx) {
 		var value = null;
-		if (meta.getColumnType(idx) == com.innoexpert.rulesclient.Constants.TYPE_NUMBER) {
+		if (meta.getColumnType(idx) == 1) {//com.innoexpert.rulesclient.Constants.TYPE_NUMBER
 			value = 0 + new Number(rs.getDouble(idx));
-		} else if (meta.getColumnType(idx) == com.innoexpert.rulesclient.Constants.TYPE_STRING) {
+		} else if (meta.getColumnType(idx) == 2) {//com.innoexpert.rulesclient.Constants.TYPE_STRING
 			value = "" + rs.getString(idx);
-		} else if (meta.getColumnType(idx) == com.innoexpert.rulesclient.Constants.TYPE_BOOLEAN) {
+		} else if (meta.getColumnType(idx) == 3) {//com.innoexpert.rulesclient.Constants.TYPE_BOOLEAN
 			value = true && rs.getBoolean(idx);
 		}
 		return value;

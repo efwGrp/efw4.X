@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.efwgrp</groupId>
   <artifactId>efw</artifactId>
-  <version>4.08.001jakarta</version>
+  <version>4.08.002jakarta</version>
   <name>ESCCO-Framework</name>
   <description>"efw" is an Ajax framework for server site JavaScript designed 
 and developed by Escco Co., Ltd. using a goal-oriented method. 

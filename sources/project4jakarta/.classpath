@@ -54,15 +54,9 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/EFW_ALL/pleiades/workspace/efw4x/lib/innorules-api.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/EFW_ALL/pleiades/workspace/efw4x/lib/innorules-core.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/innorules-api7.jar"/>
+	<classpathentry kind="lib" path="lib/innorules-api8.jar"/>
+	<classpathentry kind="lib" path="lib/innorules-core7.jar"/>
+	<classpathentry kind="lib" path="lib/innorules-core8.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

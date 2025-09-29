@@ -29,3 +29,4 @@
 |  | `####.url.pattern` |  | セット内のページの正規表現。 |
 | 禁止文字 | `efw.forbidden.characters` |  | イベントJSパラメータで禁止されている文字。 |
 |  | `efw.forbidden.replacement` |  | 禁止文字の置換文字（削除する場合は空白）。 |
+| BRMS | `efw.brms.version` | `7` | InnoRulesのバージョン。 |

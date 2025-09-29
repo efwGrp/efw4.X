@@ -10,4 +10,9 @@ public abstract class efwException extends Exception {
 	 * @param message エラー内容。
 	 */
 	public efwException(String message){super(message);}
+	/**
+	 * コンストラクタ
+	 * @param e エラー内容。
+	 */
+	public efwException(Exception e) {super(e);}
 }
