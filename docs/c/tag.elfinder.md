@@ -7,10 +7,10 @@ elFinder 是一个流行的 Web 文件管理器。我们基于 [elFinder 2.1](ht
 ```jsp
 <%@ taglib prefix="efw" uri="efw" %>
 <head>
-  <efw:Client/>
+ <efw:Client/>
 </head>
 <body>
-  <efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" readonly="false" /> // 或 efw:elfinder, efw:Elfinder, efw:ELFINDER
+ <efw:elFinder id="elFinder1" home="homefolder" height="400" width="800" readonly="false" /> // 或 efw:elfinder, efw:Elfinder, efw:ELFINDER
 </body>
 ```
 

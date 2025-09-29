@@ -6,10 +6,10 @@
 
 ```javascript
 var excel = new Excel("test.xlsx");
-var ary = excel.getSingle("Sheet1", 
-	{	"data1":"A1", 
-		"data2":["B2","#,##0.0","HALF_EVEN"], 
-		"data3":["C3","yyyy/MM/dd"], 
+var ary = excel.getSingle("Sheet1",
+	{	"data1":"A1",
+		"data2":["B2","#,##0.0","HALF_EVEN"],
+		"data3":["C3","yyyy/MM/dd"],
 		"data4":
 		function(){
 			return excel.getValue("Sheet1","D4")+excel.getValue("Sheet1","E5");
@@ -31,10 +31,10 @@ var ary = excel.getSingle("Sheet1", 
 
 `positionRowMap` 的示例。
 
-```javascript 
+```javascript
 {
-	data1: position, 
-	newField2: [oldField2, "#,##0.0", "HALF_EVEN"], //formatter, rounder 
-	data3: function(){ return String|Number|Date|Boolean;} 
+	data1: position,
+	newField2: [oldField2, "#,##0.0", "HALF_EVEN"], //formatter, rounder
+	data3: function(){ return String|Number|Date|Boolean;}
 }
 ```

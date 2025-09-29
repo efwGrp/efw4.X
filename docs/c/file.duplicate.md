@@ -13,7 +13,7 @@ file.duplicate("myFolder","yourFolder");
 
 | 调用 | 返回值 |
 |---|---|
-| `file. duplicate  ( srcPath, destPath )` | `void` |
+| `file. duplicate ( srcPath, destPath )` | `void` |
 
 | 参数 | 类型 | 描述 |
 |---|---|---|

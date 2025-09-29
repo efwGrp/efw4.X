@@ -6,11 +6,11 @@ test.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqls>
 <sqls>
-    <sql id="sql1" paramPrefix=":" dynamicPrefix="@">
+  <sql id="sql1" paramPrefix=":" dynamicPrefix="@">
 /**
-    this is comment
+  this is comment
 **/
-//  this is comment
+// this is comment
 
 SELECT field1,field2,field3 FROM table1
 WHERE
@@ -20,11 +20,11 @@ field1= :param1
 <if istrue="param3.substr(0,1)=='x'"> and field3 = :param3 </if>
 <if isfalse="param3.substr(0,1)=='x'"> and field3 = 'y' </if>
 
-    </sql>
-    <sql id="sql2">
-        <include groupId="test" sqlId="sql1"/>
-        order by field3, @param4
-    </sql>
+  </sql>
+  <sql id="sql2">
+    <include groupId="test" sqlId="sql1"/>
+    order by field3, @param4
+  </sql>
 </sqls>
 ```
 

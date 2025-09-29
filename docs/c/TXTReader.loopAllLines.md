@@ -15,7 +15,7 @@ var txtReader = new TXTReader("input/test.txt", regFieldsDef, "MS932");
 txtReader.loopAllLines(callback); // 回调函数将执行三次。
 
 function callback(aryField, index) {
-  // ... 你的代码 ...
+ // ... 你的代码 ...
 }
 ```
 

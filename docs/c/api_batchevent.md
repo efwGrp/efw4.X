@@ -5,16 +5,16 @@
 //web/WEB-INF/efw/event/myBatchEvent.js
 ////////////////////////////////////////
 var myBatchEvent={};
-myBatchEvent.paramsFormat = { 
-                                "sysDate" : "format:yyyy/MM/dd;display-name:sysDate;"
-                            };
-myBatchEvent.fire         = function ( params ) {
-                                //return;
-                                //return { "param" : params.sysDate };
-                                return (new Batch())
-                                .echo("hello world!")
-                                .exit(1);
-                            };
+myBatchEvent.paramsFormat = {
+                "sysDate" : "format:yyyy/MM/dd;display-name:sysDate;"
+              };
+myBatchEvent.fire    = function ( params ) {
+                //return;
+                //return { "param" : params.sysDate };
+                return (new Batch())
+                .echo("hello world!")
+                .exit(1);
+                  };
 ```
 
 ### 事件变量

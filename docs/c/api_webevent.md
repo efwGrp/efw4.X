@@ -6,27 +6,27 @@
 ////////////////////////////////////////
 var myWebEvent={};
 myWebEvent.service={
-    max:10,
-    message:'system is busy,please wait a while',
-    retriable:true,
-    interval:20,
+  max:10,
+  message:'system is busy,please wait a while',
+  retriable:true,
+  interval:20,
 };
-myWebEvent.paramsFormat = { 
-    "#txt_teststring" : "display-name:Test String;max-length:10;",
-    "#txt_testnumber" : "format:#,##0.00;required:true;display-name:Test Number;min:-10.00;max:1,000.00",
-    "#txt_testdate"   : function(){
-        var date1=new Date();
-        var date2=new Date();
-        date2.setDate(date1.getDate()+6);
-        return "format:yyyy-MM-dd;required:true;display-name:Test Date;"
-            +"min:"+date1.format("yyyy-MM-dd")+";"
-            +"max:"+date2.format("yyyy-MM-dd")+";" ; // Fixed typo here
-    },
-    "#txt_password"   :"secure:true",//the secure value will be encoded before sending.
-    ... 
+myWebEvent.paramsFormat = {
+  "#txt_teststring" : "display-name:Test String;max-length:10;",
+  "#txt_testnumber" : "format:#,##0.00;required:true;display-name:Test Number;min:-10.00;max:1,000.00",
+  "#txt_testdate" : function(){
+    var date1=new Date();
+    var date2=new Date();
+    date2.setDate(date1.getDate()+6);
+    return "format:yyyy-MM-dd;required:true;display-name:Test Date;"
+      +"min:"+date1.format("yyyy-MM-dd")+";"
+      +"max:"+date2.format("yyyy-MM-dd")+";" ; // Fixed typo here
+  },
+  "#txt_password" :"secure:true",//the secure value will be encoded before sending.
+  ...
 };
-myWebEvent.fire         = function ( requestParams ) {
-    return (new Result()).alert("hello world! Your entries are correct.");
+myWebEvent.fire    = function ( requestParams ) {
+  return (new Result()).alert("hello world! Your entries are correct.");
 };
 ```
 
@@ -39,10 +39,10 @@ myWebEvent.fire         = function ( requestParams ) {
 
 ```javascript
 myWebEvent.service = {
-    max: 10,
-    message:'系统繁忙，请稍候。',
-    retriable:true,
-    interval:20,
+  max: 10,
+  message:'系统繁忙，请稍候。',
+  retriable:true,
+  interval:20,
 };
 ```
 
@@ -57,11 +57,11 @@ myWebEvent.service = {
 
 ```javascript
 myWebEvent.paramsFormat = {
-    selector1 : null,
-    selector2 : "checkStyle",
-    selector3 : function(){ return "checkStyle"; },
-    { selector4 : ... , },
-    [ { selector5 : ... , } ],
+  selector1 : null,
+  selector2 : "checkStyle",
+  selector3 : function(){ return "checkStyle"; },
+  { selector4 : ... , },
+  [ { selector5 : ... , } ],
 };
 ```
 
@@ -81,14 +81,14 @@ myWebEvent.paramsFormat = {
 
 | 项目 | 值 | 描述 | 错误信息 |
 |---|---|---|---|
-| `display-name` | `String` | 将在检查错误消息中显示的元素名称。 |  |
+| `display-name` | `String` | 将在检查错误消息中显示的元素名称。 | |
 | `max-length` | `Number` | 元素的最大长度。 | `MaxLengthOverMessage` |
 | `format` | `String` | 元素期望的数字格式或日期格式。 | `NumberIsReuqiredMessage` 或 `DateIsReuqiredMessage` |
 | `min` | `String` | 元素的最小（格式化）值。 | `MinOrMaxOverMessage` 或 `MinOverMessage` |
 | `max` | `String` | 元素的最大（格式化）值。 | `MinOrMaxOverMessage` 或 `MaxOverMessage` |
 | `required` | `Boolean` | 是否需要该元素。 | `IsRequiredMessage` |
 | `accept` | `String` | 以“,”分隔的扩展文件名，这些文件名将被接受作为上传文件。 | `NotAcceptMessage` |
-| `secure` | `String` | 元素值是否应该被编码。 |  |
+| `secure` | `String` | 元素值是否应该被编码。 | |
 
 ### Fire 方法
 

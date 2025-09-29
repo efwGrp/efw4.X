@@ -12,11 +12,11 @@ threads.add({ index: 2, successed: false, run: operate });
 threads.add({ index: 3, successed: false, run: operate });
 
 function operate() {
-  if (this.index > 2) {
-    this.successed = false;
-  } else {
-    this.successed = true;
-  }
+ if (this.index > 2) {
+  this.successed = false;
+ } else {
+  this.successed = true;
+ }
 }
 ```
 

@@ -4,12 +4,12 @@
 
 ```javascript
 {
-  name: String,
-  length: Number,
-  lastModified: Date,
-  absolutePath: String,
-  mimeType: String, // Correct spelling: mimeType
-  isHidden: Boolean,
-  isBlank: Boolean,
+ name: String,
+ length: Number,
+ lastModified: Date,
+ absolutePath: String,
+ mimeType: String, // Correct spelling: mimeType
+ isHidden: Boolean,
+ isBlank: Boolean,
 }
 ```

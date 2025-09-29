@@ -60,8 +60,8 @@
 例如：
 
 ```javascript
-db.select(groupId, sqlId, params)        // 使用默认数据库资源“jdbc/efw”
-db.select(groupId, sqlId, params, "jdbc/efw2")    // 使用附加数据库资源“jdbc/efw2”
+db.select(groupId, sqlId, params)    // 使用默认数据库资源“jdbc/efw”
+db.select(groupId, sqlId, params, "jdbc/efw2")  // 使用附加数据库资源“jdbc/efw2”
 ```
 
 

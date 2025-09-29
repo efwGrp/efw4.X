@@ -6,21 +6,21 @@ mails.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mails>
 <mails>
-    <mail id="mail1">
-        <to>:to</to>
-        <cc></cc>
-        <bcc></bcc>
-        <mdn></mdn>
-        <subject>About :about </subject>
-        <body>
+  <mail id="mail1">
+    <to>:to</to>
+    <cc></cc>
+    <bcc></bcc>
+    <mdn></mdn>
+    <subject>About :about </subject>
+    <body>
 Mr. :userName
 ...
-        </body>
+    </body>
         <attachment></attachment>
-    </mail>
-    <mail id="mail2">
-    ...
-    </mail>
+  </mail>
+  <mail id="mail2">
+  ...
+  </mail>
 </mails>
 ```
 

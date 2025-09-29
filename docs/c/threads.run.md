@@ -13,18 +13,18 @@ threads.add({ index: 3, successed: false, run: operate });
 
 var errorData = threads.run().seek("successed", "eq", false);
 if (errorData.length !== 0) {
-  var errorDataArr = errorData.getArray();
-  for (var i = 0; i < errorDataArr.length; i++) {
-    console.debug("Operation has errors on index: " + errorDataArr[i].index); // 改进的错误信息
-  }
+ var errorDataArr = errorData.getArray();
+ for (var i = 0; i < errorDataArr.length; i++) {
+  console.debug("Operation has errors on index: " + errorDataArr[i].index); // 改进的错误信息
+ }
 }
 
 function operate() {
-  if (this.index > 2) {
-    this.successed = false;
-  } else {
-    this.successed = true;
-  }
+ if (this.index > 2) {
+  this.successed = false;
+ } else {
+  this.successed = true;
+ }
 }
 ```
 ## API

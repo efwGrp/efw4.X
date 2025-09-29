@@ -22,7 +22,7 @@
 你可以使用 `request.getAttribute` 或 `efw:attr` 标签在包含的 JSP 中检索参数，如下所示：
 
 ```jsp
-<%= request.getAttribute("param1") %>  // 这可行。
+<%= request.getAttribute("param1") %> // 这可行。
 <%= request.getAttribute("param2") %>
 <efw:attr key="param1"/> // 或者，使用这个。
 <efw:attr key="param2"/>
@@ -33,7 +33,7 @@
 
 ```jsp
 <%
-  String param1 = "hello";
+ String param1 = "hello";
 %>
 <efw:Part path="part.jsp" param1="<%= param1 %>"/>
 ```

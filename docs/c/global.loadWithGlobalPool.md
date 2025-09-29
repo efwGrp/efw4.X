@@ -37,4 +37,4 @@ return new Result().eval("$('" + params.pdf + "')[0].src='" + pdfDataUri + "'");
 | `script` | `String` | 调用时由池执行的脚本字符串。 |
 | `context` | `Object` | `context` 参数的属性将设置到脚本上下文的全局作用域中。 |
 | `engine` | `String` | 池中引擎的名称。只允许使用 "nashorn" 或 "javet"。 |
-| `returnVar` | `String` \| `Number` \| `Boolean` \| `Date` \| `Array` \| `Object` \| ...  | 用于检索返回值的变量名。 |
+| `returnVar` | `String` \| `Number` \| `Boolean` \| `Date` \| `Array` \| `Object` \| ... | 用于检索返回值的变量名。 |
