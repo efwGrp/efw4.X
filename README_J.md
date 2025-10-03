@@ -22,6 +22,5 @@
 [![YIKE](docs/img/logos/yike.jpg)](https://www.escco.com.cn) 
 [![JWTS](docs/img/logos/jwts.png)](https://www.jwts.co.jp) 
 [![LAYER10](docs/img/logos/layer10.png)](http://www.layer10.jp/) 
-[![SOMPO-JAPAN](docs/img/logos/jpn_sompo.jpg)](https://www.sompo-japan.co.jp/) 
 [![QUALICA](docs/img/logos/qualica.png)](https://www.qualica.co.jp/) 
 [![JOT](docs/img/logos/jot.png)](https://www.jotnw.or.jp/)
