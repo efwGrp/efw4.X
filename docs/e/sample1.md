@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example demonstrates how to use the efw (Escco-Framework) framework to handle various types of HTML input elements. efw is an Ajax framework based on server-side JavaScript, adopting a purpose-oriented design approach.
+This example demonstrates how to use the efw framework to handle various types of HTML input elements.
 
 ## Core Files
 

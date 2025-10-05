@@ -2,7 +2,7 @@
 
 ## 概述
 
-本示例演示了如何使用 efw (Escco-Framework) 框架处理各种类型的 HTML 输入元素。efw 是一个基于服务器端 JavaScript 的 Ajax 框架，采用目的导向的设计方法。
+本示例演示了如何使用 efw 框架处理各种类型的 HTML 输入元素。
 
 ## 核心文件
 
