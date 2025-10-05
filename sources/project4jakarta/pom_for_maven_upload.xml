@@ -109,25 +109,25 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-fonts-extra</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-renderer</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-html</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <!-- postgresqlのコピーin/out -->

@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.efwgrp</groupId>
   <artifactId>efw</artifactId>
-  <version>4.08.002jakarta</version>
+  <version>4.08.003jakarta</version>
   <name>ESCCO-Framework</name>
   <description>"efw" is an Ajax framework for server site JavaScript designed 
 and developed by Escco Co., Ltd. using a goal-oriented method. 
@@ -109,25 +109,25 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-fonts-extra</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-renderer</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.github.librepdf</groupId>
       <artifactId>openpdf-html</artifactId>
-      <version>2.4.0</version>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <!-- postgresqlのコピーin/out -->

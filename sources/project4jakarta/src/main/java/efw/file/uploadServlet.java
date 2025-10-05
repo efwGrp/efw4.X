@@ -47,10 +47,18 @@ public final class uploadServlet extends HttpServlet {
 			String cmd="";
 			String target="";
 			String isAbs="";
+			String id="";
+			String home="";
 	        for (Part part : request.getParts()) {
 	            for (String cd : part.getHeader("Content-Disposition").split(";")) {
 	            	if (cd.trim().startsWith("name=\"cmd\"")) {
             			cmd=getParam(part);
+            			break;
+	            	}else if (cd.trim().startsWith("name=\"id\"")) {
+	            		id=getParam(part);
+            			break;
+	            	}else if (cd.trim().startsWith("name=\"home\"")) {
+	            		home=getParam(part);
             			break;
 	            	}else if (cd.trim().startsWith("name=\"target\"")) {
 	            		target=getParam(part);
@@ -101,14 +109,23 @@ public final class uploadServlet extends HttpServlet {
 	            }
 	        }
 	        if ("upload".equals(cmd)) {//elfinderのuploadの場合
+	        	String sessionHome=(String)request.getSession().getAttribute("EFW_ELFINDER_HOME_"+id);
+	    		String sessionIsAbs=(String)request.getSession().getAttribute("EFW_ELFINDER_ISABS_"+id);
+	    		String sessionReadOnly=(String)request.getSession().getAttribute("EFW_ELFINDER_READONLY_"+id);
 	        	String cwdFolder=new String(
 	        			Base64.getUrlDecoder().decode(target.substring("EFW_".length()).getBytes())
 	        		);
-	        	File fl=("true".equals(isAbs))?
-	        			FileManager.getByAbsolutePath(cwdFolder):FileManager.get(cwdFolder);
-	        	FileManager.saveUploadFiles(fl);//アップロードファイルを正しい場所に移す。
+	        	//もしセッション情報がない場合.equalsでエラーが発生する
+	        	if (sessionReadOnly.equals("false")//読取り専用ではない
+	        		&& sessionIsAbs.equals(isAbs)//セッション情報と一致する
+	        		&& sessionHome.equals(home)//セッション情報と一致する
+	        		&& cwdFolder.indexOf(home)==0//目標フォルダにhomeがある
+	        		&& cwdFolder.indexOf("..")==-1){//目標フォルダに..がない
+		        	File fl=("true".equals(isAbs))?
+		        			FileManager.getByAbsolutePath(cwdFolder):FileManager.get(cwdFolder);
+		        	FileManager.saveUploadFiles(fl);//アップロードファイルを正しい場所に移す。
+	        	}
 	        }
-	        
 	        response.getWriter().print("[]");
 		}finally{
 			framework.removeRequest();
