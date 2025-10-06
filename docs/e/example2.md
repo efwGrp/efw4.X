@@ -4,7 +4,7 @@
 
 Output Test is a complete example demonstrating the data output functionality in the efw framework, showing how to dynamically populate various HTML form elements with JSON data. This example includes both frontend JSP pages and backend JavaScript event handling logic.
 
-## File Structure
+## Core Files
 
 1. **JSP Page**: `OutputTest.jsp`
 2. **JavaScript Event Handling**: `OutputTest_display.js`
