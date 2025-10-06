@@ -50,18 +50,9 @@ Output Test is a complete example demonstrating the data output functionality in
 - Precisely target elements using CSS selectors
 
 ### 2. Template-Driven Rendering
-- **Dropdown Option Template**:  
-  html
-  <option value='{value}'>{text}</option>
 
-- **Table Row Template**:  
-  html
-  <tr>
-    <td>{fd1}</td>
-    <td>{fd2}</td>
-    <td>{fd3}</td>
-  </tr>
-
+- **Dropdown Option Template**: `<option value='{value}'>{text}</option>`
+- **Table Row Template**: `<tr><td>{fd1}</td><td>{fd2}</td><td>{fd3}</td></tr>` 
 
 ### 3. Chain Operation API
 
