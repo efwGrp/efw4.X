@@ -12,11 +12,13 @@ Output Test is a complete example demonstrating the data output functionality in
 ## Functionality Implementation
 
 ### 1. Data Source Definition
+
 - **Dropdown Option Data** (`#txtOptions`): Defines dropdown options using JSON arrays
 - **Table Data** (`#txtTables`): Defines table row data using JSON arrays
 - **Form Value Data** (`#txtValues`): Defines values for each form element using JSON objects
 
 ### 2. Data Processing Flow
+
 1. User clicks the "Batch Display" button to trigger the `Efw('OutputTest_display')` event
 2. Backend JavaScript parses JSON data from three text areas
 3. Uses chain operations to populate page elements:
@@ -25,6 +27,7 @@ Output Test is a complete example demonstrating the data output functionality in
    - **Other Elements**: Set values based on selectors
 
 ### 3. Supported Input Types
+
 | Type             | Example Element | Data Processing Method                     |
 |------------------|-----------------|--------------------------------------------|
 | Text Input       | `#item1`        | Directly set value                         |
