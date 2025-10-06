@@ -12,7 +12,7 @@
 * [构建高负载 Tomcat 环境](https://efwgrp.github.io/efw4.X/highload_c.html)
 
 
-## [示例](https://efwgrp.github.io/efw4.X/samples_c.html)
+## [示例](https://efwgrp.github.io/efw4.X/examples_c.html)
 
 
 ## [API](https://efwgrp.github.io/efw4.X/c/api.html)

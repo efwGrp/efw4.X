@@ -12,7 +12,7 @@
 * [高負荷Tomcat環境の構築](https://efwgrp.github.io/efw4.X/highload_j.html)
 * [EFWコーディング規約](https://qiita.com/Victory963/items/ec028606e382a1d3a174)
 
-## [サンプル](https://efwgrp.github.io/efw4.X/samples_j.html)
+## [サンプル](https://efwgrp.github.io/efw4.X/examples_j.html)
 
 ## [API](https://efwgrp.github.io/efw4.X/j/api.html)
 
