@@ -27,13 +27,13 @@ efw.dialog.alert("I am here");
 
 ```js
 efw.dialog.confirm(
-    "alertテストしています。",
+    "测试警报。",
     {
-        "はい": function(){ alert("「はい」を押しました。"); },
-        "いいえ": function(){ alert("「いいえ」を押しました。"); }
+        "是": function(){ alert("我按下了“是”。"); },
+        "否": function(){ alert("我按了“否”。"); }
     },
-    "alertテスト",
-    function(){ alert("テスト完了"); }
+    "警报测试",
+    function(){ alert("测试完成"); }
 );
 ```
 
@@ -46,10 +46,10 @@ efw.dialog.confirm(
 
 ```js
 efw.dialog.wait(
-    "５秒待ってください。",
+    "请等待5秒。",
     5,
-    "waitテスト",
-    function(){ alert("テスト完了"); }
+    "等待测试",
+    function(){ alert("测试完成"); }
 );
 ```
 
