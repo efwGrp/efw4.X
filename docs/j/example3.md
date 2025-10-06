@@ -1,91 +1,91 @@
-# efw ƒtƒŒ[ƒ€ƒ[ƒN ƒAƒNƒVƒ‡ƒ“ƒeƒXƒg ƒTƒ“ƒvƒ‹
+# efw ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒ†ã‚¹ãƒˆ ã‚µãƒ³ãƒ—ãƒ«
 
-## ŠT—v
+## æ¦‚è¦
 
-ActionTest ‚ÍAefw ƒtƒŒ[ƒ€ƒ[ƒN‚É‚¨‚¯‚éƒ†[ƒU[ƒCƒ“ƒ^[ƒtƒF[ƒX‚ÌƒCƒ“ƒ^ƒ‰ƒNƒVƒ‡ƒ“‚Æ‘€ì‚ð“WŽ¦‚·‚éŠ®‘S‚ÈƒTƒ“ƒvƒ‹‚Å‚·BƒVƒ‡[ƒgƒJƒbƒgƒL[A—v‘f§ŒäAƒ_ƒCƒAƒƒOAƒtƒ@ƒCƒ‹‘€ìAƒy[ƒWƒiƒrƒQ[ƒVƒ‡ƒ“‚È‚ÇA‚³‚Ü‚´‚Ü‚Èƒtƒƒ“ƒgƒGƒ“ƒh‘€ì‹@”\‚ÌŽÀ‘••û–@‚ðŽÀ‰‰‚µ‚Ü‚·B
+ActionTest ã¯ã€efw ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã«ãŠã‘ã‚‹ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã®ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ã‚·ãƒ§ãƒ³ã¨æ“ä½œã‚’å±•ç¤ºã™ã‚‹å®Œå…¨ãªã‚µãƒ³ãƒ—ãƒ«ã§ã™ã€‚ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã€è¦ç´ åˆ¶å¾¡ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã€ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œã€ãƒšãƒ¼ã‚¸ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ãªã©ã€ã•ã¾ã–ã¾ãªãƒ•ãƒ­ãƒ³ãƒˆã‚¨ãƒ³ãƒ‰æ“ä½œæ©Ÿèƒ½ã®å®Ÿè£…æ–¹æ³•ã‚’å®Ÿæ¼”ã—ã¾ã™ã€‚
 
-## ƒRƒAƒtƒ@ƒCƒ‹
+## ã‚³ã‚¢ãƒ•ã‚¡ã‚¤ãƒ«
 
-1. **JSP ƒy[ƒW**: `ActionTest.jsp`
-2. **JavaScript ƒCƒxƒ“ƒgˆ—**: `ActionTest_run.js`
+1. **JSP ãƒšãƒ¼ã‚¸**: `ActionTest.jsp`
+2. **JavaScript ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†**: `ActionTest_run.js`
 
-## ‹@”\ŽÀ‘•
+## æ©Ÿèƒ½å®Ÿè£…
 
-### 1. ƒVƒ‡[ƒgƒJƒbƒgƒL[ƒTƒ|[ƒg
-- **ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“ƒL[**: F1-F12
-- **‘g‚Ý‡‚í‚¹ƒL[**: CTRL+A ‚©‚ç CTRL+Z, ALT+S ‚©‚ç ALT+Z
-- `data-shortcut` ‘®«‚ÅƒVƒ‡[ƒgƒJƒbƒgƒL[‚ð’è‹`
+### 1. ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚µãƒãƒ¼ãƒˆ
+- **ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã‚­ãƒ¼**: F1-F12
+- **çµ„ã¿åˆã‚ã›ã‚­ãƒ¼**: CTRL+A ã‹ã‚‰ CTRL+Z, ALT+S ã‹ã‚‰ ALT+Z
+- `data-shortcut` å±žæ€§ã§ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã‚’å®šç¾©
 
-### 2. —v‘f‘€ì§Œä
-- **•\Ž¦/”ñ•\Ž¦**: `show()` / `hide()` ƒƒ\ƒbƒh
-- **—LŒø/–³Œø**: `enable()` / `disable()` ƒƒ\ƒbƒh
-- CSS ƒZƒŒƒNƒ^[‚É‚æ‚é—v‘f’èˆÊ‚ðƒTƒ|[ƒg
+### 2. è¦ç´ æ“ä½œåˆ¶å¾¡
+- **è¡¨ç¤º/éžè¡¨ç¤º**: `show()` / `hide()` ãƒ¡ã‚½ãƒƒãƒ‰
+- **æœ‰åŠ¹/ç„¡åŠ¹**: `enable()` / `disable()` ãƒ¡ã‚½ãƒƒãƒ‰
+- CSS ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼ã«ã‚ˆã‚‹è¦ç´ å®šä½ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 3. ƒ_ƒCƒAƒƒOƒVƒXƒeƒ€
-- **Œxƒ_ƒCƒAƒƒO**: `alert()` ‚ÅŠÈ’P‚ÈƒƒbƒZ[ƒW‚ð•\Ž¦
-- **Šm”Fƒ_ƒCƒAƒƒO**: `confirm()` ‚ÅƒIƒvƒVƒ‡ƒ“•t‚«‚ÌŠm”Fƒ_ƒCƒAƒƒO
-- ƒ†[ƒU[‘I‘ð‚Ìˆ—‚ÉƒR[ƒ‹ƒoƒbƒNŠÖ”‚ðƒTƒ|[ƒg
+### 3. ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚·ã‚¹ãƒ†ãƒ 
+- **è­¦å‘Šãƒ€ã‚¤ã‚¢ãƒ­ã‚°**: `alert()` ã§ç°¡å˜ãªãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+- **ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°**: `confirm()` ã§ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä»˜ãã®ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°
+- ãƒ¦ãƒ¼ã‚¶ãƒ¼é¸æŠžã®å‡¦ç†ã«ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯é–¢æ•°ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 4. —v‘fó‘ÔŠÇ—
-- **ƒeƒLƒXƒgƒnƒCƒ‰ƒCƒg**: `highlight()` ƒƒ\ƒbƒh
-- **—v‘fƒtƒH[ƒJƒX**: `focus()` ƒƒ\ƒbƒh
-- **ƒnƒCƒ‰ƒCƒg‰ðœ**: ƒnƒCƒ‰ƒCƒgó‘Ô‚ðƒNƒŠƒA
+### 4. è¦ç´ çŠ¶æ…‹ç®¡ç†
+- **ãƒ†ã‚­ã‚¹ãƒˆãƒã‚¤ãƒ©ã‚¤ãƒˆ**: `highlight()` ãƒ¡ã‚½ãƒƒãƒ‰
+- **è¦ç´ ãƒ•ã‚©ãƒ¼ã‚«ã‚¹**: `focus()` ãƒ¡ã‚½ãƒƒãƒ‰
+- **ãƒã‚¤ãƒ©ã‚¤ãƒˆè§£é™¤**: ãƒã‚¤ãƒ©ã‚¤ãƒˆçŠ¶æ…‹ã‚’ã‚¯ãƒªã‚¢
 
-### 5. ƒtƒ@ƒCƒ‹‘€ì
-- **ƒfƒBƒŒƒNƒgƒŠì¬**: `file.makeDir()`
-- **ƒtƒ@ƒCƒ‹‘‚«ž‚Ý**: `file.writeAllLines()`
-- **ƒtƒ@ƒCƒ‹ƒ_ƒEƒ“ƒ[ƒh**: `attach()` ƒƒ\ƒbƒh
-- **ƒoƒbƒ`‘€ì**: ƒ`ƒF[ƒ“ŒÄ‚Ño‚µ‚ðƒTƒ|[ƒg
-- **ƒ_ƒEƒ“ƒ[ƒhŒãíœ**: `deleteAfterDownload()`
+### 5. ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
+- **ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä½œæˆ**: `file.makeDir()`
+- **ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿**: `file.writeAllLines()`
+- **ãƒ•ã‚¡ã‚¤ãƒ«ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰**: `attach()` ãƒ¡ã‚½ãƒƒãƒ‰
+- **ãƒãƒƒãƒæ“ä½œ**: ãƒã‚§ãƒ¼ãƒ³å‘¼ã³å‡ºã—ã‚’ã‚µãƒãƒ¼ãƒˆ
+- **ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰å¾Œå‰Šé™¤**: `deleteAfterDownload()`
 
-### 6. ƒy[ƒWƒiƒrƒQ[ƒVƒ‡ƒ“
-- **ŠO•”ƒWƒƒƒ“ƒv**: `navigate()` ‚ÅŠO•”URL‚Ö
-- **ƒpƒ‰ƒ[ƒ^[“`’B**: ƒNƒGƒŠƒpƒ‰ƒ[ƒ^[‚ðƒTƒ|[ƒg
+### 6. ãƒšãƒ¼ã‚¸ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³
+- **å¤–éƒ¨ã‚¸ãƒ£ãƒ³ãƒ—**: `navigate()` ã§å¤–éƒ¨URLã¸
+- **ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ä¼é”**: ã‚¯ã‚¨ãƒªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 7. ƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ[“‡
-- `efw:elFinder` ƒRƒ“ƒ|[ƒlƒ“ƒg‚ðŽg—p
-- ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€ó‘Ô‚ÌƒŠƒAƒ‹ƒ^ƒCƒ€XV
+### 7. ãƒ•ã‚¡ã‚¤ãƒ«ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼çµ±åˆ
+- `efw:elFinder` ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ä½¿ç”¨
+- ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ çŠ¶æ…‹ã®ãƒªã‚¢ãƒ«ã‚¿ã‚¤ãƒ æ›´æ–°
 
-## ‹Zp“I“Á’·
+## æŠ€è¡“çš„ç‰¹é•·
 
-### 1. “ˆê‚³‚ê‚½APIÝŒv
-- ‚·‚×‚Ä‚Ì‘€ì‚Í `Result` ƒIƒuƒWƒFƒNƒg‚Å•Ô‚·
-- ƒ`ƒF[ƒ“ŒÄ‚Ño‚µ‚Åƒoƒbƒ`‘€ì‚ðƒTƒ|[ƒg
+### 1. çµ±ä¸€ã•ã‚ŒãŸAPIè¨­è¨ˆ
+- ã™ã¹ã¦ã®æ“ä½œã¯ `Result` ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã§è¿”ã™
+- ãƒã‚§ãƒ¼ãƒ³å‘¼ã³å‡ºã—ã§ãƒãƒƒãƒæ“ä½œã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 2. _“î‚È—v‘f‘I‘ð
-- CSS ƒZƒŒƒNƒ^[‚ðƒTƒ|[ƒg
-- jQuery Šg’£ƒZƒŒƒNƒ^[‚ðƒTƒ|[ƒg
+### 2. æŸ”è»Ÿãªè¦ç´ é¸æŠž
+- CSS ã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼ã‚’ã‚µãƒãƒ¼ãƒˆ
+- jQuery æ‹¡å¼µã‚»ãƒ¬ã‚¯ã‚¿ãƒ¼ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 3. Š®‘S‚Èƒtƒ@ƒCƒ‹‘€ì
-- ì¬A“Ç‚Ýž‚ÝAƒ_ƒEƒ“ƒ[ƒhAíœ
-- ƒtƒHƒ‹ƒ_‚Æƒtƒ@ƒCƒ‹‚Ì‘€ì‚ðƒTƒ|[ƒg
-- ˆ³kƒ_ƒEƒ“ƒ[ƒh‚ðƒTƒ|[ƒg
+### 3. å®Œå…¨ãªãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
+- ä½œæˆã€èª­ã¿è¾¼ã¿ã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã€å‰Šé™¤
+- ãƒ•ã‚©ãƒ«ãƒ€ã¨ãƒ•ã‚¡ã‚¤ãƒ«ã®æ“ä½œã‚’ã‚µãƒãƒ¼ãƒˆ
+- åœ§ç¸®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-### 4. ƒ†[ƒU[ƒCƒ“ƒ^ƒ‰ƒNƒVƒ‡ƒ“ƒTƒ|[ƒg
-- •¡”‚Ìƒ_ƒCƒAƒƒOƒ^ƒCƒv
-- ƒVƒ‡[ƒgƒJƒbƒgƒL[ƒoƒCƒ“ƒfƒBƒ“ƒO
-- Ž‹Šo“IƒtƒB[ƒhƒoƒbƒNiƒnƒCƒ‰ƒCƒgAƒtƒH[ƒJƒXj
+### 4. ãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ã‚·ãƒ§ãƒ³ã‚µãƒãƒ¼ãƒˆ
+- è¤‡æ•°ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¿ã‚¤ãƒ—
+- ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ãƒã‚¤ãƒ³ãƒ‡ã‚£ãƒ³ã‚°
+- è¦–è¦šçš„ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ï¼ˆãƒã‚¤ãƒ©ã‚¤ãƒˆã€ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ï¼‰
 
-### 5. ó‘ÔŠÇ—
-- —v‘fó‘Ô§Œäi•\Ž¦A”ñ•\Ž¦A—LŒøA–³Œøj
-- ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€ó‘Ô‚Ì“¯Šú
+### 5. çŠ¶æ…‹ç®¡ç†
+- è¦ç´ çŠ¶æ…‹åˆ¶å¾¡ï¼ˆè¡¨ç¤ºã€éžè¡¨ç¤ºã€æœ‰åŠ¹ã€ç„¡åŠ¹ï¼‰
+- ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ çŠ¶æ…‹ã®åŒæœŸ
 
-## Žg—pà–¾
+## ä½¿ç”¨èª¬æ˜Ž
 
-### 1. ŠÂ‹«—vŒ
-- ƒfƒtƒHƒ‹ƒg‚Ìƒtƒ@ƒCƒ‹•Û‘¶êŠ‚Æ‚µ‚Ä `WEB-INF/efw/storage` ƒtƒHƒ‹ƒ_‚ðì¬
+### 1. ç’°å¢ƒè¦ä»¶
+- ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜å ´æ‰€ã¨ã—ã¦ `WEB-INF/efw/storage` ãƒ•ã‚©ãƒ«ãƒ€ã‚’ä½œæˆ
 
-### 2. ƒVƒ‡[ƒgƒJƒbƒgƒL[‚ÉŠÖ‚·‚é’ˆÓ“_
-- ƒuƒ‰ƒEƒU‚ªˆê•”‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[i—á: ALT+Aj‚ðè—L‚·‚é‰Â”\«‚ ‚è
-- ‚·‚×‚Ä‚ÌƒVƒ‡[ƒgƒJƒbƒgƒL[‚Ìƒuƒ‰ƒEƒUŒÝŠ·«‚ðƒeƒXƒg‚·‚é‚±‚Æ‚ð„§
+### 2. ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã«é–¢ã™ã‚‹æ³¨æ„ç‚¹
+- ãƒ–ãƒ©ã‚¦ã‚¶ãŒä¸€éƒ¨ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ï¼ˆä¾‹: ALT+Aï¼‰ã‚’å æœ‰ã™ã‚‹å¯èƒ½æ€§ã‚ã‚Š
+- ã™ã¹ã¦ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ã®ãƒ–ãƒ©ã‚¦ã‚¶äº’æ›æ€§ã‚’ãƒ†ã‚¹ãƒˆã™ã‚‹ã“ã¨ã‚’æŽ¨å¥¨
 
-### 3. ƒtƒ@ƒCƒ‹‘€ìƒtƒ[
-1. ‚Ü‚¸ƒtƒHƒ‹ƒ_‚Æƒtƒ@ƒCƒ‹‚ðì¬
-2. ‚»‚ÌŒãAƒ_ƒEƒ“ƒ[ƒh‚Ü‚½‚Ííœ‘€ì‚ðŽÀs
-3. ‘€ìŠ®—¹ŒãAƒtƒ@ƒCƒ‹ƒ}ƒl[ƒWƒƒ[‚ðXV
+### 3. ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œãƒ•ãƒ­ãƒ¼
+1. ã¾ãšãƒ•ã‚©ãƒ«ãƒ€ã¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
+2. ãã®å¾Œã€ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã¾ãŸã¯å‰Šé™¤æ“ä½œã‚’å®Ÿè¡Œ
+3. æ“ä½œå®Œäº†å¾Œã€ãƒ•ã‚¡ã‚¤ãƒ«ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’æ›´æ–°
 
-### 4. ƒ_ƒCƒAƒƒOˆ—
-- Šm”Fƒ_ƒCƒAƒƒO‚ÍƒJƒXƒ^ƒ€ƒ{ƒ^ƒ“‚ÆƒR[ƒ‹ƒoƒbƒN‚ðƒTƒ|[ƒg
-- ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰[‚ÌÄ‹AŒÄ‚Ño‚µ‚ðƒTƒ|[ƒg
+### 4. ãƒ€ã‚¤ã‚¢ãƒ­ã‚°å‡¦ç†
+- ç¢ºèªãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã¯ã‚«ã‚¹ã‚¿ãƒ ãƒœã‚¿ãƒ³ã¨ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’ã‚µãƒãƒ¼ãƒˆ
+- ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ãƒ¼ã®å†å¸°å‘¼ã³å‡ºã—ã‚’ã‚µãƒãƒ¼ãƒˆ
 
-> ‚±‚ÌƒTƒ“ƒvƒ‹‚ÍAefw ƒtƒŒ[ƒ€ƒ[ƒN‚Ì‹­—Í‚Èƒ†[ƒU[ƒCƒ“ƒ^[ƒtƒF[ƒXƒCƒ“ƒ^ƒ‰ƒNƒVƒ‡ƒ“”\—Í‚ðŽ¦‚µ‚Ä‚¨‚èA’Pƒ‚È—v‘f‘€ì‚©‚ç•¡ŽG‚Èƒtƒ@ƒCƒ‹ŠÇ—‚âƒy[ƒWƒiƒrƒQ[ƒVƒ‡ƒ“‚Ü‚ÅA‚³‚Ü‚´‚Ü‚ÈƒVƒiƒŠƒI‚ðƒJƒo[‚µ‚Ä‚¢‚Ü‚·B
+> ã“ã®ã‚µãƒ³ãƒ—ãƒ«ã¯ã€efw ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯ã®å¼·åŠ›ãªãƒ¦ãƒ¼ã‚¶ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã‚¤ãƒ³ã‚¿ãƒ©ã‚¯ã‚·ãƒ§ãƒ³èƒ½åŠ›ã‚’ç¤ºã—ã¦ãŠã‚Šã€å˜ç´”ãªè¦ç´ æ“ä½œã‹ã‚‰è¤‡é›‘ãªãƒ•ã‚¡ã‚¤ãƒ«ç®¡ç†ã‚„ãƒšãƒ¼ã‚¸ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã¾ã§ã€ã•ã¾ã–ã¾ãªã‚·ãƒŠãƒªã‚ªã‚’ã‚«ãƒãƒ¼ã—ã¦ã„ã¾ã™ã€‚
