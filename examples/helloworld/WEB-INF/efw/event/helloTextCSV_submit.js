@@ -2,7 +2,6 @@ var helloTextCSV_submit={};
 helloTextCSV_submit.paramsFormat={
 	mode:null,
 };
-helloTextCSV_submit.mylocker = new java.util.concurrent.locks.ReentrantLock();//マルチスレッドバッファーを操作するためのロッカー
 helloTextCSV_submit.fire=function(params){
 	file.remove("text&csv/seperated");
 	file.makeDir("text&csv/seperated");
