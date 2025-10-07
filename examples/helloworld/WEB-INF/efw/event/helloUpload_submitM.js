@@ -1,6 +1,6 @@
 var helloUpload_submitM={};
 helloUpload_submitM.paramsFormat={
-	"#fileM":null
+	"#fileM":"accept:xlsx;display-name:複数ファイル選択枠"
 };
 helloUpload_submitM.fire=function(params){
 	file.remove("upload");

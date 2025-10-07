@@ -10,10 +10,10 @@
 </HEAD>
 <BODY>
 <h1>単独ファイルアップロード</h1>
-<input type=file id="file1">
+<input type=file id="file1" accept=".xlsx">
 <button onclick="Efw('helloUpload_submit1')">実行</button>
 <h1>複数ファイルアップロード</h1>
-<input type=file id="fileM" multiple>
+<input type=file id="fileM" multiple accept=".xlsx">
 <button onclick="Efw('helloUpload_submitM')">実行</button>
 
 <div id="divResult">

@@ -1,13 +1,12 @@
 var helloUpload_submit1={};
 helloUpload_submit1.paramsFormat={
-	"#file1":null
+	"#file1":"accept:xlsx;display-name:単独ファイル選択枠"
 };
 helloUpload_submit1.fire=function(params){
 	file.remove("upload");
 	file.makeDir("upload");
-	var ary=params["#file1"].split("/");
-	var fielname=ary[ary.length-1];
-	file.saveSingleUploadFile("upload/"+fielname);
+	var filename=params["#file1"].split(/[/\\]/g).pop();
+	file.saveSingleUploadFile("upload/"+filename);
 	var ary=file.list("upload");
 	return new Result()
 	.runat("body")
