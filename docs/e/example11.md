@@ -166,7 +166,7 @@ var processedData = db.select("helloDB", "complexQuery", {})
         newId: "id",
         
         // Date formatting
-        formattedDate: ["birthday", "yyyy”NMMŒŽdd“ú"],
+        formattedDate: ["birthday", "yyyyå¹´MMæœˆddæ—¥"],
         
         // Custom calculated field
         ageGroup: function(data) {
