@@ -24,6 +24,7 @@ Generate barcodes through simple Servlet calls:
 ## Supported Barcode Types
 
 ### 2D Barcode Types
+
 | Type | Description | Features |
 |------|-------------|----------|
 | QR Code | Quick Response Code | Supports Chinese characters, large data capacity, fast reading |
@@ -31,6 +32,7 @@ Generate barcodes through simple Servlet calls:
 | PDF417 | Portable Data File | Stacked QR code, high error tolerance |
 
 ### 1D Barcode Types
+
 | Type | Description | Application Scenarios |
 |------|-------------|----------------------|
 | Code 128 | High-density Linear Code | Logistics, warehouse management |
@@ -41,6 +43,7 @@ Generate barcodes through simple Servlet calls:
 | UPC-E | Compressed UPC Code | Space-limited applications |
 
 ### Specialized Barcode Types
+
 | Type | Description | Application Fields |
 |------|-------------|-------------------|
 | ITF-14 | Interleaved 2 of 5 Code | Logistics packaging identification |
