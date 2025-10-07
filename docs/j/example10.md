@@ -42,7 +42,7 @@
 ### 2. ファイルフォーマットサポート
 
 #### 固定長テキストフォーマット
-```avascript
+```javascript
 new BinaryReader(
     "filename.txt", 
     [10, 10],        // フィールド長
