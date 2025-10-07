@@ -12,7 +12,7 @@
 * [Building High-Load Tomcat Environment](https://efwgrp.github.io/efw4.X/highload_e.html)
 
 
-## [Samples](https://efwgrp.github.io/efw4.X/examples_e.html)
+## [Examples](https://efwgrp.github.io/efw4.X/examples_e.html)
 
 ## [API](https://efwgrp.github.io/efw4.X/e/api.html)
 
