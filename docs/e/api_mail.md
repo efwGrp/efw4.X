@@ -35,5 +35,7 @@ You can write multi-data by `;` for `to`, `cc`, `bcc`, `mdn`.
 
 `attachment` must contain the storage-relative path name of the file to attach. You can write multi-data by `|` for `attachment`.
 
+`importance` settings can be `High` | `Normal` | `Low`. It is not case sensitive.
+
 #### Encode
 Pay attention to the mark "<". You must write it like "&amp;lt;" to conform to XML syntax.

@@ -37,6 +37,8 @@ Mr. :userName
 
 `attachment` 必须包含要附加的文件的storage相对路径名。您可以使用 `|` 为 `attachment`写入多个数据。
 
+`importance` 设置值为`High`|`Normal`|`Low`。不区分大小写。
+
 #### 编码
 
 请注意“<”标记。您必须将其写为“&amp;lt;”才能符合 XML 语法。
