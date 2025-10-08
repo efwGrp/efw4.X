@@ -29,21 +29,21 @@ The efw framework provides complete internationalization (i18n) support, enablin
 ### 2. Frontend Multilingual Support
 
 #### Usage in JSP Pages
-html
+```html
 <!-- Message display -->
 <efw:msg key="messageKey"/>
-
+```
 
 #### Usage in JavaScript
-javascript
+```javascript
 // Use multilingual messages in client-side JavaScript
 var message = "<efw:msg key="messageKey"/>";
-
+```
 
 ### 3. Backend Multilingual Support
 
 #### Server-side Message Response
-javascript
+```javascript
 // Return multilingual messages in event handler functions
 helloI18n_submit.fire = function(params) {
     return new Result()
@@ -53,37 +53,37 @@ helloI18n_submit.fire = function(params) {
             "#someElement": "{anotherMessageKey}"
         });
 }
-
+```
 
 ### 4. Language Switching Mechanism
 
 #### URL Parameter Method
-javascript
+```javascript
 // Switch language via URL parameters
 window.location = "page.jsp?lang=en";
-
+```
 
 #### JSP Language Setting Retrieval
-html
+```html
 <%
     // Get language setting from request
     String lang=request.getParameter("lang");
     if (lang==null||"".equals(lang))lang="en";
 %>
 <efw:Client lang="<%=lang%>"/>
-
+```
 
 ## Configuration Instructions
 
 ### 2. File Structure
-
+```
 WEB-INF/
   └── efw/
       └── i18n/
           ├── en.xml          # English resource file
           ├── jp.xml          # Japanese resource file
           └── cn.xml          # Chinese resource file
-
+```
 
 ## Best Practices
 
@@ -106,7 +106,7 @@ Example: error.login.invalidCredentials, success.user.updated
 ### 2. Language Resource Maintenance
 
 #### Language File Structure
-xml
+```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
@@ -125,7 +125,7 @@ xml
     <entry key="error.required">{0} is required</entry>
     <entry key="error.invalidFormat">{0} format is incorrect</entry>
 </properties>
-
+```
 
 ## Summary
 

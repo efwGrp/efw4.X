@@ -29,21 +29,21 @@ efwフレームワークは、完全な国際化（i18n）サポートを提供�
 ### 2. フロントエンド多言語サポート
 
 #### JSPページでの使用
-html
+```html
 <!-- メッセージ表示 -->
 <efw:msg key="messageKey"/>
-
+```
 
 #### JavaScriptでの使用
-javascript
+```javascript
 // クライアント側JavaScriptで多言語メッセージを使用
 var message = "<efw:msg key="messageKey"/>";
-
+```
 
 ### 3. バックエンド多言語サポート
 
 #### サーバーサイドメッセージ返信
-javascript
+```javascript
 // イベント処理関数で多言語メッセージを返信
 helloI18n_submit.fire = function(params) {
     return new Result()
@@ -53,37 +53,37 @@ helloI18n_submit.fire = function(params) {
             "#someElement": "{anotherMessageKey}"
         });
 }
-
+```
 
 ### 4. 言語切替メカニズム
 
 #### URLパラメータ方式
-javascript
+```javascript
 // URLパラメータで言語を切替
 window.location = "page.jsp?lang=en";
-
+```
 
 #### JSPでの言語設定取得
-html
+```html
 <%
     // requestから言語設定を取得
     String lang=request.getParameter("lang");
     if (lang==null||"".equals(lang))lang="en";
 %>
 <efw:Client lang="<%=lang%>"/>
-
+```
 
 ## 設定説明
 
 ### 2. ファイル構造
-
+```
 WEB-INF/
   └── efw/
       └── i18n/
           ├── en.xml          # 英語リソースファイル
           ├── jp.xml          # 日本語リソースファイル
           └── cn.xml          # 中国語リソースファイル
-
+```
 
 ## ベストプラクティス
 
@@ -106,7 +106,7 @@ properties
 ### 2. 言語リソースメンテナンス
 
 #### 言語ファイル構造
-xml
+```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
@@ -125,7 +125,7 @@ xml
     <entry key="error.required">{0}は必須項目です</entry>
     <entry key="error.invalidFormat">{0}の形式が正しくありません</entry>
 </properties>
-
+```
 
 ## まとめ
 
