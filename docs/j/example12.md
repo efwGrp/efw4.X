@@ -23,25 +23,24 @@ efwフレームワークは、Gmail SMTPサーバーを経由したメール送�
 #### メール内容
 - **動的な件名**: パラメータ化された件名をサポート
 - **テンプレート本文**: パラメータ付きのメール本文テンプレートをサポート
-- **HTMLサポート**: HTML形式のメール内容をサポート
 
 ### 2. 添付ファイルサポート
 
-javascript
+```javascript
 // 単一の添付ファイル
 attachment: "path/to/file.pdf"
 
-// 複数の添付ファイル（セミコロン区切り）
-attachment: "file1.pdf;file2.xlsx;image.jpg"
+// 複数の添付ファイル（`|`区切り）
+attachment: "file1.pdf;file2.xlsx|image.jpg"
 
 // storageベースの相対パスをサポート
 attachment: "document.pdf"
-
+```
 
 ### 3. テンプレート化設計
 
 メール内容とコードを分離し、多种の事前定義テンプレートをサポート：
-javascript
+```javascript
 // ウェルカムテンプレートを使用
 mail.send("mails", "welcomeMail", {
     email: "user@example.com",
@@ -59,14 +58,14 @@ mail.send("mails", "notificationMail", {
     time: new Date().toLocaleString(),
     systemId: "SECURITY-001"
 });
-
+```
 
 ## 設定説明
 
 ### 1. SMTPサーバー設定
 
 META-INF/context.xmlでメールセッションリソースを設定：
-xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Context>
 <Context>
@@ -100,13 +99,13 @@ xml
               mail.smtp.port="25"
               description="Corporate SMTP Resource"/>
 </Context>
-
+```
 
 ## 使用例
 
 ### 1. 基本的なメール送信
 
-javascript
+```javascript
 // シンプルなテキストメールを送信
 mail.send("mails", "freeMail", {
     to: "recipient@example.com",
@@ -114,23 +113,24 @@ mail.send("mails", "freeMail", {
     subject: "テストメール",
     body: "これはテストメールの内容です。"
 });
-
+```
 
 ### 2. 添付ファイル付きメール
 
-javascript
+```javascript
 // 添付ファイル付きメールを送信
 mail.send("mails", "freeMail", {
     to: "recipient@example.com",
+    importance:"High",//重要メール
     subject: "重要書類",
     body: "添付ファイルの重要書類をご確認ください。",
-    attachment: "documents/contract.pdf;reports/monthly.xlsx"
+    attachment: "documents/contract.pdf|reports/monthly.xlsx"
 });
-
+```
 
 ### 3. テンプレートメールの使用
 
-javascript
+```javascript
 // 事前定義テンプレートを使用してメールを送信
 mail.send("mails", "welcomeMail", {
     email: "new.user@example.com",
@@ -138,11 +138,11 @@ mail.send("mails", "welcomeMail", {
     username: "lisi",
     regTime: new Date().toLocaleDateString()
 });
-
+```
 
 ### 4. バッチメール送信
 
-javascript
+```javascript
 // 複数の受信者にバッチでメールを送信
 var recipients = [
     "user1@example.com",
@@ -157,9 +157,9 @@ recipients.forEach(function(email) {
         message: "システムは今夜メンテナンス更新を行う予定です。作業内容を事前に保存してください。",
         time: "2023-12-01 02:00 - 04:00",
         systemId: "SYS-UPDATE-20231201"
-    });
+    }, true);//バックグラウンドで送信する
 });
-
+```
 
 ## ベストプラクティス
 
@@ -186,7 +186,7 @@ efwフレームワークのメール送信機能は、強力で柔軟なツー�
 ### コア優位性
 1. **簡単使い**: 簡潔なAPI設計で素早く習得可能
 2. **柔軟な設定**: 多种のSMTPサーバーと認証方式をサポート
-3. **豊富な機能**: 添付ファイル、テンプレート、HTMLメールなどの高度な機能をサポート
+3. **豊富な機能**: 添付ファイル、テンプレート、開封通知、重要度などの高度な機能をサポート
 
 ### 適用シナリオ
 - ユーザー登録ウェルカムメール

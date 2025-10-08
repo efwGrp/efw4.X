@@ -11,12 +11,13 @@ mails.xml
     <cc></cc>
     <bcc></bcc>
     <mdn></mdn>
+    <importance></importance>
     <subject>About :about </subject>
     <body>
 Mr. :userName
 ...
     </body>
-        <attachment></attachment>
+    <attachment></attachment>
   </mail>
   <mail id="mail2">
   ...
@@ -30,11 +31,11 @@ Mr. :userName
 
 ### 参数
 
-您只需编写 `:param` 即可在 `TO`、`CC`、`BCC`、`MDN`、`SUBJECT`、`BODY` 和 `ATTACHMENT` 中定义参数。`mdn` 标签表示“Disposition-Notification-To”（送达通知）。
+您只需编写 `:param` 即可在 `to`、`cc`、`bcc`、`mdn`、`importance`、`subject`、`body` 和 `attachment` 中定义参数。`mdn` 标签表示“Disposition-Notification-To”（送达通知）。
 
-您可以使用 `;` 为 `TO`、`CC`、`BCC`、`MDN` 和 `ATTACHMENT` 写入多个数据。
+您可以使用 `;` 为 `to`、`cc`、`bcc`、`mdn`写入多个数据。
 
-`ATTACHMENT` 必须包含要附加的文件的storage相对路径名。
+`attachment` 必须包含要附加的文件的storage相对路径名。您可以使用 `|` 为 `attachment`写入多个数据。
 
 #### 编码
 

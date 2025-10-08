@@ -11,6 +11,7 @@ mails.xml
         <cc></cc>
         <bcc></bcc>
         <mdn></mdn>
+        <importance></importance>
         <subject>About :about</subject>
         <body>
 Mr. :userName
@@ -30,11 +31,11 @@ Mr. :userName
 
 ### パラメータ
 
-`TO`、`CC`、`BCC`、`MDN`、`SUBJECT`、`BODY` および `ATTACHMENT` 内で、`:`paramのように書くだけでパラメータを定義できます。`mdn`タグは "Disposition-Notification-To" (配信通知先) を意味します。
+`to`、`cc`、`bcc`、`mdn`、`importance`、`subject`、`body` および `attachment` 内で、`:`paramのように書くだけでパラメータを定義できます。`mdn`タグは "Disposition-Notification-To" (配信通知先) を意味します。
 
-`TO`、`CC`、`BCC`、`MDN`、`ATTACHMENT` には `;` で複数のデータを記述できます。
+`to`、`cc`、`bcc`、`mdn` には `;` で複数のデータを記述できます。
 
-`ATTACHMENT` には、添付するファイルのstorage相対パス名が含まれている必要があります。
+`attachment` には、添付するファイルのstorage相対パス名が含まれている必要があります。`|` で複数のデータを記述できます。
 
 #### エンコード
 

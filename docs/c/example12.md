@@ -23,7 +23,6 @@ efw 框架提供了简单易用的邮件发送功能，支持通过 Gmail SMTP �
 #### 邮件内容
 - **动态主题**: 支持参数化主题
 - **模板正文**: 支持带参数的邮件正文模板
-- **HTML 支持**: 支持 HTML 格式邮件内容
 
 ### 2. 附件支持
 
@@ -31,8 +30,8 @@ efw 框架提供了简单易用的邮件发送功能，支持通过 Gmail SMTP �
 // 单个附件
 attachment: "path/to/file.pdf"
 
-// 多个附件（分号分隔）
-attachment: "file1.pdf;file2.xlsx;image.jpg"
+// 多个附件（`|`分隔）
+attachment: "file1.pdf;file2.xlsx|image.jpg"
 
 // 支持基于storage的相对路径
 attachment: "document.pdf"
@@ -122,9 +121,10 @@ mail.send("mails", "freeMail", {
 // 发送带附件的邮件
 mail.send("mails", "freeMail", {
     to: "recipient@example.com",
+    importance:"High",//重要邮件
     subject: "重要文档",
-    body: "请查收附件中的重要文档。",
-    attachment: "documents/contract.pdf;reports/monthly.xlsx"
+    body: "请查收附件中的重要文档。",·
+    attachment: "documents/contract.pdf|reports/monthly.xlsx"
 });
 ```
 
@@ -157,7 +157,7 @@ recipients.forEach(function(email) {
         message: "系统将于今晚进行维护更新，请提前保存工作。",
         time: "2023-12-01 02:00 - 04:00",
         systemId: "SYS-UPDATE-20231201"
-    });
+    },true);//后台发送
 });
 ```
 
@@ -186,7 +186,7 @@ efw 框架的邮件发送功能提供了强大而灵活的工具集，使开发�
 ### 核心优势
 1. **简单易用**: 简洁的API设计，快速上手
 2. **灵活配置**: 支持多种SMTP服务器和认证方式
-3. **功能丰富**: 支持附件、模板、HTML邮件等高级功能
+3. **功能丰富**: 支持附件、模板、开封通知、重要度等高级功能
 
 ### 适用场景
 - 用户注册欢迎邮件

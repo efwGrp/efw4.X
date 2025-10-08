@@ -23,7 +23,6 @@ The efw framework provides a simple and easy-to-use email sending function that 
 #### Email Content
 - **Dynamic Subject**: Supports parameterized subjects
 - **Template Body**: Supports parameterized email body templates
-- **HTML Support**: Supports HTML-formatted email content
 
 ### 2. Attachment Support
 
@@ -31,8 +30,8 @@ The efw framework provides a simple and easy-to-use email sending function that 
 // Single attachment
 attachment: "path/to/file.pdf"
 
-// Multiple attachments (semicolon-separated)
-attachment: "file1.pdf;file2.xlsx;image.jpg"
+// Multiple attachments (`|`-separated)
+attachment: "file1.pdf;file2.xlsx|image.jpg"
 
 // Supports storage-based relative paths
 attachment: "document.pdf"
@@ -122,6 +121,7 @@ mail.send("mails", "freeMail", {
 // Send email with attachments
 mail.send("mails", "freeMail", {
     to: "recipient@example.com",
+    importance:"High",//Important Flag
     subject: "Important Document",
     body: "Please check the important document in the attachment.",
     attachment: "documents/contract.pdf;reports/monthly.xlsx"
@@ -157,7 +157,7 @@ recipients.forEach(function(email) {
         message: "The system will undergo maintenance updates tonight. Please save your work in advance.",
         time: "2023-12-01 02:00 - 04:00",
         systemId: "SYS-UPDATE-20231201"
-    });
+    },true);//send in background
 });
 ```
 
@@ -186,7 +186,7 @@ The efw framework's email sending function provides a powerful and flexible tool
 ### Core Advantages
 1. **Easy to Use**: Simple API design for quick onboarding
 2. **Flexible Configuration**: Supports multiple SMTP servers and authentication methods
-3. **Rich Features**: Supports advanced features like attachments, templates, and HTML emails
+3. **Rich Features**: Supports advanced features such as attachments, templates, opening notifications, importance, etc.
 
 ### Application Scenarios
 - User registration welcome emails
