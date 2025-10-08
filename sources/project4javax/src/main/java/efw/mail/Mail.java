@@ -53,8 +53,10 @@ final class Mail {
 					from= step.getTextContent();
 				}else if (step.getTagName().equals("mdn")){//開封確認送信先
 					mdn= step.getTextContent();
-				}else if (step.getTagName().equals("attachment")){//開封確認送信先
+				}else if (step.getTagName().equals("attachment")){//添付ファイル
 					attachment= step.getTextContent();
+				}else if (step.getTagName().equals("importance")){//重要度
+					importance= step.getTextContent();
 				}else{
 					String information;
 					try{
@@ -102,6 +104,10 @@ final class Mail {
 	private String attachment;
 	protected String getAttachment(Map<String,String> params){
 		return replaceParams(attachment,params);
+	}
+	private String importance;
+	protected String getImportance(Map<String,String> params){
+		return replaceParams(importance,params);
 	}
 	
 	private String replaceParams(String data,Map<String,String> params){

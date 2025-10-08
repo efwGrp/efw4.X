@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 
+import efw.UploadRiskException;
 import efw.efwException;
 import efw.framework;
 import jakarta.servlet.ServletException;
@@ -67,7 +68,13 @@ public final class uploadServlet extends HttpServlet {
 	            		isAbs=getParam(part);
             			break;
 	            	}else if (cd.trim().startsWith("name=\"upload_path[]\"")) {//elfinderのフォルダアップロード対応
-	            		paths.add(getParam(part));
+	            		String thePath=getParam(part);
+	                	if (thePath.indexOf("..")>-1) {
+	                		throw new ServletException(
+	                				new UploadRiskException(thePath)
+	                			);//error for risk
+	                	}
+	            		paths.add(thePath);
             			break;
             		}
 	            }
@@ -78,6 +85,11 @@ public final class uploadServlet extends HttpServlet {
 	            for (String cd : part.getHeader("Content-Disposition").split(";")) {
 	                if (cd.trim().startsWith("filename")) {
 	                	uploadFileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+	                	if (uploadFileName.indexOf("..")>-1||uploadFileName.indexOf("\\")>-1||uploadFileName.indexOf("/")>-1) {
+	                		throw new ServletException(
+	                				new UploadRiskException(uploadFileName)
+	                			);//error for risk
+	                	}
 	                    File fl=File.createTempFile("efw", null);//efw#####.tmpのファイル名
 	                    //Change code for resin4.
 	                    inputStream =part.getInputStream();

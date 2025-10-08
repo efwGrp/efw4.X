@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.efwgrp</groupId>
   <artifactId>efw</artifactId>
-  <version>4.08.003jakarta</version>
+  <version>4.08.004jakarta</version>
   <name>ESCCO-Framework</name>
   <description>"efw" is an Ajax framework for server site JavaScript designed 
 and developed by Escco Co., Ltd. using a goal-oriented method. 
@@ -165,6 +165,13 @@ It is provided as open source free software.</description>
       <version>8.0.0</version>
       <scope>system</scope>
       <systemPath>${basedir}/lib/innorules-api8.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules8</groupId>
+      <artifactId>core</artifactId>
+      <version>8.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-core8.jar</systemPath>
     </dependency>
   </dependencies>
   <build>

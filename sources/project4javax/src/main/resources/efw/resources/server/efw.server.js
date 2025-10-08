@@ -189,14 +189,23 @@ EfwServer.prototype.checkStyle = function(event, requestParams, lang) {
 						continue;
 					}
 					if (accept != null) { // check file ext
-						var exts = accept.split(",");
+						var exts = accept.toLowerCase().split(",");
+						var paramAry=param.toLowerCase().split("|");
 						var isAccepted = false;
-						for (var i = 0; i < exts.length; i++) {
-							if (param.substr(param.length - exts[i].length)
-									.toLowerCase() == exts[i].toLowerCase()) {
-								isAccepted = true;
-								break;
+						for (var p=0;p<paramAry.length;p++){
+							isAccepted = false;
+							for (var i = 0; i < exts.length; i++) {
+								var ext=exts[i];
+								var flnm=paramAry[p];
+								if (
+									flnm.toLowerCase().search(new RegExp("."+ext+"\\|"))>0	//to do for multi file upload
+									||flnm.toLowerCase().search(new RegExp("."+ext+"$"))>0	//
+								){
+									isAccepted = true;
+									break;
+								}
 							}
+							if (!isAccepted) break;
 						}
 						if (!isAccepted) {
 							var message = messages.get("NotAcceptMessage",lang);
@@ -452,14 +461,23 @@ EfwServer.prototype._checkSingleStyle =function(param,paramdef,lang){
 			return createReturnInfo(param,message,{"display-name":displayName,"max-length":maxLength});
 		}
 		if (accept != null) { // check file ext
-			var exts = accept.split(",");
+			var exts = accept.toLowerCase().split(",");
+			var paramAry=param.toLowerCase().split("|");
 			var isAccepted = false;
-			for (var i = 0; i < exts.length; i++) {
-				if (param.substr(param.length - exts[i].length)
-						.toLowerCase() == exts[i].toLowerCase()) {
-					isAccepted = true;
-					break;
+			for (var p=0;p<paramAry.length;p++){
+				isAccepted = false;
+				for (var i = 0; i < exts.length; i++) {
+					var ext=exts[i];
+					var flnm=paramAry[p];
+					if (
+						flnm.toLowerCase().search(new RegExp("."+ext+"\\|"))>0	//to do for multi file upload
+						||flnm.toLowerCase().search(new RegExp("."+ext+"$"))>0	//
+					){
+						isAccepted = true;
+						break;
+					}
 				}
+				if (!isAccepted) break;
 			}
 			if (!isAccepted) {
 				var message = messages.get("NotAcceptMessage",lang);

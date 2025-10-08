@@ -17,12 +17,18 @@ function EfwServerMail() {
  * @param {Object}
  *            params: required<br>
  *            {param1:value1,param2:value2,...}<br>
+ * @param {Boolean}
+ *            inBackground: optional<br>
  */
-EfwServerMail.prototype.send = function(groupId, mailId, params) {
+EfwServerMail.prototype.send = function(groupId, mailId, params, inBackground) {
 	var hashMapParams = new java.util.HashMap();
 	for ( var key in params) {
 		var vl = "" + params[key];
 		hashMapParams.put(key, vl);
 	}
-	Packages.efw.mail.MailManager.send(groupId, mailId, hashMapParams);
+	if (inBackground){
+		Packages.efw.mail.MailManager.sendInBackground(groupId, mailId, hashMapParams);
+	}else{
+		Packages.efw.mail.MailManager.send(groupId, mailId, hashMapParams);
+	}
 };

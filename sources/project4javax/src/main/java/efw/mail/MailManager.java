@@ -10,12 +10,15 @@ import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -62,6 +65,10 @@ public final class MailManager {
      */
     private static Session mailSession;
     /**
+     * バックエンドでメールを送信するExecutor
+     */
+    private static final ExecutorService mailExecutor = Executors.newCachedThreadPool(); 
+    /**
      * サーブレットから初期化する。
      * @throws NamingException Mailリソース定義エラー。
      */
@@ -83,7 +90,41 @@ public final class MailManager {
 		mailSession=Session.getInstance(PropertiesManager.getProp(),new MailAuthenticator(usernameValue,passwordValue));
 	}
 	/**
+	 * バックエンドでメールを送信する。
+	 * @param groupId メール定義XMLファイル名。
+	 * @param mailId メール定義ID。
+	 * @param params メール送信要パラメータ。
+	 * @throws AddressException アドレスエラー。
+	 * @throws efwException メール定義エラー。
+	 * @throws MessagingException メール送信エラー。
+	 * @throws IOException 添付ファイルエラー。
+	 */
+	public static void sendInBackground(String groupId,String mailId,Map<String,String> params) throws AddressException, efwException, MessagingException, IOException {
+		MimeMessage message=getMessage(groupId,mailId,params);
+		mailExecutor.submit(() -> {
+	        try {
+	        	Transport.send(message);
+	        } catch (Exception e) {
+	        	framework.runtimeSLog(e);
+	        }
+	    });
+	}
+	/**
 	 * メールを送信する。
+	 * @param groupId メール定義XMLファイル名。
+	 * @param mailId メール定義ID。
+	 * @param params メール送信要パラメータ。
+	 * @throws AddressException アドレスエラー。
+	 * @throws efwException メール定義エラー。
+	 * @throws MessagingException メール送信エラー。
+	 * @throws IOException 添付ファイルエラー。
+	 */
+	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,MessagingException, IOException{
+		MimeMessage message=getMessage(groupId,mailId,params);
+		Transport.send(message);
+	}
+	/**
+	 * メッセージを作成する。
 	 * @param groupId メール定義XMLファイル名。
 	 * @param mailId メール定義ID。
 	 * @param params メール送信要パラメータ。
@@ -91,7 +132,7 @@ public final class MailManager {
 	 * @throws MessagingException メール送信エラー。
 	 * @throws IOException 添付ファイルエラー。
 	 */
-	public static void send(String groupId,String mailId,Map<String,String> params) throws efwException,MessagingException, IOException{
+	private static MimeMessage getMessage(String groupId,String mailId,Map<String,String> params) throws efwException, AddressException, MessagingException, IOException {
 		Mail mail=get(groupId,mailId);
 		MimeMessage message = new MimeMessage(mailSession);
 		
@@ -139,9 +180,24 @@ public final class MailManager {
 		if (mdn!=null&&!"".equals(mdn)){
 			message.addHeader("Disposition-Notification-To",mdn);
 		}
+		String importance=mail.getImportance(params);
+		if (importance!=null&&!"".equals(importance)){
+			importance=importance.toLowerCase();
+			if ("high".equals(importance)) {
+				importance="High";
+				message.addHeader("Importance",importance);
+			}else if ("normal".equals(importance)) {
+				importance="Normal";
+				message.addHeader("Importance",importance);
+			}else if ("low".equals(importance)) {
+				importance="Low";
+				message.addHeader("Importance",importance);
+			}
+		}
+		
 		String attachment=mail.getAttachment(params);//添付ファイルを行う
 		if (attachment!=null&&!"".equals(attachment)){
-			String[] ary=attachment.split(";");//一つずつのファイルと想定する
+			String[] ary=attachment.split("\\|");//"|"区切りの一つずつのファイルと想定する
 			for(int i=0;i<ary.length;i++){
 				if(!"".equals(ary[i])){
 					File fl=FileManager.get(ary[i]);
@@ -162,7 +218,7 @@ public final class MailManager {
 			}
 		}
 		message.setContent(multipart);
-		Transport.send(message);
+		return message;
 	}
 	/**
 	 * ひとつのMailオブジェクトを取得する。 
