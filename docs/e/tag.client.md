@@ -21,6 +21,7 @@ To develop with Efw, you need to import several `.js` and `.css` files into your
 | `major` | No | `"4"` | Sets the major version for Bootstrap (2, 3, 4, or 5). |
 | `lang` | No | `"en"` | Sets the language. Language files should be located in the multi-language folder. |
 | `nopromise` | No | `"false"` | Set to `"true"` if your browser does not support JavaScript Promises. |
+| `addVue` | No | `"false"` | Flag indicating whether to import Vue. Requires promise mode. |
 
 ##### jQuery UI Themes
 

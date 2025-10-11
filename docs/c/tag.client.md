@@ -21,6 +21,7 @@
 | `major` | No | `"4"` | 设置 Bootstrap 的主版本 (2, 3, 4, or 5)。 |
 | `lang` | No | `"en"` | 设置语言。语言文件应位于多语言文件夹中。 |
 | `nopromise` | No | `"false"` |如果您的浏览器不支持 JavaScript Promises，则设置为“true”。|
+| `addVue` | No | `"false"` |是否导入vue的标志。需要promise模式。|
 
 ##### jQuery UI 主题
 
