@@ -14,6 +14,7 @@
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>addVue</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>CLIENT</name>
@@ -25,6 +26,7 @@
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>addVue</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>client</name>
@@ -36,6 +38,7 @@
     <attribute><name>major</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>lang</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>nopromise</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>addVue</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>
@@ -73,6 +76,7 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>saveLogFunc</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>ELFINDER</name>
@@ -87,6 +91,7 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>saveLogFunc</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elfinder</name>
@@ -101,6 +106,7 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>saveLogFunc</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
   <tag>
     <name>elFinder</name>
@@ -115,6 +121,7 @@
     <attribute><name>readonly</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>protected</name><rtexprvalue>true</rtexprvalue></attribute>
     <attribute><name>isAbs</name><rtexprvalue>true</rtexprvalue></attribute>
+    <attribute><name>saveLogFunc</name><rtexprvalue>true</rtexprvalue></attribute>
   </tag>
 
   <tag>

@@ -6,6 +6,28 @@
  */
 
 // /////////////////////////////////////////////////////////////////////////////
+function callFunction(funcNm,reqParams){
+	try{
+		var g = new Function('return this')();
+		var func=g[funcNm];
+		var paramsJson = JSON.parse(reqParams); // parse request string to json object
+		db._commitAll();
+		return ""+func(paramsJson);
+	}catch(e){
+		db._rollbackAll();
+		throw e;
+	}finally{
+		db._closeAll();
+		Excel.prototype._closeAll();
+		CSVWriter.prototype._closeAll();
+		BinaryWriter.prototype._closeAll();
+		Pdf.prototype._closeAll();
+	}
+}
+/**
+ * The destory of system.
+ * It will be  called by efwServlet
+ */
 function doDestroy(){
 	/**
 	 * Run by servlet destory.

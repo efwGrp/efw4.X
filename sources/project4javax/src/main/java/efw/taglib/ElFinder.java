@@ -59,6 +59,10 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 */
 	private boolean _protected=false;
 	/**
+	 * ログ保存用関数
+	 */
+	private String saveLogFunc="";
+	/**
 	 * ElFinderのIDを取得する。
 	 * @return ElFinderのID。
 	 */
@@ -179,15 +183,30 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		}
 	}
 	/**
+	 * ログ保存関数を取得する。
+	 * @return ログ保存関数。
+	 */
+	public String getSaveLogFunc() {
+		return ""+saveLogFunc;
+	}
+	/**
+	 * ログ保存関数を設定する。
+	 * @param saveLogFunc ログ保存関数。
+	 */
+	public void setSaveLogFunc(String saveLogFunc) {
+		this.saveLogFunc = Util.translateAttr(pageContext,saveLogFunc);
+	}
+	/**
 	 * 動的パラメータを格納するマップ
 	 */
 	private HashMap<String, String> attrs=new HashMap<String, String>();
 	
-	private static void _init(String id,String home,boolean isAbs,boolean readonly,boolean _protected,HttpServletRequest req) {
+	private static void _init(String id,String home,boolean isAbs,boolean readonly,boolean _protected,String saveLogFunc,HttpServletRequest req) {
 		req.getSession().setAttribute("EFW_ELFINDER_PROTECTED_"+id, _protected?"true":"false");
 		req.getSession().setAttribute("EFW_ELFINDER_HOME_"+id, home);
 		req.getSession().setAttribute("EFW_ELFINDER_ISABS_"+id, (isAbs?"true":"false"));
 		req.getSession().setAttribute("EFW_ELFINDER_READONLY_"+id,(readonly?"true":"false"));
+		req.getSession().setAttribute("EFW_ELFINDER_SAVELOGFUNC_"+id, saveLogFunc);
 	}
 
 	/**
@@ -232,7 +251,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			}
 			out.print("<div "+"id=\""+id+"\" "+temp+"></div>");
 			
-			ElFinder._init(id,home,isAbs,readonly, _protected,(HttpServletRequest)this.pageContext.getRequest());
+			ElFinder._init(id,home,isAbs,readonly, _protected,saveLogFunc,(HttpServletRequest)this.pageContext.getRequest());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -246,6 +265,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		height="400";
 		width="auto";
 		_protected=false;
+		saveLogFunc="";
 		attrs=new HashMap<String, String>();
 		return SKIP_BODY;
 	}

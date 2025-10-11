@@ -412,3 +412,13 @@ Result.prototype.preview = function(filePath,isAbs) {
 	this.actions.preview.isAbs=isAbs;
 	return this;
 };
+/**
+ * The function to set data as return value for client Efw function.
+ * 
+ * @param {Object} data: required<br>
+ * @returns {Result}
+ */
+Result.prototype.provide = function(data) {
+	this.data=data;
+	return this;
+};

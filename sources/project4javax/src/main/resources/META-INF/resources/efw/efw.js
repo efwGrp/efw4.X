@@ -23,8 +23,8 @@ var Efw = function(eventId,manualParams,server) {
 			eventParams.manualParams=manualParams;
 			eventParams.server=server;
 		}
-		(new EfwClient()).fire(eventParams);
 		if (eventParams.server!=null) _efw_keepConnectionAlive_servers[eventParams.server]=eventParams.server;
+		return (new EfwClient()).fire(eventParams);
 	}
 };
 

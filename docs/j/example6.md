@@ -53,6 +53,9 @@ elfinder1.setReadOnly(false); // 読み取り専用を無効化
 - サーバー上の任意のパスへのアクセスを許可
 - 無保護モードでは極めて危険、慎重な使用が必要
 
+#### ログ保存関数 (`saveLogFunc="myFunc"`)
+- ログ情報をグローバル関数`myFunc`に渡す
+
 ### 4. API機能
 elFinderコンポーネントは必要なJavaScript APIを提供：
 

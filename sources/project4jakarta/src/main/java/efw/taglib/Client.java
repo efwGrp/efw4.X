@@ -45,6 +45,10 @@ public final class Client extends TagSupport{
 	 */
 	private String nopromise="false";
 	/**
+	 * vue取込要否フラグ
+	 */
+	private String addVue="false";
+	/**
 	 * ベースURLを取得する。
 	 * @return ベースURL。
 	 */
@@ -129,6 +133,20 @@ public final class Client extends TagSupport{
 		this.nopromise = Util.translateAttr(pageContext,nopromise);
 	}
 	/**
+	 * vue取込要否フラグを取得する
+	 * @return vue取込要否フラグ
+	 */
+	public String getAddVue() {
+		return addVue;
+	}
+	/**
+	 * vue取込要否フラグを設定する。
+	 * @param addVue vue取込要否フラグ
+	 */
+	public void setAddVue(String addVue) {
+		this.addVue = Util.translateAttr(pageContext,addVue);
+	}
+	/**
 	 * リクエストに言語を記録する属性名。
 	 */
 	public static final String EFW_I18N_LANG="EFW_I18N_LANG";
@@ -157,6 +175,9 @@ public final class Client extends TagSupport{
 				}
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.dialog.bootstrap.js?v="+v+"\"></script>\n");
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/icons/bootstrap-icons.css?v="+v+"\">\n");
+			}
+			if ("true".equals(addVue)) {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/vue.global.prod.js?v="+v+"\"></script>\n");
 			}
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/efw/efw.css?v="+v+"\">\n");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/easytimer.min.js?v="+v+"\"></script>\n");
@@ -193,6 +214,7 @@ public final class Client extends TagSupport{
 		lang="en";
 		major="4";
 		nopromise="false";
+		addVue="false";
 		return SKIP_BODY;
 	}
 }

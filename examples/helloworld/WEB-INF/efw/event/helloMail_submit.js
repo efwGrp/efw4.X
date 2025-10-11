@@ -25,5 +25,5 @@ helloMail_submit.fire=function(params){
 		body:"test body ",
 		//以下の設定により添付ファイル送信を実現できる
 		attachment:"pdf_field_test.pdf|excel/IamExcelTemplate.xlsx",
-		}.debug("xxxxxxxxxxxxxxxx"),inbackground);
+		},inbackground);
 }

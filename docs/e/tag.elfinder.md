@@ -26,6 +26,7 @@ elFinder is a popular web file manager. We've created a customized version based
 | `readonly` | No | `"false"` | Specifies whether the elFinder tag is read-only. |
 | `protected` | No | `"false"` | Specifies whether the elFinder tag is protected. If `true`, calls to the `setHome` and `setReadOnly` methods will be ignored. |
 | `isAbs` | No | `false` | Specifies whether the `home` path is an absolute path. |
+| `saveLogFunc` | No | `null` | Specify the function name that records various operations of elFinder. |
 
 ## Methods
 

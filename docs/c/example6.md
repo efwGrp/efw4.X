@@ -53,6 +53,9 @@ elfinder1.setReadOnly(false); // 禁用只读
 - 允许访问服务器上的任意路径
 - 在无保护模式下极其危险，应谨慎使用
 
+#### 日志保存函数 (`saveLogFunc="myFunc"`)
+- 将日志信息传递给全局函数 `myFunc`
+
 ### 4. API 功能
 elFinder 组件提供了必要的 JavaScript API：
 

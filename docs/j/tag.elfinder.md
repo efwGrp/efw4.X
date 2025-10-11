@@ -26,6 +26,7 @@ elFinderは人気のWebファイルマネージャーです。Efwには、[elFin
 | `readonly` | いいえ | `"false"` | elFinderタグが読み取り専用かどうかを指定します。 |
 | `protected` | いいえ | `"false"` | elFinderタグが保護されているかどうかを指定します。`true`の場合、`setHome`および`setReadOnly`メソッドの呼び出しは無視されます。 |
 | `isAbs` | いいえ | `false` | `home`パスが絶対パスかどうかを指定します。 |
+| `saveLogFunc` | いいえ | `null` | elFinderの各種操作を記録する関数名を指定します。 |
 
 ## メソッド
 

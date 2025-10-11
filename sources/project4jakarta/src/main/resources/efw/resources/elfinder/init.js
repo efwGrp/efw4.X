@@ -1,9 +1,11 @@
 "use strict";
 /**** efw4.X Copyright 2025 efwGrp ****/
+load("classpath:efw/resources/elfinder/elfinder_achive.js");
 load("classpath:efw/resources/elfinder/elfinder_cmds.js");
 load("classpath:efw/resources/elfinder/elfinder_download.js");
-load("classpath:efw/resources/elfinder/elfinder_preview.js");
+load("classpath:efw/resources/elfinder/elfinder_downloadFileList.js");
 load("classpath:efw/resources/elfinder/elfinder_duplicate.js");
+load("classpath:efw/resources/elfinder/elfinder_extract.js");
 load("classpath:efw/resources/elfinder/elfinder_file.js");
 load("classpath:efw/resources/elfinder/elfinder_ls.js");
 load("classpath:efw/resources/elfinder/elfinder_mkdir.js");
@@ -11,14 +13,13 @@ load("classpath:efw/resources/elfinder/elfinder_mkfile.js");
 load("classpath:efw/resources/elfinder/elfinder_open.js");
 load("classpath:efw/resources/elfinder/elfinder_parents.js");
 load("classpath:efw/resources/elfinder/elfinder_paste.js");
+load("classpath:efw/resources/elfinder/elfinder_preview.js");
 load("classpath:efw/resources/elfinder/elfinder_put.js");
 load("classpath:efw/resources/elfinder/elfinder_rename.js");
 load("classpath:efw/resources/elfinder/elfinder_rm.js");
 load("classpath:efw/resources/elfinder/elfinder_size.js");
 load("classpath:efw/resources/elfinder/elfinder_tree.js");
-load("classpath:efw/resources/elfinder/elfinder_achive.js");
-load("classpath:efw/resources/elfinder/elfinder_extract.js");
-load("classpath:efw/resources/elfinder/elfinder_downloadFileList.js");
+load("classpath:efw/resources/elfinder/elfinder_upload.js");
 
 function elfinder_checkRisk(params){
 	var volumeId="EFW_";
@@ -73,6 +74,13 @@ function elfinder_checkRisk(params){
 				}
 			}
 		}
+	}
+	var sessionSaveLogFunc=session.get("EFW_ELFINDER_SAVELOGFUNC_"+id)+"";
+	if (sessionSaveLogFunc!=""&&sessionSaveLogFunc!=null){
+		var g = new Function('return this')();
+		var func=g[sessionSaveLogFunc];
+		//try to call the savelog function here
+		if (func) func(params);
 	}
 	return null;
 }

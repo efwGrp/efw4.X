@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,6 +18,7 @@ import javax.servlet.http.Part;
 import efw.UploadRiskException;
 import efw.efwException;
 import efw.framework;
+import efw.script.ScriptManager;
 
 /**
  * ファイルをクライアントからWEBサーバへアップロードする。
@@ -122,22 +122,28 @@ public final class uploadServlet extends HttpServlet {
 	            }
 	        }
 	        if ("upload".equals(cmd)) {//elfinderのuploadの場合
-	        	String sessionHome=(String)request.getSession().getAttribute("EFW_ELFINDER_HOME_"+id);
-	    		String sessionIsAbs=(String)request.getSession().getAttribute("EFW_ELFINDER_ISABS_"+id);
-	    		String sessionReadOnly=(String)request.getSession().getAttribute("EFW_ELFINDER_READONLY_"+id);
-	        	String cwdFolder=new String(
-	        			Base64.getUrlDecoder().decode(target.substring("EFW_".length()).getBytes())
-	        		);
-	        	//もしセッション情報がない場合.equalsでエラーが発生する
-	        	if (sessionReadOnly.equals("false")//読取り専用ではない
-	        		&& sessionIsAbs.equals(isAbs)//セッション情報と一致する
-	        		&& sessionHome.equals(home)//セッション情報と一致する
-	        		&& cwdFolder.indexOf(home)==0//目標フォルダにhomeがある
-	        		&& cwdFolder.indexOf("..")==-1){//目標フォルダに..がない
-		        	File fl=("true".equals(isAbs))?
-		        			FileManager.getByAbsolutePath(cwdFolder):FileManager.get(cwdFolder);
-		        	FileManager.saveUploadFiles(fl);//アップロードファイルを正しい場所に移す。
-	        	}
+	        	try {
+	        		String req="{"
+	        				+ "\"home\":\""+home.replaceAll("\"", "\\\"")+"\","
+	        				+ "\"isAbs\":"+isAbs+","
+	        				+ "\"readonly\":false,"//uploadの場合readonlyはfalse固定
+	        				+ "\"id\":\""+id.replaceAll("\"", "\\\"")+"\","
+	        				+ "\"cmd\":\""+cmd.replaceAll("\"", "\\\"")+"\","
+	        				+ "\"target\":\""+target.replaceAll("\"", "\\\"")+"\"}";
+	        		String ret=ScriptManager.callFunction("elfinder_upload",req);//関数を呼びだす
+					if (!"".equals(ret)) {
+						throw new UploadRiskException(ret);
+					}
+	    		}catch (Exception ex) {
+	    			framework.runtimeSLog(ex);
+	    			throw new ServletException(ex);
+				}finally {//efwServletと同じ。
+					framework.removeI18nProp();
+					framework.removeThreadLogs();
+					framework.removeRestStatus();
+					framework.removeNumberFormats();
+					framework.removeDateFormats();
+				}
 	        }
 	        response.getWriter().print("[]");
 		}finally{

@@ -214,7 +214,7 @@ helloBatch.fire=function(params){
 		mdn:"",
 		from:"",
 		//以下の設定により添付ファイル送信を実現できる
-		attachment:"pdf_field_test.pdf;excel/IamExcelTemplate.xlsx",
+		attachment:"pdf_field_test.pdf|excel/IamExcelTemplate.xlsx",
 	});
 	ret.echo("Mailテスト 完了 "+new Date().format("yyyy/MM/dd HH:mm:ss"));
 

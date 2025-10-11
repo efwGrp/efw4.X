@@ -10,6 +10,6 @@ public final class UploadRiskException extends efwException {
 	 * @param pathFileName Pdfファイル名。
 	 */
 	public UploadRiskException(String pathFileName) {
-		super("The path or file name is considered as a threat : "+pathFileName);
+		super("It is considered as a threat : "+pathFileName);
 	}
 }

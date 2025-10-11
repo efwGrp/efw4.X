@@ -53,6 +53,9 @@ elfinder1.setReadOnly(false); // Disable read-only
 - Allows access to any path on the server
 - Extremely dangerous in unprotected mode; use with caution
 
+#### Log save function (`saveLogFunc="myFunc"`)
+- Passes log information to the global function `myFunc`
+
 ### 4. API Functions
 The elFinder component provides essential JavaScript APIs:
 

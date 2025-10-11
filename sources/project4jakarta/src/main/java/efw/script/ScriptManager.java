@@ -113,4 +113,16 @@ public final class ScriptManager {
 	public static Object getJSON(String script) throws ScriptException {
 		return _se.eval("Java.asJSONCompatible("+script+");");
 	}
+	/**
+	 * 指定関数を実行する。
+	 * @param funcNm 関数名。
+	 * @param reqParams パラメータ。
+	 * @return 実行結果の文字列。
+	 * @throws NoSuchMethodException 関数なしエラー。
+	 * @throws ScriptException スクリプトエラー。
+	 */
+	public static String callFunction(String funcNm,String reqParams) throws NoSuchMethodException, ScriptException{
+		Invocable invocable = (Invocable) _se;
+		return (String)invocable.invokeFunction("callFunction", funcNm, reqParams);
+	}
 }

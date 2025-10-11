@@ -67,6 +67,8 @@ EfwClient.prototype.fire = async function(eventParams) {
 		if (result.values) this._showValues(eventId, result.values);
 		//auto do actions
 		if (result.actions) this._showActions(eventId, result.actions, downloadUrl, previewUrl);
+		//it will return result.data
+		return result.data;
 	} catch (e) {
 		if (e.errorTitle) {
 			this._consoleLog(e.errorTitle, e.errorData);
