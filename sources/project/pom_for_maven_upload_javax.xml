@@ -1,0 +1,194 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <configuration-source>8</configuration-source>
+    <configuration-target>8</configuration-target>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.efwgrp</groupId>
+  <artifactId>efw</artifactId>
+  <version>${project.version}</version>
+  <name>ESCCO-Framework</name>
+  <description>"efw" is an Ajax framework for server site JavaScript designed 
+and developed by Escco Co., Ltd. using a goal-oriented method. 
+It is provided as open source free software.</description>
+  <url>https://github.com/efwGrp/efw4.X</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>kejun.chang</name>
+      <email>kejun.chang@escco.co.jp</email>
+      <organization>efwgrp</organization>
+      <organizationUrl>https://github.com/efwGrp</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>https://github.com/efwGrp/efw4.X.git</connection>
+    <developerConnection>https://github.com/efwGrp/efw4.X.git</developerConnection>
+    <url>https://github.com/efwGrp/efw4.X/tree/master</url>
+  </scm>
+
+  <dependencies>
+	<!-- Tomcat7,8,9 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.3</version>
+      <scope>provided</scope>
+    </dependency>
+	<dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.0</version>
+	</dependency>
+    <!-- Nashornエンジン -->
+    <dependency>
+      <groupId>org.openjdk.nashorn</groupId>
+      <artifactId>nashorn-core</artifactId>
+      <version>15.6</version>
+    </dependency>
+    <!-- GraalJsエンジン -->
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>polyglot</artifactId>
+      <version>25.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>js</artifactId>
+      <version>25.0.0</version>
+      <type>pom</type>
+    </dependency>
+    <!-- プール -->
+    <dependency>
+      <groupId>cn.danielw</groupId>
+      <artifactId>fast-object-pool</artifactId>
+      <version>2.2.1</version>
+    </dependency>
+    <!-- JavaMail -->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.2</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>javax.activation</artifactId>
+      <version>1.2.0</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- Excel機能 -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>5.4.1</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>5.4.1</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- バーコードとQAコード -->
+    <dependency>
+      <groupId>net.sf.barcode4j</groupId>
+      <artifactId>barcode4j</artifactId>
+      <version>2.1</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>core</artifactId>
+      <version>3.5.3</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>javase</artifactId>
+      <version>3.5.3</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- PDF機能 -->
+    <dependency>
+      <groupId>com.github.librepdf</groupId>
+      <artifactId>openpdf</artifactId>
+      <version>3.0.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.github.librepdf</groupId>
+      <artifactId>openpdf-fonts-extra</artifactId>
+      <version>3.0.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.github.librepdf</groupId>
+      <artifactId>openpdf-renderer</artifactId>
+      <version>3.0.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.github.librepdf</groupId>
+      <artifactId>openpdf-html</artifactId>
+      <version>3.0.0</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- postgresqlのコピーin/out -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.7</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- ZIPパスワード機能 -->
+    <dependency>
+      <groupId>net.lingala.zip4j</groupId>
+      <artifactId>zip4j</artifactId>
+      <version>2.11.5</version>
+      <optional>true</optional>
+    </dependency>
+    <!-- innorules -->
+    <!--<dependency>
+      <groupId>innorules7</groupId>
+      <artifactId>api</artifactId>
+      <version>7.1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-api7.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules7</groupId>
+      <artifactId>core</artifactId>
+      <version>7.1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-core7.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules8</groupId>
+      <artifactId>api</artifactId>
+      <version>8.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-api8.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>innorules8</groupId>
+      <artifactId>core</artifactId>
+      <version>8.0.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/innorules-core8.jar</systemPath>
+    </dependency>-->
+  </dependencies>
+</project>

@@ -50,7 +50,6 @@
 |  | [`readAllLines`](file.readAllLines.md) | [`writeAllLines`](file.writeAllLines.md) | [`getStorageFolder`](file.getStorageFolder.md) | [`saveUploadFiles`](file.saveUploadFiles.md) | [`saveSingleUploadFile`](file.saveSingleUploadFile.md) |
 |  | [`readAllBytes`](file.readAllBytes.md) | [`writeAllBytes`](file.writeAllBytes.md) | [`getTempFileName`](file.getTempFileName.md) | [`move`](file.move.md) |  |
 | `absfile` | All APIs are the same as the `file` object, except that the path parameter is an absolute one.  |||||
-| `barcode` | [`decode`](barcode.decode.md) |  |  |  |  |
 | `brms` | [`getRuleById`](brms.getRuleById.md) | [`getRuleByName`](brms.getRuleByName.md) | [`getRuleByAlias`](brms.getRuleByAlias.md) |  |  |
 | `rest` | [`get`](rest.get.md) | [`post`](rest.post.md) | [`put`](rest.put.md) | [`delete`](rest.delete.md) | [`getStatus`](rest.getStatus.md) |
 | `event` | [`fire`](event.fire.md) |  |  |  |  |
