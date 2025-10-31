@@ -498,6 +498,7 @@ EfwClient.prototype._showActions = function(eventId,actions,downloadUrl,previewU
 	if (actions.disable)$(actions.disable).prop("disabled",true);
 	if (actions.highlight)$(actions.highlight).addClass("efw_input_error");
 	if (actions.preview) efw.dialog.preview(previewUrl+"?lang="+efw.lang+"&fl="+actions.preview.file,actions.preview.file);
+		if (actions.progress) efw.dialog.progress(actions.progress.message,actions.progress.percent,actions.progress.closeFlag);
 	//-------------------------------------------------------------------------
 	function continueAfterDownloaded(){
 		function continueAfterConfirmAlert(){

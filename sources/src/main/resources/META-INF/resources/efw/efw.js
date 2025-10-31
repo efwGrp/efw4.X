@@ -12,15 +12,31 @@
  * Efw(eventId,manualParams)<br>
  * Efw(eventId,sever)<br>
  * Efw(eventId,manualParams,sever)<br>
+ * Efw(eventId,wsMode)<br>
+ * Efw(eventId,manualParams,wsMode)<br>
+ * Efw(eventId,sever,wsMode)<br>
+ * Efw(eventId,manualParams,sever,wsMode)<br>
  */
-var Efw = function(eventId,manualParams,server) {
+var Efw = function(eventId,manualParams,server,wsMode) {
 	if(eventId!=undefined){
-		var eventParams={"eventId":eventId};
+		var eventParams={"eventId":eventId,wsMode:false};
 		if(typeof manualParams =="string") {
 			eventParams.server=manualParams;
+			if (typeof server=="boolean"){
+				eventParams.wsMode=server;
+			}
+		}else if(typeof manualParams =="boolean") {
+			eventParams.wsMode=manualParams;
 		}else{
 			eventParams.manualParams=manualParams;
-			eventParams.server=server;
+			if (typeof server=="boolean"){
+				eventParams.wsMode=server;
+			}else{
+				eventParams.server=server;
+				if (typeof wsMode=="boolean"){
+					eventParams.wsMode=wsMode;
+				}
+			}
 		}
 		return (new EfwClient()).fire(eventParams);
 	}

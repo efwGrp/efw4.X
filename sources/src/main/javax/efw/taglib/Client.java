@@ -162,6 +162,7 @@ public final class Client extends TagSupport{
 		try {
 			String v=framework.version;
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.simple.websocket.min.js?v="+v+"\"></script>\n");
 			if("jquery-ui".equals(mode)){
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/jquery-ui.structure.min.css?v="+v+"\">\n");
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/themes/"+theme+"/theme.css?v="+v+"\">\n");

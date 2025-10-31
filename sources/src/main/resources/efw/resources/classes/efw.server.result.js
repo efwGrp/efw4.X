@@ -115,7 +115,7 @@ Result.prototype.concat = function(result) {
 			if (result.actions.eval)this.eval(result.actions.eval);
 			if (result.actions.preview)this.preview(result.actions.preview.file,result.actions.preview.isAbs);
 			if (result.data)this.provide(result.data);
-			if (result.actions.progress)this.progress(result.actions.progress.message,result.actions.progress.percent);
+			if (result.actions.progress)this.progress(result.actions.progress.message,result.actions.progress.percent,result.actions.progress.closeFlag);
 		}
 	}
 	return this;
@@ -429,12 +429,14 @@ Result.prototype.provide = function(data) {
  * 
  * @param {String} message: required<br>
  * @param {Number} percent: required<br>
+ * @param {Boolean} closeFlag: optional<br>
  * @returns {Result}
  */
-Result.prototype.progress = function(message,percent) {
+Result.prototype.progress = function(message,percent,closeFlag) {
 	if (!this.actions.progress)this.actions.progress={};
 	this.actions.progress.message = message;
 	this.actions.progress.percent=percent;
+	this.actions.progress.closeFlag=closeFlag;
 	return this;
 };
 

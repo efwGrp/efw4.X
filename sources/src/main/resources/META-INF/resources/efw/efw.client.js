@@ -46,6 +46,12 @@ EfwClient.prototype.fire = async function(eventParams) {
 	} else {
 		previewUrl = efw.baseurl + "/" + previewUrl;
 	}
+	var webSocketUrl = "efwWebSocket";
+	if (eventParams.server) {
+		webSocketUrl = eventParams.server + "/" + webSocketUrl;
+	} else {
+		webSocketUrl = efw.baseurl + "/" + webSocketUrl;
+	}
 	try {
 		//first calling
 		this._consoleLog("First calling parameters", eventParams);
@@ -59,16 +65,20 @@ EfwClient.prototype.fire = async function(eventParams) {
 			await this._callUploadAjax(uploadUrl);
 			this._pickupParams_uploadformdata = null;// reset it for next ajax.
 		}
-		// second calling
-		this._consoleLog("Second calling parameters", params);
-		var result = await this._callSecondAjax(servletUrl, eventId, params);
-		this._consoleLog("Second calling result", result, true);
-		//auto show values
-		if (result.values) this._showValues(eventId, result.values);
-		//auto do actions
-		if (result.actions) this._showActions(eventId, result.actions, downloadUrl, previewUrl);
-		//it will return result.data
-		return result.data;
+		if (!eventParams.wsMode){
+			// second calling
+			this._consoleLog("Second calling parameters", params);
+			var result = await this._callSecondAjax(servletUrl, eventId, params);
+			this._consoleLog("Second calling result", result, true);
+			//auto show values
+			if (result.values) this._showValues(eventId, result.values);
+			//auto do actions
+			if (result.actions) this._showActions(eventId, result.actions, downloadUrl, previewUrl);
+			//it will return result.data
+			return result.data;
+		}else{//in WebSocket Mode
+			this._callSecondAjaxInWsMode(webSocketUrl, eventId, params, downloadUrl, previewUrl);
+		}
 	} catch (e) {
 		if (e.errorTitle) {
 			this._consoleLog(e.errorTitle, e.errorData);
@@ -140,8 +150,8 @@ EfwClient.prototype._callUploadAjax = function(uploadUrl) {
 			xhrFields: { withCredentials: true },
 			type: "POST",// post method
 			dataType: "json",// send or get data by json type
-			cache: false,// don't use cache
-			async: true,// don't use async
+			cache: false,// don't use cache true
+			async: true,// don't use async false
 			processData: false,
 			contentType: false,
 			data: self._pickupParams_uploadformdata,// upload
@@ -167,7 +177,6 @@ EfwClient.prototype._callUploadAjax = function(uploadUrl) {
 		});
 	});
 }
-
 /**
  * The internal function for calling the second ajax to get the event result
  */
@@ -189,8 +198,8 @@ EfwClient.prototype._callSecondAjax = function(servletUrl, eventId, params) {
 			url: servletUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log  
 			xhrFields: { withCredentials: true },
 			type: "POST",// post method
-			cache: false,// don't use cache
-			async: true,// don't use async
+			cache: false,// don't use cache true
+			async: true,// don't use async false
 			dataType: "json",// send or get data by json type
 			contentType: "application/json;charset=UTF-8",
 			// first calling only send groupid and eventid
@@ -236,6 +245,64 @@ EfwClient.prototype._callSecondAjax = function(servletUrl, eventId, params) {
 				});
 			}
 		});
+	});
+}
+/**
+ * The internal function for calling the second ajax to get the event result in websocket mode
+ */
+EfwClient.prototype._callSecondAjaxInWsMode = function(webSocketUrl, eventId, params, downloadUrl, previewUrl) {
+	var self = this;
+	//this function is for tomcat11 URL integrity check
+	function beSureDecodable(str){
+		for(var i=0;i<10;i++){
+			str=str.substring(0,str.length-1);
+			try{
+				decodeURIComponent(str);
+				return str;
+			}catch(e){}
+		}
+		return str;
+	}
+	var ws=$.simpleWebSocket({ 
+		url: webSocketUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log
+		timeout: 20000,
+		attempts: 10,
+		dataType: "json",
+		onOpen: function(event) {},
+		onClose: function(event) {},
+		onError: function(event) {
+			this._consoleLog("Second calling error", e);
+			efw.dialog.alert(efw.messages.CommunicationErrorException);
+		},
+	}).listen(function(result){
+		try{
+			self._consoleLog("Second calling result", result, true);
+			//retry when busy
+			if (result.actions.error != null && result.actions.error.clientMessageId == "EventIsBusyException") {
+				var service = result.actions.error.params;
+				if (service != null) {
+					var message = service.message ? service.message : efw.messages.EventIsBusyException;
+					if (service.retriable) {
+						var countdown = service.interval ? service.interval : 30;
+						if (service.interval) countdown = service.interval;
+						efw.dialog.wait(message, countdown, null, function() { ws.send(self._options); });
+					} else {
+						efw.dialog.alert(message);
+					}
+				}
+			}else{
+				//auto show values
+				if (result.values) self._showValues(eventId, result.values);
+				//auto do actions
+				if (result.actions) self._showActions(eventId, result.actions, downloadUrl, previewUrl);
+			}
+		}catch(e){
+			this._consoleLog("Second calling error", e);
+		}
+	}).send(self._options={
+		"eventId": eventId,
+		"lang": efw.lang,
+		"params": params
 	});
 }
 /**
@@ -549,7 +616,7 @@ EfwClient.prototype._showActions = function(eventId, actions, downloadUrl, previ
 		if (actions.disable) $(actions.disable).prop("disabled", true);
 		if (actions.highlight) $(actions.highlight).addClass("efw_input_error");
 		if (actions.preview) efw.dialog.preview(previewUrl+"?lang="+efw.lang+"&fl="+actions.preview.file,actions.preview.file);
-		if (actions.progress) efw.dialog.progress(actions.progress.message,actions.progress.percent);
+		if (actions.progress) efw.dialog.progress(actions.progress.message,actions.progress.percent,actions.progress.closeFlag);
 		//-------------------------------------------------------------------------
 		function continueAfterDownloaded() {
 			function continueAfterConfirmAlert() {

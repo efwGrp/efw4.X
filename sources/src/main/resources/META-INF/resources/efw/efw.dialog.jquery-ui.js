@@ -164,16 +164,22 @@ EfwDialog.prototype.preview = function(previewUrl,fileName) {
  * The function to show progress.
  * @param {String} message: required<br>
  * @param {Number} percent: required<br>
+ * @param {Boolean} closeFlag: optional<br>
  */
-EfwDialog.prototype.progress = function(message, percent) {
+EfwDialog.prototype.progress = function(message, percent, closeFlag) {
 	var self=this;
-	if (!self._progress.dialog("isOpen")){
-		self._progress.dialog("option", "title", efw.messages.ProgressDialogTitle);
-		$("#efw_client_progress p").html(message.replace(/\n/g, "<br>"));
-		self._progress.dialog("open");
-		$("progress","#efw_client_progress").val(percent);
+	if (closeFlag){
+		self._progress.dialog("close");
+		return;
 	}else{
-		$("#efw_client_progress p").html(message.replace(/\n/g, "<br>"));
-		$("progress","#efw_client_progress").val(percent);
+		if (!self._progress.dialog("isOpen")){
+			self._progress.dialog("option", "title", efw.messages.ProgressDialogTitle);
+			$("#efw_client_progress p").html(message.replace(/\n/g, "<br>"));
+			self._progress.dialog("open");
+			$("progress","#efw_client_progress").val(percent);
+		}else{
+			$("#efw_client_progress p").html(message.replace(/\n/g, "<br>"));
+			$("progress","#efw_client_progress").val(percent);
+		}
 	}
 };

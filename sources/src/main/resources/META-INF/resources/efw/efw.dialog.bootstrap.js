@@ -36,13 +36,6 @@ var EfwDialog = function() {
 	this._preview = $("#efw_client_preview");
 	//--progress------------------------------------------------------------
 	if (efw.major=="5"){
-		$("body").append("<div class='modal hide' id='efw_client_alert' data-bs-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
-	}else if (efw.major=="4"){
-		$("body").append("<div class='modal hide' id='efw_client_alert' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
-	}else if (efw.major=="3"){
-		$("body").append("<div class='modal' id='efw_client_alert' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><h5 class='modal-title'>Message</h5></div><div class='modal-body'></div><div class='modal-footer'></div></div></div></div>");
-	}
-	if (efw.major=="5"){
 		$("body").append("<div class='modal hide' id='efw_client_progress' data-bs-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body'><p></p><progress style='width:100%' max='100' value='0'></progress></div><div class='modal-footer'></div></div></div></div>");
 	}else if (efw.major=="4"){
 		$("body").append("<div class='modal hide' id='efw_client_progress' data-backdrop='static' tabindex='-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h5 class='modal-title'>Message</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'><p></p><progress style='width:100%' max='100' value='0'></progress></div><div class='modal-footer'></div></div></div></div>");
@@ -194,16 +187,22 @@ EfwDialog.prototype.preview = function(previewUrl,fileName) {
  * The function to show progress.
  * @param {String} message: required<br>
  * @param {Number} percent: required<br>
+ * @param {Boolean} closeFlag: optional<br>
  */
-EfwDialog.prototype.progress = function(message, percent) {
+EfwDialog.prototype.progress = function(message, percent, closeFlag) {
 	var self=this;
-	if (!self._progress.is(":visible")){
-		$(".modal-title",self._progress).html(efw.messages.ProgressDialogTitle);
-		$(".modal-body p",self._progress).html(message.replace(/\n/g, "<br>"));
-		$("progress",self._progress).val(percent);
-		self._progress.modal("show");
+	if (closeFlag){
+		self._progress.modal("hide");
+		return;
 	}else{
-		$(".modal-body p",self._progress).html(message.replace(/\n/g, "<br>"));
-		$("progress",self._progress).val(percent);
+		if (!self._progress.is(":visible")){
+			$(".modal-title",self._progress).html(efw.messages.ProgressDialogTitle);
+			$(".modal-body p",self._progress).html(message.replace(/\n/g, "<br>"));
+			$("progress",self._progress).val(percent);
+			self._progress.modal("show");
+		}else{
+			$(".modal-body p",self._progress).html(message.replace(/\n/g, "<br>"));
+			$("progress",self._progress).val(percent);
+		}
 	}
 };

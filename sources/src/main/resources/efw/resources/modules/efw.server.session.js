@@ -24,7 +24,7 @@ EfwServerSession.prototype.get = function(key) {
 		if (valueType == "string"){
 			if (value.indexOf("JSON:")==0){
 				value=JSON.parse(value.substring(5));
-				value=EfwServerSession._restoreDate(value);
+				value=this._restoreDate(value);
 			}
 		}
 	}
@@ -90,13 +90,13 @@ EfwServerSession.prototype._restoreDate=function(obj){
 	case Array:
 		oClone = [];
 		for (var sProp in obj) {
-			oClone[sProp] = EfwServerSession._restoreDate(obj[sProp]); 
+			oClone[sProp] = this._restoreDate(obj[sProp]); 
 		}
 		return oClone;
 	case Object:
 		oClone = {};
 		for (var sProp in obj) {
-			oClone[sProp] = EfwServerSession._restoreDate(obj[sProp]); 
+			oClone[sProp] = this._restoreDate(obj[sProp]); 
 		}
 		return oClone;
 	default:
