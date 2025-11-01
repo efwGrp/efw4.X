@@ -2,7 +2,6 @@
 package efw.util;
 
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,6 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.server.HandshakeRequest;
 
 /**
@@ -126,7 +124,13 @@ public final class JavaxJakartaUtil {
 			if (cookies != null) {
 				for (Cookie cookie : cookies) {
 					if (key.equals(cookie.getName())) {
-						value = cookie.getValue();
+	                    try {
+	                        // Cookieの値はURLエンコードされている可能性があるためデコードする
+							value = URLDecoder.decode(cookie.getValue().trim(), framework.SYSTEM_CHAR_SET);
+	                    } catch (Exception e) {
+	                        // デコードエラーが発生した場合は、そのままの値を使用
+	                        value = cookie.getValue().trim(); 
+	                    }
 						break;
 					}
 				}
@@ -142,6 +146,8 @@ public final class JavaxJakartaUtil {
 	public static void setCookie(String key, String value) {
 		Object o=framework.getResponse();
 		if ("org.apache.tomcat.websocket.WsHandshakeResponse".equals(o.getClass().getName())) {
+			framework.runtimeWLog("You can not set cookie in websocket mode. Cookie-key:"+key+" value:"+value);
+			/*
 			HandshakeResponse response=(HandshakeResponse)framework.getResponse();
 	        String path = "/";
 	        int maxAge = 31536000; // One Year (秒単位)
@@ -164,7 +170,7 @@ public final class JavaxJakartaUtil {
 	        // 注意: response.getHeaders() にキー "Set-Cookie" で値を put() する場合、
 	        // 既存のSet-Cookieを上書きしないよう注意が必要です。
 	        // computeIfAbsentや、getしてからaddする方式が安全です。
-	        
+	        */
 		}else {//org.apache.catalina.connector.RequestFacade
 			String path="/";
 			int maxAge=31536000;//One Year

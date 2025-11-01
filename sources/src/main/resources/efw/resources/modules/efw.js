@@ -386,19 +386,25 @@ Efw.prototype.callFunction=function(funcNm,reqParams){
  * 
  * @param {Object}
  *            result: the result to send.
+ * @returns: true:successed, false:failed
  */
 Efw.prototype.wsSend = function(result) {
 	try{
 		var lang=Packages.efw.framework.getLang();
 		var wsSession=Packages.efw.framework.getWsSession();
 		// change data to string and return it to client
-		if(result.withoutI18nTranslation){
-			wsSession.getBasicRemote().sendText(JSON.stringify(result));
+		if (wsSession.isOpen()){
+			if(result.withoutI18nTranslation){
+				wsSession.getBasicRemote().sendText(JSON.stringify(result));
+			}else{
+				wsSession.getBasicRemote().sendText(messages.translate(JSON.stringify(result),lang));
+			}
+			return true;
 		}else{
-			wsSession.getBasicRemote().sendText(messages.translate(JSON.stringify(result),lang));
+			return false;
 		}
 	}catch(e){
-		//skip error
+		return false;
 	}
 };
 /**
