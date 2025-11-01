@@ -65,6 +65,23 @@ public final class JavaxJakartaUtil {
 		return value;
 	}
 	/**
+	 * Referer情報を取得する
+	 * @return eferer情報
+	 */
+	public static String getReferer() {
+		Object o=framework.getRequest();
+		String value=null;
+		if ("org.apache.tomcat.websocket.server.WsHandshakeRequest".equals(o.getClass().getName())) {
+			HandshakeRequest request=(HandshakeRequest)framework.getRequest();
+	        List<String> refererList = request.getParameterMap().get("referer");
+	        value = (refererList != null && !refererList.isEmpty()) ? refererList.get(0) : null;
+		}else {//org.apache.catalina.connector.RequestFacade
+			HttpServletRequest request=(HttpServletRequest)framework.getRequest();
+			value=request.getHeader("referer");
+		}
+		return value;
+	}
+	/**
 	 * Cookie情報を取得する
 	 * @param key Cookieキー
 	 * @return Cookie値
@@ -124,7 +141,7 @@ public final class JavaxJakartaUtil {
 	 */
 	public static void setCookie(String key, String value) {
 		Object o=framework.getResponse();
-		if ("org.apache.tomcat.websocket.server.WsHandshakeResponse".equals(o.getClass().getName())) {
+		if ("org.apache.tomcat.websocket.WsHandshakeResponse".equals(o.getClass().getName())) {
 			HandshakeResponse response=(HandshakeResponse)framework.getResponse();
 	        String path = "/";
 	        int maxAge = 31536000; // One Year (秒単位)

@@ -15,8 +15,7 @@ function EfwServerRequest() {
  * @returns {Any}
  */
 EfwServerRequest.prototype.get = function(key) {
-	//この機能はhttpの場合有効。Websocketの場合refererというheaderがないので無効です。
-	var url= Packages.efw.framework.getRequest().getHeader("referer");
+	var url= Packages.efw.util.JavaxJakartaUtil.getReferer();
 	function getParam(url,name) {
 	    name = name.replace(/[\[\]]/g, "\\$&");
 	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),

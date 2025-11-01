@@ -52,6 +52,12 @@ EfwClient.prototype.fire = function(eventParams) {
 	} else {
 		previewUrl = efw.baseurl + "/" + previewUrl;
 	}
+	var webSocketUrl = "efwWebSocket";
+	if (eventParams.server) {
+		webSocketUrl = eventParams.server + "/" + webSocketUrl;
+	} else {
+		webSocketUrl = efw.baseurl + "/" + webSocketUrl;
+	}
 	var self=this;
 	$.ajax(this._options={
 		url : servletUrl,
@@ -70,7 +76,7 @@ EfwClient.prototype.fire = function(eventParams) {
 			if (result.actions){
 				self._showActions(eventId,result.actions);
 			} else {// if no error, run the second fire, in this case , result is paramsFormat
-				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl);
+				self._fire2nd(eventId, result, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl, webSocketUrl, eventParams.wsMode);
 			}
 		},
 		error : function(errorResponse, errorType, errorMessage) {
@@ -93,8 +99,10 @@ EfwClient.prototype.fire = function(eventParams) {
  * @param uploadUrl
  * @param downloadUrl
  * @param previewUrl
+ * @param webSocketUrl
+ * @param wsMode
  */
-EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl) {
+EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, servletUrl, uploadUrl, downloadUrl, previewUrl, webSocketUrl, wsMode) {
 	// auto collect params
 	// ---------------------------------------------------------------------
 	try {
@@ -182,6 +190,49 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 			}
 		});
 	};
+	var callSecondAjaxInWsMode = function() {
+		var ws=$.simpleWebSocket({ 
+			url: webSocketUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&referer=" + encodeURIComponent(window.location.href) + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log
+			timeout: 20000,
+			attempts: 10,
+			dataType: "json",
+			onOpen: function(event) {},
+			onClose: function(event) {},
+			onError: function(event) {
+				this._consoleLog("Second calling error", e);
+				efw.dialog.alert(efw.messages.CommunicationErrorException);
+			},
+		}).listen(function(result){
+			try{
+				self._consoleLog("Second calling result", result, true);
+				//retry when busy
+				if (result.actions.error != null && result.actions.error.clientMessageId == "EventIsBusyException") {
+					var service = result.actions.error.params;
+					if (service != null) {
+						var message = service.message ? service.message : efw.messages.EventIsBusyException;
+						if (service.retriable) {
+							var countdown = service.interval ? service.interval : 30;
+							if (service.interval) countdown = service.interval;
+							efw.dialog.wait(message, countdown, null, function() { ws.send(self._options); });
+						} else {
+							efw.dialog.alert(message);
+						}
+					}
+				}else{
+					//auto show values
+					if (result.values) self._showValues(result.values);
+					//auto do actions
+					if (result.actions) self._showActions(eventId, result.actions, downloadUrl, previewUrl);
+				}
+			}catch(e){
+				self._consoleLog("Second calling error", e);
+			}
+		}).send(self._options={
+			"eventId": eventId,
+			"lang": efw.lang,
+			"params": params
+		});
+	};
 	// upload files
 	// ---------------------------------------------------------------------
 	if (this._pickupParams_uploadformdata != null) {
@@ -197,7 +248,11 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 			data : this._pickupParams_uploadformdata,// upload
 			// files
 			success : function(data) {
-				callSecondAjax();
+				if (!wsMode){
+					callSecondAjax();
+				}else{
+					callSecondAjaxInWsMode();
+				}
 			},
 			error : function(errorResponse, errorType, errorMessage) {
 				self._consoleLog("Uploading error", {
@@ -211,7 +266,11 @@ EfwClient.prototype._fire2nd = function(eventId, paramsFormat, manualParams, ser
 		this._pickupParams_uploadformdata = null;// reset it for
 		// next ajax.
 	} else {
-		callSecondAjax();
+		if (!wsMode){
+			callSecondAjax();
+		}else{
+			callSecondAjaxInWsMode();
+		}
 	}
 };
 /**

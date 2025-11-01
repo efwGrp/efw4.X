@@ -264,7 +264,7 @@ EfwClient.prototype._callSecondAjaxInWsMode = function(webSocketUrl, eventId, pa
 		return str;
 	}
 	var ws=$.simpleWebSocket({ 
-		url: webSocketUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log
+		url: webSocketUrl + "?eventId=" + eventId + "&lang=" + efw.lang + "&referer=" + encodeURIComponent(window.location.href) + "&params=" + beSureDecodable(encodeURIComponent(JSON.stringify(params)).substring(0, 1024)),//to save info for access log
 		timeout: 20000,
 		attempts: 10,
 		dataType: "json",
@@ -297,7 +297,7 @@ EfwClient.prototype._callSecondAjaxInWsMode = function(webSocketUrl, eventId, pa
 				if (result.actions) self._showActions(eventId, result.actions, downloadUrl, previewUrl);
 			}
 		}catch(e){
-			this._consoleLog("Second calling error", e);
+			self._consoleLog("Second calling error", e);
 		}
 	}).send(self._options={
 		"eventId": eventId,
