@@ -4,6 +4,7 @@
 
 | 组 | 键 | 默认值 | 描述 |
 |---|---|---|---|
+| Script引擎 | `efw.script.engine` | `nashorn` | 可以设置 `nashorn` 或 `graaljs`。|
 | 运行模式 | `efw.isdebug` | `false` | 如果为 `true`，则程序更改会实时加载到内存中。 |
 | 日志记录 | `efw.logging.level` | `WARNING` | EFW 日志输出级别：`ALL`、`FINEST`、`FINER`、`FINE`、`CONFIG`、`INFO`、`WARNING`、`SEVERE`、`OFF` |
 | 数据库资源 | `efw.jdbc.resource` | `jdbc/efw` | 默认 JDBC 资源名称（在 `/META-INF/context.xml` 中定义）。对于非 Tomcat 服务器，通过 JNDI 定义（例如，`java:xxx/yyy/zzz` 或 `[java:comp/env/]jdbc/efw`）。 |
@@ -15,7 +16,6 @@
 |  | `efw.storage.folder` | `/WEB-INF/efw/storage` | Web 应用程序 I/O 文件夹（相对或绝对路径）。 |
 | 舍入器 | `efw.format.rounder` | `HALF_EVEN` | 格式化方法的默认舍入器：`UP`、`DOWN`、`CEILING`、`FLOOR`、`HALF_UP`、`HALF_DOWN`、`HALF_EVEN` |
 | Zip | `efw.zip.charset` | `UTF-8` | 归档和提取的字符集。 |
-| CORS | `efw.cors` | `*` | 跨域通信设置：`*`（允许所有）、`null`（拒绝所有）或特定权限（例如，`http://0.0.0.0:8080,http://9.9.9.9`）。 |
 | 登录检查（Web 事件） | `efw.login.check` | `false` | 启用/禁用登录检查。 |
 |  | `efw.login.key` | `USER_ID` | 登录检查的会话密钥。 |
 |  | `efw.login.url` | `login.jsp` | 登录页面 URL（如果未登录访问则显示）。 |

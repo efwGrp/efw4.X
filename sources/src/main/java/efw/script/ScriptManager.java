@@ -39,7 +39,6 @@ public final class ScriptManager{
 	 * @throws efwScriptException スクリプトエラー。
 	 */
 	public static void init() throws efwScriptException{
-		//TODO
 		try {
 			String engineName=PropertiesManager.getProperty(PropertiesManager.SCRIPT_ENGINE, SCRIPT_ENGINE_NASHORN);
 			if (SCRIPT_ENGINE_NASHORN.equals(engineName)) {

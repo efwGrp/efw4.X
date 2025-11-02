@@ -4,6 +4,7 @@
 
 | グループ | キー | デフォルト値 | 説明 |
 |---|---|---|---|
+| スクリプトエンジン | `efw.script.engine` | `nashorn` | `nashorn` または `graaljs` を設定できます。 |
 | 実行モード | `efw.isdebug` | `false` | `true`の場合、プログラムの変更はリアルタイムでメモリにロードされます。 |
 | ロギング | `efw.logging.level` | `WARNING` | EFWログ出力レベル：`ALL`、`FINEST`、`FINER`、`FINE`、`CONFIG`、`INFO`、`WARNING`、`SEVERE`、`OFF` |
 | データベースリソース | `efw.jdbc.resource` | `jdbc/efw` | デフォルトのJDBCリソース名（`/META-INF/context.xml`で定義）。Tomcat以外のサーバーでは、JNDI（例：`java:xxx/yyy/zzz`または`[java:comp/env/]jdbc/efw`）を介して定義します。 |
@@ -15,7 +16,6 @@
 |  | `efw.storage.folder` | `/WEB-INF/efw/storage` | WebアプリケーションI/Oフォルダ（相対パスまたは絶対パス）。 |
 | 丸め方 | `efw.format.rounder` | `HALF_EVEN` | formatメソッドのデフォルトの丸め方：`UP`、`DOWN`、`CEILING`、`FLOOR`、`HALF_UP`、`HALF_DOWN`、`HALF_EVEN` |
 | Zip | `efw.zip.charset` | `UTF-8` | アーカイブと抽出の文字セット。 |
-| CORS | `efw.cors` | `*` | クロスドメイン通信設定：`*`（すべて許可）、`null`（すべて拒否）、または特定の許可（例：`http://0.0.0.0:8080,http://9.9.9.9`）。 |
 | ログインチェック（Webイベント） | `efw.login.check` | `false` | ログインチェックの有効/無効。 |
 |  | `efw.login.key` | `USER_ID` | ログインチェックのセッションキー。 |
 |  | `efw.login.url` | `login.jsp` | ログインページURL（未ログインでアクセスした場合に表示）。 |
