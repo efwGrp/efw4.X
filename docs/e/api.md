@@ -43,8 +43,8 @@
 
 | Modules | Attributes/Functions |||||
 |---|---|---|---|---|---|
-| `[global]` | [`_eventfolder`](global._eventfolder.md) | [`_isdebug`](global._isdebug.md) | [`load`](global.load.md) | [`loadWithNewGlobal`](global.loadWithNewGlobal.md)Å¶nÅ¶d | [`loadWithGlobalPool`](global.loadWithGlobalPool.md)Å¶nÅ¶d |
-| `efw` | [`register`](efw.register.md) | [`contains`](efw.contains.md) | [`wsSend`](efw.wsSend.md)Å¶ws  |  |  |
+| `[global]` | [`_eventfolder`](global._eventfolder.md) | [`_isdebug`](global._isdebug.md) | [`load`](global.load.md) | [`loadWithNewGlobal`](global.loadWithNewGlobal.md)‚Äªn‚Äªd | [`loadWithGlobalPool`](global.loadWithGlobalPool.md)‚Äªn‚Äªd |
+| `efw` | [`register`](efw.register.md) | [`contains`](efw.contains.md) | [`wsSend`](efw.wsSend.md)‚Äªws  |  |  |
 | `cmd` | [`execute`](cmd.execute.md) |  |  |  |  |
 | `file` | [`get`](file.get.md) | [`list`](file.list.md) | [`isFile`](file.isFile.md) | [`isFolder`](file.isFolder.md) | [`makeFile`](file.makeFile.md) |
 |  | [`exists`](file.exists.md) | [`duplicate`](file.duplicate.md) | [`rename`](file.rename.md) | [`remove`](file.remove.md) | [`makeDir`](file.makeDir.md) |
@@ -54,14 +54,14 @@
 | `brms` | [`getRuleById`](brms.getRuleById.md) | [`getRuleByName`](brms.getRuleByName.md) | [`getRuleByAlias`](brms.getRuleByAlias.md) |  |  |
 | `rest` | [`get`](rest.get.md) | [`post`](rest.post.md) | [`put`](rest.put.md) | [`delete`](rest.delete.md) | [`getStatus`](rest.getStatus.md) |
 | `event` | [`fire`](event.fire.md) |  |  |  |  |
-| `db` | [`select`](db.select.md) | [`change`](db.change.md) | [`master`](db.master.md)Å¶d |  |  |
+| `db` | [`select`](db.select.md) | [`change`](db.change.md) | [`master`](db.master.md)‚Äªd |  |  |
 |  | [`_commit`](db._commit.md) | [`_rollback`](db._rollback.md) | [`_commitAll`](db._commitAll.md) | [`_rollbackAll`](db._rollbackAll.md) |  |
 |  | All transaction functions, as a default, do not need to be called explicitly.  |||||
 | `mail` | [`send`](mail.send.md) |  |  |  |  |
 | `properties` | [`get`](properties.get.md) |  |  |  |  |
-| `session`Å¶w | [`get`](session.get.md) | [`set`](session.set.md) | [`create`](session.create.md)Å¶!ws | [`invalidate`](session.invalidate.md) |  |
-| `cookie`Å¶w | [`get`](cookie.get.md) | [`set`](cookie.set.md)Å¶!ws |  |  |  |
-| `request`Å¶w | [`get`](request.get.md) |  |  |  |  |
+| `session`‚Äªw | [`get`](session.get.md) | [`set`](session.set.md) | [`create`](session.create.md)‚Äª!ws | [`invalidate`](session.invalidate.md) |  |
+| `cookie`‚Äªw | [`get`](cookie.get.md) | [`set`](cookie.set.md)‚Äª!ws |  |  |  |
+| `request`‚Äªw | [`get`](request.get.md) |  |  |  |  |
 | `{ any }` | [`format`](any.format.md) | [`parse`](any.parse.md) | [`debug`](any.debug.md) |  |  |
 | `{ Date }` | [`getYears`](Date.getYears.md) |  |  |  |  |
 | `{ String }` | [`base64Encode`](String.base64Encode.md) | [`base64EncodeURI`](String.base64EncodeURI.md) | [`base64Decode`](String.base64Decode.md) |  |  |
@@ -74,7 +74,7 @@
 |---|---|---|---|---|---|
 | `BinaryReader` | [`new`](BinaryReader.new.md) | [`readAllLines`](BinaryReader.readAllLines.md) | [`loopAllLines`](BinaryReader.loopAllLines.md) |  |  |
 | `BinaryWriter` | [`new`](BinaryWriter.new.md) | [`writeAllLines`](BinaryWriter.writeAllLines.md) | [`writeLine`](BinaryWriter.writeLine.md) | [`close`](BinaryWriter.close.md) |  |
-| `TXTReader`Å¶d | [`new`](TXTReader.new.md) | [`readAllLines`](TXTReader.readAllLines.md) | [`loopAllLines`](TXTReader.loopAllLines.md) |  |  |
+| `TXTReader`‚Äªd | [`new`](TXTReader.new.md) | [`readAllLines`](TXTReader.readAllLines.md) | [`loopAllLines`](TXTReader.loopAllLines.md) |  |  |
 | `CSVReader` | [`new`](CSVReader.new.md) | [`readAllLines`](CSVReader.readAllLines.md) | [`loopAllLines`](CSVReader.loopAllLines.md) |  |  |
 | `CSVWriter` | [`new`](CSVWriter.new.md) | [`writeAllLines`](CSVWriter.writeAllLines.md) | [`writeLine`](CSVWriter.writeLine.md) | [`close`](CSVWriter.close.md) |  |
 | `Excel` | [`new`](excel.new.md) | [`save`](excel.save.md) | [`close`](excel.close.md) | [`getSheetNames`](excel.getSheetNames.md) |  |
@@ -89,22 +89,22 @@
 | `Record` | [`new`](record.new.md) |  |  |  |  |
 |  | [`seek`](record.seek.md) | [`sort`](record.sort.md) | [`map`](record.map.md) | [`makeAllKeysUpperCase`](record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](record.getArray.md) | [`getSingle`](record.getSingle.md) | [`getValue`](record.getValue.md) | [`length`](record.length.md) |  |
-| `Result`Å¶w | [`new`](result.new.md) | [`concat`](result.concat.md) | [`provide`](result.provide.md)Å¶!nprms |  |  |
+| `Result`‚Äªw | [`new`](result.new.md) | [`concat`](result.concat.md) | [`provide`](result.provide.md)‚Äª!nprms |  |  |
 |  | [`runat`](result.runat.md) | [`remove`](result.remove.md) | [`append`](result.append.md) | [`withdata`](result.withdata.md) |  |
 |  | [`show`](result.show.md) | [`hide`](result.hide.md) | [`enable`](result.enable.md) | [`disable`](result.disable.md) |  |
 |  | [`focus`](result.focus.md) | [`highlight`](result.highlight.md) | [`attach`](result.attach.md) | [`deleteAfterDownload`](result.deleteAfterDownload.md) | [`saveas`](result.saveas.md) |  |
 |  | [`confirm`](result.confirm.md) | [`alert`](result.alert.md) | [`preview`](result.preview.md) | [`eval`](result.eval.md) | [`navigate`](result.navigate.md) |
-| `Batch`Å¶b | [`new`](batch.new.md) | [`concat`](batch.concat.md) |  |  |  |
+| `Batch`‚Äªb | [`new`](batch.new.md) | [`concat`](batch.concat.md) |  |  |  |
 |  | [`log`](batch.log.md) | [`echo`](batch.echo.md) | [`exit`](batch.exit.md) |  |  |
-| `Threads`Å¶nÅ¶d | [`new`](threads.new.md) | [`add`](threads.add.md) | [`run`](threads.run.md) |  |  |
+| `Threads`‚Äªn‚Äªd | [`new`](threads.new.md) | [`add`](threads.add.md) | [`run`](threads.run.md) |  |  |
 
-- Å¶n : Only enable when the script engine is nashorn.
-- Å¶d : Deprecated with the intent to remove them in future.
-- Å¶w : Only enable for web event.
-- Å¶b : Only enable for batch event.
-- Å¶ws : Only enable when Efw function is in websocket mode.
-- Å¶!ws : Not enable when Efw function is in websocket mode.
-- Å¶!nprms : Not enable when Client tag is in nopromise mode.
+- ‚Äªn : Only enable when the script engine is nashorn.
+- ‚Äªd : Deprecated with the intent to remove them in future.
+- ‚Äªw : Only enable for web event.
+- ‚Äªb : Only enable for batch event.
+- ‚Äªws : Only enable when Efw function is in websocket mode.
+- ‚Äª!ws : Not enable when Efw function is in websocket mode.
+- ‚Äª!nprms : Not enable when Client tag is in nopromise mode.
 
 # References
 
