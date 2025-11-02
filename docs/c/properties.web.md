@@ -24,9 +24,11 @@
 | 身份验证检查（Web 事件） | `efw.auth.check` | `false` | 启用/禁用权限检查。 |
 |  | `efw.auth.key` | `USER_AUTH` | 权限检查的会话密钥。 |
 |  | `efw.system.error.url` | `error.jsp` | 系统错误页面 URL。 |
-|  | `efw.auth.cases` |  | 定义权限/页面集的权限案例（逗号分隔）。 |
-|  | `####.auth.pattern` |  | 集合中权限的正则表达式。 |
-|  | `####.url.pattern` |  | 集合中页面的正则表达式。 |
+|  | `efw.auth.cases` |  | 定义权限/页面集的认证角色案例（逗号分隔）。 |
+|  | `####.auth.pattern` |  | 案例中认证角色的正则表达式。 |
+|  | `####.url.pattern` |  | 案例中页面的正则表达式。 |
+|  | `####.eventid.pattern` |  | 案例中事件ID正则表达式。|
+|  | `####.uploadable` | `false` | 用`true` 或 `false`表达该案例的认证角色是否可以上传文件。 |
 | 禁止字符 | `efw.forbidden.characters` |  | 事件 JS 参数中禁止的字符。 |
 |  | `efw.forbidden.replacement` |  | 禁止字符的替换字符（空白表示删除）。 |
 | BRMS | `efw.brms.version` | `7` | InnoRules的版本。 |

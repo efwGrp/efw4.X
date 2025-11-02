@@ -27,6 +27,8 @@ The `/WEB-INF/classes/efw.properties` file is used to configure the framework. I
 |  | `efw.auth.cases` |  | Authority cases (comma-separated) defining authority/page sets. |
 |  | `####.auth.pattern` |  | Regular expression for authority in a set. |
 |  | `####.url.pattern` |  | Regular expression for page in a set. |
+|  | `####.eventid.pattern` |  | Regular expression for eventid in a set. |
+|  | `####.uploadable` | `false` | `true` or `false` to express whether the role can upload files or not. |
 | Forbidden Chars | `efw.forbidden.characters` |  | Characters forbidden in event JS parameters. |
 |  | `efw.forbidden.replacement` |  | Replacement characters for forbidden characters (blank for removal). |
 | BRMS | `efw.brms.version` | `7` | The version of InnoRules. |

@@ -24,9 +24,11 @@
 | 認証チェック（Webイベント） | `efw.auth.check` | `false` | 認証チェックの有効/無効。 |
 |  | `efw.auth.key` | `USER_AUTH` | 認証チェックのセッションキー。 |
 |  | `efw.system.error.url` | `error.jsp` | システムエラーページURL。 |
-|  | `efw.auth.cases` |  | 認証/ページセットを定義する認証ケース（カンマ区切り）。 |
-|  | `####.auth.pattern` |  | セット内の認証の正規表現。 |
+|  | `efw.auth.cases` |  | 認証/ページセットを定義する認証ロールケース（カンマ区切り）。 |
+|  | `####.auth.pattern` |  | セット内の認証ロールの正規表現。 |
 |  | `####.url.pattern` |  | セット内のページの正規表現。 |
+|  | `####.eventid.pattern` |  | セット内のイベントIDの正規表現。|
+|  | `####.uploadable` | `false` | `true` または `false`で該当セット内の認証ロールはファイルアップロード可否を表す。 |
 | 禁止文字 | `efw.forbidden.characters` |  | イベントJSパラメータで禁止されている文字。 |
 |  | `efw.forbidden.replacement` |  | 禁止文字の置換文字（削除する場合は空白）。 |
 | BRMS | `efw.brms.version` | `7` | InnoRulesのバージョン。 |
