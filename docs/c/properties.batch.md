@@ -4,6 +4,7 @@
 
 | 组 | 键 | 默认值 | 描述 |
 |---|---|---|---|
+| Script引擎 | `efw.script.engine` | `nashorn` | 可以设置 `nashorn` 或 `graaljs`。|
 | 日志记录 | `efw.logging.level` | `WARNING` | EFW 日志输出级别：`ALL`、`FINEST`、`FINER`、`FINE`、`CONFIG`、`INFO`、`WARNING`、`SEVERE`、`OFF` |
 | 文件夹 | `efw.event.folder` | `/WEB-INF/efw/event` | Web 应用程序事件程序文件夹（相对或绝对路径）。 |
 |  | `efw.sql.folder` | `/WEB-INF/efw/sql` | Web 应用程序外部 SQL 文件夹（相对或绝对路径）。 |

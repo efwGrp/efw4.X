@@ -4,6 +4,7 @@ The `/WEB-INF/classes/batch.properties` file is used to configure the framework 
 
 | Group | Key | Default Value | Description |
 |---|---|---|---|
+| Script Engine | `efw.script.engine` | `nashorn` | `nashorn` or `graaljs` can be set. |
 | Logging | `efw.logging.level` | `WARNING` | EFW log output level: `ALL`, `FINEST`, `FINER`, `FINE`, `CONFIG`, `INFO`, `WARNING`, `SEVERE`, `OFF` |
 | Folder | `efw.event.folder` | `/WEB-INF/efw/event` | Web application event program folder (relative or absolute path). |
 |  | `efw.sql.folder` | `/WEB-INF/efw/sql` | Web application external SQL folder (relative or absolute path). |

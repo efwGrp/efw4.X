@@ -4,6 +4,7 @@
 
 | グループ | キー | デフォルト値 | 説明 |
 |---|---|---|---|
+| スクリプトエンジン | `efw.script.engine` | `nashorn` | `nashorn` または `graaljs` を設定できます。 |
 | ロギング | `efw.logging.level` | `WARNING` | EFWログ出力レベル：`ALL`、`FINEST`、`FINER`、`FINE`、`CONFIG`、`INFO`、`WARNING`、`SEVERE`、`OFF` |
 | フォルダ | `efw.event.folder` | `/WEB-INF/efw/event` | Webアプリケーションイベントプログラムフォルダ（相対パスまたは絶対パス）。 |
 |  | `efw.sql.folder` | `/WEB-INF/efw/sql` | Webアプリケーション外部SQLフォルダ（相対パスまたは絶対パス）。 |
