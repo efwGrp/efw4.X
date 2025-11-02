@@ -31,22 +31,23 @@ public class efwWebSocket {
 				(framework.getSystemErrorUrl().equals("")?"":",\"navigate\":{\"url\":\""+framework.getSystemErrorUrl()+"\"}")
 				+"}";
         try {
-            if (session.isOpen()) {
-            	HandshakeRequest wsRequest=(HandshakeRequest)session.getUserProperties().get(efwWebSocketConfigurator.WS_REQUEST);
-            	HandshakeResponse wsResponse=(HandshakeResponse)session.getUserProperties().get(efwWebSocketConfigurator.WS_RESPONSE);
+        	HandshakeRequest wsRequest=(HandshakeRequest)session.getUserProperties().get(efwWebSocketConfigurator.WS_REQUEST);
+        	HandshakeResponse wsResponse=(HandshakeResponse)session.getUserProperties().get(efwWebSocketConfigurator.WS_RESPONSE);
 ////////////////////////////////////
-        		//keep req and resp to thread local for javascript program.
-        		framework.setRequest(wsRequest);
-        		framework.setResponse(wsResponse);
-        		framework.setWsSession(session);
-        		
-        		//if init is failed, return the info instead of throw exception
-        		if (!framework.getInitSuccessFlag()){
-        			framework.runtimeSLog("initSuccessFlag = false");
-        			session.getBasicRemote().sendText(otherError);
-        			return;
-        		}
-    			session.getBasicRemote().sendText(ScriptManager.doPost(message));
+    		//keep req and resp to thread local for javascript program.
+    		framework.setRequest(wsRequest);
+    		framework.setResponse(wsResponse);
+    		framework.setWsSession(session);
+    		
+    		//if init is failed, return the info instead of throw exception
+    		if (!framework.getInitSuccessFlag()){
+    			framework.runtimeSLog("initSuccessFlag = false");
+    			session.getBasicRemote().sendText(otherError);
+    			return;
+    		}
+    		String result=ScriptManager.doPost(message);
+        	if (session.isOpen()) {
+    			session.getBasicRemote().sendText(result);
             }
 		} catch (efwScriptException|IOException ex) {
 			framework.runtimeSLog(ex);
