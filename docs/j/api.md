@@ -59,6 +59,7 @@
 |  | すべてのトランザクション関数は、デフォルトで明示的に呼び出す必要はありません。 |  |  |  |  |
 | `mail` | [`send`](mail.send.md) |  |  |  |  |
 | `properties` | [`get`](properties.get.md) |  |  |  |  |
+| `context` | [`get`](context.get.md) | [`set`](context.set.md) | [`remove`](context.remove.md) |  |  |
 | `session`※w | [`get`](session.get.md) | [`set`](session.set.md) | [`create`](session.create.md)※!ws | [`invalidate`](session.invalidate.md) |  |
 | `cookie`※w | [`get`](cookie.get.md) | [`set`](cookie.set.md)※!ws |  |  |  |
 | `request`※w | [`get`](request.get.md) |  |  |  |  |
