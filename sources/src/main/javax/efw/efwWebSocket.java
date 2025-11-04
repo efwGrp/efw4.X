@@ -3,6 +3,7 @@ package efw;
 import java.io.IOException;
 
 import javax.websocket.HandshakeResponse;
+import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.Session;
 import javax.websocket.server.HandshakeRequest;
@@ -20,16 +21,25 @@ public class efwWebSocket {
 	 */
 	public efwWebSocket() {super();}
 	/**
+	 * エラー処理
+	 * @param session セッション情報
+	 * @param error エラー情報
+	 */
+	@OnError
+	public void onError(Session session, Throwable error) {
+		framework.runtimeWLog(error.getMessage());
+	}
+	/**
 	 * クライアントから通信されるイベント
 	 * @param message 受取る情報
 	 * @param session セッション情報
-	 * @throws IOException 通信エラー
 	 */
     @OnMessage
-    public void onMessage(String message,Session session) throws IOException {
+    public void onMessage(String message,Session session) {
 		String otherError="{\"values\":[],\"actions\":{\"error\":{\"clientMessageId\":\"OtherErrorException\"}"+
 				(framework.getSystemErrorUrl().equals("")?"":",\"navigate\":{\"url\":\""+framework.getSystemErrorUrl()+"\"}")
 				+"}";
+		String result="";
         try {
         	HandshakeRequest wsRequest=(HandshakeRequest)session.getUserProperties().get(efwWebSocketConfigurator.WS_REQUEST);
         	HandshakeResponse wsResponse=(HandshakeResponse)session.getUserProperties().get(efwWebSocketConfigurator.WS_RESPONSE);
@@ -42,16 +52,13 @@ public class efwWebSocket {
     		//if init is failed, return the info instead of throw exception
     		if (!framework.getInitSuccessFlag()){
     			framework.runtimeSLog("initSuccessFlag = false");
-    			session.getBasicRemote().sendText(otherError);
-    			return;
+    			result=otherError;
+    		}else {
+        		result=ScriptManager.doPost(message);
     		}
-    		String result=ScriptManager.doPost(message);
-        	if (session.isOpen()) {
-    			session.getBasicRemote().sendText(result);
-            }
-		} catch (efwScriptException|IOException ex) {
+		} catch (efwScriptException ex) {
 			framework.runtimeSLog(ex);
-			session.getBasicRemote().sendText(otherError);//efw内部エラー。
+			result=otherError;
         }finally {
         	framework.removeWsSession();
 			framework.removeLang();
@@ -63,7 +70,20 @@ public class efwWebSocket {
     		//remove req and resp from thread local
     		framework.removeRequest();
     		framework.removeResponse();
-    		session.close();
     	}
+        try {
+        	if (session.isOpen()) {
+        		session.getBasicRemote().sendText(result);
+        	}
+        }catch(IOException ex) {
+        	//do nothing
+        }finally {
+        	try {
+        		session.close();
+        	}catch(IOException ex) {
+            	//do nothing
+        	}
+        }
+		return;
     }
 }
