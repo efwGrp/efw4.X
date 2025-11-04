@@ -1,7 +1,9 @@
 /**** efw4.X Copyright 2025 efwGrp ****/
 package efw.util;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -175,6 +177,11 @@ public final class JavaxJakartaUtil {
 			String path="/";
 			int maxAge=31536000;//One Year
 			HttpServletResponse response=(HttpServletResponse)framework.getResponse();
+        	try {
+				value=URLEncoder.encode(value,framework.SYSTEM_CHAR_SET);
+			} catch (UnsupportedEncodingException e) {
+				//valueのままにする
+			}
 			Cookie cookie = new Cookie(key, value);
 			cookie.setMaxAge(maxAge);
 			cookie.setPath(path);
