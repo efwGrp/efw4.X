@@ -23,6 +23,7 @@ load("classpath:efw/resources/nashorn/efw.server.threads.js");
 
 load("classpath:efw/resources/modules/efw.server.brms.js");
 load("classpath:efw/resources/modules/efw.server.cmd.js");
+load("classpath:efw/resources/modules/efw.server.context.js");
 load("classpath:efw/resources/modules/efw.server.cookie.js");
 load("classpath:efw/resources/modules/efw.server.db.js");
 load("classpath:efw/resources/modules/efw.server.event.js");

@@ -8,7 +8,7 @@ import jakarta.websocket.server.ServerEndpointConfig;
  * efwWebSocketクラスのカスタマイズ設定クラス
  * @author Chang Kejun
  */
-public class efwWebSocketConfigurator extends ServerEndpointConfig.Configurator {
+public final class efwWebSocketConfigurator extends ServerEndpointConfig.Configurator {
 	/**
 	 * ダミーコンストラクタ
 	 */

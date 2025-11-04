@@ -30,7 +30,7 @@ import efw.file.FileManager;
 /**
  * Graaljsエンジンを利用するクラス
  */
-public class ScriptEngine4EfwGraaljs implements ScriptEngine4Efw {
+public final class ScriptEngine4EfwGraaljs implements ScriptEngine4Efw {
 
     private Engine _se;
     
@@ -66,6 +66,7 @@ public class ScriptEngine4EfwGraaljs implements ScriptEngine4Efw {
 
 			sb.append(loadResource("efw/resources/modules/efw.server.brms.js"));
 			sb.append(loadResource("efw/resources/modules/efw.server.cmd.js"));
+			sb.append(loadResource("efw/resources/modules/efw.server.context.js"));
 			sb.append(loadResource("efw/resources/modules/efw.server.cookie.js"));
 			sb.append(loadResource("efw/resources/modules/efw.server.db.js"));
 			sb.append(loadResource("efw/resources/modules/efw.server.event.js"));

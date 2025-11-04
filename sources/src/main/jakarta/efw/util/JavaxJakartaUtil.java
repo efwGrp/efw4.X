@@ -149,30 +149,6 @@ public final class JavaxJakartaUtil {
 		Object o=framework.getResponse();
 		if ("org.apache.tomcat.websocket.WsHandshakeResponse".equals(o.getClass().getName())) {
 			framework.runtimeWLog("You can not set cookie in websocket mode. Cookie-key:"+key+" value:"+value);
-			/*
-			HandshakeResponse response=(HandshakeResponse)framework.getResponse();
-	        String path = "/";
-	        int maxAge = 31536000; // One Year (秒単位)
-	        // 1. Set-Cookie ヘッダーの値を構築
-	        // JavaScriptと同じく、HttpOnlyなどの属性はセキュリティに応じて追加してください。
-	        String cookieString = String.format(
-	            "%s=%s; Path=%s; Max-Age=%d; Secure; HttpOnly",
-	            key, value, path, maxAge
-	        );
-
-	        // 2. HandshakeResponse のヘッダーを取得（Map<String, List<String>>）
-	        // 既存の "Set-Cookie" ヘッダーがあれば取得し、なければ新規作成
-	        List<String> setCookieHeaderList = response.getHeaders().computeIfAbsent(
-	            "Set-Cookie", k -> new ArrayList<>()
-	        );
-	        
-	        // 3. Set-Cookie リストに追加
-	        setCookieHeaderList.add(cookieString);
-
-	        // 注意: response.getHeaders() にキー "Set-Cookie" で値を put() する場合、
-	        // 既存のSet-Cookieを上書きしないよう注意が必要です。
-	        // computeIfAbsentや、getしてからaddする方式が安全です。
-	        */
 		}else {//org.apache.catalina.connector.RequestFacade
 			String path="/";
 			int maxAge=31536000;//One Year

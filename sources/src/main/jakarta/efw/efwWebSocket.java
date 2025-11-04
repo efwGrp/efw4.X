@@ -14,7 +14,7 @@ import jakarta.websocket.server.ServerEndpoint;
  */
 @ServerEndpoint(value = "/efwWebSocket",
 configurator = efwWebSocketConfigurator.class)	//このurlはefwFitlerに通らない
-public class efwWebSocket {
+public final class efwWebSocket {
 	/**
 	 * ダミーコンストラクタ
 	 */

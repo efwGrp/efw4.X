@@ -16,7 +16,7 @@ import efw.framework;
 /**
  * Nashornエンジンを利用するクラス
  */
-public class ScriptEngine4EfwNashorn implements ScriptEngine4Efw {
+public final class ScriptEngine4EfwNashorn implements ScriptEngine4Efw {
 	
 	private ScriptEngine _se;
 	private Object _efw;

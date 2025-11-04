@@ -10,7 +10,7 @@ import efw.framework;
  * GraaljsのContextのラッパー
  * @author Chang Kejun
  */
-public class ScriptContext4EfwGraaljs {
+public final class ScriptContext4EfwGraaljs {
 	/**
 	 * コンテキストのハンドル
 	 */

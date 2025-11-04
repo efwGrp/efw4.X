@@ -31,6 +31,7 @@ Efw.prototype._keys=[
 	"efw",
 	"brms",
 	"cmd",
+	"context",
 	"cookie",
 	"db",
 	"event",

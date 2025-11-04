@@ -15,7 +15,7 @@ import efw.script.ScriptManager;
  */
 @ServerEndpoint(value = "/efwWebSocket",
 configurator = efwWebSocketConfigurator.class)	//このurlはefwFitlerに通らない
-public class efwWebSocket {
+public final class efwWebSocket {
 	/**
 	 * ダミーコンストラクタ
 	 */
