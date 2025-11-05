@@ -95,7 +95,7 @@
 |  | [`show`](result.show.md) | [`hide`](result.hide.md) | [`enable`](result.enable.md) | [`disable`](result.disable.md) |  |
 |  | [`focus`](result.focus.md) | [`highlight`](result.highlight.md) | [`attach`](result.attach.md) | [`deleteAfterDownload`](result.deleteAfterDownload.md) | [`saveas`](result.saveas.md) |  |
 |  | [`confirm`](result.confirm.md) | [`alert`](result.alert.md) | [`preview`](result.preview.md) | [`progress`](result.progress.md) |  |
-|  | [`eval`](result.eval.md) | [`provide`](result.provide.md)※!nprms | [`navigate`](result.navigate.md) |  |  |  |
+|  | [`eval`](result.eval.md) | [`provide`](result.provide.md)※!nprms※!ws | [`navigate`](result.navigate.md) |  |  |  |
 | `Batch`※b | [`new`](batch.new.md) | [`concat`](batch.concat.md) |  |  |  |
 |  | [`log`](batch.log.md) | [`echo`](batch.echo.md) | [`exit`](batch.exit.md) |  |  |
 | `Threads`※n※d | [`new`](threads.new.md) | [`add`](threads.add.md) | [`run`](threads.run.md) |  |  |
