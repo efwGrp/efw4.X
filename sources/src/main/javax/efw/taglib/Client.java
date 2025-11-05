@@ -161,7 +161,11 @@ public final class Client extends TagSupport{
 		JspWriter out = pageContext.getOut();
 		try {
 			String v=framework.version;
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");
+			if ("true".equals(nopromise)) {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery-ui.min-1.13.3.js?v="+v+"\"></script>\n");
+			}else {
+				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");
+			}
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.simple.websocket.min.js?v="+v+"\"></script>\n");
 			if("jquery-ui".equals(mode)){
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/jquery-ui.structure.min.css?v="+v+"\">\n");
