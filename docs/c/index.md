@@ -1,7 +1,5 @@
 # EFW框架
 
-## 革命性的Web开发解决方案
-
 采用目标导向方法，通过Ajax和服务器端JavaScript高速构建Web系统
 
 
