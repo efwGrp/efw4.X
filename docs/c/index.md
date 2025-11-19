@@ -10,9 +10,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [![EFW流程图](../img/efw_flow.png)](../img/efw_flow_org.png)<br>
-| | |
-|--|--|
-|[![EFW客户端](../img/efw_client.png)](../img/efw_client_org.png)|[![EFW服务器端](../img/efw_server.png)](../img/efw_server_org.png)|
+[![EFW客户端](../img/efw_client.png)](../img/efw_client_org.png)[![EFW服务器端](../img/efw_server.png)](../img/efw_server_org.png)
 
 
 - **革命性的开发方法** - EFW采用目标导向方法，通过Ajax和服务器端JavaScript构建高速Web系统
