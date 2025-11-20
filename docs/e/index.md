@@ -10,9 +10,7 @@ Goal-oriented approach for building high-speed web systems with Ajax and server-
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [![EFW Flowchart](../img/efw_flow.png)](../img/efw_flow_org.png)<br>
-| | |
-|--|--|
-|[![EFW Client](../img/efw_client.png)](../img/efw_client_org.png)|[![EFW Server](../img/efw_server.png)](../img/efw_server_org.png)|
+[![EFW Client](../img/efw_client.png)](../img/efw_client_org.png)[![EFW Server](../img/efw_server.png)](../img/efw_server_org.png)
 
 
 - **Revolutionary Development Approach** - EFW adopts a goal-oriented approach to build high-speed web systems with Ajax and server-side JavaScript
