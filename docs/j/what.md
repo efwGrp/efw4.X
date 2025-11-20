@@ -1,47 +1,47 @@
-# �yefw�Љ�zEfw�Ƃ�
+# 【efw紹介】Efwとは
 
-EFW(Escco-Framework)�Ƃ́A�G�X�R�E�W���p��������Ђ��ړI�w���̎�@��p���Đ݌v�E�J�������T�[�o�T�C�hJavaScript��Ajax�t���[�����[�N�ł��BEFW�𓱓����邱�ƂŁAWEB�J���̃v���O�����ʂ̑啝�팸��A���r���[�E�d�l�ύX�̐v���ȑΉ����\�ɂȂ�ȂǁAWEB�J���̓�Փx�������邱�Ƃ��ł��邳�܂��܂ȓ���������܂��BJava��WEB�J���ɉۑ������Ă��邨�q�l�́A����EFW�̗��p�����������������B
+EFW(Escco-Framework)とは、エスコ・ジャパン株式会社が目的指向の手法を用いて設計・開発したサーバサイドJavaScriptのAjaxフレームワークです。EFWを導入することで、WEB開発のプログラム量の大幅削減や、レビュー・仕様変更の迅速な対応が可能になるなど、WEB開発の難易度を下げることができるさまざまな特長があります。JavaのWEB開発に課題を抱えているお客様は、ぜひEFWの利用をご検討ください。
 
-## �P�A�v���O�����̉ǐ�
-�v���O�����̉ǐ��Ƃ́A�v���O�����̖ړI�⏈���̗���̗������₷�����w���Ă��܂��B�@�@(From : wiki/�ǐ�)
-�v���O�����́u�������₷���v�Ƃ��Ĉȉ��̂Q���l�����܂��B
-- �ړI�̗������₷��
-�v���O�����̗��x�́A�݌v���̗��x�ƃ}�b�s���O���₷�����ۂ�
-- ��������̗������₷��
-�v���O�����̋L�ڏ��Ԃ́A�݌v���̋L�ڏ��Ԃƃ}�b�s���O���₷�����ۂ�
+## １、プログラムの可読性
+プログラムの可読性とは、プログラムの目的や処理の流れの理解しやすさを指しています。　　(From : wiki/可読性)
+プログラムの「理解しやすさ」として以下の２つが考えられます。
+- 目的の理解しやすさ
+プログラムの粒度は、設計書の粒度とマッピングしやすいか否か
+- 処理流れの理解しやすさ
+プログラムの記載順番は、設計書の記載順番とマッピングしやすいか否か
 
-�����āA�]����WEB�J���ɂ�������͈ȉ��̒ʂ�ł��B
-- ���P�A�d�l���̂P�s�ɑ΂��āA�v���O�����͐��\�s�őg�܂Ȃ��Ƃ����Ȃ��B
-- ���Q�A�d�l���̖��Ăȏ������Ԃɑ΂��āA�v���O�����͎��鏊�ɑJ�ڂ��邽�߁A�v���łȂ��Ə������Ԃ��͂�����ǂݎ�邱�Ƃ��ł��Ȃ��B
-## �Q�|�P�A�]����WEB�J���ɂ�������1
-�ȉ��̐}�͖��1��\���܂��B��{�݌v�ɂ͂킸���P�O�s�ł����AMVC�\���̃v���O�����Ȃ�P�O�O�s�𒴂���ł��傤�B
+そして、従来のWEB開発における問題は以下の通りです。
+- 問題１、仕様書の１行に対して、プログラムは数十行で組まないといけない。
+- 問題２、仕様書の明瞭な処理順番に対して、プログラムは至る所に遷移するため、プロでないと処理順番をはっきり読み取ることができない。
+## ２－１、従来のWEB開発における問題1
+以下の図は問題1を表します。基本設計にはわずか１０行ですが、MVC構成のプログラムなら１００行を超えるでしょう。
 ![image.png](../img/what/p1.png)
-## �Q�|�Q�A�]����WEB�J���ɂ�������2
-�ȉ��̐}�͖��2��\���܂��B�]��WEB�J���̃v���O�����̗���͕��G�Ŋ�{�݌v�Ɣ�r����ƁA�܂�ŕʕ��̂悤�ł��B
+## ２－２、従来のWEB開発における問題2
+以下の図は問題2を表します。従来WEB開発のプログラムの流れは複雑で基本設計と比較すると、まるで別物のようです。
 ![image.png](../img/what/p2.png)
 
-## �R�AEfw�̃X���[�K��
-��LWEB�J���̖����������邽�߁AEfw�͈ȉ��̕��j���f���܂��B
-### <font color=red>Ajax</font>��<font color=red>�T�[�o�T�C�gJavaScript</font>��p����<font color=red>�ړI�w��</font>�ŁA������WEB�V�X�e�����\�z�ł��܂��B
+## ３、Efwのスローガン
+上記WEB開発の問題を解決するため、Efwは以下の方針を掲げます。
+### <font color=red>Ajax</font>と<font color=red>サーバサイトJavaScript</font>を用いて<font color=red>目的指向</font>で、高速にWEBシステムを構築できます。
 
 ![image.png](../img/what/p3.png)
 
-�\�[�X���J�F
+ソース公開：
 https://github.com/efwGrp/efw4.X
-��񏈗��w����^�_���F
+情報処理学会収録論文：
 http://id.nii.ac.jp/1001/00147552/
 
-## �S�|�P�A�]�����P�̉���
-���1�ɑ΂��āAEfw��p����ƈȉ��̂悤�ɂȂ�܂��B
+## ４－１、従来問題１の解決
+問題1に対して、Efwを用いると以下のようになります。
 ![image.png](../img/what/p4.png)
-WEB�V�X�e���J���ɂ́A�u<font color=red>�p�����[�^��M�E���̓`�F�b�N�E �f�[�^�\���E�����񊈐��E�\����\���E��ʑJ��</font>�v�Ȃǂ̏���������܂��BEfw�͂������p�^�[�������āAWEB��ʊJ����<font color=red>��p����(DSL)</font>��݌v�E�������܂��B����������Ɓu<font color=red>���̓f�[�^���W�Ə������ʕ\���̎�����</font>�v�ł��B
+WEBシステム開発には、「<font color=red>パラメータ受信・入力チェック・ データ表示・活性非活性・表示非表示・画面遷移</font>」などの処理があります。Efwはそれらをパターン化して、WEB画面開発の<font color=red>専用言語(DSL)</font>を設計・実装します。言い換えると「<font color=red>入力データ収集と処理結果表示の自動化</font>」です。
 
-## �S�|�Q�A�]�����Q�̉���
-���2�ɑ΂��āAEfw��p����ƈȉ��̂悤�ɂȂ�܂��B
+## ４－２、従来問題２の解決
+問題2に対して、Efwを用いると以下のようになります。
 ![image.png](../img/what/p5.png)
-Efw�̎d�g�݂ɂ́A<font color=red>�N���C�A���g����</font>��<font color=red>�T�[�o����</font>�Ɋ֌W�Ȃ��A���W�b�N�͂قڑS��<font color=red>�C�x���gJS�t�@�C��</font>�ɏW�����܂��B�܂��A�u<font color=red>�ړI�w��</font>�v�̂��߁A<font color=red>�v���O�����̗��x�͐݌v���̗��x�ƃ}�b�s���O</font>���₷���ł��B�����āA<font color=red>�C�x���gJS�t�@�C��</font>�݂̂�<font color=red>�����̗���</font>�𕪂���₷��<font color=red>�ǂݎ��܂�</font>�B
+Efwの仕組みには、<font color=red>クライアント動作</font>や<font color=red>サーバ動作</font>に関係なく、ロジックはほぼ全部<font color=red>イベントJSファイル</font>に集中します。また、「<font color=red>目的指向</font>」のため、<font color=red>プログラムの粒度は設計書の粒度とマッピング</font>しやすいです。そして、<font color=red>イベントJSファイル</font>のみで<font color=red>処理の流れ</font>を分かりやすく<font color=red>読み取れます</font>。
 
-## �T�AEfw�̃����b�g
-Efw�̃����b�g�́A�ȉ��̐}�ŕ\���܂��B
+## ５、Efwのメリット
+Efwのメリットは、以下の図で表します。
 ![image.png](../img/what/p6.png)
 
