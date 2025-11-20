@@ -1,5 +1,11 @@
 [English](https://efwgrp.github.io/efw4.X/e/index.html), [日本語](https://efwgrp.github.io/efw4.X/j/index.html), [中文](https://efwgrp.github.io/efw4.X/c/index.html)
 
+# EFW Framework
+
+## Revolutionary Web Development Solution
+
+Goal-oriented approach for building high-speed web systems with Ajax and server-side JavaScript
+
 ## Introduction
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -7,16 +13,31 @@
 [![Efw Client](./docs/img/efw_client.png)](./docs/img/efw_client_org.png)
 [![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
 
-* [What is Efw?](https://efwgrp.github.io/efw4.X/e/what.html)
-* [Efw Security Features](https://efwgrp.github.io/efw4.X/e/security.html)
-* [Building High-Load Tomcat Environment](https://efwgrp.github.io/efw4.X/e/highload.html)
+- **Revolutionary Development Approach** - EFW adopts a goal-oriented approach to build high-speed web systems with Ajax and server-side JavaScript
+- **Significant Code Reduction** - Introducing EFW significantly reduces the complexity of web development, featuring substantial code reduction and rapid response to requirement reviews and specification changes
+- **Improved Development Efficiency** - Reduces repetitive coding work, significantly shortens development cycles, and quickly responds to requirement changes
+
+## Core Features
+
+### [What is EFW?](https://efwgrp.github.io/efw4.X/e/what.html)
+Learn about the basic concepts, core advantages, and design philosophy of the EFW framework, exploring how to build high-speed web systems with a goal-oriented approach.
 
 
-## [Examples](https://efwgrp.github.io/efw4.X/e/examples.html)
+### [EFW Security Features](https://efwgrp.github.io/efw4.X/e/security.html)
+Explore EFW framework's security features, protection mechanisms, and best practices to keep your web applications safe from various attacks.
 
-## [API](https://efwgrp.github.io/efw4.X/e/api.html)
+### [Building High-Load Tomcat Environment](https://efwgrp.github.io/efw4.X/e/highload.html)
+Learn how to configure and optimize Tomcat servers to support high-load environments, ensuring your applications run stably under high concurrency.
 
-## They use our products
+## Resources
+
+### [Examples](https://efwgrp.github.io/efw4.X/e/examples.html)
+Learn EFW framework applications through practical code examples and experience the development efficiency and simplicity of the EFW framework.
+
+### [API](https://efwgrp.github.io/efw4.X/e/api.html)
+Learn in detail about the API interfaces and usage methods of the EFW framework, refer to detailed API documentation, and make full use of all the powerful features of the EFW framework.
+
+## Companies Using Our Product
 
 [![ESCCO](docs/img/logos/escco.png)](https://www.escco.co.jp) 
 [![YIKE](docs/img/logos/yike.jpg)](https://www.escco.com.cn) 
