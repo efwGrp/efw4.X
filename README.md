@@ -1,4 +1,4 @@
-[English](README.md), [日本語](README_J.md), [中文](README_C.md)
+[English](https://efwgrp.github.io/efw4.X/e/index.html), [日本語](https://efwgrp.github.io/efw4.X/j/index.html), [中文](https://efwgrp.github.io/efw4.X/c/index.html)
 
 ## Introduction
 
@@ -7,12 +7,12 @@
 [![Efw Client](./docs/img/efw_client.png)](./docs/img/efw_client_org.png)
 [![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
 
-* [What is Efw?](https://efwgrp.github.io/efw4.X/index.html)
-* [Efw Security Features](https://efwgrp.github.io/efw4.X/security_e.html)
-* [Building High-Load Tomcat Environment](https://efwgrp.github.io/efw4.X/highload_e.html)
+* [What is Efw?](https://efwgrp.github.io/efw4.X/e/what.html)
+* [Efw Security Features](https://efwgrp.github.io/efw4.X/e/security.html)
+* [Building High-Load Tomcat Environment](https://efwgrp.github.io/efw4.X/e/highload.html)
 
 
-## [Examples](https://efwgrp.github.io/efw4.X/examples_e.html)
+## [Examples](https://efwgrp.github.io/efw4.X/e/examples.html)
 
 ## [API](https://efwgrp.github.io/efw4.X/e/api.html)
 
