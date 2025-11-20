@@ -1,4 +1,4 @@
-# EFW 批处理示例介绍
+# efw 批处理示例介绍
 
 EFW（Escco Framework）提供了一个强大的批处理功能，允许开发者通过 JavaScript 编写批处理逻辑，并在 Windows 和 Linux 环境下执行。以下是一个完整的批处理示例。
 
