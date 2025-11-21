@@ -150,7 +150,8 @@ LG01_submit.paramsFormat={
 LG01_submit.fire=function(params){
 ```
 127.0.0.1 - - [15/Aug/2025:09:58:30 +0900] "POST /skeletonSample/efwServlet?eventId=LG01_submit&lang=jp&params=%7B%22%23txt_uid%22%3A%22admin%22%2C%22%23txt_pwd%22%3A%22<font color=red>11111</font>%22 HTTP/1.1" 200 413
-アクセスログに機密情報を暗号化したい場合、イベントjsファイルで機密情報項目をふ`secure`属性を設定すれば対応できます。
+
+アクセスログに機密情報を暗号化したい場合、イベントjsファイルで機密情報項目を`secure`属性を設定すれば対応できます。
 ```js
 var LG01_submit={};
 LG01_submit.name="LG01 ログイン 認証処理";
