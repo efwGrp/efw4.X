@@ -58,5 +58,5 @@ Web 系统开发中存在“<font color=red>参数接收、输入检查、数据
 ## 5、Efw 的优势
 Efw 的优势由下图所示：
 
-![image.png](../img/what/p6j.png)
+![image.png](../img/what/p6c.png)
 
