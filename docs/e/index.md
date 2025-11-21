@@ -24,6 +24,10 @@ Goal-oriented approach for building high-speed web systems with Ajax and server-
 ### [What is EFW?](what.md)
 Learn about the basic concepts, core advantages, and design philosophy of the EFW framework, exploring how to build high-speed web systems with a goal-oriented approach.
 
+### [Client Feature Analysis](client.magic.md)
+
+The primary objective of the EFW framework is to provide **event-driven communication between the client (browser) and the server**, along with the consequent **automation of UI operations**.
+\*AI Analysis Result
 
 ### [EFW Security Features](security.md)
 Explore EFW framework's security features, protection mechanisms, and best practices to keep your web applications safe from various attacks.
