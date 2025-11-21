@@ -6,12 +6,10 @@
 	<title>Rest API Server and Client Test</title>
 	<efw:Client lang="jp"/>
 	<script>
-		function browserTest(samedomain){
-			var domain=samedomain?"localhost":"127.0.0.1";
-			var url="http://"+domain+":8080/helloworld/efwRestAPI/customer/"+$("#customerId").val();
+		function browserTest(){
+			var url="http://localhost:8080/helloworld/efwRestAPI/customer/"+$("#customerId").val();
 			$.ajax({
 				url:url,
-				xhrFields: { withCredentials: true },
 				headers:{ token:$("#token").val()},
 				type: "GET",
 				cache: false,
@@ -37,8 +35,7 @@
 	<button onclick="Efw('helloRestAPI_submit',{mode:'2'})">顧客変更</button>
 	<button onclick="Efw('helloRestAPI_submit',{mode:'3'})">顧客削除</button>
 	<button onclick="Efw('helloRestAPI_submit',{mode:'4'})">顧客取得</button>
-	<button onclick="browserTest(true)">ブラウザーテスト</button>
-	<button onclick="browserTest(false)">別ドメインテスト</button>
+	<button onclick="browserTest()">ブラウザーテスト</button><br>
 
 	<textarea style="width:800px;height:300px;">
 	</textarea><br><br>

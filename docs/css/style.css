@@ -43,7 +43,10 @@ body {
     padding: 0 20px;
     width:auto;
 }
-
+img {
+	max-width: 650px;
+	width:auto;
+}
 /* ヘッダースタイル */
 header {
     background: var(--color-header-gradient);

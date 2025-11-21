@@ -15,9 +15,12 @@ EFW(Escco-Framework)とは、エスコ・ジャパン株式会社が目的指向
 - 問題２、仕様書の明瞭な処理順番に対して、プログラムは至る所に遷移するため、プロでないと処理順番をはっきり読み取ることができない。
 ## ２－１、従来のWEB開発における問題1
 以下の図は問題1を表します。基本設計にはわずか１０行ですが、MVC構成のプログラムなら１００行を超えるでしょう。
+
 ![image.png](../img/what/p1.png)
+
 ## ２－２、従来のWEB開発における問題2
 以下の図は問題2を表します。従来WEB開発のプログラムの流れは複雑で基本設計と比較すると、まるで別物のようです。
+
 ![image.png](../img/what/p2.png)
 
 ## ３、Efwのスローガン
@@ -33,15 +36,20 @@ http://id.nii.ac.jp/1001/00147552/
 
 ## ４－１、従来問題１の解決
 問題1に対して、Efwを用いると以下のようになります。
+
 ![image.png](../img/what/p4.png)
+
 WEBシステム開発には、「<font color=red>パラメータ受信・入力チェック・ データ表示・活性非活性・表示非表示・画面遷移</font>」などの処理があります。Efwはそれらをパターン化して、WEB画面開発の<font color=red>専用言語(DSL)</font>を設計・実装します。言い換えると「<font color=red>入力データ収集と処理結果表示の自動化</font>」です。
 
 ## ４－２、従来問題２の解決
 問題2に対して、Efwを用いると以下のようになります。
+
 ![image.png](../img/what/p5.png)
+
 Efwの仕組みには、<font color=red>クライアント動作</font>や<font color=red>サーバ動作</font>に関係なく、ロジックはほぼ全部<font color=red>イベントJSファイル</font>に集中します。また、「<font color=red>目的指向</font>」のため、<font color=red>プログラムの粒度は設計書の粒度とマッピング</font>しやすいです。そして、<font color=red>イベントJSファイル</font>のみで<font color=red>処理の流れ</font>を分かりやすく<font color=red>読み取れます</font>。
 
 ## ５、Efwのメリット
 Efwのメリットは、以下の図で表します。
+
 ![image.png](../img/what/p6.png)
 
