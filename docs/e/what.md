@@ -14,12 +14,12 @@ In conventional web development, the following phenomena that often exist can be
 - Problem 1: For each line in the specification, the program must consist of dozens of lines.
 - Problem 2: Despite the clear processing order in the specification, the program transitions here and there,If you are not a professional, you cannot clearly read the processing order.
 
-## 2-1, Problem 1 in conventional web development
+## 2-1. Problem 1 in conventional web development
 The diagram below represents problem 1. A basic design requires only 10 lines, but an MVC-configured program will require over 100 lines.
 
 ![image.png](../img/what/p1.png)
 
-## 2-2, Problem 2 in conventional web development
+## 2-2. Problem 2 in conventional web development
 The figure below represents problem 2. The program flow for conventional web development is completely different from the basic design.
 
 ![image.png](../img/what/p2.png)
@@ -35,14 +35,14 @@ https://github.com/efwGrp/efw4.X
 Papers included in Information Processing Society of Japan:
 http://id.nii.ac.jp/1001/00147552/
 
-## 4-1, Solving Conventional Problem 1
+## 4-1. Solving Conventional Problem 1
 For question 1, Efw's answer is as follows.
 
 ![image.png](../img/what/p4.png)
 
 Web system development often involves processing such as "<font color=red>parameter reception, input check, data display, activation/deactivation, display/hide, screen transition</font>". Efw designs and implements <font color=red>domain special language (DSL)</font> for web page development by patterning them. In other words, it is "<font color=red>automation of input data collection and processing result display</font>".
 
-## 4-2, Solving conventional problem 2
+## 4-2. Solving conventional problem 2
 For question 2, Efw's answer is as follows.
 
 ![image.png](../img/what/p5.png)
