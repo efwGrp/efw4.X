@@ -26,7 +26,7 @@ Learn about the basic concepts, core advantages, and design philosophy of the EF
 The primary objective of the EFW framework is to provide **event-driven communication between the client (browser) and the server**, along with the consequent **automation of UI operations**.
 \*AI Analysis Result
 
-### [Server Feature Analysis](https://efwgrp.github.io/efw4.X/e/erver.magic.html)
+### [Server Feature Analysis](https://efwgrp.github.io/efw4.X/e/server.magic.html)
 The Efw server-side acts as an **event-driven middleware** that accepts AJAX/WebSocket requests, starting from the client's `Efw("eventId")` call. It leverages a powerful collaboration between **Java and server-side JavaScript** to seamlessly integrate authentication, validation, logic execution, and resource management.
 \*AI Analysis Result
 
