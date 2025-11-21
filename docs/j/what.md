@@ -51,5 +51,5 @@ Efwの仕組みには、<font color=red>クライアント動作</font>や<font 
 ## ５、Efwのメリット
 Efwのメリットは、以下の図で表します。
 
-![image.png](../img/what/p6.png)
+![image.png](../img/what/p6j.png)
 
