@@ -67,11 +67,11 @@ Efwフレームワークのサーバー側は、クライアントの `Efw("even
 
 クライアントのイベントリクエストは、以下の明確な多層構造をたどって処理されます。
 
-1.  **Java I/O (Servlet):** リクエスト受信、JSON読み取り、Java → JavaScriptへの入口。
-2.  **Java Engine (ScriptManager):** JavaScript実行環境のセットアップ、排他制御、実行開始。
-3.  **JS Framework (efw.js):** リクエストパース、フェーズ判定、リソース管理、セキュリティフック。
-4.  **JS Security/Validation (efw.server.js):** **ログイン** $\rightarrow$ **認可** $\rightarrow$ **バリデーションと型変換**。
-5.  **JS Event Script:** コアビジネスロジック実行（DBアクセスなど）。
-6.  **JS/Java Cleanup:** トランザクション処理、リソース解放、レスポンスJSONの国際化と返却。
+- **Java I/O (Servlet):** リクエスト受信、JSON読み取り、Java → JavaScriptへの入口。
+- **Java Engine (ScriptManager):** JavaScript実行環境のセットアップ、排他制御、実行開始。
+- **JS Framework (efw.js):** リクエストパース、フェーズ判定、リソース管理、セキュリティフック。
+- **JS Security/Validation (efw.server.js):** **ログイン** $\rightarrow$ **認可** $\rightarrow$ **バリデーションと型変換**。
+- **JS Event Script:** コアビジネスロジック実行（DBアクセスなど）。
+- **JS/Java Cleanup:** トランザクション処理、リソース解放、レスポンスJSONの国際化と返却。
 
 この構造により、Efwフレームワークは、ビジネスロジックとインフラストラクチャ（セキュリティ、I/O、並行処理）を明確に分離し、堅牢なエンタープライズアプリケーション開発を可能にしています。

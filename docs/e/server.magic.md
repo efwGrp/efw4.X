@@ -65,11 +65,11 @@ This is invoked by `efw.js` and handles the necessary pre- and post-processing f
 
 A client's event request follows the clear multi-layered structure below for processing:
 
-1. **Java I/O (Servlet):** Receives request, reads JSON, acts as the Java $\rightarrow$ JavaScript entry point.
-2. **Java Engine (ScriptManager):** Sets up the JavaScript execution environment, controls concurrency, and starts execution.
-3. **JS Framework (efw.js):** Parses the request, determines the phase, manages resources, and provides security hooks.
-4. **JS Security/Validation (efw.server.js):** **Login** $\rightarrow$ **Authorization** $\rightarrow$ **Validation and Type Conversion**.
-5. **JS Event Script:** Executes the core business logic (e.g., DB access).
-6. **JS/Java Cleanup:** Handles transaction processing, resource release, and returns the internationalized response JSON.
+- **Java I/O (Servlet):** Receives request, reads JSON, acts as the Java $\rightarrow$ JavaScript entry point.
+- **Java Engine (ScriptManager):** Sets up the JavaScript execution environment, controls concurrency, and starts execution.
+- **JS Framework (efw.js):** Parses the request, determines the phase, manages resources, and provides security hooks.
+- **JS Security/Validation (efw.server.js):** **Login** $\rightarrow$ **Authorization** $\rightarrow$ **Validation and Type Conversion**.
+- **JS Event Script:** Executes the core business logic (e.g., DB access).
+- **JS/Java Cleanup:** Handles transaction processing, resource release, and returns the internationalized response JSON.
 
 This structure allows the Efw framework to clearly separate business logic from infrastructure concerns (security, I/O, concurrency), enabling the development of robust enterprise applications.
