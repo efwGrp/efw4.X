@@ -65,7 +65,7 @@ Efw 框架的服务器端是一个**事件驱动型中间件**，它接收从客
 
 客户端的事件请求会遵循以下清晰的多层结构进行处理：
 
-1. **Java I/O (Servlet):** 接收请求、读取 JSON、Java $\rightarrow$ JavaScript 的入口。
+1. **Java I/O (Servlet):** 接收请求、读取 JSON、Java → JavaScript 的入口。
 2. **Java 引擎 (ScriptManager):** 设置 JavaScript 执行环境、并发控制、启动执行。
 3. **JS 框架 (efw.js):** 解析请求、判断阶段、资源管理、安全挂钩。
 4. **JS 安全/验证 (efw.server.js):** **登录** $\rightarrow$ **授权** $\rightarrow$ **验证和类型转换**。
