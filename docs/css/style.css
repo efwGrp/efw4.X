@@ -329,7 +329,7 @@ footer {
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-	.header {
+	header {
 		position: flow;
 	}
 	img {
