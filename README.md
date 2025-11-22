@@ -2,8 +2,6 @@
 
 # EFW Framework
 
-## Revolutionary Web Development Solution
-
 Goal-oriented approach for building high-speed web systems with Ajax and server-side JavaScript
 
 ## Introduction
