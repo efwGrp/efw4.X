@@ -330,7 +330,7 @@ footer {
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
 	header {
-		position: flow;
+		position: static;
 	}
 	img {
 		max-width: 100%;
