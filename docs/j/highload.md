@@ -32,7 +32,7 @@ TCP接続は、「Established」から「Closed」までの間、「接続中」
 
 ## システム概念図
 以下のシステム概念図は、efwアプリ+tomcatで高負荷対応時各種設定情報の例です。
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/df8dab56-a05f-4133-54f4-8f1ee9367619.png)
+![image.png](../img/highload/p1.png)
 <table>
 <tr><th>項目</th><th>デフォルト</th><th>説明</th></tr>
 <tr><td>ListenBackLog</td><td>
@@ -68,9 +68,9 @@ APR/Native: 8192
 
 ## 設定場所
 
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/16011ece-5704-a4fd-aad7-9bc96609647c.png)
+![image.png](../img/highload/p2.png)
 
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/f4901e2d-5af4-e18d-2465-ebc98d0d2736.png)
+![image.png](../img/highload/p3.png)
 
 ## システム概念図説明
 
@@ -91,15 +91,16 @@ Connectionキューの接続要求をEFWフレームワークで処理する場�
 <font color=red>「該当機能は混雑しています。しばらくお待ちください。」</font>
 
 ## ListenBackLogキューオーバー
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/7b6d2e11-30dd-acc6-cf95-5ed3230fb2c8.png)
+![image.png](../img/highload/p4.png)
 
 サーバの接続が満杯状態になっている時、新たに操作したら、左図のエラーメッセージが表示します。
 
 ## イベントキューオーバー（リトライ可）
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/cfdf6f2c-7b11-f4c6-b56e-568b42b9b9b3.png)
+![image.png](../img/highload/p5.png)
 
 重い操作が制限になる時、左図のカウントダウンメッセージが表示します（30秒計）。リトライ可。
 
 ## イベントキューオーバー（リトライ不可）
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3476221/2869ffb1-8cf1-6834-0096-63122f330eec.png)
+![image.png](../img/highload/p6.png)
+
 操作が制限になる時、左図の混雑メッセージが表示します。リトライ不可。
