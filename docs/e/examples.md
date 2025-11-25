@@ -168,7 +168,7 @@ This is a sample web application based on the efw framework, demonstrating compr
 -----
 
 ### [efw Batch Processing Example](example19.md)
-EFW (Escco Framework) provides powerful batch processing capabilities that allow developers to write batch processing logic using JavaScript and execute it in both Windows and Linux environments. The following is a complete batch processing example.
+EFW provides powerful batch processing capabilities that allow developers to write batch processing logic using JavaScript and execute it in both Windows and Linux environments. The following is a complete batch processing example.
 
 - Windows Batch Startup Script ([helloBatch.bat](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/efw/batch/helloBatch.bat))
 - Linux Batch Startup Script ([helloBatch.sh](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloBatch.sh))

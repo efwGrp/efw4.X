@@ -1,6 +1,6 @@
-# 💻 客户端 JavaScript 库：efw (ESCCO-Framework)
+# 💻 客户端 JavaScript 库：EFW
 
-所提供的源代码构成了名为 **efw (ESCCO-Framework)** 的框架的**客户端 JavaScript 库**（`efw.js` 和 `efw.client.js`）。
+所提供的源代码构成了名为 **EFW** 的框架的**客户端 JavaScript 库**（`efw.js` 和 `efw.client.js`）。
 
 该框架的主要目的是提供**客户端（浏览器）与服务器之间的事件驱动通信**以及随之而来的**UI 操作自动化**。
 

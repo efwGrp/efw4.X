@@ -180,7 +180,7 @@ efw 框架提供 WebSocket 模式支持，实现了实时通信、进度反馈�
 
 ### [efw 批处理示例介绍](example19.md)
 
-EFW（Escco Framework）提供了一个强大的批处理功能，允许开发者通过 JavaScript 编写批处理逻辑，并在 Windows 和 Linux 环境下执行。以下是一个完整的批处理示例。
+EFW提供了一个强大的批处理功能，允许开发者通过 JavaScript 编写批处理逻辑，并在 Windows 和 Linux 环境下执行。以下是一个完整的批处理示例。
 
 - Windows 批处理启动脚本 ([helloBatch.bat](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/efw/batch/helloBatch.bat))
 - Linux 批处理启动脚本   ([helloBatch.sh](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloBatch.sh))

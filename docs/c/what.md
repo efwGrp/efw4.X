@@ -1,7 +1,8 @@
 # 【Efw 介绍】什么是 Efw
 
-EFW (Escco-Framework) 是由 Escco Japan 株式会社采用目的指向的方法设计和开发的服务器端 JavaScript Ajax 框架。引入 EFW 具有多项特点，
-可以降低 Web 开发的难度，例如大幅减少 Web 开发的程序代码量，以及能够迅速应对审查和规格变更等。对于在 Java Web 开发中遇到挑战的客户，我们诚挚推荐您考虑使用 EFW。
+Escco Japan 株式会社提供的面向 Web 的企业框架，采用目标导向的方法，使用 Ajax 和服务器端 JavaScript 构建快速的 Web 系统。
+引入 EFW 具有多项特点，可以降低 Web 开发的难度，例如大幅减少 Web 开发的程序代码量，以及能够迅速应对审查和规格变更等。
+对于在 Java Web 开发中遇到挑战的客户，我们诚挚推荐您考虑使用 EFW。
 
 ## 1、程序的可读性
 

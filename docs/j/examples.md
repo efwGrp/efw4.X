@@ -180,7 +180,7 @@ efwフレームワークはWebSocketモードをサポートし、リアルタ�
 
 ### [efw バッチ処理サンプル紹介](example19.md)
 
-EFW（Escco Framework）は強力なバッチ処理機能を提供し、開発者がJavaScriptを使用してバッチ処理ロジックを作成し、WindowsおよびLinux環境で実行することを可能にします。以下は完全なバッチ処理のサンプルです。
+EFW は強力なバッチ処理機能を提供し、開発者がJavaScriptを使用してバッチ処理ロジックを作成し、WindowsおよびLinux環境で実行することを可能にします。以下は完全なバッチ処理のサンプルです。
 
 - Windowsバッチ起動スクリプト ([helloBatch.bat](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/efw/batch/helloBatch.bat))
 - Linuxバッチ起動スクリプト ([helloBatch.sh](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloBatch.sh))

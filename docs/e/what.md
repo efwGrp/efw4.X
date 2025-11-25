@@ -1,6 +1,7 @@
 # What is Efw?
 
-EFW (Escco-Framework) is an Ajax framework for server-side JavaScript designed and developed by Escco Japan Co., Ltd. using a goal-oriented approach. By introducing EFW, there are various features that can reduce the difficulty of web development, such as a significant reduction in the amount of web development programs and the ability to quickly respond to reviews and specification changes. If you are having issues with Java web development, please consider using EFW.
+EFW is An Enterprise Framework for Web with a goal-oriented approach to building fast web systems using Ajax and server-side JavaScript, provided by Escco Japan Co., Ltd.
+By introducing EFW, there are various features that can reduce the difficulty of web development, such as a significant reduction in the amount of web development programs and the ability to quickly respond to reviews and specification changes. If you are having issues with Java web development, please consider using EFW.
 
 ## 1. Program readability
 Program readability refers to the ease with which a program's purpose and processing flow can be understood.　(From : wiki/可読性)

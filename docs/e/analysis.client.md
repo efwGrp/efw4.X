@@ -1,6 +1,6 @@
-# 💻 Client-Side JavaScript Library: efw (ESCCO-Framework)
+# 💻 Client-Side JavaScript Library: EFW
 
-The provided source code constitutes the **client-side JavaScript library** (`efw.js` and `efw.client.js`) for a framework called **efw (ESCCO-Framework)**.
+The provided source code constitutes the **client-side JavaScript library** (`efw.js` and `efw.client.js`) for a framework called **EFW**.
 
 The primary goal of this framework is to provide **event-driven communication between the client (browser) and the server**, along with the subsequent **automation of UI operations**.
 
