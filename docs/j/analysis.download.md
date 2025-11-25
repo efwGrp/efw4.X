@@ -59,7 +59,7 @@ if(attr_zip!=null&&!"".equals(attr_zip)){
 
 ### 3\. `previewServlet` と `downloadServlet` の比較
 
-| 項目 | `previewServlet.java` | `downloadServlet.java` |
+| 項目 | previewServlet.java | downloadServlet.java |
 | :--- | :--- | :--- |
 | **URL** | `/previewServlet` | `/downloadServlet` |
 | **目的** | ブラウザ内でのファイル内容の**インライン表示**。 | ファイルをクライアントのローカルへ**保存**させる。 |
