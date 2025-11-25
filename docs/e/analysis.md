@@ -14,7 +14,7 @@ The purpose of the preview function is to enable direct display of files within 
 The download function offers multi-functional download processing, including not only single-file download but also the capability to compress multiple files into a single ZIP archive and add password protection. The collaboration for this process, similar to `previewServlet`, occurs via server-side JavaScript (`efw.server.js`) and the session.
 
 ## [Upload Feature Analysis](analysis.upload.md)
-**クライアント側でのリクエスト構築**から、**サーバー側での厳格なセキュリティチェックと永続化**まで、複数のコンポーネントが連携して実現されます。この処理は、通常のイベント処理とは異なる専用のサーブレット（`uploadServlet`）を介して行われます。
+The file upload process in the Efw framework is achieved through the cooperation of multiple components, spanning from **client-side request construction** to **server-side rigorous security checks and persistence**. This process is routed through a dedicated servlet (`uploadServlet`), distinct from regular event processing.
 
 ## [Summary of Security Features](analysis.security.md)
 Efwフレームワークは、**画面アクセス**、**イベント実行**、および**ファイルI/O**の各レイヤーで多重かつ具体的なセキュリティチェックを組み込むことで、堅牢なエンタープライズアプリケーション環境を提供しています。

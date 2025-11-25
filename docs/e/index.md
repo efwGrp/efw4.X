@@ -1,6 +1,6 @@
 # EFW Framework
 
-An **Enterprise Framework for Web** with a goal-oriented approach to building fast web systems using Ajax and server-side JavaScript.
+An **Enterprise Framework for Web** with a goal-oriented approach to building fast web systems using Ajax and server-side JavaScript, provided by ESCCO.
 
 ## Introduction
 
