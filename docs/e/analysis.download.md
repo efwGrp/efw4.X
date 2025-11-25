@@ -58,7 +58,7 @@ After the download is complete, resources are deleted based on the options.
 
 ### 3\. Comparison of `previewServlet` and `downloadServlet`
 
-| Item | `previewServlet.java` | `downloadServlet.java` |
+| Item | previewServlet.java | downloadServlet.java |
 | :--- | :--- | :--- |
 | **URL** | `/previewServlet` | `/downloadServlet` |
 | **Purpose** | **Inline display** of file content within the browser. | Forcing the client to **save** the file to their local system. |

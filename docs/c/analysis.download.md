@@ -62,7 +62,7 @@ if(attr_zip!=null&&!"".equals(attr_zip)){
 
 ### 3\. `previewServlet` 与 `downloadServlet` 的比较
 
-| 项目 | `previewServlet.java` | `downloadServlet.java` |
+| 项目 | previewServlet.java | downloadServlet.java |
 | :--- | :--- | :--- |
 | **URL** | `/previewServlet` | `/downloadServlet` |
 | **目的** | 在浏览器内**内嵌显示**文件内容。 | 强制客户端将文件**保存**到本地。 |
