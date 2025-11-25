@@ -11,7 +11,7 @@ The Efw server-side acts as an **event-driven middleware** that accepts AJAX/Web
 The purpose of the preview function is to enable direct display of files within the browser without forcing the client to download them. Its process focuses heavily on security and file size limitations.
 
 ## [Download Feature Analysis](analysis.download.md)
-単一ファイルのダウンロードだけでなく、複数のファイルをまとめてZIP圧縮し、パスワード保護まで行う多機能なダウンロード処理を提供します。処理の連携は `previewServlet` と同様に、サーバーサイドJavaScript (`efw.server.js`) とセッションを介して行われます。
+The download function offers multi-functional download processing, including not only single-file download but also the capability to compress multiple files into a single ZIP archive and add password protection. The collaboration for this process, similar to `previewServlet`, occurs via server-side JavaScript (`efw.server.js`) and the session.
 
 ## [Upload Feature Analysis](analysis.upload.md)
 **クライアント側でのリクエスト構築**から、**サーバー側での厳格なセキュリティチェックと永続化**まで、複数のコンポーネントが連携して実現されます。この処理は、通常のイベント処理とは異なる専用のサーブレット（`uploadServlet`）を介して行われます。
