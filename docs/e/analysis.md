@@ -11,11 +11,11 @@ The Efw server-side acts as an **event-driven middleware** that accepts AJAX/Web
 The purpose of the preview function is to enable direct display of files within the browser without forcing the client to download them. Its process focuses heavily on security and file size limitations.
 
 ## [Download Feature Analysis](analysis.download.md)
-�P��t�@�C���̃_�E�����[�h�����łȂ��A�����̃t�@�C�����܂Ƃ߂�ZIP���k���A�p�X���[�h�ی�܂ōs�����@�\�ȃ_�E�����[�h������񋟂��܂��B�����̘A�g�� `previewServlet` �Ɠ��l�ɁA�T�[�o�[�T�C�hJavaScript (`efw.server.js`) �ƃZ�b�V��������čs���܂��B
+単一ファイルのダウンロードだけでなく、複数のファイルをまとめてZIP圧縮し、パスワード保護まで行う多機能なダウンロード処理を提供します。処理の連携は `previewServlet` と同様に、サーバーサイドJavaScript (`efw.server.js`) とセッションを介して行われます。
 
 ## [Upload Feature Analysis](analysis.upload.md)
-**�N���C�A���g���ł̃��N�G�X�g�\�z**����A**�T�[�o�[���ł̌��i�ȃZ�L�����e�B�`�F�b�N�Ɖi����**�܂ŁA�����̃R���|�[�l���g���A�g���Ď�������܂��B���̏����́A�ʏ�̃C�x���g�����Ƃ͈قȂ��p�̃T�[�u���b�g�i`uploadServlet`�j����čs���܂��B
+**クライアント側でのリクエスト構築**から、**サーバー側での厳格なセキュリティチェックと永続化**まで、複数のコンポーネントが連携して実現されます。この処理は、通常のイベント処理とは異なる専用のサーブレット（`uploadServlet`）を介して行われます。
 
 ## [Summary of Security Features](analysis.security.md)
-Efw�t���[�����[�N�́A**��ʃA�N�Z�X**�A**�C�x���g���s**�A�����**�t�@�C��I/O**�̊e���C���[�ő��d����̓I�ȃZ�L�����e�B�`�F�b�N��g�ݍ��ނ��ƂŁA���S�ȃG���^�[�v���C�Y�A�v���P�[�V��������񋟂��Ă��܂��B
+Efwフレームワークは、**画面アクセス**、**イベント実行**、および**ファイルI/O**の各レイヤーで多重かつ具体的なセキュリティチェックを組み込むことで、堅牢なエンタープライズアプリケーション環境を提供しています。
 
