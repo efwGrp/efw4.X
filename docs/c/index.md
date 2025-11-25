@@ -1,7 +1,6 @@
 # EFW框架
 
-采用目标导向方法，通过Ajax和服务器端JavaScript高速构建Web系统
-
+一个面向 Web 的企业级框架，采用目标导向的方法，使用 Ajax 和服务器端 JavaScript 构建快速的 Web 系统。
 
 ## 介绍
 

@@ -2,7 +2,7 @@
 
 # EFW Framework
 
-Goal-oriented approach for building high-speed web systems with Ajax and server-side JavaScript
+An enterprise framework for web with a goal-oriented approach to building fast web systems using Ajax and server-side JavaScript.
 
 ## Introduction
 
