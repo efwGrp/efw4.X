@@ -25,7 +25,7 @@ Learn about the basic concepts, core advantages, and design philosophy of the EF
 The primary source of Efw was provided to AI for feature analysis. The explanation of data flow and security is helpful.
 
 ### [EFW Security Features](security.md)
-Explore EFW framework's security features, protection mechanisms, and best practices to keep your web applications safe from various attacks.
+Explore EFW framework's security features, and　protection mechanisms to keep your web applications safe from various attacks.
 
 ### [Building High-Load Tomcat Environment](highload.md)
 Learn how to configure and optimize Tomcat servers to support high-load environments, ensuring your applications run stably under high concurrency.
