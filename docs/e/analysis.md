@@ -17,5 +17,5 @@ The download function offers multi-functional download processing, including not
 The file upload process in the Efw framework is achieved through the cooperation of multiple components, spanning from **client-side request construction** to **server-side rigorous security checks and persistence**. This process is routed through a dedicated servlet (`uploadServlet`), distinct from regular event processing.
 
 ## [Summary of Security Features](analysis.security.md)
-Efwフレームワークは、**画面アクセス**、**イベント実行**、および**ファイルI/O**の各レイヤーで多重かつ具体的なセキュリティチェックを組み込むことで、堅牢なエンタープライズアプリケーション環境を提供しています。
+The Efw framework provides a robust enterprise application environment by incorporating multiple, specific security checks at the layers of **screen access**, **event execution**, and **file I/O**.
 
