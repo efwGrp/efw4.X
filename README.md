@@ -20,13 +20,8 @@ An enterprise framework for web with a goal-oriented approach to building fast w
 ### [What is EFW?](https://efwgrp.github.io/efw4.X/e/what.html)
 Learn about the basic concepts, core advantages, and design philosophy of the EFW framework, exploring how to build high-speed web systems with a goal-oriented approach.
 
-### [Client Feature Analysis](https://efwgrp.github.io/efw4.X/e/client.magic.html)
-The primary objective of the EFW framework is to provide **event-driven communication between the client (browser) and the server**, along with the consequent **automation of UI operations**.
-\*AI Analysis Result
-
-### [Server Feature Analysis](https://efwgrp.github.io/efw4.X/e/server.magic.html)
-The Efw server-side acts as an **event-driven middleware** that accepts AJAX/WebSocket requests, starting from the client's `Efw("eventId")` call. It leverages a powerful collaboration between **Java and server-side JavaScript** to seamlessly integrate authentication, validation, logic execution, and resource management.
-\*AI Analysis Result
+### [Feature Analysis by AI](https://efwgrp.github.io/efw4.X/e/analysis.html)
+The primary source of Efw was provided to AI for feature analysis. The explanation of data flow and security is helpful.
 
 ### [EFW Security Features](https://efwgrp.github.io/efw4.X/e/security.html)
 Explore EFW framework's security features, protection mechanisms, and best practices to keep your web applications safe from various attacks.
