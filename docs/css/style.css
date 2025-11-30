@@ -372,4 +372,19 @@ footer {
     .footer-links a {
         margin: 0 16px 12px 0;
     }
+    
+    .content {
+	    background-color: transparent;
+	    border-radius: 0px;
+	    padding: 0px;
+	    margin-bottom: 0px;
+	    box-shadow: none;
+	    transition: none;
+	    position: relative;
+	    overflow: hidden;
+    }
+
+	.content::before {
+	    background: none;
+	}
 }
