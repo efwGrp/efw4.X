@@ -387,4 +387,9 @@ footer {
 	.content::before {
 	    background: none;
 	}
+
+	.content:hover {
+	    transform: none;
+	    box-shadow: none;
+	}
 }
