@@ -4,7 +4,7 @@
 String lang=request.getParameter("lang");
 pageContext.setAttribute(efw.taglib.Client.EFW_I18N_LANG, lang, PageContext.REQUEST_SCOPE);
 %>
-/**** efw5.X Copyright 2025 efwGrp ****/
+/**** efw4.X Copyright 2025 efwGrp ****/
 /**
  * The class to keep messages in client.
  * 
