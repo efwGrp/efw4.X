@@ -46,9 +46,12 @@ public final class efwFilter implements Filter {
 		//keep req and resp to thread local for javascript program.
 		framework.setRequest(request);
 		framework.setResponse(response);
+		//requestを操作する前に文字コードを設定する
+		request.setCharacterEncoding(framework.SYSTEM_CHAR_SET);
 		//elfinder部品の言語のため
 		String lang=request.getParameter(Client.EFW_I18N_LANG);
 		if (lang!=null)request.setAttribute(Client.EFW_I18N_LANG, lang);
+
 		response.setCharacterEncoding(framework.SYSTEM_CHAR_SET);
 		String strRequestURI = ((HttpServletRequest) request).getRequestURI();
 		
