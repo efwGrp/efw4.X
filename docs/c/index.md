@@ -1,6 +1,6 @@
 # EFW框架
 
-ESCCO 提供的**面向 Web 的企业框架**，采用目标导向的方法，使用 Ajax 和服务器端 JavaScript 构建快速的 Web 系统。
+ESCCO 提供的**面向 Web 的企业框架**，采用目标导向的方法，使用 Ajax 和服务器端 JavaScript 快速构建 Web 系统。
 
 ## 介绍
 
