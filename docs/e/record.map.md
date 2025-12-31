@@ -29,7 +29,9 @@ record.map({
 | Parameters | Type | Description |
 |---|---|---|
 | `mapping` | `Object` | The mapping between the new and existing fields. <br> See also: [formatter&rounder](formatter&rounder.md). |
+
 The sample for `mapping`.
+
 ```javascript
 {
     newField1: oldField1,
