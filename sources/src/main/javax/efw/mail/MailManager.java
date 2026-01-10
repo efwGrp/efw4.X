@@ -205,7 +205,7 @@ public final class MailManager {
 					if (fl.isFile()&&fl.exists()) {
 						MimeBodyPart attPart = new MimeBodyPart();
 						ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(FileManager.readAllBytes(fl));
-						String mimeType=FileManager.getMimeTypeByFileName(fileName);
+						String mimeType=FileManager.getMimeType(fl);
 						if ("unknown".equals(mimeType))mimeType="application/octet-stream";
 						DataSource dataSource = (DataSource)new ByteArrayDataSource(byteArrayInputStream, mimeType);
 						attPart.setDataHandler(new DataHandler(dataSource));

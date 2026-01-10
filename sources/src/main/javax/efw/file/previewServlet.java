@@ -61,7 +61,7 @@ public final class previewServlet extends HttpServlet {
 			outputError(response,I18nManager.get(lang, "PreviewFileNotExistsMessage", "The specified file does not exist."));
 			return;
 		}
-		String mimeType=FileManager.getMimeTypeByFileName(fl.getName());
+		String mimeType=FileManager.getMimeType(fl);
 		if ("unknown".equals(mimeType)) {
 			outputError(response,I18nManager.get(lang, "PreviewFileNotPreviewMessage", "The specified file cannot be previewed."));
 			return;

@@ -86,7 +86,7 @@ EfwServerFile.prototype.list = function(path,withoutFolderLength) {
 			"lastModified" : lastModified,
 			"absolutePath" : "" + fl.getAbsolutePath(),
 			"isHidden" : true && fl.isHidden(),
-			"mineType" : "" + Packages.efw.file.FileManager.getMimeType(fl.getAbsolutePath()),
+			"mineType" : "" + Packages.efw.file.FileManager.getMimeType(fl),
 		};
 		if (data.mineType=="directory"){
 			if (withoutFolderLength==true){
@@ -138,7 +138,7 @@ EfwServerFile.prototype.get = function(path,withoutFolderLength) {
 		"name" : "" + fl.getName(),
 		"lastModified" : lastModified,
 		"absolutePath" : "" + fl.getAbsolutePath(),
-		"mineType" : "" + Packages.efw.file.FileManager.getMimeType(fl.getAbsolutePath()),
+		"mineType" : "" + Packages.efw.file.FileManager.getMimeType(fl),
 	};
 	if (data.mineType=="directory"){
 		if (withoutFolderLength==true){
