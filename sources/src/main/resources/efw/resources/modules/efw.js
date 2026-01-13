@@ -193,13 +193,12 @@ Efw.prototype.doPost=function(req) {
 		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
 
 		var showErrorDetailsFlag = properties.get("efw.runtime.error.showdetails", true);
+		var result=new Result();
 		if(showErrorDetailsFlag){
-			var result=(new Result())
-			.error("RuntimeErrorExceptionWithIdDetails", {"errorId":errorId,"eventId":eventId,"message":errorMsg});
+			result.error("RuntimeErrorExceptionWithIdDetails", {"errorId":errorId,"eventId":eventId,"message":errorMsg});
 		}
 		else{
-			var result=(new Result())
-			.error("RuntimeErrorExceptionWithId", {"errorId":errorId});
+			result.error("RuntimeErrorExceptionWithId", {"errorId":errorId});
 		}
 		var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
 		if (systemErrorUrl!=""){
