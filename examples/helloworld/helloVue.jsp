@@ -38,7 +38,10 @@
 15	<input id="item15" type="number" v-model="data.item15"><br>
 16	<input id="item16" type="range" v-model="data.item16"><br>
 17	<input id="item17" type="color" v-model="data.item17"><br>
-18	<input id="item18" type="checkbox" v-model="data.item18"><br>
+18	<input id="item18" type="checkbox" v-model="data.item18">
+<span v-if="data.item18">チェックしました</span>
+<span v-else>チェックしていない</span>
+<br>
 19	<input id="item19_1" name="item19" type="radio" value="1" v-model="data.item19">
 	<input id="item19_2" name="item19" type="radio" value="2"  v-model="data.item19"><br>
 </fieldset>
@@ -82,14 +85,14 @@
 	(function(){
 		Vue.createApp({setup(){
 				//データ層
-				var data=Vue.ref({});
+				const data=Vue.ref({});
 				//初期表示イベントを実行する
 				Efw('helloVue_init')
 				.then(function(ret){
 					data.value=ret;
 				});
 				// 送信ボタンイベント。
-				 function vueSend() {
+				const vueSend=function() {
 				 	Efw('helloVue_send',{data:data.value})
 				 	.then(function(ret){
 				 		data.value=ret;

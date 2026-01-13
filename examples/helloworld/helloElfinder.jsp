@@ -7,6 +7,8 @@
 	<efw:Client lang="jp"/>
 </HEAD>
 <BODY>
-	<efw:elFinder home=""/>
+	<button onclick="Efw('helloElfinder_testExt')">拡張子とアイコンの確認</button>
+	ボタンを押した後、test_extフォルダを開いてください。<br><br>
+	<efw:elFinder home="" id="helloElfinder1" saveLogFunc="savelogfunc"/>
 </BODY>
 </HTML>
