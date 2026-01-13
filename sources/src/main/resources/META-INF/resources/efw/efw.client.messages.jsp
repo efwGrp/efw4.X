@@ -17,6 +17,8 @@ EfwClientMessages.prototype = {
 	CommunicationErrorException : "<efw:msg key="CommunicationErrorException" default="A communication error has occurred. Do you want to retry?"/>",
 	EventIsBusyException :"<efw:Msg key="EventIsBusyException" default="The function is crowded. Please wait."/>",
 	RuntimeErrorException : "<efw:Msg key="RuntimeErrorException" default="A runtime error has occurred.\n\neventId={eventId}\nmessage={message}"/>",
+	RuntimeErrorExceptionWithIdDetails : "<efw:Msg key="RuntimeErrorExceptionWithIdDetails" default="A runtime error has occurred.\nerrorId={errorId}\n\neventId={eventId}\nmessage={message}"/>",
+	RuntimeErrorExceptionWithId : "<efw:Msg key="RuntimeErrorExceptionWithId" default="A runtime error has occurred.\n\nerrorId={errorId}"/>",
 	ParamsFormatErrorException : "<efw:Msg key="ParamsFormatErrorException" default="The event parameter definition is incorrect.\n\neventId={eventId}"/>",
 	ResultValuesErrorException : "<efw:Msg key="ResultValuesErrorException" default="The data for display is not correct.\n\neventId={eventId}"/>",
 	ResultActionsErrorException : "<efw:Msg key="ResultActionsErrorException" default="The data for action is not correct.\n\neventId={eventId}"/>",

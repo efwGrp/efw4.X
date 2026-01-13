@@ -187,11 +187,20 @@ Efw.prototype.doPost=function(req) {
 		}
 	}catch(e){
 		if (e instanceof Error)e=""+e;
-		Packages.efw.framework.runtimeSLog(e);
+		var errorId = "E" + new Date().toISOString().replace(/[-:Z.]/g,"").replace(/T/g,"-")  + "-" + Math.floor(Math.random() * 1000);
+		Packages.efw.framework.runtimeSLog("["+errorId+"] "+e);
 		var errorMsg=""+Packages.efw.framework.getUsefulInfoFromException(e);
 		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
-		var result=(new Result())
-		.error("RuntimeErrorException", {"eventId":eventId,"message":errorMsg});
+
+		var showErrorDetailsFlag = properties.get("efw.runtime.error.showdetails", true);
+		if(showErrorDetailsFlag){
+			var result=(new Result())
+			.error("RuntimeErrorExceptionWithIdDetails", {"errorId":errorId,"eventId":eventId,"message":errorMsg});
+		}
+		else{
+			var result=(new Result())
+			.error("RuntimeErrorExceptionWithId", {"errorId":errorId});
+		}
 		var systemErrorUrl=""+currentAuthBean.systemErrorUrl;
 		if (systemErrorUrl!=""){
 			result.navigate(systemErrorUrl);
