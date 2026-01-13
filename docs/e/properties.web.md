@@ -32,3 +32,4 @@ The `/WEB-INF/classes/efw.properties` file is used to configure the framework. I
 | Forbidden Chars | `efw.forbidden.characters` |  | Characters forbidden in event JS parameters. |
 |  | `efw.forbidden.replacement` |  | Replacement characters for forbidden characters (blank for removal). |
 | BRMS | `efw.brms.version` | `7` | The version of InnoRules. |
+| Error Message | `efw.runtime.error.showdetails` | `true` | Show detailed error messages. |
