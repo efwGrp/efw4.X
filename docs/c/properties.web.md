@@ -32,3 +32,4 @@
 | 禁止字符 | `efw.forbidden.characters` |  | 事件 JS 参数中禁止的字符。 |
 |  | `efw.forbidden.replacement` |  | 禁止字符的替换字符（空白表示删除）。 |
 | BRMS | `efw.brms.version` | `7` | InnoRules的版本。 |
+| 错误信息 | `efw.runtime.error.showdetails` | `true` | 显示详细错误信息。|
