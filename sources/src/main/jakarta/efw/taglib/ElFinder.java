@@ -220,7 +220,8 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		try {
 			String v=framework.version;
 			out = pageContext.getOut();
-			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder.min.css?v="+v+"\">");
+			//out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder4efw.full.css?v="+v+"\">");
+			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder4efw.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
 			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js?v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js?v="+v+"\"></script>");

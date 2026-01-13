@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <defs>
+    <path id="path-0" d="M 8.575088943601685 11.854803771664697 L 51.95382278026548 52.92839389630242" style="fill: none;"/>
+  </defs>
+  <path d="M0 0h24v24H0z"/>
+  <path d="M 14 2 L 6 2 C 4.9 2 4 2.9 4 4 L 4 20 C 4 21.1 4.89 22 5.99 22 L 18 22 C 19.1 22 20 21.1 20 20 L 20 8 L 14 2 Z M 18 20 L 6 20 L 6 4 L 13 4 L 13 9 L 18 9 L 18 20 Z" style="fill: rgb(192, 192, 192);"/>
+  <text style="fill: rgb(192, 192, 192); font-family: Arial, sans-serif; font-size: 10px; white-space: pre;" x="9.054" y="17.15">?</text>
+</svg>
