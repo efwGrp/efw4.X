@@ -6,6 +6,8 @@
 <entry key="CommunicationErrorException">通信エラーが発生しました。リトライしますか。</entry>
 <entry key="EventIsBusyException">該当機能は混雑しています。しばらくお待ちください。</entry>
 <entry key="RuntimeErrorException">実行時エラーが発生しました。\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="RuntimeErrorExceptionWithIdDetails">実行時エラーが発生しました。\nエラーID: {errorId}\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="RuntimeErrorExceptionWithId">実行時エラーが発生しました。\nエラーID: {errorId}</entry>
 <entry key="ParamsFormatErrorException">イベントのパラメータ定義は正しくありません。\n\neventId={eventId}</entry>
 <entry key="ResultValuesErrorException">表示用のデータは正しくありません。\n\neventId={eventId}</entry>
 <entry key="ResultActionsErrorException">動作用のデータは正しくありません。\n\neventId={eventId}</entry>

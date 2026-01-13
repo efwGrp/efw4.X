@@ -6,6 +6,8 @@
 <entry key="CommunicationErrorException">A communication error has occurred. Do you want to retry?</entry>
 <entry key="EventIsBusyException">The function is crowded. Please wait.</entry>
 <entry key="RuntimeErrorException">A runtime error has occurred.\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="RuntimeErrorExceptionWithIdDetails">A runtime error has occurred.\nerrorId: {errorId}\n\neventId={eventId}\nmessage={message}</entry>
+<entry key="RuntimeErrorExceptionWithId">A runtime error has occurred.\nerrorId: {errorId}</entry>
 <entry key="ParamsFormatErrorException">The event parameter definition is incorrect.\n\neventId={eventId}</entry>
 <entry key="ResultValuesErrorException">The data for display is not correct.\n\neventId={eventId}</entry>
 <entry key="ResultActionsErrorException">The data for action is not correct.\n\neventId={eventId}</entry>
