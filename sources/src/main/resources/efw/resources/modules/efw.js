@@ -193,7 +193,7 @@ Efw.prototype.doPost=function(req) {
 		errorMsg=errorMsg.replace(/</g,"&lt;").replace(/>/g,"&gt;");//to encode the error message for showing in alert dialog.
 
 		var showErrorDetailsFlag = properties.get("efw.runtime.error.showdetails", true);
-		var result=(new Result());
+		var result=new Result();
 		if(showErrorDetailsFlag){
 			result.error("RuntimeErrorExceptionWithIdDetails", {"errorId":errorId,"eventId":eventId,"message":errorMsg});
 		}
