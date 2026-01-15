@@ -191,31 +191,38 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("images/ui-icons_222222_256x240.png");
+	background-image: url("../ui-icons.svg");/**_222222_256x240**/
+	filter: invert(11%) sepia(0%) saturate(0%) brightness(95%) contrast(92%);
 }
 .ui-widget-header .ui-icon {
-	background-image: url("images/ui-icons_e3ddc9_256x240.png");
+	background-image: url("../ui-icons.svg");/**_e3ddc9_256x240**/
+	filter: invert(98%) sepia(10%) saturate(547%) hue-rotate(344deg) brightness(96%) contrast(87%);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon {
-	background-image: url("images/ui-icons_add978_256x240.png");
+	background-image: url("../ui-icons.svg");/**_add978_256x240**/
+	filter: invert(82%) sepia(21%) saturate(760%) hue-rotate(39deg) brightness(97%) contrast(85%);
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background-image: url("images/ui-icons_e3ddc9_256x240.png");
+	background-image: url("../ui-icons.svg");/**_e3ddc9_256x240**/
+	filter: invert(98%) sepia(10%) saturate(547%) hue-rotate(344deg) brightness(96%) contrast(87%);
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-	background-image: url("images/ui-icons_ffffff_256x240.png");
+	background-image: url("../ui-icons.svg");/**_ffffff_256x240**/
+	filter: invert(100%);
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("images/ui-icons_f1fd86_256x240.png");
+	background-image: url("../ui-icons.svg");/**_f1fd86_256x240**/
+	filter: invert(93%) sepia(21%) saturate(1211%) hue-rotate(9deg) brightness(105%) contrast(98%);
 }
 .ui-button .ui-icon {
-	background-image: url("images/ui-icons_9bcc60_256x240.png");
+	background-image: url("../ui-icons.svg");/**_9bcc60_256x240**/
+	filter: invert(75%) sepia(31%) saturate(692%) hue-rotate(44deg) brightness(97%) contrast(93%);
 }
 
 /* positioning */

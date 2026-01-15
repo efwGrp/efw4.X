@@ -191,31 +191,38 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("images/ui-icons_ffffff_256x240.png");
+	background-image: url("../ui-icons.svg");/**_ffffff_256x240**/
+	filter: invert(100%);
 }
 .ui-widget-header .ui-icon {
-	background-image: url("images/ui-icons_a8a3ae_256x240.png");
+	background-image: url("../ui-icons.svg");/**_a8a3ae_256x240**/
+	filter: invert(73%) sepia(5%) saturate(541%) hue-rotate(222deg) brightness(89%) contrast(85%);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon {
-	background-image: url("images/ui-icons_734d99_256x240.png");
+	background-image: url("../ui-icons.svg");/**_734d99_256x240**/
+	filter: invert(34%) sepia(45%) saturate(1135%) hue-rotate(226deg) brightness(91%) contrast(85%);
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background-image: url("images/ui-icons_454545_256x240.png");
+	background-image: url("../ui-icons.svg");/**_454545_256x240**/
+	filter: invert(26%) sepia(0%) saturate(0%) brightness(93%) contrast(89%);
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-	background-image: url("images/ui-icons_8d78a5_256x240.png");
+	background-image: url("../ui-icons.svg");/**_8d78a5_256x240**/
+	filter: invert(53%) sepia(13%) saturate(1212%) hue-rotate(218deg) brightness(91%) contrast(87%);
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("images/ui-icons_ebccce_256x240.png");
+	background-image: url("../ui-icons.svg");/**_ebccce_256x240**/
+	filter: invert(90%) sepia(9%) saturate(542%) hue-rotate(306deg) brightness(97%) contrast(92%);
 }
 .ui-button .ui-icon {
-	background-image: url("images/ui-icons_8d78a5_256x240.png");
+	background-image: url("../ui-icons.svg");/**_8d78a5_256x240**/
+	filter: invert(53%) sepia(13%) saturate(1212%) hue-rotate(218deg) brightness(91%) contrast(87%);
 }
 
 /* positioning */

@@ -191,31 +191,38 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("images/ui-icons_0078ae_256x240.png");
+	background-image: url("../ui-icons.svg");/**_0078ae_256x240**/
+	filter: invert(31%) sepia(88%) saturate(1455%) hue-rotate(170deg) brightness(91%) contrast(101%);
 }
 .ui-widget-header .ui-icon {
-	background-image: url("images/ui-icons_d8e7f3_256x240.png");
+	background-image: url("../ui-icons.svg");/**_d8e7f3_256x240**/
+	filter: invert(93%) sepia(18%) saturate(301%) hue-rotate(167deg) brightness(101%) contrast(92%);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon {
-	background-image: url("images/ui-icons_056b93_256x240.png");
+	background-image: url("../ui-icons.svg");/**_056b93_256x240**/
+	filter: invert(31%) sepia(35%) saturate(3065%) hue-rotate(167deg) brightness(91%) contrast(100%);
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background-image: url("images/ui-icons_f5e175_256x240.png");
+	background-image: url("../ui-icons.svg");/**_f5e175_256x240**/
+	filter: invert(90%) sepia(21%) saturate(1131%) hue-rotate(345deg) brightness(101%) contrast(93%);
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-	background-image: url("images/ui-icons_f7a50d_256x240.png");
+	background-image: url("../ui-icons.svg");/**_f7a50d_256x240**/
+	filter: invert(72%) sepia(91%) saturate(1633%) hue-rotate(1deg) brightness(103%) contrast(104%);
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("images/ui-icons_fcd113_256x240.png");
+	background-image: url("../ui-icons.svg");/**_fcd113_256x240**/
+	filter: invert(86%) sepia(34%) saturate(2250%) hue-rotate(345deg) brightness(101%) contrast(98%);
 }
 .ui-button .ui-icon {
-	background-image: url("images/ui-icons_e0fdff_256x240.png");
+	background-image: url("../ui-icons.svg");/**_e0fdff_256x240**/
+	filter: invert(99%) sepia(43%) saturate(313%) hue-rotate(138deg) brightness(101%) contrast(102%);
 }
 
 /* positioning */
