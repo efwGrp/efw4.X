@@ -1094,7 +1094,7 @@ helloElfinder_testExt.fire=function(params){
 	file.makeFile("test_ext/tif.tif");
 	file.makeFile("test_ext/tiff.tiff");
 	file.makeFile("test_ext/tk.tk");
-	file.makeFile("test_ext/tld.tld");
+//	file.makeFile("test_ext/tld.tld");
 	file.makeFile("test_ext/tmo.tmo");
 	file.makeFile("test_ext/tmx.tmx");
 	file.makeFile("test_ext/toast.toast");

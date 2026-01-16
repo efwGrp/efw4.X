@@ -58,7 +58,7 @@
 /* contextmenu */
 .elfinder-contextmenu .ui-state-active { background: #6293df; color:#fff; }
 .elfinder-contextmenu .ui-state-hover { background: #3875d7; color:#fff; }
-.elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow { background-image:url('../img/arrows-active.png'); }
+.elfinder-contextmenu .ui-state-hover .elfinder-contextmenu-arrow { background-image:url('../icons/arrows-active.svg'); }
 
 /* dialog */
 .elfinder .ui-dialog input:text.ui-state-hover,

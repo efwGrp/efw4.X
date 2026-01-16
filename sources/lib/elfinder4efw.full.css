@@ -325,7 +325,7 @@ div.elfinder-cwd-wrapper-list tr.ui-state-default td span.ui-icon {
 .elfinder .elfinder-contextmenu-arrow {
 	width:16px;
 	height:16px;
-	background:url('../img/arrows-normal.png') 5px 4px no-repeat;
+	background:url('../icons/arrows-normal.svg') 5px 4px no-repeat;
 }
 
 /* arrow icon in rtl/ltr enviroment */
@@ -1362,7 +1362,7 @@ tr.elfinder-cwd-file td .elfinder-cwd-select {
 	width:14px;
 	height:14px;
 	float:left;
-	background: url("../img/spinner-mini.gif") center center no-repeat;
+	background: url("../icons/spinner-mini.svg") center center no-repeat;
 	margin:0 5px; 
 }
 
@@ -1557,7 +1557,7 @@ button.elfinder-info-button {
 	display:none;
 	top:50%;
 	margin-top:-8px;
-	background-image:url("../img/arrows-normal.png");
+	background-image:url("../icons/arrows-normal.svg");
 	background-repeat:no-repeat;
 /*	border:1px solid #111;*/
 }
@@ -1582,7 +1582,7 @@ button.elfinder-info-button {
     margin-left: 20px;
 }
 
-.ui-state-active .elfinder-navbar-arrow { background-image:url("../img/arrows-active.png"); }
+.ui-state-active .elfinder-navbar-arrow { background-image:url("../icons/arrows-active.svg"); }
 
 /* collapsed/expanded arrow view */
 .elfinder-navbar-collapsed .elfinder-navbar-arrow { display:block; }
@@ -1630,7 +1630,7 @@ button.elfinder-info-button {
 	display:block;
 	top:50%;
 	margin-top:-7px;
-	background: url("../img/spinner-mini.gif") center center no-repeat;
+	background: url("../icons/spinner-mini.svg") center center no-repeat;
 }
 /* spinner ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar-spinner { left:0;  margin-left:-2px; }
@@ -1659,7 +1659,8 @@ button.elfinder-info-button {
 .elfinder-navbar input { width:100%; border:0px solid; margin:0; padding:0; }
 
 /* resizable */
-.elfinder-navbar .ui-resizable-handle { width:12px; background:transparent url('../icons/resize.svg') center center no-repeat; }
+.elfinder-navbar .ui-resizable-handle {width:12px; background:transparent url('../icons/resize.svg') center center no-repeat;}
+
 .elfinder-nav-handle-icon {
 	position:absolute;
 	top:50%;
@@ -2046,7 +2047,7 @@ button.elfinder-info-button {
 .elfinder .elfinder-menubutton { overflow:visible; }
 
 /* button with spinner icon */
-.elfinder-button-icon-spinner  { background: url("../img/spinner-mini.gif") center center no-repeat; }
+.elfinder-button-icon-spinner  { background: url("../icons/spinner-mini.svg") center center no-repeat; }
 
 /* menu */
 .elfinder-button-menu {
