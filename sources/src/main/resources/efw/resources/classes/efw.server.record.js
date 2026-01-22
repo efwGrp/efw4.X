@@ -1,15 +1,13 @@
 "use strict";
 /**** efw4.X Copyright 2025 efwGrp ****/
 /**
- * The class to operate the array data.
- * 
- * @param {Array}
- *            array: optional<br>
- * 
+ * 配列データを操作するためのクラス。
+ * @param {Array} [array=[]] - 任意。基となるオブジェクト配列。
  * @author Chang Kejun
+ * @constructor
  */
 function Record(array) {
-	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Record");}
+	if (this == null) { throw new Packages.efw.NewKeywordWasForgottenException("Record"); }
 	if (array == null) {
 		this.values = [];
 		this.length = 0;
@@ -20,32 +18,30 @@ function Record(array) {
 };
 
 /**
- * The internal variable for keeping records length.
+ * レコードの件数。
+ * @type {Number}
  */
 Record.prototype.length = 0;
+
 /**
- * The internal variable for keeping records.
+ * 保持しているレコード配列。
+ * @type {Array}
  */
 Record.prototype.values = null;
+
 /**
- * Seek in records.<br>
- * The action is one of the options: [ eq | gt | lt | like | !eq | !gt | !lt |
- * !like ]
- * 
- * @param {String}
- *            field: required<br>
- * @param {String}
- *            action: required<br>
- * @param {String |
- *            Number | Date | Boolean} value: required<br>
- * @returns {Record}
+ * レコードを検索（フィルタリング）します。
+ * @param {String} field - 必須。検索対象のフィールド名。
+ * @param {String} action - 必須。比較演算子 [ eq | gt | lt | like | !eq | !gt | !lt | !like ]。
+ * @param {String|Number|Date|Boolean} value - 必須。比較する値。likeの場合は "%値%" 形式が使用可能。
+ * @returns {Record} 検索結果を保持する新しいRecordインスタンス。
  */
-Record.prototype.seek = function(field, action, value) {
+Record.prototype.seek = function (field, action, value) {
 	if (field == "" || field == undefined || field == null)
 		return new Record();
 	if (action != "eq" && action != "gt" && action != "lt" && action != "like"
-			&& action != "!eq" && action != "!gt" && action != "!lt"
-			&& action != "!like")
+		&& action != "!eq" && action != "!gt" && action != "!lt"
+		&& action != "!like")
 		return new Record();
 
 	var ret = [];
@@ -65,67 +61,64 @@ Record.prototype.seek = function(field, action, value) {
 	for (var i = 0; i < this.values.length; i++) {
 		var rd = this.values[i];
 		switch (action) {
-		case "eq":
-			if (rd[field] == value)
-				ret.push(rd);
-			break;
-		case "gt":
-			if (rd[field] > value)
-				ret.push(rd);
-			break;
-		case "lt":
-			if (rd[field] < value)
-				ret.push(rd);
-			break;
-		case "like": {
-			var data = ("" + rd[field]);
-			var idx = data.indexOf(value);
-			if (((!likeFirst && idx == 0) || (likeFirst && idx > -1))
+			case "eq":
+				if (rd[field] == value)
+					ret.push(rd);
+				break;
+			case "gt":
+				if (rd[field] > value)
+					ret.push(rd);
+				break;
+			case "lt":
+				if (rd[field] < value)
+					ret.push(rd);
+				break;
+			case "like": {
+				var data = ("" + rd[field]);
+				var idx = data.indexOf(value);
+				if (((!likeFirst && idx == 0) || (likeFirst && idx > -1))
 					&& ((!likeLast && idx == data.length - value.length) || (likeLast && idx > -1)))
-				ret.push(rd);
-			break;
-		}
-		case "!eq":
-			if (rd[field] != value)
-				ret.push(rd);
-			break;
-		case "!gt":
-			if (rd[field] <= value)
-				ret.push(rd);
-			break;
-		case "!lt":
-			if (rd[field] >= value)
-				ret.push(rd);
-			break;
-		case "!like": {
-			var data = ("" + rd[field]);
-			var idx = data.indexOf(value);
-			if (!(((!likeFirst && idx == 0) || (likeFirst && idx > -1)) && ((!likeLast && idx == data.length
+					ret.push(rd);
+				break;
+			}
+			case "!eq":
+				if (rd[field] != value)
+					ret.push(rd);
+				break;
+			case "!gt":
+				if (rd[field] <= value)
+					ret.push(rd);
+				break;
+			case "!lt":
+				if (rd[field] >= value)
+					ret.push(rd);
+				break;
+			case "!like": {
+				var data = ("" + rd[field]);
+				var idx = data.indexOf(value);
+				if (!(((!likeFirst && idx == 0) || (likeFirst && idx > -1)) && ((!likeLast && idx == data.length
 					- value.length) || (likeLast && idx > -1))))
-				ret.push(rd);
-			break;
-		}
+					ret.push(rd);
+				break;
+			}
 		}
 	}
 	return new Record(ret);
 };
+
 /**
- * Sort records.<br>
- * The action is one of the options: [ asc | desc ]
- * 
- * @param {String}
- *            field: required<br>
- * @param {String}
- *            action: required<br>
- * @returns {Record}
+ * レコードをソートします。
+ * @param {String} field - 必須。ソート対象のフィールド名。
+ * @param {String} action - 必須。ソート順 [ asc | desc ]。
+ * @returns {Record} ソート後のRecordインスタンス。
  */
-Record.prototype.sort = function(field, action) {
+Record.prototype.sort = function (field, action) {
 	if (field == "" || field == undefined || field == null)
 		return new Record();
 	if (action != "asc" && action != "desc" && action != "ASC"
-			&& action != "DESC")
+		&& action != "DESC")
 		return new Record();
-	var ret = this.values.sort(function(a, b) {
+	var ret = this.values.sort(function (a, b) {
 		if (action == "desc" || action == "DESC") {
 			if (a[field] < b[field])
 				return 1;
@@ -140,47 +133,47 @@ Record.prototype.sort = function(field, action) {
 	});
 	return new Record(ret);
 };
+
 /**
- * to make all keys uppercase
- * @returns {Record}
+ * すべてのキー名を大文字に変換します。
+ * @returns {Record} 変換後のRecordインスタンス。
  */
-Record.prototype.makeAllKeysUpperCase = function(){
+Record.prototype.makeAllKeysUpperCase = function () {
 	var array = [];
-	for (var i = 0; i< this.values.length; i++) {
+	for (var i = 0; i < this.values.length; i++) {
 		var rsdata = this.values[i];
 		var item = {};
-		for (var key in rsdata){
-			item[key.toUpperCase()]=rsdata[key];
+		for (var key in rsdata) {
+			item[key.toUpperCase()] = rsdata[key];
 		}
 		array.push(item);
 	}
 	return new Record(array);
 }
+
 /**
- * to make all keys lowercase
- * @returns {Record}
+ * すべてのキー名を小文字に変換します。
+ * @returns {Record} 変換後のRecordインスタンス。
  */
-Record.prototype.makeAllKeysLowerCase = function(){
+Record.prototype.makeAllKeysLowerCase = function () {
 	var array = [];
-	for (var i = 0; i< this.values.length; i++) {
+	for (var i = 0; i < this.values.length; i++) {
 		var rsdata = this.values[i];
 		var item = {};
-		for (var key in rsdata){
-			item[key.toLowerCase()]=rsdata[key];
+		for (var key in rsdata) {
+			item[key.toLowerCase()] = rsdata[key];
 		}
 		array.push(item);
 	}
 	return new Record(array);
 }
+
 /**
- * The function to change the record format.
- * 
- * @param mapping:
- *            required<br>
- *            {fieldnew1:fieldold1,fieldnew2:fieldold2,...}<br>
- * @returns {Record}
+ * 指定されたマッピングルールに従ってレコードの形式を変換します。
+ * @param {Object} mapping - 必須。マッピング定義。{新フィールド: 旧フィールド | 関数 | [フィールド, フォーマット, 丸め]}。
+ * @returns {Record} 変換後のRecordインスタンス。
  */
-Record.prototype.map = function(mapping) {
+Record.prototype.map = function (mapping) {
 	if (mapping == null)
 		return new Record();
 
@@ -190,7 +183,7 @@ Record.prototype.map = function(mapping) {
 
 		var itemfix = null;
 		var item = {};
-		for ( var key in mapping) {
+		for (var key in mapping) {
 			var mp = mapping[key];
 			if (typeof mp == "string") {
 				var vl = rsdata[mp];
@@ -202,15 +195,14 @@ Record.prototype.map = function(mapping) {
 				var vl = rsdata[mp[0]];
 				var ft = mp[1];
 				if (vl != null && ft != null) {
-					if (ft.indexOf("{")==0&&ft.lastIndexOf("}")==ft.length-1){
+					if (ft.indexOf("{") == 0 && ft.lastIndexOf("}") == ft.length - 1) {
 						vl = EfwServerFormat.prototype.formatEnum(vl, ft);
-					}else if (vl.toFixed) {// if vl is number #,##0.00
+					} else if (vl.toFixed) {// if vl is number #,##0.00
 						var round = "" + mp[2];
 						vl = EfwServerFormat.prototype.formatNumber(vl, ft, round);
 					} else if (vl.getTime) {// if vl is date yyyyMMdd
 						vl = EfwServerFormat.prototype.formatDate(vl, ft);
 					}
-					// if vl is not date or number or boolean, it should not have format
 				}
 				item[key] = vl;
 			}
@@ -219,73 +211,73 @@ Record.prototype.map = function(mapping) {
 	}
 	return new Record(array);
 };
+
 /**
- * The function to get the first data item from records.
- * 
- * @returns {Object}
+ * 最初のレコードを取得します（ディープコピー）。
+ * @returns {Object} 最初のデータアイテム。空の場合は空オブジェクト。
  */
-Record.prototype.getSingle = function() {
-	if (this.values.length == 0)return {};
+Record.prototype.getSingle = function () {
+	if (this.values.length == 0) return {};
 	return JSON.clone(this.values[0]);
 };
+
 /**
- * The function to get the array data from records.
- * 
- * @returns {Array}
+ * レコード全体を配列として取得します（ディープコピー）。
+ * @returns {Array} オブジェクト配列。
  */
-Record.prototype.getArray = function() {
+Record.prototype.getArray = function () {
 	return JSON.clone(this.values);
 };
+
 /**
- * The function to get a field value from the first data of records.
- * 
- * @param {String}
- *            field: required<br>
- * @returns {String | Number | Date | Boolean}
+ * 最初のレコードから指定したフィールドの値を取得します。
+ * @param {String} field - 必須。フィールド名。
+ * @returns {String|Number|Date|Boolean} フィールドの値。
  */
-Record.prototype.getValue = function(field) {
-	if (this.values.length == 0)return null;
+Record.prototype.getValue = function (field) {
+	if (this.values.length == 0) return null;
 	return this.values[0][field];
 };
+
 /**
- * The function to group the record by param fields.
- * @param {String}
- * 			fields: required<br>
+ * 指定されたフィールドでレコードをグルーピング（階層化）します。
+ * @param {...String} fields - 必須。グルーピングのキーとする1つ以上のフィールド名。
+ * @returns {Object|null} 階層化されたオブジェクト。
  */
-Record.prototype.group = function(/*field1,field2,field3...*/) {
-	if(arguments.length==0) return null;
-	var root={};
+Record.prototype.group = function (/*field1,field2,field3...*/) {
+	if (arguments.length == 0) return null;
+	var root = {};
 	//to create the tree
-	for (var i=0; i<this.values.length; i++){
-		var item=JSON.clone(this.values[i]);
-		var current=root;
-		for (var j=0; j<arguments.length; j++){
-			var key=arguments[j];
-			if(current[item[key]]==null){
-				if(j==arguments.length-1){
-					current[item[key]]=[];
-				}else{
-					current[item[key]]={};
+	for (var i = 0; i < this.values.length; i++) {
+		var item = JSON.clone(this.values[i]);
+		var current = root;
+		for (var j = 0; j < arguments.length; j++) {
+			var key = arguments[j];
+			if (current[item[key]] == null) {
+				if (j == arguments.length - 1) {
+					current[item[key]] = [];
+				} else {
+					current[item[key]] = {};
 				}
 			}
-			current=current[item[key]];
+			current = current[item[key]];
 			delete item[key];
 		}
 		current.push(item);
 	}
 	return root;
 };
+
 /**
- * The function to show the debug info about the record.
- * @param {String}
- * 			label: optional<br>
+ * コンソールにデバッグ情報を出力します。
+ * @param {String} [label=""] - 任意。出力ラベル。
  * @returns {Record}
  */
-Record.prototype.debug = function(label) {
+Record.prototype.debug = function (label) {
 	if (!label)
 		label = "";
 	java.lang.System.out.println("-----" + label + "-----");
 	java.lang.System.out.println("This is an instance of Record class.");
-	java.lang.System.out.println("records:"+JSON.stringify(this.values));
+	java.lang.System.out.println("records:" + JSON.stringify(this.values));
 	return this;
 };

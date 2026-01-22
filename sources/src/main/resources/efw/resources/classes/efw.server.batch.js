@@ -1,75 +1,71 @@
 "use strict";
 /**** efw4.X Copyright 2025 efwGrp ****/
 /**
- * The class for batch result.
- * 
- * @author Chang Kejun
+ * バッチ処理の結果を保持するためのクラス。
+ * * @author Chang Kejun
  */
 function Batch() {
-	if (this==null){throw new Packages.efw.NewKeywordWasForgottenException("Batch");}
-	this.errorlevel=0;
-	this.logs=[];
-	this.echos=[];
+	if (this == null) { throw new Packages.efw.NewKeywordWasForgottenException("Batch"); }
+	this.errorlevel = 0;
+	this.logs = [];
+	this.echos = [];
 };
 
 /**
- * The error level for batch.
+ * バッチのエラーレベル（終了コード）。
  */
-Batch.prototype.errorlevel=null;
+Batch.prototype.errorlevel = null;
 /**
- * The array to keep logs.
+ * ログメッセージを保持する配列。
  */
 Batch.prototype.logs = null;
 /**
- * The array to keep echos.
+ * エコーメッセージを保持する配列。
  */
 Batch.prototype.echos = null;
 
 /**
- * The function to concatenate to another batch result.
- * 
- * @param {Batch} batch: required<br>
- * @returns {Batch}
+ * 他のBatchオブジェクトの結果を現在のオブジェクトに結合します。
+ * * @param {Batch} batch: 必須。結合対象のBatchオブジェクト。<br>
+ * @returns {Batch} メソッドチェーン用の自分自身のインスタンス。
  */
-Batch.prototype.concat = function(batch) {
-	if(batch){
-		if (this.errorlevel<batch.errorlevel)this.errorlevel=batch.errorlevel;
-		if(batch.logs){
+Batch.prototype.concat = function (batch) {
+	if (batch) {
+		// 高い方のエラーレベルを維持する
+		if (this.errorlevel < batch.errorlevel) this.errorlevel = batch.errorlevel;
+		if (batch.logs) {
 			this.logs = this.logs.concat(batch.logs);
 		}
-		if(batch.echos){
+		if (batch.echos) {
 			this.echos = this.echos.concat(batch.echos);
 		}
 	}
 	return this;
 };
 /**
- * The function to set error level.
- * 
- * @param {Number} errorlevel: required<br>
- * @returns {Batch}
+ * エラーレベル（終了コード）を設定します。
+ * * @param {Number} errorlevel: 必須。設定するエラーレベル。<br>
+ * @returns {Batch} メソッドチェーン用の自分自身のインスタンス。
  */
-Batch.prototype.exit=function(errorlevel){
-	this.errorlevel=errorlevel;
+Batch.prototype.exit = function (errorlevel) {
+	this.errorlevel = errorlevel;
 	return this;
 };
 /**
- * The function to log a message.
- * 
- * @param {String} message: required<br>
- * @returns {Batch}
+ * ログメッセージを追加します。
+ * * @param {String} message: 必須。ログに出力する文字列。<br>
+ * @returns {Batch} メソッドチェーン用の自分自身のインスタンス。
  */
-Batch.prototype.log=function(message){
+Batch.prototype.log = function (message) {
 	this.logs.push(message);
 	return this;
 };
 /**
- * The function to echo a message.
- * 
- * @param {String} message: required<br>
- * @returns {Batch}
+ * エコーメッセージを追加します。
+ * * @param {String} message: 必須。表示（エコー）する文字列。<br>
+ * @returns {Batch} メソッドチェーン用の自分自身のインスタンス。
  */
-Batch.prototype.echo=function(message){
+Batch.prototype.echo = function (message) {
 	this.echos.push(message);
 	return this;
 };
