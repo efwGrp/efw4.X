@@ -81,7 +81,7 @@ efwフレームワークは強力なグラフ機能を提供し、シンプル�
 
 efwフレームワークは強力なバーコードとQRコード生成機能を提供し、シンプルなServlet呼び出しで多種多様なバーコードを生成できます。この機能はZXingとBarcode4jライブラリをベースに実装されており、QRコード、Code 128、EAN-13など様々なバーコード形式をサポートします。
 
-- JSP ページ ([helloBarcode.jsp.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
+- JSP ページ ([helloBarcode.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
 
 -----
 

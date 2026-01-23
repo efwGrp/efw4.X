@@ -76,7 +76,7 @@ The efw framework provides powerful charting capabilities that enable various ty
 ### [efw Barcode and QR Code Generation Example](example8.md)
 The efw framework provides powerful barcode and QR code generation capabilities that can generate various types of barcodes and QR codes through simple Servlet calls. This functionality is implemented based on ZXing and Barcode4j libraries, supporting multiple barcode formats including QR Code, Code 128, EAN-13, and more.
 
-- JSP Page ([helloBarcode.jsp.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
+- JSP Page ([helloBarcode.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
 
 -----
 

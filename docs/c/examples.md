@@ -81,7 +81,7 @@ efw 框架提供了强大的图表功能，通过简单的 JSP 标签即可实�
 
 efw 框架提供了强大的条码和二维码生成功能，通过简单的 Servlet 调用即可生成多种类型的条形码和二维码。该功能基于 ZXing 和 Barcode4j 库实现，支持包括 QR Code、Code 128、EAN-13 等在内的多种条码格式。
 
-- JSP 页面 ([helloBarcode.jsp.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
+- JSP 页面 ([helloBarcode.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloBarcode.jsp))
 
 -----
 
