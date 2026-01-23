@@ -1,110 +1,115 @@
 "use strict";
 /**** efw4.X Copyright 2025 efwGrp ****/
 /**
- * The class to visit the rest service
+ * RESTサービスにアクセスするためのクラス。
+ * 外部APIとの通信（GET, POST, PUT, DELETE）を管理します。
  *
  * @author lndljack
+ * @constructor
  */
 function EfwServerRest() {
 
 }
 
 /**
- * The function to get data from the rest service.
- * @param {String} apiUrl
- * @param {key:value} heads
- * @returns {JsonObject}
+ * RESTサービスからデータを取得（GET）します。
+ * @param {String} apiUrl - 接続先のAPI URL。
+ * @param {Object} [heads] - 必須ではない。HTTPヘッダーのキー・バリュー。
+ * @returns {Object|null} レスポンスのJSONオブジェクト。空の場合はnull。
  */
-EfwServerRest.prototype.get=function(apiUrl, heads){
-	var mapHeads=new java.util.HashMap();
-	if (heads!=null){
-		for(var key in heads){
-			mapHeads.put(key,heads[key]);
+EfwServerRest.prototype.get = function (apiUrl, heads) {
+	var mapHeads = new java.util.HashMap();
+	if (heads != null) {
+		for (var key in heads) {
+			mapHeads.put(key, heads[key]);
 		}
 	}
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"GET","",mapHeads);
-    if (strRtnVal==""){
-    	return null;
-    }else{
-        return JSON.parse(strRtnVal);
-    }
+	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl, "GET", "", mapHeads);
+	if (strRtnVal == "") {
+		return null;
+	} else {
+		return JSON.parse(strRtnVal);
+	}
 };
 
 /**
- * The function to post data to the rest service.
- * @param {String} apiUrl
- * @param {id:string} params
- * @param {key:value} heads
- * @returns {JsonObject}
+ * RESTサービスへデータを送信（POST）します。
+ * @param {String} apiUrl - 接続先のAPI URL。
+ * @param {Object} params - 送信するデータオブジェクト。
+ * @param {Object} [heads] - HTTPヘッダー。
+ * @returns {Object|null} レスポンスのJSONオブジェクト。
  */
-EfwServerRest.prototype.post=function(apiUrl, params, heads){
-	var mapHeads=new java.util.HashMap();
-	if (heads!=null){
-		for(var key in heads){
-			mapHeads.put(key,heads[key]);
+EfwServerRest.prototype.post = function (apiUrl, params, heads) {
+	var mapHeads = new java.util.HashMap();
+	if (heads != null) {
+		for (var key in heads) {
+			mapHeads.put(key, heads[key]);
 		}
 	}
-    var strJson = JSON.stringify(params);
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"POST",strJson,mapHeads);
-    if (strRtnVal==""){
-    	return null;
-    }else{
-        return JSON.parse(strRtnVal);
-    }
+	var strJson = JSON.stringify(params);
+	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl, "POST", strJson, mapHeads);
+	if (strRtnVal == "") {
+		return null;
+	} else {
+		return JSON.parse(strRtnVal);
+	}
 };
 
 /**
- * The function to put data to the rest service.
- * @param {String} apiUrl
- * @param {id:string} params
- * @param {key:value} heads
- * @returns {JsonObject}
+ * RESTサービスへデータを更新送信（PUT）します。
+ * @param {String} apiUrl - 接続先のAPI URL。
+ * @param {Object} params - 更新するデータオブジェクト。
+ * @param {Object} [heads] - HTTPヘッダー。
+ * @returns {Object|null} レスポンスのJSONオブジェクト。
  */
-EfwServerRest.prototype.put=function(apiUrl, params, heads){
-	var mapHeads=new java.util.HashMap();
-	if (heads!=null){
-		for(var key in heads){
-			mapHeads.put(key,heads[key]);
+EfwServerRest.prototype.put = function (apiUrl, params, heads) {
+	var mapHeads = new java.util.HashMap();
+	if (heads != null) {
+		for (var key in heads) {
+			mapHeads.put(key, heads[key]);
 		}
 	}
-    var strJson = JSON.stringify(params);
-    var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"PUT",strJson,mapHeads);
-    if (strRtnVal==""){
-    	return null;
-    }else{
-        return JSON.parse(strRtnVal);
-    }
+	var strJson = JSON.stringify(params);
+	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl, "PUT", strJson, mapHeads);
+	if (strRtnVal == "") {
+		return null;
+	} else {
+		return JSON.parse(strRtnVal);
+	}
 };
 
 /**
- * The function to delete data from the rest service.
- * @param {String} apiUrl
- * @param {key:value} heads
- * @returns {JsonObject}
+ * RESTサービスからリソースを削除（DELETE）します。
+ * @param {String} apiUrl - 接続先のAPI URL。
+ * @param {Object} [heads] - HTTPヘッダー。
+ * @returns {Object|null} レスポンスのJSONオブジェクト。
  */
-EfwServerRest.prototype.delete=function(apiUrl, heads){
-	var mapHeads=new java.util.HashMap();
-	if (heads!=null){
-		for(var key in heads){
-			mapHeads.put(key,heads[key]);
+EfwServerRest.prototype.delete = function (apiUrl, heads) {
+	var mapHeads = new java.util.HashMap();
+	if (heads != null) {
+		for (var key in heads) {
+			mapHeads.put(key, heads[key]);
 		}
 	}
-	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl,"DELETE","",mapHeads);
-    if (strRtnVal==""){
-    	return null;
-    }else{
-        return JSON.parse(strRtnVal);
-    }
+	var strRtnVal = Packages.efw.rest.RestManager.visit(apiUrl, "DELETE", "", mapHeads);
+	if (strRtnVal == "") {
+		return null;
+	} else {
+		return JSON.parse(strRtnVal);
+	}
 };
+
 /**
- * The function to get response code after rest calling.
- * @returns {JsonObject}
+ * 直近のREST呼び出し結果のHTTPステータスコードを取得します。
+ * @returns {Number} HTTPステータスコード（200, 404, 500など）。
  */
-EfwServerRest.prototype.getStatus=function(){
+EfwServerRest.prototype.getStatus = function () {
 	return 0 + Packages.efw.rest.RestManager.getStatus();
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * create instances.
+ * REST操作用グローバルインスタンス。
+ * @global
  */
 var rest = new EfwServerRest();
