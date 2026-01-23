@@ -1,39 +1,41 @@
-﻿"use strict";
+"use strict";
 /**** efw4.X Copyright 2025 efwGrp ****/
 /**
- * The class to send mail.
- * 
- * @author Chang Kejun
+ * メール送信を管理するクラス。
+ * 外部のメール定義ファイルに基づき、動的なパラメータを埋め込んでメールを送信します。
+ * * @author Chang Kejun
+ * @constructor
  */
 function EfwServerMail() {
 };
+
 /**
- * The function to send mail.
- * 
- * @param {String}
- *            groupId: required<br>
- * @param {String}
- *            mailId: required<br>
- * @param {Object}
- *            params: required<br>
- *            {param1:value1,param2:value2,...}<br>
- * @param {Boolean}
- *            inBackground: optional<br>
+ * 指定されたメールグループおよびメールIDを使用してメールを送信します。
+ * * @param {String} groupId - 必須。メール定義ファイル内のグループID。
+ * @param {String} mailId - 必須。メール定義ファイル内のメールID。
+ * @param {Object} params - 必須。メール本文のプレースホルダに埋め込むパラメータオブジェクト。
+ * 例: {userName: "田中", orderId: "123"}
+ * @param {Boolean} [inBackground=false] - 任意。trueの場合、非同期（バックグラウンド）で送信を実行します。
  */
-EfwServerMail.prototype.send = function(groupId, mailId, params, inBackground) {
+EfwServerMail.prototype.send = function (groupId, mailId, params, inBackground) {
+	// JavaScriptのObjectからJavaのHashMapへ変換
 	var hashMapParams = new java.util.HashMap();
-	for ( var key in params) {
+	for (var key in params) {
 		var vl = "" + params[key];
 		hashMapParams.put(key, vl);
 	}
-	if (inBackground){
+
+	// バックグラウンド送信または通常送信の実行
+	if (inBackground) {
 		Packages.efw.mail.MailManager.sendInBackground(groupId, mailId, hashMapParams);
-	}else{
+	} else {
 		Packages.efw.mail.MailManager.send(groupId, mailId, hashMapParams);
 	}
 };
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
- * create instances.
+ * メール操作用グローバルインスタンス。
+ * @global
  */
 var mail = new EfwServerMail();
