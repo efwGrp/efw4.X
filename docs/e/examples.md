@@ -38,13 +38,13 @@ This example demonstrates the complete implementation of dialog functionality in
 - Dialog Initialization Event Handler ([helloDialog_init.js](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloDialog_init.js))
 
 #### With Bootstrap4
-- JSP Page ([helloDialog.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog4.jsp))
-- Custom Dialog Component ([helloDialog_myDialog.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog_myDialog4.jsp))
+- JSP Page ([helloDialog4.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog4.jsp))
+- Custom Dialog Component ([helloDialog_myDialog4.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog_myDialog4.jsp))
 - Dialog Initialization Event Handler ([helloDialog_init.js](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloDialog_init.js))
 
 #### With Bootstrap5
-- JSP Page ([helloDialog.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog5.jsp))
-- Custom Dialog Component ([helloDialog_myDialog.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog_myDialog5.jsp))
+- JSP Page ([helloDialog5.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog5.jsp))
+- Custom Dialog Component ([helloDialog_myDialog5.jsp](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/helloDialog_myDialog5.jsp))
 - Dialog Initialization Event Handler ([helloDialog_init.js](https://github.com/efwGrp/efw4.X/tree/master/examples/helloworld/WEB-INF/efw/event/helloDialog_init.js))
 
 -----
