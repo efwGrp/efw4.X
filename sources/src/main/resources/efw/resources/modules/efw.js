@@ -23,6 +23,7 @@ Efw.prototype._keys = [
 	"cookie",
 	"db",
 	"event",
+	"efwEvent",
 	"file",
 	"absfile",
 	"mail",

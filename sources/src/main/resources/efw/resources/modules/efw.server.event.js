@@ -160,3 +160,7 @@ EfwServerEvent.prototype._load = function (eventId, loadingGlobal) {
  * @global
  */
 var event = new EfwServerEvent();
+/**
+ * VSCode向けのd.tsにエラー発生を防ぐため、別名を作成する
+ */
+var efwEvent = event;

@@ -53,7 +53,7 @@
 | `absfile` | すべてのAPIは`file`オブジェクトと同じですが、パスパラメータが絶対パスである点が異なります。 |  |  |  |  |
 | `brms` | [`getRuleById`](brms.getRuleById.md) | [`getRuleByName`](brms.getRuleByName.md) | [`getRuleByAlias`](brms.getRuleByAlias.md) |  |  |
 | `rest` | [`get`](rest.get.md) | [`post`](rest.post.md) | [`put`](rest.put.md) | [`delete`](rest.delete.md) | [`getStatus`](rest.getStatus.md) |
-| `event` | [`fire`](event.fire.md) |  |  |  |  |
+| `event` or `efwEvent` | [`fire`](event.fire.md) |  |  |  |  |
 | `db` | [`select`](db.select.md) | [`change`](db.change.md) | [`master`](db.master.md)※d |  |  |
 |  | [`_commit`](db._commit.md) | [`_rollback`](db._rollback.md) | [`_commitAll`](db._commitAll.md) | [`_rollbackAll`](db._rollbackAll.md) |  |
 |  | すべてのトランザクション関数は、デフォルトで明示的に呼び出す必要はありません。 |  |  |  |  |
@@ -87,7 +87,7 @@
 |  | [`isEncircled`](excel.isEncircled.md) | [`encircle`](excel.encircle.md) | [`addShape`](excel.addShape.md) | [`addShapeInRange`](excel.addShapeInRange.md) | [`replacePicture`](excel.replacePicture.md) |
 | `Pdf` | [`new`](pdf.new.md) | [`save`](pdf.save.md) | [`close`](pdf.close.md) | [`setField`](pdf.setField.md) |  |
 |  | [`html2pdf`](pdf.html2pdf.md) | [`getFontNames`](pdf.getFontNames.md) |
-| `Record` | [`new`](record.new.md) |  |  |  |  |
+| `Record` or `EfwRecord` | [`new`](record.new.md) |  |  |  |  |
 |  | [`seek`](record.seek.md) | [`sort`](record.sort.md) | [`map`](record.map.md) | [`makeAllKeysUpperCase`](record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](record.getArray.md) | [`getSingle`](record.getSingle.md) | [`getValue`](record.getValue.md) | [`length`](record.length.md) |  |
 | `Result`※w | [`new`](result.new.md) | [`concat`](result.concat.md) |  |  |  |

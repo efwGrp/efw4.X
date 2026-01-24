@@ -16,6 +16,10 @@ function Record(array) {
 		this.length = array.length;
 	}
 };
+/**
+ * VSCode向けのd.tsにエラー発生を防ぐため、別名を作成する
+ */
+var EfwRecord = Record;
 
 /**
  * レコードの件数。
