@@ -53,7 +53,8 @@
 | `absfile` | All APIs are the same as the `file` object, except that the path parameter is an absolute one.  |||||
 | `brms` | [`getRuleById`](brms.getRuleById.md) | [`getRuleByName`](brms.getRuleByName.md) | [`getRuleByAlias`](brms.getRuleByAlias.md) |  |  |
 | `rest` | [`get`](rest.get.md) | [`post`](rest.post.md) | [`put`](rest.put.md) | [`delete`](rest.delete.md) | [`getStatus`](rest.getStatus.md) |
-| `event` or `efwEvent` | [`fire`](event.fire.md) |  |  |  |  |
+| `event` | [`fire`](event.fire.md) |  |  |  |  |
+| `efwEvent` | An alias for `event`, established for TypeScript development.|  |  |  |  |
 | `db` | [`select`](db.select.md) | [`change`](db.change.md) | [`master`](db.master.md)※d |  |  |
 |  | [`_commit`](db._commit.md) | [`_rollback`](db._rollback.md) | [`_commitAll`](db._commitAll.md) | [`_rollbackAll`](db._rollbackAll.md) |  |
 |  | All transaction functions, as a default, do not need to be called explicitly.  |||||
@@ -87,9 +88,10 @@
 |  | [`isEncircled`](excel.isEncircled.md) | [`encircle`](excel.encircle.md) | [`addShape`](excel.addShape.md) | [`addShapeInRange`](excel.addShapeInRange.md) | [`replacePicture`](excel.replacePicture.md) |
 | `Pdf` | [`new`](pdf.new.md) | [`save`](pdf.save.md) | [`close`](pdf.close.md) | [`setField`](pdf.setField.md) |  |
 |  | [`html2pdf`](pdf.html2pdf.md) | [`getFontNames`](pdf.getFontNames.md) |
-| `Record` or `EfwRecord` | [`new`](record.new.md) |  |  |  |  |
+| `Record` | [`new`](record.new.md) |  |  |  |  |
 |  | [`seek`](record.seek.md) | [`sort`](record.sort.md) | [`map`](record.map.md) | [`makeAllKeysUpperCase`](record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](record.makeAllKeysLowerCase.md) |
 |  | [`getArray`](record.getArray.md) | [`getSingle`](record.getSingle.md) | [`getValue`](record.getValue.md) | [`length`](record.length.md) |  |
+| `EfwRecord` | An alias for `Record`, established for TypeScript development.|  |  |  |  |
 | `Result`※w | [`new`](result.new.md) | [`concat`](result.concat.md) |  |  |  |
 |  | [`runat`](result.runat.md) | [`remove`](result.remove.md) | [`append`](result.append.md) | [`withdata`](result.withdata.md) |  |
 |  | [`show`](result.show.md) | [`hide`](result.hide.md) | [`enable`](result.enable.md) | [`disable`](result.disable.md) |  |
