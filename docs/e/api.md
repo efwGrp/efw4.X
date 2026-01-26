@@ -90,7 +90,7 @@
 |  | [`html2pdf`](pdf.html2pdf.md) | [`getFontNames`](pdf.getFontNames.md) |
 | `Record` | [`new`](record.new.md) |  |  |  |  |
 |  | [`seek`](record.seek.md) | [`sort`](record.sort.md) | [`map`](record.map.md) | [`makeAllKeysUpperCase`](record.makeAllKeysUpperCase.md) | [`makeAllKeysLowerCase`](record.makeAllKeysLowerCase.md) |
-|  | [`getArray`](record.getArray.md) | [`getSingle`](record.getSingle.md) | [`getValue`](record.getValue.md) | [`length`](record.length.md) |  |
+|  | [`group`](record.group.md) | [`getArray`](record.getArray.md) | [`getSingle`](record.getSingle.md) | [`getValue`](record.getValue.md) | [`length`](record.length.md) | |
 | `EfwRecord` | An alias for `Record`, established for TypeScript development.|  |  |  |  |
 | `Result`※w | [`new`](result.new.md) | [`concat`](result.concat.md) |  |  |  |
 |  | [`runat`](result.runat.md) | [`remove`](result.remove.md) | [`append`](result.append.md) | [`withdata`](result.withdata.md) |  |
