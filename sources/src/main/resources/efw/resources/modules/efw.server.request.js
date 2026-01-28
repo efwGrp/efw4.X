@@ -13,7 +13,7 @@ function EfwServerRequest() {
  * リクエスト（Referer URL）から指定されたキーに対応する値を取得します。
  * 取得時に禁則文字のチェックおよび置換を自動的に行います。
  * @param {String} key - 取得したいパラメータのキー名。
- * @returns {Any} デコードおよび禁則文字置換済みの値。パラメータが存在しない場合は null。
+ * @returns {String|null} デコードおよび禁則文字置換済みの値。パラメータが存在しない場合は null。
  */
 EfwServerRequest.prototype.get = function (key) {
 	// Javaのユーティリティ経由でReferer URLを取得

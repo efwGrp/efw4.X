@@ -47,7 +47,7 @@ Result.prototype.runat = function (selector) {
 /**
  * 直前に指定した描画命令に対して、削除対象の要素を指定します。
  * @param {String} selector - 必須。削除する要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.remove = function (selector) {
 	if (this.values.length > 0) {
@@ -60,7 +60,7 @@ Result.prototype.remove = function (selector) {
 /**
  * 直前に指定した描画命令に対して、HTMLテンプレート（マスク）を指定します。
  * @param {String} mask - 必須。追加する要素のHTMLテンプレート名。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.append = function (mask) {
 	if (this.values.length > 0) {
@@ -73,7 +73,7 @@ Result.prototype.append = function (mask) {
 /**
  * 直前に指定した描画命令に対して、反映するデータを指定します。
  * @param {Array|Object} data - 必須。反映するデータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.withdata = function (data) {
 	if (this.values.length > 0) {
@@ -86,7 +86,7 @@ Result.prototype.withdata = function (data) {
 /**
  * 別の Result オブジェクトの内容を現在の Result に統合します。
  * @param {Result} result - 必須。統合元の Result インスタンス。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.concat = function (result) {
 	if (result) {
@@ -122,7 +122,7 @@ Result.prototype.concat = function (result) {
 /**
  * クライアント側で要素を表示します。
  * @param {String} selector - 必須。表示する要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.show = function (selector) {
 	if (this.actions.show == null) {
@@ -136,7 +136,7 @@ Result.prototype.show = function (selector) {
 /**
  * クライアント側で要素を非表示にします。
  * @param {String} selector - 必須。非表示にする要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.hide = function (selector) {
 	if (this.actions.hide == null) {
@@ -150,7 +150,7 @@ Result.prototype.hide = function (selector) {
 /**
  * クライアント側で要素を無効化（disabled）します。
  * @param {String} selector - 必須。無効化する要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.disable = function (selector) {
 	if (this.actions.disable == null) {
@@ -164,7 +164,7 @@ Result.prototype.disable = function (selector) {
 /**
  * クライアント側で要素を有効化します。
  * @param {String} selector - 必須。有効化する要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.enable = function (selector) {
 	if (this.actions.enable == null) {
@@ -179,7 +179,7 @@ Result.prototype.enable = function (selector) {
  * クライアント側で別のURLに画面遷移させます。
  * @param {String} url - 必須。遷移先のURL。
  * @param {Object} [params] - 任意。URLパラメータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.navigate = function (url, params) {
 	if (!this.actions.navigate) {
@@ -195,7 +195,7 @@ Result.prototype.navigate = function (url, params) {
  * @param {String|Array} path - 必須。添付するファイルまたはフォルダの相対パス。
  * @param {String} [zipBasePath] - 任意。ZIP圧縮時のルートフォルダ名。
  * @param {Boolean} [isAbs=false] - 任意。パスを絶対パスとして扱うかどうか。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.attach = function (path, zipBasePath, isAbs) {
 	if (!this.actions.download) this.actions.download = {};
@@ -238,7 +238,7 @@ Result.prototype.attach = function (path, zipBasePath, isAbs) {
  * ダウンロード時のファイル名およびパスワードを設定します。
  * @param {String} filename - 必須。保存時のファイル名。
  * @param {String} [password] - 任意。暗号化用パスワード。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.saveas = function (filename, password) {
 	if (!this.actions.download) this.actions.download = {};
@@ -249,7 +249,7 @@ Result.prototype.saveas = function (filename, password) {
 
 /**
  * ダウンロード完了後、サーバー上の元ファイルを削除するフラグを立てます。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.deleteAfterDownload = function () {
 	if (this.actions.download) this.actions.download.deleteafterdownload = true;
@@ -261,7 +261,7 @@ Result.prototype.deleteAfterDownload = function () {
  * @param {String|Array} message - 必須。表示するメッセージまたはメッセージの配列。
  * @param {String} [title] - 任意。アラートダイアログのタイトル。
  * @param {Object} [params] - 任意。メッセージ内に埋め込むパラメータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.alert = function (message, title, params) {
 	if (!this.actions.alert)
@@ -289,7 +289,7 @@ Result.prototype.alert = function (message, title, params) {
 /**
  * 指定した要素をハイライト（強調）表示します（主にエラー箇所等）。
  * @param {String} selector - 必須。対象要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.highlight = function (selector) {
 	if (this.actions.highlight == null) {
@@ -303,7 +303,7 @@ Result.prototype.highlight = function (selector) {
 /**
  * 指定した要素にフォーカスを当てます。
  * @param {String} selector - 必須。対象要素のセレクタ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.focus = function (selector) {
 	if (!this.actions.focus) this.actions.focus = selector;
@@ -314,7 +314,7 @@ Result.prototype.focus = function (selector) {
  * クライアント側へエラーメッセージIDを通知します。
  * @param {String} clientMessageId - 必須。メッセージID。
  * @param {Object} [params] - 任意。埋め込みパラメータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.error = function (clientMessageId, params) {
 	if (!this.actions.error)
@@ -328,7 +328,7 @@ Result.prototype.error = function (clientMessageId, params) {
  * @param {Object} buttons - 必須。ボタン構成（コールバック等）。
  * @param {String} [title] - 任意。タイトル。
  * @param {Object} [params] - 任意。埋め込みパラメータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.confirm = function (message, buttons, title, params) {
 	if (typeof (title) == "object") {
@@ -354,7 +354,7 @@ Result.prototype.confirm = function (message, buttons, title, params) {
 /**
  * クライアント側で任意のJavaScriptを実行します。
  * @param {String|Array} script - 必須。実行するスクリプト。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.eval = function (script) {
 	if (!this.actions.eval) this.actions.eval = [];
@@ -369,7 +369,7 @@ Result.prototype.eval = function (script) {
 /**
  * コンソールにデバッグ情報を出力します。
  * @param {String} [label=""] - 任意。デバッグ用のラベル。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.debug = function (label) {
 	if (!label)
@@ -383,9 +383,9 @@ Result.prototype.debug = function (label) {
 
 /**
  * クライアント側でファイルをプレビュー（PDF表示等）させます。
- * @param {String|Array} filePath - 必須。ファイルパス。
+ * @param {String} filePath - 必須。ファイルパス。
  * @param {Boolean} [isAbs=false] - 任意。絶対パスかどうか。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.preview = function (filePath, isAbs) {
 	if (!this.actions.preview) this.actions.preview = {};
@@ -397,7 +397,7 @@ Result.prototype.preview = function (filePath, isAbs) {
 /**
  * クライアント側の Efw() コールバック関数へ渡す生データをセットします。
  * @param {Object} data - 必須。渡すデータ。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.provide = function (data) {
 	this.data = data;
@@ -409,7 +409,7 @@ Result.prototype.provide = function (data) {
  * @param {String} message - 必須。表示メッセージ。
  * @param {Number} percent - 必須。進捗率（0-100）。
  * @param {Boolean} [closeFlag=false] - 任意。完了時に閉じるかどうか。
- * @returns {Result}
+ * @returns {Result} メソッドチェーン用の自分自身のインスタンス。
  */
 Result.prototype.progress = function (message, percent, closeFlag) {
 	if (!this.actions.progress) this.actions.progress = {};

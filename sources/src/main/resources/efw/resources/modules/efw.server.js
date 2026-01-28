@@ -371,10 +371,3 @@ EfwServer.prototype.fire = function (event, requestParams) {
 		Pdf.prototype._closeAll();
 	}
 };
-
-///////////////////////////////////////////////////////////////////////////////
-/**
- * サーバー操作用グローバルインスタンス。
- * @global
- */
-var server = new EfwServer();

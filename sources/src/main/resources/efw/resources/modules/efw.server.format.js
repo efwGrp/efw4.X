@@ -11,7 +11,7 @@ function EfwServerFormat() {
 /**
  * 数値をフォーマットされた文字列に変換します。
  * 全角文字（０＃，．％）を含むフォーマッタが指定された場合、出力結果も全角に変換されます。
- * @param {Number} value - 必須。フォーマット対象の数値。
+ * @param {Number|string} value - 必須。フォーマット対象の数値。
  * @param {String} formatter - 必須。フォーマット形式（例: "#,###", "０．００"）。
  * @param {String} [rounder="HALF_EVEN"] - 任意。丸め方式。
  * (UP | DOWN | CEILING | FLOOR | HALF_UP | HALF_DOWN | HALF_EVEN)

@@ -250,7 +250,7 @@ Object.defineProperty(Date.prototype, "format", { enumerable: false });
  * 値を日付（ミリ秒）に変換します。
  * @param {String} value - 対象の値。
  * @param {String} [formatter] - 任意。解析フォーマット。
- * @returns {Number}
+ * @returns {Number|Date}
  */
 Date.parse = function (value, formatter) {
 	if (formatter == null) {

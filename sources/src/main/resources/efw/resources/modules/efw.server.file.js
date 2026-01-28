@@ -300,14 +300,13 @@ EfwServerFile.prototype.readAllBytes = function (path) {
 /**
  * バイナリデータをファイルに一括で書き込みます。
  * @param {String} path - 必須。
- * @param {Uinit8Array} content - 書き込むバイトデータ。
- * @returns {Bytes}
+ * @param {Uint8Array} content - 書き込むバイトデータ。
  */
 EfwServerFile.prototype.writeAllBytes = function (path, content) {
 	var fl = this.isAbsolutePath
 		? Packages.efw.file.FileManager.getByAbsolutePath(path)
 		: Packages.efw.file.FileManager.get(path);
-	return Packages.efw.file.FileManager.writeAllBytes(fl, content);
+	Packages.efw.file.FileManager.writeAllBytes(fl, content);
 };
 
 ///////////////////////////////////////////////////////////////////////////////

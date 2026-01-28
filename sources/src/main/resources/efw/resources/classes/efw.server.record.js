@@ -185,7 +185,6 @@ Record.prototype.map = function (mapping) {
 	for (var i = 0; i < this.values.length; i++) {
 		var rsdata = this.values[i];
 
-		var itemfix = null;
 		var item = {};
 		for (var key in mapping) {
 			var mp = mapping[key];
@@ -193,7 +192,7 @@ Record.prototype.map = function (mapping) {
 				var vl = rsdata[mp];
 				item[key] = vl;
 			} else if (typeof mp == "function") {
-				var vl = mp(rsdata, itemfix);
+				var vl = mp(rsdata);
 				item[key] = vl;
 			} else if (typeof mp == "object" && mp instanceof Array) {
 				var vl = rsdata[mp[0]];
