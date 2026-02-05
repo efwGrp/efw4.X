@@ -332,7 +332,7 @@ EfwClient.prototype._pickupParams = function(eventId, paramsFormat, context,
 			// if format is null, it means the value should be a string.
 			// if format is string exp 'yyyy/MM/dd',
 			// it means the value should be parsed by the format in server.
-			if (format == null || $.type(format) == "string") {
+			if (format == null || efw._type(format) == "string") {
 				if (element.length == 1) {
 					var tgNm = element[0].tagName;
 					if (tgNm == "INPUT" || tgNm == "SELECT" || tgNm == "TEXTAREA" || tgNm == "PROGRESS") {
@@ -399,8 +399,8 @@ EfwClient.prototype._pickupParams = function(eventId, paramsFormat, context,
 				if ( format!=null && format.indexOf("secure:true")>-1){
 					if (vl!=null)vl=btoa(encodeURIComponent(vl));
 				}
-			} else if ($.type(format) == "array") {
-				if ($.type(format[0]) == "object") {
+			} else if (efw._type(format) == "array") {
+				if (efw._type(format[0]) == "object") {
 					var ary = [];
 					var self = this;
 					$(element).each(
@@ -412,7 +412,7 @@ EfwClient.prototype._pickupParams = function(eventId, paramsFormat, context,
 				} else {
 					throw "'" + key + "' in params format should be an object.";
 				}
-			} else if ($.type(format) == "object") {
+			} else if (efw._type(format) == "object") {
 				vl = this._pickupParams(eventId, format, element,
 					manualParams);
 			} else {
@@ -463,7 +463,7 @@ EfwClient.prototype._showValues = function(eventId, values) {
 				if (withdata == null) {
 					//continue;
 					// if withdata is not object, then error
-				} else if ($.type(withdata) != "object") {
+				} else if (efw._type(withdata) != "object") {
 					throw "If without appendmask,the withdata for [runat="
 					+ attr_runat + "] should be an object.";
 				} else {
@@ -472,9 +472,9 @@ EfwClient.prototype._showValues = function(eventId, values) {
 						var data = withdata[withdata_key];
 						if (data == null)
 							data = "";// if data isnull then change it to blank
-						if ($.type(data) != "string" && $.type(data) != "number"
-							&& $.type(data) != "date"
-							&& $.type(data) != "boolean") {
+						if (efw._type(data) != "string" && efw._type(data) != "number"
+							&& efw._type(data) != "date"
+							&& efw._type(data) != "boolean") {
 							throw "The data " + data
 							+ " in withdata of [runat=" + attr_runat
 							+ "] should be a simple type.";
@@ -518,21 +518,21 @@ EfwClient.prototype._showValues = function(eventId, values) {
 				}
 				// -----------------------------------------------------------------
 			} else {
-				if ($.type(attr_appendmask) != "string") {
+				if (efw._type(attr_appendmask) != "string") {
 					throw "Appendmask should be a string.";
 				}
 				// if return data is nothing, then do nothing
 				if (withdata == null) {
 					//continue;
 					// if return data is not array, then error
-				} else if ($.type(withdata) != "array") {
+				} else if (efw._type(withdata) != "array") {
 					throw "If with appendmask,the withdata for [runat="
 					+ attr_runat + "] should be an array of object.";
 				} else {
 					$(runat).each(function() {
 						for (var withdata_idx = 0; withdata_idx < withdata.length; withdata_idx++) {
 							var dataRow = withdata[withdata_idx];
-							if ($.type(dataRow) != "object") {
+							if (efw._type(dataRow) != "object") {
 								throw "The withdata for [runat="
 								+ attr_runat
 								+ "] should be an array of object.";

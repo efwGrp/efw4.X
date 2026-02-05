@@ -161,27 +161,33 @@ public final class Client extends TagSupport{
 		JspWriter out = pageContext.getOut();
 		try {
 			String v=framework.version;
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");
-			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.simple.websocket.min.js?v="+v+"\"></script>\n");
 			if("jquery-ui".equals(mode)){
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/jquery-ui.structure.min.css?v="+v+"\">\n");
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/jquery-ui/themes/"+theme+"/theme.css?v="+v+"\">\n");
 				if ("true".equals(nopromise)) {
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min-3.7.1.js?v="+v+"\"></script>\n");
 					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/jquery-ui/jquery-ui.min-1.13.3.js?v="+v+"\"></script>\n");
 				}else {
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");//jquery4
 					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/jquery-ui/jquery-ui.min.js?v="+v+"\"></script>\n");
 				}
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.dialog.jquery-ui.js?v="+v+"\"></script>\n");
 			}else if("bootstrap".equals(mode)){
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/"+major+"/css/bootstrap.min.css?v="+v+"\">\n");
-				if ("4".equals(major)||"5".equals(major)){//4 5
+				if ("5".equals(major)){
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min.js?v="+v+"\"></script>\n");//jquery4
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/"+major+"/js/bootstrap.bundle.min.js?v="+v+"\"></script>\n");
+				}else if ("4".equals(major)){
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min-3.7.1.js?v="+v+"\"></script>\n");
 					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/"+major+"/js/bootstrap.bundle.min.js?v="+v+"\"></script>\n");
 				}else {//3 2
+					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.min-3.7.1.js?v="+v+"\"></script>\n");
 					out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/bootstrap/"+major+"/js/bootstrap.min.js?v="+v+"\"></script>\n");
 				}
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/efw.dialog.bootstrap.js?v="+v+"\"></script>\n");
 				out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\""+baseurl+"/bootstrap/icons/bootstrap-icons.css?v="+v+"\">\n");
 			}
+			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/jquery.simple.websocket.min.js?v="+v+"\"></script>\n");
 			if ("true".equals(addVue)) {
 				out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\""+baseurl+"/efw/vue.global.prod.js?v="+v+"\"></script>\n");
 			}

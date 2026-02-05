@@ -50,6 +50,14 @@ Efw.prototype.dialog = null;
 Efw.prototype.messages = null;
 Efw.prototype.lang = "en"; 
 Efw.prototype.isDownloading = false; 
+
+/**
+ * To get the type of the object.
+ */
+Efw.prototype._type = function(obj){
+	return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
+};
+
 // /////////////////////////////////////////////////////////////////////////////
 // The initialization of system.
 // /////////////////////////////////////////////////////////////////////////////
