@@ -165,7 +165,7 @@ public final class Excel {
         Cell cell = null;
         if (row == null) {
         	row = sheet.createRow(reference.getRow());
-        	row.setHeightInPoints(sheet.getDefaultRowHeightInPoints());//初期高さを設定
+        	row.setHeight((short)-1);//初期高さを設定
        	}
         cell = row.getCell(reference.getCol());
         if (cell==null){
@@ -186,7 +186,7 @@ public final class Excel {
         Cell cell = null;
         if (row == null) {
         	row = sheet.createRow(rowIndex);
-        	row.setHeightInPoints(sheet.getDefaultRowHeightInPoints());//初期高さを設定
+        	row.setHeight((short)-1);//初期高さを設定
        	}
         cell = row.getCell(colIndex);
         if (cell==null){
@@ -880,13 +880,18 @@ public final class Excel {
 			sheet.addMergedRegion(range);
 		}
 		// 追加後の行高を再設定
+		short defaultHeight=sheet.getDefaultRowHeight();
 		for (int i=1;i<originRow.size();i++) {
 			HashMap temp = (HashMap)originRow.get(i);
 			int rowNum = (Integer) temp.get("rowNum");
 			short height = (Short) temp.get("height");
 			if (rowNum >= startRow) {
 				Row row = sheet.getRow(rowNum + n);
-				row.setHeight(height);
+				if (defaultHeight!=height) {//ディフォルトではない場合高さを設定する
+					row.setHeight(height);
+				}else {
+					row.setHeight((short)-1);
+				}
 			}
 		}
 	}
@@ -964,7 +969,7 @@ public final class Excel {
 	        Row row = this.workbook.getSheet(sheetName).getRow(i);
 	        if (row == null) {
 	        	row = sheet.createRow(i);
-	        	row.setHeightInPoints(sheet.getDefaultRowHeightInPoints());//初期高さを設定
+	        	row.setHeight((short)-1);//初期高さを設定
 	       	}
 			sheet.getRow(i).setZeroHeight(true);
 		}
