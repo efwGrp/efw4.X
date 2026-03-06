@@ -4043,7 +4043,7 @@ elFinder.prototype = {
 	parseUploadData : function(text) {
 		var data;
 		
-		if (!$.trim(text)) {
+		if (!(text||"").trim()) {
 			return {error : ['errResponse', 'errDataEmpty']};
 		}
 		
@@ -5266,7 +5266,7 @@ elFinder.prototype = {
 				c = document.cookie.split(';');
 				name += '=';
 				for (i=0; i<c.length; i++) {
-					c[i] = $.trim(c[i]);
+					c[i] = (c[i]||"").trim();
 					if (c[i].substring(0, name.length) == name) {
 						retval = decodeURIComponent(c[i].substring(name.length));
 						if (retval.substr(0,1) === '{' || retval.substr(0,1) === '[') {
@@ -6206,7 +6206,7 @@ elFinder.prototype = {
 		if (!style) {
 			style = this.options.fileModeStyle.toLowerCase();
 		}
-		p = $.trim(p);
+		p = (p||"").trim();
 		if (p.match(/[rwxs-]{9}$/i)) {
 			str = p = p.substr(-9);
 			if (style == 'string') {
@@ -8533,7 +8533,7 @@ elFinder.prototype.resources = {
 						e.stopPropagation();
 					})
 					.blur(function() {
-						var name   = $.trim(input.val()),
+						var name   = (input.val()||"").trim(),
 							parent = input.parent(),
 							valid  = true,
 							cut;
@@ -17025,7 +17025,7 @@ elFinder.prototype.commands.rename = function() {
 					fm.enable();
 				}),
 			blur = function() {
-				var name   = $.trim(input.val()),
+				var name   = (input.val()||"").trim(),
 				parent = input.parent(),
 				valid  = true;
 
