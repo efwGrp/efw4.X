@@ -2,6 +2,8 @@
 package efw;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 import efw.properties.EfwAuthBean;
@@ -129,6 +131,10 @@ public final class efwFilter implements Filter {
 		//メインアプリとするバイア、メインプロパティファイルからのセキュリティ情報を読み込む
 		currentAuthBean=new EfwAuthBean();
 	}
+    /**
+     * バックエンドでスクリプトエンジン初期化Executor
+     */
+    private static final ExecutorService initScriptExecutor = Executors.newCachedThreadPool(); 
 	/**
 	 * 初期化する。
 	 * @param config コンフィグ。
@@ -137,6 +143,13 @@ public final class efwFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		try {
 			framework.initFilter(config.getServletContext().getRealPath("/"));
+			initScriptExecutor.submit(() -> {
+				try {
+					framework.initScript();
+				} catch (efwException e) {
+					e.printStackTrace();
+				}
+		    });
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
