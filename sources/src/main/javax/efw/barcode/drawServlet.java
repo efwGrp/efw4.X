@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import efw.framework;
 /**
  * バーコードを作成するサーブレット。
  * @author Chang Kejun
@@ -36,5 +38,18 @@ public final class drawServlet extends HttpServlet {
 			response.reset();
 			((HttpServletResponse)response).sendRedirect("./efw/images/abort.png");//エラーを投げない。
 		};
+	}
+	/**
+	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
+	 * @throws ServletException サーブレットエラー。
+	 */
+	public void init() throws ServletException {
+		//call the orgin init function
+		super.init();
+		try {
+			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
 }

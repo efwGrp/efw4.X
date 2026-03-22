@@ -105,4 +105,17 @@ public final class previewServlet extends HttpServlet {
 		response.getWriter().print(message);
 		response.getWriter().print("</body></html>");
 	}
+	/**
+	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
+	 * @throws ServletException サーブレットエラー。
+	 */
+	public void init() throws ServletException {
+		//call the orgin init function
+		super.init();
+		try {
+			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
 }

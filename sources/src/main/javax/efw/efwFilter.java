@@ -135,7 +135,13 @@ public final class efwFilter implements Filter {
 	 * @param config コンフィグ。
 	 */
 	@Override
-	public void init(FilterConfig config) throws ServletException {}
+	public void init(FilterConfig config) throws ServletException {
+		try {
+			framework.initFilter(config.getServletContext().getRealPath("/"));
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
 	/**
 	 * 破棄する。
 	 */

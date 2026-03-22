@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * サーブレットアノテーション設定で、起動と同時にフレームワークの初期化を行う。
  * @author Chang Kejun
  */
-@WebServlet(name="efwServlet",loadOnStartup=1,urlPatterns={"/efwServlet"})
+@WebServlet(name="efwServlet",urlPatterns={"/efwServlet"})
 public final class efwServlet extends HttpServlet {
 	/**
 	 * ダミーコンストラクタ
@@ -44,7 +44,7 @@ public final class efwServlet extends HttpServlet {
 		//call the orgin init function
 		super.init();
 		try {
-			framework.initServlet(this.getServletContext().getRealPath("/"));
+			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}

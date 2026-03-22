@@ -68,7 +68,7 @@ public final class framework {
 		return webHome;
 	}
 	
-	private static void initCommonWBL(String webHome) {
+	private static void initCommon4WebBatch(String webHome) {
 		//-----------------------------------------------------------------
 		framework.webHome=webHome;
 		framework.initCLog("webHome = "+webHome);
@@ -137,24 +137,41 @@ public final class framework {
 			framework.initWLog("RemoteEventManager failed.",ex);
 		}
 	}
-	
-	private static void initScript() throws efwException {
+	/**
+	 * スクリプトエンジンの初期化
+	 * @throws efwException
+	 */
+	public static synchronized void initScript() throws efwException {
 		//-----------------------------------------------------------------
-		try{
-			ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
-			framework.initCLog("ScriptManager inited.");
-			framework.initSuccessFlag=true;
-		}catch(efwException ex){
-			framework.initSLog("ScriptManager failed.",ex);
-			framework.initSuccessFlag=false;
-			throw ex;
+		if (!framework.getInitSuccessFlag()) {
+			try{
+				ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
+				framework.initCLog("ScriptManager inited.");
+				framework.initSuccessFlag=true;
+			}catch(efwException ex){
+				framework.initSLog("ScriptManager failed.",ex);
+				framework.initSuccessFlag=false;
+				throw ex;
+			}
 		}
-		//-----------------------------------------------------------------
-		framework.initCLog("Efw Version = "+framework.version);		
 	}
-	
+	/**
+	 * バッチの初期化。
+	 * @param webHome WEBホーム。
+	 * @param properties プロパティファイルのパス。
+	 * @throws IOException 通信エラー。
+	 * @throws ScriptException スクリプトエラー。
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void initCommonBL() {
+	protected static void initBatch(String webHome,String properties) throws IOException, efwException{
+		// begin to init efwServletのinitと同等
+		//-----------------------------------------------------------------
+		PropertiesManager.initBatch(properties);//ここからエラーになると、処理を中断する。
+		LogManager.initBatch();
+		framework.initCLog("properties = "+properties);
+		framework.initCLog("PropertiesManager.inited.");
+		//-----------------------------------------------------------------
+		initCommon4WebBatch(webHome);
 		//-----------------------------------------------------------------
 		try{
 			Class db = Class.forName("efw.db.DatabaseManager");
@@ -188,37 +205,19 @@ public final class framework {
 				framework.initWLog( "BrmsManager failed.",ex);
 			}
 		}
-	}
-	/**
-	 * バッチの初期化。
-	 * @param webHome WEBホーム。
-	 * @param properties プロパティファイルのパス。
-	 * @throws IOException 通信エラー。
-	 * @throws ScriptException スクリプトエラー。
-	 */
-	protected static synchronized void initBatch(String webHome,String properties) throws IOException, efwException{
-		if (framework.getInitSuccessFlag()) return;
-		// begin to init efwServletのinitと同等
-		//-----------------------------------------------------------------
-		PropertiesManager.initBatch(properties);//ここからエラーになると、処理を中断する。
-		LogManager.initBatch();
-		framework.initCLog("properties = "+properties);
-		framework.initCLog("PropertiesManager.inited.");
-		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
-		initCommonBL();
 		//-----------------------------------------------------------------
 		initScript();
+		//-----------------------------------------------------------------
+		framework.initCLog("Efw Version = "+framework.version);		
 	}
 	/**
-	 * サーブレットの初期化。
+	 * フィルターの初期化。
 	 * @param webHome WEBホーム。
 	 * @throws IOException 通信エラー。
 	 * @throws ScriptException スクリプトエラー。
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	protected static synchronized void initServlet(String webHome) throws IOException, efwException {
-		if (framework.getInitSuccessFlag()) return;
+	protected static void initFilter(String webHome) throws IOException, efwException {
 		//-----------------------------------------------------------------
 		// begin to init efw　まずefw.propertiesを読んで、次は簡単な情報をスタート
 		//-----------------------------------------------------------------
@@ -226,7 +225,7 @@ public final class framework {
 		LogManager.init();//エラーなし。
 		framework.initCLog("PropertiesManager inited.");//ログ出力はLogManagerの初期化後で必要。
 		//-----------------------------------------------------------------
-		initCommonWBL(webHome);
+		initCommon4WebBatch(webHome);
 		//-----------------------------------------------------------------
 		framework.jdbcResourceName=PropertiesManager.getProperty(PropertiesManager.EFW_JDBC_RESOURCE,framework.getJdbcResourceName());
 		framework.initCLog("jdbcResourceName = " + framework.getJdbcResourceName());
@@ -261,7 +260,9 @@ public final class framework {
 			throw ex;
 		}
 		//-----------------------------------------------------------------
-		initScript();
+		//initScript();//servletで実行するように
+		//-----------------------------------------------------------------
+		framework.initCLog("Efw Version = "+framework.version);		
 	}
 	/**
 	 * WEBサーバシャットダウン時サーブレット停止とともに破棄イベントを実行する。

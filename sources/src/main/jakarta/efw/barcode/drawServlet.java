@@ -3,6 +3,7 @@ package efw.barcode;
 
 import java.io.IOException;
 
+import efw.framework;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,5 +37,18 @@ public final class drawServlet extends HttpServlet {
 			response.reset();
 			((HttpServletResponse)response).sendRedirect("./efw/images/abort.png");//エラーを投げない。
 		};
+	}
+	/**
+	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
+	 * @throws ServletException サーブレットエラー。
+	 */
+	public void init() throws ServletException {
+		//call the orgin init function
+		super.init();
+		try {
+			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
 }

@@ -43,6 +43,20 @@ public final class efwRestAPI extends HttpServlet{
 		doRestAPI(req,resp,"DELETE");
 	}
 	
+	/**
+	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
+	 * @throws ServletException サーブレットエラー。
+	 */
+	public void init() throws ServletException {
+		//call the orgin init function
+		super.init();
+		try {
+			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
+	}
+	
 	private void doRestAPI(HttpServletRequest request, HttpServletResponse response, String httpMethod){
         //if init is failed, return the info instead of throw exception
 		if (!framework.getInitSuccessFlag()){
