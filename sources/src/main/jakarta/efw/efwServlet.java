@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import efw.script.ScriptManager;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,20 +35,6 @@ public final class efwServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	/**
-	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
-	 * @throws ServletException サーブレットエラー。
-	 */
-	public void init() throws ServletException {
-		//call the orgin init function
-		super.init();
-		try {
-			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
-	}
-
 	/**
 	 * JQueryからのAjax通信をサーバーサイトJavaScriptへ転送し、その実行結果をレスポンスする。
 	 * <br>efwサーブレット が初期化失敗またはサーバーサイトJavaScript実行エラーの場合、OtherErrorMessageのエラー情報をレスポンスする。

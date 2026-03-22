@@ -46,6 +46,9 @@ public final class efwFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
+		if (!framework.getInitSuccessFlag()){
+			framework.initScript();
+		}
 		//keep req and resp to thread local for javascript program.
 		framework.setRequest(request);
 		framework.setResponse(response);
@@ -145,11 +148,7 @@ public final class efwFilter implements Filter {
 		try {
 			framework.initFilter(config.getServletContext().getRealPath("/"));
 			initScriptExecutor.submit(() -> {
-				try {
-					framework.initScript();
-				} catch (efwException e) {
-					e.printStackTrace();
-				}
+				framework.initScript();
 		    });
 		} catch (Exception e) {
 			throw new ServletException(e);

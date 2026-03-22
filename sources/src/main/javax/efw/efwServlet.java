@@ -4,7 +4,6 @@ package efw;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,19 +34,6 @@ public final class efwServlet extends HttpServlet {
 			framework.destroyServlet();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-	}
-	/**
-	 * サーブレットの起動と同時に、フレーワーク初期化を実行する。
-	 * @throws ServletException サーブレットエラー。
-	 */
-	public void init() throws ServletException {
-		//call the orgin init function
-		super.init();
-		try {
-			framework.initScript();//ここScriptエンジンを初期化する。システム起動時間を短縮する目的。
-		} catch (Exception e) {
-			throw new ServletException(e);
 		}
 	}
 

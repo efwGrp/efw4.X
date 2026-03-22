@@ -139,9 +139,8 @@ public final class framework {
 	}
 	/**
 	 * スクリプトエンジンの初期化
-	 * @throws efwException
 	 */
-	public static synchronized void initScript() throws efwException {
+	public static synchronized void initScript() {
 		//-----------------------------------------------------------------
 		if (!framework.getInitSuccessFlag()) {
 			try{
@@ -151,7 +150,6 @@ public final class framework {
 			}catch(efwException ex){
 				framework.initSLog("ScriptManager failed.",ex);
 				framework.initSuccessFlag=false;
-				throw ex;
 			}
 		}
 	}
