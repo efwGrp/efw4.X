@@ -46,9 +46,6 @@ public final class efwFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		if (!framework.getInitSuccessFlag()){
-			framework.initScript();
-		}
 		//keep req and resp to thread local for javascript program.
 		framework.setRequest(request);
 		framework.setResponse(response);
@@ -64,11 +61,15 @@ public final class efwFilter implements Filter {
 		//JSPではない場合、そのまま
 		if (strRequestURI.indexOf("efwServlet")>-1
 				||strRequestURI.indexOf("efwRestAPI")>-1){
+			//JSPの初期化はjavaScriptエンジンが要らないです。
+			if (!framework.getInitSuccessFlag())framework.initScript();
 			response.setContentType("application/json");//efwServlet efwRestAPIのためです。jspなどの場合変更される
 			chain.doFilter(request, response);
 		}else if (strRequestURI.indexOf("uploadServlet")>-1
 				||strRequestURI.indexOf("downloadServlet")>-1
 				||strRequestURI.indexOf("previewServlet")>-1){
+			//JSPの初期化はjavaScriptエンジンが要らないです。
+			if (!framework.getInitSuccessFlag())framework.initScript();
 			chain.doFilter(request, response);
 		}else if(	currentAuthBean.welcomePattern.matcher(strRequestURI).find()					//welcomeページ
 				||currentAuthBean.loginUrlPattern.matcher(strRequestURI).find()					//ログインページ
