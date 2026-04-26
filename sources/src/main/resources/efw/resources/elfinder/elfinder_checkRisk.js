@@ -8,6 +8,9 @@ function elfinder_checkRisk(params){
 	var readonly=params["readonly"];//参照のみかどうか,true,false
 	var target=params["target"];
 	var targets=params["targets"];
+	var name=params["name"];//新規入力or編集入力されたファイル名またはパス名
+	var dst=params["dst"];//貼り付け先のパス名
+	var cmd=params["cmd"];
 
 	var reg=session.get("EFW_ELFINDER_PROTECTED_"+id);
 	if (reg==null){//指定idは、初期化されたかどうか
@@ -22,6 +25,22 @@ function elfinder_checkRisk(params){
 		if (sessionReadonly=="false")sessionReadonly=false;
 		if(home!=sessionHome||isAbs!=sessionIsAbs||readonly!=sessionReadonly){
 			return (new Result()).alert("{ElFinderIsProtectedMessage}");
+		}
+		if (sessionReadonly){//保護モード且つ読取り専用の場合、
+			if ([			//書込みに繋がるコマンドがきたら
+				"duplicate",
+				"extract",
+				"mkdir",
+				"mkfile",
+				"paste",
+				"put",
+				"rename",
+				"rm",
+				"upload"
+			].indexOf(cmd)>-1){
+				//エラーにする
+				return (new Result()).alert("{ElFinderIsProtectedMessage}");
+			}
 		}
 	}
 	
@@ -52,6 +71,19 @@ function elfinder_checkRisk(params){
 					return (new Result()).alert("{ElFinderHackingRiskMessage}");
 				}
 			}
+		}
+	}
+	//作成またはリネームするファイル名・パス名には、純粋な名称を期待する
+	//パスの区切りまたは上位への記号があったらエラーする。
+	if (name!=null){
+		if (name.indexOf("..")>-1||name.indexOf("/")>-1||name.indexOf("\\")>-1){
+			return (new Result()).alert("{ElFinderHackingRiskMessage}");
+		}
+	}
+	if (dst!=null){
+		var cwdFile=dst.substring(volumeId.length).base64Decode();
+		if (cwdFile.indexOf(home)!=0||cwdFile.indexOf("..")>-1){
+			return (new Result()).alert("{ElFinderHackingRiskMessage}");
 		}
 	}
 	var sessionSaveLogFunc=session.get("EFW_ELFINDER_SAVELOGFUNC_"+id)+"";

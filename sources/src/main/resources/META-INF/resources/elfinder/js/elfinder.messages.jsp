@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="application/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page session="false" language="java" contentType="application/javascript; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="efw" uri="efw" %>
 <%
 String lang=request.getParameter("lang");

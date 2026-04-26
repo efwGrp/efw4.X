@@ -71,6 +71,8 @@ public final class previewServlet extends HttpServlet {
 		}
 		OutputStream os = null;
 		try {
+			//プレビュー時Script禁止の設定
+			response.setHeader("Content-Security-Policy", "script-src 'none';");
 			response.setContentType(mimeType);
 			os = response.getOutputStream();
 			FileInputStream hFile="true".equals(attr_isAbs)?

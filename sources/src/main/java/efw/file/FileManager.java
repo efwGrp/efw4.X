@@ -252,6 +252,11 @@ public final class FileManager {
 		//処理すべきものがなければ終わり
 		if (zipEntry==null) return;
 		
+		//解凍時、もしzipの中身に"../"のようなパスまたはファイルがあったらエラーにする。
+		if (zipEntry.getName().indexOf("..")>-1) {
+			throw new IOException("It is considered as a threat : "+zipEntry.getName());
+		}
+
 		File newFile = new File(isAbs?getByAbsolutePath(basePath):get(basePath), zipEntry.getName());
 		//フォルダの場合
 		if (zipEntry.isDirectory()) {
