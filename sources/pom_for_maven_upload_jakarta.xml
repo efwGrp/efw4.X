@@ -158,7 +158,7 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.7.7</version>
+      <version>42.7.11</version>
       <optional>true</optional>
     </dependency>
     <!-- ZIPパスワード機能 -->
@@ -197,5 +197,16 @@ It is provided as open source free software.</description>
       <scope>system</scope>
       <systemPath>${basedir}/lib/innorules-core8.jar</systemPath>
     </dependency>-->
+	<!-- redisson -->
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson</artifactId>
+      <version>3.50.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-tomcat-11</artifactId>
+      <version>3.50.0</version>
+    </dependency>
   </dependencies>
 </project>

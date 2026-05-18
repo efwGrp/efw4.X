@@ -18,6 +18,7 @@ import java.util.logging.Level;
 
 import javax.script.ScriptException;
 
+import efw.context.ContextManager;
 import efw.db.Database;
 import efw.event.RemoteEventManager;
 import efw.excel.Excel;
@@ -135,6 +136,13 @@ public final class framework {
 			framework.initCLog("RemoteEventManager inited.");
 		}catch(Exception ex) {
 			framework.initWLog("RemoteEventManager failed.",ex);
+		}
+		//-----------------------------------------------------------------
+		try {
+			ContextManager.init();
+			framework.initCLog("ContextManager inited.");
+		}catch(Exception ex) {
+			framework.initWLog("ContextManager failed.",ex);
 		}
 	}
 	/**
@@ -270,6 +278,7 @@ public final class framework {
 	protected static void destroyServlet() throws efwException {
 		if (!framework.getInitSuccessFlag()) return;
 		ScriptManager.doDestroy();
+		ContextManager.destroy();
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	/**
