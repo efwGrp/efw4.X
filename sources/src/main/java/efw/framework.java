@@ -137,21 +137,21 @@ public final class framework {
 		}catch(Exception ex) {
 			framework.initWLog("RemoteEventManager failed.",ex);
 		}
-		//-----------------------------------------------------------------
-		try {
-			ContextManager.init();
-			framework.initCLog("ContextManager inited.");
-		}catch(Exception ex) {
-			framework.initWLog("ContextManager failed.",ex);
-		}
 	}
 	/**
-	 * スクリプトエンジンの初期化
+	 * バックエンドプロセスで初期化を継続する
+	 * 起動時間を短縮するため。
 	 */
-	public static synchronized void initScript() {
+	public static synchronized void continueInitInBackground() {
 		//-----------------------------------------------------------------
 		if (!framework.getInitSuccessFlag()) {
 			try{
+				try{
+					ContextManager.init();//コンテキスト設定が合わない場合、エラー。
+					framework.initCLog("ContextManager inited.");
+				}catch(Exception ex){
+					framework.initSLog("ContextManager failed.",ex);
+				}
 				ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
 				framework.initCLog("ScriptManager inited.");
 				framework.initSuccessFlag=true;
@@ -212,7 +212,7 @@ public final class framework {
 			}
 		}
 		//-----------------------------------------------------------------
-		initScript();
+		continueInitInBackground();
 		//-----------------------------------------------------------------
 		framework.initCLog("Efw Version = "+framework.version);		
 	}

@@ -12,35 +12,30 @@ import efw.framework;
  */
 public final class ContextManager {
 /*
- * context.xmlにValkeyContextの場合の記載例。
+ * context.xmlにValkeyContextの記載例。
  * 
 <Resource name="efw/context"
 	auth="Container"
 	type="efw.context.ValkeyContext"
 	factory="org.apache.naming.factory.BeanFactory"
-	host="localhost"
-	port="6379"
-	maxTotal="20"
-	/>
-
-    <!-- 1. JNDIリソース定義（context.xml内に直接書いてもOK） -->
-    <Resource name="bean/redisson"
-              auth="Container"
-              type="org.redisson.api.RedissonClient"
-              factory="org.redisson.JndiRedissonFactory"
-              configPath="/usr/local/tomcat/conf/redisson.yaml"
-              closeMethod="shutdown" /> <!-- アプリ停止時に破棄されるようcloseMethodを推奨 -->
-
+	jndiName="eanredisson"
+/>
+<!-- 1. JNDIリソース定義（context.xml内に直接書いてもOK） -->
+<Resource name="bean/redisson"
+	auth="Container"
+	type="org.redisson.api.RedissonClient"
+	factory="org.redisson.JndiRedissonFactory"
+	configPath="/usr/local/tomcat/conf/redisson.yaml"
+	closeMethod="shutdown" /> <!-- アプリ停止時に破棄されるようcloseMethodを推奨 -->
 -----redisson.yaml------
 singleServerConfig:
-  address: "rediss://cache-for-helloword-txepep.serverless.usw1.cache.amazonaws.com:6379"
+  address: "rediss://clustercfg.cache-for-helloword.txepep.serverless.usw1.cache.amazonaws.com:6379"
   connectionMinimumIdleSize: 1
   connectionPoolSize: 5
   idleConnectionTimeout: 10000
   connectTimeout: 10000
   timeout: 3000
   retryAttempts: 3
-  retryInterval: 1500
 
 threads: 4
 nettyThreads: 4

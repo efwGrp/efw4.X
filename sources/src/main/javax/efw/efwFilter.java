@@ -62,14 +62,14 @@ public final class efwFilter implements Filter {
 		if (strRequestURI.indexOf("efwServlet")>-1
 				||strRequestURI.indexOf("efwRestAPI")>-1){
 			//JSPの初期化はjavaScriptエンジンが要らないです。
-			if (!framework.getInitSuccessFlag())framework.initScript();
+			if (!framework.getInitSuccessFlag())framework.continueInitInBackground();
 			response.setContentType("application/json");//efwServlet efwRestAPIのためです。jspなどの場合変更される
 			chain.doFilter(request, response);
 		}else if (strRequestURI.indexOf("uploadServlet")>-1
 				||strRequestURI.indexOf("downloadServlet")>-1
 				||strRequestURI.indexOf("previewServlet")>-1){
 			//JSPの初期化はjavaScriptエンジンが要らないです。
-			if (!framework.getInitSuccessFlag())framework.initScript();
+			if (!framework.getInitSuccessFlag())framework.continueInitInBackground();
 			chain.doFilter(request, response);
 		}else if(	currentAuthBean.welcomePattern.matcher(strRequestURI).find()					//welcomeページ
 				||currentAuthBean.loginUrlPattern.matcher(strRequestURI).find()					//ログインページ
@@ -137,9 +137,9 @@ public final class efwFilter implements Filter {
 		currentAuthBean=new EfwAuthBean();
 	}
     /**
-     * バックエンドでスクリプトエンジン初期化Executor
+     * バックエンド初期化継続Executor
      */
-    private static final ExecutorService initScriptExecutor = Executors.newCachedThreadPool(); 
+    private static final ExecutorService continueInitInBackgroundExecutor = Executors.newCachedThreadPool(); 
 	/**
 	 * 初期化する。
 	 * @param config コンフィグ。
@@ -148,8 +148,8 @@ public final class efwFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		try {
 			framework.initFilter(config.getServletContext().getRealPath("/"));
-			initScriptExecutor.submit(() -> {
-				framework.initScript();
+			continueInitInBackgroundExecutor.submit(() -> {
+				framework.continueInitInBackground();
 		    });
 		} catch (Exception e) {
 			throw new ServletException(e);
