@@ -258,6 +258,7 @@ Result.prototype.deleteAfterDownload = function () {
 
 /**
  * クライアント側でアラートメッセージを表示します。
+ * 重複メッセージを省く。
  * @param {String|Array} message - 必須。表示するメッセージまたはメッセージの配列。
  * @param {String} [title] - 任意。アラートダイアログのタイトル。
  * @param {Object} [params] - 任意。メッセージ内に埋め込むパラメータ。
@@ -283,6 +284,21 @@ Result.prototype.alert = function (message, title, params) {
 		}
 		this.actions.alert.push(message);
 	}
+	//重複メッセージを削除する
+	var ary=[];
+	for(var i=0;i<this.actions.alert.length;i++){
+		var c=this.actions.alert[i];
+		var existsFlg=false;
+		for(var j=0;j<ary.length;j++){
+			if (c==ary[j]){
+				existsFlg=true;
+				break;
+			}
+		}
+		if (!existsFlg)ary.push(c);
+	}
+	this.actions.alert=ary;
+	
 	return this;
 };
 
