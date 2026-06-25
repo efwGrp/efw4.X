@@ -30,5 +30,5 @@ gpg -ab efw-$ver-sources.jar
 
 md io\github\efwgrp\efw\$ver
 move-item efw-$ver*.* io\github\efwgrp\efw\$ver\
-Compress-Archive io io.zip
+Compress-Archive io $ver-io.zip
 remove-item io -Force -Recurse
