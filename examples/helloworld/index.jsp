@@ -113,5 +113,9 @@
 
 <hr />
 
+<h3 id="efw-同時実行制限機能サンプル"><a href="helloConcurrencyLimit.jsp" target="_blank">efw 同時実行制限機能サンプル</a></h3>
+
+<p>efwフレームワークは、イベントの同時実行を制限する機能を備えています。高負荷な処理によるシステムへの影響を緩和するのに有効です。</p>
+
 </BODY>
 </HTML>
