@@ -27,7 +27,7 @@ function TXTReader(path, regFieldsDef, encoding, rowSize, skipRows, rowsToRead) 
  * リーダーオープン時の排他制御用ロッカー。
  * @private
  */
-TXTReader.prototype._locker = Packages.efw.script.ScriptManager.getLocker();
+TXTReader.prototype._locker = Packages.efw.context.ContextManager.getLocker();
 
 /** @private @type {String} */
 TXTReader.prototype._path = null;

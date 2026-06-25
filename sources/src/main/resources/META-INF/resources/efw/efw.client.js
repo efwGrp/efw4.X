@@ -220,14 +220,15 @@ EfwClient.prototype._callSecondAjax = function(servletUrl, eventId, params) {
 							efw.dialog.wait(message, countdown, null, function() { $.ajax(self._options); });
 						} else {
 							efw.dialog.alert(message);
-							reject({
-								errorTitle:result.actions.error.clientMessageId,
-								errorData:result.actions.error.params,
-							});
 						}
 					}
+					reject({
+						errorTitle:result.actions.error.clientMessageId,
+						errorData:result.actions.error.params,
+					});
+				}else{
+					resolve(result);
 				}
-				resolve(result);
 			},
 			error: function(errorResponse, errorType, errorMessage) {
 				efw.dialog.alert(efw.messages.CommunicationErrorException, {

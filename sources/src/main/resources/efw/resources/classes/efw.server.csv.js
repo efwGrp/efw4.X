@@ -35,7 +35,7 @@ function CSVReader(path, separator, delimiter, encoding, skipRows, rowsToRead, o
  * @type {Packages.efw.script.Locker}
  * @private
  */
-CSVReader.prototype._locker = Packages.efw.script.ScriptManager.getLocker();
+CSVReader.prototype._locker = Packages.efw.context.ContextManager.getLocker();
 /**
  * ファイルパスを保持する内部プロパティ。
  * @type {String}

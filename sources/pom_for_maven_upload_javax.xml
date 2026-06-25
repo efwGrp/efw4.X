@@ -199,7 +199,7 @@ It is provided as open source free software.</description>
     </dependency>
     <dependency>
       <groupId>org.redisson</groupId>
-      <artifactId>redisson-tomcat-11</artifactId>
+      <artifactId>redisson-tomcat-9</artifactId>
       <version>4.4.0</version>
       <optional>true</optional>
     </dependency>

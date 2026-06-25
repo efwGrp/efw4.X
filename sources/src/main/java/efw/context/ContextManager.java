@@ -112,4 +112,21 @@ nettyThreads: 4
 	public synchronized static void destroy() {
 		context.destory();
 	}
+	/**
+	 * ファイル作成用の排他ロッカーを取得する。
+	 * @return 排他ロッカー。
+	 */
+	public static Object getLocker() {
+		return context.getLocker();
+	}
+
+	/**
+	 * イベント同時実行制限用のセマフォを取得する。
+	 * @param eventId イベントID。
+	 * @param max 同時実行数。
+	 * @return セマフォ。
+	 */
+	public static synchronized Object getSemaphore(String eventId,int max) {
+		return context.getSemaphore(eventId, max);
+	}
 }

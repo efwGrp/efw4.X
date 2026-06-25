@@ -44,7 +44,7 @@ EfwServerDb.prototype.change = function (groupId, sqlId, params, jdbcResourceNam
  * マスタ操作用の排他制御用ロッカー。
  * @private
  */
-EfwServerDb.prototype._locker = Packages.efw.script.ScriptManager.getLocker();
+EfwServerDb.prototype._locker = Packages.efw.context.ContextManager.getLocker();
 
 /**
  * メモリ内にキャッシュされたマスタデータ。

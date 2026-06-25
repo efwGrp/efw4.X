@@ -25,7 +25,7 @@ function BinaryReader(path, aryFieldsDef, aryEncoding, rowSize, skipRows, rowsTo
  * @type {Packages.efw.script.Locker}
  * @private
  */
-BinaryReader.prototype._locker = Packages.efw.script.ScriptManager.getLocker();
+BinaryReader.prototype._locker = Packages.efw.context.ContextManager.getLocker();
 /**
  * ファイルパスを保持する内部プロパティ。
  * @type {String}

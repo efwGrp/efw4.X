@@ -80,7 +80,7 @@ EfwServerEvent.prototype._set = function (eventId, ev) {
  * イベント操作用の排他制御ロッカー。
  * @private
  */
-EfwServerEvent.prototype._locker = Packages.efw.script.ScriptManager.getLocker();
+EfwServerEvent.prototype._locker = Packages.efw.context.ContextManager.getLocker();
 
 /**
  * イベントファイルをロードし、メモリ上に展開します。
@@ -106,7 +106,7 @@ EfwServerEvent.prototype._load = function (eventId, loadingGlobal) {
 		if (ev.service != null) {
 			if (ev.service.max != null && ev.service.max > -1) {
 				// セマフォによる最大同時実行数の制限を設定
-				ev.semaphore = Packages.efw.script.ScriptManager.getSemaphore(eventId, ev.service.max);
+				ev.semaphore = Packages.efw.context.ContextManager.getSemaphore(eventId, ev.service.max);
 			}
 		} else {
 			ev.semaphore = null;

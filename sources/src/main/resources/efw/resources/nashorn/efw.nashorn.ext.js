@@ -11,7 +11,7 @@
 (function(context){
 	//name:{max:10,scs:[{running:true,_sc:objSimpleScriptContext},]}
 	var pool={};
-	var _locker = Packages.efw.script.ScriptManager.getLocker();
+	var _locker = Packages.efw.context.ContextManager.getLocker();
 	//param={name:"",max:9,initializer:"",script:"",context:{},engine:"",returnVar:""}
 	
 	function loadWithGlobalPool(param){
