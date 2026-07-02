@@ -111,16 +111,46 @@ $(function() {
 	</div>`);
 	$("#efw_loading").hide();
 	$(document).bind("ajaxStart",function(){
-		document.querySelector("#efw_bzicon").unpauseAnimations();document.querySelector("#efw_bzicon").setCurrentTime(0);
+		document.querySelector("#efw_bzicon").unpauseAnimations();
+		document.querySelector("#efw_bzicon").setCurrentTime(0);
 		$("#efw_loading").show();
 	});
 	$(document).bind("ajaxStop",function(){
 		$("#efw_loading").hide();
 	});
+	
+	let cancelCheckTimer = null;
 	$(window).on("beforeunload", function(){
 		if (!efw.isDownloading){//downloadではない画面遷移の場合
-			document.querySelector("#efw_bzicon").unpauseAnimations();document.querySelector("#efw_bzicon").setCurrentTime(0);
+			document.querySelector("#efw_bzicon").unpauseAnimations();
+			document.querySelector("#efw_bzicon").setCurrentTime(0);
 			$("#efw_loading").show();
+			// 過去のタイマーがあれば一度クリア
+			if (cancelCheckTimer) clearInterval(cancelCheckTimer);
+			let lastTime = Date.now();
+			// 50ミリ秒ごとに、ダイアログが閉じられたかをチェックする高速タイマーを開始
+			cancelCheckTimer = setInterval(function(){
+				let currentTime = Date.now();
+				let timePassed = currentTime - lastTime;
+				// ダイアログが表示されている間は、この中の処理は実行されず止まります。
+				// ユーザーがアクションを起こした瞬間に、この処理が再開されます。
+				if (timePassed > 1000) {
+					// 【判断】前回チェックから1秒以上経っている ＝ ダイアログが表示されていた証拠！
+					// ダイアログが閉じた直後、さらに100ms待って画面が切り替わっていないか最終確認
+					setTimeout(function(){
+						// サーバーがsleep(10)で応答待ちの場合、ブラウザは「遷移処理中」となり
+						// 現在のページのタイマー実行を後回しにするか、完全に停止させます。
+						// もしここが即座に実行され、かつ画面がまだ目の前にある（!document.hidden）なら、
+						// それは「確実にキャンセルボタンが押された」と判定できます。
+						if (!document.hidden) {
+						    $("#efw_loading").hide(); // キャンセルされたのでbziconを消す
+						}
+						clearInterval(cancelCheckTimer);
+					}, 100);
+					clearInterval(cancelCheckTimer);
+				}
+				lastTime = currentTime;
+			}, 50);
 		}
 	});
 	//戻るボタンの画面表示時、bzicon非表示の対応。
