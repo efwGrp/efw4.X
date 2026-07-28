@@ -5,8 +5,7 @@ ESCCO 提供的**面向 Web 的企业框架**，采用目标导向的方法，�
 ## 介绍
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![EFW流程图](../img/efw_flow.png)](../img/efw_flow_org.png)<br>
+[![EFW流程图](../img/efw_flow.png)](../img/efw_flow_org.png)[![EFW发布](../img/efw_deployment.png)](../img/efw_deployment_org.png)<br>
 [![EFW客户端](../img/efw_client.png)](../img/efw_client_org.png)[![EFW服务器端](../img/efw_server.png)](../img/efw_server_org.png)
 
 

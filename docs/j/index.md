@@ -5,8 +5,7 @@ ESCCO が提供する、Ajax とサーバー側 JavaScript を使用して高速
 ## 紹介
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![EFWフローチャート](../img/efw_flow.png)](../img/efw_flow_org.png)<br>
+[![EFWフローチャート](../img/efw_flow.png)](../img/efw_flow_org.png)[![EFWデプロイメント](../img/efw_deployment.png)](../img/efw_deployment_org.png)<br>
 [![EFWクライアント](../img/efw_client.png)](../img/efw_client_org.png)[![EFWサーバー](../img/efw_server.png)](../img/efw_server_org.png)
 
 

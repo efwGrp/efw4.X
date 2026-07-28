@@ -5,8 +5,7 @@ An **Enterprise Framework for Web** with a goal-oriented approach to building we
 ## Introduction
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[![EFW Flowchart](../img/efw_flow.png)](../img/efw_flow_org.png)<br>
+[![EFW Flowchart](../img/efw_flow.png)](../img/efw_flow_org.png)[![EFW Deployment](../img/efw_deployment.png)](../img/efw_deployment_org.png)<br>
 [![EFW Client](../img/efw_client.png)](../img/efw_client_org.png)[![EFW Server](../img/efw_server.png)](../img/efw_server_org.png)
 
 
