@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.efwgrp</groupId>
   <artifactId>efw</artifactId>
-  <version>4.08.012${version.ext}</version>
+  <version>4.08.013${version.ext}</version>
   <name>ESCCO-Framework</name>
   <description>"efw" is an Ajax framework for server site JavaScript designed 
 and developed by Escco Co., Ltd. using a goal-oriented method. 
@@ -188,7 +188,7 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.7.12</version>
+      <version>42.7.11</version>
       <optional>true</optional>
     </dependency>
     <!-- ZIPパスワード機能 -->

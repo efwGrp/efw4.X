@@ -206,3 +206,66 @@ EfwDialog.prototype.progress = function(message, percent, closeFlag) {
 		}
 	}
 };
+/////////////////////////////////////////////////////////////////////////////
+// Bootstrap 3, 4, 5 すべてに対応する多段モーダルz-index管理スクリプト
+$(document).on('show.bs.modal', '.modal', function (event) {
+
+
+	const $targetModal = $(this);
+
+	// 1. 現在画面上に表示されているモーダルの数を取得
+	const openModals = $('.modal.show, .modal.in'); // BS5/4は.show、BS3は.in
+	const modalCount = openModals.length;
+
+	// 2. 重ね順（z-index）をリアルタイム計算
+	const newModalZIndex = 1055 + (10 * modalCount);
+	const newBackdropZIndex = newModalZIndex - 5;
+
+	// モーダル自身のz-indexを更新（単独時も多段時も毎回上書き）
+	$targetModal.css('z-index', newModalZIndex);
+
+	// 3. 背景（backdrop）のz-indexを特定して更新（生成を少し待つ）
+	setTimeout(() => {
+		let $linkedBackdrop = null;
+		if (efw.major=="5"){
+			// --- Bootstrap 5 向けの特定ロジック ---
+			const modalInstance = bootstrap.Modal.getOrCreateInstance($targetModal[0]);
+			if (modalInstance && modalInstance._backdrop && modalInstance._backdrop._element) {
+				$linkedBackdrop = $(modalInstance._backdrop._element);
+			}
+		}else if (efw.major=="4"){
+		// --- Bootstrap 4 向けの特定ロジック（jQueryの内部データから取得） ---
+			const modalData = $targetModal.data('bs.modal');
+			if (modalData && modalData._backdrop) {
+				// BS4は _backdrop が直接要素、BS3はプロパティ内に隠れている場合があるため、jQueryで包んで安全に特定
+				$linkedBackdrop = $(modalData._backdrop);
+			}
+		}else if (efw.major=="3"){
+		// --- Bootstrap 3 向けの特定ロジック（jQueryの内部データから取得） ---
+			const modalData = $targetModal.data('bs.modal');
+			if (modalData && modalData.$backdrop) {
+				// BS3は $backdrop が直接要素、BS3はプロパティ内に隠れている場合があるため、jQueryで包んで安全に特定
+				$linkedBackdrop = $(modalData.$backdrop);
+			}
+		}
+		// 特定した背景要素にz-indexを適用
+		if ($linkedBackdrop && $linkedBackdrop.length > 0) {
+			$linkedBackdrop.css('z-index', newBackdropZIndex);
+		}
+	}, 0);
+});
+
+// モーダルが完全に閉じられた後の共通処理（主にBS3/BS4の古い設計をカバー）
+$(document).on('hidden.bs.modal', '.modal', function () {
+	// 閉じられたモーダル自身の z-index をクリア
+	$(this).css('z-index', '');
+	// Bootstrap 3 と 4 の場合のみ、スクロール復元処理を実行する
+	// 画面上に「まだ表示されている」他のモーダルが残っているか確認
+	const openModals = $('.modal.show, .modal.in').filter(function() {
+		return $(this).is(':visible');
+	});
+	// まだ下階層にモーダルが残っている場合、スクロール制御を強制復元
+	if (openModals.length > 0) {
+		$('body').addClass('modal-open'); // 消されてしまったクラスを即座に復活
+	}
+});

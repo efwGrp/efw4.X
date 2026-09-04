@@ -2,8 +2,6 @@
 package efw;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 import efw.properties.EfwAuthBean;
@@ -138,7 +136,7 @@ public final class efwFilter implements Filter {
     /**
      * バックエンド初期化継続Executor
      */
-    private static final ExecutorService continueInitInBackgroundExecutor = Executors.newCachedThreadPool(); 
+    //private static final ExecutorService continueInitInBackgroundExecutor = Executors.newCachedThreadPool(); 
 	/**
 	 * 初期化する。
 	 * @param config コンフィグ。
@@ -147,9 +145,9 @@ public final class efwFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		try {
 			framework.initFilter(config.getServletContext().getRealPath("/"));
-			continueInitInBackgroundExecutor.submit(() -> {
-				framework.continueInitInBackground();
-		    });
+			//continueInitInBackgroundExecutor.submit(() -> {
+			framework.continueInitInBackground();
+		    //});
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
