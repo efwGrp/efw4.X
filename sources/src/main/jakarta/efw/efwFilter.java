@@ -9,13 +9,13 @@ import efw.properties.PropertiesManager;
 import efw.taglib.Client;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 /**
  * efwFilterはJSPのログイン有無と接続権限をチェックする。
  * @author Chang Kejun
@@ -58,15 +58,11 @@ public final class efwFilter implements Filter {
 		//JSPではない場合、そのまま
 		if (strRequestURI.indexOf("efwServlet")>-1
 				||strRequestURI.indexOf("efwRestAPI")>-1){
-			//JSPの初期化はjavaScriptエンジンが要らないです。
-			if (!framework.getInitSuccessFlag())framework.continueInitInBackground();
 			response.setContentType("application/json");//efwServlet efwRestAPIのためです。jspなどの場合変更される
 			chain.doFilter(request, response);
 		}else if (strRequestURI.indexOf("uploadServlet")>-1
 				||strRequestURI.indexOf("downloadServlet")>-1
 				||strRequestURI.indexOf("previewServlet")>-1){
-			//JSPの初期化はjavaScriptエンジンが要らないです。
-			if (!framework.getInitSuccessFlag())framework.continueInitInBackground();
 			chain.doFilter(request, response);
 		}else if(	currentAuthBean.welcomePattern.matcher(strRequestURI).find()					//welcomeページ
 				||currentAuthBean.loginUrlPattern.matcher(strRequestURI).find()					//ログインページ
@@ -129,33 +125,8 @@ public final class efwFilter implements Filter {
 	/**
 	 * フィルタ初期化の代わりに、efwServletから初期化するための関数。
 	 */
-	protected static void init() {
+	protected static void initCurrentAuthBean() {
 		//メインアプリとするバイア、メインプロパティファイルからのセキュリティ情報を読み込む
 		currentAuthBean=new EfwAuthBean();
 	}
-    /**
-     * バックエンド初期化継続Executor
-     */
-    //private static final ExecutorService continueInitInBackgroundExecutor = Executors.newCachedThreadPool(); 
-	/**
-	 * 初期化する。
-	 * @param config コンフィグ。
-	 */
-	@Override
-	public void init(FilterConfig config) throws ServletException {
-		try {
-			framework.initFilter(config.getServletContext().getRealPath("/"));
-			//continueInitInBackgroundExecutor.submit(() -> {
-			framework.continueInitInBackground();
-		    //});
-		} catch (Exception e) {
-			throw new ServletException(e);
-		}
-	}
-	/**
-	 * 破棄する。
-	 */
-	@Override
-	public void destroy() {}
-
 }

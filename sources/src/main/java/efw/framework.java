@@ -137,28 +137,21 @@ public final class framework {
 		}catch(Exception ex) {
 			framework.initWLog("RemoteEventManager failed.",ex);
 		}
-	}
-	/**
-	 * バックエンドプロセスで初期化を継続する
-	 * 起動時間を短縮するため。
-	 */
-	public static synchronized void continueInitInBackground() {
 		//-----------------------------------------------------------------
-		if (!framework.getInitSuccessFlag()) {
-			try{
-				try{
-					ContextManager.init();//コンテキスト設定が合わない場合、エラー。
-					framework.initCLog("ContextManager inited.");
-				}catch(Exception ex){
-					framework.initSLog("ContextManager failed.",ex);
-				}
-				ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
-				framework.initCLog("ScriptManager inited.");
-				framework.initSuccessFlag=true;
-			}catch(efwException ex){
-				framework.initSLog("ScriptManager failed.",ex);
-				framework.initSuccessFlag=false;
-			}
+		try{
+			ContextManager.init();//コンテキスト設定が合わない場合、エラー。
+			framework.initCLog("ContextManager inited.");
+		}catch(Exception ex){
+			framework.initSLog("ContextManager failed.",ex);
+		}
+		//-----------------------------------------------------------------
+		try{
+			ScriptManager.init();//環境合わない場合、efw.jar問題がある場合、エラー。//ここからエラーになると、処理を中断する。
+			framework.initCLog("ScriptManager inited.");
+			framework.initSuccessFlag=true;
+		}catch(efwException ex){
+			framework.initSLog("ScriptManager failed.",ex);
+			framework.initSuccessFlag=false;
 		}
 	}
 	/**
@@ -212,18 +205,16 @@ public final class framework {
 			}
 		}
 		//-----------------------------------------------------------------
-		continueInitInBackground();
-		//-----------------------------------------------------------------
 		framework.initCLog("Efw Version = "+framework.version);		
 	}
 	/**
-	 * フィルターの初期化。
+	 * WEBの初期化。
 	 * @param webHome WEBホーム。
 	 * @throws IOException 通信エラー。
 	 * @throws ScriptException スクリプトエラー。
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	protected static void initFilter(String webHome) throws IOException, efwException {
+	protected static void initWeb(String webHome) throws IOException, efwException {
 		//-----------------------------------------------------------------
 		// begin to init efw　まずefw.propertiesを読んで、次は簡単な情報をスタート
 		//-----------------------------------------------------------------
@@ -259,14 +250,12 @@ public final class framework {
 		//-----------------------------------------------------------------
 		//efwFilter init
 		try {
-			efwFilter.init();//プロパティの後で必要。
-			framework.initCLog("efwFilter inited.");
+			efwFilter.initCurrentAuthBean();//プロパティの後で必要。
+			framework.initCLog("CurrentAuthBean inited.");
 		}catch(Exception ex) {
-			framework.initSLog("efwFilter failed.",ex);
+			framework.initSLog("CurrentAuthBean failed.",ex);
 			throw ex;
 		}
-		//-----------------------------------------------------------------
-		//initScript();//servletで実行するように
 		//-----------------------------------------------------------------
 		framework.initCLog("Efw Version = "+framework.version);		
 	}
