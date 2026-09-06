@@ -22,6 +22,14 @@ public final class CmdManager {
 	 */
 	public static void execute(String[] params) throws CmdExecuteException {
 		try {
+			if (params == null || params.length == 0) {
+				throw new CmdExecuteException(params, "params is empty.");
+			}
+			for (String param : params) {
+				if (param == null || param.matches(".*[;&|`$<>\\\\\"'\\n\\r].*")) {
+					throw new CmdExecuteException(params, "params contains invalid character.");
+				}
+			}
 			ProcessBuilder pb = new ProcessBuilder(params);
 			Process process = pb.start();
 			//InputStreamのスレッド開始
