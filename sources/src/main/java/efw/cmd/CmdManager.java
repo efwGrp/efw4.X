@@ -35,14 +35,10 @@ public final class CmdManager {
 			if (params == null || params.length == 0) {
 				throw new CmdExecuteException(params, "params is empty.");
 			}
-			// Defense-in-depth validation: reject parameters containing shell metacharacters.
-			// NOTE: ProcessBuilder does NOT invoke a shell, so these characters are not directly
-			// exploitable for command injection. However, certain argument patterns may still be
-			// dangerous depending on the executable being invoked. Primary validation should occur
-			// in calling code (event JS) before untrusted input reaches this method.
+			// Reject null elements - these are always invalid regardless of the command
 			for (String param : params) {
-				if (param == null || param.matches(".*[;&|`$<>\\\\\"'\\n\\r].*")) {
-					throw new CmdExecuteException(params, "params contains invalid character.");
+				if (param == null) {
+					throw new CmdExecuteException(params, "params contains null element.");
 				}
 			}
 			ProcessBuilder pb = new ProcessBuilder(params);
