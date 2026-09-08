@@ -188,7 +188,7 @@ It is provided as open source free software.</description>
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.7.11</version>
+      <version>42.7.12</version>
       <optional>true</optional>
     </dependency>
     <!-- ZIPパスワード機能 -->
@@ -245,13 +245,6 @@ It is provided as open source free software.</description>
       <artifactId>redisson-tomcat-11</artifactId>
       <version>4.4.0</version>
       <optional>true</optional>
-    </dependency>
-    <!-- Testing -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>5.10.2</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -313,11 +306,6 @@ It is provided as open source free software.</description>
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
       </plugin>
     </plugins>
   </build>
