@@ -27,6 +27,7 @@ elFinder 是一个流行的 Web 文件管理器。我们基于 [elFinder 2.1](ht
 | `protected` | 否 | `"false"` | 指定 elFinder 标签是否受保护。如果为 `true`，则对 `setHome` 和 `setReadOnly` 方法的调用将被忽略。 |
 | `isAbs` | 否 | `false` | 指定 `home` 路径是否为绝对路径。 |
 | `saveLogFunc` | 否 | `null` | 指定记录elFinder各种操作的函数名称。|
+| `mode` | 否 | `pc` | 指定对应设备。`pc`：电脑，`mo`：智能手机 |
 
 ## 方法
 
