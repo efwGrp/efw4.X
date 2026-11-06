@@ -5,8 +5,8 @@ ESCCO 提供的**面向 Web 的企业框架**，采用目标导向的方法，�
 ## 介绍
 
 
-[![EFW流程图](../img/efw_flow.png)](../img/efw_flow_org.png)[![EFW发布](../img/efw_deployment.png)](../img/efw_deployment_org.png)<br>
-[![EFW客户端](../img/efw_client.png)](../img/efw_client_org.png)[![EFW服务器端](../img/efw_server.png)](../img/efw_server_org.png)
+[![EFW流程图](../img/efw_flow.svg)](../img/efw_flow_org.svg)[![EFW发布](../img/efw_deployment.svg)](../img/efw_deployment_org.svg)<br>
+[![EFW客户端](../img/efw_client.svg)](../img/efw_client_org.svg)[![EFW服务器端](../img/efw_server.svg)](../img/efw_server_org.svg)
 
 
 - **革命性的开发方法** - EFW采用目标导向方法，通过Ajax和服务器端JavaScript构建高速Web系统

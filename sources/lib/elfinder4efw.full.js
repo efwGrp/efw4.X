@@ -13680,7 +13680,9 @@ $.fn.elfindertoolbar = function(fm, opts) {
 				l = panels.length;
 				while (l--) {
 					if (panels[l]) {
-						panel = $('<div class="ui-widget-content ui-corner-all elfinder-buttonset"></div>');
+						if (fm.options.customData.mode!="mo"){
+							panel = $('<div class="ui-widget-content ui-corner-all elfinder-buttonset"></div>');
+						}
 						i = panels[l].length;
 						while (i--) {
 							name = panels[l][i];
@@ -13691,14 +13693,21 @@ $.fn.elfindertoolbar = function(fm, opts) {
 								}
 								if (buttons[name]) {
 									textLabel && buttons[name].find('.elfinder-button-text').show();
+									if (fm.options.customData.mode=="mo"){
+										panel = $('<div class="a_ui-widget-content a_ui-corner-all a_elfinder-buttonset btn mw-100 flex-grow-1 py-2"></div>');
+									}
 									panel.prepend(buttons[name]);
+									if (fm.options.customData.mode=="mo"){
+										panel.children().length && self.prepend(panel);
+										panel.children(':gt(0)').before('<span class="ui-widget-content elfinder-toolbar-button-separator"></span>');
+									}
 								}
 							}
 						}
-						
-						panel.children().length && self.prepend(panel);
-						panel.children(':gt(0)').before('<span class="ui-widget-content elfinder-toolbar-button-separator"></span>');
-
+						if (fm.options.customData.mode!="mo"){
+							panel.children().length && self.prepend(panel);
+							panel.children(':gt(0)').before('<span class="ui-widget-content elfinder-toolbar-button-separator"></span>');
+						}
 					}
 				}
 				
@@ -17896,7 +17905,7 @@ elFinder.prototype.commands.view = function() {
 
 return elFinder;
 }));
-	
+
 ///////////////////////
 /*
  * File: /js/commands/quicklook.js

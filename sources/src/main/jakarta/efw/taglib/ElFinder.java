@@ -26,6 +26,10 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 */
 	public ElFinder(){super();}
 	/**
+	 * モード
+	 */
+	private String mode="pc";//pc or mo
+	/**
 	 * ElFinderのID
 	 */
 	private String id="elFinder";
@@ -61,6 +65,22 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 	 * ログ保存用関数
 	 */
 	private String saveLogFunc="";
+	
+	/**
+	 * ElFinderのモードを取得する。
+	 * @return ElFinderのモード。
+	 */
+	public String getMode() {
+		return mode;
+	}
+	/**
+	 * ElFinderのモードを設定する。
+	 * @param mode ElFinderのモード。
+	 */
+	public void setMode(String mode) {
+		this.mode = Util.translateAttr(pageContext,mode);
+	}
+	
 	/**
 	 * ElFinderのIDを取得する。
 	 * @return ElFinderのID。
@@ -220,9 +240,11 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 		try {
 			String v=framework.version;
 			out = pageContext.getOut();
-			//out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder4efw.full.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/elfinder4efw.min.css?v="+v+"\">");
 			out.print("<link type=\"text/css\" rel=\"stylesheet\" href=\"elfinder/css/theme.css?v="+v+"\">");
+			if ("mo".equals(mode)) {
+				out.print("<style>.elfinder .elfinder-navbar {display: none !important;}</style>");
+			}
 			//out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.full.js?v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder4efw.min.js?v="+v+"\"></script>");
 			out.print("<script type=\"text/javascript\" charset=\"UTF-8\" src=\"elfinder/js/elfinder.messages.jsp?lang="+lang+"&v="+v+"\"></script>");
@@ -242,6 +264,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 					+ "\"selection\":\""+jsEncode(selection)+"\","
 					+ "\"readonly\":"+readonly+","
 					+ "\"id\":\""+id+"\","
+					+"\"mode\":\""+mode+"\","
 					+ "}"
 					+ "}).elfinder(\"instance\");});");
 			out.print("</script>");
@@ -257,6 +280,7 @@ public final class ElFinder extends TagSupport implements DynamicAttributes {
 			e.printStackTrace();
 		}
 		//初期値を再設定する。
+		mode="pc";
 		id="elFinder";
 		home="";
 		isAbs=false;

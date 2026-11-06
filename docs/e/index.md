@@ -5,8 +5,8 @@ An **Enterprise Framework for Web** with a goal-oriented approach to building we
 ## Introduction
 
 
-[![EFW Flowchart](../img/efw_flow.png)](../img/efw_flow_org.png)[![EFW Deployment](../img/efw_deployment.png)](../img/efw_deployment_org.png)<br>
-[![EFW Client](../img/efw_client.png)](../img/efw_client_org.png)[![EFW Server](../img/efw_server.png)](../img/efw_server_org.png)
+[![EFW Flowchart](../img/efw_flow.svg)](../img/efw_flow_org.svg)[![EFW Deployment](../img/efw_deployment.svg)](../img/efw_deployment_org.svg)<br>
+[![EFW Client](../img/efw_client.svg)](../img/efw_client_org.svg)[![EFW Server](../img/efw_server.svg)](../img/efw_server_org.svg)
 
 
 - **Revolutionary Development Approach** - EFW adopts a goal-oriented approach to build high-speed web systems with Ajax and server-side JavaScript

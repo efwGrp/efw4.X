@@ -7,10 +7,10 @@ An **Enterprise Framework for Web** with a goal-oriented approach to building we
 ## Introduction
 
 
-[![Efw Flow](./docs/img/efw_flow.png)](./docs/img/efw_flow_org.png)
-[![Efw Deployment](./docs/img/efw_deployment.png)](./docs/img/efw_deployment_org.png)
-[![Efw Client](./docs/img/efw_client.png)](./docs/img/efw_client_org.png)
-[![Efw Server](./docs/img/efw_server.png)](./docs/img/efw_server_org.png)
+[![Efw Flow](./docs/img/efw_flow.svg)](./docs/img/efw_flow_org.svg)
+[![Efw Deployment](./docs/img/efw_deployment.svg)](./docs/img/efw_deployment_org.svg)
+[![Efw Client](./docs/img/efw_client.svg)](./docs/img/efw_client_org.svg)
+[![Efw Server](./docs/img/efw_server.svg)](./docs/img/efw_server_org.svg)
 
 - **Revolutionary Development Approach** - EFW adopts a goal-oriented approach to build high-speed web systems with Ajax and server-side JavaScript
 - **Significant Code Reduction** - Introducing EFW significantly reduces the complexity of web development, featuring substantial code reduction and rapid response to requirement reviews and specification changes
